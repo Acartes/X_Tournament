@@ -131,7 +131,6 @@ public class MoveBehaviour : MonoBehaviour
     IEnumerator Deplacement(Color caseColor, float offsetY, GameObject selectedPersonnage)
     { // On déplace le personnage de case en case jusqu'au click du joueur propriétaire, et entre temps on check s'il est taclé ou non
         TurnManager.Instance.DisableFinishTurn();
-        CameraBehaviour.Instance.LongFocus(selectedPersonnage.transform);
 
         selectedPersonnage.GetComponent<PersoData>().movePath = pathes;
         GameManager.Instance.actualAction = PersoAction.isMoving;
@@ -182,6 +181,5 @@ public class MoveBehaviour : MonoBehaviour
         TurnManager.Instance.StartCoroutine("EnableFinishTurn");
 
         yield return new WaitForEndOfFrame();
-        CameraBehaviour.Instance.StopLongFocus();
     }
 }

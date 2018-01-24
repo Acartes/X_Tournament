@@ -53,7 +53,6 @@ public class BallonData : MonoBehaviour
     public IEnumerator Move(GameObject hoveredCase, GameObject selectedPersonnage, float travelTimeBallon, float ballStrenght)
     {
         TurnManager.Instance.DisableFinishTurn();
-        CameraBehaviour.Instance.LongFocus(SelectionManager.Instance.selectedBallon.transform);
         ShotBehaviour.Instance.isShoting = true;
 
         animator.SetTrigger("Roule");
@@ -92,12 +91,12 @@ public class BallonData : MonoBehaviour
         }
         for (int i = 0; i < ballStrenght; i++)
         {
-          TackleBehaviour.Instance.CheckTackle((this.gameObject));
-        if (isIntercepted)
-          {
-            isIntercepted = false;
-            break;
-          }
+            TackleBehaviour.Instance.CheckTackle((this.gameObject));
+            if (isIntercepted)
+            {
+                isIntercepted = false;
+                break;
+            }
             xCoord += xCoordInc;
             yCoord += yCoordInc;
             if (GameObject.Find(xCoord.ToString() + " " + yCoord.ToString()) != null)
@@ -162,7 +161,7 @@ public class BallonData : MonoBehaviour
                 transform.position = Vector3.Lerp(startPos, nextPosition.transform.position, fracturedTime);
                 yield return new WaitForEndOfFrame();
             }
-          TackleBehaviour.Instance.CheckTackle(this.gameObject);
+            TackleBehaviour.Instance.CheckTackle(this.gameObject);
         }
         endMove:
         isMoving = false;
@@ -170,9 +169,6 @@ public class BallonData : MonoBehaviour
         animator.ResetTrigger("Roule");
         animator.SetTrigger("Idle");
         TurnManager.Instance.EnableFinishTurn();
-        CameraBehaviour.Instance.StopLongFocus();
-
-        CameraBehaviour.Instance.Focus(selectedPersonnage.transform);
     }
 
     void ChangeRotation()

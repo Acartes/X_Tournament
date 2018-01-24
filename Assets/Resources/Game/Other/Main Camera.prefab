@@ -105,10 +105,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 898049e29241c37469c1fef17e10b949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  focusZoom: 3
-  globalZoom: 7
+  maxZoomIn: 3
+  maxZoomOut: 7
   globalPosition: {x: 7.99, y: -0.64, z: 0}
-  focusTarget: {fileID: 0}
+  currentZoom: 0
 --- !u!124 &124250290128229730
 Behaviour:
   m_ObjectHideFlags: 1

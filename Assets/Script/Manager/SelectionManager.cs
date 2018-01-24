@@ -121,7 +121,5 @@ public class SelectionManager : MonoBehaviour {
       selectedCase.GetComponent<CaseData>().ChangeColor(selectedColor);
       GameManager.Instance.actualAction = PersoAction.isSelected;
 
-        CameraBehaviour.Instance.Focus(selectedPersonnage.transform);
-
     }
 }
