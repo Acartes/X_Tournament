@@ -45,7 +45,8 @@ public class TackleBehaviour : MonoBehaviour {
                 switch (movingObj.name)
                   {
                   case ("Ballon"):
-                        StartCoroutine(TackleEffect(obj, movingObj.transform, GraphManager.Instance.offsetY));
+                    path = movingObj.GetComponent<BallonData>().ballonCase.transform;
+                        StartCoroutine(TackleEffect(obj, path, GraphManager.Instance.offsetY));
                         if (randomInt < 50)
                           {
                             Debug.Log("(Si inférieur à 51, il y a interception) " + randomInt + "/" + "100" + ": Interception SUCCESS");
@@ -55,7 +56,7 @@ public class TackleBehaviour : MonoBehaviour {
                   default:
                     if (obj.GetComponent<PersoData>().owner != currentPlayer)
                       {
-                            StartCoroutine(TackleEffect(obj, movingObj.transform, GraphManager.Instance.offsetY));
+                            StartCoroutine(TackleEffect(obj, path, GraphManager.Instance.offsetY));
                         Debug.Log(currentPlayer + " " + obj.GetComponent<PersoData>().owner);
                         if (movingObj.GetComponent<PersoData>().weightType == obj.GetComponent<PersoData>().weightType)
                           {
@@ -82,7 +83,6 @@ public class TackleBehaviour : MonoBehaviour {
                       }
                     break;
                   }
-
               }
           }
       }
@@ -114,7 +114,6 @@ public class TackleBehaviour : MonoBehaviour {
           punchingPersonnage.transform.position = Vector3.Lerp (path.position + new Vector3 (0, offsetY, 0), startPos, fracturedTime);
           yield return new WaitForEndOfFrame ();
         }
-
       punchingPersonnage.GetComponent<BoxCollider2D> ().enabled = true;
     }
 }
