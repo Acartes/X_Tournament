@@ -3457,48 +3457,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1077425790808168, guid: 87782b1768072b944864212a2e5a0575,
     type: 2}
   m_PrefabInternal: {fileID: 802264849}
---- !u!1001 &940631705
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4873329103202266, guid: 098bc2453d38a9440a5046ee6bbe7492, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4873329103202266, guid: 098bc2453d38a9440a5046ee6bbe7492, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4873329103202266, guid: 098bc2453d38a9440a5046ee6bbe7492, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4873329103202266, guid: 098bc2453d38a9440a5046ee6bbe7492, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4873329103202266, guid: 098bc2453d38a9440a5046ee6bbe7492, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4873329103202266, guid: 098bc2453d38a9440a5046ee6bbe7492, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4873329103202266, guid: 098bc2453d38a9440a5046ee6bbe7492, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4873329103202266, guid: 098bc2453d38a9440a5046ee6bbe7492, type: 2}
-      propertyPath: m_RootOrder
-      value: 36
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 098bc2453d38a9440a5046ee6bbe7492, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &942267643 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1901878941101708, guid: 87782b1768072b944864212a2e5a0575,
@@ -5903,6 +5861,48 @@ GameObject:
   m_PrefabParentObject: {fileID: 1700352233116684, guid: 87782b1768072b944864212a2e5a0575,
     type: 2}
   m_PrefabInternal: {fileID: 802264849}
+--- !u!1001 &1885913180
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4297763524025216, guid: 4f521012ca646b4489c80ae9241beea7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297763524025216, guid: 4f521012ca646b4489c80ae9241beea7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297763524025216, guid: 4f521012ca646b4489c80ae9241beea7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297763524025216, guid: 4f521012ca646b4489c80ae9241beea7, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297763524025216, guid: 4f521012ca646b4489c80ae9241beea7, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297763524025216, guid: 4f521012ca646b4489c80ae9241beea7, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297763524025216, guid: 4f521012ca646b4489c80ae9241beea7, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297763524025216, guid: 4f521012ca646b4489c80ae9241beea7, type: 2}
+      propertyPath: m_RootOrder
+      value: 36
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 4f521012ca646b4489c80ae9241beea7, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1899116693 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1520590805990158, guid: 87782b1768072b944864212a2e5a0575,

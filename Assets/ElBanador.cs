@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ViolDeDauphin : MonoBehaviour {
+public class ElBanador : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
