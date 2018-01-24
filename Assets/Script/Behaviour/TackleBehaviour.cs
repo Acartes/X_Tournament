@@ -39,22 +39,24 @@ public class TackleBehaviour : MonoBehaviour {
           {
               if (obj != movingObj && Fonction.Instance.CheckAdjacent(obj, movingObj) == true)
               {
-                  StartCoroutine(TackleEffect(obj, movingObj.transform, GraphManager.Instance.offsetY));
 
                 int randomInt = UnityEngine.Random.Range(0, 100);
 
                 switch (movingObj.name)
                   {
                   case ("Ballon"):
+                        StartCoroutine(TackleEffect(obj, movingObj.transform, GraphManager.Instance.offsetY));
                         if (randomInt < 50)
                           {
-                            Debug.Log("(Même poids) (Si inférieur à 51 il y a tackle) " + randomInt + "/" + "100" + ": Tackle SUCCESS");
+                            Debug.Log("(Si inférieur à 51, il y a interception) " + randomInt + "/" + "100" + ": Interception SUCCESS");
                             movingObj.GetComponent<BallonData>().isIntercepted = true;
                           } 
                     break;
                   default:
                     if (obj.GetComponent<PersoData>().owner != currentPlayer)
                       {
+                            StartCoroutine(TackleEffect(obj, movingObj.transform, GraphManager.Instance.offsetY));
+                        Debug.Log(currentPlayer + " " + obj.GetComponent<PersoData>().owner);
                         if (movingObj.GetComponent<PersoData>().weightType == obj.GetComponent<PersoData>().weightType)
                           {
                             if (randomInt < 50)
