@@ -148,4 +148,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a52183827fa135c49a1c1bb0bbb1e589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tackleAnimTime: 0
+  tackleAnimTime: 5

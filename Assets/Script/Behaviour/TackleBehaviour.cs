@@ -26,7 +26,7 @@ public class TackleBehaviour : MonoBehaviour {
   // ** Checkers ** //
   // *************** //
 
-  public void CheckTackle (GameObject movingObj) 
+  public void CheckTackle (GameObject movingObj, GameObject shotingPersonnage = null) 
     { // Vérifie si le personnage peut être taclé, et si c'est le cas, fait un test de chance pour savoir s'il est taclé
       Transform path = SelectionManager.Instance.selectedCase.transform;
       Player currentPlayer = TurnManager.Instance.currentPlayer;
@@ -35,26 +35,29 @@ public class TackleBehaviour : MonoBehaviour {
 
     foreach (GameObject obj in RosterManager.Instance.listHeroPlaced)
       {
-        if (movingObj != null)
+          if (movingObj != null && obj != shotingPersonnage)
           {
               if (obj != movingObj && Fonction.Instance.CheckAdjacent(obj, movingObj) == true)
               {
-                  StartCoroutine(TackleEffect(obj, movingObj.transform, GraphManager.Instance.offsetY));
 
                 int randomInt = UnityEngine.Random.Range(0, 100);
 
                 switch (movingObj.name)
                   {
                   case ("Ballon"):
+                    path = movingObj.GetComponent<BallonData>().ballonCase.transform;
+                        StartCoroutine(TackleEffect(obj, path, GraphManager.Instance.offsetY));
                         if (randomInt < 50)
                           {
-                            Debug.Log("(Même poids) (Si inférieur à 51 il y a tackle) " + randomInt + "/" + "100" + ": Tackle SUCCESS");
+                            Debug.Log("(Si inférieur à 51, il y a interception) " + randomInt + "/" + "100" + ": Interception SUCCESS");
                             movingObj.GetComponent<BallonData>().isIntercepted = true;
                           } 
                     break;
                   default:
                     if (obj.GetComponent<PersoData>().owner != currentPlayer)
                       {
+                            StartCoroutine(TackleEffect(obj, path, GraphManager.Instance.offsetY));
+                        Debug.Log(currentPlayer + " " + obj.GetComponent<PersoData>().owner);
                         if (movingObj.GetComponent<PersoData>().weightType == obj.GetComponent<PersoData>().weightType)
                           {
                             if (randomInt < 50)
@@ -80,7 +83,6 @@ public class TackleBehaviour : MonoBehaviour {
                       }
                     break;
                   }
-
               }
           }
       }
@@ -112,7 +114,6 @@ public class TackleBehaviour : MonoBehaviour {
           punchingPersonnage.transform.position = Vector3.Lerp (path.position + new Vector3 (0, offsetY, 0), startPos, fracturedTime);
           yield return new WaitForEndOfFrame ();
         }
-
       punchingPersonnage.GetComponent<BoxCollider2D> ().enabled = true;
     }
 }
