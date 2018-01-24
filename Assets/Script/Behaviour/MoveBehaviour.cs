@@ -11,7 +11,7 @@ public class MoveBehaviour : MonoBehaviour
 
     [Header("  Temps")]
     [Tooltip("La durée d'un déplacement entre deux cases.")]
-    float travelTime;
+    public float travelTime;
 
     [Header("  Chemin du pathfinding")]
     [ReadOnly]
@@ -26,12 +26,7 @@ public class MoveBehaviour : MonoBehaviour
 
     void Awake()
     {
-      travelTime = Tools.travelTime;
       Instance = this;
-    }
-
-    void Update () {
-      travelTime = Tools.travelTime;
     }
 
     void OnEnable()

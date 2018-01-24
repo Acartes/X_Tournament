@@ -92,6 +92,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0764bd945cfa11e44a9969f2183c523f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  travelTimeBallon: 5
+  ballStrenght: 5
   offsetBallon: {x: 0, y: 0, z: 0}
   isShoting: 0
   nextPosition: {fileID: 0}
@@ -119,8 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152b89f8cd9af754fa60b7da0c1e6211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redMat: {fileID: 2100000, guid: 822955f0da5e9434aa32144cccb8d8e2, type: 2}
-  blueMat: {fileID: 2100000, guid: ee4e42d3651cd4f46bf9995ca5ee274e, type: 2}
+  redMat: {fileID: 0}
+  blueMat: {fileID: 0}
 --- !u!114 &114862410033315262
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -132,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cd004b36cddd1d48bb3fbe166100e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  travelTime: 5
   GoPathes: []
   pathes: []
 --- !u!114 &114974511209771128
@@ -145,4 +148,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a52183827fa135c49a1c1bb0bbb1e589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tackleAnimTime: 5
+  tackleAnimTime: 0

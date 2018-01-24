@@ -9,9 +9,9 @@ public class ShotBehaviour : MonoBehaviour {
   // *************** //
 
   [Header("  Temps")]
-  float travelTimeBallon;
+  public float travelTimeBallon;
   [Tooltip("Utilisé pour ")]
-  float ballStrenght;
+  public float ballStrenght;
   [Tooltip("J'utilise parfois cette variable pour être sûr que le ballon soit bien centré où je veux sans bouger son transform")]
   [ReadOnly] public Vector3 offsetBallon;
   [Tooltip("S'il est coché, c'est qu'un tir de ballon est en cours")]
@@ -19,23 +19,12 @@ public class ShotBehaviour : MonoBehaviour {
   [HideInInspector] public GameObject nextPosition;
   [HideInInspector] public bool canBounce;
 
-
-
   public static ShotBehaviour Instance;
 
     void Awake () {
-    travelTimeBallon = Tools.travelTimeBallon;
-      ballStrenght = Tools.ballStrenght;
-
     Instance = this;
     }
-
-    void Update () {
-      travelTimeBallon = Tools.travelTimeBallon;
-      ballStrenght = Tools.ballStrenght;
-
-    }
-
+  
   void OnEnable()
     {
       ClickEvent.newClickEvent += OnNewClick;

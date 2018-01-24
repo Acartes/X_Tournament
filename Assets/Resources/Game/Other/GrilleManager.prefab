@@ -14388,7 +14388,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 3
   yCoord: 7
@@ -14400,6 +14399,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114006007768940852
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14442,7 +14442,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 15
   yCoord: 2
@@ -14454,6 +14453,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114011709946359676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14600,7 +14600,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 18
   yCoord: 2
@@ -14612,6 +14611,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114029200734294014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14627,7 +14627,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 18
   yCoord: 0
@@ -14639,6 +14638,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114030609837091266
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14713,7 +14713,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 16
   yCoord: 6
@@ -14725,6 +14724,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114034953412112246
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14810,7 +14810,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 13
   yCoord: 5
@@ -14822,6 +14821,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114042629176807400
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14880,7 +14880,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 16
   yCoord: 10
@@ -14892,6 +14891,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114045257429768710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14934,7 +14934,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 5
   yCoord: 5
@@ -14946,6 +14945,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114047141861342872
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14961,7 +14961,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 4
   yCoord: 8
@@ -14973,6 +14972,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114048009142299628
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15015,7 +15015,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 11
   yCoord: 3
@@ -15027,6 +15026,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114049676138442264
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15042,7 +15042,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 1
   yCoord: 3
@@ -15054,6 +15053,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114050036965550002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15080,7 +15080,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 10
   yCoord: 2
@@ -15092,6 +15091,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114053735326499028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15161,7 +15161,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 18
   yCoord: 1
@@ -15173,6 +15172,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114058482145070438
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15204,7 +15204,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 0
   yCoord: 10
@@ -15216,6 +15215,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114062280599256610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15258,7 +15258,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 10
   yCoord: 4
@@ -15270,6 +15269,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114063852149908230
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15372,7 +15372,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 5
   yCoord: 8
@@ -15384,6 +15383,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114072760978033524
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15399,7 +15399,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 6
   yCoord: 3
@@ -15411,6 +15410,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114074053056876440
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15426,7 +15426,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 10
   yCoord: 5
@@ -15438,6 +15437,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114076867682862674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15491,7 +15491,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 12
   yCoord: 10
@@ -15503,6 +15502,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114080408419739832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15577,7 +15577,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 14
   yCoord: 9
@@ -15589,6 +15588,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114084278653551898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15631,7 +15631,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 9
   yCoord: 1
@@ -15643,6 +15642,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114092764263951662
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15674,7 +15674,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 11
   yCoord: 1
@@ -15686,6 +15685,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114098062229526952
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15712,7 +15712,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 7
   yCoord: 9
@@ -15724,6 +15723,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114103430301483898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15782,7 +15782,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 9
   yCoord: 8
@@ -15794,6 +15793,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114106575053051144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15874,7 +15874,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 17
   yCoord: 2
@@ -15886,6 +15885,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114115294094526186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15928,7 +15928,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 15
   yCoord: 10
@@ -15940,6 +15939,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114117602885992232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16046,7 +16046,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 5
   yCoord: 3
@@ -16058,6 +16057,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114134646145779524
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16132,7 +16132,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 6
   yCoord: 5
@@ -16144,6 +16143,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114141140269161210
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16175,7 +16175,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 1
   yCoord: 7
@@ -16187,6 +16186,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114142705823322852
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16218,7 +16218,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 11
   yCoord: 8
@@ -16230,6 +16229,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114155688532534404
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16245,7 +16245,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 14
   yCoord: 2
@@ -16257,6 +16256,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114155853731663248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16272,7 +16272,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 15
   yCoord: 4
@@ -16284,6 +16283,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114160597390430640
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16315,7 +16315,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 7
   yCoord: 0
@@ -16327,6 +16326,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114161951253010626
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16353,7 +16353,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 8
   yCoord: 6
@@ -16365,6 +16364,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114164811566900088
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16413,7 +16413,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 3
   yCoord: 5
@@ -16425,6 +16424,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114173113972444250
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16440,7 +16440,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 18
   yCoord: 7
@@ -16452,6 +16451,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114173447370186020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16467,7 +16467,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 5
   yCoord: 2
@@ -16479,6 +16478,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114175142095803594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16677,7 +16677,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 3
   yCoord: 0
@@ -16689,6 +16688,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114199306099702410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16720,7 +16720,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 7
   yCoord: 8
@@ -16732,6 +16731,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114203603910046386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16747,7 +16747,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 16
   yCoord: 9
@@ -16759,6 +16758,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114205218355837354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16774,7 +16774,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 20
   yCoord: 9
@@ -16786,6 +16785,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114205510125561464
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16823,7 +16823,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 6
   yCoord: 9
@@ -16835,6 +16834,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114209698315494194
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16942,7 +16942,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 4
   yCoord: 6
@@ -16954,6 +16953,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114222873450300570
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17007,7 +17007,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 19
   yCoord: 8
@@ -17019,6 +17018,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114229665409656804
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17034,7 +17034,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 8
   yCoord: 3
@@ -17046,6 +17045,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114230522268956794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17061,7 +17061,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 7
   yCoord: 10
@@ -17073,6 +17072,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114230562454318136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17088,7 +17088,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 1
   yCoord: 4
@@ -17100,6 +17099,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114232586358252590
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17115,7 +17115,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 14
   yCoord: 1
@@ -17127,6 +17126,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114233216527795472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17180,7 +17180,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 1
   yCoord: 9
@@ -17192,6 +17191,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114236606848844002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17239,7 +17239,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 6
   yCoord: 8
@@ -17251,6 +17250,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114241093473746930
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17266,7 +17266,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 5
   yCoord: 6
@@ -17278,6 +17277,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114241153803574032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17293,7 +17293,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 18
   yCoord: 6
@@ -17305,6 +17304,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114246992194546978
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17320,7 +17320,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 6
   yCoord: 1
@@ -17332,6 +17331,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114250130609402498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17477,7 +17477,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 14
   yCoord: 5
@@ -17489,6 +17488,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114263546344114022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17553,7 +17553,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 1
   yCoord: 0
@@ -17565,6 +17564,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114270241661423458
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17607,7 +17607,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 11
   yCoord: 9
@@ -17619,6 +17618,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114271679151455778
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17741,7 +17741,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 16
   yCoord: 3
@@ -17753,6 +17752,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114285763753479342
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17768,7 +17768,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 11
   yCoord: 5
@@ -17780,6 +17779,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114285891684116018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17806,7 +17806,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 19
   yCoord: 5
@@ -17818,6 +17817,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114288098131655106
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17860,7 +17860,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 16
   yCoord: 8
@@ -17872,6 +17871,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114291840969174410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17887,7 +17887,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 14
   yCoord: 10
@@ -17899,6 +17898,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114292597765107106
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17914,7 +17914,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 17
   yCoord: 0
@@ -17926,6 +17925,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114294366618277046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17941,7 +17941,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 3
   yCoord: 2
@@ -17953,6 +17952,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114294761753309482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17968,7 +17968,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 20
   yCoord: 8
@@ -17980,6 +17979,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114294846924000924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18022,7 +18022,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 7
   yCoord: 2
@@ -18034,6 +18033,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114298462659005568
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18049,7 +18049,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 12
   yCoord: 4
@@ -18061,6 +18060,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114298702006989204
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18168,7 +18168,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 5
   yCoord: 4
@@ -18180,6 +18179,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114307479719520794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18346,7 +18346,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 16
   yCoord: 7
@@ -18358,6 +18357,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114320992383547142
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18389,7 +18389,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 7
   yCoord: 7
@@ -18401,6 +18400,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114326679621881806
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18427,7 +18427,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 14
   yCoord: 8
@@ -18439,6 +18438,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114328584644051114
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18487,7 +18487,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 5
   yCoord: 9
@@ -18499,6 +18498,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114332887753386534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18530,7 +18530,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 19
   yCoord: 2
@@ -18542,6 +18541,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114337383270782132
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18584,7 +18584,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 20
   yCoord: 7
@@ -18596,6 +18595,7 @@ MonoBehaviour:
   caseColor: {r: 0.9862069, g: 1, b: 0, a: 0.78431374}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114340331543662794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18611,7 +18611,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 15
   yCoord: 8
@@ -18623,6 +18622,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114340687850750770
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18638,7 +18638,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 12
   yCoord: 9
@@ -18650,6 +18649,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114341029723005298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18665,7 +18665,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 9
   yCoord: 9
@@ -18677,6 +18676,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114341175853469056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18767,7 +18767,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 13
   yCoord: 10
@@ -18779,6 +18778,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114347599141600442
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18821,7 +18821,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 10
   yCoord: 0
@@ -18833,6 +18832,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114352599180866324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18864,7 +18864,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 8
   yCoord: 8
@@ -18876,6 +18875,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114355363136619306
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18967,7 +18967,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 3
   yCoord: 9
@@ -18979,6 +18978,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114366629572981504
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18994,7 +18994,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 8
   yCoord: 1
@@ -19006,6 +19005,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114369522662774230
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19021,7 +19021,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 11
   yCoord: 4
@@ -19033,6 +19032,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114370478414359988
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19075,7 +19075,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 14
   yCoord: 7
@@ -19087,6 +19086,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114378908760356048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19162,7 +19162,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 20
   yCoord: 3
@@ -19174,6 +19173,7 @@ MonoBehaviour:
   caseColor: {r: 0.9862069, g: 1, b: 0, a: 0.78431374}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114386802002466626
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19280,7 +19280,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 17
   yCoord: 7
@@ -19292,6 +19291,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114400570835544060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19307,7 +19307,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 12
   yCoord: 8
@@ -19319,6 +19318,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114405792912948818
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19361,7 +19361,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 18
   yCoord: 3
@@ -19373,6 +19372,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114408937656914324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19404,7 +19404,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 11
   yCoord: 7
@@ -19416,6 +19415,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114410523836256702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19431,7 +19431,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 6
   yCoord: 10
@@ -19443,6 +19442,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114412266919906236
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19474,7 +19474,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 16
   yCoord: 0
@@ -19486,6 +19485,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114421097867123590
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19501,7 +19501,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 0
   yCoord: 4
@@ -19513,6 +19512,7 @@ MonoBehaviour:
   caseColor: {r: 0.9862069, g: 1, b: 0, a: 0.78431374}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114421550630521966
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19528,7 +19528,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 16
   yCoord: 5
@@ -19540,6 +19539,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114425747697964846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19673,7 +19673,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 12
   yCoord: 3
@@ -19685,6 +19684,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114433419848078848
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19722,7 +19722,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 14
   yCoord: 3
@@ -19734,6 +19733,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114439189527990492
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19749,7 +19749,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 15
   yCoord: 3
@@ -19761,6 +19760,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114439304869298438
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19814,7 +19814,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 6
   yCoord: 2
@@ -19826,6 +19825,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114443316688163368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19873,7 +19873,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 17
   yCoord: 8
@@ -19885,6 +19884,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114446387788033252
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19900,7 +19900,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 16
   yCoord: 2
@@ -19912,6 +19911,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114448706401952800
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19927,7 +19927,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 7
   yCoord: 5
@@ -19939,6 +19938,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114450280494766674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19965,7 +19965,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 13
   yCoord: 4
@@ -19977,6 +19976,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114457084788563940
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20019,7 +20019,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 0
   yCoord: 5
@@ -20031,6 +20030,7 @@ MonoBehaviour:
   caseColor: {r: 0.9862069, g: 1, b: 0, a: 0.78431374}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114458561909662682
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20046,7 +20046,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 7
   yCoord: 3
@@ -20058,6 +20057,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114458873221069936
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20073,7 +20073,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 3
   yCoord: 8
@@ -20085,6 +20084,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114460407612912354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20116,7 +20116,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 8
   yCoord: 4
@@ -20128,6 +20127,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114464294252932896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20170,7 +20170,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 18
   yCoord: 8
@@ -20182,6 +20181,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114467436432355068
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20305,7 +20305,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 8
   yCoord: 9
@@ -20317,6 +20316,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114480488790597802
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20332,7 +20332,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 13
   yCoord: 2
@@ -20344,6 +20343,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114481432638763924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20359,7 +20359,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 10
   yCoord: 7
@@ -20371,6 +20370,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114482772166937804
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20386,7 +20386,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 7
   yCoord: 4
@@ -20398,6 +20397,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114485374488661220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20451,7 +20451,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 4
   yCoord: 3
@@ -20463,6 +20462,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114488835161810542
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20489,7 +20489,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 16
   yCoord: 4
@@ -20501,6 +20500,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114495089103868792
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20516,7 +20516,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 0
   yCoord: 2
@@ -20528,6 +20527,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114498158159621460
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20554,7 +20554,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 9
   yCoord: 4
@@ -20566,6 +20565,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114498523059766876
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20608,7 +20608,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 1
   yCoord: 1
@@ -20620,6 +20619,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114500969686545574
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20635,7 +20635,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 13
   yCoord: 0
@@ -20647,6 +20646,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114505170841883706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20689,7 +20689,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 17
   yCoord: 4
@@ -20701,6 +20700,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114508850353341518
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20727,7 +20727,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 11
   yCoord: 2
@@ -20739,6 +20738,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114513101399178434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20754,7 +20754,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 0
   yCoord: 7
@@ -20766,6 +20765,7 @@ MonoBehaviour:
   caseColor: {r: 0.9862069, g: 1, b: 0, a: 0.78431374}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114513886465468556
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20813,7 +20813,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 8
   yCoord: 2
@@ -20825,6 +20824,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114520663370402390
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20840,7 +20840,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 5
   yCoord: 1
@@ -20852,6 +20851,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114531061643757292
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20867,7 +20867,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 18
   yCoord: 10
@@ -20879,6 +20878,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114531530927322912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20921,7 +20921,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 4
   yCoord: 5
@@ -20933,6 +20932,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114535664120600388
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20948,7 +20948,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 17
   yCoord: 9
@@ -20960,6 +20959,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114537140456727368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20975,7 +20975,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 6
   yCoord: 0
@@ -20987,6 +20986,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114538711765372628
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21029,7 +21029,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 9
   yCoord: 0
@@ -21041,6 +21040,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114540449347553420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21078,7 +21078,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 0
   yCoord: 3
@@ -21090,6 +21089,7 @@ MonoBehaviour:
   caseColor: {r: 0.9862069, g: 1, b: 0, a: 0.78431374}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114544355353710140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21116,7 +21116,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 13
   yCoord: 7
@@ -21128,6 +21127,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114544629208415946
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21143,7 +21143,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 5
   yCoord: 0
@@ -21155,6 +21154,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114545344431380496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21202,7 +21202,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 7
   yCoord: 6
@@ -21214,6 +21213,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114550130773750650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21261,7 +21261,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 4
   yCoord: 10
@@ -21273,6 +21272,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114553685512081922
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21299,7 +21299,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 20
   yCoord: 6
@@ -21311,6 +21310,7 @@ MonoBehaviour:
   caseColor: {r: 0.9862069, g: 1, b: 0, a: 0.78431374}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114554865291352406
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21402,7 +21402,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 2
   yCoord: 6
@@ -21414,6 +21413,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114567518037264290
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21461,7 +21461,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 20
   yCoord: 0
@@ -21473,6 +21472,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114568939348374946
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21531,7 +21531,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 9
   yCoord: 6
@@ -21543,6 +21542,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114574290668720882
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21569,7 +21569,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 13
   yCoord: 8
@@ -21581,6 +21580,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114576720221772528
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21677,7 +21677,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 15
   yCoord: 7
@@ -21689,6 +21688,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114586495845023642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21731,7 +21731,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 9
   yCoord: 3
@@ -21743,6 +21742,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114591319575596706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21812,7 +21812,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 8
   yCoord: 10
@@ -21824,6 +21823,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114597876807100120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21866,7 +21866,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 1
   yCoord: 5
@@ -21878,6 +21877,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114605241820860728
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21909,7 +21909,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 18
   yCoord: 5
@@ -21921,6 +21920,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114612475274028636
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21963,7 +21963,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 19
   yCoord: 6
@@ -21975,6 +21974,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114619884236486620
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21990,7 +21990,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 15
   yCoord: 1
@@ -22002,6 +22001,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114619945779950812
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22017,7 +22017,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 16
   yCoord: 1
@@ -22029,6 +22028,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114620475426910372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22082,7 +22082,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 19
   yCoord: 10
@@ -22094,6 +22093,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114625352737801144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22147,7 +22147,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 8
   yCoord: 5
@@ -22159,6 +22158,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114634922817681320
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22174,7 +22174,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 3
   yCoord: 6
@@ -22186,6 +22185,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114635291687246962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22217,7 +22217,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 11
   yCoord: 10
@@ -22229,6 +22228,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114641370520179922
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22276,7 +22276,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 15
   yCoord: 6
@@ -22288,6 +22287,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114645111432385922
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22341,7 +22341,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 9
   yCoord: 10
@@ -22353,6 +22352,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114648320892493360
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22384,7 +22384,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 2
   yCoord: 2
@@ -22396,6 +22395,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114650968249998940
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22411,7 +22411,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 15
   yCoord: 5
@@ -22423,6 +22422,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114654976762340410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22465,7 +22465,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 10
   yCoord: 1
@@ -22477,6 +22476,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114656909326454704
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22492,7 +22492,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 2
   yCoord: 5
@@ -22504,6 +22503,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114658295963383090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22546,7 +22546,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 2
   yCoord: 0
@@ -22558,6 +22557,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114659136617451520
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22589,7 +22589,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 4
   yCoord: 4
@@ -22601,6 +22600,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114670174231188770
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22616,7 +22616,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 2
   yCoord: 1
@@ -22628,6 +22627,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114673267883813300
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22702,7 +22702,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 7
   yCoord: 1
@@ -22714,6 +22713,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114680727435940566
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22729,7 +22729,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 18
   yCoord: 9
@@ -22741,6 +22740,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114681101651126740
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22822,7 +22822,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 2
   yCoord: 10
@@ -22834,6 +22833,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114686720407101296
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22865,7 +22865,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 3
   yCoord: 4
@@ -22877,6 +22876,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114690431920384056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22919,7 +22919,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 8
   yCoord: 7
@@ -22931,6 +22930,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114700384619119068
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22946,7 +22946,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 3
   yCoord: 10
@@ -22958,6 +22957,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114703325251038556
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22984,7 +22984,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 11
   yCoord: 6
@@ -22996,6 +22995,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114704942944789860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23011,7 +23011,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 17
   yCoord: 1
@@ -23023,6 +23022,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114705607436642666
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23038,7 +23038,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 19
   yCoord: 1
@@ -23050,6 +23049,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114707019014701704
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23092,7 +23092,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 10
   yCoord: 6
@@ -23104,6 +23103,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114713525416368656
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23119,7 +23119,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 12
   yCoord: 6
@@ -23131,6 +23130,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114717326980939072
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23162,7 +23162,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 20
   yCoord: 1
@@ -23174,6 +23173,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114719094898733016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23270,7 +23270,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 12
   yCoord: 5
@@ -23282,6 +23281,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114733556655298316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23335,7 +23335,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 3
   yCoord: 3
@@ -23347,6 +23346,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114738344098984580
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23389,7 +23389,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 12
   yCoord: 0
@@ -23401,6 +23400,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114742864815056322
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23432,7 +23432,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 4
   yCoord: 9
@@ -23444,6 +23443,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114746930225566232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23492,7 +23492,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 0
   yCoord: 8
@@ -23504,6 +23503,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114750884096453094
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23665,7 +23665,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 11
   yCoord: 0
@@ -23677,6 +23676,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114769355434973894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23719,7 +23719,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 19
   yCoord: 7
@@ -23731,6 +23730,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114775042074793670
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23800,7 +23800,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 4
   yCoord: 0
@@ -23812,6 +23811,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114777240144702302
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23838,7 +23838,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 2
   yCoord: 3
@@ -23850,6 +23849,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114779283371755508
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23865,7 +23865,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 14
   yCoord: 4
@@ -23877,6 +23876,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114780805347377010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23908,7 +23908,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 0
   yCoord: 0
@@ -23920,6 +23919,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114783990624993610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24059,7 +24059,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 19
   yCoord: 3
@@ -24071,6 +24070,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114803227891133618
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24086,7 +24086,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 10
   yCoord: 8
@@ -24098,6 +24097,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114805028818430760
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24140,7 +24140,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 20
   yCoord: 4
@@ -24152,6 +24151,7 @@ MonoBehaviour:
   caseColor: {r: 0.9862069, g: 1, b: 0, a: 0.78431374}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114809994060333720
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24178,7 +24178,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 12
   yCoord: 1
@@ -24190,6 +24189,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114810401491684360
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24221,7 +24221,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 12
   yCoord: 2
@@ -24233,6 +24232,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114811525890636120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24307,7 +24307,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 9
   yCoord: 7
@@ -24319,6 +24318,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114814784634139926
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24350,7 +24350,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 17
   yCoord: 6
@@ -24362,6 +24361,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114814897116740834
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24377,7 +24377,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 19
   yCoord: 4
@@ -24389,6 +24388,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114815178752845386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24404,7 +24404,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 19
   yCoord: 9
@@ -24416,6 +24415,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114817089856722206
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24431,7 +24431,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 6
   yCoord: 7
@@ -24443,6 +24442,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114820335081240338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24544,7 +24544,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 6
   yCoord: 6
@@ -24556,6 +24555,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114826254067445192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24587,7 +24587,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 6
   yCoord: 4
@@ -24599,6 +24598,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114828419681489066
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24614,7 +24614,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 15
   yCoord: 9
@@ -24626,6 +24625,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114830510659691742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24652,7 +24652,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 20
   yCoord: 5
@@ -24664,6 +24663,7 @@ MonoBehaviour:
   caseColor: {r: 0.9862069, g: 1, b: 0, a: 0.78431374}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114833524779870898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24733,7 +24733,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 0
   yCoord: 9
@@ -24745,6 +24744,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114838378073831204
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24771,7 +24771,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 2
   yCoord: 4
@@ -24783,6 +24782,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114841003431505784
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24836,7 +24836,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 8
   yCoord: 0
@@ -24848,6 +24847,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114845172756358518
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24874,7 +24874,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 18
   yCoord: 4
@@ -24886,6 +24885,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114845384231325086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24917,7 +24917,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 19
   yCoord: 0
@@ -24929,6 +24928,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114845952975271494
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24982,7 +24982,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 1
   yCoord: 8
@@ -24994,6 +24993,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114852102976061558
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25074,7 +25074,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 10
   yCoord: 10
@@ -25086,6 +25085,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114860666526755850
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25101,7 +25101,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 13
   yCoord: 9
@@ -25113,6 +25112,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114861955195632518
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25182,7 +25182,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 14
   yCoord: 0
@@ -25194,6 +25193,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114867584878344064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25294,7 +25294,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 13
   yCoord: 3
@@ -25306,6 +25305,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114873549318650238
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25337,7 +25337,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 10
   yCoord: 9
@@ -25349,6 +25348,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114875697344816110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25375,7 +25375,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 4
   yCoord: 2
@@ -25387,6 +25386,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114878324154530758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25472,7 +25472,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 17
   yCoord: 3
@@ -25484,6 +25483,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114890590896379126
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25521,7 +25521,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 13
   yCoord: 6
@@ -25533,6 +25532,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114892959153755284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25548,7 +25548,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 0
   yCoord: 6
@@ -25560,6 +25559,7 @@ MonoBehaviour:
   caseColor: {r: 0.9862069, g: 1, b: 0, a: 0.78431374}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114893146265901266
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25575,7 +25575,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 10
   yCoord: 3
@@ -25587,6 +25586,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114895914577384652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25602,7 +25602,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 3
   yCoord: 1
@@ -25614,6 +25613,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114898224152431270
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25645,7 +25645,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 17
   yCoord: 10
@@ -25657,6 +25656,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114900774247604414
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25672,7 +25672,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 12
   yCoord: 7
@@ -25684,6 +25683,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114905076653259814
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25807,7 +25807,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 1
   yCoord: 2
@@ -25819,6 +25818,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114917455022082844
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25936,7 +25936,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 4
   yCoord: 1
@@ -25948,6 +25947,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114927887293919672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26039,7 +26039,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 15
   yCoord: 0
@@ -26051,6 +26050,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114938217239055016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26088,7 +26088,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 4
   yCoord: 7
@@ -26100,6 +26099,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114943212092336724
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26115,7 +26115,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 1
   yCoord: 10
@@ -26127,6 +26126,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114943283621519782
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26142,7 +26142,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 17
   yCoord: 5
@@ -26154,6 +26153,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114943438129795362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26245,7 +26245,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 20
   yCoord: 10
@@ -26257,6 +26256,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114952386652429650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26283,7 +26283,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 2
   yCoord: 8
@@ -26295,6 +26294,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114952775005876210
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26343,7 +26343,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 20
   yCoord: 2
@@ -26355,6 +26354,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114959937495210220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26434,7 +26434,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 1
   yCoord: 6
@@ -26446,6 +26445,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114966349863414538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26461,7 +26461,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 2
   yCoord: 9
@@ -26473,6 +26472,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114967503534873354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26504,7 +26504,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 9
   yCoord: 2
@@ -26516,6 +26515,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114968758576853338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26531,7 +26531,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 13
   yCoord: 1
@@ -26543,6 +26542,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114969753024646492
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26558,7 +26558,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 9
   yCoord: 5
@@ -26570,6 +26569,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114970247231590036
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26601,7 +26601,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 0
   yCoord: 1
@@ -26613,6 +26612,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114972474401189334
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26628,7 +26628,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 5
   yCoord: 7
@@ -26640,6 +26639,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114983827125402880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26671,7 +26671,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 5
   yCoord: 10
@@ -26683,6 +26682,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114987461614942130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26741,7 +26741,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 2
   yCoord: 7
@@ -26753,6 +26752,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114991698348081256
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26806,7 +26806,6 @@ MonoBehaviour:
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 14
   yCoord: 6
@@ -26818,6 +26817,7 @@ MonoBehaviour:
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  colorLock: 0
 --- !u!114 &114996584951520032
 MonoBehaviour:
   m_ObjectHideFlags: 1
