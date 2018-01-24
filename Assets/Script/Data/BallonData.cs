@@ -92,7 +92,7 @@ public class BallonData : MonoBehaviour
         }
         for (int i = 0; i < ballStrenght; i++)
         {
-          TackleBehaviour.Instance.CheckTackle((this.gameObject));
+          TackleBehaviour.Instance.CheckTackle(this.gameObject, selectedPersonnage);
         if (isIntercepted)
           {
             isIntercepted = false;
@@ -162,7 +162,7 @@ public class BallonData : MonoBehaviour
                 transform.position = Vector3.Lerp(startPos, nextPosition.transform.position, fracturedTime);
                 yield return new WaitForEndOfFrame();
             }
-          TackleBehaviour.Instance.CheckTackle(this.gameObject);
+          TackleBehaviour.Instance.CheckTackle(this.gameObject, selectedPersonnage);
         }
         endMove:
         isMoving = false;

@@ -26,7 +26,7 @@ public class TackleBehaviour : MonoBehaviour {
   // ** Checkers ** //
   // *************** //
 
-  public void CheckTackle (GameObject movingObj) 
+  public void CheckTackle (GameObject movingObj, GameObject shotingPersonnage = null) 
     { // Vérifie si le personnage peut être taclé, et si c'est le cas, fait un test de chance pour savoir s'il est taclé
       Transform path = SelectionManager.Instance.selectedCase.transform;
       Player currentPlayer = TurnManager.Instance.currentPlayer;
@@ -35,7 +35,7 @@ public class TackleBehaviour : MonoBehaviour {
 
     foreach (GameObject obj in RosterManager.Instance.listHeroPlaced)
       {
-        if (movingObj != null)
+          if (movingObj != null && obj != shotingPersonnage)
           {
               if (obj != movingObj && Fonction.Instance.CheckAdjacent(obj, movingObj) == true)
               {
