@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class InfoPerso : MonoBehaviour
 {
 
-    public GameObject infoPersoPortrait;
+    public GameObject infoPersoPortraits;
     public GameObject infoPersoStats;
 
     public static InfoPerso Instance;
@@ -18,12 +18,14 @@ public class InfoPerso : MonoBehaviour
     public Color redOwnerColor;
     public Color noneOwnerColor;
 
+    public List<GameObject> characterList;
     // Use this for initialization
     void Awake()
     {
         Instance = this;
-        infoPersoPortrait = GameObject.Find("infoPersoPortrait");
+        infoPersoPortraits = GameObject.Find("infoPersoPortraits");
         infoPersoStats = GameObject.Find("infoPersoStats");
+        characterList = new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -31,7 +33,9 @@ public class InfoPerso : MonoBehaviour
     {
         if (SelectionManager.Instance.selectedPersonnage != null)
         {
-            infoPersoPortrait.SetActive(true);
+            characterList.Clear();
+
+            infoPersoPortraits.SetActive(true);
             infoPersoStats.SetActive(true);
 
             selectedPersoData = SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData>();
@@ -39,27 +43,44 @@ public class InfoPerso : MonoBehaviour
 
             switch (selectedPersoData.owner)
             {
-                case Player.Blue:
-                    GetComponent<Image>().color = blueOwnerColor;
-                    break;
                 case Player.Red:
                     GetComponent<Image>().color = redOwnerColor;
+                    infoPersoPortraits.GetComponent<infoPersoPortraits>().Clear();
+                    break;
+                case Player.Blue:
+                    GetComponent<Image>().color = blueOwnerColor;
+                    infoPersoPortraits.GetComponent<infoPersoPortraits>().Clear();
                     break;
             }
 
-            infoPersoPortrait.GetComponent<Image>().sprite = selectedSpriteRenderer.sprite;
-            infoPersoStats.GetComponent<Text>().text = (
-              selectedSpriteRenderer.sprite.name + "\n" +
-              "PR : " + selectedPersoData.actualPointResistance.ToString() + "/" + selectedPersoData.pointResistance.ToString() + "\n"
-              + "PM : " + selectedPersoData.actualPointMovement.ToString() + "/" + selectedPersoData.pointMovement.ToString() + "\n"
-              + "Portée : " + selectedPersoData.range.ToString() + "\n"
-              + "Poids : " + selectedPersoData.weightType.ToString() + "\n"
-            );
+            if (GameObject.FindGameObjectsWithTag("Personnage") == null)
+                return;
+
+            foreach (GameObject perso in GameObject.FindGameObjectsWithTag("Personnage"))
+            {
+                if (perso.GetComponent<PersoData>().owner == selectedPersoData.owner)
+                    characterList.Add(perso);
+            }
+
+
+            infoPersoPortraits.GetComponent<infoPersoPortraits>().setMainPortrait(selectedSpriteRenderer.sprite, selectedPersoData.owner);
+
+            characterList.Remove(SelectionManager.Instance.selectedPersonnage);
+            if (characterList.Count > 0)
+                infoPersoPortraits.GetComponent<infoPersoPortraits>().setSubPortrait1(characterList[0].GetComponent<SpriteRenderer>().sprite, characterList[0].GetComponent<PersoData>().owner);
+            if (characterList.Count > 1)
+                infoPersoPortraits.GetComponent<infoPersoPortraits>().setSubPortrait2(characterList[1].GetComponent<SpriteRenderer>().sprite, characterList[1].GetComponent<PersoData>().owner);
+            if (characterList.Count > 2)
+                infoPersoPortraits.GetComponent<infoPersoPortraits>().setSubPortrait3(characterList[2].GetComponent<SpriteRenderer>().sprite, characterList[2].GetComponent<PersoData>().owner);
+
+            infoPersoStats.GetComponent<infoPersoStats>().changePr(selectedPersoData.actualPointResistance, selectedPersoData.pointResistance);
+            infoPersoStats.GetComponent<infoPersoStats>().changePm(selectedPersoData.actualPointMovement, selectedPersoData.pointMovement);
+            infoPersoStats.GetComponent<infoPersoStats>().changePo(selectedPersoData.actualPointResistance, selectedPersoData.pointResistance);
         }
         else
         {
             GetComponent<Image>().color = noneOwnerColor;
-            infoPersoPortrait.SetActive(false);
+            infoPersoPortraits.SetActive(false);
             infoPersoStats.SetActive(false);
         }
     }
