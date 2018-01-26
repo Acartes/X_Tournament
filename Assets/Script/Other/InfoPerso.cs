@@ -44,11 +44,9 @@ public class InfoPerso : MonoBehaviour
             switch (selectedPersoData.owner)
             {
                 case Player.Red:
-                    GetComponent<Image>().color = redOwnerColor;
                     infoPersoPortraits.GetComponent<infoPersoPortraits>().Clear();
                     break;
                 case Player.Blue:
-                    GetComponent<Image>().color = blueOwnerColor;
                     infoPersoPortraits.GetComponent<infoPersoPortraits>().Clear();
                     break;
             }
