@@ -66,10 +66,13 @@ public class InfoPerso : MonoBehaviour
             characterList.Remove(SelectionManager.Instance.selectedPersonnage);
             if (characterList.Count > 0)
                 infoPersoPortraits.GetComponent<infoPersoPortraits>().setSubPortrait1(characterList[0].GetComponent<SpriteRenderer>().sprite, characterList[0].GetComponent<PersoData>().owner);
+            infoPersoPortraits.GetComponent<infoPersoPortraits>().SubPortrait1.GetComponent<PortraitInteractive>().newHoveredPersonnage = characterList[0];
             if (characterList.Count > 1)
                 infoPersoPortraits.GetComponent<infoPersoPortraits>().setSubPortrait2(characterList[1].GetComponent<SpriteRenderer>().sprite, characterList[1].GetComponent<PersoData>().owner);
+            infoPersoPortraits.GetComponent<infoPersoPortraits>().SubPortrait2.GetComponent<PortraitInteractive>().newHoveredPersonnage = characterList[1];
             if (characterList.Count > 2)
                 infoPersoPortraits.GetComponent<infoPersoPortraits>().setSubPortrait3(characterList[2].GetComponent<SpriteRenderer>().sprite, characterList[2].GetComponent<PersoData>().owner);
+            infoPersoPortraits.GetComponent<infoPersoPortraits>().SubPortrait3.GetComponent<PortraitInteractive>().newHoveredPersonnage = characterList[2];
 
             infoPersoStats.GetComponent<infoPersoStats>().changePr(selectedPersoData.actualPointResistance, selectedPersoData.pointResistance);
             infoPersoStats.GetComponent<infoPersoStats>().changePm(selectedPersoData.actualPointMovement, selectedPersoData.pointMovement);
@@ -77,7 +80,7 @@ public class InfoPerso : MonoBehaviour
         }
         else
         {
-          //  GetComponent<Image>().color = noneOwnerColor;
+            //  GetComponent<Image>().color = noneOwnerColor;
             infoPersoPortraits.SetActive(false);
             infoPersoStats.SetActive(false);
         }
