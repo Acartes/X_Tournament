@@ -91,7 +91,7 @@ public class BallonData : MonoBehaviour
         }
         for (int i = 0; i < ballStrenght; i++)
         {
-          TackleBehaviour.Instance.CheckTackle(this.gameObject, selectedPersonnage);
+          
         if (isIntercepted)
           {
             isIntercepted = false;

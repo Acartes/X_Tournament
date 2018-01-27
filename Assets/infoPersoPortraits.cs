@@ -24,7 +24,6 @@ public class infoPersoPortraits : MonoBehaviour
     public void setMainPortrait(Sprite newSprite, Player owner)
     {
         MainPortrait.GetComponent<Image>().sprite = GetIcon(newSprite, owner);
-        Debug.Log(owner);
     }
     // Use this for initialization
     public void setSubPortrait1(Sprite newSprite, Player owner)

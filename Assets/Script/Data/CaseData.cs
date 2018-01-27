@@ -85,7 +85,7 @@ public class CaseData : MonoBehaviour {
             TransparencyBehaviour.CheckTransparency(col.gameObject, 0.5f);
           }
 			}*/
-
+      /*
 			if (col.tag == "Ballon") {
           if (col.gameObject.GetComponent<BallonData> ().ballonCase == null)
           {
@@ -95,7 +95,7 @@ public class CaseData : MonoBehaviour {
             col.gameObject.GetComponent<SpriteRenderer>().sortingOrder = GetComponent<SpriteRenderer>().sortingOrder + 1;
               TransparencyBehaviour.CheckTransparency(col.gameObject, 0.5f);
           }
-			}
+			}*/
 	}
 
 	void OnTriggerEnter2D (Collider2D col) {
@@ -112,7 +112,16 @@ public class CaseData : MonoBehaviour {
           }
       }
 
-		if (col.tag == "Ballon") {
+        if (col.tag == "Ballon") {        
+          if (col.gameObject.GetComponent<BallonData> ().ballonCase != this.gameObject)
+            {
+              caseBallon = col.gameObject;
+              casePathfinding = PathfindingCase.NonWalkable;
+              col.gameObject.GetComponent<BallonData>().ballonCase = this.gameObject;
+              col.gameObject.GetComponent<SpriteRenderer>().sortingOrder = GetComponent<SpriteRenderer>().sortingOrder + 1;
+              TransparencyBehaviour.CheckTransparency(col.gameObject, 0.5f);
+            }
+          
 			if (winCase != Player.Neutral) {
 				StartCoroutine(UIManager.Instance.ScoreChange (winCase));
 			}
@@ -120,19 +129,23 @@ public class CaseData : MonoBehaviour {
 	}
 
 	void OnTriggerExit2D (Collider2D col) {
-		if (col.tag == "Personnage" && GetComponent<PolygonCollider2D>().isActiveAndEnabled == true) 
+      if (col.tag == "Personnage"
+        && col.gameObject.GetComponent<BoxCollider2D>().enabled == true
+        && GetComponent<PolygonCollider2D>().enabled == true) 
         {
-          TransparencyBehaviour.CheckTransparency(col.gameObject, 1f);
+        TransparencyBehaviour.CheckTransparency(col.gameObject, 1f);
 		personnageData = null;
 		casePathfinding = PathfindingCase.Walkable;
       //  col.gameObject.GetComponent<PersoData>().persoCase = null;
 		}
 
-		if (col.tag == "Ballon" && GetComponent<PolygonCollider2D>().isActiveAndEnabled == true) 
+      if (col.tag == "Ballon"
+        && col.gameObject.GetComponent<BoxCollider2D>().enabled == true
+        && GetComponent<PolygonCollider2D>().enabled == true) 
         {
           TransparencyBehaviour.CheckTransparency(col.gameObject, 1f);
 			caseBallon = null;
-          col.gameObject.GetComponent<BallonData> ().ballonCase = null;
+      //    col.gameObject.GetComponent<BallonData> ().ballonCase = null;
 			casePathfinding = PathfindingCase.Walkable;
 		}
 	}

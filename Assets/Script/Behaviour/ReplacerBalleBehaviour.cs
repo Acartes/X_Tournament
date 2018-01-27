@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 public class ReplacerBalleBehaviour : MonoBehaviour {
 
@@ -74,17 +73,13 @@ public class ReplacerBalleBehaviour : MonoBehaviour {
       GameObject selectedBallon = SelectionManager.Instance.selectedBallon;
 
         if (actualAction == PersoAction.isReplacingBall
-          && caseAction.Count != 0
-          && caseAction.Contains(hoveredCase)) 
+          && caseAction.Count != 0) 
         {
-			foreach (GameObject obj in caseAction) 
-            {
-				if (obj == hoveredCase) 
+              if (caseAction.Contains(hoveredCase)) 
                 {
 					selectedBallon.transform.position = hoveredCase.transform.position;
                   StartCoroutine(ReplacerBalleEnd ());
 					return;
-				}
 			}
           StartCoroutine(ReplacerBalleEnd ());
 			selectedPersonnage.GetComponent<PersoData> ().actualPointMovement++;

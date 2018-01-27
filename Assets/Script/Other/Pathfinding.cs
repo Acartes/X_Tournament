@@ -107,8 +107,11 @@ public class Pathfinding : MonoBehaviour {
                 }
             }
         }
+
         if (nodeCurrent == null || targetCurrent == null)
             return;
+
+
         APlusLoop(nodeCurrent, targetCurrent);
        
     }
@@ -210,6 +213,7 @@ public class Pathfinding : MonoBehaviour {
             else
                 break;
         } while (remonte.obj.name != target.obj.name);
+
 
       MoveBehaviour.Instance.GoPathes = pathList;
 

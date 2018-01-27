@@ -77,7 +77,7 @@ public class InfoPerso : MonoBehaviour
         }
         else
         {
-            GetComponent<Image>().color = noneOwnerColor;
+          //  GetComponent<Image>().color = noneOwnerColor;
             infoPersoPortraits.SetActive(false);
             infoPersoStats.SetActive(false);
         }

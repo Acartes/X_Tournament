@@ -96,7 +96,9 @@ public class TackleBehaviour : MonoBehaviour {
     { // Effet visuel à chaque fois que le personnage se déplaçant se fait taclé
 
       punchingPersonnage.GetComponent<BoxCollider2D> ().enabled = false;
+
       Vector3 startPos = punchingPersonnage.transform.position;
+    Debug.Log(punchingPersonnage.transform.position);
 
       float fracturedTime = 0;
       float timeUnit = tackleAnimTime / 60;

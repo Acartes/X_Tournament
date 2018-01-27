@@ -55,6 +55,7 @@ public class ShotBehaviour : MonoBehaviour {
   }
 
     public void TirFunctions (GameObject hoveredBallon, GameObject menuContextuel) {
+    MoveBehaviour.Instance.pathes.Clear();
       SelectionManager.Instance.selectedBallon = hoveredBallon;
       menuContextuel.SetActive (true);
       TurnManager.Instance.DisableFinishTurn();
