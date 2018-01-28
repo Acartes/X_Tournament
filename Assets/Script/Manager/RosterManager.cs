@@ -28,11 +28,13 @@ public class RosterManager : MonoBehaviour {
       listHeroJXToPlace.Add(new List<GameObject>());
 		foreach (GameObject obj in listHeroJ1) {
 			persoCreated = (GameObject)Instantiate (obj, new Vector3 (999, 999, 999), Quaternion.identity);
+          persoCreated.GetComponent<PersoData>().owner = Player.Red;
           listHeroJXToPlace[0].Add(persoCreated);
 		}
 
 		foreach (GameObject obj in listHeroJ2) {
 			persoCreated = (GameObject)Instantiate (obj, new Vector3 (999, 999, 999), Quaternion.identity);
+          persoCreated.GetComponent<PersoData>().owner = Player.Blue;
           listHeroJXToPlace[1].Add(persoCreated);
 		}
           

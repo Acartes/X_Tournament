@@ -28,8 +28,23 @@ public class InfoPerso : MonoBehaviour
         characterList = new List<GameObject>();
     }
 
+  void OnEnable()
+    {
+      ClickEvent.newClickEvent += OnNewClick;
+    }
+
+  void OnDisable()
+    {
+      ClickEvent.newClickEvent -= OnNewClick;
+    }
+
+  void OnNewClick()
+    { // Lors d'un click sur une case
+      ChangeUI();
+    }
+
     // Update is called once per frame
-    void Update()
+    void ChangeUI()
     {
         if (SelectionManager.Instance.selectedPersonnage != null)
         {
@@ -59,8 +74,7 @@ public class InfoPerso : MonoBehaviour
                 if (perso.GetComponent<PersoData>().owner == selectedPersoData.owner)
                     characterList.Add(perso);
             }
-
-
+              
             infoPersoPortraits.GetComponent<infoPersoPortraits>().setMainPortrait(selectedSpriteRenderer.sprite, selectedPersoData.owner);
 
             characterList.Remove(SelectionManager.Instance.selectedPersonnage);

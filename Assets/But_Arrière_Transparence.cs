@@ -16,7 +16,6 @@ public class But_Arrière_Transparence : MonoBehaviour {
 
     private void Update()
     {
-        Debug.Log(compteur);
         if(compteur > 0)
         {
             img.color = transparencyAlpha;
