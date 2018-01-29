@@ -71,69 +71,60 @@ public class HoverManager : MonoBehaviour
     hoveredPathfinding = e.Pathfinding;
     hoveredBallon = e.hoveredBallon;
 
-      changeColorEnter(GameManager.Instance.currentPlayer, GameManager.Instance.currentPhase, ColorManager.Instance.actionColor, ColorManager.Instance.travelColor, SelectionManager.Instance.selectedPersonnage);
-
-      OnNewHoverAction(GameManager.Instance.actualAction, SelectionManager.Instance.selectedPersonnage);
-  }
-
-  // ************ //
-  // ** Checkers ** //
-  // ************ //
-
-    void OnNewHoverAction (PersoAction actualAction, GameObject selectedPersonnage) 
-    { // Vérifie si certaines actions sont possibles lorsqu'il y a un nouveau hover sur une case
-          if (selectedPersonnage != null && hoveredCase != null && hoveredCase.GetComponent<CaseData>().casePathfinding == PathfindingCase.Walkable && actualAction == PersoAction.isSelected)
-            {
-              Pathfinding.Instance.StartPathfinding(GrilleManager.Instance.getMap(), selectedPersonnage.transform, hoveredCase.transform);
-            }
-
-        if (actualAction == PersoAction.isReplacingBall) {
-          CheckIfAction (ColorManager.Instance.actionColor);
+    changeColorEnter();
+    CheckIfAction ();
         }
-  }
 
     // ************* //
     // ** Actions ** //
     // ************* //
 
-  void changeColorEnter(Player currentPlayer, Phase currentPhase, Color actionColor, Color travelColor, GameObject selectedPersonnage)
+  void changeColorEnter()
     { // Change la couleur de la case qui est sur le curseur
-      
+
+      Player currentPlayer = GameManager.Instance.currentPlayer;
+      Phase currentPhase = GameManager.Instance.currentPhase;
+      Color actionColor = ColorManager.Instance.actionColor;
+      Color moveColor = ColorManager.Instance.moveColor;
+      GameObject selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
+    Color hoverColor = ColorManager.Instance.hoverColor;
+    PersoAction actualAction = GameManager.Instance.actualAction;
+
             switch (currentPhase)
             {
       case (Phase.Placement):
-            hoveredCase.GetComponent<CaseData>().ChangeColor(travelColor);
+            hoveredCase.GetComponent<CaseData>().ChangeColor(Statut.isHovered);
                     break;
           case (Phase.Deplacement):
-            if (SelectionManager.Instance.selectedPersonnage != null && hoveredCase.GetComponent<CaseData>().casePathfinding == PathfindingCase.NonWalkable)
+            if (SelectionManager.Instance.selectedPersonnage != null)
               {
                 MoveBehaviour.Instance.HidePath();
-                if (hoveredPersonnage != null && hoveredPersonnage.GetComponent<PersoData>().owner != currentPlayer)
+            if (hoveredPersonnage != null
+                    && hoveredPersonnage.GetComponent<PersoData>().owner != currentPlayer
+                    && Fonction.Instance.CheckAdjacent(selectedPersonnage, hoveredPersonnage) == true)
+              {
+          //          hoveredCase.GetComponent<CaseData>().ChangeColor(actionColor);
+              }
+
+                if (hoveredPersonnage != null
+                  && hoveredPersonnage.GetComponent<PersoData>().owner == currentPlayer)
                   {
-                    if (Fonction.Instance.CheckAdjacent(selectedPersonnage, hoveredPersonnage) == true)
-                  {
-                        hoveredCase.GetComponent<CaseData>().ChangeColor(actionColor);
+               //     hoveredCase.GetComponent<CaseData>().ChangeColor(actionColor);
                   }
-                  }
-                if (hoveredPersonnage != null && hoveredPersonnage.GetComponent<PersoData>().owner == currentPlayer)
+
+                if (hoveredBallon != null
+                  && Fonction.Instance.CheckAdjacent(selectedPersonnage, hoveredBallon) == true)
                   {
-                    hoveredCase.GetComponent<CaseData>().ChangeColor(actionColor);
+                 //   hoveredCase.GetComponent<CaseData>().ChangeColor(actionColor);
                   }
-                if (hoveredBallon != null)
+
+                if (hoveredCase.GetComponent<CaseData>().casePathfinding == PathfindingCase.Walkable
+                  && actualAction == PersoAction.isSelected)
                   {
-                    if (Fonction.Instance.CheckAdjacent(selectedPersonnage, hoveredBallon) == true)
-                  {
-                        hoveredCase.GetComponent<CaseData>().ChangeColor(actionColor);
-                  }
+                    Pathfinding.Instance.StartPathfinding();
+                    MoveBehaviour.Instance.createPath();
                   }
               }
-                else if (SelectionManager.Instance.selectedPersonnage != null
-              && hoveredCase.GetComponent<CaseData>().casePathfinding == PathfindingCase.Walkable
-              && GameManager.Instance.actualAction == PersoAction.isSelected)
-                    {
-                    MoveBehaviour.Instance.createPath();
-                    }
-
                     break;
             }
     }
@@ -143,20 +134,28 @@ public class HoverManager : MonoBehaviour
             switch (currentPhase)
             {
       case (Phase.Placement):
-            hoveredCase.GetComponent<CaseData>().ChangeColor(hoveredCase.GetComponent<CaseData>().initColor);
+            hoveredCase.GetComponent<CaseData>().ChangeColor(Statut.None, Statut.isHovered);
                     break;
 			case (Phase.Deplacement):
-            hoveredCase.GetComponent<CaseData>().ChangeColor(hoveredCase.GetComponent<CaseData> ().caseColor);
+            hoveredCase.GetComponent<CaseData>().ChangeColor(Statut.None, Statut.isHovered);
                     break;
             }
     }
 
-  void CheckIfAction (Color actionColor)
+  void CheckIfAction ()
 	{ // Action de replacer la balle qui se termine après avoir placer la balle 
-		foreach (GameObject obj in ReplacerBalleBehaviour.Instance.caseAction) {
+      PersoAction actualAction = GameManager.Instance.actualAction;
+
+      if (actualAction == PersoAction.isReplacingBall) 
+      {
+    List<GameObject> caseAction = ReplacerBalleBehaviour.Instance.caseAction;
+    Color actionColor = ColorManager.Instance.actionColor;
+
+		foreach (GameObject obj in caseAction) {
 			if (obj == hoveredCase) {
-              hoveredCase.GetComponent<CaseData>().ChangeColor(actionColor);
+          //    hoveredCase.GetComponent<CaseData>().ChangeColor(actionColor);
 			}
 		}
 	}
+  }
 }

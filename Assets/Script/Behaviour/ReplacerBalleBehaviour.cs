@@ -61,8 +61,8 @@ public class ReplacerBalleBehaviour : MonoBehaviour {
         if (GameObject.Find (xCoord.ToString () + " " + yCoord.ToString ()) != null && GameObject.Find (xCoord.ToString () + " " + yCoord.ToString ()).GetComponent<CaseData> ().casePathfinding != PathfindingCase.NonWalkable) {
           GameObject newCase = (GameObject.Find (xCoord.ToString () + " " + yCoord.ToString ()));
         caseAction.Add(newCase);
-          newCase.GetComponent<CaseData>().ChangeColor(actionPreColor, true);
-        newCase.GetComponent<CaseData>().colorLock= true;
+          newCase.GetComponent<CaseData>().ChangeColor(Statut.canReplace);
+     //   newCase.GetComponent<CaseData>().colorLock = true;
         }
     }
 
@@ -78,6 +78,7 @@ public class ReplacerBalleBehaviour : MonoBehaviour {
               if (caseAction.Contains(hoveredCase)) 
                 {
 					selectedBallon.transform.position = hoveredCase.transform.position;
+              hoveredCase.GetComponent<CaseData>().ChangeColor(Statut.canShot);
                   StartCoroutine(ReplacerBalleEnd ());
 					return;
 			}
@@ -89,14 +90,16 @@ public class ReplacerBalleBehaviour : MonoBehaviour {
   IEnumerator ReplacerBalleEnd () 
     { // Action de replacer la balle qui se termine après avoir placer la balle 
       Color caseColor = ColorManager.Instance.caseColor;
+    
       yield return new WaitForEndOfFrame();
       GameManager.Instance.actualAction = PersoAction.isSelected;
-
+   
         foreach (GameObject obj in caseAction) {
-          obj.GetComponent<CaseData>().ChangeColor(caseColor, true);
-          obj.GetComponent<CaseData>().colorLock = false;
+     //     obj.GetComponent<CaseData>().colorLock = false;
+          obj.GetComponent<CaseData>().ChangeColor(Statut.None, Statut.canReplace);
         }
       TurnManager.Instance.StartCoroutine("EnableFinishTurn");
+      CaseManager.Instance.StartCoroutine ("ShowActions");
       caseAction.Clear ();
     }
 }

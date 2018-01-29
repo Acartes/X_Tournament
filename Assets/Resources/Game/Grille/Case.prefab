@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114305407411450856}
   - component: {fileID: 114397791286103418}
   - component: {fileID: 114989998120023418}
+  - component: {fileID: 114829470894094112}
   m_Layer: 0
   m_Name: Case
   m_TagString: case
@@ -99,6 +100,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 938b3ec4224acb54aa56124675ab6a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114829470894094112
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1651555220530030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de14f4a3255e2234ebe48cfc9c2c287f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114989998120023418
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,17 +122,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statut: 0
   personnageData: {fileID: 0}
   objectData: {fileID: 0}
   caseBallon: {fileID: 0}
   casePathfinding: 0
-  caseSelection: 0
-  personnageDataIsMoving: 0
   caseElement: 0
   xCoord: 0
   yCoord: 0
   winCase: 2
-  moveColored: 0
   initColor: {r: 0, g: 0, b: 0, a: 0}
   ownerPlacementZone: 0
   redZone: 0
@@ -128,6 +138,8 @@ MonoBehaviour:
   caseColor: {r: 0, g: 0, b: 0, a: 0}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  spriteR: {fileID: 0}
+  colorLock: 0
 --- !u!212 &212884405393220042
 SpriteRenderer:
   m_ObjectHideFlags: 1

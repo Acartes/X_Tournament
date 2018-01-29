@@ -12,6 +12,8 @@ public class TackleBehaviour : MonoBehaviour {
   [Tooltip("Durée du va et vien entre le tacleur et le taclé")]
   public float tackleAnimTime;
 
+  bool isTackling = false;
+
   [HideInInspector] public static TackleBehaviour Instance;
 
   // *************** //
@@ -57,7 +59,6 @@ public class TackleBehaviour : MonoBehaviour {
                     if (obj.GetComponent<PersoData>().owner != currentPlayer)
                       {
                             StartCoroutine(TackleEffect(obj, path, GraphManager.Instance.offsetY));
-                        Debug.Log(currentPlayer + " " + obj.GetComponent<PersoData>().owner);
                         if (movingObj.GetComponent<PersoData>().weightType == obj.GetComponent<PersoData>().weightType)
                           {
                             if (randomInt < 50)
@@ -94,28 +95,33 @@ public class TackleBehaviour : MonoBehaviour {
 
     IEnumerator TackleEffect (GameObject punchingPersonnage, Transform path, float offsetY) 
     { // Effet visuel à chaque fois que le personnage se déplaçant se fait taclé
+    if (punchingPersonnage.GetComponent<BoxCollider2D>().enabled != false)
+      {
 
-      punchingPersonnage.GetComponent<BoxCollider2D> ().enabled = false;
+        punchingPersonnage.GetComponent<BoxCollider2D>().enabled = false;
 
-      Vector3 startPos = punchingPersonnage.transform.position;
-    Debug.Log(punchingPersonnage.transform.position);
+        Vector3 startPos = punchingPersonnage.transform.position;
+        Debug.Log(punchingPersonnage.transform.position);
 
-      float fracturedTime = 0;
-      float timeUnit = tackleAnimTime / 60;
+        float fracturedTime = 0;
+        float timeUnit = tackleAnimTime / 60;
 
-        while (fracturedTime < 2) {
-          fracturedTime += timeUnit + 0.01f;
-          punchingPersonnage.transform.position = Vector3.Lerp (startPos, path.position + new Vector3 (0, offsetY, 0), fracturedTime);
-          yield return new WaitForEndOfFrame ();
-        }
+        while (fracturedTime < 2)
+          {
+            fracturedTime += timeUnit + 0.01f;
+            punchingPersonnage.transform.position = Vector3.Lerp(startPos, path.position + new Vector3(0, offsetY, 0), fracturedTime);
+            yield return new WaitForEndOfFrame();
+          }
 
-      fracturedTime = 0;
+        fracturedTime = 0;
 
-        while (fracturedTime < 2) {
-          fracturedTime += timeUnit + 0.01f;
-          punchingPersonnage.transform.position = Vector3.Lerp (path.position + new Vector3 (0, offsetY, 0), startPos, fracturedTime);
-          yield return new WaitForEndOfFrame ();
-        }
-      punchingPersonnage.GetComponent<BoxCollider2D> ().enabled = true;
+        while (fracturedTime < 2)
+          {
+            fracturedTime += timeUnit + 0.01f;
+            punchingPersonnage.transform.position = Vector3.Lerp(path.position + new Vector3(0, offsetY, 0), startPos, fracturedTime);
+            yield return new WaitForEndOfFrame();
+          }
+        punchingPersonnage.GetComponent<BoxCollider2D>().enabled = true;
+      }
     }
 }

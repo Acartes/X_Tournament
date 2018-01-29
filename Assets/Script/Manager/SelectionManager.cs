@@ -82,7 +82,7 @@ public class SelectionManager : MonoBehaviour {
     {
       if (selectedCase != null)
         {
-          selectedCase.GetComponent<CaseData>().ChangeColor(caseColor);
+          selectedCase.GetComponent<CaseData>().ChangeColor(Statut.None, Statut.isSelected);
         }
       selectedCase = null;
       selectedPersonnage = null;
@@ -93,13 +93,14 @@ public class SelectionManager : MonoBehaviour {
       MoveBehaviour.Instance.HidePath ();
       MoveBehaviour.Instance.pathes.Clear ();
       GameManager.Instance.actualAction = PersoAction.isSelected;
+      CaseManager.Instance.StartCoroutine ("ShowActions");
 
       if (selectedLastCase != null)
         {
             if (currentPhase == Phase.Placement) {
-              selectedLastCase.GetComponent<CaseData>().ChangeColor(selectedLastCase.GetComponent<CaseData>().initColor);
+              selectedLastCase.GetComponent<CaseData>().ChangeColor(Statut.None, Statut.isSelected);
             } else {
-              selectedLastCase.GetComponent<CaseData>().ChangeColor(selectedLastCase.GetComponent<CaseData>().caseColor);
+              selectedLastCase.GetComponent<CaseData>().ChangeColor(Statut.None, Statut.isSelected);
             }
         }
       selectedPersonnage = null;
@@ -118,8 +119,8 @@ public class SelectionManager : MonoBehaviour {
       selectedPersonnage = hoveredPersonnage;
 
       selectedCase.GetComponent<CaseData>().caseColor = selectedColor;
-      selectedCase.GetComponent<CaseData>().ChangeColor(selectedColor);
+      selectedCase.GetComponent<CaseData>().ChangeColor(Statut.isSelected);
       GameManager.Instance.actualAction = PersoAction.isSelected;
-
+      CaseManager.Instance.StartCoroutine ("ShowActions");
     }
 }

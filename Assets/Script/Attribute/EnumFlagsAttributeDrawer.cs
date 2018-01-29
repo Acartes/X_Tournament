@@ -17,16 +17,23 @@ public class EnumFlagsAttributeDrawer : PropertyDrawer
 		EditorGUI.LabelField(new Rect(_position.x, _position.y, EditorGUIUtility.labelWidth, _position.height), _label);
 
 		EditorGUI.BeginChangeCheck ();
-
+    int y = -1;
+    int x = -1;
 		for (int i = 0; i < enumLength; i++) {
 
 			// Check if the button is/was pressed 
 			if ( ( _property.intValue & (1 << i) ) == 1 << i ) {
 				buttonPressed[i] = true;
 			}
-
-			Rect buttonPos = new Rect (_position.x + EditorGUIUtility.labelWidth + buttonWidth * i, _position.y, buttonWidth, _position.height);
-
+        x++;
+        
+          if (x >= 3)
+          {
+            x = 0;
+            y++;
+          }
+          Rect buttonPos = new Rect (_position.x + EditorGUIUtility.labelWidth + buttonWidth+(88*x)-70, _position.y+15*y, buttonWidth+70, _position.height);
+         
 			buttonPressed[i] = GUI.Toggle(buttonPos, buttonPressed[i], _property.enumNames[i],  "Button");
 
 			if (buttonPressed[i])

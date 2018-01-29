@@ -23,7 +23,6 @@ public class BallonData : MonoBehaviour
     public GameObject menuContextuel; //MenuContextuel
     public GameObject selectedBallon;
     public Vector3 offsetBallon;
-    public GameObject nextPosition;
     public float travelTimeBallon;
     public float xCoordInc;
     public float yCoordInc;
@@ -55,11 +54,13 @@ public class BallonData : MonoBehaviour
         TurnManager.Instance.DisableFinishTurn();
         ShotBehaviour.Instance.isShoting = true;
 
+      GameObject nextPosition;
+
         animator.SetTrigger("Roule");
         isMoving = true;
         offsetBallon = new Vector2(0, 0);
-        xCoord = hoveredCase.GetComponent<CaseData>().xCoord;
-        yCoord = hoveredCase.GetComponent<CaseData>().yCoord;
+        float xCoordNext = hoveredCase.GetComponent<CaseData>().xCoord;
+        float yCoordNext = hoveredCase.GetComponent<CaseData>().yCoord;
 
         xCoordInc = 0;
         yCoordInc = 0;
@@ -97,22 +98,22 @@ public class BallonData : MonoBehaviour
             isIntercepted = false;
             break;
           }
-            xCoord += xCoordInc;
-            yCoord += yCoordInc;
-            if (GameObject.Find(xCoord.ToString() + " " + yCoord.ToString()) != null)
+            xCoordNext += xCoordInc;
+            yCoordNext += yCoordInc;
+            if (GameObject.Find(xCoordNext.ToString() + " " + yCoordNext.ToString()) != null)
             {
-                nextPosition = GameObject.Find(xCoord.ToString() + " " + yCoord.ToString());
+                nextPosition = GameObject.Find(xCoordNext.ToString() + " " + yCoordNext.ToString());
                 if (nextPosition.GetComponent<CaseData>().casePathfinding == PathfindingCase.NonWalkable)
                 {
                     if (!canRebond)
                     {
                         break;
                     }
-                    xCoordInc = -xCoordInc;
+               /*     xCoordInc = -xCoordInc;
                     yCoordInc = -yCoordInc;
                     xCoord += xCoordInc;
-                    yCoord += yCoordInc;
-                    nextPosition = GameObject.Find(xCoord.ToString() + " " + yCoord.ToString());
+                    yCoord += yCoordInc;*/
+                    nextPosition = GameObject.Find(xCoordNext.ToString() + " " + yCoordNext.ToString());
                 }
             }
             else
@@ -123,14 +124,14 @@ public class BallonData : MonoBehaviour
                 }
                 xCoordInc = -xCoordInc;
                 yCoordInc = -yCoordInc;
-                xCoord += xCoordInc;
-                yCoord += yCoordInc;
-                nextPosition = GameObject.Find(xCoord.ToString() + " " + yCoord.ToString());
+                xCoordNext += xCoordInc;
+                yCoordNext += yCoordInc;
+                nextPosition = GameObject.Find(xCoordNext.ToString() + " " + yCoordNext.ToString());
             }
 
-            if (xCoord == ballonCase.GetComponent<CaseData>().xCoord)
+            if (xCoordNext == ballonCase.GetComponent<CaseData>().xCoord)
             {
-                if (yCoord < ballonCase.GetComponent<CaseData>().yCoord)
+                if (yCoordNext < ballonCase.GetComponent<CaseData>().yCoord)
                 {
                     ballonDirection = Direction.SudOuest;
                 }
@@ -139,9 +140,9 @@ public class BallonData : MonoBehaviour
                     ballonDirection = Direction.NordEst;
                 }
             }
-            else if (yCoord == ballonCase.GetComponent<CaseData>().yCoord)
+            else if (yCoordNext == ballonCase.GetComponent<CaseData>().yCoord)
             {
-                if (xCoord < ballonCase.GetComponent<CaseData>().xCoord)
+                if (xCoordNext < ballonCase.GetComponent<CaseData>().xCoord)
                 {
                     ballonDirection = Direction.NordOuest;
                 }
@@ -168,6 +169,7 @@ public class BallonData : MonoBehaviour
         GameManager.Instance.actualAction = PersoAction.isSelected;
         animator.ResetTrigger("Roule");
         animator.SetTrigger("Idle");
+      CaseManager.Instance.StartCoroutine ("ShowActions");
         TurnManager.Instance.EnableFinishTurn();
     }
 

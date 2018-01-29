@@ -73,33 +73,20 @@ public class CaseManager : MonoBehaviour
         switch (e.currentPhase)
         {
             case (Phase.Deplacement):
-
+            StartCoroutine (ShowActions());
                 break;
             case (Phase.Placement):
-                ChangeColorPlacement();
                 break;
         }
     }
-
-    void Update()
-    {
-        ShowActions();
-    }
-
+      
     // *************** //
     // ** Actions ** //
     // *************** //
-    void ChangeColorPlacement()
-    { // Change la couleur des cases de placements avec un couleur du joueur approprié.
-        foreach (GameObject obj in listCase)
-        {
-            obj.GetComponent<CaseData>().ChangeColor(obj.GetComponent<CaseData>().initColor);
-        }
-    }
 
-    public void ShowActions()
+    public IEnumerator ShowActions()
     { // Affiche en violet les actions possible par le joueur.
-
+      yield return new WaitForEndOfFrame();
         Player currentPlayer = GameManager.Instance.currentPlayer;
         Phase currentPhase = GameManager.Instance.currentPhase;
         Color actionPreColor = ColorManager.Instance.actionPreColor;
@@ -115,42 +102,43 @@ public class CaseManager : MonoBehaviour
                 {
                     Color newColor = ColorManager.Instance.caseColor;
 
-                    if (!ShotBehaviour.Instance.isShoting && !MenuContextuel.Instance.gameObject.activeInHierarchy)
+                if (!MenuContextuel.Instance.gameObject.activeInHierarchy)
                     {
-
                         GameObject persoCompared = caseCompared.GetComponent<CaseData>().personnageData;
                         GameObject ballonCompared = caseCompared.GetComponent<CaseData>().caseBallon;
 
                         if (persoCompared != null && persoCompared.GetComponent<PersoData>().owner == currentPlayer)
                         {
-                            newColor = actionPreColor;
+                        caseCompared.GetComponent<CaseData>().ChangeColor(Statut.isAllyPerso);
                         }
 
                         if (SelectionManager.Instance.selectedPersonnage != null)
                         {
-                            if (persoCompared != null &&
-                            persoCompared.GetComponent<PersoData>().owner != currentPlayer &&
-                          Fonction.Instance.CheckAdjacent(persoCompared, selectedPersonnage) == true)
+                            if (persoCompared != null
+                          && persoCompared.GetComponent<PersoData>().owner != currentPlayer
+                          && Fonction.Instance.CheckAdjacent(persoCompared, selectedPersonnage) == true)
                             {
-                                newColor = actionPreColor;
+                            caseCompared.GetComponent<CaseData>().ChangeColor(Statut.canPunch);
                             }
+
+                        if (ballonCompared != null
+                          && Fonction.Instance.CheckAdjacent(selectedPersonnage, ballonCompared) == true)
+                          {
+                            caseCompared.GetComponent<CaseData>().ChangeColor(Statut.canShot);
+                            //newColor = actionPreColor;
+                          }
 
                             if (persoCompared == selectedPersonnage)
                             {
-                                newColor = selectedColor;
-                            }
-
-                            if (ballonCompared != null &&
-                          Fonction.Instance.CheckAdjacent(selectedPersonnage, ballonCompared) == true)
-                            {
-                                newColor = actionPreColor;
+                            caseCompared.GetComponent<CaseData>().ChangeColor(Statut.isSelected);
+                                //newColor = selectedColor;
                             }
                         }
 
-                        if (newColor != caseCompared.GetComponent<CaseData>().caseColor)
-                        {
-                            caseCompared.GetComponent<CaseData>().ChangeColor(newColor, true);
-                        }
+              //      if (newColor != ColorManager.Instance.caseColor)
+                 //       {
+                 //           caseCompared.GetComponent<CaseData>().ChangeColor(newColor);
+                //        }
                     }
                 }
                 break;

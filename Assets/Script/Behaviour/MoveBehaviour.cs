@@ -82,22 +82,27 @@ public class MoveBehaviour : MonoBehaviour
         }
         else
         {
-            ShowPath(ColorManager.Instance.travelColor, GameManager.Instance.currentPlayer, ColorManager.Instance.enemyColor);
+            ShowPath();
         }
     }
 
-    public void ShowPath(Color travelColor, Player currentPlayer, Color enemyColor)
+    public void ShowPath()
     { // Montre la route de déplacement
+
+    Color moveColor = ColorManager.Instance.moveColor;
+        Player currentPlayer = GameManager.Instance.currentPlayer;
+        Color enemyColor = ColorManager.Instance.enemyColor;
+
         foreach (Transform path in this.pathes)
         {
-            path.GetComponent<CaseData>().ChangeColor(travelColor);
+          path.GetComponent<CaseData>().ChangeColor(Statut.canMove);
             foreach (GameObject persoCompared in RosterManager.Instance.listHero)
             {
                 if (persoCompared.GetComponent<PersoData>().owner != currentPlayer
                   && persoCompared.GetComponent<PersoData>().persoCase != null
                 && Fonction.Instance.CheckAdjacent(path.gameObject, persoCompared) == true)
                 {
-                    path.GetComponent<CaseData>().ChangeColor(enemyColor);
+                  path.GetComponent<CaseData>().ChangeColor(Statut.canBeTackled);
                 }
             }
         }
@@ -107,7 +112,8 @@ public class MoveBehaviour : MonoBehaviour
     { // Cache la route de déplacement
         foreach (Transform path in this.pathes)
         {
-            path.GetComponent<CaseData>().ResetColor();
+          path.GetComponent<CaseData>().ChangeColor(Statut.None, Statut.canMove);
+          path.GetComponent<CaseData>().ChangeColor(Statut.None, Statut.canBeTackled);
         }
     }
 
@@ -117,12 +123,12 @@ public class MoveBehaviour : MonoBehaviour
 
     public void SendDeplacement()
     { // On stock la route de déplacement et on la colore, puis on appelle la fonction de déplacement
-        Color moveColor = ColorManager.Instance.moveColor;
+        Color isMovingColor = ColorManager.Instance.isMovingColor;
         Color caseColor = ColorManager.Instance.caseColor;
 
         foreach (Transform path in pathes)
         {
-            path.GetComponent<CaseData>().ChangeColor(moveColor);
+          path.GetComponent<CaseData>().ChangeColor(Statut.isMoving);
         }
 
         StartCoroutine(Deplacement(ColorManager.Instance.caseColor, GraphManager.Instance.offsetY, SelectionManager.Instance.selectedPersonnage));
@@ -139,8 +145,7 @@ public class MoveBehaviour : MonoBehaviour
         {
             if (selectedPersonnage.GetComponent<PersoData>().isTackled)
             {
-                path.GetComponent<CaseData>().casePathfinding = PathfindingCase.Walkable;
-                path.GetComponent<CaseData>().ChangeColor(caseColor);
+              path.GetComponent<CaseData>().ChangeColor(Statut.isTackled, Statut.isMoving);
             }
             else
             {
@@ -157,12 +162,12 @@ public class MoveBehaviour : MonoBehaviour
                     yield return new WaitForEndOfFrame();
                 }
                 SelectionManager.Instance.selectedCase = path.gameObject;
-                path.GetComponent<CaseData>().ChangeColor(caseColor, false, PathfindingCase.Walkable);
+              path.GetComponent<CaseData>().ChangeColor(Statut.None, Statut.isMoving);
               TackleBehaviour.Instance.CheckTackle(selectedPersonnage);
             }
         }
         SelectionManager.Instance.selectedCase = pathes[pathes.Count - 1].gameObject;
-        SelectionManager.Instance.selectedCase.GetComponent<CaseData>().ChangeColor(caseColor);
+      SelectionManager.Instance.selectedCase.GetComponent<CaseData>().ChangeColor(Statut.None, Statut.isMoving);
         GameManager.Instance.actualAction = PersoAction.isSelected;
 
         if (!selectedPersonnage.GetComponent<PersoData>().isTackled)
@@ -179,7 +184,7 @@ public class MoveBehaviour : MonoBehaviour
         }
 
         TurnManager.Instance.StartCoroutine("EnableFinishTurn");
-
+      CaseManager.Instance.StartCoroutine ("ShowActions");
         yield return new WaitForEndOfFrame();
     }
 }

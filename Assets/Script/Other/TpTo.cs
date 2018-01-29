@@ -19,7 +19,7 @@ public class TpTo : MonoBehaviour
                 AirScript.Instance.airEffect.SetActive(false);
                 AirScript.Instance.fireAirEffect.transform.position = coll.transform.position;
                 AirScript.Instance.fireAirEffect.SetActive(true);
-                coll.changeElement(Element.Aucun);
+           //     coll.changeElement(Element.Aucun);
                 transform.parent.gameObject.SetActive(false);
             }
         }

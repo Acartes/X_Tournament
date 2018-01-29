@@ -95,16 +95,16 @@ public class GrilleManager: MonoBehaviour {
 				cubeNew = (GameObject)Instantiate (cube, new Vector2 (h/hSpace + l/hSpace + transform.position.x, -h/lSpace + l/lSpace + transform.position.y), Quaternion.identity);
 				cubeNew.transform.parent = transform;
 				cubeNew.GetComponent<SpriteRenderer> ().sortingOrder = ((int)-l + (int)h) - 100;
-              cubeNew.GetComponent<CaseData>().ChangeColor(caseColor);
                 cubeNew.name = h + " " + l;
 				cubeNew.GetComponent<CaseData> ().xCoord = h;
 				cubeNew.GetComponent<CaseData> ().yCoord = l;
 				cubeNew.GetComponent<CaseData> ().ownerPlacementZone = Player.Neutral;
+              cubeNew.GetComponent<SpriteRenderer>().color = ColorManager.Instance.caseColor;
             cubeNew.GetComponent<CaseData>().caseColor = ColorManager.Instance.caseColor;
                 cubeAll[(int)h].Add (cubeNew);
 
 				AddWaterZones ();
-              AddPlacementZones (h, ColorManager.Instance.placementZoneRed, ColorManager.Instance.placementZoneBlue);
+              AddPlacementZones (h);
                
 
 				GameObject.Find ("CaseManager").GetComponent<CaseManager>().listCase.Add (cubeNew);
@@ -122,14 +122,17 @@ public class GrilleManager: MonoBehaviour {
 		}
 	}
 
-    void AddPlacementZones (float h, Color placementZoneRed, Color placementZoneBlue) { // Créer des zones de placement /!\ A utiliser à la fin de la fonction NewMap() /!\ //
-		if (h < placementZone) {
+    void AddPlacementZones (float h) { // Créer des zones de placement /!\ A utiliser à la fin de la fonction NewMap() /!\ //
+      Color placementZoneRed = ColorManager.Instance.placementZoneRed;
+      Color placementZoneBlue = ColorManager.Instance.placementZoneBlue;
+        
+        if (h < placementZone) {
 			cubeNew.GetComponent<CaseData> ().ownerPlacementZone = Player.Red;
-          cubeNew.GetComponent<CaseData>().ChangeColor(placementZoneRed);
+          cubeNew.GetComponent<SpriteRenderer>().color = placementZoneRed;
 		}
 		if (hauteur - h - 1 < placementZone) {
 			cubeNew.GetComponent<CaseData> ().ownerPlacementZone = Player.Blue;
-          cubeNew.GetComponent<CaseData>().ChangeColor(placementZoneBlue);
+          cubeNew.GetComponent<SpriteRenderer>().color = placementZoneBlue;
 		}
 	}
 
@@ -140,7 +143,7 @@ public class GrilleManager: MonoBehaviour {
           GameObject win = GameObject.Find("0" + " " + i.ToString());
         win.GetComponent<CaseData>().winCase = Player.Red;
         win.GetComponent<CaseData>().caseColor = goalColor;
-          win.GetComponent<CaseData>().ChangeColor(goalColor);
+          win.GetComponent<SpriteRenderer>().color = goalColor;
       }
 
       for (int i = 3; i <= 7; i++)
@@ -148,7 +151,7 @@ public class GrilleManager: MonoBehaviour {
           GameObject win = GameObject.Find("20" + " " + i.ToString());
           win.GetComponent<CaseData>().winCase = Player.Blue;
           win.GetComponent<CaseData>().caseColor = goalColor;
-          win.GetComponent<CaseData>().ChangeColor(goalColor);
+          win.GetComponent<SpriteRenderer>().color = goalColor;
         }
     }
 

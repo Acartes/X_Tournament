@@ -59,8 +59,12 @@ public class Pathfinding : MonoBehaviour {
         public Node parentNode;
     }
 
-    public void StartPathfinding(List<List<GameObject>> cubeAll, Transform current, Transform target)
+    public void StartPathfinding()
     {
+      List<List<GameObject>> cubeAll = GrilleManager.Instance.getMap();
+      Transform current = SelectionManager.Instance.selectedPersonnage.transform;
+      Transform target = HoverManager.Instance.hoveredCase.transform;
+
         Nodes.Clear();
         BakePathfinding(cubeAll);
         RequestPathfinding(current, target);

@@ -1,10 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor.SceneManagement;
+using System.Security.Cryptography;
 
 public class CaseData : MonoBehaviour {
+  // Pour indiquer le statut glisse par exemple
+  /*statut += (int)Statut.Glisse;
+        statut += (int)Statut.Brule;*/
+
+  // Si le ballon brûle, alors
+  /*if ((Statut.Brule & statut) == Statut.Brule) {
+            Debug.Log ("1");
+        } else {
+            Debug.Log ("0");
+        }*/
+
 	// ** Variables ** //
 	[Header("Data")]
+  [SerializeField] [EnumFlagAttribute] Statut statut; [Space(100)]
 	public GameObject personnageData;
 	public GameObject objectData;
 	public GameObject caseBallon;
@@ -27,7 +41,7 @@ public class CaseData : MonoBehaviour {
     public Sprite SpriteAucun;
     public Sprite SpriteFeu;
 
-  SpriteRenderer spriteR;
+  public SpriteRenderer spriteR;
 
   [HideInInspector] public bool colorLock;
 
@@ -35,9 +49,13 @@ public class CaseData : MonoBehaviour {
     // ** Start ** //
     // *********** //
 
+    void Awake () {
+      if (winCase != Player.Neutral) statut = Statut.isGoal;
+      spriteR = GetComponent<SpriteRenderer>();
+    }
+
     void Start () {
     colorLock = false;
-   spriteR = GetComponent<SpriteRenderer>();
 		initColor = GetComponent<SpriteRenderer>().color;
         if (winCase != Player.Neutral) {
         caseColor = ColorManager.Instance.goalColor;
@@ -62,10 +80,11 @@ public class CaseData : MonoBehaviour {
 
 		switch (e.currentPhase) {
 		case Phase.Placement:
-
+           ChangeColor(Statut.canPlace);
 			break;
-		case Phase.Deplacement:
-            NormalColor (caseColor);
+      case Phase.Deplacement:
+        statut = 0;
+        ChangeColor();
 			break;
 		}
 	}
@@ -73,30 +92,6 @@ public class CaseData : MonoBehaviour {
 	// ************* //
 	// ** Trigger ** //
 	// ************* //
-
-	void OnTriggerStay2D (Collider2D col) {
-	/*		if (col.tag == "Personnage") {
-        if (col.gameObject.GetComponent<PersoData>().persoCase == null)
-          {
-            personnageData = col.gameObject;
-            casePathfinding = PathfindingCase.NonWalkable;
-            col.gameObject.GetComponent<PersoData>().persoCase = this.gameObject;
-            col.gameObject.GetComponent<SpriteRenderer>().sortingOrder = GetComponent<SpriteRenderer>().sortingOrder + 1;
-            TransparencyBehaviour.CheckTransparency(col.gameObject, 0.5f);
-          }
-			}*/
-      /*
-			if (col.tag == "Ballon") {
-          if (col.gameObject.GetComponent<BallonData> ().ballonCase == null)
-          {
-            caseBallon = col.gameObject;
-            casePathfinding = PathfindingCase.NonWalkable;
-            col.gameObject.GetComponent<BallonData>().ballonCase = this.gameObject;
-            col.gameObject.GetComponent<SpriteRenderer>().sortingOrder = GetComponent<SpriteRenderer>().sortingOrder + 1;
-              TransparencyBehaviour.CheckTransparency(col.gameObject, 0.5f);
-          }
-			}*/
-	}
 
 	void OnTriggerEnter2D (Collider2D col) {
 
@@ -120,6 +115,8 @@ public class CaseData : MonoBehaviour {
               col.gameObject.GetComponent<BallonData>().ballonCase = this.gameObject;
               col.gameObject.GetComponent<SpriteRenderer>().sortingOrder = GetComponent<SpriteRenderer>().sortingOrder + 1;
               TransparencyBehaviour.CheckTransparency(col.gameObject, 0.5f);
+              col.gameObject.GetComponent<BallonData>().xCoord = xCoord;
+              col.gameObject.GetComponent<BallonData>().yCoord = yCoord;
             }
           
 			if (winCase != Player.Neutral) {
@@ -136,7 +133,8 @@ public class CaseData : MonoBehaviour {
         TransparencyBehaviour.CheckTransparency(col.gameObject, 1f);
 		personnageData = null;
 		casePathfinding = PathfindingCase.Walkable;
-      //  col.gameObject.GetComponent<PersoData>().persoCase = null;
+          ChangeColor(Statut.None, Statut.isSelected);
+          ChangeColor(Statut.None, Statut.isAllyPerso);
 		}
 
       if (col.tag == "Ballon"
@@ -145,8 +143,8 @@ public class CaseData : MonoBehaviour {
         {
           TransparencyBehaviour.CheckTransparency(col.gameObject, 1f);
 			caseBallon = null;
-      //    col.gameObject.GetComponent<BallonData> ().ballonCase = null;
 			casePathfinding = PathfindingCase.Walkable;
+          ChangeColor(Statut.None, Statut.canShot);
 		}
 	}
 
@@ -155,52 +153,46 @@ public class CaseData : MonoBehaviour {
 	// ************* //
 
 	public void PlacementColor () { // Its the color when a player can place his personnages here at Placement Phase
-    spriteR.color = initColor;
+    ChangeColor(Statut.None, Statut.canPlace);
 	}
 
     void NormalColor (Color caseColor) { // Switch to a neutral color
-    spriteR.color = caseColor;
+      ChangeColor(Statut.None, Statut.canPlace);
 	}
 
     public void ResetColor () {
       spriteR.color = caseColor;
     }
 
-    public void ChangeColor (Color newColor, bool isPersistant = false, PathfindingCase newPath = PathfindingCase.None) {
-    if (colorLock)
-      return;
-      
-      if (newPath != PathfindingCase.None)
-      {
-        casePathfinding = newPath;
-      }
-
-    if (isPersistant)
-      {
-        caseColor = newColor;
-      }
-    spriteR.color = newColor;
-    }
-
-    public void changeElement(Element newElem)
+  public void ChangeColor (Statut newStatut = Statut.None, Statut oldStatut = Statut.None) 
     {
-        caseElement = newElem;
-        switch (newElem)
-        {
-            case Element.Feu:
-                GetComponent<SpriteRenderer>().sprite = SpriteFeu;
-                break;
-            case Element.Air:
-                break;
-            case Element.Terre:
-                break;
-            case Element.Eau:
-                break;
-            case Element.Aucun:
-                GetComponent<SpriteRenderer>().sprite = SpriteAucun;
-                break;
-            default:
-                break;
-        }
+    Statut lastStatut = statut;
+      if ((newStatut != Statut.None) && !((newStatut & statut) == newStatut)) statut += (int)newStatut;
+      if ((oldStatut != Statut.None) && ((oldStatut & statut) == oldStatut)) statut -= (int)oldStatut;
+
+      spriteR.color = ColorManager.Instance.caseColor;
+      if ((Statut.isSelected & statut) == Statut.isSelected) spriteR.color = ColorManager.Instance.selectedColor;
+      if ((Statut.canReplace & statut) == Statut.canReplace) spriteR.color = ColorManager.Instance.actionPreColor;
+      if ((Statut.canPunch & statut) == Statut.canPunch) spriteR.color = ColorManager.Instance.actionPreColor;
+      if ((Statut.canMove & statut) == Statut.canMove) spriteR.color = ColorManager.Instance.moveColor;
+      if ((Statut.canBeTackled & statut) == Statut.canBeTackled) spriteR.color = ColorManager.Instance.enemyColor;
+      if ((Statut.canShot & statut) == Statut.canShot) spriteR.color = ColorManager.Instance.actionPreColor;
+      if ((Statut.isAllyPerso & statut) == Statut.isAllyPerso) spriteR.color = ColorManager.Instance.actionPreColor;
+
+      if ((Statut.canPlace & statut) == Statut.canPlace
+        && ownerPlacementZone == Player.Red) spriteR.color = ColorManager.Instance.placementZoneRed;
+      if ((Statut.canPlace & statut) == Statut.canPlace
+        && ownerPlacementZone == Player.Blue) spriteR.color = ColorManager.Instance.placementZoneBlue;
+
+      if ((Statut.isGoal & statut) == Statut.isGoal) spriteR.color = ColorManager.Instance.goalColor;
+
+    if ((Statut.isHovered & statut) == Statut.isHovered)
+      {
+          spriteR.color = ColorManager.Instance.hoverColor;
+          if ((Statut.canReplace & statut) == Statut.canReplace) spriteR.color = ColorManager.Instance.actionColor;
+          if ((Statut.canPunch & statut) == Statut.canPunch) spriteR.color = ColorManager.Instance.actionColor;
+          if ((Statut.canShot & statut) == Statut.canShot) spriteR.color = ColorManager.Instance.actionColor;
+          if ((Statut.isAllyPerso & statut) == Statut.isAllyPerso) spriteR.color = ColorManager.Instance.actionColor;
+      }
     }
 }

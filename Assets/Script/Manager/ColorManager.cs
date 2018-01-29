@@ -13,12 +13,12 @@ public class ColorManager : MonoBehaviour {
   public Color hoverStrongColor;
   public Color caseColor;
   public Color enemyColor;
-  public Color travelColor;
+  public Color moveColor;
   public Color actionPreColor;
   public Color actionColor;
   public Color placementZoneRed;
   public Color placementZoneBlue;
-  public Color moveColor;
+  public Color isMovingColor;
   public Color selectedColor;
   public Color goalColor;
 

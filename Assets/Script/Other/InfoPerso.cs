@@ -6,20 +6,25 @@ using UnityEngine.UI;
 public class InfoPerso : MonoBehaviour
 {
 
+  // *************** //
+  // ** Variables ** //
+  // *************** //
+
     public GameObject infoPersoPortraits;
     public GameObject infoPersoStats;
 
     public static InfoPerso Instance;
-
-    public PersoData selectedPersoData;
-    public SpriteRenderer selectedSpriteRenderer;
 
     public Color blueOwnerColor;
     public Color redOwnerColor;
     public Color noneOwnerColor;
 
     public List<GameObject> characterList;
-    // Use this for initialization
+
+  // *********** //
+  // ** Initialisation ** //
+  // *********** //
+
     void Awake()
     {
         Instance = this;
@@ -38,38 +43,36 @@ public class InfoPerso : MonoBehaviour
       ClickEvent.newClickEvent -= OnNewClick;
     }
 
+  // ************ //
+  // ** Events ** //
+  // ************ //
+
   void OnNewClick()
     { // Lors d'un click sur une case
       ChangeUI();
     }
 
-    // Update is called once per frame
+  // ************* //
+  // ** Actions ** //
+  // ************* //
+
     void ChangeUI()
-    {
+    {// à chaque click, l'UI change de tel ou tel manière
         if (SelectionManager.Instance.selectedPersonnage != null)
         {
             characterList.Clear();
 
-            infoPersoPortraits.SetActive(true);
-            infoPersoStats.SetActive(true);
+            IsVisible(true);
 
-            selectedPersoData = SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData>();
-            selectedSpriteRenderer = SelectionManager.Instance.selectedPersonnage.GetComponent<SpriteRenderer>();
+          PersoData selectedPersoData = SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData>();
+          SpriteRenderer selectedSpriteRenderer = SelectionManager.Instance.selectedPersonnage.GetComponent<SpriteRenderer>();
 
-            switch (selectedPersoData.owner)
-            {
-                case Player.Red:
-                    infoPersoPortraits.GetComponent<infoPersoPortraits>().Clear();
-                    break;
-                case Player.Blue:
-                    infoPersoPortraits.GetComponent<infoPersoPortraits>().Clear();
-                    break;
-            }
+          infoPersoPortraits.GetComponent<infoPersoPortraits>().Clear();
 
             if (GameObject.FindGameObjectsWithTag("Personnage") == null)
                 return;
 
-            foreach (GameObject perso in GameObject.FindGameObjectsWithTag("Personnage"))
+          foreach (GameObject perso in RosterManager.Instance.listHero)
             {
                 if (perso.GetComponent<PersoData>().owner == selectedPersoData.owner)
                     characterList.Add(perso);
@@ -95,8 +98,13 @@ public class InfoPerso : MonoBehaviour
         else
         {
             //  GetComponent<Image>().color = noneOwnerColor;
-            infoPersoPortraits.SetActive(false);
-            infoPersoStats.SetActive(false);
+          IsVisible(false);
         }
+    }
+
+    void IsVisible (bool isVisible) 
+    { // rend l'interface visible ou invisible
+      infoPersoPortraits.SetActive(isVisible);
+      infoPersoStats.SetActive(isVisible);
     }
 }

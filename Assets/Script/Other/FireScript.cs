@@ -29,7 +29,7 @@ public class FireScript : MonoBehaviour {
         {
           if (selected == true)
             {
-              HoverManager.Instance.hoveredCase.GetComponent<CaseData>().changeElement(Element.Feu);
+        //      HoverManager.Instance.hoveredCase.GetComponent<CaseData>().changeElement(Element.Feu);
               selected = false;
               return;
             }
