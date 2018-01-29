@@ -51,7 +51,9 @@ public class SelectionManager : MonoBehaviour {
           switch (currentPhase)
             {
               case (Phase.Placement):
-            if (hoveredPersonnage != null && SelectionManager.Instance.selectedCase == null)
+            if (hoveredPersonnage != null
+              && SelectionManager.Instance.selectedCase == null
+              && hoveredPersonnage.GetComponent<PersoData> ().owner == currentPlayer)
                   {
                     SelectPerso(hoveredCase, hoveredPersonnage, selectedColor, currentPhase, currentPlayer, actualAction);
                   }
