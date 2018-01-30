@@ -29,8 +29,6 @@ public class TransparencyBehaviour : MonoBehaviour {
       GameObject upperCase = GameObject.Find((go.xCoord - 1) + " " + (go.yCoord + 1));
       GameObject lowerCase = GameObject.Find(go.xCoord + 1 + " " + (go.yCoord - 1));
 
-      Debug.Log(upperCase.name + " " + lowerCase.name + " " + thisCase.name);
-
       if (upperCase != null && (upperCase.GetComponent<CaseData>().personnageData != null || upperCase.GetComponent<CaseData>().caseBallon != null))
         {
 
