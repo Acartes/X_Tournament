@@ -11,6 +11,7 @@ public class TransparencyBehaviour : MonoBehaviour {
     }
 
     public static void CheckTransparency (GameObject selectedObj, float alpha) {
+    Debug.Log(selectedObj.name);
       GameObject thisCase;
       if (selectedObj.name == "Ballon")
         {
@@ -25,10 +26,9 @@ public class TransparencyBehaviour : MonoBehaviour {
       GameObject upperCase = GameObject.Find((go.xCoord - 1) + " " + (go.yCoord + 1));
       GameObject lowerCase = GameObject.Find(go.xCoord + 1 + " " + (go.yCoord - 1));
 
-
       if (upperCase != null && (upperCase.GetComponent<CaseData>().personnageData != null || upperCase.GetComponent<CaseData>().caseBallon != null))
         {
-          thisCase = thisCase;
+
       } else if (lowerCase != null && lowerCase.GetComponent<CaseData>().personnageData != null)
         {
           thisCase = lowerCase;

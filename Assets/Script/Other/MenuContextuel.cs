@@ -61,4 +61,6 @@ public class MenuContextuel : MonoBehaviour {
 			obj.GetComponent<PolygonCollider2D> ().enabled = true;
 		}
 	}
+
+    //public 
 }
