@@ -91,6 +91,7 @@ public class CaseData : MonoBehaviour {
       {
         if (col.gameObject.GetComponent<PersoData>().persoCase != this.gameObject)
           {
+              TransparencyBehaviour.CheckTransparency(col.gameObject, 1f);
               personnageData = col.gameObject;
               casePathfinding = PathfindingCase.NonWalkable;
               col.gameObject.GetComponent<PersoData>().persoCase = this.gameObject;
@@ -102,6 +103,7 @@ public class CaseData : MonoBehaviour {
         if (col.tag == "Ballon") {        
           if (col.gameObject.GetComponent<BallonData> ().ballonCase != this.gameObject)
             {
+              TransparencyBehaviour.CheckTransparency(col.gameObject, 1f);
               caseBallon = col.gameObject;
               casePathfinding = PathfindingCase.NonWalkable;
               col.gameObject.GetComponent<BallonData>().ballonCase = this.gameObject;
@@ -122,7 +124,7 @@ public class CaseData : MonoBehaviour {
         && col.gameObject.GetComponent<BoxCollider2D>().enabled == true
         && GetComponent<PolygonCollider2D>().enabled == true) 
         {
-        TransparencyBehaviour.CheckTransparency(col.gameObject, 1f);
+
 		personnageData = null;
 		casePathfinding = PathfindingCase.Walkable;
           ChangeColor(Statut.None, Statut.isSelected);
