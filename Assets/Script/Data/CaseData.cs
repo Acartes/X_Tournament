@@ -1,22 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.SceneManagement;
-using System.Security.Cryptography;
 
 public class CaseData : MonoBehaviour {
-  // Pour indiquer le statut glisse par exemple
-  /*statut += (int)Statut.Glisse;
-        statut += (int)Statut.Brule;*/
-
-  // Si le ballon brûle, alors
-  /*if ((Statut.Brule & statut) == Statut.Brule) {
-            Debug.Log ("1");
-        } else {
-            Debug.Log ("0");
-        }*/
-
+    // *********** //
 	// ** Variables ** //
+    // *********** //
+
 	[Header("Data")]
   [SerializeField] [EnumFlagAttribute] Statut statut; [Space(100)]
 	public GameObject personnageData;

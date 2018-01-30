@@ -57,7 +57,6 @@ public enum WeightType {
         }*/
 
 [Flags] public enum Statut {
-  
   brule = 1 << 0,
   glisse = 1 << 1,
   inammovible = 1 << 2,
@@ -76,4 +75,25 @@ public enum WeightType {
   canPlace = 1 << 15,
   isGoal = 1 << 16,
   None = 1 << 17
+}
+
+[Flags] public enum BallonStatut {
+  None = 1 << 0,
+  isMoving = 1 << 1,
+  canBounce = 1 << 2,
+  isIntercepted = 1 << 3,
+  isReturned = 1 << 4,
+  a = 1 << 5,
+  b = 1 << 6,
+  c = 1 << 7,
+  d = 1 << 8,
+  e = 1 << 9,
+  f = 1 << 10,
+  g = 1 << 11,
+  h = 1 << 12,
+  i = 1 << 13,
+  j = 1 << 14,
+  k = 1 << 15,
+  l = 1 << 16,
+  m = 1 << 17
 }
