@@ -72,7 +72,7 @@ public class infoPersoPortraits : MonoBehaviour
             if (sprite.name == "Feu" || sprite.name == "Feu_dos")
                 return Portrait_feu_bleu;
         }
-        Debug.LogError("No sprite was possible to show. Check conditions.");
+        Debug.Log("No sprite was possible to show. Check conditions.");
         return null;
     }
 }
