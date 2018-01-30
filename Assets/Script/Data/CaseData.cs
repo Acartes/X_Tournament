@@ -41,7 +41,9 @@ public class CaseData : MonoBehaviour {
     public Sprite SpriteAucun;
     public Sprite SpriteFeu;
 
-  public SpriteRenderer spriteR;
+    public GameObject prefabPunch;
+
+    public SpriteRenderer spriteR;
 
   [HideInInspector] public bool colorLock;
 
@@ -173,7 +175,11 @@ public class CaseData : MonoBehaviour {
       spriteR.color = ColorManager.Instance.caseColor;
       if ((Statut.isSelected & statut) == Statut.isSelected) spriteR.color = ColorManager.Instance.selectedColor;
       if ((Statut.canReplace & statut) == Statut.canReplace) spriteR.color = ColorManager.Instance.actionPreColor;
-      if ((Statut.canPunch & statut) == Statut.canPunch) spriteR.color = ColorManager.Instance.actionPreColor;
+        if ((Statut.canPunch & statut) == Statut.canPunch)
+        {
+            spriteR.color = ColorManager.Instance.actionPreColor;
+
+        }
       if ((Statut.canMove & statut) == Statut.canMove) spriteR.color = ColorManager.Instance.moveColor;
       if ((Statut.canBeTackled & statut) == Statut.canBeTackled) spriteR.color = ColorManager.Instance.enemyColor;
       if ((Statut.canShot & statut) == Statut.canShot) spriteR.color = ColorManager.Instance.actionPreColor;
