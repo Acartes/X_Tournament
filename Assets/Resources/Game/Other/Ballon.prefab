@@ -55,13 +55,14 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4175829528228174}
+  - component: {fileID: 114970312933832190}
   - component: {fileID: 212581235755661426}
   - component: {fileID: 61822696837114426}
   - component: {fileID: 50049419022378680}
   - component: {fileID: 95033208338254766}
-  - component: {fileID: 114970312933832190}
   - component: {fileID: 114582548134271758}
   - component: {fileID: 114365016202699120}
+  - component: {fileID: 114770491906629778}
   m_Layer: 2
   m_Name: Ballon
   m_TagString: Ballon
@@ -210,6 +211,20 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!114 &114770491906629778
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1901250649987194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!114 &114877427544497230
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -261,22 +276,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d478f58df0c216a479d672262bdcdd9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actualStatut: 0
-  movePath: []
+  statut: 0
   isMoving: 0
   ballonDirection: 0
   ballonCase: {fileID: 0}
   menuContextuel: {fileID: 0}
   selectedBallon: {fileID: 0}
   offsetBallon: {x: 0, y: 0, z: 0}
-  nextPosition: {fileID: 0}
   travelTimeBallon: 0
   xCoordInc: 0
   yCoordInc: 0
   xCoord: 0
   yCoord: 0
   canRebond: 0
-  isIntercepted: 0
+  movePath: []
 --- !u!212 &212581235755661426
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -5,15 +5,8 @@ using System;
 
 public class BallonData : MonoBehaviour
 {
-
-    [EnumFlagAttribute]
-    public Statut actualStatut;
-
-    [HideInInspector]
-    public List<Transform> movePath;
-
-    Animator animator;
-
+  [Header("Data")]
+  [SerializeField] [EnumFlagAttribute] BallonStatut statut; [Space(100)]
     public bool isMoving = false;
 
     public Direction ballonDirection;
@@ -30,11 +23,12 @@ public class BallonData : MonoBehaviour
     public float yCoord;
     public bool canRebond;
 
-  public bool isIntercepted;
+  Animator animator;
+
+  [HideInInspector] public List<Transform> movePath;
 
     void Start()
     {
-    isIntercepted = false;
         animator = GetComponent<Animator>();
 
         // Pour indiquer le statut glisse par exemple
@@ -93,9 +87,9 @@ public class BallonData : MonoBehaviour
         for (int i = 0; i < ballStrenght; i++)
         {
           
-        if (isIntercepted)
+          if ((BallonStatut.isIntercepted & statut) == BallonStatut.isIntercepted)
           {
-            isIntercepted = false;
+              ChangeStatut(BallonStatut.None, BallonStatut.isIntercepted);
             break;
           }
             xCoordNext += xCoordInc;
@@ -192,6 +186,12 @@ public class BallonData : MonoBehaviour
         }
 
         ShotBehaviour.Instance.isShoting = false;
+    }
 
+  public void ChangeStatut (BallonStatut newStatut = BallonStatut.None, BallonStatut oldStatut = BallonStatut.None) 
+    {
+      BallonStatut lastStatut = statut;
+      if ((newStatut != BallonStatut.None) && !((newStatut & statut) == newStatut)) statut += (int)newStatut;
+      if ((oldStatut != BallonStatut.None) && ((oldStatut & statut) == oldStatut)) statut -= (int)oldStatut;
     }
 }
