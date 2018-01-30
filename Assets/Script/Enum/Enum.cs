@@ -29,8 +29,9 @@ public enum PersoAction {
 	isMoving,
 	isReplacingBall,
 	isShoting,
-  isIdle,
-  isSelected
+    isIdle,
+    isSelected,
+    isWaiting
 }
 
 public enum Direction {
@@ -74,7 +75,8 @@ public enum WeightType {
   isMoving = 1 << 14,
   canPlace = 1 << 15,
   isGoal = 1 << 16,
-  None = 1 << 17
+  None = 1 << 17,
+  canReturnTo = 1 << 18
 }
 
 [Flags] public enum BallonStatut {

@@ -52,6 +52,8 @@ public class TackleBehaviour : MonoBehaviour {
                         if (randomInt < 50)
                           {
                             Debug.Log("(Si inférieur à 51, il y a interception) " + randomInt + "/" + "100" + ": Interception SUCCESS");
+                            GameManager.Instance.actualAction = PersoAction.isWaiting;
+
                             movingObj.GetComponent<BallonData>().ChangeStatut(BallonStatut.isIntercepted);
                           } 
                     break;

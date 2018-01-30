@@ -49,20 +49,16 @@ public class ReplacerBalleBehaviour : MonoBehaviour {
       ReplacerBalleAdd((xCoord - 1), (yCoord + 0));
       ReplacerBalleAdd((xCoord + 0), (yCoord + 1));
       ReplacerBalleAdd((xCoord + 0), (yCoord - 1));
-
-		foreach (GameObject obj in caseAction) {
-          
-		}
 	}
 
     void ReplacerBalleAdd (int xCoord, int yCoord) {
       Color actionPreColor = ColorManager.Instance.actionPreColor;
 
-        if (GameObject.Find (xCoord.ToString () + " " + yCoord.ToString ()) != null && GameObject.Find (xCoord.ToString () + " " + yCoord.ToString ()).GetComponent<CaseData> ().casePathfinding != PathfindingCase.NonWalkable) {
+        if (GameObject.Find (xCoord.ToString () + " " + yCoord.ToString ()) != null
+          && GameObject.Find (xCoord.ToString () + " " + yCoord.ToString ()).GetComponent<CaseData> ().casePathfinding != PathfindingCase.NonWalkable) {
           GameObject newCase = (GameObject.Find (xCoord.ToString () + " " + yCoord.ToString ()));
-        caseAction.Add(newCase);
+         caseAction.Add(newCase);
           newCase.GetComponent<CaseData>().ChangeColor(Statut.canReplace);
-     //   newCase.GetComponent<CaseData>().colorLock = true;
         }
     }
 
@@ -78,7 +74,7 @@ public class ReplacerBalleBehaviour : MonoBehaviour {
               if (caseAction.Contains(hoveredCase)) 
                 {
 					selectedBallon.transform.position = hoveredCase.transform.position;
-              hoveredCase.GetComponent<CaseData>().ChangeColor(Statut.canShot);
+              hoveredCase.GetComponent<CaseData>().ChangeColor(Statut.canReplace);
                   StartCoroutine(ReplacerBalleEnd ());
 					return;
 			}

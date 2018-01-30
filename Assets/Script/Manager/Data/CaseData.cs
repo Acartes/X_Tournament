@@ -181,6 +181,7 @@ public class CaseData : MonoBehaviour {
         && ownerPlacementZone == Player.Blue) spriteR.color = ColorManager.Instance.placementZoneBlue;
 
       if ((Statut.isGoal & statut) == Statut.isGoal) spriteR.color = ColorManager.Instance.goalColor;
+      if ((Statut.canBeTackled & statut) == Statut.canBeTackled) spriteR.color = ColorManager.Instance.actionPreColor;
 
     if ((Statut.isHovered & statut) == Statut.isHovered)
       {

@@ -43,7 +43,8 @@ public class MenuContextuelButton : MonoBehaviour {
             TurnManager.Instance.StartCoroutine("EnableFinishTurn");
 		break;
       case ("MenuContextuelRetourner"):
-        TurnManager.Instance.StartCoroutine("EnableFinishTurn");
+            ReplacerBalleBehaviour.Instance.ReplacerBalle ();
+       // TurnManager.Instance.StartCoroutine("EnableFinishTurn");
         break;
 	}
 		if (spriteR != null)

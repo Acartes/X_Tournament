@@ -46,15 +46,28 @@ public class MenuManager : MonoBehaviour {
           {
           if (Fonction.Instance.CheckAdjacent(hoveredBallon, selectedPersonnage) == true)
               {
-                ShotMenu(hoveredBallon, UIManager.Instance.menuContextuel);
+                ShotMenu();
               }
           }
   }
 
-    public void ShotMenu (GameObject hoveredBallon, GameObject menuContextuel) {
+    public void ShotMenu () 
+    {
+    GameObject menuContextuel = UIManager.Instance.menuContextuel;
+      GameObject hoveredBallon = HoverManager.Instance.hoveredBallon;
+
       MoveBehaviour.Instance.pathes.Clear();
       SelectionManager.Instance.selectedBallon = hoveredBallon;
       menuContextuel.SetActive (true);
       TurnManager.Instance.DisableFinishTurn();
     }
+
+    public void ReturnMenu () {
+      GameObject menuContextuel = UIManager.Instance.menuContextuel;
+      GameObject hoveredBallon = HoverManager.Instance.hoveredBallon;
+
+      SelectionManager.Instance.selectedBallon = hoveredBallon;
+      menuContextuel.SetActive (true);
+      TurnManager.Instance.DisableFinishTurn();
+  }
 }
