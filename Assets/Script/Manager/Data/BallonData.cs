@@ -2,12 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEditor;
 
 public class BallonData : MonoBehaviour
 {
   [Header("Data")]
   [SerializeField] [EnumFlagAttribute] BallonStatut statut; [Space(100)]
     public bool isMoving = false;
+
+  [Header("  Temps")]
+  public float travelTimeBallon;
+  [Tooltip("Utilisé pour ")]
+  public float ballStrenght;
 
     public Direction ballonDirection;
     public GameObject ballonCase;
@@ -16,7 +22,6 @@ public class BallonData : MonoBehaviour
     public GameObject menuContextuel; //MenuContextuel
     public GameObject selectedBallon;
     public Vector3 offsetBallon;
-    public float travelTimeBallon;
     public float xCoordInc;
     public float yCoordInc;
     public float xCoord;
@@ -43,10 +48,14 @@ public class BallonData : MonoBehaviour
 		}*/
     }
 
-    public IEnumerator Move(GameObject hoveredCase, GameObject selectedPersonnage, float travelTimeBallon, float ballStrenght)
+    public IEnumerator Move()
     {
+      GameObject hoveredCase = HoverManager.Instance.hoveredCase;
+    GameObject selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
+
+      GameManager.Instance.actualAction = PersoAction.isShoting;
         TurnManager.Instance.DisableFinishTurn();
-        ShotBehaviour.Instance.isShoting = true;
+        MenuManager.Instance.isShoting = true;
 
       GameObject nextPosition;
 
@@ -59,28 +68,26 @@ public class BallonData : MonoBehaviour
         xCoordInc = 0;
         yCoordInc = 0;
         transform.localRotation = Quaternion.Euler(0, 0, 0);
+      Debug.Log(selectedPersonnage.transform.position + " " + transform.position);
+
         if (selectedPersonnage.transform.position.x > transform.position.x)
-        { //offsetBallon = new Vector2 (-0.625f,0);
-          //	transform.localRotation = Quaternion.Euler(0,transform.localRotation.eulerAngles.y+180,transform.localRotation.eulerAngles.z);
+        {
             xCoordInc -= 0.5f;
             yCoordInc -= 0.5f;
         }
         else if (selectedPersonnage.transform.position.x < transform.position.x)
-        { //offsetBallon = new Vector2 (0.625f,0);
-          //	transform.localRotation = Quaternion.Euler(0,transform.localRotation.eulerAngles.y-180,transform.localRotation.eulerAngles.z);
+        {
             xCoordInc += 0.5f;
             yCoordInc += 0.5f;
         }
 
         if (selectedPersonnage.transform.position.y - 0.5f > transform.position.y)
-        { //offsetBallon = new Vector2 (offsetBallon.x, -0.289f);
-          //	transform.localRotation = Quaternion.Euler(0,transform.localRotation.eulerAngles.y,transform.localRotation.eulerAngles.z+180);
+        {
             xCoordInc += 0.5f;
             yCoordInc -= 0.5f;
         }
         else if (selectedPersonnage.transform.position.y - 0.5f < transform.position.y)
-        { //offsetBallon = new Vector2 (offsetBallon.x, 0.289f);
-          //	transform.localRotation = Quaternion.Euler(0,transform.localRotation.eulerAngles.y,transform.localRotation.eulerAngles.z);
+        {
             xCoordInc -= 0.5f;
             yCoordInc += 0.5f;
         }
@@ -103,10 +110,6 @@ public class BallonData : MonoBehaviour
                     {
                         break;
                     }
-               /*     xCoordInc = -xCoordInc;
-                    yCoordInc = -yCoordInc;
-                    xCoord += xCoordInc;
-                    yCoord += yCoordInc;*/
                     nextPosition = GameObject.Find(xCoordNext.ToString() + " " + yCoordNext.ToString());
                 }
             }
@@ -146,7 +149,6 @@ public class BallonData : MonoBehaviour
                 }
             }
             ChangeRotation();
-
             Vector3 startPos = transform.position;
             float fracturedTime = 0;
             float timeUnit = travelTimeBallon / 60;
@@ -185,7 +187,7 @@ public class BallonData : MonoBehaviour
                 break;
         }
 
-        ShotBehaviour.Instance.isShoting = false;
+      MenuManager.Instance.isShoting = false;
     }
 
   public void ChangeStatut (BallonStatut newStatut = BallonStatut.None, BallonStatut oldStatut = BallonStatut.None) 

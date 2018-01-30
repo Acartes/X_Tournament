@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShotBehaviour : MonoBehaviour {
+public class MenuManager : MonoBehaviour {
 
   // *************** //
   // ** Variables ** //
   // *************** //
 
-  [Header("  Temps")]
-  public float travelTimeBallon;
-  [Tooltip("Utilisé pour ")]
-  public float ballStrenght;
+
   [Tooltip("J'utilise parfois cette variable pour être sûr que le ballon soit bien centré où je veux sans bouger son transform")]
   [ReadOnly] public Vector3 offsetBallon;
   [Tooltip("S'il est coché, c'est qu'un tir de ballon est en cours")]
@@ -19,7 +16,7 @@ public class ShotBehaviour : MonoBehaviour {
   [HideInInspector] public GameObject nextPosition;
   [HideInInspector] public bool canBounce;
 
-  public static ShotBehaviour Instance;
+  public static MenuManager Instance;
 
     void Awake () {
     Instance = this;
@@ -49,25 +46,15 @@ public class ShotBehaviour : MonoBehaviour {
           {
           if (Fonction.Instance.CheckAdjacent(hoveredBallon, selectedPersonnage) == true)
               {
-                TirFunctions(hoveredBallon, UIManager.Instance.menuContextuel);
+                ShotMenu(hoveredBallon, UIManager.Instance.menuContextuel);
               }
           }
   }
 
-    public void TirFunctions (GameObject hoveredBallon, GameObject menuContextuel) {
-    MoveBehaviour.Instance.pathes.Clear();
+    public void ShotMenu (GameObject hoveredBallon, GameObject menuContextuel) {
+      MoveBehaviour.Instance.pathes.Clear();
       SelectionManager.Instance.selectedBallon = hoveredBallon;
       menuContextuel.SetActive (true);
       TurnManager.Instance.DisableFinishTurn();
-    }
-
-    public void TirDeplaceBalle () {
-      GameObject hoveredCase = HoverManager.Instance.hoveredCase;
-      GameObject selectedBallon = SelectionManager.Instance.selectedBallon;
-
-      GameManager.Instance.actualAction = PersoAction.isShoting;
-      offsetBallon = new Vector2 (0,0);
-      TurnManager.Instance.StartCoroutine("EnableFinishTurn");
-      StartCoroutine(selectedBallon.GetComponent<BallonData> ().Move (hoveredCase, SelectionManager.Instance.selectedPersonnage, travelTimeBallon, ballStrenght));
     }
 }

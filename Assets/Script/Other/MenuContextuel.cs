@@ -25,7 +25,6 @@ public class MenuContextuel : MonoBehaviour {
 
 	void OnEnable () {
       StartCoroutine (LateOnEnable());
-		transform.position = ballon.transform.position;
 		Active ();
 	}
 
@@ -50,6 +49,7 @@ public class MenuContextuel : MonoBehaviour {
   } 
 
 	public void Active () {
+      transform.position = ballon.transform.position;
 		foreach (GameObject obj in GameObject.FindGameObjectsWithTag("case")) {
 			obj.GetComponent<PolygonCollider2D> ().enabled = false;
 		}
