@@ -278,12 +278,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statut: 0
   isMoving: 0
+  travelTimeBallon: 5
+  ballStrenght: 5
   ballonDirection: 0
   ballonCase: {fileID: 0}
   menuContextuel: {fileID: 0}
   selectedBallon: {fileID: 0}
   offsetBallon: {x: 0, y: 0, z: 0}
-  travelTimeBallon: 0
   xCoordInc: 0
   yCoordInc: 0
   xCoord: 0

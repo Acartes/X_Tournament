@@ -101,7 +101,6 @@ public class TackleBehaviour : MonoBehaviour {
         punchingPersonnage.GetComponent<BoxCollider2D>().enabled = false;
 
         Vector3 startPos = punchingPersonnage.transform.position;
-        Debug.Log(punchingPersonnage.transform.position);
 
         float fracturedTime = 0;
         float timeUnit = tackleAnimTime / 60;

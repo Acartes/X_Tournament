@@ -36,12 +36,15 @@ public class MenuContextuelButton : MonoBehaviour {
 
 		break;
 		case ("MenuContextuelTirer"):
-            ShotBehaviour.Instance.TirDeplaceBalle();
+            SelectionManager.Instance.selectedBallon.GetComponent<BallonData> ().StartCoroutine("Move");
             TurnManager.Instance.StartCoroutine("EnableFinishTurn");
 		break;
 		case ("MenuContextuelNothing"):
             TurnManager.Instance.StartCoroutine("EnableFinishTurn");
 		break;
+      case ("MenuContextuelRetourner"):
+        TurnManager.Instance.StartCoroutine("EnableFinishTurn");
+        break;
 	}
 		if (spriteR != null)
 		spriteR.color = colorExit;
