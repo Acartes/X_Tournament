@@ -22,6 +22,8 @@ public class CameraMethods : MonoBehaviour
     Vector3 localBottomLeftRect;
     Vector3 localTopRightRect;
 
+    Camera thisCamera;
+
     // *************** //
     // ** Initialisation ** //
     // *************** //
@@ -32,15 +34,19 @@ public class CameraMethods : MonoBehaviour
         Instance = this;
         globalPosition = transform.position;
 
-        globalBottomLeftRect = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
-        globalTopRightRect = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight, Camera.main.nearClipPlane));
+        thisCamera = GetComponent<Camera>();
+
+        globalBottomLeftRect = thisCamera.ScreenToWorldPoint(new Vector3(0, 0, thisCamera.nearClipPlane));
+        globalTopRightRect = thisCamera.ScreenToWorldPoint(new Vector3(thisCamera.pixelWidth, thisCamera.pixelHeight, thisCamera.nearClipPlane));
     }
 
     private void Update()
     {
+        // prend les inputs
+
         if (Input.GetAxis("Mouse ScrollWheel") != 0)
         {
-            currentZoom -= Input.GetAxis("Mouse ScrollWheel") * 3;
+            currentZoom -= Input.GetAxis("Mouse ScrollWheel") * (thisCamera.orthographicSize*10/3);
         }
 
         if (Input.GetAxis("Horizontal") != 0)
@@ -53,35 +59,40 @@ public class CameraMethods : MonoBehaviour
             transform.Translate(Vector3.up * Input.GetAxis("Vertical"));
         }
 
-        localBottomLeftRect = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
-            localTopRightRect = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight, Camera.main.nearClipPlane));
-
-            Vector3 offset = Vector3.zero;
-            if (localBottomLeftRect.x < globalBottomLeftRect.x)
-            {
-                offset.Set(globalBottomLeftRect.x - localBottomLeftRect.x, offset.y, offset.z);
-            }
-
-            if (localBottomLeftRect.y < globalBottomLeftRect.y)
-            {
-                offset.Set(offset.x, globalBottomLeftRect.y - localBottomLeftRect.y, offset.z);
-            }
-            if (localTopRightRect.x > globalTopRightRect.x)
-            {
-                offset.Set(globalTopRightRect.x - localTopRightRect.x, offset.y, offset.z);
-            }
-            if (localTopRightRect.y > globalTopRightRect.y)
-            {
-                offset.Set(offset.x, globalTopRightRect.y - localTopRightRect.y, offset.z);
-            }
-
-            transform.position += offset;
 
         if (currentZoom <= maxZoomIn)
             currentZoom = maxZoomIn;
         else if (currentZoom > maxZoomOut)
+        {
             currentZoom = maxZoomOut;
-        Camera.main.orthographicSize = currentZoom;
+            transform.position = globalPosition;
+        }
+        thisCamera.orthographicSize = currentZoom;
 
+        // ajuste selon les bounds
+
+        localBottomLeftRect = thisCamera.ScreenToWorldPoint(new Vector3(0, 0, thisCamera.nearClipPlane));
+        localTopRightRect = thisCamera.ScreenToWorldPoint(new Vector3(thisCamera.pixelWidth, thisCamera.pixelHeight, thisCamera.nearClipPlane));
+
+        Vector3 offset = Vector3.zero;
+        if (localBottomLeftRect.x < globalBottomLeftRect.x)
+        {
+            offset.Set(globalBottomLeftRect.x - localBottomLeftRect.x, offset.y, offset.z);
+        }
+
+        if (localBottomLeftRect.y < globalBottomLeftRect.y)
+        {
+            offset.Set(offset.x, globalBottomLeftRect.y - localBottomLeftRect.y, offset.z);
+        }
+        if (localTopRightRect.x > globalTopRightRect.x)
+        {
+            offset.Set(globalTopRightRect.x - localTopRightRect.x, offset.y, offset.z);
+        }
+        if (localTopRightRect.y > globalTopRightRect.y)
+        {
+            offset.Set(offset.x, globalTopRightRect.y - localTopRightRect.y, offset.z);
+        }
+
+        transform.position += offset;
     }
 }
