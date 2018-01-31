@@ -94,7 +94,7 @@ public class GrilleManager: MonoBehaviour {
             for (int l = 0; l < largeur; l++) {
 				cubeNew = (GameObject)Instantiate (cube, new Vector2 (h/hSpace + l/hSpace + transform.position.x, -h/lSpace + l/lSpace + transform.position.y), Quaternion.identity);
 				cubeNew.transform.parent = transform;
-				cubeNew.GetComponent<SpriteRenderer> ().sortingOrder = ((int)-l + (int)h) - 100;
+				cubeNew.GetComponent<SpriteRenderer> ().sortingOrder = -100;
                 cubeNew.name = h + " " + l;
 				cubeNew.GetComponent<CaseData> ().xCoord = h;
 				cubeNew.GetComponent<CaseData> ().yCoord = l;

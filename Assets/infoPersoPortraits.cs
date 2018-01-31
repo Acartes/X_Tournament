@@ -14,10 +14,12 @@ public class infoPersoPortraits : MonoBehaviour
     public Sprite Portrait_terre_rouge;
     public Sprite Portrait_feu_rouge;
     public Sprite Portrait_air_rouge;
+    public Sprite Portrait_eau_rouge;
 
     public Sprite Portrait_terre_bleu;
     public Sprite Portrait_feu_bleu;
     public Sprite Portrait_air_bleu;
+    public Sprite Portrait_eau_bleu;
 
 
     // Use this for initialization
@@ -56,23 +58,26 @@ public class infoPersoPortraits : MonoBehaviour
 
         if(owner == Player.Red)
         {
-            if (sprite.name == "Air" || sprite.name == "Air_dos")
+            if (sprite.name == "Air_rouge" || sprite.name == "Air_dos_rouge")
                 return Portrait_air_rouge;
-            if (sprite.name == "Terre" || sprite.name == "Terre_dos")
+            if (sprite.name == "Terre_rouge" || sprite.name == "Terre_dos_rouge")
                 return Portrait_terre_rouge;
-            if (sprite.name == "Feu" || sprite.name == "Feu_dos")
+            if (sprite.name == "Feu_rouge" || sprite.name == "Feu_dos_rouge")
                 return Portrait_feu_rouge;
+            if (sprite.name == "Eau_rouge" || sprite.name == "Eau_dos_rouge")
+                return Portrait_eau_rouge;
         }
         else
         {
-            if (sprite.name == "Air" || sprite.name == "Air_dos")
+            if (sprite.name == "Air_bleu" || sprite.name == "Air_dos_bleu")
                 return Portrait_air_bleu;
-            if (sprite.name == "Terre" || sprite.name == "Terre_dos")
+            if (sprite.name == "Terre_bleu" || sprite.name == "Terre_dos_bleu")
                 return Portrait_terre_bleu;
-            if (sprite.name == "Feu" || sprite.name == "Feu_dos")
+            if (sprite.name == "Feu_bleu" || sprite.name == "Feu_dos_bleu")
                 return Portrait_feu_bleu;
+            if (sprite.name == "Eau_bleu" || sprite.name == "Eau_dos_bleu")
+                return Portrait_eau_bleu;
         }
-        Debug.Log("No sprite was possible to show. Check conditions.");
         return null;
     }
 }

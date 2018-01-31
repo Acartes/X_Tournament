@@ -95,7 +95,6 @@ public class CaseData : MonoBehaviour {
               personnageData = col.gameObject;
               casePathfinding = PathfindingCase.NonWalkable;
               col.gameObject.GetComponent<PersoData>().persoCase = this.gameObject;
-              col.gameObject.GetComponent<SpriteRenderer>().sortingOrder = GetComponent<SpriteRenderer>().sortingOrder + 1;
               TransparencyBehaviour.CheckTransparency(col.gameObject, 0.5f);
           }
       }
@@ -107,7 +106,6 @@ public class CaseData : MonoBehaviour {
               caseBallon = col.gameObject;
               casePathfinding = PathfindingCase.NonWalkable;
               col.gameObject.GetComponent<BallonData>().ballonCase = this.gameObject;
-              col.gameObject.GetComponent<SpriteRenderer>().sortingOrder = GetComponent<SpriteRenderer>().sortingOrder + 1;
               TransparencyBehaviour.CheckTransparency(col.gameObject, 0.5f);
               col.gameObject.GetComponent<BallonData>().xCoord = xCoord;
               col.gameObject.GetComponent<BallonData>().yCoord = yCoord;

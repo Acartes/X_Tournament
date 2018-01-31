@@ -2846,10 +2846,12 @@ MonoBehaviour:
     type: 3}
   Portrait_feu_rouge: {fileID: 21300000, guid: a207baa0fe5c6d449b42d53126671fa6, type: 3}
   Portrait_air_rouge: {fileID: 21300000, guid: 823dab61a244b4048b080a803c69c7c3, type: 3}
+  Portrait_eau_rouge: {fileID: 21300000, guid: 09df15c7ba62b4145855abe578a8a069, type: 3}
   Portrait_terre_bleu: {fileID: 21300000, guid: 59c0f2f298276dd4196647f88637d793,
     type: 3}
   Portrait_feu_bleu: {fileID: 21300000, guid: a9818f13f7e0e2c4ca06f9b99516241f, type: 3}
   Portrait_air_bleu: {fileID: 21300000, guid: f808d7a33c79539448ca36f61a001078, type: 3}
+  Portrait_eau_bleu: {fileID: 21300000, guid: dea7912e8c2e4184fb4ae87a82ea3661, type: 3}
 --- !u!114 &114659179227213000
 MonoBehaviour:
   m_ObjectHideFlags: 1
