@@ -70,7 +70,7 @@ public class PlacementBehaviour : MonoBehaviour
         && SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData>().persoCase != HoverManager.Instance.hoveredCase
         && hoveredCase.GetComponent<CaseData>().ownerPlacementZone == currentPlayer)
         {
-          ChangePersoPosition(hoveredCase, HoverManager.Instance.hoveredPersonnage, GraphManager.Instance.offsetY);
+          ChangePersoPosition(hoveredCase, HoverManager.Instance.hoveredPersonnage, GraphManager.Instance.getCaseOffset(HoverManager.Instance.hoveredPersonnage));
           SelectionManager.Instance.Deselect(TurnManager.Instance.currentPhase, TurnManager.Instance.currentPlayer);
         }
     }
@@ -95,7 +95,7 @@ public class PlacementBehaviour : MonoBehaviour
             if (RosterManager.Instance.listHeroJXToPlace[playerIndex][persoToPlaceNumber] == SelectionManager.Instance.selectedPersonnage)
             {
                 RosterManager.Instance.listHeroJXToPlace[playerIndex].RemoveAt(persoToPlaceNumber);
-                CreatePersoPlacement(HoverManager.Instance.hoveredCase, GraphManager.Instance.offsetY, SelectionManager.Instance.selectedPersonnage);
+                CreatePersoPlacement(HoverManager.Instance.hoveredCase, GraphManager.Instance.getCaseOffset(SelectionManager.Instance.selectedPersonnage), SelectionManager.Instance.selectedPersonnage);
             }
         }
     }

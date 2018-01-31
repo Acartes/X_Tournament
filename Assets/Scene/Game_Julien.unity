@@ -19841,7 +19841,7 @@ Prefab:
     - target: {fileID: 224101063631756828, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224298402374264698, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
@@ -19861,7 +19861,7 @@ Prefab:
     - target: {fileID: 224298402374264698, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -228.33333
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224628034115328028, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
@@ -19881,7 +19881,7 @@ Prefab:
     - target: {fileID: 224628034115328028, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -381.66666
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1063277676517896, guid: a8aad60271229c54e84830103555d34a, type: 2}
       propertyPath: m_IsActive
@@ -43678,6 +43678,12 @@ Prefab:
       propertyPath: listHeroJ2.Array.data[0]
       value: 
       objectReference: {fileID: 1409412096056796, guid: 4c1c81e440c6cf14dae790263093ec6c,
+        type: 2}
+    - target: {fileID: 114959902381249152, guid: 94db87f100f8b4b4cbf6c524af7b6476,
+        type: 2}
+      propertyPath: listHeroJ1.Array.data[3]
+      value: 
+      objectReference: {fileID: 1409412096056796, guid: 51a1605e281ecf54bae3d3711f559d84,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 94db87f100f8b4b4cbf6c524af7b6476, type: 2}

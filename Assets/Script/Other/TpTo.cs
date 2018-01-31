@@ -27,7 +27,7 @@ public class TpTo : MonoBehaviour
         {
             if (targetPosition.node == null) // pas de target = pas de tp
                 return;
-                perso.transform.position = targetPosition.transform.position + new Vector3(0, GraphManager.Instance.offsetY, 0);
+                perso.transform.position = targetPosition.transform.position + new Vector3(0, GraphManager.Instance.getCaseOffset(perso.gameObject), 0);
                 AirScript.Instance.airEffect.SetActive(false);
         }
 

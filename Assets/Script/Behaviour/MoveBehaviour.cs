@@ -131,7 +131,7 @@ public class MoveBehaviour : MonoBehaviour
           path.GetComponent<CaseData>().ChangeColor(Statut.isMoving);
         }
 
-        StartCoroutine(Deplacement(ColorManager.Instance.caseColor, GraphManager.Instance.offsetY, SelectionManager.Instance.selectedPersonnage));
+        StartCoroutine(Deplacement(ColorManager.Instance.caseColor, GraphManager.Instance.getCaseOffset(SelectionManager.Instance.selectedPersonnage), SelectionManager.Instance.selectedPersonnage));
     }
 
     IEnumerator Deplacement(Color caseColor, float offsetY, GameObject selectedPersonnage)

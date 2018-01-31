@@ -48,7 +48,7 @@ public class TackleBehaviour : MonoBehaviour {
                   {
                   case ("Ballon"):
                     path = movingObj.GetComponent<BallonData>().ballonCase.transform;
-                        StartCoroutine(TackleEffect(obj, path, GraphManager.Instance.offsetY));
+                        StartCoroutine(TackleEffect(obj, path, GraphManager.Instance.getCaseOffset(obj)));
                         if (randomInt < 50)
                           {
                             Debug.Log("(Si inférieur à 51, il y a interception) " + randomInt + "/" + "100" + ": Interception SUCCESS");
@@ -60,7 +60,7 @@ public class TackleBehaviour : MonoBehaviour {
                   default:
                     if (obj.GetComponent<PersoData>().owner != currentPlayer)
                       {
-                            StartCoroutine(TackleEffect(obj, path, GraphManager.Instance.offsetY));
+                            StartCoroutine(TackleEffect(obj, path, GraphManager.Instance.getCaseOffset(obj)));
                         if (movingObj.GetComponent<PersoData>().weightType == obj.GetComponent<PersoData>().weightType)
                           {
                             if (randomInt < 50)

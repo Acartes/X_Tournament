@@ -45,7 +45,6 @@ public class SelectionManager : MonoBehaviour {
     var selectedColor = ColorManager.Instance.selectedColor;
     var moveColor = ColorManager.Instance.moveColor;
     var caseColor = ColorManager.Instance.caseColor;
-    var offsetY = GraphManager.Instance.offsetY;
 
           selectedLastCase = selectedCase;
           switch (currentPhase)

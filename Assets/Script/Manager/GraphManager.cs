@@ -8,8 +8,6 @@ public class GraphManager : MonoBehaviour {
   // ** Variables ** //
   // *************** //
 
-  public float offsetY;
-
   public static GraphManager Instance;
 
   // *************** //
@@ -19,4 +17,9 @@ public class GraphManager : MonoBehaviour {
     void Awake () {
     Instance = this;
   }
+
+    public float getCaseOffset(GameObject go)
+    {
+        return go.GetComponent<SpriteRenderer>().bounds.size.y / 2.3f;
+    }
 }
