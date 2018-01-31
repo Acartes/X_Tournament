@@ -62,7 +62,7 @@ public class Pathfinding : MonoBehaviour {
     public void StartPathfinding()
     {
       List<List<GameObject>> cubeAll = GrilleManager.Instance.getMap();
-      Transform current = SelectionManager.Instance.selectedPersonnage.transform;
+      Transform current = SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData>().persoCase.transform;
       Transform target = HoverManager.Instance.hoveredCase.transform;
 
         Nodes.Clear();
@@ -101,7 +101,7 @@ public class Pathfinding : MonoBehaviour {
         {
             foreach (Node node in nodelist)
             {
-                if (node.obj.transform.position.x == current.transform.position.x && Mathf.Approximately(node.obj.transform.position.y + 0.45f, current.transform.position.y))
+                if (node.obj.transform.position.x == current.transform.position.x && Mathf.Approximately(node.obj.transform.position.y, current.transform.position.y))
                 {
                     nodeCurrent = node;
                 }
