@@ -58,24 +58,24 @@ public class infoPersoPortraits : MonoBehaviour
 
         if(owner == Player.Red)
         {
-            if (sprite.name == "Air_rouge" || sprite.name == "Air_dos_rouge")
+            if (sprite.name == "Air_rouge" || sprite.name == "Air_rouge_dos")
                 return Portrait_air_rouge;
-            if (sprite.name == "Terre_rouge" || sprite.name == "Terre_dos_rouge")
+            if (sprite.name == "Terre_rouge" || sprite.name == "Terre_rouge_dos")
                 return Portrait_terre_rouge;
-            if (sprite.name == "Feu_rouge" || sprite.name == "Feu_dos_rouge")
+            if (sprite.name == "Feu_rouge" || sprite.name == "Feu_rouge_dos")
                 return Portrait_feu_rouge;
-            if (sprite.name == "Eau_rouge" || sprite.name == "Eau_dos_rouge")
+            if (sprite.name == "Eau_rouge" || sprite.name == "Eau_rouge_dos")
                 return Portrait_eau_rouge;
         }
         else
         {
-            if (sprite.name == "Air_bleu" || sprite.name == "Air_dos_bleu")
+            if (sprite.name == "Air_bleu" || sprite.name == "Air_bleu_dos")
                 return Portrait_air_bleu;
-            if (sprite.name == "Terre_bleu" || sprite.name == "Terre_dos_bleu")
+            if (sprite.name == "Terre_bleu" || sprite.name == "Terre_bleu_dos")
                 return Portrait_terre_bleu;
-            if (sprite.name == "Feu_bleu" || sprite.name == "Feu_dos_bleu")
+            if (sprite.name == "Feu_bleu" || sprite.name == "Feu_bleu_dos")
                 return Portrait_feu_bleu;
-            if (sprite.name == "Eau_bleu" || sprite.name == "Eau_dos_bleu")
+            if (sprite.name == "Eau_bleu" || sprite.name == "Eau_bleu_dos")
                 return Portrait_eau_bleu;
         }
         return null;
