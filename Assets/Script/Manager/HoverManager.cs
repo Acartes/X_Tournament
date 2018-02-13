@@ -60,18 +60,24 @@ public class HoverManager : MonoBehaviour
 
     void OnNewHover(object sender, HoverArgs e)
   { // Curseur se trouve sur une case ou quitte une case
-      if (hoveredLastCase != null && hoveredLastCase != hoveredCase)
+      if (hoveredLastCase == null || hoveredLastCase != hoveredCase)
       {
         hoveredLastCase = hoveredCase;
-        
       }
+
+      if (hoveredCase != null)
+        {
+          changeColorExit(GameManager.Instance.currentPhase);
+        }
+    Debug.Log(hoveredCase);
+      Debug.Log(hoveredLastCase);
 
     hoveredPersonnage = e.hoveredPersonnage;
     hoveredCase = e.hoveredCase;
     hoveredPathfinding = e.Pathfinding;
     hoveredBallon = e.hoveredBallon;
 
-    changeColorExit(GameManager.Instance.currentPhase);
+      changeColorEnter();
     CheckIfAction ();
         }
 
@@ -119,11 +125,14 @@ public class HoverManager : MonoBehaviour
                   }
 
                 if (hoveredCase.GetComponent<CaseData>().casePathfinding == PathfindingCase.Walkable
-                  && actualAction == PersoAction.isSelected
-                  && hoveredLastCase != hoveredCase)
+                  && actualAction == PersoAction.isSelected)
                   {
-                    Pathfinding.Instance.StartPathfinding();
                     MoveBehaviour.Instance.createPath();
+
+                if (hoveredLastCase != hoveredCase)
+                  {
+                        Pathfinding.Instance.StartPathfinding();
+                  }
                   }
               }
                     break;
