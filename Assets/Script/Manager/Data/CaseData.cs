@@ -9,9 +9,9 @@ public class CaseData : MonoBehaviour {
 
 	[Header("Data")]
   [SerializeField] [EnumFlagAttribute] Statut statut; [Space(100)]
-	public GameObject personnageData;
+	public PersoData personnageData;
 	public GameObject objectData;
-	public GameObject caseBallon;
+	public CaseData caseBallon;
 	public PathfindingCase casePathfinding;
 	public Element caseElement;
 	public int xCoord;
@@ -92,7 +92,7 @@ public class CaseData : MonoBehaviour {
         if (col.gameObject.GetComponent<PersoData>().persoCase != this.gameObject)
           {
               TransparencyBehaviour.CheckTransparency(col.gameObject, 1f);
-              personnageData = col.gameObject;
+              personnageData = col.gameObject.GetComponent<PersoData>();
               casePathfinding = PathfindingCase.NonWalkable;
               col.gameObject.GetComponent<PersoData>().persoCase = this.gameObject;
               TransparencyBehaviour.CheckTransparency(col.gameObject, 0.5f);
@@ -103,7 +103,7 @@ public class CaseData : MonoBehaviour {
           if (col.gameObject.GetComponent<BallonData> ().ballonCase != this.gameObject)
             {
               TransparencyBehaviour.CheckTransparency(col.gameObject, 1f);
-              caseBallon = col.gameObject;
+              caseBallon = col.gameObject.GetComponent<CaseData>();
               casePathfinding = PathfindingCase.NonWalkable;
               col.gameObject.GetComponent<BallonData>().ballonCase = this.gameObject;
               TransparencyBehaviour.CheckTransparency(col.gameObject, 0.5f);

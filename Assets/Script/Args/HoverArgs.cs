@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class HoverArgs : EventArgs {
 
-	public GameObject hoveredCase;
-	public GameObject hoveredPersonnage;
-	public GameObject hoveredBallon;
+	public CaseData hoveredCase;
+	public PersoData hoveredPersonnage;
+	public BallonData hoveredBallon;
 	public PathfindingCase Pathfinding;
 
-	public HoverArgs(GameObject hoveredCase, GameObject hoveredPersonnage, PathfindingCase Pathfinding, GameObject hoveredBallon)
+	public HoverArgs(CaseData hoveredCase, PersoData hoveredPersonnage, PathfindingCase Pathfinding, BallonData hoveredBallon)
 	{
 		this.hoveredCase = hoveredCase;
 		this.hoveredPersonnage = hoveredPersonnage;

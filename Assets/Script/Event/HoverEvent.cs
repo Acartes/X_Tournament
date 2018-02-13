@@ -9,9 +9,9 @@ public class HoverEvent : MonoBehaviour {
 
 	public static EventHandler<HoverArgs> newHoverEvent;
 
-	public GameObject hoveredCase;
-	public GameObject hoveredPersonnage;
-	public GameObject hoveredBallon;
+	public CaseData hoveredCase;
+	public PersoData hoveredPersonnage;
+	public BallonData hoveredBallon;
 	public PathfindingCase hoveredPathfinding;
 
     void Awake () {
@@ -28,7 +28,7 @@ public class HoverEvent : MonoBehaviour {
     {
         if (!enabled)
             return;
-		hoveredCase = this.gameObject;
+		hoveredCase = this.GetComponent<CaseData>();
 		hoveredPersonnage = GetComponent<CaseData> ().personnageData;
 		hoveredPathfinding = GetComponent<CaseData> ().casePathfinding;
 		hoveredBallon = GetComponent<CaseData> ().caseBallon;
@@ -40,7 +40,7 @@ public class HoverEvent : MonoBehaviour {
         if (!enabled)
             return;
 
-		hoveredCase = this.gameObject;
+		hoveredCase = this.GetComponent<CaseData>();
 		hoveredPersonnage = GetComponent<CaseData>().personnageData;
 		hoveredPathfinding = GetComponent<CaseData>().casePathfinding;
 		hoveredBallon = GetComponent<CaseData> ().caseBallon;

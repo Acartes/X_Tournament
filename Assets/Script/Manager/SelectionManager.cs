@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SelectionManager : MonoBehaviour {
 
-  public GameObject selectedLastCase;
-  public GameObject selectedLastPersonnage;
-  public GameObject selectedBallon;
-  public GameObject selectedCase;
-  public GameObject selectedPersonnage;
+  public CaseData selectedLastCase;
+  public PersoData selectedLastPersonnage;
+  public CaseData selectedBallon;
+  public CaseData selectedCase;
+  public PersoData selectedPersonnage;
   
   public static SelectionManager Instance;
 
@@ -52,14 +52,14 @@ public class SelectionManager : MonoBehaviour {
               case (Phase.Placement):
             if (hoveredPersonnage != null
               && SelectionManager.Instance.selectedCase == null
-              && hoveredPersonnage.GetComponent<PersoData> ().owner == currentPlayer)
+              && hoveredPersonnage.owner == currentPlayer)
                   {
                     SelectPerso(hoveredCase, hoveredPersonnage, selectedColor, currentPhase, currentPlayer, actualAction);
                   }
 
                 break;
               case (Phase.Deplacement):
-                  if (hoveredPersonnage != null && hoveredPersonnage.GetComponent<PersoData> ().owner == currentPlayer) { // changement de personnage selectionné
+                  if (hoveredPersonnage != null && hoveredPersonnage.owner == currentPlayer) { // changement de personnage selectionné
                     SelectPerso (hoveredCase, hoveredPersonnage, selectedColor, currentPhase, currentPlayer, actualAction);
                   }
                 break;
@@ -83,7 +83,7 @@ public class SelectionManager : MonoBehaviour {
     {
       if (selectedCase != null)
         {
-          selectedCase.GetComponent<CaseData>().ChangeColor(Statut.None, Statut.isSelected);
+          selectedCase.ChangeColor(Statut.None, Statut.isSelected);
         }
       selectedCase = null;
       selectedPersonnage = null;
@@ -99,9 +99,9 @@ public class SelectionManager : MonoBehaviour {
       if (selectedLastCase != null)
         {
             if (currentPhase == Phase.Placement) {
-              selectedLastCase.GetComponent<CaseData>().ChangeColor(Statut.None, Statut.isSelected);
+              selectedLastCase.ChangeColor(Statut.None, Statut.isSelected);
             } else {
-              selectedLastCase.GetComponent<CaseData>().ChangeColor(Statut.None, Statut.isSelected);
+              selectedLastCase.ChangeColor(Statut.None, Statut.isSelected);
             }
         }
       selectedPersonnage = null;
@@ -113,14 +113,14 @@ public class SelectionManager : MonoBehaviour {
         }
     }
 
-  public void SelectPerso(GameObject hoveredCase, GameObject hoveredPersonnage, Color selectedColor, Phase currentPhase, Player currentPlayer, PersoAction actualAction)
+  public void SelectPerso(CaseData hoveredCase, PersoData hoveredPersonnage, Color selectedColor, Phase currentPhase, Player currentPlayer, PersoAction actualAction)
     {
       Deselect (currentPhase, currentPlayer);
       selectedCase = hoveredCase;
       selectedPersonnage = hoveredPersonnage;
 
-      selectedCase.GetComponent<CaseData>().caseColor = selectedColor;
-      selectedCase.GetComponent<CaseData>().ChangeColor(Statut.isSelected);
+      selectedCase.caseColor = selectedColor;
+      selectedCase.ChangeColor(Statut.isSelected);
       GameManager.Instance.actualAction = PersoAction.isSelected;
       CaseManager.Instance.StartCoroutine ("ShowActions");
     }

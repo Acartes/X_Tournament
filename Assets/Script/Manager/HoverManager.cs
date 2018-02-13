@@ -13,15 +13,15 @@ public class HoverManager : MonoBehaviour
 
   [Header("  Hover Data")]
   [Tooltip("Case sous le curseur")]
-  [ReadOnly] public GameObject hoveredCase;
+  [ReadOnly] public CaseData hoveredCase;
   [Tooltip("Personnage sous le curseur")]
-  [ReadOnly] public GameObject hoveredPersonnage;
+  [ReadOnly] public PersoData hoveredPersonnage;
   [Tooltip("Pathfinding tracé par le curseur")]
   [ReadOnly] public PathfindingCase hoveredPathfinding;
   [Tooltip("Ballon sous le curseur")]
-  [ReadOnly] public GameObject hoveredBallon;
+  [ReadOnly] public BallonData hoveredBallon;
   [Tooltip("Case qui était précedemment sous le curseur")]
-  [ReadOnly] public GameObject hoveredLastCase;
+  [ReadOnly] public CaseData hoveredLastCase;
 
   [HideInInspector] public static HoverManager Instance;
 
@@ -92,7 +92,7 @@ public class HoverManager : MonoBehaviour
       Phase currentPhase = GameManager.Instance.currentPhase;
       Color actionColor = ColorManager.Instance.actionColor;
       Color moveColor = ColorManager.Instance.moveColor;
-      GameObject selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
+      PersoData selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
     Color hoverColor = ColorManager.Instance.hoverColor;
     PersoAction actualAction = GameManager.Instance.actualAction;
 
