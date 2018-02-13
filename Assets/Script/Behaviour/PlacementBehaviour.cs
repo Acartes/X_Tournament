@@ -70,7 +70,7 @@ public class PlacementBehaviour : MonoBehaviour
         && SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData>().persoCase != HoverManager.Instance.hoveredCase
         && hoveredCase.GetComponent<CaseData>().ownerPlacementZone == currentPlayer)
         {
-          ChangePersoPosition(hoveredCase, HoverManager.Instance.hoveredPersonnage, GraphManager.Instance.getCaseOffset(HoverManager.Instance.hoveredPersonnage));
+          ChangePersoPosition(hoveredCase, HoverManager.Instance.hoveredPersonnage, GraphManager.Instance.getCaseOffset(HoverManager.Instance.hoveredPersonnage.gameObject));
           SelectionManager.Instance.Deselect(TurnManager.Instance.currentPhase, TurnManager.Instance.currentPlayer);
         }
     }
@@ -95,18 +95,18 @@ public class PlacementBehaviour : MonoBehaviour
             if (RosterManager.Instance.listHeroJXToPlace[playerIndex][persoToPlaceNumber] == SelectionManager.Instance.selectedPersonnage)
             {
                 RosterManager.Instance.listHeroJXToPlace[playerIndex].RemoveAt(persoToPlaceNumber);
-                CreatePersoPlacement(HoverManager.Instance.hoveredCase, GraphManager.Instance.getCaseOffset(SelectionManager.Instance.selectedPersonnage), SelectionManager.Instance.selectedPersonnage);
+                CreatePersoPlacement(HoverManager.Instance.hoveredCase, GraphManager.Instance.getCaseOffset(SelectionManager.Instance.selectedPersonnage.gameObject), SelectionManager.Instance.selectedPersonnage);
             }
         }
     }
 
-    void CreatePersoPlacement(GameObject hoveredCase, float offsetY, GameObject selectedPersonnage)
+    void CreatePersoPlacement(CaseData hoveredCase, float offsetY, PersoData selectedPersonnage)
     { //
         if (SelectionManager.Instance.selectedPersonnage != null)
         {
             selectedPersonnage.transform.position = hoveredCase.transform.position + new Vector3(0, offsetY, 0);
-            selectedPersonnage.GetComponent<PersoData>().owner = TurnManager.Instance.currentPlayer;
-            selectedPersonnage.GetComponent<PersoData>().ChangeColor();
+            selectedPersonnage.owner = TurnManager.Instance.currentPlayer;
+            selectedPersonnage.ChangeColor();
         RosterManager.Instance.listHeroPlaced.Add(selectedPersonnage);
 
             if (selectedPersonnage.GetComponent<PersoData>().owner == Player.Red)
@@ -148,7 +148,7 @@ public class PlacementBehaviour : MonoBehaviour
         }
     }
 
-    public void ChangePersoPosition(GameObject hoveredCase, GameObject hoveredPersonnage, float offsetY)
+    public void ChangePersoPosition(CaseData hoveredCase, PersoData hoveredPersonnage, float offsetY)
     { // Change la position d'un personnage déjà placer vers la case où a cliqué le joueur possesseur.
         if (hoveredCase.GetComponent<CaseData>().casePathfinding == PathfindingCase.Walkable || hoveredPersonnage != null)
         {

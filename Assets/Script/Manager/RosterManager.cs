@@ -8,34 +8,34 @@ public class RosterManager : MonoBehaviour {
   // ** Variables ** //
   // *************** //
 
-	public List<GameObject> listHeroJ1;
-	public List<GameObject> listHeroJ2;
-  public List<List<GameObject>> listHeroJXToPlace = new List<List<GameObject>>();
-  [ReadOnly] public List<GameObject> listHero;
-  [ReadOnly] public List<GameObject> listHeroPlaced;
+	public List<PersoData> listHeroJ1;
+	public List<PersoData> listHeroJ2;
+  public List<List<PersoData>> listHeroJXToPlace = new List<List<PersoData>>();
+  [ReadOnly] public List<PersoData> listHero;
+  [ReadOnly] public List<PersoData> listHeroPlaced;
 
 	[HideInInspector] public static RosterManager Instance;
 
-	public GameObject persoCreated;
+	public PersoData persoCreated;
 
 	void Awake () {
 		Instance = this;
 	}
 
 	void Start () {
-      GameObject persoCreated;
-      listHeroJXToPlace.Add(new List<GameObject>());
-      listHeroJXToPlace.Add(new List<GameObject>());
-		foreach (GameObject obj in listHeroJ1) {
-			persoCreated = (GameObject)Instantiate (obj, new Vector3 (999, 999, 999), Quaternion.identity);
+        GameObject persoCreated;
+      listHeroJXToPlace.Add(new List<PersoData>());
+      listHeroJXToPlace.Add(new List<PersoData>());
+		foreach (PersoData obj in listHeroJ1) {
+			persoCreated = (GameObject)Instantiate (obj.gameObject, new Vector3 (999, 999, 999), Quaternion.identity);
           persoCreated.GetComponent<PersoData>().owner = Player.Red;
-          listHeroJXToPlace[0].Add(persoCreated);
+          listHeroJXToPlace[0].Add(persoCreated.GetComponent<PersoData>());
 		}
 
-		foreach (GameObject obj in listHeroJ2) {
-			persoCreated = (GameObject)Instantiate (obj, new Vector3 (999, 999, 999), Quaternion.identity);
+		foreach (PersoData obj in listHeroJ2) {
+			persoCreated = (GameObject)Instantiate (obj.gameObject, new Vector3 (999, 999, 999), Quaternion.identity);
           persoCreated.GetComponent<PersoData>().owner = Player.Blue;
-          listHeroJXToPlace[1].Add(persoCreated);
+          listHeroJXToPlace[1].Add(persoCreated.GetComponent<PersoData>());
 		}
           
       listHeroJ1.Clear();

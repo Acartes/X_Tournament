@@ -31,7 +31,7 @@ public class HoverEvent : MonoBehaviour {
 		hoveredCase = this.GetComponent<CaseData>();
 		hoveredPersonnage = GetComponent<CaseData> ().personnageData;
 		hoveredPathfinding = GetComponent<CaseData> ().casePathfinding;
-		hoveredBallon = GetComponent<CaseData> ().caseBallon;
+		hoveredBallon = GetComponent<CaseData> ().ballon;
 
         newHoverEvent (this, new HoverArgs (hoveredCase, hoveredPersonnage, hoveredPathfinding, hoveredBallon));
 	}
@@ -43,7 +43,7 @@ public class HoverEvent : MonoBehaviour {
 		hoveredCase = this.GetComponent<CaseData>();
 		hoveredPersonnage = GetComponent<CaseData>().personnageData;
 		hoveredPathfinding = GetComponent<CaseData>().casePathfinding;
-		hoveredBallon = GetComponent<CaseData> ().caseBallon;
+		hoveredBallon = GetComponent<CaseData> ().ballon;
 
 		//newHoverEvent (this, new HoverArgs (hoveredCase, hoveredPersonnage, hoveredPathfinding, hoveredBallon));
     }

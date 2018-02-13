@@ -28,18 +28,18 @@ public class TackleBehaviour : MonoBehaviour {
   // ** Checkers ** //
   // *************** //
 
-  public void CheckTackle (GameObject movingObj, GameObject shotingPersonnage = null) 
+  public void CheckTackle (GameObject movingObj, PersoData shotingPersonnage = null) 
     { // Vérifie si le personnage peut être taclé, et si c'est le cas, fait un test de chance pour savoir s'il est taclé
       Transform path = SelectionManager.Instance.selectedCase.transform;
       Player currentPlayer = TurnManager.Instance.currentPlayer;
       float xCaseOffset = CaseManager.Instance.xCaseOffset;
       float yCaseOffset = CaseManager.Instance.yCaseOffset;
 
-    foreach (GameObject obj in RosterManager.Instance.listHeroPlaced)
+    foreach (PersoData obj in RosterManager.Instance.listHeroPlaced)
       {
           if (movingObj != null && obj != shotingPersonnage)
           {
-              if (obj != movingObj && Fonction.Instance.CheckAdjacent(obj, movingObj) == true)
+              if (obj != movingObj && Fonction.Instance.CheckAdjacent(obj.gameObject, movingObj.gameObject) == true)
               {
 
                 int randomInt = UnityEngine.Random.Range(0, 100);
@@ -48,7 +48,7 @@ public class TackleBehaviour : MonoBehaviour {
                   {
                   case ("Ballon"):
                     path = movingObj.GetComponent<BallonData>().ballonCase.transform;
-                        StartCoroutine(TackleEffect(obj, path, GraphManager.Instance.getCaseOffset(obj)));
+                        StartCoroutine(TackleEffect(obj, path, GraphManager.Instance.getCaseOffset(obj.gameObject)));
                         if (randomInt < 50)
                           {
                             Debug.Log("(Si inférieur à 51, il y a interception) " + randomInt + "/" + "100" + ": Interception SUCCESS");
@@ -58,10 +58,10 @@ public class TackleBehaviour : MonoBehaviour {
                           } 
                     break;
                   default:
-                    if (obj.GetComponent<PersoData>().owner != currentPlayer)
+                    if (obj.owner != currentPlayer)
                       {
-                            StartCoroutine(TackleEffect(obj, path, GraphManager.Instance.getCaseOffset(obj)));
-                        if (movingObj.GetComponent<PersoData>().weightType == obj.GetComponent<PersoData>().weightType)
+                            StartCoroutine(TackleEffect(obj, path, GraphManager.Instance.getCaseOffset(obj.gameObject)));
+                        if (movingObj.GetComponent<PersoData>().weightType == obj.weightType)
                           {
                             if (randomInt < 50)
                               {
@@ -95,7 +95,7 @@ public class TackleBehaviour : MonoBehaviour {
   // ** Tacle ** //
   // *************** //
 
-    IEnumerator TackleEffect (GameObject punchingPersonnage, Transform path, float offsetY) 
+    IEnumerator TackleEffect (PersoData punchingPersonnage, Transform path, float offsetY) 
     { // Effet visuel à chaque fois que le personnage se déplaçant se fait taclé
     if (punchingPersonnage.GetComponent<BoxCollider2D>().enabled != false)
       {

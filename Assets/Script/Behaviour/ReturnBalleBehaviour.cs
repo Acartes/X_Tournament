@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ReturnBalleBehaviour : MonoBehaviour {
 
-  public List<GameObject> caseAction;
+  public List<CaseData> caseAction;
 
   public static ReturnBalleBehaviour Instance;
 
@@ -30,7 +30,7 @@ public class ReturnBalleBehaviour : MonoBehaviour {
     public void StartBehaviour () 
     {
       Color caseColor = ColorManager.Instance.caseColor;
-      GameObject selectedCase = SelectionManager.Instance.selectedCase;
+        CaseData selectedCase = SelectionManager.Instance.selectedCase;
 
       GameManager.Instance.actualAction = PersoAction.isReplacingBall;
       caseAction.Clear ();
@@ -51,10 +51,10 @@ public class ReturnBalleBehaviour : MonoBehaviour {
     }
 
     void DoBehaviour () {
-      GameObject selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
-      GameObject hoveredCase = HoverManager.Instance.hoveredCase;
+      PersoData selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
+        CaseData hoveredCase = HoverManager.Instance.hoveredCase;
       PersoAction actualAction = GameManager.Instance.actualAction;
-      GameObject selectedBallon = SelectionManager.Instance.selectedBallon;
+      BallonData selectedBallon = SelectionManager.Instance.selectedBallon;
 
       if (actualAction == PersoAction.isWaiting
         && caseAction.Count != 0) 
@@ -77,7 +77,7 @@ public class ReturnBalleBehaviour : MonoBehaviour {
 
       if (GameObject.Find (xCoord.ToString () + " " + yCoord.ToString ()) != null
           && GameObject.Find (xCoord.ToString () + " " + yCoord.ToString ()).GetComponent<CaseData> ().personnageData != null) {
-          GameObject newCase = (GameObject.Find (xCoord.ToString () + " " + yCoord.ToString ()));
+            CaseData newCase = (GameObject.Find (xCoord.ToString () + " " + yCoord.ToString ())).GetComponent<CaseData>();
           caseAction.Add(newCase);
           newCase.GetComponent<CaseData>().ChangeColor(Statut.canReturnTo);
         }
@@ -88,8 +88,8 @@ public class ReturnBalleBehaviour : MonoBehaviour {
       yield return new WaitForEndOfFrame();
       GameManager.Instance.actualAction = PersoAction.isSelected;
 
-        foreach (GameObject obj in caseAction) {
-          obj.GetComponent<CaseData>().ChangeColor(Statut.None, Statut.canReturnTo);
+        foreach (CaseData obj in caseAction) {
+          obj.ChangeColor(Statut.None, Statut.canReturnTo);
         }
       TurnManager.Instance.StartCoroutine("EnableFinishTurn");
       CaseManager.Instance.StartCoroutine ("ShowActions");

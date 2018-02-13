@@ -20,7 +20,7 @@ public class PersoData : MonoBehaviour {
 
 	public List<Color> PlayerColor;
 
-	public GameObject persoCase;
+	public CaseData persoCase;
 
 	public Vector3 feetPointOffset;
 

@@ -11,12 +11,13 @@ public class CaseData : MonoBehaviour {
   [SerializeField] [EnumFlagAttribute] Statut statut; [Space(100)]
 	public PersoData personnageData;
 	public GameObject objectData;
-	public CaseData caseBallon;
+	public BallonData ballon;
 	public PathfindingCase casePathfinding;
 	public Element caseElement;
 	public int xCoord;
 	public int yCoord;
 	public Player winCase;
+    public CaseData thisCase;
 
 	[Header("PlacementColor")]
 	public Color initColor;
@@ -44,6 +45,7 @@ public class CaseData : MonoBehaviour {
     void Awake () {
       if (winCase != Player.Neutral) statut = Statut.isGoal;
       spriteR = GetComponent<SpriteRenderer>();
+        thisCase = GetComponent<CaseData>();
     }
 
     void Start () {
@@ -89,23 +91,23 @@ public class CaseData : MonoBehaviour {
 
     if (col.tag == "Personnage")
       {
-        if (col.gameObject.GetComponent<PersoData>().persoCase != this.gameObject)
+        if (col.gameObject.GetComponent<PersoData>().persoCase != thisCase)
           {
               TransparencyBehaviour.CheckTransparency(col.gameObject, 1f);
               personnageData = col.gameObject.GetComponent<PersoData>();
               casePathfinding = PathfindingCase.NonWalkable;
-              col.gameObject.GetComponent<PersoData>().persoCase = this.gameObject;
+              col.gameObject.GetComponent<PersoData>().persoCase = thisCase;
               TransparencyBehaviour.CheckTransparency(col.gameObject, 0.5f);
           }
       }
 
         if (col.tag == "Ballon") {        
-          if (col.gameObject.GetComponent<BallonData> ().ballonCase != this.gameObject)
+          if (col.gameObject.GetComponent<BallonData> ().ballonCase != thisCase)
             {
               TransparencyBehaviour.CheckTransparency(col.gameObject, 1f);
-              caseBallon = col.gameObject.GetComponent<CaseData>();
+              ballon = col.gameObject.GetComponent<BallonData>();
               casePathfinding = PathfindingCase.NonWalkable;
-              col.gameObject.GetComponent<BallonData>().ballonCase = this.gameObject;
+              col.gameObject.GetComponent<BallonData>().ballonCase = thisCase;
               TransparencyBehaviour.CheckTransparency(col.gameObject, 0.5f);
               col.gameObject.GetComponent<BallonData>().xCoord = xCoord;
               col.gameObject.GetComponent<BallonData>().yCoord = yCoord;
@@ -134,7 +136,7 @@ public class CaseData : MonoBehaviour {
         && GetComponent<PolygonCollider2D>().enabled == true) 
         {
           TransparencyBehaviour.CheckTransparency(col.gameObject, 1f);
-			caseBallon = null;
+			ballon = null;
 			casePathfinding = PathfindingCase.Walkable;
           ChangeColor(Statut.None, Statut.canShot);
 		}

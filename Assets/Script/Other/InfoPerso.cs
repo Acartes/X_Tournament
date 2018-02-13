@@ -19,7 +19,7 @@ public class InfoPerso : MonoBehaviour
     public Color redOwnerColor;
     public Color noneOwnerColor;
 
-    public List<GameObject> characterList;
+    public List<PersoData> characterList;
 
   // *********** //
   // ** Initialisation ** //
@@ -30,7 +30,7 @@ public class InfoPerso : MonoBehaviour
         Instance = this;
         infoPersoPortraits = GameObject.Find("infoPersoPortraits");
         infoPersoStats = GameObject.Find("infoPersoStats");
-        characterList = new List<GameObject>();
+        characterList = new List<PersoData>();
     }
 
   void OnEnable()
@@ -72,7 +72,7 @@ public class InfoPerso : MonoBehaviour
             if (GameObject.FindGameObjectsWithTag("Personnage") == null)
                 return;
 
-          foreach (GameObject perso in RosterManager.Instance.listHero)
+          foreach (PersoData perso in RosterManager.Instance.listHero)
             {
                 if (perso.GetComponent<PersoData>().owner == selectedPersoData.owner)
                     characterList.Add(perso);

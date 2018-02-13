@@ -90,7 +90,7 @@ public class CaseManager : MonoBehaviour
         Player currentPlayer = GameManager.Instance.currentPlayer;
         Phase currentPhase = GameManager.Instance.currentPhase;
         Color actionPreColor = ColorManager.Instance.actionPreColor;
-        GameObject selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
+        PersoData selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
         Color selectedColor = ColorManager.Instance.selectedColor;
 
         switch (currentPhase)
@@ -104,8 +104,9 @@ public class CaseManager : MonoBehaviour
 
                 if (!MenuContextuel.Instance.gameObject.activeInHierarchy)
                     {
-                        GameObject persoCompared = caseCompared.GetComponent<CaseData>().personnageData;
-                        GameObject ballonCompared = caseCompared.GetComponent<CaseData>().caseBallon;
+                        PersoData persoCompared = caseCompared.GetComponent<CaseData>().personnageData;
+                        BallonData ballonCompared = caseCompared.GetComponent<CaseData>().ballon;
+
 
                         if (persoCompared != null && persoCompared.GetComponent<PersoData>().owner == currentPlayer)
                         {
@@ -116,13 +117,13 @@ public class CaseManager : MonoBehaviour
                         {
                             if (persoCompared != null
                           && persoCompared.GetComponent<PersoData>().owner != currentPlayer
-                          && Fonction.Instance.CheckAdjacent(persoCompared, selectedPersonnage) == true)
+                          && Fonction.Instance.CheckAdjacent(persoCompared.gameObject, selectedPersonnage.gameObject) == true)
                             {
                             caseCompared.GetComponent<CaseData>().ChangeColor(Statut.canPunch);
                             }
 
                         if (ballonCompared != null
-                          && Fonction.Instance.CheckAdjacent(selectedPersonnage, ballonCompared) == true)
+                          && Fonction.Instance.CheckAdjacent(selectedPersonnage.gameObject, ballonCompared.gameObject) == true)
                           {
                             caseCompared.GetComponent<CaseData>().ChangeColor(Statut.canShot);
                             //newColor = actionPreColor;

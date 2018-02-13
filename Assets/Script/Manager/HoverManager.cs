@@ -107,7 +107,7 @@ public class HoverManager : MonoBehaviour
                 MoveBehaviour.Instance.HidePath();
             if (hoveredPersonnage != null
                     && hoveredPersonnage.GetComponent<PersoData>().owner != currentPlayer
-                    && Fonction.Instance.CheckAdjacent(selectedPersonnage, hoveredPersonnage) == true)
+                    && Fonction.Instance.CheckAdjacent(selectedPersonnage.gameObject, hoveredPersonnage.gameObject) == true)
               {
           //          hoveredCase.GetComponent<CaseData>().ChangeColor(actionColor);
               }
@@ -119,7 +119,7 @@ public class HoverManager : MonoBehaviour
                   }
 
                 if (hoveredBallon != null
-                  && Fonction.Instance.CheckAdjacent(selectedPersonnage, hoveredBallon) == true)
+                  && Fonction.Instance.CheckAdjacent(selectedPersonnage.gameObject, hoveredBallon.gameObject) == true)
                   {
                  //   hoveredCase.GetComponent<CaseData>().ChangeColor(actionColor);
                   }
@@ -158,10 +158,10 @@ public class HoverManager : MonoBehaviour
 
       if (actualAction == PersoAction.isReplacingBall) 
       {
-    List<GameObject> caseAction = ReplacerBalleBehaviour.Instance.caseAction;
+    List<CaseData> caseAction = ReplacerBalleBehaviour.Instance.caseAction;
     Color actionColor = ColorManager.Instance.actionColor;
 
-		foreach (GameObject obj in caseAction) {
+		foreach (CaseData obj in caseAction) {
 			if (obj == hoveredCase) {
           //    hoveredCase.GetComponent<CaseData>().ChangeColor(actionColor);
 			}

@@ -6,7 +6,7 @@ public class SelectionManager : MonoBehaviour {
 
   public CaseData selectedLastCase;
   public PersoData selectedLastPersonnage;
-  public CaseData selectedBallon;
+  public BallonData selectedBallon;
   public CaseData selectedCase;
   public PersoData selectedPersonnage;
   

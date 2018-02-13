@@ -70,10 +70,10 @@ public class GameManager : MonoBehaviour {
 
       RosterManager.Instance.listHeroJXToPlace[0] = RosterManager.Instance.listHeroJ1;
       RosterManager.Instance.listHeroJXToPlace[1] = RosterManager.Instance.listHeroJ2;
-		foreach (GameObject obj in RosterManager.Instance.listHeroJ1) {
+		foreach (PersoData obj in RosterManager.Instance.listHeroJ1) {
 			obj.transform.position = new Vector3 (999, 999, 999);
 		}
-		foreach (GameObject obj in RosterManager.Instance.listHeroJ2) {
+		foreach (PersoData obj in RosterManager.Instance.listHeroJ2) {
 			obj.transform.position = new Vector3 (999, 999, 999);
 		}
 

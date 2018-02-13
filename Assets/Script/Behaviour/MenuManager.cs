@@ -35,8 +35,8 @@ public class MenuManager : MonoBehaviour {
   public void OnNewClick ()
     { // Lors d'un click sur une case
     Phase currentPhase = TurnManager.Instance.currentPhase;
-    GameObject hoveredBallon = HoverManager.Instance.hoveredBallon;
-    GameObject selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
+        BallonData hoveredBallon = HoverManager.Instance.hoveredBallon;
+    PersoData selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
     PersoAction actualAction = GameManager.Instance.actualAction;
 
         if (currentPhase == Phase.Deplacement
@@ -44,7 +44,7 @@ public class MenuManager : MonoBehaviour {
         && hoveredBallon != null
         && actualAction == PersoAction.isSelected)
           {
-          if (Fonction.Instance.CheckAdjacent(hoveredBallon, selectedPersonnage) == true)
+          if (Fonction.Instance.CheckAdjacent(hoveredBallon.gameObject, selectedPersonnage.gameObject) == true)
               {
                 ShotMenu();
               }
@@ -54,7 +54,7 @@ public class MenuManager : MonoBehaviour {
     public void ShotMenu () 
     {
     GameObject menuContextuel = UIManager.Instance.menuContextuel;
-      GameObject hoveredBallon = HoverManager.Instance.hoveredBallon;
+      BallonData hoveredBallon = HoverManager.Instance.hoveredBallon;
 
       MoveBehaviour.Instance.pathes.Clear();
       SelectionManager.Instance.selectedBallon = hoveredBallon;
@@ -64,7 +64,7 @@ public class MenuManager : MonoBehaviour {
 
     public void ReturnMenu () {
       GameObject menuContextuel = UIManager.Instance.menuContextuel;
-      GameObject hoveredBallon = HoverManager.Instance.hoveredBallon;
+        BallonData hoveredBallon = HoverManager.Instance.hoveredBallon;
 
       SelectionManager.Instance.selectedBallon = hoveredBallon;
       menuContextuel.SetActive (true);

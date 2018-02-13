@@ -46,7 +46,7 @@ public class MoveBehaviour : MonoBehaviour
 
     IEnumerator LateOnNewClick() {
     yield return new WaitForEndOfFrame();
-      GameObject hoveredCase = HoverManager.Instance.hoveredCase;
+      CaseData hoveredCase = HoverManager.Instance.hoveredCase;
       PersoAction actualAction = GameManager.Instance.actualAction;
       PathfindingCase casePathfinding = hoveredCase.GetComponent<CaseData>().casePathfinding;
 
@@ -96,11 +96,11 @@ public class MoveBehaviour : MonoBehaviour
         foreach (Transform path in this.pathes)
         {
           path.GetComponent<CaseData>().ChangeColor(Statut.canMove);
-            foreach (GameObject persoCompared in RosterManager.Instance.listHero)
+            foreach (PersoData persoCompared in RosterManager.Instance.listHero)
             {
-                if (persoCompared.GetComponent<PersoData>().owner != currentPlayer
-                  && persoCompared.GetComponent<PersoData>().persoCase != null
-                && Fonction.Instance.CheckAdjacent(path.gameObject, persoCompared) == true)
+                if (persoCompared.owner != currentPlayer
+                  && persoCompared.persoCase != null
+                && Fonction.Instance.CheckAdjacent(path.gameObject, persoCompared.gameObject) == true)
                 {
                   path.GetComponent<CaseData>().ChangeColor(Statut.canBeTackled);
                 }
@@ -131,10 +131,10 @@ public class MoveBehaviour : MonoBehaviour
           path.GetComponent<CaseData>().ChangeColor(Statut.isMoving);
         }
 
-        StartCoroutine(Deplacement(ColorManager.Instance.caseColor, GraphManager.Instance.getCaseOffset(SelectionManager.Instance.selectedPersonnage), SelectionManager.Instance.selectedPersonnage));
+        StartCoroutine(Deplacement(ColorManager.Instance.caseColor, GraphManager.Instance.getCaseOffset(SelectionManager.Instance.selectedPersonnage.gameObject), SelectionManager.Instance.selectedPersonnage));
     }
 
-    IEnumerator Deplacement(Color caseColor, float offsetY, GameObject selectedPersonnage)
+    IEnumerator Deplacement(Color caseColor, float offsetY, PersoData selectedPersonnage)
     { // On déplace le personnage de case en case jusqu'au click du joueur propriétaire, et entre temps on check s'il est taclé ou non
         TurnManager.Instance.DisableFinishTurn();
 
@@ -143,7 +143,7 @@ public class MoveBehaviour : MonoBehaviour
 
         foreach (Transform path in pathes)
         {
-            if (selectedPersonnage.GetComponent<PersoData>().isTackled)
+            if (selectedPersonnage.isTackled)
             {
               path.GetComponent<CaseData>().ChangeColor(Statut.isTackled, Statut.isMoving);
             }
@@ -153,7 +153,7 @@ public class MoveBehaviour : MonoBehaviour
                 float fracturedTime = 0;
                 float timeUnit = travelTime / 60;
 
-                selectedPersonnage.GetComponent<PersoData>().RotateTowards(path.transform.position);
+                selectedPersonnage.RotateTowards(path.transform.position);
 
                 while (selectedPersonnage.transform.position != path.transform.position + new Vector3(0, offsetY, 0))
                 {
@@ -161,25 +161,25 @@ public class MoveBehaviour : MonoBehaviour
                     selectedPersonnage.transform.position = Vector3.Lerp(startPos, path.transform.position + new Vector3(0, offsetY, 0), fracturedTime);
                     yield return new WaitForEndOfFrame();
                 }
-                SelectionManager.Instance.selectedCase = path.gameObject;
+                SelectionManager.Instance.selectedCase = path.gameObject.GetComponent<CaseData>();
               path.GetComponent<CaseData>().ChangeColor(Statut.None, Statut.isMoving);
-              TackleBehaviour.Instance.CheckTackle(selectedPersonnage);
+              TackleBehaviour.Instance.CheckTackle(selectedPersonnage.gameObject);
             }
         }
-        SelectionManager.Instance.selectedCase = pathes[pathes.Count - 1].gameObject;
+        SelectionManager.Instance.selectedCase = pathes[pathes.Count - 1].gameObject.GetComponent<CaseData>();
       SelectionManager.Instance.selectedCase.GetComponent<CaseData>().ChangeColor(Statut.None, Statut.isMoving);
         GameManager.Instance.actualAction = PersoAction.isSelected;
 
-        if (!selectedPersonnage.GetComponent<PersoData>().isTackled)
+        if (!selectedPersonnage.isTackled)
         {
             SelectionManager.Instance.selectedCase.GetComponent<CaseData>().casePathfinding = PathfindingCase.NonWalkable;
-            SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData>().actualPointMovement -= pathes.Count - 1;
+            SelectionManager.Instance.selectedPersonnage.actualPointMovement -= pathes.Count - 1;
             pathes.Clear();
         }
         else
         {
-            selectedPersonnage.GetComponent<PersoData>().isTackled = false;
-            SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData>().actualPointMovement = 0;
+            selectedPersonnage.isTackled = false;
+            SelectionManager.Instance.selectedPersonnage.actualPointMovement = 0;
             pathes.Clear();
         }
 

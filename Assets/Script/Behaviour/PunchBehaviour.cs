@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 public class PunchBehaviour : MonoBehaviour {
 
-  public GameObject punchedPersonnage;
+  public PersoData punchedPersonnage;
 
   public static PunchBehaviour Instance;
 
@@ -25,11 +25,11 @@ public class PunchBehaviour : MonoBehaviour {
 
     public void OnNewClick () {
 
-    GameObject hoveredPersonnage = HoverManager.Instance.hoveredPersonnage;
+    PersoData hoveredPersonnage = HoverManager.Instance.hoveredPersonnage;
     Phase currentPhase = TurnManager.Instance.currentPhase;
     Player currentPlayer = TurnManager.Instance.currentPlayer;
     PersoAction actualAction = GameManager.Instance.actualAction;
-    GameObject selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
+        PersoData selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
 
           if (actualAction == PersoAction.isSelected &&
             currentPhase == Phase.Deplacement && 
@@ -37,16 +37,16 @@ public class PunchBehaviour : MonoBehaviour {
             hoveredPersonnage != null && 
             hoveredPersonnage.GetComponent<PersoData>().owner != currentPlayer &&
             selectedPersonnage.GetComponent<PersoData>().pointAction != 0 &&
-        Fonction.Instance.CheckAdjacent(selectedPersonnage, hoveredPersonnage) == true)
+        Fonction.Instance.CheckAdjacent(selectedPersonnage.gameObject, hoveredPersonnage.gameObject) == true)
             {
                     Punch(HoverManager.Instance.hoveredPersonnage);
                   }
           }
 
-    public IEnumerator Punch (GameObject hoveredPersonnage) {
+    public IEnumerator Punch (PersoData hoveredPersonnage) {
       SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData> ().pointAction--;
       punchedPersonnage = hoveredPersonnage;
-      punchedPersonnage.GetComponent<PersoData> ().actualPointResistance--;
+      punchedPersonnage.actualPointResistance--;
       Color punchedPersonnageColor = punchedPersonnage.GetComponent<SpriteRenderer> ().color;
       punchedPersonnage.GetComponent<SpriteRenderer> ().color = new Color (1, 1, 0);
 

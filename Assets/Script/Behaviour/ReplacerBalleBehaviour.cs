@@ -10,7 +10,7 @@ public class ReplacerBalleBehaviour : MonoBehaviour {
 
   [Header("  Temps")]
   [Tooltip("La durée d'un déplacement entre deux cases.")]
-  public List<GameObject> caseAction;
+  public List<CaseData> caseAction;
 
 
   public static ReplacerBalleBehaviour Instance;
@@ -37,7 +37,7 @@ public class ReplacerBalleBehaviour : MonoBehaviour {
   public void ReplacerBalle () 
 	{ // Action de replacer la balle après avoir cliquer sur le bouton approprié sur le menu contextuel
       Color caseColor = ColorManager.Instance.caseColor;
-      GameObject selectedCase = SelectionManager.Instance.selectedCase;
+      CaseData selectedCase = SelectionManager.Instance.selectedCase;
 
       GameManager.Instance.actualAction = PersoAction.isReplacingBall;
 		caseAction.Clear ();
@@ -56,17 +56,17 @@ public class ReplacerBalleBehaviour : MonoBehaviour {
 
         if (GameObject.Find (xCoord.ToString () + " " + yCoord.ToString ()) != null
           && GameObject.Find (xCoord.ToString () + " " + yCoord.ToString ()).GetComponent<CaseData> ().casePathfinding != PathfindingCase.NonWalkable) {
-          GameObject newCase = (GameObject.Find (xCoord.ToString () + " " + yCoord.ToString ()));
+            CaseData newCase = (GameObject.Find (xCoord.ToString () + " " + yCoord.ToString ())).GetComponent<CaseData>();
          caseAction.Add(newCase);
           newCase.GetComponent<CaseData>().ChangeColor(Statut.canReplace);
         }
     }
 
     public void TirReplacerBalle () {
-      GameObject selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
-      GameObject hoveredCase = HoverManager.Instance.hoveredCase;
+      PersoData selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
+        CaseData hoveredCase = HoverManager.Instance.hoveredCase;
       PersoAction actualAction = GameManager.Instance.actualAction;
-      GameObject selectedBallon = SelectionManager.Instance.selectedBallon;
+      BallonData selectedBallon = SelectionManager.Instance.selectedBallon;
 
         if (actualAction == PersoAction.isReplacingBall
           && caseAction.Count != 0) 
@@ -90,9 +90,9 @@ public class ReplacerBalleBehaviour : MonoBehaviour {
       yield return new WaitForEndOfFrame();
       GameManager.Instance.actualAction = PersoAction.isSelected;
    
-        foreach (GameObject obj in caseAction) {
+        foreach (CaseData obj in caseAction) {
      //     obj.GetComponent<CaseData>().colorLock = false;
-          obj.GetComponent<CaseData>().ChangeColor(Statut.None, Statut.canReplace);
+          obj.ChangeColor(Statut.None, Statut.canReplace);
         }
       TurnManager.Instance.StartCoroutine("EnableFinishTurn");
       CaseManager.Instance.StartCoroutine ("ShowActions");

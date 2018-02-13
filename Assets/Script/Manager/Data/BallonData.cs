@@ -16,7 +16,7 @@ public class BallonData : MonoBehaviour
   public float ballStrenght;
 
     public Direction ballonDirection;
-    public GameObject ballonCase;
+    public CaseData ballonCase;
 
     [Header("Tir")]
     public GameObject menuContextuel; //MenuContextuel
@@ -50,8 +50,8 @@ public class BallonData : MonoBehaviour
 
     public IEnumerator Move()
     {
-      GameObject hoveredCase = HoverManager.Instance.hoveredCase;
-    GameObject selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
+      CaseData hoveredCase = HoverManager.Instance.hoveredCase;
+    PersoData selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
 
       GameManager.Instance.actualAction = PersoAction.isShoting;
         TurnManager.Instance.DisableFinishTurn();

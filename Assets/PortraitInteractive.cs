@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class PortraitInteractive : MonoBehaviour {
 
-    public GameObject newHoveredPersonnage;
+    public PersoData newHoveredPersonnage;
 
     public void HoverPerso() // hover comme chez HoverEvent
     {
 
-        GameObject hoveredCase = newHoveredPersonnage.GetComponent<PersoData>().persoCase;
-        GameObject hoveredPersonnage = newHoveredPersonnage;
-        PathfindingCase hoveredPathfinding = newHoveredPersonnage.GetComponent<PersoData>().persoCase.GetComponent<CaseData>().casePathfinding;
-        GameObject hoveredBallon = null;
+        CaseData hoveredCase = newHoveredPersonnage.persoCase;
+        PersoData hoveredPersonnage = newHoveredPersonnage;
+        PathfindingCase hoveredPathfinding = newHoveredPersonnage.persoCase.casePathfinding;
 
-        HoverEvent.newHoverEvent(this, new HoverArgs(hoveredCase, hoveredPersonnage, hoveredPathfinding, hoveredBallon));
+        HoverEvent.newHoverEvent(this, new HoverArgs(hoveredCase, hoveredPersonnage, hoveredPathfinding, null));
     }
 
     public void UnHoverPerso() // exit comme chez HoverEvent
