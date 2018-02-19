@@ -5,13 +5,17 @@ using UnityEngine.Networking;
 
 public class RpcFunctions : NetworkBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public static RpcFunctions Instance;
+
+    public override void OnStartLocalPlayer()
+    {
+        Instance = this;
+    }
+
+
+    [Command]
+    public void CmdChangeTurn()
+    {
+        TurnManager.Instance.RpcChangeTurn();
+    }
 }

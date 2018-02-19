@@ -42,14 +42,13 @@ public class TurnManager : NetworkBehaviour
         finishTurnButton = GameObject.Find("finishTurn");
     }
 
-    [Command]
     public void CmdChangeTurn()
     {
         if (!canChangeTurn)
         {
             return;
         }
-        RpcChangeTurn();
+        RpcFunctions.Instance.CmdChangeTurn();
     }
 
     [ClientRpc]
