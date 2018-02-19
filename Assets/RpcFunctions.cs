@@ -18,4 +18,9 @@ public class RpcFunctions : NetworkBehaviour {
     {
         TurnManager.Instance.RpcChangeTurn();
     }
+    [Command]
+    public void CmdFirstTurn()
+    {
+        TurnManager.Instance.RpcFirstTurn();
+    }
 }

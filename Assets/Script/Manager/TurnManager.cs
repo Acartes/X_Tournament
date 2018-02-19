@@ -37,8 +37,8 @@ public class TurnManager : NetworkBehaviour
 
     IEnumerator InitGame()
     {
-            yield return new WaitForSeconds(0.3f);
-        changeTurnEvent(this, new PlayerArgs(currentPlayer, currentPhase));
+        yield return new WaitForSeconds(0.3f);
+        RpcFunctions.Instance.CmdFirstTurn();
         finishTurnButton = GameObject.Find("finishTurn");
     }
 
@@ -49,6 +49,12 @@ public class TurnManager : NetworkBehaviour
             return;
         }
         RpcFunctions.Instance.CmdChangeTurn();
+    }
+
+    [ClientRpc]
+    public void RpcFirstTurn()
+    {
+        changeTurnEvent(this, new PlayerArgs(currentPlayer, currentPhase));
     }
 
     [ClientRpc]
