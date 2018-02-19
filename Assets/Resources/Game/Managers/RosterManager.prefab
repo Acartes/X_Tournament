@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4534576233266074}
   - component: {fileID: 114959902381249152}
+  - component: {fileID: 114482524128399344}
   m_Layer: 0
   m_Name: RosterManager
   m_TagString: Untagged
@@ -40,6 +41,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114482524128399344
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1993173693024164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 148
+    i1: 219
+    i2: 135
+    i3: 241
+    i4: 0
+    i5: 248
+    i6: 180
+    i7: 180
+    i8: 203
+    i9: 246
+    i10: 197
+    i11: 36
+    i12: 175
+    i13: 123
+    i14: 100
+    i15: 118
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114959902381249152
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -52,15 +85,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listHeroJ1:
-  - {fileID: 1409412096056796, guid: f674d0a7133f2ec408a85de9bdd2dc28, type: 2}
-  - {fileID: 1409412096056796, guid: e67ad0c61b98d214c84c05588b7c7944, type: 2}
-  - {fileID: 1409412096056796, guid: 9d8d7fb12b6d0724ead85a75d3e788e7, type: 2}
-  - {fileID: 1409412096056796, guid: 9296564bcbb6ff64dab236136feb4920, type: 2}
+  - {fileID: 114766648747353004, guid: f674d0a7133f2ec408a85de9bdd2dc28, type: 2}
+  - {fileID: 114766648747353004, guid: e67ad0c61b98d214c84c05588b7c7944, type: 2}
+  - {fileID: 114766648747353004, guid: 9d8d7fb12b6d0724ead85a75d3e788e7, type: 2}
+  - {fileID: 114766648747353004, guid: 51a1605e281ecf54bae3d3711f559d84, type: 2}
   listHeroJ2:
-  - {fileID: 1409412096056796, guid: f674d0a7133f2ec408a85de9bdd2dc28, type: 2}
-  - {fileID: 1409412096056796, guid: e67ad0c61b98d214c84c05588b7c7944, type: 2}
-  - {fileID: 1409412096056796, guid: 9d8d7fb12b6d0724ead85a75d3e788e7, type: 2}
-  - {fileID: 1409412096056796, guid: 9296564bcbb6ff64dab236136feb4920, type: 2}
+  - {fileID: 114766648747353004, guid: 4c1c81e440c6cf14dae790263093ec6c, type: 2}
+  - {fileID: 114766648747353004, guid: d1fdd91c19fecf649842eb8870c276ff, type: 2}
+  - {fileID: 114766648747353004, guid: e7f4a2a509618e34e83c2628c6fb6bfe, type: 2}
+  - {fileID: 114766648747353004, guid: b73a5e2e6570b7542ad3036931073f8e, type: 2}
   listHero: []
   listHeroPlaced: []
   persoCreated: {fileID: 0}

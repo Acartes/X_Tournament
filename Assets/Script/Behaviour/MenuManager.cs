@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class MenuManager : MonoBehaviour {
+public class MenuManager : NetworkBehaviour {
 
   // *************** //
   // ** Variables ** //
@@ -18,11 +19,21 @@ public class MenuManager : MonoBehaviour {
 
   public static MenuManager Instance;
 
-    void Awake () {
-    Instance = this;
+    public override void OnStartClient()
+    {
+        if (Instance == null)
+            Instance = this;
+        Debug.Log("MenuManager is Instanced");
+        StartCoroutine(waitForInit());
     }
-  
-  void OnEnable()
+
+    IEnumerator waitForInit()
+    {
+        while (!LobbyManager.Instance.IsInstancesLoaded())
+            yield return new WaitForEndOfFrame();
+    }
+
+    void OnEnable()
     {
       ClickEvent.newClickEvent += OnNewClick;
     }

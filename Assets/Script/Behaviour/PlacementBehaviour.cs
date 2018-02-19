@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class PlacementBehaviour : MonoBehaviour
+
+public class PlacementBehaviour : NetworkBehaviour
 {
   // *************** //
   // ** Variables ** //
@@ -19,12 +21,24 @@ public class PlacementBehaviour : MonoBehaviour
 
     public static PlacementBehaviour Instance;
 
-    void Awake()
+    public override void OnStartClient()
     {
-        Instance = this;
+        if (Instance == null)
+            Instance = this;
+        Debug.Log("PlacementBehaviour is Instanced");
+        StartCoroutine(waitForInit());
     }
 
-    void OnEnable()
+    IEnumerator waitForInit()
+    {
+        while (!LobbyManager.Instance.IsInstancesLoaded())
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        Init();
+    }
+
+    private void Init()
     {
         ClickEvent.newClickEvent += OnNewClick;
         StartCoroutine(LateOnEnable());
@@ -38,9 +52,13 @@ public class PlacementBehaviour : MonoBehaviour
 
     void OnDisable()
     {
-        ClickEvent.newClickEvent -= OnNewClick;
-        TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
+        if (LobbyManager.Instance.IsInstancesLoaded())
+        {
+            ClickEvent.newClickEvent -= OnNewClick;
+            TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
+        }
     }
+
 
     public void OnNewClick()
     { // Lors d'un click sur une case
@@ -92,11 +110,12 @@ public class PlacementBehaviour : MonoBehaviour
     { // On créé un personnage sur une case
       if (RosterManager.Instance.listHeroJXToPlace[playerIndex].Count != 0)
         {
-            if (RosterManager.Instance.listHeroJXToPlace[playerIndex][persoToPlaceNumber] == SelectionManager.Instance.selectedPersonnage)
+            if (RosterManager.Instance.listHeroJXToPlace[playerIndex][persoToPlaceNumber] != SelectionManager.Instance.selectedPersonnage)
             {
+                SelectionManager.Instance.selectedPersonnage = RosterManager.Instance.listHeroJXToPlace[playerIndex][persoToPlaceNumber];
+            }
                 RosterManager.Instance.listHeroJXToPlace[playerIndex].RemoveAt(persoToPlaceNumber);
                 CreatePersoPlacement(HoverManager.Instance.hoveredCase, GraphManager.Instance.getCaseOffset(SelectionManager.Instance.selectedPersonnage.gameObject), SelectionManager.Instance.selectedPersonnage);
-            }
         }
     }
 

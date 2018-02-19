@@ -23,6 +23,8 @@ GameObject:
   - component: {fileID: 114766648747353004}
   - component: {fileID: 50415124103048680}
   - component: {fileID: 61971609288476504}
+  - component: {fileID: 114426245744735858}
+  - component: {fileID: 114984547362397882}
   m_Layer: 2
   m_Name: PersoD_Rouge
   m_TagString: Personnage
@@ -88,6 +90,38 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1}
   m_EdgeRadius: 0
+--- !u!114 &114426245744735858
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1409412096056796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 81
+    i1: 161
+    i2: 96
+    i3: 94
+    i4: 40
+    i5: 30
+    i6: 207
+    i7: 84
+    i8: 186
+    i9: 227
+    i10: 211
+    i11: 113
+    i12: 31
+    i13: 85
+    i14: 157
+    i15: 132
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114766648747353004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -117,6 +151,27 @@ MonoBehaviour:
   faceSprite: {fileID: 21300000, guid: 3c8705d6f4589db46a4df9544fe33b4d, type: 3}
   backSprite: {fileID: 21300000, guid: a0317f0f00f8f934abf69f33c5c8b9e9, type: 3}
   isTackled: 0
+--- !u!114 &114984547362397882
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1409412096056796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!212 &212627234883469394
 SpriteRenderer:
   m_ObjectHideFlags: 1

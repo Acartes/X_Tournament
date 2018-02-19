@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class Pathfinding : MonoBehaviour {
+public class Pathfinding : NetworkBehaviour {
     [SerializeField]
     public List<Node> ClosedList = new List<Node>();
 
@@ -16,12 +17,12 @@ public class Pathfinding : MonoBehaviour {
 
     public bool flip = false;
 
-    void Awake()
+
+    public override void OnStartClient()
     {
         if (Instance == null)
-        {
             Instance = this;
-        }
+        Debug.Log(this.GetType() + " is Instanced");
     }
 
     [System.Serializable]

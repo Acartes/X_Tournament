@@ -50,13 +50,15 @@ public class GrilleManager: MonoBehaviour {
 		pressToGenerate = false;
 		if (Instance == null)
 			Instance = this;
-	}
+        Debug.Log("GrilleManager is Instanced");
 
-	// ************ //
-	// ** Update ** //
-	// ************ //
+    }
 
-	void Update () {
+    // ************ //
+    // ** Update ** //
+    // ************ //
+
+    void Update () {
 		#if UNITY_EDITOR
 		if (!EditorApplication.isPlaying) {
             if (pressToGenerate)

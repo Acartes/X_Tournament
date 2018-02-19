@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class InfoPerso : MonoBehaviour
+public class InfoPerso : NetworkBehaviour
 {
 
   // *************** //
@@ -21,11 +22,28 @@ public class InfoPerso : MonoBehaviour
 
     public List<PersoData> characterList;
 
-  // *********** //
-  // ** Initialisation ** //
-  // *********** //
+    // *********** //
+    // ** Initialisation ** //
+    // *********** //
 
-    void Awake()
+    public override void OnStartClient()
+    {
+        if (Instance == null)
+            Instance = this;
+        Debug.Log("InfoPerso is Instanced");
+        StartCoroutine(waitForInit());
+    }
+
+    IEnumerator waitForInit()
+    {
+        while (!LobbyManager.Instance.IsInstancesLoaded())
+            yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(0.5f);
+
+        Init();
+    }
+
+    private void Init()
     {
         Instance = this;
         infoPersoPortraits = GameObject.Find("infoPersoPortraits");
@@ -33,31 +51,17 @@ public class InfoPerso : MonoBehaviour
         characterList = new List<PersoData>();
     }
 
-  void OnEnable()
-    {
-      ClickEvent.newClickEvent += OnNewClick;
-    }
-
-  void OnDisable()
-    {
-      ClickEvent.newClickEvent -= OnNewClick;
-    }
-
-  // ************ //
-  // ** Events ** //
-  // ************ //
-
-  void OnNewClick()
-    { // Lors d'un click sur une case
-      ChangeUI();
-    }
-
   // ************* //
   // ** Actions ** //
   // ************* //
 
+    void Update()
+    {
+        ChangeUI();
+    }
+
     void ChangeUI()
-    {// à chaque click, l'UI change de tel ou tel manière
+    {
         if (SelectionManager.Instance.selectedPersonnage != null)
         {
             characterList.Clear();

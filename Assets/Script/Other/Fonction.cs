@@ -1,16 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class Fonction : MonoBehaviour {
+public class Fonction : NetworkBehaviour {
 
   public static Fonction Instance;
 
-    void Awake () {
-      Instance = this;
+
+    public override void OnStartClient()
+    {
+        if (Instance == null)
+            Instance = this;
+        Debug.Log(this.GetType() + " is Instanced");
     }
 
-  public bool CheckAdjacent(GameObject firstObj, GameObject secondObj) 
+    public bool CheckAdjacent(GameObject firstObj, GameObject secondObj) 
     { // Cette condition check si firstObj est à côté de secondObj (1case)
 
       float xCaseOffset = CaseManager.Instance.xCaseOffset;

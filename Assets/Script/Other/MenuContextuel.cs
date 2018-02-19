@@ -1,40 +1,46 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class MenuContextuel : MonoBehaviour {
+public class MenuContextuel : NetworkBehaviour {
 
 	public static MenuContextuel Instance;
 
 	GameObject ballon;
   bool gameInit = true;
 
-	void Awake () {
-		Instance = this;
-		ballon = GameObject.Find ("Ballon");
-	}
 
-    void Start () {
+    public override void OnStartClient()
+    {
+        if (Instance == null)
+            Instance = this;
+        Debug.Log(this.GetType() + " is Instanced");
+        StartCoroutine(waitForInit());
+    }
+
+    IEnumerator waitForInit()
+    {
+        while (!LobbyManager.Instance.IsInstancesLoaded())
+            yield return new WaitForEndOfFrame();
+        Init();
+    }
+
+    private void Init()
+    {
+		ballon = GameObject.Find ("Ballon");
       if (gameInit)
         {
           UIManager.Instance.menuContextuel = this.gameObject;
           this.gameObject.SetActive(false);
           gameInit = false;
         }
-    }
-
-	void OnEnable () {
-      StartCoroutine (LateOnEnable());
-		Active ();
+        TurnManager.Instance.changeTurnEvent += OnChangeTurn;
+        Desactive();
 	}
 
-    IEnumerator LateOnEnable() {
-      yield return new WaitForEndOfFrame ();
-      TurnManager.Instance.changeTurnEvent += OnChangeTurn;
-    }
-
 	void OnDisable () {
-		Desactive ();
+        Active();
 	}
 
   void OnChangeTurn(object sender, PlayerArgs e)
@@ -49,7 +55,6 @@ public class MenuContextuel : MonoBehaviour {
   } 
 
 	public void Active () {
-      transform.position = ballon.transform.position;
 		foreach (GameObject obj in GameObject.FindGameObjectsWithTag("case")) {
 			obj.GetComponent<PolygonCollider2D> ().enabled = false;
 		}

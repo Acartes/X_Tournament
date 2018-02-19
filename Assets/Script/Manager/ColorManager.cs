@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 [ExecuteInEditMode]
-public class ColorManager : MonoBehaviour {
+public class ColorManager : NetworkBehaviour {
 
   // *************** //
   // ** Variables ** //
@@ -27,20 +28,14 @@ public class ColorManager : MonoBehaviour {
 
   [HideInInspector] public static ColorManager Instance;
 
-  // *************** //
-  // ** Initialisation ** //
-  // *************** //
-    void Awake () {
-      if (Instance == null)
-        {
-          Instance = this;
-        }
-  }
+    // *************** //
+    // ** Initialisation ** //
+    // *************** //
+    public override void OnStartClient()
+    {
+        if (Instance == null)
+            Instance = this;
+        Debug.Log("ColorManager is Instanced");
 
-	void Update () {
-    if (Instance == null)
-      {
-        Instance = this;
-      }
-	}
+    }
 }

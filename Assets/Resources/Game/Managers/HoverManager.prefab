@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4146412217537430}
   - component: {fileID: 114119100602567500}
+  - component: {fileID: 114508509738253054}
   m_Layer: 0
   m_Name: HoverManager
   m_TagString: Untagged
@@ -56,3 +57,35 @@ MonoBehaviour:
   hoveredPathfinding: 0
   hoveredBallon: {fileID: 0}
   hoveredLastCase: {fileID: 0}
+--- !u!114 &114508509738253054
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1848253598016396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 178
+    i1: 129
+    i2: 126
+    i3: 144
+    i4: 66
+    i5: 242
+    i6: 91
+    i7: 164
+    i8: 122
+    i9: 30
+    i10: 90
+    i11: 234
+    i12: 208
+    i13: 205
+    i14: 60
+    i15: 240
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0

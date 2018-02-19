@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114397791286103418}
   - component: {fileID: 114989998120023418}
   - component: {fileID: 114829470894094112}
+  - component: {fileID: 114475908644955896}
   m_Layer: 0
   m_Name: Case
   m_TagString: case
@@ -84,7 +85,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f832875f62ed3f34d8384bb4008ad719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enabled: 1
   hoveredCase: {fileID: 0}
   hoveredPersonnage: {fileID: 0}
   hoveredBallon: {fileID: 0}
@@ -100,6 +100,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 938b3ec4224acb54aa56124675ab6a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114475908644955896
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1651555220530030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114829470894094112
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -125,12 +157,13 @@ MonoBehaviour:
   statut: 0
   personnageData: {fileID: 0}
   objectData: {fileID: 0}
-  caseBallon: {fileID: 0}
+  ballon: {fileID: 0}
   casePathfinding: 0
   caseElement: 0
   xCoord: 0
   yCoord: 0
   winCase: 2
+  thisCase: {fileID: 0}
   initColor: {r: 0, g: 0, b: 0, a: 0}
   ownerPlacementZone: 0
   redZone: 0
@@ -138,6 +171,7 @@ MonoBehaviour:
   caseColor: {r: 0, g: 0, b: 0, a: 0}
   SpriteAucun: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
   SpriteFeu: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
+  prefabPunch: {fileID: 0}
   spriteR: {fileID: 0}
   colorLock: 0
 --- !u!212 &212884405393220042

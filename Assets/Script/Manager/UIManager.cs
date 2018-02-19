@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class UIManager : MonoBehaviour {
+public class UIManager : NetworkBehaviour {
 
 	public List<GameObject> banner;
 	public List<GameObject> bannerText;
@@ -26,12 +27,25 @@ public class UIManager : MonoBehaviour {
 
 	public static UIManager Instance;
 
-	void Awake () {
-		Instance = this;
-	}
 
-	void Start () {
-		banner.Add (GameObject.Find ("UIJ1Banner"));
+    public override void OnStartClient()
+    {
+        if (Instance == null)
+            Instance = this;
+        Debug.Log(this.GetType() + " is Instanced");
+        StartCoroutine(waitForInit());
+    }
+
+    IEnumerator waitForInit()
+    {
+        while (!LobbyManager.Instance.IsInstancesLoaded())
+            yield return new WaitForEndOfFrame();
+        Init();
+    }
+
+    private void Init()
+    {
+        banner.Add (GameObject.Find ("UIJ1Banner"));
       banner.Add (GameObject.Find ("UIJ2Banner"));
 		bannerText.Add (GameObject.Find ("UIJ1BannerText"));
       bannerText.Add (GameObject.Find ("UIJ2BannerText"));
@@ -49,8 +63,12 @@ public class UIManager : MonoBehaviour {
 		TurnManager.Instance.changeTurnEvent += OnChangeTurn;
 	}
 
-	void OnDisable () {
-		TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
+    void OnDisable()
+    {
+        if (LobbyManager.Instance.IsInstancesLoaded())
+        {
+            TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
+        }
 	}
 	
 	void OnChangeTurn (object sender, PlayerArgs e) {

@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class But_Arrière_Transparence : MonoBehaviour {
+public class But_Arrière_Transparence : NetworkBehaviour {
 
     SpriteRenderer img;
     short compteur;
@@ -10,7 +11,7 @@ public class But_Arrière_Transparence : MonoBehaviour {
     public Color opacityAlpha;
 
     // Use this for initialization
-    void Start () {
+    public override void OnStartClient() { 
         img = GetComponent<SpriteRenderer>();
     }
 

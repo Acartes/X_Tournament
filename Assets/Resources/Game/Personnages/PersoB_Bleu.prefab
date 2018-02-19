@@ -23,6 +23,8 @@ GameObject:
   - component: {fileID: 114766648747353004}
   - component: {fileID: 61731664871252796}
   - component: {fileID: 50638659220590214}
+  - component: {fileID: 114737495747707872}
+  - component: {fileID: 114903615755969576}
   m_Layer: 2
   m_Name: PersoB_Bleu
   m_TagString: Personnage
@@ -79,7 +81,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.218, y: 0.623}
+    oldSize: {x: 0.2564706, y: 0.73294115}
     newSize: {x: 2.18, y: 6.23}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -88,6 +90,38 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1}
   m_EdgeRadius: 0
+--- !u!114 &114737495747707872
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1409412096056796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 209
+    i1: 253
+    i2: 217
+    i3: 28
+    i4: 25
+    i5: 254
+    i6: 207
+    i7: 100
+    i8: 152
+    i9: 66
+    i10: 235
+    i11: 136
+    i12: 112
+    i13: 194
+    i14: 118
+    i15: 255
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114766648747353004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -117,6 +151,27 @@ MonoBehaviour:
   faceSprite: {fileID: 21300000, guid: 4916649af66efd141878e2b1b71780a5, type: 3}
   backSprite: {fileID: 21300000, guid: f16d2c699a7ea624ca3612ee5103191b, type: 3}
   isTackled: 0
+--- !u!114 &114903615755969576
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1409412096056796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!212 &212627234883469394
 SpriteRenderer:
   m_ObjectHideFlags: 1

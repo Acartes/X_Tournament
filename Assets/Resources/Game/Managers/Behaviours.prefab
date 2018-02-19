@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114614595348099006}
   - component: {fileID: 114066219217743798}
   - component: {fileID: 114018274906832752}
+  - component: {fileID: 114730444579960026}
   m_Layer: 0
   m_Name: Behaviours
   m_TagString: Untagged
@@ -92,8 +93,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0764bd945cfa11e44a9969f2183c523f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  travelTimeBallon: 5
-  ballStrenght: 5
   offsetBallon: {x: 0, y: 0, z: 0}
   isShoting: 0
   nextPosition: {fileID: 0}
@@ -110,6 +109,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caseAction: []
+--- !u!114 &114730444579960026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1948924452033684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 229
+    i1: 93
+    i2: 101
+    i3: 167
+    i4: 112
+    i5: 168
+    i6: 98
+    i7: 212
+    i8: 168
+    i9: 89
+    i10: 217
+    i11: 147
+    i12: 114
+    i13: 210
+    i14: 147
+    i15: 175
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114833548718607524
 MonoBehaviour:
   m_ObjectHideFlags: 1

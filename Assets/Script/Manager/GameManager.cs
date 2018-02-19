@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : NetworkBehaviour {
 
   // *************** //
   // ** Variables ** //
@@ -19,17 +20,27 @@ public class GameManager : MonoBehaviour {
 
   public static GameManager Instance;
 
-  // *************** //
-  // ** Initialisation ** //
-  // *************** //
+    // *************** //
+    // ** Initialisation ** //
+    // *************** //
 
-	void Awake () {
-		Instance = this;
-      actualAction = PersoAction.isIdle;
-	}
-
-  void OnEnable()
+    public override void OnStartClient()
     {
+        if (Instance == null)
+            Instance = this;
+        Debug.Log("GameManager is Instanced");
+        StartCoroutine(waitForInit());
+    }
+
+    IEnumerator waitForInit()
+    {
+        while (!LobbyManager.Instance.IsInstancesLoaded())
+            yield return new WaitForEndOfFrame();
+        Init();
+    }
+
+    private void Init() { 
+      actualAction = PersoAction.isIdle;
       StartCoroutine (LateOnEnable());
     }
 
@@ -38,9 +49,12 @@ public class GameManager : MonoBehaviour {
       TurnManager.Instance.changeTurnEvent += OnChangeTurn;
     }
 
-  void OnDisable()
+    void OnDisable()
     {
-      TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
+        if (LobbyManager.Instance.IsInstancesLoaded())
+        {
+            TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
+        }
     }
 
   // *************** //

@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class PersoData : MonoBehaviour {
+public class PersoData : NetworkBehaviour {
 
   public WeightType weightType;
 	public Player owner;
@@ -31,18 +32,25 @@ public class PersoData : MonoBehaviour {
 
   public bool isTackled = false;
 
-	// Use this for initialization
-	void Start () {
-      isTackled = false;
-		ChangeColor ();
+    // Use this for initialization
+    public override void OnStartClient() { 
+          isTackled = false;
+        ChangeColor ();
         actualPointMovement = pointMovement;
-        TurnManager.Instance.changeTurnEvent += resetPointMovement;
         SpriteR = GetComponent<SpriteRenderer>();
-
-
-
+        StartCoroutine(waitForInit());
     }
-  
+
+    IEnumerator waitForInit()
+    {
+        yield return new WaitForEndOfFrame();
+        while (TurnManager.Instance == null)
+        {
+            yield return null;
+        }
+        TurnManager.Instance.changeTurnEvent += resetPointMovement;
+    }
+
     // ************ //
     // ** Events ** //
     // ************ //
@@ -65,27 +73,29 @@ public class PersoData : MonoBehaviour {
 		}
 	}
 
-   public void ChangeRotation(Direction direction) {
-    persoDirection = direction;
-		switch (persoDirection) {
-      case Direction.SudOuest:
-        transform.localRotation = Quaternion.Euler(0, 180, 0);
-        SpriteR.sprite = faceSprite;
-			break;
-		case Direction.NordOuest:
-			transform.localRotation = Quaternion.Euler (0, 180, 0);
-            SpriteR.sprite = backSprite;
-			break;
-		case Direction.SudEst:
-			transform.localRotation = Quaternion.Euler (0, 0, 0);
-            SpriteR.sprite = faceSprite;
-			break;
-		case Direction.NordEst:
-			transform.localRotation = Quaternion.Euler (0, 0, 0);
-            SpriteR.sprite = backSprite;
-			break;
-		}
-	}
+    public void ChangeRotation(Direction direction)
+    {
+        persoDirection = direction;
+        switch (persoDirection)
+        {
+            case Direction.SudOuest:
+                transform.localRotation = Quaternion.Euler(0, 180, 0);
+                SpriteR.sprite = faceSprite;
+                break;
+            case Direction.NordOuest:
+                transform.localRotation = Quaternion.Euler(0, 180, 0);
+                SpriteR.sprite = backSprite;
+                break;
+            case Direction.SudEst:
+                transform.localRotation = Quaternion.Euler(0, 0, 0);
+                SpriteR.sprite = faceSprite;
+                break;
+            case Direction.NordEst:
+                transform.localRotation = Quaternion.Euler(0, 0, 0);
+                SpriteR.sprite = backSprite;
+                break;
+        }
+    }
 
   // ************ //
   // ** Actions ** //

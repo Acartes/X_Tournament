@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class ReplacerBalleBehaviour : MonoBehaviour {
+public class ReplacerBalleBehaviour : NetworkBehaviour
+{
 
   // *************** //
   // ** Variables ** //
@@ -15,16 +17,27 @@ public class ReplacerBalleBehaviour : MonoBehaviour {
 
   public static ReplacerBalleBehaviour Instance;
 
-	void Awake () {
-		Instance = this;
-	}
-
-  void OnEnable()
+    public override void OnStartClient()
     {
-      ClickEvent.newClickEvent += OnNewClick;
+        if (Instance == null)
+            Instance = this;
+        Debug.Log("ReplacerBalleBehaviour is Instanced");
+        StartCoroutine(waitForInit());
     }
 
-  void OnDisable()
+    IEnumerator waitForInit()
+    {
+        while (!LobbyManager.Instance.IsInstancesLoaded())
+            yield return new WaitForEndOfFrame();
+        Init();
+    }
+
+    private void Init()
+    {
+        ClickEvent.newClickEvent += OnNewClick;
+    }
+
+    void OnDisable()
     {
       ClickEvent.newClickEvent -= OnNewClick;
     }

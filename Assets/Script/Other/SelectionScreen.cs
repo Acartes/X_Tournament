@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 [ExecuteInEditMode]
-public class SelectionScreen : MonoBehaviour {
+public class SelectionScreen : NetworkBehaviour {
 
 	public List<GameObject> selectionScreenPortraitList;
 
@@ -21,9 +22,23 @@ public class SelectionScreen : MonoBehaviour {
 	public int y = 0;
 	public int x = 0;
 
-	// Use this for initialization
-	void Awake() {
-		if (Instance == null) {
+    public override void OnStartClient()
+    {
+        if (Instance == null)
+            Instance = this;
+        StartCoroutine(waitForInit());
+    }
+
+    IEnumerator waitForInit()
+    {
+        while (!LobbyManager.Instance.IsInstancesLoaded())
+            yield return new WaitForEndOfFrame();
+        Init();
+    }
+
+    private void Init()
+    {
+        if (Instance == null) {
 			Instance = this;
 		}
 		y = 0;

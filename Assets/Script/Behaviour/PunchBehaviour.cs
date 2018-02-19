@@ -1,21 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using System.Diagnostics;
 
-public class PunchBehaviour : MonoBehaviour {
+public class PunchBehaviour : NetworkBehaviour {
 
   public PersoData punchedPersonnage;
 
   public static PunchBehaviour Instance;
 
-    void Awake () {
-    Instance = this;
+    public override void OnStartClient()
+    {
+        if (Instance == null)
+            Instance = this;
+        StartCoroutine(waitForInit());
     }
 
-  void OnEnable()
+    IEnumerator waitForInit()
     {
-      ClickEvent.newClickEvent += OnNewClick;
+        while (!LobbyManager.Instance.IsInstancesLoaded())
+            yield return new WaitForEndOfFrame();
+        Init();
+    }
+
+    private void Init()
+    {
+        ClickEvent.newClickEvent += OnNewClick;
     }
 
   void OnDisable()

@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Networking;
 
-public class HoverEvent : MonoBehaviour {
-
-    public new bool enabled = true;
+public class HoverEvent : NetworkBehaviour {
 
 	public static EventHandler<HoverArgs> newHoverEvent;
 
@@ -14,19 +13,26 @@ public class HoverEvent : MonoBehaviour {
 	public BallonData hoveredBallon;
 	public PathfindingCase hoveredPathfinding;
 
-    void Awake () {
-    this.enabled = false;
-    StartCoroutine(LateAwake());
-  }
+    public override void OnStartClient()
+    {
+        StartCoroutine(waitForInit());
+    }
 
-    IEnumerator LateAwake () {
-      yield return new WaitForEndOfFrame();
-      this.enabled = true;
+    IEnumerator waitForInit()
+    {
+        while (!LobbyManager.Instance.IsInstancesLoaded())
+            yield return new WaitForEndOfFrame();
+        Init();
+    }
+
+    private void Init()
+    {
+        this.enabled = true;
     }
 
     void OnMouseOver()
     {
-        if (!enabled)
+        if (!enabled || !LobbyManager.Instance.IsInstancesLoaded())
             return;
 		hoveredCase = this.GetComponent<CaseData>();
 		hoveredPersonnage = GetComponent<CaseData> ().personnageData;
@@ -37,7 +43,7 @@ public class HoverEvent : MonoBehaviour {
 	}
     void OnMouseExit()
     {
-        if (!enabled)
+        if (!enabled || !LobbyManager.Instance.IsInstancesLoaded())
             return;
 
 		hoveredCase = this.GetComponent<CaseData>();

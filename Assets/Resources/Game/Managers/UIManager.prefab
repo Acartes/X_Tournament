@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4709403067407232}
   - component: {fileID: 114758752575449284}
+  - component: {fileID: 114639118909827038}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -40,6 +41,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114639118909827038
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1859924039827034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 245
+    i1: 101
+    i2: 214
+    i3: 106
+    i4: 219
+    i5: 225
+    i6: 62
+    i7: 68
+    i8: 73
+    i9: 139
+    i10: 85
+    i11: 125
+    i12: 252
+    i13: 99
+    i14: 90
+    i15: 81
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114758752575449284
 MonoBehaviour:
   m_ObjectHideFlags: 1

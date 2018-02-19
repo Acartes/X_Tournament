@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class HoverManager : MonoBehaviour
+
+public class HoverManager : NetworkBehaviour
 {
 
     // *************** //
@@ -31,17 +33,24 @@ public class HoverManager : MonoBehaviour
     // ** Initialisation ** //
     // *********** //
 
-    void Awake()
+    public override void OnStartClient()
     {
         if (Instance == null)
-        {
             Instance = this;
-        }
+        Debug.Log("HoverManager is Instanced");
+        StartCoroutine(waitForInit());
     }
 
-    void OnEnable()
+    IEnumerator waitForInit()
     {
-		StartCoroutine (LateOnEnable());
+        while (!LobbyManager.Instance.IsInstancesLoaded())
+            yield return new WaitForEndOfFrame();
+        Init();
+    }
+
+    private void Init()
+    {
+        StartCoroutine(LateOnEnable());
     }
 
 	IEnumerator LateOnEnable() {
@@ -60,7 +69,8 @@ public class HoverManager : MonoBehaviour
 
     void OnNewHover(object sender, HoverArgs e)
   { // Curseur se trouve sur une case ou quitte une case
-      if (hoveredLastCase == null || hoveredLastCase != hoveredCase)
+
+        if (hoveredLastCase == null || hoveredLastCase != hoveredCase)
       {
         hoveredLastCase = hoveredCase;
       }
@@ -69,8 +79,6 @@ public class HoverManager : MonoBehaviour
         {
           changeColorExit(GameManager.Instance.currentPhase);
         }
-    Debug.Log(hoveredCase);
-      Debug.Log(hoveredLastCase);
 
     hoveredPersonnage = e.hoveredPersonnage;
     hoveredCase = e.hoveredCase;

@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4974691947645800}
   - component: {fileID: 114343382153939662}
+  - component: {fileID: 114382122946761116}
   m_Layer: 0
   m_Name: ColorManager
   m_TagString: Untagged
@@ -55,12 +56,44 @@ MonoBehaviour:
   hoverStrongColor: {r: 1, g: 0.9724138, b: 0, a: 1}
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   enemyColor: {r: 1, g: 0.022058845, b: 0.022058845, a: 0.78431374}
-  travelColor: {r: 0.45847008, g: 0.8455882, b: 0.087045826, a: 0.43137255}
+  moveColor: {r: 0, g: 0.5448277, b: 1, a: 0.5882353}
   actionPreColor: {r: 0.6137934, g: 0, b: 1, a: 0.39215687}
   actionColor: {r: 0.6137934, g: 0, b: 1, a: 0.7058824}
   placementZoneRed: {r: 1, g: 0.21323532, b: 0.21323532, a: 0.19607843}
   placementZoneBlue: {r: 0.21323532, g: 0.21866123, b: 1, a: 0.19607843}
-  moveColor: {r: 0, g: 0.5448277, b: 1, a: 0.5882353}
+  isMovingColor: {r: 0, g: 0, b: 0, a: 0}
   selectedColor: {r: 0, g: 1, b: 0.91724133, a: 0.3529412}
   goalColor: {r: 0.9862069, g: 1, b: 0, a: 0.78431374}
   punchedPersonnageColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &114382122946761116
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1212714497007954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 52
+    i1: 228
+    i2: 173
+    i3: 216
+    i4: 42
+    i5: 28
+    i6: 70
+    i7: 4
+    i8: 73
+    i9: 254
+    i10: 188
+    i11: 37
+    i12: 31
+    i13: 158
+    i14: 180
+    i15: 209
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0

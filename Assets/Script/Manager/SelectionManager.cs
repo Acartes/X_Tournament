@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class SelectionManager : MonoBehaviour {
-
+public class SelectionManager : NetworkBehaviour
+{
   public CaseData selectedLastCase;
   public PersoData selectedLastPersonnage;
   public BallonData selectedBallon;
@@ -12,13 +13,25 @@ public class SelectionManager : MonoBehaviour {
   
   public static SelectionManager Instance;
 
-    void Awake () {
-    Instance = this;
-  }
 
-  void OnEnable()
+    public override void OnStartClient()
     {
-      ClickEvent.newClickEvent += OnNewClick;
+        if (Instance == null)
+            Instance = this;
+        Debug.Log(this.GetType() + " is Instanced");
+        StartCoroutine(waitForInit());
+    }
+
+    IEnumerator waitForInit()
+    {
+        while (!LobbyManager.Instance.IsInstancesLoaded())
+            yield return new WaitForEndOfFrame();
+        Init();
+    }
+
+    private void Init()
+    {
+        ClickEvent.newClickEvent += OnNewClick;
       StartCoroutine (LateOnEnable());
     }
 
@@ -27,10 +40,13 @@ public class SelectionManager : MonoBehaviour {
       TurnManager.Instance.changeTurnEvent += OnChangeTurn;
     }
 
-  void OnDisable()
+    void OnDisable()
     {
-      ClickEvent.newClickEvent -= OnNewClick;
-      TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
+        if (LobbyManager.Instance.IsInstancesLoaded())
+        {
+            ClickEvent.newClickEvent -= OnNewClick;
+            TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
+        }
     }
       
   public void OnNewClick ()

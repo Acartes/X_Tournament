@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class TackleBehaviour : MonoBehaviour {
+public class TackleBehaviour : NetworkBehaviour
+{
 
   // *************** //
   // ** Variables ** //
@@ -16,19 +18,22 @@ public class TackleBehaviour : MonoBehaviour {
 
   [HideInInspector] public static TackleBehaviour Instance;
 
-  // *************** //
-  // ** Initialisation ** //
-  // *************** //
+    // *************** //
+    // ** Initialisation ** //
+    // *************** //
 
-    void Awake () {
-    Instance = this;
-  }
+    public override void OnStartClient()
+    {
+        if (Instance == null)
+            Instance = this;
+        Debug.Log("TackleBehaviour is Instanced");
+    }
 
-  // *************** //
-  // ** Checkers ** //
-  // *************** //
+    // *************** //
+    // ** Checkers ** //
+    // *************** //
 
-  public void CheckTackle (GameObject movingObj, PersoData shotingPersonnage = null) 
+    public void CheckTackle (GameObject movingObj, PersoData shotingPersonnage = null) 
     { // Vérifie si le personnage peut être taclé, et si c'est le cas, fait un test de chance pour savoir s'il est taclé
       Transform path = SelectionManager.Instance.selectedCase.transform;
       Player currentPlayer = TurnManager.Instance.currentPlayer;

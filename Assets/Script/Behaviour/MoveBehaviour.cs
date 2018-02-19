@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using System.IO;
 
-public class MoveBehaviour : MonoBehaviour
+public class MoveBehaviour : NetworkBehaviour
 {
     // *************** //
     // ** Variables ** //
@@ -24,12 +25,22 @@ public class MoveBehaviour : MonoBehaviour
     // ** Initialisation ** //
     // *************** //
 
-    void Awake()
+    public override void OnStartClient()
     {
-      Instance = this;
+        if (Instance == null)
+            Instance = this;
+        Debug.Log("MoveBehaviour is Instanced");
+        StartCoroutine(waitForInit());
     }
 
-    void OnEnable()
+    IEnumerator waitForInit()
+    {
+        while (!LobbyManager.Instance.IsInstancesLoaded())
+            yield return new WaitForEndOfFrame();
+        Init();
+    }
+
+    private void Init()
     {
         ClickEvent.newClickEvent += OnNewClick;
     }

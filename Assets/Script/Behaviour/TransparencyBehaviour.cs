@@ -1,13 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class TransparencyBehaviour : MonoBehaviour {
+public class TransparencyBehaviour : NetworkBehaviour
+{
 
   static public TransparencyBehaviour Instance;
 
-    void Awake () {
-      Instance = this;
+    public override void OnStartClient()
+    {
+        if (Instance == null)
+            Instance = this;
+        Debug.Log("TransparencyBehaviour is Instanced");
     }
 
     public static void CheckTransparency (GameObject selectedObj, float alpha) 

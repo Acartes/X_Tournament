@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4487771800097648}
   - component: {fileID: 114727895416747110}
+  - component: {fileID: 114162100246986826}
   m_Layer: 0
   m_Name: SelectionManager
   m_TagString: Untagged
@@ -40,6 +41,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114162100246986826
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1829091440492570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 121
+    i1: 184
+    i2: 40
+    i3: 55
+    i4: 91
+    i5: 157
+    i6: 59
+    i7: 84
+    i8: 43
+    i9: 224
+    i10: 52
+    i11: 89
+    i12: 214
+    i13: 124
+    i14: 91
+    i15: 26
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114727895416747110
 MonoBehaviour:
   m_ObjectHideFlags: 1

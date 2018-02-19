@@ -585,6 +585,7 @@ GameObject:
   - component: {fileID: 224906957655607988}
   - component: {fileID: 222450404842689558}
   - component: {fileID: 114341248254444922}
+  - component: {fileID: 114020987292994782}
   m_Layer: 5
   m_Name: infoPerso
   m_TagString: Untagged
@@ -1386,6 +1387,38 @@ MonoBehaviour:
   faceSprite: {fileID: 0}
   backSprite: {fileID: 0}
   isTackled: 0
+--- !u!114 &114020987292994782
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1466614734551432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 168
+    i1: 170
+    i2: 214
+    i3: 2
+    i4: 113
+    i5: 34
+    i6: 156
+    i7: 84
+    i8: 232
+    i9: 72
+    i10: 48
+    i11: 16
+    i12: 53
+    i13: 85
+    i14: 211
+    i15: 74
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114043265456142506
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2621,7 +2654,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_MethodName: ChangeTurn
+        m_MethodName: CmdChangeTurn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -1,22 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class GraphManager : MonoBehaviour {
-  
-  // *************** //
-  // ** Variables ** //
-  // *************** //
+public class GraphManager : NetworkBehaviour
+{
 
-  public static GraphManager Instance;
+    // *************** //
+    // ** Variables ** //
+    // *************** //
 
-  // *************** //
-  // ** Initialisation ** //
-  // *************** //
+    public static GraphManager Instance;
 
-    void Awake () {
-    Instance = this;
-  }
+    // *************** //
+    // ** Initialisation ** //
+    // *************** //
+
+    public override void OnStartClient()
+    {
+        if (Instance == null)
+            Instance = this;
+        Debug.Log("GraphManager is Instanced");
+    }
 
     public float getCaseOffset(GameObject go)
     {

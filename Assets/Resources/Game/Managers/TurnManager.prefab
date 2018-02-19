@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4713068199294654}
   - component: {fileID: 114011420131379752}
+  - component: {fileID: 114828484604776632}
   m_Layer: 0
   m_Name: TurnManager
   m_TagString: Untagged
@@ -55,3 +56,35 @@ MonoBehaviour:
   currentPlayer: 0
   currentPhase: 0
   finishTurnButton: {fileID: 0}
+--- !u!114 &114828484604776632
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1713766968757568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 210
+    i1: 70
+    i2: 55
+    i3: 120
+    i4: 215
+    i5: 252
+    i6: 3
+    i7: 212
+    i8: 232
+    i9: 36
+    i10: 67
+    i11: 152
+    i12: 148
+    i13: 81
+    i14: 229
+    i15: 226
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0

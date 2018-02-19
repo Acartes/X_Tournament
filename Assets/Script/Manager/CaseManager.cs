@@ -4,8 +4,9 @@ using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
+using UnityEngine.Networking;
 
-public class CaseManager : MonoBehaviour
+public class CaseManager : NetworkBehaviour
 {
 
     // *************** //
@@ -25,19 +26,29 @@ public class CaseManager : MonoBehaviour
     // *************** //
     // ** Initialisation ** //
     // *************** //
-    void Awake()
+
+    public override void OnStartClient()
+    {
+        if (Instance == null)
+            Instance = this;
+        Debug.Log("CaseManager is Instanced");
+        StartCoroutine(waitForInit());
+    }
+
+    IEnumerator waitForInit()
+    {
+        while (!LobbyManager.Instance.IsInstancesLoaded())
+            yield return new WaitForEndOfFrame();
+        Init();
+    }
+
+    void Init()
     {
       listCase.Clear ();
     foreach (GameObject cubeNew in GameObject.FindGameObjectsWithTag("case"))
       {
         listCase.Add(cubeNew);
       }
-
-        Instance = this;
-    }
-
-    void OnEnable()
-    {
         StartCoroutine(LateOnEnable());
     }
 
@@ -45,15 +56,6 @@ public class CaseManager : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         TurnManager.Instance.changeTurnEvent += OnChangeTurn;
-    }
-
-    void OnDisable()
-    {
-        TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
-    }
-
-    void Start()
-    {
         foreach (GameObject obj in listCase)
         {
             CaseData objCaseData = obj.GetComponent<CaseData>();
@@ -61,6 +63,14 @@ public class CaseManager : MonoBehaviour
             {
                 objCaseData.caseColor = ColorManager.Instance.goalColor;
             }
+        }
+    }
+
+    void OnDisable()
+    {
+        if (LobbyManager.Instance.IsInstancesLoaded())
+        {
+            TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
         }
     }
 
