@@ -31,7 +31,7 @@ public class PlacementBehaviour : NetworkBehaviour
 
     IEnumerator waitForInit()
     {
-        while (!LobbyManager.Instance.IsInstancesLoaded())
+        while (!LoadingManager.Instance.IsInstancesLoaded())
         {
             yield return new WaitForEndOfFrame();
         }
@@ -52,7 +52,7 @@ public class PlacementBehaviour : NetworkBehaviour
 
     void OnDisable()
     {
-        if (LobbyManager.Instance.IsInstancesLoaded())
+        if (LoadingManager.Instance.IsInstancesLoaded())
         {
             ClickEvent.newClickEvent -= OnNewClick;
             TurnManager.Instance.changeTurnEvent -= OnChangeTurn;

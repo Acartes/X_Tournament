@@ -43,7 +43,7 @@ public class HoverManager : NetworkBehaviour
 
     IEnumerator waitForInit()
     {
-        while (!LobbyManager.Instance.IsInstancesLoaded())
+        while (!LoadingManager.Instance.IsInstancesLoaded())
             yield return new WaitForEndOfFrame();
         Init();
     }

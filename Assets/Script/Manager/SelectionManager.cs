@@ -24,7 +24,7 @@ public class SelectionManager : NetworkBehaviour
 
     IEnumerator waitForInit()
     {
-        while (!LobbyManager.Instance.IsInstancesLoaded())
+        while (!LoadingManager.Instance.IsInstancesLoaded())
             yield return new WaitForEndOfFrame();
         Init();
     }
@@ -42,7 +42,7 @@ public class SelectionManager : NetworkBehaviour
 
     void OnDisable()
     {
-        if (LobbyManager.Instance.IsInstancesLoaded())
+        if (LoadingManager.Instance.IsInstancesLoaded())
         {
             ClickEvent.newClickEvent -= OnNewClick;
             TurnManager.Instance.changeTurnEvent -= OnChangeTurn;

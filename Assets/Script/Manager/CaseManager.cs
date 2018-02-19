@@ -37,7 +37,7 @@ public class CaseManager : NetworkBehaviour
 
     IEnumerator waitForInit()
     {
-        while (!LobbyManager.Instance.IsInstancesLoaded())
+        while (!LoadingManager.Instance.IsInstancesLoaded())
             yield return new WaitForEndOfFrame();
         Init();
     }
@@ -68,7 +68,7 @@ public class CaseManager : NetworkBehaviour
 
     void OnDisable()
     {
-        if (LobbyManager.Instance.IsInstancesLoaded())
+        if (LoadingManager.Instance.IsInstancesLoaded())
         {
             TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
         }

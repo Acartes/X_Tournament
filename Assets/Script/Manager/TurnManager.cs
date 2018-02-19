@@ -30,7 +30,7 @@ public class TurnManager : NetworkBehaviour
 
     IEnumerator waitForInit()
     {
-        while(!LobbyManager.Instance.IsInstancesLoaded())
+        while(!LoadingManager.Instance.IsInstancesLoaded())
             yield return new WaitForEndOfFrame();
         StartCoroutine(InitGame());
     }
@@ -45,7 +45,7 @@ public class TurnManager : NetworkBehaviour
     [Command]
     public void CmdChangeTurn()
     {
-        if (!canChangeTurn || !isServer)
+        if (!canChangeTurn)
         {
             return;
         }

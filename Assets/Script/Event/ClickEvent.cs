@@ -12,10 +12,6 @@ public class ClickEvent : NetworkBehaviour
     private void OnMouseDown()
     {
 		if (HoverManager.Instance.hoveredCase != null) {
-            if (LobbyManager.Instance.playerId == 0 && GameManager.Instance.currentPlayer == Player.Blue)
-                return;
-            if (LobbyManager.Instance.playerId == 1 && GameManager.Instance.currentPlayer == Player.Red)
-                return;
             newClickEvent();
         }
     }
