@@ -26,14 +26,14 @@ public class TackleBehaviour : NetworkBehaviour
     {
         if (Instance == null)
             Instance = this;
-        Debug.Log("TackleBehaviour is Instanced");
+        Debug.Log(this.GetType() + " is Instanced");
     }
 
-    // *************** //
-    // ** Checkers ** //
-    // *************** //
+        // *************** //
+        // ** Checkers ** //
+        // *************** //
 
-    public void CheckTackle (GameObject movingObj, PersoData shotingPersonnage = null) 
+        public void CheckTackle (GameObject movingObj, PersoData shotingPersonnage = null) 
     { // Vérifie si le personnage peut être taclé, et si c'est le cas, fait un test de chance pour savoir s'il est taclé
       Transform path = SelectionManager.Instance.selectedCase.transform;
       Player currentPlayer = TurnManager.Instance.currentPlayer;

@@ -12,7 +12,7 @@ public class TransparencyBehaviour : NetworkBehaviour
     {
         if (Instance == null)
             Instance = this;
-        Debug.Log("TransparencyBehaviour is Instanced");
+        Debug.Log(this.GetType() + " is Instanced");
     }
 
     public static void CheckTransparency (GameObject selectedObj, float alpha) 

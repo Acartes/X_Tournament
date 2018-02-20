@@ -8,6 +8,8 @@ public class LoadingManager : MonoBehaviour
     public static LoadingManager Instance;
 
     int loadedPlayers;
+    bool gameReady;
+    bool startingGame;
 
     // Use this for initialization
     void Start()
@@ -17,7 +19,22 @@ public class LoadingManager : MonoBehaviour
 
     public bool isGameReady()
     {
-        return (IsInstancesLoaded() && playerLoaded());
+        if (gameReady)
+        {
+            return true;
+        }
+        else if (IsInstancesLoaded() && playerLoaded() && !startingGame)
+        {
+            startingGame = true;
+            StartCoroutine(waitForReady());
+        }
+        return false;
+    }
+
+    IEnumerator waitForReady()
+    {
+        yield return new WaitForSeconds(1f);
+        gameReady = true;
     }
 
     bool IsInstancesLoaded()

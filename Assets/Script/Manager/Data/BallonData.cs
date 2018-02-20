@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using System;
 
-public class BallonData : MonoBehaviour
+public class BallonData : NetworkBehaviour
 {
   [Header("Data")]
   [SerializeField] [EnumFlagAttribute] BallonStatut statut; [Space(100)]
@@ -31,7 +32,20 @@ public class BallonData : MonoBehaviour
 
   [HideInInspector] public List<Transform> movePath;
 
-    void Start()
+    public override void OnStartClient()
+    {
+        Debug.Log(this.GetType() + " is ready");
+        StartCoroutine(waitForInit());
+    }
+
+    IEnumerator waitForInit()
+    {
+        while (!LoadingManager.Instance.isGameReady())
+            yield return new WaitForEndOfFrame();
+        Init();
+    }
+
+    private void Init()
     {
         animator = GetComponent<Animator>();
 

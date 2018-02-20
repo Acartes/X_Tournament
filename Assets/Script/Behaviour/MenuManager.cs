@@ -23,7 +23,7 @@ public class MenuManager : NetworkBehaviour {
     {
         if (Instance == null)
             Instance = this;
-        Debug.Log("MenuManager is Instanced");
+        Debug.Log(this.GetType() + " is Instanced");
         StartCoroutine(waitForInit());
     }
 
@@ -31,9 +31,10 @@ public class MenuManager : NetworkBehaviour {
     {
         while (!LoadingManager.Instance.isGameReady())
             yield return new WaitForEndOfFrame();
+        Init();
     }
 
-    void OnEnable()
+    void Init()
     {
       ClickEvent.newClickEvent += OnNewClick;
     }
