@@ -11,7 +11,12 @@ public class ClickEvent : NetworkBehaviour
 
     private void OnMouseDown()
     {
-		if (HoverManager.Instance.hoveredCase != null) {
+        if (RpcFunctions.Instance.localId == 0 && TurnManager.Instance.currentPlayer == Player.Blue)
+            return;
+        if (RpcFunctions.Instance.localId == 1 && TurnManager.Instance.currentPlayer == Player.Red)
+            return;
+
+        if (HoverManager.Instance.hoveredCase != null) {
             newClickEvent();
         }
     }

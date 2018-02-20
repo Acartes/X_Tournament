@@ -7,9 +7,15 @@ public class RpcFunctions : NetworkBehaviour {
 
     public static RpcFunctions Instance;
 
+    public int localId;
+
     public override void OnStartLocalPlayer()
     {
         Instance = this;
+        if (isServer)
+            localId = 0;
+        else
+            localId = 1;
     }
 
 

@@ -9,6 +9,6 @@ public class DebugGetId : NetworkBehaviour
 
     private void Update()
     {
-        GetComponent<Text>().text = RpcFunctions.Instance.playerControllerId.ToString();
+        GetComponent<Text>().text = RpcFunctions.Instance.localId.ToString();
     }
 }

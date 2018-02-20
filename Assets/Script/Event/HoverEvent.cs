@@ -32,9 +32,9 @@ public class HoverEvent : NetworkBehaviour {
 
     void OnMouseOver()
     {
-        if (RpcFunctions.Instance.playerControllerId == 0 && TurnManager.Instance.currentPlayer == Player.Blue)
+        if (RpcFunctions.Instance.localId == 0 && TurnManager.Instance.currentPlayer == Player.Blue)
             return;
-        if (RpcFunctions.Instance.playerControllerId == 1 && TurnManager.Instance.currentPlayer == Player.Red)
+        if (RpcFunctions.Instance.localId == 1 && TurnManager.Instance.currentPlayer == Player.Red)
             return;
 
         if (!enabled || !LoadingManager.Instance.isGameReady())
