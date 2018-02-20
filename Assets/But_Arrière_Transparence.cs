@@ -12,8 +12,21 @@ public class But_Arrière_Transparence : NetworkBehaviour {
 
     // Use this for initialization
     public override void OnStartClient() { 
+        StartCoroutine(waitForInit());
+    }
+
+    IEnumerator waitForInit()
+    {
+        while (!LoadingManager.Instance.isGameReady())
+            yield return new WaitForEndOfFrame();
+        Init();
+    }
+
+    void Init()
+    {
         img = GetComponent<SpriteRenderer>();
     }
+
 
     private void Update()
     {

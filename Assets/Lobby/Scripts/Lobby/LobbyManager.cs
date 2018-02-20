@@ -341,6 +341,8 @@ namespace Prototype.NetworkLobby
             if (_lobbyHooks)
                 _lobbyHooks.OnLobbyServerSceneLoadedForPlayer(this, lobbyPlayer, gamePlayer);
 
+            LoadingManager.Instance.playerLoaded();
+
             return true;
         }
 
@@ -427,5 +429,6 @@ namespace Prototype.NetworkLobby
             ChangeTo(mainMenuPanel);
             infoPanel.Display("Cient error : " + (errorCode == 6 ? "timeout" : errorCode.ToString()), "Close", null);
         }
+
     }
 }

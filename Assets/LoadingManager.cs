@@ -7,6 +7,7 @@ public class LoadingManager : MonoBehaviour
 
     public static LoadingManager Instance;
 
+    int loadedPlayers;
 
     // Use this for initialization
     void Start()
@@ -14,7 +15,12 @@ public class LoadingManager : MonoBehaviour
         Instance = this;
     }
 
-    public bool IsInstancesLoaded()
+    public bool isGameReady()
+    {
+        return (IsInstancesLoaded() && playerLoaded());
+    }
+
+    bool IsInstancesLoaded()
     {
 
         // Ajouter toutes les instances qui doivent être chargées pour lancer le jeu
@@ -45,4 +51,18 @@ public class LoadingManager : MonoBehaviour
             Debug.Log("Instantiation complete");
         return true; // et du coup bah là c'est bon
     }
+
+    public bool playerLoaded()
+    {
+        if(loadedPlayers == 2){
+            return true;
+        }
+        else
+        {
+            loadedPlayers++;
+            Debug.Log("Player" + loadedPlayers + " loaded.");
+        }
+        return false;
+    }
+
 }

@@ -34,7 +34,7 @@ public class GameManager : NetworkBehaviour {
 
     IEnumerator waitForInit()
     {
-        while (!LoadingManager.Instance.IsInstancesLoaded())
+        while (!LoadingManager.Instance.isGameReady())
             yield return new WaitForEndOfFrame();
         Init();
     }
@@ -51,7 +51,7 @@ public class GameManager : NetworkBehaviour {
 
     void OnDisable()
     {
-        if (LoadingManager.Instance.IsInstancesLoaded())
+        if (LoadingManager.Instance.isGameReady())
         {
             TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
         }

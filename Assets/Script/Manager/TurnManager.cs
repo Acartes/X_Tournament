@@ -30,7 +30,7 @@ public class TurnManager : NetworkBehaviour
 
     IEnumerator waitForInit()
     {
-        while(!LoadingManager.Instance.IsInstancesLoaded())
+        while(!LoadingManager.Instance.isGameReady())
             yield return new WaitForEndOfFrame();
         StartCoroutine(InitGame());
     }
@@ -38,7 +38,8 @@ public class TurnManager : NetworkBehaviour
     IEnumerator InitGame()
     {
         yield return new WaitForSeconds(0.3f);
-        RpcFunctions.Instance.CmdFirstTurn();
+        if(isServer)
+            RpcFunctions.Instance.CmdFirstTurn();
         finishTurnButton = GameObject.Find("finishTurn");
     }
 

@@ -36,7 +36,7 @@ public class InfoPerso : NetworkBehaviour
 
     IEnumerator waitForInit()
     {
-        while (!LoadingManager.Instance.IsInstancesLoaded())
+        while (!LoadingManager.Instance.isGameReady())
             yield return new WaitForEndOfFrame();
         yield return new WaitForSeconds(0.5f);
 

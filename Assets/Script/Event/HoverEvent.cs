@@ -20,7 +20,7 @@ public class HoverEvent : NetworkBehaviour {
 
     IEnumerator waitForInit()
     {
-        while (!LoadingManager.Instance.IsInstancesLoaded())
+        while (!LoadingManager.Instance.isGameReady())
             yield return new WaitForEndOfFrame();
         Init();
     }
@@ -32,7 +32,7 @@ public class HoverEvent : NetworkBehaviour {
 
     void OnMouseOver()
     {
-        if (!enabled || !LoadingManager.Instance.IsInstancesLoaded())
+        if (!enabled || !LoadingManager.Instance.isGameReady())
             return;
 		hoveredCase = this.GetComponent<CaseData>();
 		hoveredPersonnage = GetComponent<CaseData> ().personnageData;
@@ -43,7 +43,7 @@ public class HoverEvent : NetworkBehaviour {
 	}
     void OnMouseExit()
     {
-        if (!enabled || !LoadingManager.Instance.IsInstancesLoaded())
+        if (!enabled || !LoadingManager.Instance.isGameReady())
             return;
 
 		hoveredCase = this.GetComponent<CaseData>();

@@ -31,7 +31,7 @@ public class SelectionScreen : NetworkBehaviour {
 
     IEnumerator waitForInit()
     {
-        while (!LoadingManager.Instance.IsInstancesLoaded())
+        while (!LoadingManager.Instance.isGameReady())
             yield return new WaitForEndOfFrame();
         Init();
     }
