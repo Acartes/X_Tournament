@@ -20,6 +20,8 @@ public class RosterManager : NetworkBehaviour
 
     public PersoData persoCreated;
 
+    private bool readySpawn;
+
     public override void OnStartClient()
     {
         if (Instance == null)
@@ -35,8 +37,16 @@ public class RosterManager : NetworkBehaviour
         Init();
     }
 
-    private void Init()
+    public void Init()
     {
+        readySpawn = true;
+    }
+
+    [ClientRpc]
+    public void RpcSpawnPlayers()
+    {
+        if (readySpawn == false)
+            return;
         GameObject persoCreated;
         listHeroJXToPlace.Add(new List<PersoData>());
         listHeroJXToPlace.Add(new List<PersoData>());
@@ -45,6 +55,7 @@ public class RosterManager : NetworkBehaviour
             persoCreated = (GameObject)Instantiate(obj.gameObject, new Vector3(999, 999, 999), Quaternion.identity);
             persoCreated.GetComponent<PersoData>().owner = Player.Red;
             listHeroJXToPlace[0].Add(persoCreated.GetComponent<PersoData>());
+            NetworkServer.Spawn(persoCreated);
         }
 
         foreach (PersoData obj in listHeroJ2)
@@ -52,6 +63,7 @@ public class RosterManager : NetworkBehaviour
             persoCreated = (GameObject)Instantiate(obj.gameObject, new Vector3(999, 999, 999), Quaternion.identity);
             persoCreated.GetComponent<PersoData>().owner = Player.Blue;
             listHeroJXToPlace[1].Add(persoCreated.GetComponent<PersoData>());
+            NetworkServer.Spawn(persoCreated);
         }
 
         listHeroJ1.Clear();

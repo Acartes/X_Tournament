@@ -23,4 +23,9 @@ public class RpcFunctions : NetworkBehaviour {
     {
         TurnManager.Instance.RpcFirstTurn();
     }
+    [Command]
+    public void CmdPlacePerso(string hoveredCase, float offsetY, string selectedPersonnage)
+    {
+        PlacementBehaviour.Instance.RpcCreatePersoPlacement(hoveredCase, offsetY, selectedPersonnage);
+    }
 }

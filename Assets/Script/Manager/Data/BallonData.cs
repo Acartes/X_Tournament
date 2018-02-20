@@ -32,9 +32,8 @@ public class BallonData : NetworkBehaviour
 
   [HideInInspector] public List<Transform> movePath;
 
-    public override void OnStartClient()
+    void Start()
     {
-        Debug.Log(this.GetType() + " is ready");
         StartCoroutine(waitForInit());
     }
 
