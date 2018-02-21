@@ -141,16 +141,11 @@ public class MoveBehaviour : NetworkBehaviour
         {
           path.GetComponent<CaseData>().ChangeColor(Statut.isMoving);
         }
-      RpcFunctions.Instance.CmdDeplacement(ColorManager.Instance.caseColor, GraphManager.Instance.getCaseOffset(SelectionManager.Instance.selectedPersonnage.gameObject), SelectionManager.Instance.selectedPersonnage.gameObject);
+
+        StartCoroutine(Deplacement(ColorManager.Instance.caseColor, GraphManager.Instance.getCaseOffset(SelectionManager.Instance.selectedPersonnage.gameObject), SelectionManager.Instance.selectedPersonnage));
     }
 
-  [ClientRpc]
-  public void RpcDeplacement(Color caseColor, float offsetY, GameObject selectedPersonnage)
-  {
-      StartCoroutine(Deplacement(caseColor, offsetY, selectedPersonnage.GetComponent<PersoData>()));
-  }
-
-   public IEnumerator Deplacement(Color caseColor, float offsetY, PersoData selectedPersonnage)
+    IEnumerator Deplacement(Color caseColor, float offsetY, PersoData selectedPersonnage)
     { // On déplace le personnage de case en case jusqu'au click du joueur propriétaire, et entre temps on check s'il est taclé ou non
         TurnManager.Instance.DisableFinishTurn();
 

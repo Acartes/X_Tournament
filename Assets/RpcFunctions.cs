@@ -34,9 +34,4 @@ public class RpcFunctions : NetworkBehaviour {
     {
         PlacementBehaviour.Instance.RpcCreatePersoPlacement(hoveredCase, offsetY, selectedPersonnage);
     }
-  [Command]
-  public void CmdDeplacement(Color caseColor, float offsetY, GameObject selectedPersonnage)
-    {
-      MoveBehaviour.Instance.RpcDeplacement(caseColor, offsetY, selectedPersonnage);
-    }
 }
