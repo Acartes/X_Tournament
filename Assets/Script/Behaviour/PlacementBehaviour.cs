@@ -122,17 +122,9 @@ public class PlacementBehaviour : NetworkBehaviour
         }
     }
 
-    void CreatePersoPlacement(CaseData hoveredCase, float offsetY, PersoData selectedPersonnage)
-    { //
-        RpcFunctions.Instance.CmdPlacePerso(hoveredCase.gameObject.name, offsetY, selectedPersonnage.gameObject.name);
-    }
-
-    [ClientRpc]
-    public void RpcCreatePersoPlacement(string stringHoveredCase, float offsetY, string stringSelectedPersonnage)
+    public void CreatePersoPlacement(CaseData hoveredCase, float offsetY, PersoData selectedPersonnage)
     { //
       
-        CaseData hoveredCase = GameObject.Find(stringHoveredCase).GetComponent<CaseData>();
-       PersoData selectedPersonnage = GameObject.Find(stringSelectedPersonnage).GetComponent<PersoData>();
         if (SelectionManager.Instance.selectedPersonnage != null)
         {
           

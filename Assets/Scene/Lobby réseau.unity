@@ -229,6 +229,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856da9704b0eb9a459c71d063457c92e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  P1_GameReady: 0
+  P2_GameReady: 0
+  allGameReady: 0
 --- !u!224 &1825957538
 RectTransform:
   m_ObjectHideFlags: 0
@@ -552,6 +555,10 @@ Prefab:
       propertyPath: prematchCountdown
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 155310, guid: c0978251ff7b10d4fb954a4b56acd9f0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c0978251ff7b10d4fb954a4b56acd9f0, type: 2}
   m_IsPrefabParent: 0
@@ -570,3 +577,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856da9704b0eb9a459c71d063457c92e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  P1_GameReady: 0
+  P2_GameReady: 0
+  allGameReady: 0

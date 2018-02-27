@@ -39,4 +39,9 @@ public class MenuContextuelButton : MonoBehaviour {
 		spriteR.color = colorExit;
 
 	}
+
+    void OnEnable() {
+      if (spriteR != null)
+      spriteR.color = colorExit;
+    }
 }

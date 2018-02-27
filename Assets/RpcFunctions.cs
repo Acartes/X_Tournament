@@ -33,11 +33,11 @@ public class RpcFunctions : NetworkBehaviour {
     {
         TurnManager.Instance.RpcFirstTurn();
     }
-    [Command]
+/*    [Command]
     public void CmdPlacePerso(string hoveredCase, float offsetY, string selectedPersonnage)
     {
         PlacementBehaviour.Instance.RpcCreatePersoPlacement(hoveredCase, offsetY, selectedPersonnage);
-    }
+    }*/
  /* [Command]
   public void CmdDeplacement(float offsetY, string selectedPersonnage)
     {

@@ -18,7 +18,9 @@ public class TackleBehaviour : NetworkBehaviour
 
   [HideInInspector] public static TackleBehaviour Instance;
 
-  [SyncVar] public int randomInt;
+  public List<int> randomIntList;
+  [SyncVar(hook = "AddRandomList")] public int newRandomInt;
+  int randomIntOrder = 0;
 
     // *************** //
     // ** Initialisation ** //
@@ -29,34 +31,86 @@ public class TackleBehaviour : NetworkBehaviour
         if (Instance == null)
             Instance = this;
         Debug.Log(this.GetType() + " is Instanced");
+    StartCoroutine(waitForInit());
+    }
+
+  IEnumerator waitForInit()
+    {
+        while (!LoadingManager.Instance.isGameReady())
+            yield return new WaitForEndOfFrame();
+        Init();
+    }
+
+  private void Init()
+    {
+      SetupRandomList();
+    }
+
+  IEnumerator LateOnEnable()
+    {
+        yield return new WaitForEndOfFrame();
+        TurnManager.Instance.changeTurnEvent += OnChangeTurn;
+    }
+
+    void OnDisable()
+    {
+        if (LoadingManager.Instance.isGameReady())
+        {
+            TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
+        }
     }
 
         // *************** //
         // ** Checkers ** //
         // *************** //
 
-        public void CheckTackle (GameObject movingObj, PersoData shotingPersonnage = null) 
-    { // Vérifie si le personnage peut être taclé, et si c'est le cas, fait un test de chance pour savoir s'il est taclé
-      Transform path = SelectionManager.Instance.selectedCase.transform;
-      Player currentPlayer = TurnManager.Instance.currentPlayer;
-      float xCaseOffset = CaseManager.Instance.xCaseOffset;
-      float yCaseOffset = CaseManager.Instance.yCaseOffset;
+        void SetupRandomList () 
+        {
+      randomIntList.Clear();
+    randomIntOrder = 0;
+    if (!isServer)
+      return;
+
+        for(int i = 0; i < 100; i++)
+        {
+          newRandomInt = UnityEngine.Random.Range(0, 100);
+        }
+     }
+
+        private void AddRandomList (int newRandomInt)
+         {
+         Debug.Log("Add a new number to Random List");
+    randomIntList.Add(newRandomInt);
+         }
+
+  void OnChangeTurn(object sender, PlayerArgs e)
+    { // Lorsqu'un joueur termine son tour
+    SetupRandomList();
+    }
+
+        public void CheckTackle(GameObject movingObj, PersoData shotingPersonnage = null)
+  { // Vérifie si le personnage peut être taclé, et si c'est le cas, fait un test de chance pour savoir s'il est taclé
+    Transform path = SelectionManager.Instance.selectedCase.transform;
+    Player currentPlayer = TurnManager.Instance.currentPlayer;
+    float xCaseOffset = CaseManager.Instance.xCaseOffset;
+    float yCaseOffset = CaseManager.Instance.yCaseOffset;
 
     foreach (PersoData obj in RosterManager.Instance.listHeroPlaced)
       {
-          if (movingObj != null && obj != shotingPersonnage)
+        if (movingObj != null && obj != shotingPersonnage)
           {
-              if (obj != movingObj && Fonction.Instance.CheckAdjacent(obj.gameObject, movingObj.gameObject) == true)
+            if (obj != movingObj && Fonction.Instance.CheckAdjacent(obj.gameObject, movingObj.gameObject) == true)
               {
-
-                if (isServer) randomInt = UnityEngine.Random.Range(0, 100);
-
+                randomIntOrder++;
+   int randomInt = randomIntList[randomIntOrder];
                 switch (movingObj.name)
                   {
                   case ("Ballon"):
-                  if (shotingPersonnage.owner != GameManager.Instance.currentPlayer)
-                    path = movingObj.GetComponent<BallonData>().ballonCase.transform;
-                        StartCoroutine(TackleEffect(obj, path, GraphManager.Instance.getCaseOffset(obj.gameObject)));
+                    Debug.Log(obj.owner + " " + currentPlayer);
+                    if (obj.owner != currentPlayer)
+                      {
+                        path = movingObj.GetComponent<BallonData>().ballonCase.transform;
+                        StartCoroutine(TackleEffect(obj, movingObj.transform, GraphManager.Instance.getCaseOffset(obj.gameObject)));
                         if (randomInt < 50)
                           {
                             Debug.Log("(Si inférieur à 51, il y a interception) " + randomInt + "/" + "100" + ": Interception SUCCESS");
@@ -64,6 +118,7 @@ public class TackleBehaviour : NetworkBehaviour
 
                             movingObj.GetComponent<BallonData>().ChangeStatut(BallonStatut.isIntercepted);
                           } 
+                      }
                     break;
                   default:
                     if (obj.owner != currentPlayer)

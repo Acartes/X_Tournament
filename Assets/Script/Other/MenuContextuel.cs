@@ -21,8 +21,8 @@ public class MenuContextuel : NetworkBehaviour {
 
     IEnumerator waitForInit()
     {
-        while (!LoadingManager.Instance.isGameReady())
-            yield return new WaitForEndOfFrame();
+    while (!LoadingManager.Instance.isGameReady())
+      yield return new WaitForSeconds(0.2f);
         Init();
     }
 
@@ -46,13 +46,20 @@ public class MenuContextuel : NetworkBehaviour {
       {
         ballon = GameObject.Find("Ballon");
           Debug.Log(ballon.transform.position);
-        GetComponent<RectTransform>().offsetMin = ballon.transform.position;
-          GetComponent<RectTransform>().offsetMax = ballon.transform.position;
+        transform.position = ballon.transform.position;
+
+            foreach (GameObject obj in GameObject.FindGameObjectsWithTag("case")) {
+          obj.GetComponent<PolygonCollider2D> ().enabled = false;
+        }
       }
     }
 
-	void OnDisable () {
-      //  Active();
+	void OnDisable()
+  {
+      foreach (GameObject obj in GameObject.FindGameObjectsWithTag("case"))
+          {
+            obj.GetComponent<PolygonCollider2D>().enabled = true;
+          }
 	}
 
   void OnChangeTurn(object sender, PlayerArgs e)
