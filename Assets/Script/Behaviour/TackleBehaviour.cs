@@ -18,6 +18,8 @@ public class TackleBehaviour : NetworkBehaviour
 
   [HideInInspector] public static TackleBehaviour Instance;
 
+  [SyncVar] public int randomInt;
+
     // *************** //
     // ** Initialisation ** //
     // *************** //
@@ -47,11 +49,12 @@ public class TackleBehaviour : NetworkBehaviour
               if (obj != movingObj && Fonction.Instance.CheckAdjacent(obj.gameObject, movingObj.gameObject) == true)
               {
 
-                int randomInt = UnityEngine.Random.Range(0, 100);
+                if (isServer) randomInt = UnityEngine.Random.Range(0, 100);
 
                 switch (movingObj.name)
                   {
                   case ("Ballon"):
+                  if (shotingPersonnage.owner != GameManager.Instance.currentPlayer)
                     path = movingObj.GetComponent<BallonData>().ballonCase.transform;
                         StartCoroutine(TackleEffect(obj, path, GraphManager.Instance.getCaseOffset(obj.gameObject)));
                         if (randomInt < 50)
