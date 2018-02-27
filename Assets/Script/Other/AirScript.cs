@@ -16,12 +16,12 @@ public class AirScript : MonoBehaviour {
 
   void OnEnable()
     {
-      ClickEvent.newClickEvent += OnNewClick;
+      EventManager.newClickEvent += OnNewClick;
     }
 
   void OnDisable()
     {
-      ClickEvent.newClickEvent -= OnNewClick;
+      EventManager.newClickEvent -= OnNewClick;
     }
       
   public void OnNewClick ()

@@ -55,12 +55,12 @@ public class HoverManager : NetworkBehaviour
 
 	IEnumerator LateOnEnable() {
 		yield return new WaitForEndOfFrame ();
-        HoverEvent.newHoverEvent += OnNewHover;
+        EventManager.newHoverEvent += OnNewHover;
 	}
 
     void OnDisable()
     {
-        HoverEvent.newHoverEvent -= OnNewHover;
+      EventManager.newHoverEvent -= OnNewHover;
     }
 
     // ************ //
@@ -82,7 +82,6 @@ public class HoverManager : NetworkBehaviour
 
     hoveredPersonnage = e.hoveredPersonnage;
     hoveredCase = e.hoveredCase;
-    hoveredPathfinding = e.Pathfinding;
     hoveredBallon = e.hoveredBallon;
 
       changeColorEnter();

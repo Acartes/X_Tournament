@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using System.ComponentModel.Design;
 
 public class RosterManager : NetworkBehaviour
 {
@@ -41,34 +42,36 @@ public class RosterManager : NetworkBehaviour
     {
         readySpawn = true;
     }
-
-    [ClientRpc]
+      
+  [ClientRpc]
     public void RpcSpawnPlayers()
     {
-        if (readySpawn == false)
-            return;
-        GameObject persoCreated;
-        listHeroJXToPlace.Add(new List<PersoData>());
-        listHeroJXToPlace.Add(new List<PersoData>());
+    if (isServer)
+      {
         foreach (PersoData obj in listHeroJ1)
-        {
-            persoCreated = (GameObject)Instantiate(obj.gameObject, new Vector3(999, 999, 999), Quaternion.identity);
+          {
+            GameObject persoCreated = (GameObject)Instantiate(obj.gameObject, new Vector3(999, 999, 999), Quaternion.identity);
             persoCreated.GetComponent<PersoData>().owner = Player.Red;
-            listHeroJXToPlace[0].Add(persoCreated.GetComponent<PersoData>());
             NetworkServer.Spawn(persoCreated);
-        }
-
+          }
         foreach (PersoData obj in listHeroJ2)
-        {
-            persoCreated = (GameObject)Instantiate(obj.gameObject, new Vector3(999, 999, 999), Quaternion.identity);
+          {
+            GameObject persoCreated = (GameObject)Instantiate(obj.gameObject, new Vector3(999, 999, 999), Quaternion.identity);
             persoCreated.GetComponent<PersoData>().owner = Player.Blue;
-            listHeroJXToPlace[1].Add(persoCreated.GetComponent<PersoData>());
-            NetworkServer.Spawn(persoCreated);
-        }
-
+              NetworkServer.Spawn(persoCreated);
+          }
+      }
         listHeroJ1.Clear();
         listHeroJ2.Clear();
-        listHero.AddRange(listHeroJXToPlace[0]);
-        listHero.AddRange(listHeroJXToPlace[1]);
+     //   listHero.AddRange(listHeroJXToPlace[0]);
+    //    listHero.AddRange(listHeroJXToPlace[1]);
+
     }
+      /*
+  [ClientRpc]
+  public void RpcSpawnPlayers()
+    {
+          listHeroJXToPlace.Add(new List<PersoData>());
+          listHeroJXToPlace.Add(new List<PersoData>());
+    }*/
 }

@@ -7,9 +7,7 @@ using UnityEngine.Networking;
 public class ClickEvent : NetworkBehaviour
 {
 
-	public static System.Action newClickEvent;
-
-    private void OnMouseDown()
+    void OnMouseDown()
     {
         if (RpcFunctions.Instance.localId == 0 && TurnManager.Instance.currentPlayer == Player.Blue)
             return;
@@ -17,7 +15,7 @@ public class ClickEvent : NetworkBehaviour
             return;
 
         if (HoverManager.Instance.hoveredCase != null) {
-            newClickEvent();
+            RpcFunctions.Instance.CmdClickEvent();
         }
     }
 }

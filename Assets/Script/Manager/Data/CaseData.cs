@@ -69,7 +69,6 @@ public class CaseData : NetworkBehaviour
         {
             caseColor = ColorManager.Instance.goalColor;
         }
-
         PlacementColor();
         caseElement = Element.Aucun;
         casePathfinding = PathfindingCase.Walkable;

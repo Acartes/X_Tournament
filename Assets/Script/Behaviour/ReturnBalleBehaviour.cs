@@ -25,12 +25,12 @@ public class ReturnBalleBehaviour : NetworkBehaviour {
 
     private void Init()
     {
-        ClickEvent.newClickEvent += OnNewClick;
+      EventManager.newClickEvent += OnNewClick;
     }
 
   void OnDisable()
     {
-      ClickEvent.newClickEvent -= OnNewClick;
+      EventManager.newClickEvent -= OnNewClick;
     }
 
   public void OnNewClick ()

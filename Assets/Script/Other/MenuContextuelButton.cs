@@ -26,27 +26,15 @@ public class MenuContextuelButton : MonoBehaviour {
 	}
 
 	void OnMouseDown () {
-		switch (name) {
-		case ("MenuContextuelReplacer"):
-              if (SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData> ().actualPointMovement < coutReplacement) {
-				return;
-			}
-			SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData> ().actualPointMovement--;
-            ReplacerBalleBehaviour.Instance.ReplacerBalle ();
 
-		break;
-		case ("MenuContextuelTirer"):
-            SelectionManager.Instance.selectedBallon.GetComponent<BallonData> ().StartCoroutine("Move");
-            TurnManager.Instance.StartCoroutine("EnableFinishTurn");
-		break;
-		case ("MenuContextuelNothing"):
-            TurnManager.Instance.StartCoroutine("EnableFinishTurn");
-		break;
-      case ("MenuContextuelRetourner"):
-            ReplacerBalleBehaviour.Instance.ReplacerBalle ();
-       // TurnManager.Instance.StartCoroutine("EnableFinishTurn");
-        break;
-	}
+      if (RpcFunctions.Instance.localId == 0 && TurnManager.Instance.currentPlayer == Player.Blue)
+            return;
+        if (RpcFunctions.Instance.localId == 1 && TurnManager.Instance.currentPlayer == Player.Red)
+            return;
+
+      RpcFunctions.Instance.CmdMenuContextuelClick(name);
+
+
 		if (spriteR != null)
 		spriteR.color = colorExit;
 		

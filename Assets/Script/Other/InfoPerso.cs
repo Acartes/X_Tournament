@@ -38,7 +38,7 @@ public class InfoPerso : NetworkBehaviour
     {
         while (!LoadingManager.Instance.isGameReady())
             yield return new WaitForEndOfFrame();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.01f);
 
         Init();
     }
@@ -57,6 +57,7 @@ public class InfoPerso : NetworkBehaviour
 
     void Update()
     {
+      if (!LoadingManager.Instance.isGameReady())
         ChangeUI();
     }
 

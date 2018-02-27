@@ -65,7 +65,7 @@ public class GameManager : NetworkBehaviour {
     { // Un joueur a terminé son tour
       currentPhase = e.currentPhase;
       currentPlayer = e.currentPlayer;
-
+      Debug.Log(currentPlayer.ToString() + " " + e.currentPlayer.ToString());
       GameManager.Instance.actualAction = PersoAction.isIdle;
     }
 

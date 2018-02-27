@@ -8,25 +8,26 @@ public class SetupGame : NetworkBehaviour
 
     public BallonData ballonPrefab;
     public Vector3 ballonPos;
-    public Vector3 ballonScale;
+  public Vector3 ballonScale;
 
     public override void OnStartServer()
     {
-        StartCoroutine(waitForInit());
+          StartCoroutine(waitForInit());
     }
 
     IEnumerator waitForInit()
     {
         while (!LoadingManager.Instance.isGameReady())
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(0.01f);
         Init();
     }
 
     private void Init()
     {
         GameObject ballon = Instantiate(ballonPrefab.gameObject, ballonPos, Quaternion.identity);
+    ballon.name = "Ballon";
         ballon.transform.localScale = ballonScale;
         NetworkServer.Spawn(ballon);
-        RosterManager.Instance.RpcSpawnPlayers();
+      RpcFunctions.Instance.CmdSpawnPlayers();
     }
 }

@@ -6,15 +6,9 @@ using UnityEngine.Networking;
 
 public class HoverEvent : NetworkBehaviour {
 
-	public static EventHandler<HoverArgs> newHoverEvent;
-
-	public CaseData hoveredCase;
-	public PersoData hoveredPersonnage;
-	public BallonData hoveredBallon;
-	public PathfindingCase hoveredPathfinding;
-
     public override void OnStartClient()
     {
+    GetComponent<PolygonCollider2D>().enabled = false;
         StartCoroutine(waitForInit());
     }
 
@@ -22,12 +16,15 @@ public class HoverEvent : NetworkBehaviour {
     {
         while (!LoadingManager.Instance.isGameReady())
             yield return new WaitForEndOfFrame();
+
+    yield return new WaitForSeconds(0.01f);
         Init();
     }
 
     private void Init()
     {
         this.enabled = true;
+      GetComponent<PolygonCollider2D>().enabled = true;
     }
 
     void OnMouseOver()
@@ -39,23 +36,27 @@ public class HoverEvent : NetworkBehaviour {
 
         if (!enabled || !LoadingManager.Instance.isGameReady())
             return;
-		hoveredCase = this.GetComponent<CaseData>();
-		hoveredPersonnage = GetComponent<CaseData> ().personnageData;
-		hoveredPathfinding = GetComponent<CaseData> ().casePathfinding;
-		hoveredBallon = GetComponent<CaseData> ().ballon;
 
-        newHoverEvent (this, new HoverArgs (hoveredCase, hoveredPersonnage, hoveredPathfinding, hoveredBallon));
+      string hoveredCase = "null";
+      string hoveredPersonnage = "null";
+      string hoveredBallon = "null";
+
+		hoveredCase = this.GetComponent<CaseData>().name;
+
+      if (GetComponent<CaseData> ().personnageData != null)
+		hoveredPersonnage = GetComponent<CaseData> ().personnageData.name;
+
+      if (GetComponent<CaseData> ().ballon != null)
+		hoveredBallon = GetComponent<CaseData> ().ballon.name;
+
+      RpcFunctions.Instance.CmdHoverEvent(hoveredCase, hoveredPersonnage, hoveredBallon);
+
+       
 	}
     void OnMouseExit()
     {
         if (!enabled || !LoadingManager.Instance.isGameReady())
             return;
 
-		hoveredCase = this.GetComponent<CaseData>();
-		hoveredPersonnage = GetComponent<CaseData>().personnageData;
-		hoveredPathfinding = GetComponent<CaseData>().casePathfinding;
-		hoveredBallon = GetComponent<CaseData> ().ballon;
-
-		//newHoverEvent (this, new HoverArgs (hoveredCase, hoveredPersonnage, hoveredPathfinding, hoveredBallon));
     }
 }

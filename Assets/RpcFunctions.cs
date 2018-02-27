@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
+using Prototype.NetworkLobby;
 
 public class RpcFunctions : NetworkBehaviour {
+
+
 
     public static RpcFunctions Instance;
 
@@ -34,4 +38,40 @@ public class RpcFunctions : NetworkBehaviour {
     {
         PlacementBehaviour.Instance.RpcCreatePersoPlacement(hoveredCase, offsetY, selectedPersonnage);
     }
+ /* [Command]
+  public void CmdDeplacement(float offsetY, string selectedPersonnage)
+    {
+    if (localId == 0 && isLocalPlayer)
+      {
+        MoveBehaviour.Instance.RpcDeplacement(offsetY, selectedPersonnage);
+      }
+    }*/
+
+  [Command]
+    public void CmdIsAllGameReady () {
+      LoadingManager.Instance.RpcIsAllGameReady();
+    }
+
+  [Command]
+    public void CmdSpawnPlayers () {
+      RosterManager.Instance.RpcSpawnPlayers();
+    }
+
+    [Command]
+    public void CmdHoverEvent (string hoveredCase, string hoveredPersonnage, string hoveredBallon) {
+      EventManager.Instance.RpcHoverEvent (hoveredCase, hoveredPersonnage, hoveredBallon);
+    }
+
+    [Command]
+    public void CmdClickEvent ()
+    {
+    EventManager.Instance.RpcClickEvent();
+    }
+
+    [Command]
+    public void CmdMenuContextuelClick (string buttonName)
+    {
+      EventManager.Instance.RpcMenuContextuelClick(buttonName);
+    }
+
 }

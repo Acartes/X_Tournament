@@ -31,7 +31,7 @@ public class SelectionManager : NetworkBehaviour
 
     private void Init()
     {
-        ClickEvent.newClickEvent += OnNewClick;
+      EventManager.newClickEvent += OnNewClick;
       StartCoroutine (LateOnEnable());
     }
 
@@ -44,7 +44,7 @@ public class SelectionManager : NetworkBehaviour
     {
         if (LoadingManager.Instance.isGameReady())
         {
-            ClickEvent.newClickEvent -= OnNewClick;
+          EventManager.newClickEvent -= OnNewClick;
             TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
         }
     }

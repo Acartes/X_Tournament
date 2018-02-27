@@ -32,6 +32,10 @@ public class BallonData : NetworkBehaviour
 
   [HideInInspector] public List<Transform> movePath;
 
+    void Awake () {
+      name = "Ballon";
+    }
+
     void Start()
     {
         StartCoroutine(waitForInit());

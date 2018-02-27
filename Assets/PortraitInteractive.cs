@@ -9,26 +9,26 @@ public class PortraitInteractive : MonoBehaviour {
     public void HoverPerso() // hover comme chez HoverEvent
     {
 
-        CaseData hoveredCase = newHoveredPersonnage.persoCase;
+     /*   CaseData hoveredCase = newHoveredPersonnage.persoCase;
         PersoData hoveredPersonnage = newHoveredPersonnage;
-        PathfindingCase hoveredPathfinding = newHoveredPersonnage.persoCase.casePathfinding;
+        PathfindingCase hoveredPathfinding = newHoveredPersonnage.persoCase.casePathfinding;*/
 
-        HoverEvent.newHoverEvent(this, new HoverArgs(hoveredCase, hoveredPersonnage, hoveredPathfinding, null));
+     // RpcFunctions.Instance.CmdHoverEvent(this, new HoverArgs(hoveredCase, hoveredPersonnage, null));
     }
 
     public void UnHoverPerso() // exit comme chez HoverEvent
     {
 
-        PathfindingCase hoveredPathfinding = newHoveredPersonnage.GetComponent<PersoData>().persoCase.GetComponent<CaseData>().casePathfinding;
+      //  PathfindingCase hoveredPathfinding = newHoveredPersonnage.GetComponent<PersoData>().persoCase.GetComponent<CaseData>().casePathfinding;
 
-        HoverEvent.newHoverEvent(this, new HoverArgs(null, null, hoveredPathfinding, null));
+    //  RpcFunctions.Instance.CmdHoverEvent(null, null, null);
     }
 
     public void ClickPerso()
     {
-        ClickEvent.newClickEvent();
+      //  RpcFunctions.Instance.CmdClickEvent();
 
-        StartCoroutine(waitForHover()); // très important sinon le code visuel s'execute après le hover
+     //   StartCoroutine(waitForHover()); // très important sinon le code visuel s'execute après le hover
     }
 
     IEnumerator waitForHover() // très important sinon le code visuel s'execute après le hover

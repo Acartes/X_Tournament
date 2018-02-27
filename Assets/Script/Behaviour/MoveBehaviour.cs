@@ -42,12 +42,12 @@ public class MoveBehaviour : NetworkBehaviour
 
     private void Init()
     {
-        ClickEvent.newClickEvent += OnNewClick;
+      EventManager.newClickEvent += OnNewClick;
     }
 
     void OnDisable()
     {
-        ClickEvent.newClickEvent -= OnNewClick;
+      EventManager.newClickEvent -= OnNewClick;
     }
 
     void OnNewClick()
@@ -65,6 +65,7 @@ public class MoveBehaviour : NetworkBehaviour
         && actualAction == PersoAction.isSelected
         && pathes.Contains(hoveredCase.transform))
         {
+          Debug.Log("SendDeplacement");
           SendDeplacement();
         }
   }
@@ -141,11 +142,11 @@ public class MoveBehaviour : NetworkBehaviour
         {
           path.GetComponent<CaseData>().ChangeColor(Statut.isMoving);
         }
-
-        StartCoroutine(Deplacement(ColorManager.Instance.caseColor, GraphManager.Instance.getCaseOffset(SelectionManager.Instance.selectedPersonnage.gameObject), SelectionManager.Instance.selectedPersonnage));
+      Debug.Log("Deplacement");
+      StartCoroutine(Deplacement(GraphManager.Instance.getCaseOffset(SelectionManager.Instance.selectedPersonnage.gameObject), SelectionManager.Instance.selectedPersonnage));
     }
 
-    IEnumerator Deplacement(Color caseColor, float offsetY, PersoData selectedPersonnage)
+   public IEnumerator Deplacement(float offsetY, PersoData selectedPersonnage)
     { // On déplace le personnage de case en case jusqu'au click du joueur propriétaire, et entre temps on check s'il est taclé ou non
         TurnManager.Instance.DisableFinishTurn();
 

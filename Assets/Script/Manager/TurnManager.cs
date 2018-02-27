@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System;
 using UnityEngine.UI;
+using System.Net;
 
 public class TurnManager : NetworkBehaviour
 {
@@ -30,32 +31,42 @@ public class TurnManager : NetworkBehaviour
 
     IEnumerator waitForInit()
     {
-        while(!LoadingManager.Instance.isGameReady())
+      while(!LoadingManager.Instance.isGameReady())
             yield return new WaitForEndOfFrame();
+
         StartCoroutine(InitGame());
     }
 
     IEnumerator InitGame()
     {
-        yield return new WaitForSeconds(0.3f);
-        if(isServer)
-            RpcFunctions.Instance.CmdFirstTurn();
+        yield return new WaitForSeconds(0.01f);
+        RpcFunctions.Instance.CmdFirstTurn();
         finishTurnButton = GameObject.Find("finishTurn");
     }
-
-    public void CmdChangeTurn()
+     
+    public void ChangeTurn()
     {
-        if (!canChangeTurn)
+       if (!canChangeTurn)
         {
             return;
         }
+
         RpcFunctions.Instance.CmdChangeTurn();
     }
 
-    [ClientRpc]
-    public void RpcFirstTurn()
+  [ClientRpc]
+  public void RpcFirstTurn()
     {
-        changeTurnEvent(this, new PlayerArgs(currentPlayer, currentPhase));
+      StartCoroutine(waitForEvent());
+    }
+
+  IEnumerator waitForEvent()
+    {
+      while(!LoadingManager.Instance.isGameReady())
+            yield return new WaitForEndOfFrame();
+
+      Debug.Log("PASS TURN");
+      changeTurnEvent(this, new PlayerArgs(currentPlayer, currentPhase));
     }
 
     [ClientRpc]
@@ -74,11 +85,11 @@ public class TurnManager : NetworkBehaviour
                 break;
         }
         TurnNumber++;
-        SendValue(currentPlayer, currentPhase);
 
         if (TurnNumber == 2)
             ChangePhase(1);
 
+      changeTurnEvent(this, new PlayerArgs(currentPlayer, currentPhase));
     }
 
     public void ChangePhase(int number)
@@ -91,15 +102,6 @@ public class TurnManager : NetworkBehaviour
             case 1:
                 currentPhase = Phase.Deplacement;
                 break;
-        }
-        SendValue(currentPlayer, currentPhase);
-    }
-
-    void SendValue(Player player, Phase phase)
-    {
-        if (changeTurnEvent != null)
-        {
-            changeTurnEvent(this, new PlayerArgs(currentPlayer, currentPhase));
         }
     }
 

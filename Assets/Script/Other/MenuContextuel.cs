@@ -36,11 +36,23 @@ public class MenuContextuel : NetworkBehaviour {
           gameInit = false;
         }
         TurnManager.Instance.changeTurnEvent += OnChangeTurn;
-        Desactive();
+      //  Desactive();
 	}
 
+    void OnEnable()
+  {
+
+    if (LoadingManager.Instance.isGameReady())
+      {
+        ballon = GameObject.Find("Ballon");
+          Debug.Log(ballon.transform.position);
+        GetComponent<RectTransform>().offsetMin = ballon.transform.position;
+          GetComponent<RectTransform>().offsetMax = ballon.transform.position;
+      }
+    }
+
 	void OnDisable () {
-        Active();
+      //  Active();
 	}
 
   void OnChangeTurn(object sender, PlayerArgs e)
@@ -54,18 +66,16 @@ public class MenuContextuel : NetworkBehaviour {
       }
   } 
 
-	public void Active () {
+/*	public void Active () {
 		foreach (GameObject obj in GameObject.FindGameObjectsWithTag("case")) {
-			obj.GetComponent<PolygonCollider2D> ().enabled = false;
+		//	obj.GetComponent<PolygonCollider2D> ().enabled = false;
 		}
 		//Pathfinding.Instance.
-	}
+	}*/
 
-	public void Desactive () {
+/*	public void Desactive () {
 		foreach (GameObject obj in GameObject.FindGameObjectsWithTag("case")) {
 			obj.GetComponent<PolygonCollider2D> ().enabled = true;
 		}
-	}
-
-    //public 
+	}*/
 }

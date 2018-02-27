@@ -40,7 +40,7 @@ public class PlacementBehaviour : NetworkBehaviour
 
     private void Init()
     {
-        ClickEvent.newClickEvent += OnNewClick;
+      EventManager.newClickEvent += OnNewClick;
         StartCoroutine(LateOnEnable());
     }
 
@@ -54,7 +54,7 @@ public class PlacementBehaviour : NetworkBehaviour
     {
         if (LoadingManager.Instance.isGameReady())
         {
-            ClickEvent.newClickEvent -= OnNewClick;
+          EventManager.newClickEvent -= OnNewClick;
             TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
         }
     }
@@ -113,8 +113,11 @@ public class PlacementBehaviour : NetworkBehaviour
             if (RosterManager.Instance.listHeroJXToPlace[playerIndex][persoToPlaceNumber] != SelectionManager.Instance.selectedPersonnage)
             {
                 SelectionManager.Instance.selectedPersonnage = RosterManager.Instance.listHeroJXToPlace[playerIndex][persoToPlaceNumber];
+
             }
+          
                 RosterManager.Instance.listHeroJXToPlace[playerIndex].RemoveAt(persoToPlaceNumber);
+
                 CreatePersoPlacement(HoverManager.Instance.hoveredCase, GraphManager.Instance.getCaseOffset(SelectionManager.Instance.selectedPersonnage.gameObject), SelectionManager.Instance.selectedPersonnage);
         }
     }
@@ -127,11 +130,12 @@ public class PlacementBehaviour : NetworkBehaviour
     [ClientRpc]
     public void RpcCreatePersoPlacement(string stringHoveredCase, float offsetY, string stringSelectedPersonnage)
     { //
-
+      
         CaseData hoveredCase = GameObject.Find(stringHoveredCase).GetComponent<CaseData>();
        PersoData selectedPersonnage = GameObject.Find(stringSelectedPersonnage).GetComponent<PersoData>();
         if (SelectionManager.Instance.selectedPersonnage != null)
         {
+          
             selectedPersonnage.transform.position = hoveredCase.transform.position + new Vector3(0, offsetY, 0);
             selectedPersonnage.owner = TurnManager.Instance.currentPlayer;
             selectedPersonnage.ChangeColor();
@@ -160,17 +164,23 @@ public class PlacementBehaviour : NetworkBehaviour
             persoToPlaceNumber = 0;
             switch (currentPlayer)
             {
-                case Player.Red:
-                    if (RosterManager.Instance.listHeroJXToPlace[0].Count != 0)
-                    {
-                        SelectionManager.Instance.selectedPersonnage = RosterManager.Instance.listHeroJXToPlace[0][persoToPlaceNumber];
-                    }
+          case Player.Red:
+            if (RosterManager.Instance.listHeroJXToPlace.Count > 0)
+              {
+                if (RosterManager.Instance.listHeroJXToPlace[0].Count != 0)
+                  {
+                    SelectionManager.Instance.selectedPersonnage = RosterManager.Instance.listHeroJXToPlace[0][persoToPlaceNumber];
+                  }
+              }
                     break;
-                case Player.Blue:
-                    if (RosterManager.Instance.listHeroJXToPlace[1].Count != 0)
-                    {
-                        SelectionManager.Instance.selectedPersonnage = RosterManager.Instance.listHeroJXToPlace[1][persoToPlaceNumber];
-                    }
+          case Player.Blue:
+            if (RosterManager.Instance.listHeroJXToPlace.Count > 1)
+              {
+                if (RosterManager.Instance.listHeroJXToPlace[1].Count != 0)
+                  {
+                    SelectionManager.Instance.selectedPersonnage = RosterManager.Instance.listHeroJXToPlace[1][persoToPlaceNumber];
+                  }
+              }
                     break;
             }
         }

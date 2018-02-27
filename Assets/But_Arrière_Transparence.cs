@@ -17,6 +17,7 @@ public class But_Arrière_Transparence : NetworkBehaviour {
 
     IEnumerator waitForInit()
     {
+     
         while (!LoadingManager.Instance.isGameReady())
             yield return new WaitForEndOfFrame();
         Init();
@@ -30,6 +31,10 @@ public class But_Arrière_Transparence : NetworkBehaviour {
 
     private void Update()
     {
+      if (!LoadingManager.Instance.isGameReady())
+      {
+        return;
+      }
         if(compteur > 0)
         {
             img.color = transparencyAlpha;

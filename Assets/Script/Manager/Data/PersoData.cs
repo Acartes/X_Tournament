@@ -32,14 +32,16 @@ public class PersoData : NetworkBehaviour {
 
   public bool isTackled = false;
 
-    // Use this for initialization
-    public override void OnStartClient() { 
-          isTackled = false;
-        ChangeColor ();
-        actualPointMovement = pointMovement;
-        SpriteR = GetComponent<SpriteRenderer>();
-        StartCoroutine(waitForInit());
+    void Awake () {
+      
+    SpriteR = GetComponent<SpriteRenderer>();
+    gameObject.name = SpriteR.sprite.name;
     }
+
+    // Use this for initialization
+    void Start() { 
+      StartCoroutine(waitForInit());
+  }
 
     IEnumerator waitForInit()
     {
@@ -48,7 +50,36 @@ public class PersoData : NetworkBehaviour {
         {
             yield return null;
         }
-        TurnManager.Instance.changeTurnEvent += resetPointMovement;
+      Init();
+    }
+
+  public void Init()
+    {
+      gameObject.name = SpriteR.sprite.name;
+      isTackled = false;
+      ChangeColor();
+      actualPointMovement = pointMovement;
+
+      if (owner == Player.Red)
+        {
+          if (RosterManager.Instance.listHeroJXToPlace.Count < 1)
+          {
+              
+              RosterManager.Instance.listHeroJXToPlace.Add(new List<PersoData>());
+          }
+          RosterManager.Instance.listHeroJXToPlace[0].Add(this);
+        }
+      if (owner == Player.Blue)
+        {
+          if (RosterManager.Instance.listHeroJXToPlace.Count < 2)
+            {
+              RosterManager.Instance.listHeroJXToPlace.Add(new List<PersoData>());
+            }
+          RosterManager.Instance.listHeroJXToPlace[1].Add(this);
+        }
+      
+    RosterManager.Instance.listHero.Add(this);
+      TurnManager.Instance.changeTurnEvent += resetPointMovement;
     }
 
     // ************ //
@@ -74,28 +105,28 @@ public class PersoData : NetworkBehaviour {
 	}
 
     public void ChangeRotation(Direction direction)
-    {
-        persoDirection = direction;
-        switch (persoDirection)
-        {
-            case Direction.SudOuest:
-                transform.localRotation = Quaternion.Euler(0, 180, 0);
-                SpriteR.sprite = faceSprite;
-                break;
-            case Direction.NordOuest:
-                transform.localRotation = Quaternion.Euler(0, 180, 0);
-                SpriteR.sprite = backSprite;
-                break;
-            case Direction.SudEst:
-                transform.localRotation = Quaternion.Euler(0, 0, 0);
-                SpriteR.sprite = faceSprite;
-                break;
-            case Direction.NordEst:
-                transform.localRotation = Quaternion.Euler(0, 0, 0);
-                SpriteR.sprite = backSprite;
-                break;
-        }
-    }
+  {
+    persoDirection = direction;
+    switch (persoDirection)
+      {
+      case Direction.SudOuest:
+        transform.localRotation = Quaternion.Euler(0, 180, 0);
+        SpriteR.sprite = faceSprite;
+        break;
+      case Direction.NordOuest:
+        transform.localRotation = Quaternion.Euler(0, 180, 0);
+        SpriteR.sprite = backSprite;
+        break;
+      case Direction.SudEst:
+        transform.localRotation = Quaternion.Euler(0, 0, 0);
+        SpriteR.sprite = faceSprite;
+        break;
+      case Direction.NordEst:
+        transform.localRotation = Quaternion.Euler(0, 0, 0);
+        SpriteR.sprite = backSprite;
+        break;
+      }
+  }
 
   // ************ //
   // ** Actions ** //
