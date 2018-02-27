@@ -49,20 +49,26 @@ public static EventManager Instance;
         case ("MenuContextuelReplacer"):
               if (SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData> ().actualPointMovement < 1) {
                 return;
+
+                MenuContextuel.Instance.gameObject.SetActive (false);
             }
             SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData> ().actualPointMovement--;
             ReplacerBalleBehaviour.Instance.ReplacerBalle ();
+            MenuContextuel.Instance.gameObject.SetActive (false);
 
         break;
         case ("MenuContextuelTirer"):
             SelectionManager.Instance.selectedBallon.GetComponent<BallonData> ().StartCoroutine("Move");
             TurnManager.Instance.StartCoroutine("EnableFinishTurn");
+            MenuContextuel.Instance.gameObject.SetActive (false);
         break;
         case ("MenuContextuelNothing"):
             TurnManager.Instance.StartCoroutine("EnableFinishTurn");
+            MenuContextuel.Instance.gameObject.SetActive (false);
         break;
       case ("MenuContextuelRetourner"):
             ReplacerBalleBehaviour.Instance.ReplacerBalle ();
+            MenuContextuel.Instance.gameObject.SetActive (false);
        // TurnManager.Instance.StartCoroutine("EnableFinishTurn");
         break;
     }

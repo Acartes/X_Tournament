@@ -37,7 +37,6 @@ public class MenuContextuelButton : MonoBehaviour {
 
 		if (spriteR != null)
 		spriteR.color = colorExit;
-		
-		MenuContextuel.Instance.gameObject.SetActive (false);
+
 	}
 }
