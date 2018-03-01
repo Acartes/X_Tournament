@@ -6,9 +6,13 @@ using UnityEngine.Networking;
 
 public class HoverEvent : NetworkBehaviour {
 
+void Awake ()
+{
+      GetComponent<PolygonCollider2D>().enabled = false;
+}
+
     public override void OnStartClient()
     {
-    GetComponent<PolygonCollider2D>().enabled = false;
         StartCoroutine(waitForInit());
     }
 

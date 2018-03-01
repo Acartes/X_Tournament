@@ -75,6 +75,8 @@ public class TurnManager : NetworkBehaviour
         Debug.Log("rpc");
         Debug.Log("Sending command on all clients");
 
+        TackleBehaviour.Instance.SetupRandomList();
+
         switch (currentPlayer)
         {
             case Player.Red:

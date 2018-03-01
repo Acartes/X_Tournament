@@ -18,8 +18,7 @@ public class TackleBehaviour : NetworkBehaviour
 
   [HideInInspector] public static TackleBehaviour Instance;
 
-  public List<int> randomIntList;
-  [SyncVar(hook = "AddRandomList")] public int newRandomInt;
+  public SyncListInt randomIntList;
   int randomIntOrder = 0;
 
     // *************** //
@@ -64,7 +63,7 @@ public class TackleBehaviour : NetworkBehaviour
         // ** Checkers ** //
         // *************** //
 
-        void SetupRandomList () 
+        public void SetupRandomList () 
         {
       randomIntList.Clear();
     randomIntOrder = 0;
@@ -73,15 +72,11 @@ public class TackleBehaviour : NetworkBehaviour
 
         for(int i = 0; i < 100; i++)
         {
-          newRandomInt = UnityEngine.Random.Range(0, 100);
+        randomIntList.Add(UnityEngine.Random.Range(0, 100));
         }
      }
 
-        private void AddRandomList (int newRandomInt)
-         {
-         Debug.Log("Add a new number to Random List");
-    randomIntList.Add(newRandomInt);
-         }
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   void OnChangeTurn(object sender, PlayerArgs e)
     { // Lorsqu'un joueur termine son tour
