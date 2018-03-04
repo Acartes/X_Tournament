@@ -209,7 +209,7 @@ public class CaseData : NetworkBehaviour
           && ownerPlacementZone == Player.Blue) spriteR.color = ColorManager.Instance.placementZoneBlue;
 
         if ((Statut.isGoal & statut) == Statut.isGoal) spriteR.color = ColorManager.Instance.goalColor;
-        if ((Statut.canBeTackled & statut) == Statut.canBeTackled) spriteR.color = ColorManager.Instance.actionPreColor;
+        if ((Statut.canBeTackled & statut) == Statut.canBeTackled) spriteR.color = ColorManager.Instance.enemyColor;
 
         if ((Statut.isHovered & statut) == Statut.isHovered)
         {
@@ -219,5 +219,12 @@ public class CaseData : NetworkBehaviour
             if ((Statut.canShot & statut) == Statut.canShot) spriteR.color = ColorManager.Instance.actionColor;
             if ((Statut.isAllyPerso & statut) == Statut.isAllyPerso) spriteR.color = ColorManager.Instance.actionColor;
         }
+      ChangeFeedback(newStatut, oldStatut);
+    }
+
+  void ChangeFeedback(Statut newStatut = Statut.None, Statut oldStatut = Statut.None)
+    {
+      if ((Statut.canBeTackled & statut) == Statut.canBeTackled) FeedbackManager.Instance.PredictInit(50, gameObject);
+      if (oldStatut == (Statut.canBeTackled)) FeedbackManager.Instance.PredictEnd(gameObject);
     }
 }

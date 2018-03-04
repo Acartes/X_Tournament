@@ -15,11 +15,13 @@ public class MoveBehaviour : NetworkBehaviour
     public float travelTime;
 
     [Header("  Chemin du pathfinding")]
-    [ReadOnly]
-    public List<GameObject> GoPathes; // déplacement
+  [ReadOnly] public List<GameObject> GoPathes; // déplacement
     [ReadOnly] public List<Transform> pathes; // déplacement
+  [ReadOnly] public List<Transform> pathesLast;
 
     [HideInInspector] public static MoveBehaviour Instance;
+
+  
 
     // *************** //
     // ** Initialisation ** //
@@ -79,13 +81,20 @@ public class MoveBehaviour : NetworkBehaviour
         if (GameManager.Instance.actualAction == PersoAction.isMoving)
             return;
 
-        HidePath();
+             pathesLast = pathes;
+      HidePath();
+
         this.pathes.Clear();
 
         foreach (GameObject path in GoPathes)
         {
             this.pathes.Add(path.transform);
         }
+
+   /*   if (pathesLast.Count == pathes.Count)
+     {
+return;
+         }*/
 
         // Si le personnage n'a pas assez de PM, alors la route n'est pas créé
         if (this.pathes.Count > SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData>().actualPointMovement + 1)
@@ -96,15 +105,18 @@ public class MoveBehaviour : NetworkBehaviour
         {
             ShowPath();
         }
+
+
+
     }
 
     public void ShowPath()
     { // Montre la route de déplacement
 
+
     Color moveColor = ColorManager.Instance.moveColor;
         Player currentPlayer = GameManager.Instance.currentPlayer;
         Color enemyColor = ColorManager.Instance.enemyColor;
-
         foreach (Transform path in this.pathes)
         {
           path.GetComponent<CaseData>().ChangeColor(Statut.canMove);
@@ -114,7 +126,9 @@ public class MoveBehaviour : NetworkBehaviour
                   && persoCompared.persoCase != null
                 && Fonction.Instance.CheckAdjacent(path.gameObject, persoCompared.gameObject) == true)
                 {
+                  
                   path.GetComponent<CaseData>().ChangeColor(Statut.canBeTackled);
+                 //   FeedbackManager.Instance.PredictInit(50, path.gameObject);
                 }
             }
         }
@@ -122,11 +136,14 @@ public class MoveBehaviour : NetworkBehaviour
 
     public void HidePath()
     { // Cache la route de déplacement
+
         foreach (Transform path in this.pathes)
         {
+          Debug.Log("hidePath" + " " + path.name);
           path.GetComponent<CaseData>().ChangeColor(Statut.None, Statut.canMove);
           path.GetComponent<CaseData>().ChangeColor(Statut.None, Statut.canBeTackled);
         }
+     // FeedbackManager.Instance.PredictEnd();
     }
 
     // *************** //
@@ -181,7 +198,7 @@ public class MoveBehaviour : NetworkBehaviour
         SelectionManager.Instance.selectedCase = pathes[pathes.Count - 1].gameObject.GetComponent<CaseData>();
       SelectionManager.Instance.selectedCase.GetComponent<CaseData>().ChangeColor(Statut.None, Statut.isMoving);
         GameManager.Instance.actualAction = PersoAction.isSelected;
-
+      HidePath();
         if (!selectedPersonnage.isTackled)
         {
             SelectionManager.Instance.selectedCase.GetComponent<CaseData>().casePathfinding = PathfindingCase.NonWalkable;
@@ -194,9 +211,10 @@ public class MoveBehaviour : NetworkBehaviour
             SelectionManager.Instance.selectedPersonnage.actualPointMovement = 0;
             pathes.Clear();
         }
-
+      
         TurnManager.Instance.StartCoroutine("EnableFinishTurn");
       CaseManager.Instance.StartCoroutine ("ShowActions");
         yield return new WaitForEndOfFrame();
+     
     }
 }

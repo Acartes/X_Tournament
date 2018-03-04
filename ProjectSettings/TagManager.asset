@@ -16,6 +16,7 @@ TagManager:
   - Personnage
   - Ballon
   - case
+  - textFeedback
   layers:
   - Default
   - TransparentFX

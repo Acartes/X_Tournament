@@ -23,16 +23,18 @@ public static EventManager Instance;
     [ClientRpc]
   public void RpcHoverEvent (string hoveredCaseString, string hoveredPersonnageString, string hoveredBallonString) 
     {
+      CaseData hoveredCase = null;
       PersoData hoveredPersonnage = null;
   BallonData hoveredBallon = null;
 
-    CaseData hoveredCase = GameObject.Find(hoveredCaseString).GetComponent<CaseData>();
+    hoveredCase = GameObject.Find(hoveredCaseString).GetComponent<CaseData>();
       if (hoveredPersonnageString != "null")
       hoveredPersonnage = GameObject.Find(hoveredPersonnageString).GetComponent<PersoData>();
 
       if (hoveredBallonString != "null")
       hoveredBallon = GameObject.Find(hoveredBallonString).GetComponent<BallonData>();
 
+      if (hoveredCase != null)
       newHoverEvent (this, new HoverArgs (hoveredCase, hoveredPersonnage, hoveredBallon));
     }
 

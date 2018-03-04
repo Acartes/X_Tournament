@@ -104,10 +104,12 @@ public class TackleBehaviour : NetworkBehaviour
                     Debug.Log(obj.owner + " " + currentPlayer);
                     if (obj.owner != currentPlayer)
                       {
+                      int maxInt = 50;
                         path = movingObj.GetComponent<BallonData>().ballonCase.transform;
                         StartCoroutine(TackleEffect(obj, movingObj.transform, GraphManager.Instance.getCaseOffset(obj.gameObject)));
-                        if (randomInt < 50)
+                        if (randomInt < maxInt)
                           {
+                          FeedbackManager.Instance.ShowInit(randomInt, maxInt, path.gameObject);
                             Debug.Log("(Si inférieur à 51, il y a interception) " + randomInt + "/" + "100" + ": Interception SUCCESS");
                             GameManager.Instance.actualAction = PersoAction.isWaiting;
 
@@ -121,23 +123,28 @@ public class TackleBehaviour : NetworkBehaviour
                             StartCoroutine(TackleEffect(obj, path, GraphManager.Instance.getCaseOffset(obj.gameObject)));
                         if (movingObj.GetComponent<PersoData>().weightType == obj.weightType)
                           {
-                            if (randomInt < 50)
+                                int maxInt = 50;
+                                if (randomInt < maxInt)
                               {
+                                    FeedbackManager.Instance.ShowInit(randomInt, maxInt, path.gameObject);
                                 Debug.Log("(Même poids) (Si inférieur à 51 il y a tackle) " + randomInt + "/" + "100" + ": Tackle SUCCESS");
                                 movingObj.GetComponent<PersoData>().isTackled = true;
                               } else
                               {
+                                    FeedbackManager.Instance.ShowInit(randomInt, maxInt, path.gameObject);
                                 Debug.Log("(Même poids) (Si inférieur à 51 il y a tackle) " + randomInt + "/" + "100" + ": Tackle FAILED");
                               }
                           } else
                           {
-
-                            if (randomInt < 25)
+                                int maxInt = 25;
+                                if (randomInt < maxInt)
                               {
+                                    FeedbackManager.Instance.ShowInit(randomInt, maxInt, path.gameObject);
                                 Debug.Log("(Poids différents) (Si inférieur à 26 il y a tackle) " + randomInt + "/" + "100" + ": Tackle SUCCESS");
                                 movingObj.GetComponent<PersoData>().isTackled = true;
                               } else
                               {
+                                    FeedbackManager.Instance.ShowInit(randomInt, maxInt, path.gameObject);
                                 Debug.Log("(Poids différents) (Si inférieur à 26 il y a tackle) " + randomInt + "/" + "100" + ": Tackle FAILED");
                               }
                           }

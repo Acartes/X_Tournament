@@ -111,7 +111,7 @@ public class HoverManager : NetworkBehaviour
           case (Phase.Deplacement):
             if (SelectionManager.Instance.selectedPersonnage != null)
               {
-                MoveBehaviour.Instance.HidePath();
+   
             if (hoveredPersonnage != null
                     && hoveredPersonnage.GetComponent<PersoData>().owner != currentPlayer
                     && Fonction.Instance.CheckAdjacent(selectedPersonnage.gameObject, hoveredPersonnage.gameObject) == true)
