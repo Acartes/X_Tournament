@@ -58,7 +58,7 @@ public class MenuContextuel : NetworkBehaviour {
   {
       foreach (GameObject obj in GameObject.FindGameObjectsWithTag("case"))
           {
-        //    obj.GetComponent<PolygonCollider2D>().enabled = true;
+            obj.GetComponent<PolygonCollider2D>().enabled = true;
           }
 	}
 

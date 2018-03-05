@@ -63,7 +63,7 @@ public class InfoPerso : NetworkBehaviour
 
     void ChangeUI()
     {
-        if (SelectionManager.Instance.selectedPersonnage != null)
+      /*  if (SelectionManager.Instance.selectedPersonnage != null)
         {
             characterList.Clear();
 
@@ -104,7 +104,7 @@ public class InfoPerso : NetworkBehaviour
         {
             //  GetComponent<Image>().color = noneOwnerColor;
           IsVisible(false);
-        }
+        }*/
     }
 
     void IsVisible (bool isVisible) 
