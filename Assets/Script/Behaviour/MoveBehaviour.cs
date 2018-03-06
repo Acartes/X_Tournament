@@ -199,18 +199,6 @@ return;
       SelectionManager.Instance.selectedCase.GetComponent<CaseData>().ChangeColor(Statut.None, Statut.isMoving);
         GameManager.Instance.actualAction = PersoAction.isSelected;
       HidePath();
-        if (!selectedPersonnage.isTackled)
-        {
-            SelectionManager.Instance.selectedCase.GetComponent<CaseData>().casePathfinding = PathfindingCase.NonWalkable;
-            SelectionManager.Instance.selectedPersonnage.actualPointMovement -= pathes.Count - 1;
-            pathes.Clear();
-        }
-        else
-        {
-            selectedPersonnage.isTackled = false;
-            SelectionManager.Instance.selectedPersonnage.actualPointMovement = 0;
-            pathes.Clear();
-        }
       
         TurnManager.Instance.StartCoroutine("EnableFinishTurn");
       CaseManager.Instance.StartCoroutine ("ShowActions");

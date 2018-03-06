@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38074008, b: 0.35872707, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -55348,6 +55348,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114974511209771128, guid: e55d65a770a862d4a859d99372d293af,
+        type: 2}
+      propertyPath: ballonTackleLourd.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114974511209771128, guid: e55d65a770a862d4a859d99372d293af,
+        type: 2}
+      propertyPath: ballonTackleLeger.Array.size
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4165623702319508, guid: e55d65a770a862d4a859d99372d293af, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -55389,6 +55399,71 @@ Prefab:
         type: 2}
       propertyPath: tackleAnimTime
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 114974511209771128, guid: e55d65a770a862d4a859d99372d293af,
+        type: 2}
+      propertyPath: ballonTackleLourd.Array.data[0]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114974511209771128, guid: e55d65a770a862d4a859d99372d293af,
+        type: 2}
+      propertyPath: ballonTackleLourd.Array.data[1]
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114974511209771128, guid: e55d65a770a862d4a859d99372d293af,
+        type: 2}
+      propertyPath: ballonTackleLourd.Array.data[2]
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 114974511209771128, guid: e55d65a770a862d4a859d99372d293af,
+        type: 2}
+      propertyPath: ballonTackleLourd.Array.data[3]
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 114974511209771128, guid: e55d65a770a862d4a859d99372d293af,
+        type: 2}
+      propertyPath: ballonTackleLourd.Array.data[4]
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 114974511209771128, guid: e55d65a770a862d4a859d99372d293af,
+        type: 2}
+      propertyPath: ballonTackleLourd.Array.data[5]
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 114974511209771128, guid: e55d65a770a862d4a859d99372d293af,
+        type: 2}
+      propertyPath: ballonTackleLeger.Array.data[0]
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114974511209771128, guid: e55d65a770a862d4a859d99372d293af,
+        type: 2}
+      propertyPath: ballonTackleLeger.Array.data[1]
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 114974511209771128, guid: e55d65a770a862d4a859d99372d293af,
+        type: 2}
+      propertyPath: ballonTackleLeger.Array.data[2]
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 114974511209771128, guid: e55d65a770a862d4a859d99372d293af,
+        type: 2}
+      propertyPath: ballonTackleLeger.Array.data[3]
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 114974511209771128, guid: e55d65a770a862d4a859d99372d293af,
+        type: 2}
+      propertyPath: ballonTackleLeger.Array.data[4]
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 114974511209771128, guid: e55d65a770a862d4a859d99372d293af,
+        type: 2}
+      propertyPath: ballonTackleLeger.Array.data[5]
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 114974511209771128, guid: e55d65a770a862d4a859d99372d293af,
+        type: 2}
+      propertyPath: ballonTackleLeger.Array.data[6]
+      value: 35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e55d65a770a862d4a859d99372d293af, type: 2}

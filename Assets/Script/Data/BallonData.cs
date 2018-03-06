@@ -27,8 +27,9 @@ public class BallonData : NetworkBehaviour
     public float xCoord;
     public float yCoord;
     public bool canRebond;
+    public int casesCrossed = 0; //useful for interception rules
 
-  Animator animator;
+    Animator animator;
 
   [HideInInspector] public List<Transform> movePath;
 
@@ -109,7 +110,7 @@ public class BallonData : NetworkBehaviour
         }
         for (int i = 0; i < ballStrenght; i++)
         {
-          
+            casesCrossed += 1;
           if ((BallonStatut.isIntercepted & statut) == BallonStatut.isIntercepted)
           {
               ChangeStatut(BallonStatut.None, BallonStatut.isIntercepted);
@@ -176,6 +177,7 @@ public class BallonData : NetworkBehaviour
             }
           TackleBehaviour.Instance.CheckTackle(this.gameObject, selectedPersonnage);
         }
+        casesCrossed = 0;
         endMove:
         isMoving = false;
         GameManager.Instance.actualAction = PersoAction.isSelected;
