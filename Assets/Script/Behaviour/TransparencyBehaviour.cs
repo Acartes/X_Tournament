@@ -32,11 +32,15 @@ public class TransparencyBehaviour : NetworkBehaviour
     CaseData upperCase = null;
     CaseData lowerCase = null;
 
-      if (go.xCoord - 1 > -1 && go.yCoord + 1 < GrilleManager.Instance.largeur)
+ /*     if (go.xCoord - 1 > -1 && go.yCoord + 1 < GrilleManager.Instance.largeur)
       upperCase = GameObject.Find((go.xCoord - 1) + " " + (go.yCoord + 1)).GetComponent<CaseData>();
 
       if (go.xCoord + 1 < GrilleManager.Instance.hauteur && go.yCoord - 1 > -1)
-        lowerCase = GameObject.Find(go.xCoord + 1 + " " + (go.yCoord - 1)).GetComponent<CaseData>();
+        lowerCase = GameObject.Find(go.xCoord + 1 + " " + (go.yCoord - 1)).GetComponent<CaseData>();*/
+
+      if (GameObject.Find((go.xCoord - 1) + " " + (go.yCoord + 1)) != null) upperCase = GameObject.Find((go.xCoord - 1) + " " + (go.yCoord + 1)).GetComponent<CaseData>();
+      if (GameObject.Find((go.xCoord + 1) + " " + (go.yCoord - 1)) != null) lowerCase = GameObject.Find(go.xCoord + 1 + " " + (go.yCoord - 1)).GetComponent<CaseData>();
+        
 
       if (upperCase != null && (upperCase.GetComponent<CaseData>().personnageData != null || upperCase.GetComponent<CaseData>().ballon != null))
         {
