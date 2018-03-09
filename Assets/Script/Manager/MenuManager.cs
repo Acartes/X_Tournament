@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class MenuManager : NetworkBehaviour {
+public class MenuManager : NetworkBehaviour
+{
 
-  // *************** //
-  // ** Variables ** //
-  // *************** //
+    // *************** //
+    // ** Variables ** //
+    // *************** //
 
 
-  [Tooltip("J'utilise parfois cette variable pour être sûr que le ballon soit bien centré où je veux sans bouger son transform")]
-  [ReadOnly] public Vector3 offsetBallon;
-  [Tooltip("S'il est coché, c'est qu'un tir de ballon est en cours")]
-  [ReadOnly] public bool isShoting;
-  [HideInInspector] public GameObject nextPosition;
-  [HideInInspector] public bool canBounce;
+    [Tooltip("J'utilise parfois cette variable pour être sûr que le ballon soit bien centré où je veux sans bouger son transform")]
+    [ReadOnly]
+    public Vector3 offsetBallon;
+    [Tooltip("S'il est coché, c'est qu'un tir de ballon est en cours")]
+    [ReadOnly]
+    public bool isShoting;
+    [HideInInspector] public GameObject nextPosition;
+    [HideInInspector] public bool canBounce;
 
-  public static MenuManager Instance;
+    public static MenuManager Instance;
 
     public override void OnStartClient()
     {
@@ -36,50 +39,51 @@ public class MenuManager : NetworkBehaviour {
 
     void Init()
     {
-      EventManager.newClickEvent += OnNewClick;
+        EventManager.newClickEvent += OnNewClick;
     }
 
-  void OnDisable()
+    void OnDisable()
     {
-      EventManager.newClickEvent -= OnNewClick;
+        EventManager.newClickEvent -= OnNewClick;
     }
 
-  public void OnNewClick ()
+    public void OnNewClick()
     { // Lors d'un click sur une case
-    Phase currentPhase = TurnManager.Instance.currentPhase;
+        Phase currentPhase = TurnManager.Instance.currentPhase;
         BallonData hoveredBallon = HoverManager.Instance.hoveredBallon;
-    PersoData selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
-    PersoAction actualAction = GameManager.Instance.actualAction;
+        PersoData selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
+        PersoAction actualAction = GameManager.Instance.actualAction;
 
         if (currentPhase == Phase.Deplacement
         && selectedPersonnage != null
         && hoveredBallon != null
         && actualAction == PersoAction.isSelected)
-          {
-          if (Fonction.Instance.CheckAdjacent(hoveredBallon.gameObject, selectedPersonnage.gameObject) == true)
-              {
+        {
+            if (CaseManager.Instance.CheckAdjacent(hoveredBallon.gameObject, selectedPersonnage.gameObject) == true)
+            {
                 ShotMenu();
-              }
-          }
-  }
-
-    public void ShotMenu () 
-    {
-    GameObject menuContextuel = UIManager.Instance.menuContextuel;
-      BallonData hoveredBallon = HoverManager.Instance.hoveredBallon;
-
-      MoveBehaviour.Instance.pathes.Clear();
-      SelectionManager.Instance.selectedBallon = hoveredBallon;
-      menuContextuel.SetActive (true);
-      TurnManager.Instance.DisableFinishTurn();
+            }
+        }
     }
 
-    public void ReturnMenu () {
-      GameObject menuContextuel = UIManager.Instance.menuContextuel;
+    public void ShotMenu()
+    {
+        GameObject menuContextuel = UIManager.Instance.menuContextuel;
         BallonData hoveredBallon = HoverManager.Instance.hoveredBallon;
 
-      SelectionManager.Instance.selectedBallon = hoveredBallon;
-      menuContextuel.SetActive (true);
-      TurnManager.Instance.DisableFinishTurn();
-  }
+        MoveBehaviour.Instance.pathes.Clear();
+        SelectionManager.Instance.selectedBallon = hoveredBallon;
+        menuContextuel.SetActive(true);
+        TurnManager.Instance.DisableFinishTurn();
+    }
+
+    public void ReturnMenu()
+    {
+        GameObject menuContextuel = UIManager.Instance.menuContextuel;
+        BallonData hoveredBallon = HoverManager.Instance.hoveredBallon;
+
+        SelectionManager.Instance.selectedBallon = hoveredBallon;
+        menuContextuel.SetActive(true);
+        TurnManager.Instance.DisableFinishTurn();
+    }
 }

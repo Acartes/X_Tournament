@@ -2,46 +2,50 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuContextuelButton : MonoBehaviour {
+public class MenuContextuelButton : MonoBehaviour
+{
 
-	SpriteRenderer spriteR;
+    SpriteRenderer spriteR;
 
-	public Color colorEnter;
-	public Color colorExit;
+    public Color colorEnter;
+    public Color colorExit;
 
-	public int coutReplacement;
+    void Start()
+    {
+        spriteR = GetComponent<SpriteRenderer>();
+    }
 
-	void Start () {
-		spriteR = GetComponent<SpriteRenderer> ();
-	}
+    void OnMouseExit()
+    {
+        ChangeColor(colorExit);
+    }
 
-	void OnMouseExit () {
-		if (spriteR != null)
-		spriteR.color = colorExit;
-	}
+    void OnMouseOver()
+    {
+        ChangeColor(colorEnter);
+    }
 
-	void OnMouseOver () {
-		if (spriteR != null)
-		spriteR.color = colorEnter;
-	}
+    void OnMouseDown()
+    {
 
-	void OnMouseDown () {
-
-      if (RpcFunctions.Instance.localId == 0 && TurnManager.Instance.currentPlayer == Player.Blue)
+        if (RpcFunctions.Instance.localId == 0 && TurnManager.Instance.currentPlayer == Player.Blue)
             return;
         if (RpcFunctions.Instance.localId == 1 && TurnManager.Instance.currentPlayer == Player.Red)
             return;
 
-      RpcFunctions.Instance.CmdMenuContextuelClick(name);
+        RpcFunctions.Instance.CmdMenuContextuelClick(name);
 
+        ChangeColor(colorExit);
+    }
 
-		if (spriteR != null)
-		spriteR.color = colorExit;
+    void OnEnable()
+    {
+        ChangeColor(colorExit);
+    }
 
-	}
-
-    void OnEnable() {
-      if (spriteR != null)
-      spriteR.color = colorExit;
+    void ChangeColor(Color newColor)
+    {
+        if (spriteR != null)
+            spriteR.color = newColor;
     }
 }

@@ -63,7 +63,9 @@ public class HoverEvent : NetworkBehaviour
   void OnMouseExit()
   {
     if (!enabled || !LoadingManager.Instance.isGameReady())
-      return;
-
+        {
+            RpcFunctions.Instance.CmdHoverEvent("null", "null", "null");
+        }
+        return;
   }
 }
