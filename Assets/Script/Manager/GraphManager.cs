@@ -3,28 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+/// <summary>Pour l'instant pas d'utilité.</summary>
 public class GraphManager : NetworkBehaviour
 {
 
-    // *************** //
-    // ** Variables ** //
-    // *************** //
+  // *************** //
+  // ** Variables ** // Toutes les variables sans distinctions
+  // *************** //
 
-    public static GraphManager Instance;
+  public static GraphManager Instance;
 
-    // *************** //
-    // ** Initialisation ** //
-    // *************** //
+  // ******************** //
+  // ** Initialisation ** // Fonctions de départ, non réutilisable
+  // ******************** //
 
-    public override void OnStartClient()
-    {
-        if (Instance == null)
-            Instance = this;
-        Debug.Log("GraphManager is Instanced");
-    }
-
-    public float getCaseOffset(GameObject go)
-    {
-        return go.GetComponent<SpriteRenderer>().bounds.size.y / 2.3f;
-    }
+  public override void OnStartClient()
+  {
+    if (Instance == null)
+      Instance = this;
+    Debug.Log("GraphManager is Instanced");
+  }
 }

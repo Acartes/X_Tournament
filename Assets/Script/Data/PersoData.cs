@@ -3,154 +3,212 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class PersoData : NetworkBehaviour {
+/// <summary>Tout ce qu'il est possible de faire avec un personnage, ainsi que toutes ses données.</summary>
+public class PersoData : NetworkBehaviour
+{
+  
+  // *************** //
+  // ** Variables ** // Toutes les variables sans distinctions
+  // *************** //
 
   public WeightType weightType;
-	public Player owner;
-    public int pointMovement;
-    public int actualPointMovement;
-    public int pointAction;
-	public int actualPointResistance;
-	public int pointResistance;
-	public int range;
-
-	[HideInInspector]
-	public List<Transform> movePath;
-
-	public Direction persoDirection;
-
-	public List<Color> PlayerColor;
-
-	public CaseData persoCase;
-
-	public Vector3 feetPointOffset;
-
+  public Player owner;
+  public int actualPointMovement;
+  public int maxPointMovement;
+  public int actualPointAction;
+  public int maxPointAction;
+  public int actualPointResistance;
+  public int maxPointResistance;
+  public Direction persoDirection;
+  public CaseData persoCase;
+  public GameObject originPoint;
   public Sprite faceSprite;
   public Sprite backSprite;
 
-  SpriteRenderer SpriteR;
+  public GameObject Sort1 = null;
+  public GameObject Sort2 = null;
+
+  SpriteRenderer spriteR;
+  bool ShineColorIsRunning = false;
 
   public bool isTackled = false;
 
-    void Awake () {
-      
-    SpriteR = GetComponent<SpriteRenderer>();
-    gameObject.name = SpriteR.sprite.name;
-    }
+  // ******************** //
+  // ** Initialisation ** // Fonctions de départ, non réutilisable
+  // ******************** //
 
-    // Use this for initialization
-    void Start() { 
-      StartCoroutine(waitForInit());
+  void Awake()
+  {
+      
+    spriteR = GetComponent<SpriteRenderer>();
+    gameObject.name = spriteR.sprite.name;
   }
 
-    IEnumerator waitForInit()
-    {
-        yield return new WaitForEndOfFrame();
-        while (TurnManager.Instance == null)
-        {
-            yield return null;
-        }
-      Init();
-    }
+  // Use this for initialization
+  void Start()
+  { 
+    StartCoroutine(waitForInit());
+  }
+
+  IEnumerator waitForInit()
+  {
+    yield return new WaitForEndOfFrame();
+    while (TurnManager.Instance == null)
+      {
+        yield return null;
+      }
+    Init();
+  }
 
   public void Init()
-    {
-      gameObject.name = SpriteR.sprite.name;
-      isTackled = false;
-      ChangeColor();
-      actualPointMovement = pointMovement;
+  {
+    gameObject.name = spriteR.sprite.name;
+    isTackled = false;
+    actualPointMovement = maxPointMovement;
 
-      if (owner == Player.Red)
-        {
-          if (RosterManager.Instance.listHeroJXToPlace.Count < 1)
+    if (owner == Player.Red)
+      {
+        if (RosterManager.Instance.listHeroJXToPlace.Count < 1)
           {
               
-              RosterManager.Instance.listHeroJXToPlace.Add(new List<PersoData>());
+            RosterManager.Instance.listHeroJXToPlace.Add(new List<PersoData>());
           }
-          RosterManager.Instance.listHeroJXToPlace[0].Add(this);
-        }
-      if (owner == Player.Blue)
-        {
-          if (RosterManager.Instance.listHeroJXToPlace.Count < 2)
-            {
-              RosterManager.Instance.listHeroJXToPlace.Add(new List<PersoData>());
-            }
-          RosterManager.Instance.listHeroJXToPlace[1].Add(this);
-        }
+        RosterManager.Instance.listHeroJXToPlace[0].Add(this);
+      }
+    if (owner == Player.Blue)
+      {
+        if (RosterManager.Instance.listHeroJXToPlace.Count < 2)
+          {
+            RosterManager.Instance.listHeroJXToPlace.Add(new List<PersoData>());
+          }
+        RosterManager.Instance.listHeroJXToPlace[1].Add(this);
+      }
       
     RosterManager.Instance.listHero.Add(this);
-      TurnManager.Instance.changeTurnEvent += resetPointMovement;
-    }
+    TurnManager.Instance.changeTurnEvent += OnChangeTurn;
+  }
 
-    // ************ //
-    // ** Events ** //
-    // ************ //
+  void OnDisable()
+  {
+    TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
+  }
 
-    void resetPointMovement(object sender, PlayerArgs e) {
-        if(e.currentPlayer == owner)
-        {
-            actualPointMovement = pointMovement;
-        }
-    }
+  // *************** //
+  // ** Events **    // Appel de fonctions au sein de ce script grâce à des events
+  // *************** //
 
-	public void ChangeColor () {
-		switch (owner) {
-		case Player.Red:
-			GetComponent<SpriteRenderer> ().color = PlayerColor [0];
-			break;
-		case Player.Blue:
-			GetComponent<SpriteRenderer> ().color = PlayerColor [1];
-			break;
-		}
-	}
+  public void OnChangeTurn(object sender, PlayerArgs e)
+  {
+    if (e.currentPlayer == owner)
+      {
+        ResetPM();
+        ResetPA();
+      }
+  }
+  
+  // *************** //
+  // ** Fonctions ** // Fonctions réutilisables ailleurs
+  // *************** //
 
-    public void ChangeRotation(Direction direction)
+  /// <summary>Fixe les PM actuel du personnage à ses PM max.</summary>
+  public void ResetPM()
+  {
+    actualPointMovement = maxPointMovement;
+  }
+
+  /// <summary>Fixe les PM actuel du personnage à ses PA max.</summary>
+  public void ResetPA()
+  {
+    actualPointAction = maxPointAction;
+  }
+
+  /// <summary>Fixe les PM actuel du personnage à ses PR max.</summary>
+  public void ResetPR()
+  {
+    actualPointResistance = maxPointResistance;
+  }
+
+  /// <summary>Change la rotation du sprite du personnage dans la direction donnée.</summary>
+  public void ChangeRotation(Direction direction)
   {
     persoDirection = direction;
     switch (persoDirection)
       {
       case Direction.SudOuest:
         transform.localRotation = Quaternion.Euler(0, 180, 0);
-        SpriteR.sprite = faceSprite;
+        spriteR.sprite = faceSprite;
         break;
       case Direction.NordOuest:
         transform.localRotation = Quaternion.Euler(0, 180, 0);
-        SpriteR.sprite = backSprite;
+        spriteR.sprite = backSprite;
         break;
       case Direction.SudEst:
         transform.localRotation = Quaternion.Euler(0, 0, 0);
-        SpriteR.sprite = faceSprite;
+        spriteR.sprite = faceSprite;
         break;
       case Direction.NordEst:
         transform.localRotation = Quaternion.Euler(0, 0, 0);
-        SpriteR.sprite = backSprite;
+        spriteR.sprite = backSprite;
         break;
       }
   }
 
-  // ************ //
-  // ** Actions ** //
-  // ************ //
+  /// <summary>Change la direction du personnage en direction de la case ciblée.</summary>
+  public void RotateTowards(GameObject targetCasePosGMB)
+  {
+    Vector3 targetCasePos = targetCasePosGMB.transform.position;
+    Vector3 originCasePos = persoCase.transform.position;
 
-    public void RotateTowards (Vector3 targetCasePos) {
-      Vector3 originCasePos = persoCase.transform.position;
+    if (originCasePos.x > targetCasePos.x && originCasePos.y > targetCasePos.y)
+      {
+        ChangeRotation(Direction.SudOuest);
+      }
+    if (originCasePos.x > targetCasePos.x && originCasePos.y < targetCasePos.y)
+      {
+        ChangeRotation(Direction.NordOuest);
+      }
+    if (originCasePos.x < targetCasePos.x && originCasePos.y > targetCasePos.y)
+      {
+        ChangeRotation(Direction.SudEst);
+      }
+    if (originCasePos.x < targetCasePos.x && originCasePos.y < targetCasePos.y)
+      {
+        ChangeRotation(Direction.NordEst);
+      }
+  }
 
-      if (originCasePos.x > targetCasePos.x && originCasePos.y > targetCasePos.y)
-        {
-          ChangeRotation (Direction.SudOuest);
-        }
-      if (originCasePos.x > targetCasePos.x && originCasePos.y < targetCasePos.y)
-        {
-          ChangeRotation (Direction.NordOuest);
-        }
-      if (originCasePos.x < targetCasePos.x && originCasePos.y > targetCasePos.y)
-        {
-          ChangeRotation (Direction.SudEst);
-        }
-      if (originCasePos.x < targetCasePos.x && originCasePos.y < targetCasePos.y)
-        {
-          ChangeRotation (Direction.NordEst);
-        }
-      
-    } 
+  /// <summary>La couleur du sprite oscille entre deux couleurs.</summary>
+  public IEnumerator StartShineColor(Color color1, Color color2, float time)
+  {
+    if (spriteR.color == color1 && spriteR.color == color2)
+      StopCoroutine(StartShineColor(color1, color2, time));
+
+    if (ShineColorIsRunning)
+      StopCoroutine(StartShineColor(color1, color2, time));
+
+    ShineColorIsRunning = true;
+
+    while (ShineColorIsRunning)
+      {
+        Color colorx = color1;
+        color1 = color2;
+        color2 = colorx;
+        for (int i = 0; i < 100; i++)
+          {
+            if (!ShineColorIsRunning)
+              break;
+
+            spriteR.color += (color1 - color2) / 100;
+            yield return new WaitForSeconds(time + 0.01f);
+          }
+
+      }
+  }
+
+  /// <summary>Stop la fonction StartShineColor</summary>
+  public void StopShineColor()
+  {
+    ShineColorIsRunning = false;
+  }
+
 }

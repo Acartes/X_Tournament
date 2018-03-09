@@ -31,6 +31,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1901035600525994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4760918205278022}
+  m_Layer: 0
+  m_Name: PersoOriginPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4445434289151906
 Transform:
   m_ObjectHideFlags: 1
@@ -38,10 +53,24 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1409412096056796}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8, y: 0, z: 0}
+  m_LocalPosition: {x: 5.4290605, y: 0.6437626, z: 0}
   m_LocalScale: {x: 1.25, y: 1.25, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4760918205278022}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4760918205278022
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1901035600525994}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4445434289151906}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50415124103048680
@@ -134,21 +163,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weightType: 0
   owner: 1
-  pointMovement: 6
   actualPointMovement: 0
-  pointAction: 1
+  maxPointMovement: 0
+  actualPointAction: 0
+  maxPointAction: 0
   actualPointResistance: 5
-  pointResistance: 5
-  range: 5
-  movePath: []
+  maxPointResistance: 0
   persoDirection: 0
-  PlayerColor:
-  - {r: 1, g: 0.66176474, b: 0.66176474, a: 1}
-  - {r: 0.63235295, g: 0.7413793, b: 1, a: 1}
   persoCase: {fileID: 0}
-  feetPointOffset: {x: 0, y: -0.5, z: 0}
+  originPoint: {fileID: 1901035600525994}
   faceSprite: {fileID: 21300000, guid: 070fabda4501ee745b588f7ca2d704b7, type: 3}
   backSprite: {fileID: 21300000, guid: c36a3cbf5a4fa3b4b86815f32859c317, type: 3}
+  Sort1: {fileID: 0}
+  Sort2: {fileID: 0}
   isTackled: 0
 --- !u!212 &212627234883469394
 SpriteRenderer:

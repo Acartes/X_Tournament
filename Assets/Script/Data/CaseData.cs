@@ -3,228 +3,355 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+/// <summary>Tout ce qu'il est possible de faire avec une case, ainsi que tout ce qui rentre dedans.</summary>
 public class CaseData : NetworkBehaviour
 {
-    // *********** //
-    // ** Variables ** //
-    // *********** //
+  // *************** //
+  // ** Variables ** // Toutes les variables sans distinctions
+  // *************** //
 
-    [Header("Data")]
-    [SerializeField]
-    [EnumFlagAttribute]
-    Statut statut;[Space(100)]
-    public PersoData personnageData;
-    public GameObject objectData;
-    public BallonData ballon;
-    public PathfindingCase casePathfinding;
-    public Element caseElement;
-    public int xCoord;
-    public int yCoord;
-    public Player winCase;
-    public CaseData thisCase;
+  [SerializeField]
+  [EnumFlagAttribute]
+  [Space(200)]
+  public Statut statut;
+  [Space(200)]
+  public PersoData personnageData;
+  public BallonData ballon;
+  public PathfindingCase casePathfinding;
+  public int xCoord;
+  public int yCoord;
 
-    [Header("PlacementColor")]
-    public Color initColor;
-    public Player ownerPlacementZone;
-    public bool redZone;
-    public bool blueZone;
+  SpriteRenderer spriteR;
+  Statut defaultStatut;
+  bool ShineColorIsRunning = false;
 
-    [Header("NormalColor")]
-    public Color caseColor;
+  // ******************** //
+  // ** Initialisation ** // Fonctions de départ, non réutilisable
+  // ******************** //
 
-    [Header("ElementalSprite")]
-    public Sprite SpriteAucun;
-    public Sprite SpriteFeu;
+  public override void OnStartClient()
+  {
+    StartCoroutine(waitForInit());
+  }
 
-    public GameObject prefabPunch;
+  IEnumerator waitForInit()
+  {
+    while (!LoadingManager.Instance.isGameReady())
+      yield return new WaitForEndOfFrame();
+    Init();
+  }
 
-    public SpriteRenderer spriteR;
+  private void Init()
+  {
+    spriteR = GetComponent<SpriteRenderer>();
+    casePathfinding = PathfindingCase.Walkable;
+    defaultStatut = statut;
 
-    [HideInInspector] public bool colorLock;
+    TurnManager.Instance.changeTurnEvent += OnChangeTurn;
+  }
 
-    // *********** //
-    // ** Start ** //
-    // *********** //
+  void OnDisable()
+  {
+    if (LoadingManager.Instance.isGameReady())
+      TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
+  }
 
-    public override void OnStartClient()
-    {
-        StartCoroutine(waitForInit());
-    }
 
-    IEnumerator waitForInit()
-    {
-        while (!LoadingManager.Instance.isGameReady())
-            yield return new WaitForEndOfFrame();
-        Init();
-    }
+  // *************** //
+  // ** Events **    // Appel de fonctions au sein de ce script grâce à des events
+  // *************** //
 
-    private void Init()
-    {
-        if (winCase != Player.Neutral) statut = Statut.isGoal;
-        spriteR = GetComponent<SpriteRenderer>();
-        thisCase = GetComponent<CaseData>();
-        colorLock = false;
-        initColor = GetComponent<SpriteRenderer>().color;
-        if (winCase != Player.Neutral)
-        {
-            caseColor = ColorManager.Instance.goalColor;
-        }
-        PlacementColor();
-        caseElement = Element.Aucun;
+  void OnChangeTurn(object sender, PlayerArgs e)
+  {
+
+    switch (e.currentPhase)
+      {
+      case Phase.Placement:
+        ChangeStatut();
+        break;
+      case Phase.Deplacement:
+        statut = 0;
+        ChangeStatut();
+        break;
+      }
+  }
+
+  // ************* //
+  // ** Trigger ** // Appel de fonctions ou d'instructions grâce à la détection de collider triggers
+  // ************* //
+
+  void OnTriggerEnter2D(Collider2D col)
+  {
+
+    if (col.tag == "Personnage")
+      {
+        if (col.gameObject.GetComponent<PersoData>().persoCase != this)
+          {
+            TransparencyBehaviour.Instance.CheckCaseTransparency(this);
+            personnageData = col.gameObject.GetComponent<PersoData>();
+            casePathfinding = PathfindingCase.NonWalkable;
+            col.gameObject.GetComponent<PersoData>().persoCase = this;
+            TransparencyBehaviour.Instance.CheckCaseTransparency(this);
+          }
+      }
+
+    if (col.tag == "Ballon")
+      {
+        if (col.gameObject.GetComponent<BallonData>().ballonCase != this)
+          {
+            TransparencyBehaviour.Instance.CheckCaseTransparency(this);
+            ballon = col.gameObject.GetComponent<BallonData>();
+            casePathfinding = PathfindingCase.NonWalkable;
+            col.gameObject.GetComponent<BallonData>().ballonCase = this;
+            TransparencyBehaviour.Instance.CheckCaseTransparency(this);
+            col.gameObject.GetComponent<BallonData>().xCoord = xCoord;
+            col.gameObject.GetComponent<BallonData>().yCoord = yCoord;
+          }
+      }
+  }
+
+  void OnTriggerExit2D(Collider2D col)
+  {
+    if (col.tag == "Personnage"
+        && col.gameObject.GetComponent<BoxCollider2D>().enabled == true
+        && GetComponent<PolygonCollider2D>().enabled == true)
+      {
+
+        personnageData = null;
         casePathfinding = PathfindingCase.Walkable;
+        ChangeStatut(Statut.None, Statut.isSelected);
+        ChangeStatut(Statut.None, Statut.isControllable);
+      }
 
-        TurnManager.Instance.changeTurnEvent += OnChangePhase;
-    }
+    if (col.tag == "Ballon"
+        && col.gameObject.GetComponent<BoxCollider2D>().enabled == true
+        && GetComponent<PolygonCollider2D>().enabled == true)
+      {
+        TransparencyBehaviour.Instance.CheckCaseTransparency(this);
+        ballon = null;
+        casePathfinding = PathfindingCase.Walkable;
+        ChangeStatut(Statut.None, Statut.canShot);
+      }
+  }
 
-    void OnDisable()
-    {
-        if(LoadingManager.Instance.isGameReady())
-        TurnManager.Instance.changeTurnEvent -= OnChangePhase;
-    }
+  // *************** //
+  // ** Fonctions ** // Fonctions réutilisables ailleurs
+  // *************** //
 
+  void navid()
+  {
+    ChangeStatut(Statut.None, Statut.canPunch);
+  }
 
-    // *********** //
-    // ** Event ** //
-    // *********** //
+  /// <summary>Change le statut, et met à jour la couleur et le feedback lié au statut</summary>
+  public void ChangeStatut(Statut newStatut = Statut.None, Statut oldStatut = Statut.None)
+  {
+    Statut lastStatut = statut;
 
-    void OnChangePhase(object sender, PlayerArgs e)
-    {
+    if ((newStatut != Statut.None) && !((newStatut & statut) == newStatut))
+      statut += (int)newStatut;
+      
+    if ((oldStatut != Statut.None) && ((oldStatut & statut) == oldStatut))
+      statut -= (int)oldStatut;
+      
+    ChangeColorByStatut(statut);
+    ChangeFeedbackByStatut(statut, oldStatut);
+  }
 
-        switch (e.currentPhase)
-        {
-            case Phase.Placement:
-                ChangeColor(Statut.canPlace);
-                break;
-            case Phase.Deplacement:
-                statut = 0;
-                ChangeColor();
-                break;
-        }
-    }
+  /// <summary>Change la couleur de la case selon son statut.</summary>
+  private void ChangeColorByStatut(Statut statut)
+  {
+    spriteR.color = ColorManager.Instance.caseColor;
 
-    // ************* //
-    // ** Trigger ** //
-    // ************* //
+    if ((Statut.goalRed & statut) == Statut.goalRed)
+      spriteR.color = ColorManager.Instance.goalColor;
 
-    void OnTriggerEnter2D(Collider2D col)
-    {
+    if ((Statut.goalBlue & statut) == Statut.goalBlue)
+      spriteR.color = ColorManager.Instance.goalColor;
 
-        if (col.tag == "Personnage")
-        {
-            if (col.gameObject.GetComponent<PersoData>().persoCase != thisCase)
-            {
-                TransparencyBehaviour.CheckTransparency(col.gameObject, 1f);
-                personnageData = col.gameObject.GetComponent<PersoData>();
-                casePathfinding = PathfindingCase.NonWalkable;
-                col.gameObject.GetComponent<PersoData>().persoCase = thisCase;
-                TransparencyBehaviour.CheckTransparency(col.gameObject, 0.5f);
-            }
-        }
+    if ((Statut.placementRed & statut) == Statut.placementRed)
+      spriteR.color = ColorManager.Instance.placementZoneRed;
 
-        if (col.tag == "Ballon")
-        {
-            if (col.gameObject.GetComponent<BallonData>().ballonCase != thisCase)
-            {
-                TransparencyBehaviour.CheckTransparency(col.gameObject, 1f);
-                ballon = col.gameObject.GetComponent<BallonData>();
-                casePathfinding = PathfindingCase.NonWalkable;
-                col.gameObject.GetComponent<BallonData>().ballonCase = thisCase;
-                TransparencyBehaviour.CheckTransparency(col.gameObject, 0.5f);
-                col.gameObject.GetComponent<BallonData>().xCoord = xCoord;
-                col.gameObject.GetComponent<BallonData>().yCoord = yCoord;
-            }
+    if ((Statut.placementBlue & statut) == Statut.placementBlue)
+      spriteR.color = ColorManager.Instance.placementZoneBlue;
 
-            if (winCase != Player.Neutral)
-            {
-                StartCoroutine(UIManager.Instance.ScoreChange(winCase));
-            }
-        }
-    }
+    if ((Statut.isSelected & statut) == Statut.isSelected)
+      spriteR.color = ColorManager.Instance.selectedColor;
+      
+    if ((Statut.canReplace & statut) == Statut.canReplace)
+      spriteR.color = ColorManager.Instance.actionPreColor;
+      
+    if ((Statut.canPunch & statut) == Statut.canPunch)
+      spriteR.color = ColorManager.Instance.actionPreColor;
 
-    void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.tag == "Personnage"
-          && col.gameObject.GetComponent<BoxCollider2D>().enabled == true
-          && GetComponent<PolygonCollider2D>().enabled == true)
-        {
+    if ((Statut.canMove & statut) == Statut.canMove)
+      spriteR.color = ColorManager.Instance.moveColor;
+    if ((Statut.canBeTackled & statut) == Statut.canBeTackled)
+      spriteR.color = ColorManager.Instance.enemyColor;
+    if ((Statut.canShot & statut) == Statut.canShot)
+      spriteR.color = ColorManager.Instance.actionPreColor;
+    if ((Statut.isControllable & statut) == Statut.isControllable)
+      spriteR.color = ColorManager.Instance.actionPreColor;
 
-            personnageData = null;
-            casePathfinding = PathfindingCase.Walkable;
-            ChangeColor(Statut.None, Statut.isSelected);
-            ChangeColor(Statut.None, Statut.isAllyPerso);
-        }
+    if ((Statut.canBeTackled & statut) == Statut.canBeTackled)
+      spriteR.color = ColorManager.Instance.enemyColor;
 
-        if (col.tag == "Ballon"
-          && col.gameObject.GetComponent<BoxCollider2D>().enabled == true
-          && GetComponent<PolygonCollider2D>().enabled == true)
-        {
-            TransparencyBehaviour.CheckTransparency(col.gameObject, 1f);
-            ballon = null;
-            casePathfinding = PathfindingCase.Walkable;
-            ChangeColor(Statut.None, Statut.canShot);
-        }
-    }
-
-    // ************* //
-    // ** Actions ** //
-    // ************* //
-
-    public void PlacementColor()
-    { // Its the color when a player can place his personnages here at Placement Phase
-        ChangeColor(Statut.None, Statut.canPlace);
-    }
-
-    void NormalColor(Color caseColor)
-    { // Switch to a neutral color
-        ChangeColor(Statut.None, Statut.canPlace);
-    }
-
-    public void ResetColor()
-    {
-        spriteR.color = caseColor;
-    }
-
-    public void ChangeColor(Statut newStatut = Statut.None, Statut oldStatut = Statut.None)
-    {
-        Statut lastStatut = statut;
-        if ((newStatut != Statut.None) && !((newStatut & statut) == newStatut)) statut += (int)newStatut;
-        if ((oldStatut != Statut.None) && ((oldStatut & statut) == oldStatut)) statut -= (int)oldStatut;
-
-        spriteR.color = ColorManager.Instance.caseColor;
-        if ((Statut.isSelected & statut) == Statut.isSelected) spriteR.color = ColorManager.Instance.selectedColor;
-        if ((Statut.canReplace & statut) == Statut.canReplace) spriteR.color = ColorManager.Instance.actionPreColor;
+    if ((Statut.isHovered & statut) == Statut.isHovered)
+      {
+        spriteR.color = ColorManager.Instance.hoverColor;
+        if ((Statut.canReplace & statut) == Statut.canReplace)
+          spriteR.color = ColorManager.Instance.actionColor;
         if ((Statut.canPunch & statut) == Statut.canPunch)
-        {
-            spriteR.color = ColorManager.Instance.actionPreColor;
+          spriteR.color = ColorManager.Instance.actionColor;
+        if ((Statut.canShot & statut) == Statut.canShot)
+          spriteR.color = ColorManager.Instance.actionColor;
+        if ((Statut.isControllable & statut) == Statut.isControllable)
+          spriteR.color = ColorManager.Instance.actionColor;
+      }
+  }
 
-        }
-        if ((Statut.canMove & statut) == Statut.canMove) spriteR.color = ColorManager.Instance.moveColor;
-        if ((Statut.canBeTackled & statut) == Statut.canBeTackled) spriteR.color = ColorManager.Instance.enemyColor;
-        if ((Statut.canShot & statut) == Statut.canShot) spriteR.color = ColorManager.Instance.actionPreColor;
-        if ((Statut.isAllyPerso & statut) == Statut.isAllyPerso) spriteR.color = ColorManager.Instance.actionPreColor;
+  /// <summary>Change le feedback visuel de la case selon son statut.</summary>
+  private void ChangeFeedbackByStatut(Statut statut, Statut oldStatut)
+  {
+    if ((Statut.canBeTackled & statut) == Statut.canBeTackled)
+      FeedbackManager.Instance.PredictInit(50, gameObject);
+    if (oldStatut == (Statut.canBeTackled))
+      FeedbackManager.Instance.PredictEnd(gameObject);
+  }
 
-        if ((Statut.canPlace & statut) == Statut.canPlace
-          && ownerPlacementZone == Player.Red) spriteR.color = ColorManager.Instance.placementZoneRed;
-        if ((Statut.canPlace & statut) == Statut.canPlace
-          && ownerPlacementZone == Player.Blue) spriteR.color = ColorManager.Instance.placementZoneBlue;
+  /// <summary>Change la couleur de la case.</summary>
+  public void ChangeColor(Color color)
+  {
+    spriteR.color = color;
+  }
 
-        if ((Statut.isGoal & statut) == Statut.isGoal) spriteR.color = ColorManager.Instance.goalColor;
-        if ((Statut.canBeTackled & statut) == Statut.canBeTackled) spriteR.color = ColorManager.Instance.enemyColor;
+  /// <summary>Change le sprite.</summary>
+  public void ChangeSprite(Sprite sprite)
+  {
+    spriteR.sprite = sprite;
+  }
 
-        if ((Statut.isHovered & statut) == Statut.isHovered)
-        {
-            spriteR.color = ColorManager.Instance.hoverColor;
-            if ((Statut.canReplace & statut) == Statut.canReplace) spriteR.color = ColorManager.Instance.actionColor;
-            if ((Statut.canPunch & statut) == Statut.canPunch) spriteR.color = ColorManager.Instance.actionColor;
-            if ((Statut.canShot & statut) == Statut.canShot) spriteR.color = ColorManager.Instance.actionColor;
-            if ((Statut.isAllyPerso & statut) == Statut.isAllyPerso) spriteR.color = ColorManager.Instance.actionColor;
-        }
-      ChangeFeedback(newStatut, oldStatut);
-    }
+  /// <summary>La couleur du sprite oscille entre deux couleurs.</summary>
+  public IEnumerator StartShineColor(Color color1, Color color2, float time)
+  {
+    if (spriteR.color == color1 && spriteR.color == color2)
+      StopCoroutine(StartShineColor(color1, color2, time));
 
-  void ChangeFeedback(Statut newStatut = Statut.None, Statut oldStatut = Statut.None)
-    {
-      if ((Statut.canBeTackled & statut) == Statut.canBeTackled) FeedbackManager.Instance.PredictInit(50, gameObject);
-      if (oldStatut == (Statut.canBeTackled)) FeedbackManager.Instance.PredictEnd(gameObject);
-    }
+    if (ShineColorIsRunning)
+      StopCoroutine(StartShineColor(color1, color2, time));
+      
+    ShineColorIsRunning = true;
+
+    while (ShineColorIsRunning)
+      {
+        Color colorx = color1;
+        color1 = color2;
+        color2 = colorx;
+        for (int i = 0; i < 100; i++)
+          {
+            if (!ShineColorIsRunning)
+              break;
+ 
+            spriteR.color += (color1 - color2) / 100;
+            yield return new WaitForSeconds(time + 0.01f);
+          }
+
+      }
+  }
+
+  /// <summary>Stop la fonction StartShineColor</summary>
+  public void StopShineColor()
+  {
+    ShineColorIsRunning = false;
+  }
+
+  /// <summary>Check si la case a ce statut.</summary>
+  public bool CheckStatut(Statut statutChecked)
+  {
+    if ((statutChecked & statut) == statutChecked)
+      return true;
+    else
+      return false;
+  }
+
+  /// <summary>Change le passage de la case en "Walkable" ou "Non walkable".</summary>
+  public void ChangePathfinding(PathfindingCase pathfinding)
+  {
+    casePathfinding = pathfinding;
+  }
+
+  /// <summary>Récupère la case en haut de cette case.</summary>
+  public GameObject GetTopCase()
+  {
+    GameObject newCase = (GameObject.Find(xCoord - 1 + " " + yCoord + 1) != null) ? GameObject.Find(xCoord - 1 + " " + yCoord + 1) : null;
+    return newCase;
+  }
+
+  /// <summary>Récupère la case en bas de cette case.</summary>
+  public GameObject GetBottomCase()
+  {
+    GameObject newCase = (GameObject.Find(xCoord + 1 + " " + (yCoord - 1)) != null) ? GameObject.Find(xCoord + 1 + " " + (yCoord - 1)) : null;
+    return newCase;
+  }
+
+  /// <summary>Récupère la case à gauche de cette case.</summary>
+  public GameObject GetLeftCase()
+  {
+    GameObject newCase = (GameObject.Find(xCoord - 1 + " " + (yCoord - 1)) != null) ? GameObject.Find(xCoord - 1 + " " + (yCoord - 1)) : null;
+    return newCase;
+  }
+
+  /// <summary>Récupère la case à droite de cette case.</summary>
+  public GameObject GetRightCase()
+  {
+    GameObject newCase = (GameObject.Find(xCoord + 1 + " " + yCoord + 1) != null) ? GameObject.Find(xCoord + 1 + " " + yCoord + 1) : null;
+    return newCase;
+  }
+
+  /// <summary>Récupère la case en haut à gauche de cette case.</summary>
+  public GameObject GetTopLeftCase()
+  {
+    GameObject newCase = (GameObject.Find(xCoord - 1 + " " + yCoord) != null) ? GameObject.Find(xCoord - 1 + " " + yCoord) : null;
+    return newCase;
+  }
+
+  /// <summary>Récupère la case en bas à droite de cette case.</summary>
+  public GameObject GetBottomRightCase()
+  {
+    GameObject newCase = (GameObject.Find(xCoord - 1 + " " + yCoord) != null) ? GameObject.Find(xCoord - 1 + " " + yCoord) : null;
+    return newCase;
+  }
+
+  /// <summary>Récupère la case en haut à droite de cette case.</summary>
+  public GameObject GetTopRightCase()
+  {
+    GameObject newCase = (GameObject.Find(xCoord + " " + yCoord + 1) != null) ? GameObject.Find(xCoord + " " + yCoord + 1) : null;
+    return newCase;
+  }
+
+  /// <summary>Récupère la case en bas à gauche de cette case.</summary>
+  public GameObject GetBottomLeftCase()
+  {
+    GameObject newCase = (GameObject.Find(xCoord + " " + (yCoord - 1)) != null) ? GameObject.Find(xCoord + " " + (yCoord - 1)) : null;
+    return newCase;
+  }
+
+  /// <summary>Récupère la case par rapport à X et Y coordonnées de cette case.</summary>
+  public GameObject GetCaseRelativeCoordinate(int x, int y)
+  {
+    GameObject newCase = (GameObject.Find((xCoord + x) + " " + (yCoord + y)) != null) ? GameObject.Find((xCoord + x) + " " + (yCoord + y)) : null;
+    return newCase;
+  }
+
+  /// <summary>Desactive all statuts for this case.</summary>
+  public void ClearAllStatut()
+  {
+    statut = 0;
+  }
+
+  /// <summary>Desactive all statuts for this case except what was already checked in inspector.</summary>
+  public void ClearStatutToDefault()
+  {
+    statut = defaultStatut;
+  }
 }

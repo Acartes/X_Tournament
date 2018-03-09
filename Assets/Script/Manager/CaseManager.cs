@@ -1,158 +1,175 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 using UnityEngine.Networking;
 
+/// <summary>Gère toute les cases du jeu, et permet de connaître la distance qui les sépare les uns des autres en x et y avec xCaseOffset et yCaseOffset.</summary>
 public class CaseManager : NetworkBehaviour
 {
 
-    // *************** //
-    // ** Variables ** //
-    // *************** //
-    [Header("  Cases")]
-    [Tooltip("La liste de toutes les cases de la grille.")]
-    [ReadOnly]
-    public List<GameObject> listCase;
-    [Tooltip("Distance entre les cases en x.")]
-    public float xCaseOffset = 1;
-    [Tooltip("Distance entre les cases en y.")]
-    public float yCaseOffset = 0.3f;
+  // *************** //
+  // ** Variables ** // Toutes les variables sans distinctions
+  // *************** //
+  [Header("  Cases")]
+  [Tooltip("La liste de toutes les cases de la grille.")] 
+  [ReadOnly]
+  static public List<GameObject> listAllCase;
+  [Tooltip("Distance entre les cases en x.")]
+  public float xCaseOffset = 1;
+  [Tooltip("Distance entre les cases en y.")]
+  public float yCaseOffset = 0.3f;
 
-    [HideInInspector] public static CaseManager Instance;
+  [HideInInspector] public static CaseManager Instance;
 
-    // *************** //
-    // ** Initialisation ** //
-    // *************** //
+  // ******************** //
+  // ** Initialisation ** // Fonctions de départ, non réutilisable
+  // ******************** //
 
-    public override void OnStartClient()
-    {
-        if (Instance == null)
-            Instance = this;
-        Debug.Log("CaseManager is Instanced");
-        StartCoroutine(waitForInit());
-    }
+  public override void OnStartClient()
+  {
+    if (Instance == null)
+      Instance = this;
+    Debug.Log("CaseManager is Instanced");
+    StartCoroutine(waitForInit());
+  }
 
-    IEnumerator waitForInit()
-    {
-        while (!LoadingManager.Instance.isGameReady())
-            yield return new WaitForEndOfFrame();
-        Init();
-    }
+  IEnumerator waitForInit()
+  {
+    while (!LoadingManager.Instance.isGameReady())
+      yield return new WaitForEndOfFrame();
+    Init();
+  }
 
-    void Init()
-    {
-      listCase.Clear ();
+  void Init()
+  {
+    listAllCase.Clear();
     foreach (GameObject cubeNew in GameObject.FindGameObjectsWithTag("case"))
       {
-        listCase.Add(cubeNew);
+        listAllCase.Add(cubeNew);
       }
-        StartCoroutine(LateOnEnable());
-    }
+  }
 
-    IEnumerator LateOnEnable()
-    {
-        yield return new WaitForEndOfFrame();
-        TurnManager.Instance.changeTurnEvent += OnChangeTurn;
-        foreach (GameObject obj in listCase)
-        {
-            CaseData objCaseData = obj.GetComponent<CaseData>();
-            if (objCaseData.winCase != Player.Neutral)
-            {
-                objCaseData.caseColor = ColorManager.Instance.goalColor;
-            }
-        }
-    }
+  // *************** //
+  // ** Fonctions ** // Fonctions réutilisables ailleurs
+  // *************** //
 
-    void OnDisable()
-    {
-        if (LoadingManager.Instance.isGameReady())
-        {
-            TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
-        }
-    }
+  public void ClearAllCases()
+  {
+    /// <summary>Remet la valeur de toutes les cases par défaut</summary> 
+    foreach (GameObject newCaseGMB in listAllCase)
+      {
+        CaseData newCase = newCaseGMB.GetComponent<CaseData>();
+        newCase.ballon = null;
+        newCase.casePathfinding = PathfindingCase.Walkable;
+        newCase.personnageData = null;
+        newCase.statut = 0;
+      }
+  }
 
-    // *************** //
-    // ** Events ** //
-    // *************** //
+  /// <summary>Colore toutes les cases de la couleur choisi.</summary> 
+  static public void PaintAllCase(Color newColor)
+  {
+    foreach (GameObject newCaseGMB in listAllCase)
+      {
+        newCaseGMB.GetComponent<SpriteRenderer>().color = newColor;
+      }
+  }
 
-    void OnChangeTurn(object sender, PlayerArgs e)
-    { // Lorsqu'un joueur termine son tour
-        switch (e.currentPhase)
-        {
-            case (Phase.Deplacement):
-            StartCoroutine (ShowActions());
-                break;
-            case (Phase.Placement):
-                break;
-        }
-    }
-      
-    // *************** //
-    // ** Actions ** //
-    // *************** //
+  /// <summary>Change le sprite de toutes les cases avec le sprite choisi.</summary> 
+  static public void ChangeSpriteAllCase(Sprite newSprite)
+  {
+    foreach (GameObject newCaseGMB in listAllCase)
+      {
+        newCaseGMB.GetComponent<SpriteRenderer>().sprite = newSprite;
+      }
+  }
 
-    public IEnumerator ShowActions()
-    { // Affiche en violet les actions possible par le joueur.
-      yield return new WaitForEndOfFrame();
-        Player currentPlayer = GameManager.Instance.currentPlayer;
-        Phase currentPhase = GameManager.Instance.currentPhase;
-        Color actionPreColor = ColorManager.Instance.actionPreColor;
-        PersoData selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
-        Color selectedColor = ColorManager.Instance.selectedColor;
+  /// <summary>Obtenir toutes les cases du jeu. </summary>
+  static public List<CaseData> GetAllCase()
+  {
+    List<CaseData> newList = new List<CaseData>();
 
-        switch (currentPhase)
-        {
-            case (Phase.Placement):
-                break;
-            case (Phase.Deplacement):
-                foreach (GameObject caseCompared in listCase)
-                {
-                    Color newColor = ColorManager.Instance.caseColor;
+    foreach (GameObject newCaseGMB in listAllCase)
+      {
+        CaseData newCase = newCaseGMB.GetComponent<CaseData>();
+        newList.Add(newCase);
+      }
 
-                if (!MenuContextuel.Instance.gameObject.activeInHierarchy)
-                    {
-                        PersoData persoCompared = caseCompared.GetComponent<CaseData>().personnageData;
-                        BallonData ballonCompared = caseCompared.GetComponent<CaseData>().ballon;
+    return newList;
+  }
 
+  /// <summary>Obtenir toutes les cases possédant un ballon.</summary>
+  static public List<CaseData> GetAllCaseWithBallon()
+  {
+    List<CaseData> newList = new List<CaseData>();
 
-                        if (persoCompared != null && persoCompared.GetComponent<PersoData>().owner == currentPlayer)
-                        {
-                        caseCompared.GetComponent<CaseData>().ChangeColor(Statut.isAllyPerso);
-                        }
+    foreach (GameObject newCaseGMB in listAllCase)
+      {
+        CaseData newCase = newCaseGMB.GetComponent<CaseData>();
+        if (newCase.ballon != null)
+          newList.Add(newCase);
+      }
+    return newList;
+  }
 
-                        if (SelectionManager.Instance.selectedPersonnage != null)
-                        {
-                            if (persoCompared != null
-                          && persoCompared.GetComponent<PersoData>().owner != currentPlayer
-                          && Fonction.Instance.CheckAdjacent(persoCompared.gameObject, selectedPersonnage.gameObject) == true)
-                            {
-                            caseCompared.GetComponent<CaseData>().ChangeColor(Statut.canPunch);
-                            }
+  /// <summary>Obtenir toutes les cases possédant un personnage.</summary>
+  static public List<CaseData> GetAllCaseWithPersonnage()
+  {
+    List<CaseData> newList = new List<CaseData>();
 
-                        if (ballonCompared != null
-                          && Fonction.Instance.CheckAdjacent(selectedPersonnage.gameObject, ballonCompared.gameObject) == true)
-                          {
-                            caseCompared.GetComponent<CaseData>().ChangeColor(Statut.canShot);
-                            //newColor = actionPreColor;
-                          }
+    foreach (GameObject newCaseGMB in listAllCase)
+      {
+        CaseData newCase = newCaseGMB.GetComponent<CaseData>();
+        if (newCase.personnageData != null)
+          newList.Add(newCase);
+      }
+    return newList;
+  }
 
-                            if (persoCompared == selectedPersonnage)
-                            {
-                            caseCompared.GetComponent<CaseData>().ChangeColor(Statut.isSelected);
-                                //newColor = selectedColor;
-                            }
-                        }
+  /// <summary>Obtenir toutes les cases sans personnage et sans ballon.</summary>
+  static public List<CaseData> GetAllCaseWithNothing()
+  {
+    List<CaseData> newList = new List<CaseData>();
 
-              //      if (newColor != ColorManager.Instance.caseColor)
-                 //       {
-                 //           caseCompared.GetComponent<CaseData>().ChangeColor(newColor);
-                //        }
-                    }
-                }
-                break;
-        }
-    }
+    foreach (GameObject newCaseGMB in listAllCase)
+      {
+        CaseData newCase = newCaseGMB.GetComponent<CaseData>();
+        if (newCase.personnageData == null && newCase.ballon == null)
+          newList.Add(newCase);
+      }
+    return newList;
+  }
+
+  /// <summary>Obtenir toutes les cases avec le statut choisi.</summary>
+  static public List<CaseData> GetAllCaseWithStatut(Statut statut)
+  {
+    List<CaseData> newList = new List<CaseData>();
+
+    foreach (GameObject newCaseGMB in listAllCase)
+      {
+        CaseData newCase = newCaseGMB.GetComponent<CaseData>();
+        if ((statut & newCase.statut) == statut)
+          newList.Add(newCase);
+      }
+    return newList;
+  }
+
+  /// <summary>Obtenir toutes les cases avec la couleur choisie.</summary>
+  static public List<CaseData> GetAllCaseWithColor(Color color)
+  {
+    List<CaseData> newList = new List<CaseData>();
+
+    foreach (GameObject newCaseGMB in listAllCase)
+      {
+        CaseData newCase = newCaseGMB.GetComponent<CaseData>();
+        SpriteRenderer SpriteR = newCaseGMB.GetComponent<SpriteRenderer>();
+        if (SpriteR.color == color)
+          newList.Add(newCase);
+      }
+    return newList;
+  }
 }

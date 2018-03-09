@@ -17,7 +17,6 @@ public class But_Arrière_Transparence : NetworkBehaviour {
 
     IEnumerator waitForInit()
     {
-     
         while (!LoadingManager.Instance.isGameReady())
             yield return new WaitForEndOfFrame();
         Init();

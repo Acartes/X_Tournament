@@ -4,63 +4,66 @@ using UnityEngine;
 using System;
 using UnityEngine.Networking;
 
-public class HoverEvent : NetworkBehaviour {
-
-void Awake ()
+public class HoverEvent : NetworkBehaviour
 {
-      GetComponent<PolygonCollider2D>().enabled = false;
-}
 
-    public override void OnStartClient()
-    {
-        StartCoroutine(waitForInit());
-    }
+  void Awake()
+  {
+    GetComponent<PolygonCollider2D>().enabled = false;
+  }
 
-    IEnumerator waitForInit()
-    {
-        while (!LoadingManager.Instance.isGameReady())
-            yield return new WaitForEndOfFrame();
+  public override void OnStartClient()
+  {
+    StartCoroutine(waitForInit());
+  }
+
+  IEnumerator waitForInit()
+  {
+    while (!LoadingManager.Instance.isGameReady())
+      yield return new WaitForEndOfFrame();
 
     yield return new WaitForSeconds(0.01f);
-        Init();
-    }
+    Init();
+  }
 
-    private void Init()
-    {
-        this.enabled = true;
-      GetComponent<PolygonCollider2D>().enabled = true;
-    }
+  private void Init()
+  {
+    this.enabled = true;
+    GetComponent<PolygonCollider2D>().enabled = true;
+  }
 
-    void OnMouseOver()
-    {
-        if (RpcFunctions.Instance.localId == 0 && TurnManager.Instance.currentPlayer == Player.Blue)
-            return;
-        if (RpcFunctions.Instance.localId == 1 && TurnManager.Instance.currentPlayer == Player.Red)
-            return;
+  void OnMouseOver()
+  {
+  
+    if (RpcFunctions.Instance.localId == 0 && TurnManager.Instance.currentPlayer == Player.Blue)
+      return;
+    if (RpcFunctions.Instance.localId == 1 && TurnManager.Instance.currentPlayer == Player.Red)
+      return;
 
-        if (!enabled || !LoadingManager.Instance.isGameReady())
-            return;
+    if (!enabled || !LoadingManager.Instance.isGameReady())
+      return;
 
-      string hoveredCase = "null";
-      string hoveredPersonnage = "null";
-      string hoveredBallon = "null";
+    string hoveredCase = "null";
+    string hoveredPersonnage = "null";
+    string hoveredBallon = "null";
 
-		hoveredCase = this.GetComponent<CaseData>().name;
+    hoveredCase = this.GetComponent<CaseData>().name;
 
-      if (GetComponent<CaseData> ().personnageData != null)
-		hoveredPersonnage = GetComponent<CaseData> ().personnageData.name;
+    if (GetComponent<CaseData>().personnageData != null)
+      hoveredPersonnage = GetComponent<CaseData>().personnageData.name;
 
-      if (GetComponent<CaseData> ().ballon != null)
-		hoveredBallon = GetComponent<CaseData> ().ballon.name;
+    if (GetComponent<CaseData>().ballon != null)
+      hoveredBallon = GetComponent<CaseData>().ballon.name;
 
-      RpcFunctions.Instance.CmdHoverEvent(hoveredCase, hoveredPersonnage, hoveredBallon);
+    RpcFunctions.Instance.CmdHoverEvent(hoveredCase, hoveredPersonnage, hoveredBallon);
 
        
-	}
-    void OnMouseExit()
-    {
-        if (!enabled || !LoadingManager.Instance.isGameReady())
-            return;
+  }
 
-    }
+  void OnMouseExit()
+  {
+    if (!enabled || !LoadingManager.Instance.isGameReady())
+      return;
+
+  }
 }

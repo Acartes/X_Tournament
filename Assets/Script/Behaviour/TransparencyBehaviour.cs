@@ -5,61 +5,64 @@ using UnityEngine.Networking;
 
 public class TransparencyBehaviour : NetworkBehaviour
 {
+  // *************** //
+  // ** Variables ** // Toutes les variables sans distinctions
+  // *************** //
 
-  static public TransparencyBehaviour Instance;
+  [Range(0, 1)] [Tooltip("Niveau de transparence")] public float alpha;
+  [HideInInspector] static public TransparencyBehaviour Instance;
 
-    public override void OnStartClient()
-    {
-        if (Instance == null)
-            Instance = this;
-        Debug.Log(this.GetType() + " is Instanced");
-    }
+  // ******************** //
+  // ** Initialisation ** // Fonctions de départ, non réutilisable
+  // ******************** //
 
-    public static void CheckTransparency (GameObject selectedObj, float alpha) 
-    {
-      CaseData thisCase = null;
-      if (selectedObj.name == "Ballon")
-        {
-          thisCase = selectedObj.GetComponent<BallonData>().ballonCase;
-        } else{
-            thisCase = selectedObj.GetComponent<PersoData>().persoCase;
-        }
+  public override void OnStartClient()
+  {
+    if (Instance == null)
+      Instance = this;
 
-    if (thisCase == null)
+    Debug.Log(this.GetType() + " is Instanced");
+  }
+
+  // *************** //
+  // ** Fonctions ** // Fonctions réutilisables ailleurs
+  // *************** //
+
+  public void CheckCaseTransparency(CaseData Case)
+  { // Check s'il y a un personnage ou un ballon au dessus ou en dessous de la case ciblée pour détecter s'il doit faire une transparence ou non.
+
+// PERSO SUR CASE CHOISI ?
+    if (Case.personnageData == null)
       return;
 
-      CaseData go = thisCase.GetComponent<CaseData>();
-    CaseData upperCase = null;
-    CaseData lowerCase = null;
+// GET CASE HAUT ET GET CASE BAS
+    CaseData upperCase = GameObject.Find((Case.xCoord - 1) + " " + (Case.yCoord + 1)) != null ? GameObject.Find((Case.xCoord + 1) + " " + (Case.yCoord - 1)).GetComponent<CaseData>() : null;
+    CaseData lowerCase = GameObject.Find((Case.xCoord + 1) + " " + (Case.yCoord - 1)) != null ? GameObject.Find((Case.xCoord + 1) + " " + (Case.yCoord - 1)).GetComponent<CaseData>() : null;
 
- /*     if (go.xCoord - 1 > -1 && go.yCoord + 1 < GrilleManager.Instance.largeur)
-      upperCase = GameObject.Find((go.xCoord - 1) + " " + (go.yCoord + 1)).GetComponent<CaseData>();
+    if (upperCase != null && (upperCase.personnageData != null || upperCase.ballon != null))
+      ApplyTransparency(Case.personnageData);
+    else
+      ApplyOpacity(Case.personnageData);
 
-      if (go.xCoord + 1 < GrilleManager.Instance.hauteur && go.yCoord - 1 > -1)
-        lowerCase = GameObject.Find(go.xCoord + 1 + " " + (go.yCoord - 1)).GetComponent<CaseData>();*/
+    if (lowerCase != null && lowerCase.personnageData != null)
+      ApplyTransparency(lowerCase.personnageData);
+    else
+      ApplyOpacity(lowerCase.personnageData);
+  }
 
-      if (GameObject.Find((go.xCoord - 1) + " " + (go.yCoord + 1)) != null) upperCase = GameObject.Find((go.xCoord - 1) + " " + (go.yCoord + 1)).GetComponent<CaseData>();
-      if (GameObject.Find((go.xCoord + 1) + " " + (go.yCoord - 1)) != null) lowerCase = GameObject.Find(go.xCoord + 1 + " " + (go.yCoord - 1)).GetComponent<CaseData>();
-        
+  public void ApplyTransparency(PersoData Perso)
+  { // Applique la transparence du TransparencyBehaviour sur le personnage.
+    SpriteRenderer CaseSpriteR = Perso.GetComponent<SpriteRenderer>();
 
-      if (upperCase != null && (upperCase.GetComponent<CaseData>().personnageData != null || upperCase.GetComponent<CaseData>().ballon != null))
-        {
+    Color transparency = new Color(CaseSpriteR.color.r, CaseSpriteR.color.g, CaseSpriteR.color.b, alpha);
+    Perso.GetComponent<SpriteRenderer>().color = transparency;
+  }
 
-      } else if (lowerCase != null && lowerCase.GetComponent<CaseData>().personnageData != null)
-        {
-          thisCase = lowerCase;
-        } else {
-          return;
-        }
-    if (thisCase.GetComponent<CaseData>().personnageData != null)
-      {
-        SpriteRenderer thisCaseSpriteR = thisCase.GetComponent<CaseData>().personnageData.GetComponent<SpriteRenderer>();
-        Color transparency = new Color(thisCaseSpriteR.color.r, thisCaseSpriteR.color.g, thisCaseSpriteR.color.b, alpha);
-        thisCase.GetComponent<CaseData>().personnageData.GetComponent<SpriteRenderer>().color = transparency;
-      }
-    }
+  public void ApplyOpacity(PersoData Perso)
+  { // Annule la transparence du personnage.
+    SpriteRenderer CaseSpriteR = Perso.GetComponent<SpriteRenderer>();
 
-    IEnumerator Delay () {
-      yield return new WaitForEndOfFrame();
-    }
+    Color transparency = new Color(CaseSpriteR.color.r, CaseSpriteR.color.g, CaseSpriteR.color.b, 1);
+    Perso.GetComponent<SpriteRenderer>().color = transparency;
+  }
 }

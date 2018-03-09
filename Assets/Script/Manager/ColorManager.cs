@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+/// <summary>Toutes les couleurs sont stockés ici, pour une case, un personnage ou tout autre chose.</summary>
 [ExecuteInEditMode]
-public class ColorManager : NetworkBehaviour {
+public class ColorManager : NetworkBehaviour
+{
 
   // *************** //
-  // ** Variables ** //
+  // ** Variables ** // Toutes les variables sans distinctions
   // *************** //
+
   [Header("  Couleur des cases")]
   public Color hoverColor;
   public Color hoverStrongColor;
@@ -28,14 +31,14 @@ public class ColorManager : NetworkBehaviour {
 
   [HideInInspector] public static ColorManager Instance;
 
-    // *************** //
-    // ** Initialisation ** //
-    // *************** //
-    public override void OnStartClient()
-    {
-        if (Instance == null)
-            Instance = this;
-        Debug.Log("ColorManager is Instanced");
+  // ******************** //
+  // ** Initialisation ** // Fonctions de départ, non réutilisable
+  // ******************** //
 
-    }
+  public override void OnStartClient()
+  {
+    if (Instance == null)
+      Instance = this;
+    Debug.Log("ColorManager is Instanced");
+  }
 }
