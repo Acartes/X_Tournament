@@ -6,186 +6,225 @@ using UnityEngine.Networking;
 public class TackleBehaviour : NetworkBehaviour
 {
 
-  // *************** //
-  // ** Variables ** //
-  // *************** //
+    // *************** //
+    // ** Variables ** //
+    // *************** //
 
-  [Header("  Temps")]
-  [Tooltip("Durée du va et vien entre le tacleur et le taclé")]
-  public float tackleAnimTime;
+    [Header("  Temps")]
+    [Tooltip("Durée du va et vien entre le tacleur et le taclé")]
+    public float tackleAnimTime;
 
-  [HideInInspector] public static TackleBehaviour Instance;
+    bool isTackling = false;
 
-  public SyncListInt randomIntList;
-  int randomIntOrder = 0;
+    [HideInInspector] public static TackleBehaviour Instance;
 
-  // *************** //
-  // ** Initialisation ** //
-  // *************** //
+    public SyncListInt randomIntList;
+    int randomIntOrder = 0;
 
-  public override void OnStartClient()
-  {
-    if (Instance == null)
-      Instance = this;
-    Debug.Log(this.GetType() + " is Instanced");
-    StartCoroutine(waitForInit());
-  }
+    [ReadOnly] public List<int> ballonTackleLourd = new List<int>();
+    [ReadOnly] public List<int> ballonTackleLeger = new List<int>();
 
-  IEnumerator waitForInit()
-  {
-    while (!LoadingManager.Instance.isGameReady())
-      yield return new WaitForEndOfFrame();
-    Init();
-  }
+    // *************** //
+    // ** Initialisation ** //
+    // *************** //
 
-  private void Init()
-  {
-    SetupRandomList();
-  }
+    public override void OnStartClient()
+    {
+        if (Instance == null)
+            Instance = this;
+        Debug.Log(this.GetType() + " is Instanced");
+        StartCoroutine(waitForInit());
+    }
 
-  IEnumerator LateOnEnable()
-  {
-    yield return new WaitForEndOfFrame();
-    TurnManager.Instance.changeTurnEvent += OnChangeTurn;
-  }
-
-  void OnDisable()
-  {
-    if (LoadingManager.Instance.isGameReady())
-      {
-        TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
-      }
-  }
-
-  // *************** //
-  // ** Checkers ** //
-  // *************** //
-
-  public void SetupRandomList()
-  {
-    randomIntList.Clear();
-    randomIntOrder = 0;
-    if (!isServer)
-      return;
-
-    for (int i = 0; i < 100; i++)
-      {
-        randomIntList.Add(UnityEngine.Random.Range(0, 100));
-      }
-  }
-
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-  void OnChangeTurn(object sender, PlayerArgs e)
-  { // Lorsqu'un joueur termine son tour
-    SetupRandomList();
-  }
-
-  public void CheckTackle(GameObject movingObj, PersoData shotingPersonnage = null)
-  { // Vérifie si le personnage peut être taclé, et si c'est le cas, fait un test de chance pour savoir s'il est taclé
-    Transform path = SelectionManager.Instance.selectedCase.transform;
-    Player currentPlayer = TurnManager.Instance.currentPlayer;
-    float xCaseOffset = CaseManager.Instance.xCaseOffset;
-    float yCaseOffset = CaseManager.Instance.yCaseOffset;
-
-    foreach (PersoData obj in RosterManager.Instance.listHeroPlaced)
-      {
-        if (movingObj != null && obj != shotingPersonnage)
-          {
-            if (obj != movingObj && Fonction.Instance.CheckAdjacent(obj.gameObject, movingObj.gameObject) == true)
-              {
-                randomIntOrder++;
-                int randomInt = randomIntList[randomIntOrder];
-                switch (movingObj.name)
-                  {
-                  case ("Ballon"):
-                    Debug.Log(obj.owner + " " + currentPlayer);
-                    if (obj.owner != currentPlayer)
-                      {
-                        int maxInt = 50;
-                        path = movingObj.GetComponent<BallonData>().ballonCase.transform;
-                        StartCoroutine(TackleEffect(obj, movingObj.transform));
-                        if (randomInt < maxInt)
-                          {
-                            FeedbackManager.Instance.ShowInit(randomInt, maxInt, path.gameObject);
-                            Debug.Log("(Si inférieur à 51, il y a interception) " + randomInt + "/" + "100" + ": Interception SUCCESS");
-                            GameManager.Instance.actualAction = PersoAction.isWaiting;
-
-                            movingObj.GetComponent<BallonData>().ChangeStatut(BallonStatut.isIntercepted);
-                          } 
-                      }
-                    break;
-                  default:
-                    if (obj.owner != currentPlayer)
-                      {
-                        StartCoroutine(TackleEffect(obj, path));
-                        if (movingObj.GetComponent<PersoData>().weightType == obj.weightType)
-                          {
-                            int maxInt = 50;
-                            if (randomInt < maxInt)
-                              {
-                                FeedbackManager.Instance.ShowInit(randomInt, maxInt, path.gameObject);
-                                Debug.Log("(Même poids) (Si inférieur à 51 il y a tackle) " + randomInt + "/" + "100" + ": Tackle SUCCESS");
-                                movingObj.GetComponent<PersoData>().isTackled = true;
-                              } else
-                              {
-                                FeedbackManager.Instance.ShowInit(randomInt, maxInt, path.gameObject);
-                                Debug.Log("(Même poids) (Si inférieur à 51 il y a tackle) " + randomInt + "/" + "100" + ": Tackle FAILED");
-                              }
-                          } else
-                          {
-                            int maxInt = 25;
-                            if (randomInt < maxInt)
-                              {
-                                FeedbackManager.Instance.ShowInit(randomInt, maxInt, path.gameObject);
-                                Debug.Log("(Poids différents) (Si inférieur à 26 il y a tackle) " + randomInt + "/" + "100" + ": Tackle SUCCESS");
-                                movingObj.GetComponent<PersoData>().isTackled = true;
-                              } else
-                              {
-                                FeedbackManager.Instance.ShowInit(randomInt, maxInt, path.gameObject);
-                                Debug.Log("(Poids différents) (Si inférieur à 26 il y a tackle) " + randomInt + "/" + "100" + ": Tackle FAILED");
-                              }
-                          }
-                      }
-                    break;
-                  }
-              }
-          }
-      }
-  }
-
-  // *************** //
-  // ** Tacle ** //
-  // *************** //
-
-  IEnumerator TackleEffect(PersoData punchingPersonnage, Transform path)
-  { // Effet visuel à chaque fois que le personnage se déplaçant se fait taclé
-    if (punchingPersonnage.GetComponent<BoxCollider2D>().enabled != false)
-      {
-
-        punchingPersonnage.GetComponent<BoxCollider2D>().enabled = false;
-
-        Vector3 startPos = punchingPersonnage.transform.position;
-
-        float fracturedTime = 0;
-        float timeUnit = tackleAnimTime / 60;
-
-        while (fracturedTime < 2)
-          {
-            fracturedTime += timeUnit + 0.01f;
-            punchingPersonnage.transform.position = Vector3.Lerp(startPos, path.position + punchingPersonnage.originPoint.transform.position, fracturedTime);
+    IEnumerator waitForInit()
+    {
+        while (!LoadingManager.Instance.isGameReady())
             yield return new WaitForEndOfFrame();
-          }
+        Init();
+    }
 
-        fracturedTime = 0;
+    private void Init()
+    {
+        SetupRandomList();
+    }
 
-        while (fracturedTime < 2)
-          {
-            fracturedTime += timeUnit + 0.01f;
-            punchingPersonnage.transform.position = Vector3.Lerp(path.position + punchingPersonnage.originPoint.transform.position, startPos, fracturedTime);
-            yield return new WaitForEndOfFrame();
-          }
-        punchingPersonnage.GetComponent<BoxCollider2D>().enabled = true;
-      }
-  }
+    IEnumerator LateOnEnable()
+    {
+        yield return new WaitForEndOfFrame();
+        TurnManager.Instance.changeTurnEvent += OnChangeTurn;
+    }
+
+    void OnDisable()
+    {
+        if (LoadingManager.Instance.isGameReady())
+        {
+            TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
+        }
+    }
+
+    // *************** //
+    // ** Checkers ** //
+    // *************** //
+
+    public void SetupRandomList()
+    {
+        randomIntList.Clear();
+        randomIntOrder = 0;
+        if (!isServer)
+            return;
+
+        for (int i = 0; i < 100; i++)
+        {
+            randomIntList.Add(UnityEngine.Random.Range(0, 100));
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    void OnChangeTurn(object sender, PlayerArgs e)
+    { // Lorsqu'un joueur termine son tour
+        SetupRandomList();
+    }
+
+    public void CheckTackle(GameObject movingObj, PersoData shotingPersonnage = null)
+    { // Vérifie si le personnage peut être taclé, et si c'est le cas, fait un test de chance pour savoir s'il est taclé
+        Transform path = SelectionManager.Instance.selectedCase.transform;
+        Player currentPlayer = TurnManager.Instance.currentPlayer;
+        float xCaseOffset = CaseManager.Instance.xCaseOffset;
+        float yCaseOffset = CaseManager.Instance.yCaseOffset;
+
+        foreach (PersoData obj in RosterManager.Instance.listHeroPlaced)
+        {
+            if (movingObj != null && obj != shotingPersonnage)
+            {
+                if (obj != movingObj && Fonction.Instance.CheckAdjacent(obj.gameObject, movingObj.gameObject) == true)
+                {
+                    randomIntOrder++;
+                    int randomInt = randomIntList[randomIntOrder];
+                    switch (movingObj.name)
+                    {
+                        case ("Ballon"):
+                            if (obj.owner != currentPlayer)
+                            {
+                                // lourd : 5, 8, 12, 17, 22, 28
+                                // léger : 8, 12, 17, 22, 28, 35
+                                Debug.Log("value in ballonTackleLourd are : ");
+                                foreach (int value in ballonTackleLourd)
+                                {
+                                    Debug.Log(value);
+                                }
+                                Debug.Log("value in ballonTackleLeger are : ");
+                                foreach (int value in ballonTackleLeger)
+                                {
+                                    Debug.Log(value);
+                                }
+
+                                int maxInt = 0;
+                                if (SelectionManager.Instance.selectedPersonnage.weightType == WeightType.Heavy)
+                                {
+                                    maxInt = ballonTackleLourd[movingObj.GetComponent<BallonData>().casesCrossed - 1];
+                                }
+                                if (SelectionManager.Instance.selectedPersonnage.weightType == WeightType.Light)
+                                {
+                                    maxInt = ballonTackleLeger[movingObj.GetComponent<BallonData>().casesCrossed - 1];
+                                }
+
+                                Debug.Log("number of cases crossed by the ball is :" + movingObj.GetComponent<BallonData>().casesCrossed);
+                                Debug.Log("value chooseen is :" + maxInt);
+
+                                path = movingObj.GetComponent<BallonData>().ballonCase.transform;
+                                StartCoroutine(TackleEffect(obj, movingObj.transform));
+                                if (randomInt < maxInt)
+                                {
+                                    FeedbackManager.Instance.ShowInit(randomInt, maxInt, path.gameObject);
+                                    Debug.Log("(Si inférieur à " + (maxInt + 1) + ", il y a interception) " + randomInt + "/" + maxInt + ": Interception SUCCESS");
+                                    GameManager.Instance.actualAction = PersoAction.isWaiting;
+                                    movingObj.GetComponent<BallonData>().ChangeStatut(BallonStatut.isIntercepted);
+                                }
+                                else
+                                {
+                                    Debug.Log("(Si inférieur à " + (maxInt + 1) + ", il y a interception) " + randomInt + "/" + maxInt + ": Interception FAILURE");
+                                }
+                            }
+                            break;
+                        default:
+                            if (obj.owner != currentPlayer)
+                            {
+                                StartCoroutine(TackleEffect(obj, path));
+                                if (movingObj.GetComponent<PersoData>().weightType == obj.weightType)
+                                {
+                                    int maxInt = 50;
+                                    if (randomInt < maxInt)
+                                    {
+                                        FeedbackManager.Instance.ShowInit(randomInt, maxInt, path.gameObject);
+                                        Debug.Log("(Même poids) (Si inférieur à " + maxInt + 1 + ", il y a a tackle) " + randomInt + "/" + "100" + ": Tackle SUCCESS");
+                                        SelectionManager.Instance.selectedPersonnage.actualPointMovement = Mathf.CeilToInt(SelectionManager.Instance.selectedPersonnage.actualPointMovement / 2);
+                                        SelectionManager.Instance.selectedPersonnage.actualPointResistance -= 1;
+                                        SelectionManager.Instance.selectedPersonnage.isTackled = true;
+                                    }
+                                    else
+                                    {
+                                        FeedbackManager.Instance.ShowInit(randomInt, maxInt, path.gameObject);
+                                        Debug.Log("(Même poids) (Si inférieur à 51 il y a tackle) " + randomInt + "/" + "100" + ": Tackle FAILED");
+                                    }
+                                }
+                                else
+                                {
+                                    int maxInt = 25;
+                                    if (randomInt < maxInt)
+                                    {
+                                        FeedbackManager.Instance.ShowInit(randomInt, maxInt, path.gameObject);
+                                        Debug.Log("(Poids différents) (Si inférieur à " + maxInt + 1 + ", il y a il y a tackle) " + randomInt + "/" + "100" + ": Tackle SUCCESS");
+                                        SelectionManager.Instance.selectedPersonnage.actualPointMovement = Mathf.CeilToInt(SelectionManager.Instance.selectedPersonnage.actualPointMovement / 4);
+                                        SelectionManager.Instance.selectedPersonnage.actualPointResistance -= 1;
+                                        MoveBehaviour.Instance.pathes.Clear();
+                                    }
+                                    else
+                                    {
+                                        FeedbackManager.Instance.ShowInit(randomInt, maxInt, path.gameObject);
+                                        Debug.Log("(Poids différents) (Si inférieur à " + maxInt + 1 + ", il y a il y a tackle) " + randomInt + "/" + "100" + ": Tackle FAILED");
+                                    }
+                                }
+                            }
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
+    // *************** //
+    // ** Tacle ** //
+    // *************** //
+
+    IEnumerator TackleEffect(PersoData punchingPersonnage, Transform path)
+    { // Effet visuel à chaque fois que le personnage se déplaçant se fait taclé
+        if (punchingPersonnage.GetComponent<BoxCollider2D>().enabled != false)
+        {
+
+            punchingPersonnage.GetComponent<BoxCollider2D>().enabled = false;
+
+            Vector3 startPos = punchingPersonnage.transform.position;
+
+            float fracturedTime = 0;
+            float timeUnit = tackleAnimTime / 60;
+
+            while (fracturedTime < 2)
+            {
+                fracturedTime += timeUnit + 0.01f;
+                punchingPersonnage.transform.position = Vector3.Lerp(startPos, path.position + punchingPersonnage.originPoint.transform.position, fracturedTime);
+                yield return new WaitForEndOfFrame();
+            }
+
+            fracturedTime = 0;
+
+            while (fracturedTime < 2)
+            {
+                fracturedTime += timeUnit + 0.01f;
+                punchingPersonnage.transform.position = Vector3.Lerp(path.position + punchingPersonnage.originPoint.transform.position, startPos, fracturedTime);
+                yield return new WaitForEndOfFrame();
+            }
+            punchingPersonnage.GetComponent<BoxCollider2D>().enabled = true;
+        }
+    }
 }
