@@ -35,6 +35,7 @@ public class BallonData : NetworkBehaviour
   public float xCoord;
   public float yCoord;
   public bool canRebond;
+  public int casesCrossed;
 
   Animator animator;
   SpriteRenderer spriteR;
@@ -76,6 +77,7 @@ public class BallonData : NetworkBehaviour
   /// <summary>Déplace le ballon devant le personnage ayant tiré.</summary>
   public IEnumerator Move()
   {
+    casesCrossed = 0;
     CaseData hoveredCase = HoverManager.Instance.hoveredCase;
     PersoData selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
 
@@ -178,6 +180,8 @@ public class BallonData : NetworkBehaviour
             transform.position = Vector3.Lerp(startPos, nextPosition.transform.position, fracturedTime);
             yield return new WaitForEndOfFrame();
           }
+        casesCrossed++;
+
         TackleBehaviour.Instance.CheckTackle(this.gameObject, selectedPersonnage);
       }
     endMove:
@@ -187,6 +191,7 @@ public class BallonData : NetworkBehaviour
     animator.SetTrigger("Idle");
     CaseManager.Instance.StartCoroutine("ShowActions");
     TurnManager.Instance.EnableFinishTurn();
+    casesCrossed = 0;
   }
 
   /// <summary>Change la rotation du sprite du ballon.</summary>
