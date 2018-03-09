@@ -105,7 +105,7 @@ public class GameManager : NetworkBehaviour
     SelectionManager.Instance.selectedPersonnage = null;
     yield return new WaitForEndOfFrame();
     TurnManager.Instance.TurnNumber = 0;
-    TurnManager.Instance.ChangePhase(0);
+    TurnManager.Instance.ChangePhase(Phase.Deplacement);
   }
 
   /// <summary>Change le joueur en train de jouer par un autre.</summary>

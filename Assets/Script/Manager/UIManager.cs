@@ -4,8 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 
+/// <summary>Gère tous les feedback de type UI, sur un canvas ou bien des feedback.</summary>
 public class UIManager : NetworkBehaviour
 {
+
+  // *************** //
+  // ** Variables ** // Toutes les variables sans distinctions
+  // *************** //
 
   public List<GameObject> banner;
   public List<GameObject> bannerText;
@@ -13,21 +18,19 @@ public class UIManager : NetworkBehaviour
   public List<Color> bannerTextColor;
   public GameObject phaseText;
   public List<string> phaseTextMessage;
-
-  int nbrPlayer = 2;
-
   public int scoreRed = 0;
   public int scoreBlue = 0;
   public GameObject scoreRedGMB;
   public GameObject scoreBlueGMB;
   public GameObject messageGeneral;
   public GameObject menuContextuel;
- 
-
   public bool isScoreChanging = false;
 
   public static UIManager Instance;
 
+  // ******************** //
+  // ** Initialisation ** // Fonctions de départ, non réutilisable
+  // ******************** //
 
   public override void OnStartClient()
   {
@@ -52,16 +55,10 @@ public class UIManager : NetworkBehaviour
     bannerText.Add(GameObject.Find("UIJ2BannerText"));
     phaseText = GameObject.Find("phaseText");
 
-
     scoreRedGMB = GameObject.Find("scoreRedGMB");
     scoreBlueGMB = GameObject.Find("scoreBlueGMB");
     messageGeneral = GameObject.Find("messageGeneral");
 
-    for (int i = 0; i < nbrPlayer; i++)
-      {
-        bannerColor.Add(banner[i].GetComponent<Image>().color);
-        bannerTextColor.Add(bannerText[i].GetComponent<Text>().color);
-      }
     TurnManager.Instance.changeTurnEvent += OnChangeTurn;
   }
 
@@ -72,6 +69,10 @@ public class UIManager : NetworkBehaviour
         TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
       }
   }
+
+  // *************** //
+  // ** Events **    // Appel de fonctions au sein de ce script grâce à des events
+  // *************** //
 
   void OnChangeTurn(object sender, PlayerArgs e)
   {
@@ -98,7 +99,7 @@ public class UIManager : NetworkBehaviour
 
   void ChangeBanner(int x)
   {
-    for (int i = 0; i < nbrPlayer; i++)
+    for (int i = 0; i < 2; i++)
       {
         if (i == x)
           {
@@ -117,11 +118,16 @@ public class UIManager : NetworkBehaviour
     phaseText.GetComponent<Text>().text = phaseTextMessage[x];
   }
 
-  public IEnumerator ScoreChange(Player winCase)
+  // *************** //
+  // ** Fonctions ** // Fonctions réutilisables ailleurs
+  // *************** //
+
+  /// <summary>Le gagnant marque un point.</summary>
+  public IEnumerator ScoreChange(Player winner)
   {
     isScoreChanging = true;
 
-    if (winCase == Player.Blue)
+    if (winner == Player.Blue)
       {
         scoreRed++;
         scoreRedGMB.GetComponent<Text>().text = scoreRed.ToString();
@@ -139,7 +145,7 @@ public class UIManager : NetworkBehaviour
             messageGeneral.GetComponent<Text>().color -= new Color(0, 0, 0, 0.05f);
           }
       }
-    if (winCase == Player.Red)
+    if (winner == Player.Red)
       {
         scoreBlue++;
         scoreBlueGMB.GetComponent<Text>().text = scoreBlue.ToString();
@@ -156,7 +162,6 @@ public class UIManager : NetworkBehaviour
             yield return new WaitForSeconds(0.01f);
             messageGeneral.GetComponent<Text>().color -= new Color(0, 0, 0, 0.05f);
           }
-
       }
 
     StartCoroutine(GameManager.Instance.NewManche());
