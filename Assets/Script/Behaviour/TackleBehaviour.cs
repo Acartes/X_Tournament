@@ -10,11 +10,9 @@ public class TackleBehaviour : NetworkBehaviour
     // ** Variables ** //
     // *************** //
 
-    [Header("  Temps")]
+    [Header("Temps")]
     [Tooltip("Durée du va et vien entre le tacleur et le taclé")]
     public float tackleAnimTime;
-
-    bool isTackling = false;
 
     [HideInInspector] public static TackleBehaviour Instance;
 
@@ -97,7 +95,7 @@ public class TackleBehaviour : NetworkBehaviour
         {
             if (movingObj != null && obj != shotingPersonnage)
             {
-                if (obj != movingObj && Fonction.Instance.CheckAdjacent(obj.gameObject, movingObj.gameObject) == true)
+                if (obj != movingObj && CaseManager.Instance.CheckAdjacent(obj.gameObject, movingObj.gameObject) == true)
                 {
                     randomIntOrder++;
                     int randomInt = randomIntList[randomIntOrder];

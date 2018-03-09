@@ -8,7 +8,6 @@ public class MenuContextuel : NetworkBehaviour {
 	public static MenuContextuel Instance;
 
 	GameObject ballon;
-  bool gameInit = true;
 
 
     public override void OnStartClient()
@@ -29,14 +28,9 @@ public class MenuContextuel : NetworkBehaviour {
     private void Init()
     {
 		ballon = GameObject.Find ("Ballon");
-      if (gameInit)
-        {
           UIManager.Instance.menuContextuel = this.gameObject;
-          this.gameObject.SetActive(false);
-          gameInit = false;
-        }
         TurnManager.Instance.changeTurnEvent += OnChangeTurn;
-      //  Desactive();
+        this.gameObject.SetActive(false);
 	}
 
     void OnEnable()
@@ -47,22 +41,17 @@ public class MenuContextuel : NetworkBehaviour {
         ballon = GameObject.Find("Ballon");
           Debug.Log(ballon.transform.position);
         transform.position = ballon.transform.position;
-
-            foreach (GameObject obj in GameObject.FindGameObjectsWithTag("case")) {
-          obj.GetComponent<PolygonCollider2D> ().enabled = false;
-        }
+            CaseManager.Instance.DisableAllColliders();
+        
       }
     }
 
 	void OnDisable()
   {
-      foreach (GameObject obj in GameObject.FindGameObjectsWithTag("case"))
-          {
-            obj.GetComponent<PolygonCollider2D>().enabled = true;
-          }
-	}
+        CaseManager.Instance.EnableAllColliders();
+    }
 
-  void OnChangeTurn(object sender, PlayerArgs e)
+    void OnChangeTurn(object sender, PlayerArgs e)
   { // Lorsqu'un joueur termine son tour
 
     SelectionManager.Instance.Deselect(TurnManager.Instance.currentPhase, TurnManager.Instance.currentPlayer);
@@ -73,16 +62,4 @@ public class MenuContextuel : NetworkBehaviour {
       }
   } 
 
-/*	public void Active () {
-		foreach (GameObject obj in GameObject.FindGameObjectsWithTag("case")) {
-		//	obj.GetComponent<PolygonCollider2D> ().enabled = false;
-		}
-		//Pathfinding.Instance.
-	}*/
-
-/*	public void Desactive () {
-		foreach (GameObject obj in GameObject.FindGameObjectsWithTag("case")) {
-			obj.GetComponent<PolygonCollider2D> ().enabled = true;
-		}
-	}*/
 }

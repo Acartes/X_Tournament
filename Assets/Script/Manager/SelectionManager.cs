@@ -128,7 +128,7 @@ public class SelectionManager : NetworkBehaviour
 
   public void Deselect(Phase currentPhase, Player currentPlayer)
   {
-    MoveBehaviour.Instance.HidePath();
+    CaseManager.Instance.RemovePath();
     MoveBehaviour.Instance.pathes.Clear();
     GameManager.Instance.actualAction = PersoAction.isSelected;
     CaseManager.Instance.StartCoroutine("ShowActions");

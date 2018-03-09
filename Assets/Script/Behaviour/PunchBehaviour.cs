@@ -50,7 +50,7 @@ public class PunchBehaviour : NetworkBehaviour
         hoveredPersonnage != null &&
         hoveredPersonnage.GetComponent<PersoData>().owner != currentPlayer &&
         selectedPersonnage.GetComponent<PersoData>().actualPointMovement != 0 &&
-        Fonction.Instance.CheckAdjacent(selectedPersonnage.gameObject, hoveredPersonnage.gameObject) == true)
+        CaseManager.Instance.CheckAdjacent(selectedPersonnage.gameObject, hoveredPersonnage.gameObject) == true)
       {
         Punch(HoverManager.Instance.hoveredPersonnage);
       }
