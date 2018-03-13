@@ -157,6 +157,7 @@ public class SelectionManager : NetworkBehaviour
 
     selectedCase.ChangeStatut(Statut.isSelected);
     GameManager.Instance.actualAction = PersoAction.isSelected;
+    Pathfinding.Instance.StartPathfinding();
   }
 
   public void DisablePersoSelection()

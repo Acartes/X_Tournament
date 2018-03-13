@@ -163,19 +163,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weightType: 0
   owner: 1
-  actualPointMovement: 0
-  maxPointMovement: 0
-  actualPointAction: 0
-  maxPointAction: 0
+  actualPointMovement: 6
+  maxPointMovement: 6
+  actualPointAction: 3
+  maxPointAction: 3
   actualPointResistance: 5
-  maxPointResistance: 0
+  maxPointResistance: 5
   persoDirection: 0
   persoCase: {fileID: 0}
   originPoint: {fileID: 1901035600525994}
   faceSprite: {fileID: 21300000, guid: 070fabda4501ee745b588f7ca2d704b7, type: 3}
   backSprite: {fileID: 21300000, guid: c36a3cbf5a4fa3b4b86815f32859c317, type: 3}
-  Sort1: {fileID: 0}
-  Sort2: {fileID: 0}
+  Spell1: {fileID: 0}
+  Spell2: {fileID: 0}
   isTackled: 0
 --- !u!212 &212627234883469394
 SpriteRenderer:
