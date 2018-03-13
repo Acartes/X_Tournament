@@ -100,7 +100,7 @@ public class TurnManager : NetworkBehaviour
     TurnNumber++;
 
     if (TurnNumber == 2)
-      ChangePhase(Phase.Placement);
+      ChangePhase(Phase.Deplacement);
 
     changeTurnEvent(this, new PlayerArgs(currentPlayer, currentPhase));
   }
