@@ -17,7 +17,7 @@ public class CaseManager : NetworkBehaviour
     [Header("  Cases")]
     [Tooltip("La liste de toutes les cases de la grille.")]
     [ReadOnly]
-    static public List<GameObject> listAllCase;
+    static public List<GameObject> listAllCase = new List<GameObject>();
     [Tooltip("Distance entre les cases en x.")]
     public float xCaseOffset = 1;
     [Tooltip("Distance entre les cases en y.")]

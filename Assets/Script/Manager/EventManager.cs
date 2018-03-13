@@ -42,6 +42,7 @@ public class EventManager : NetworkBehaviour
   public void RpcClickEvent()
   {
     newClickEvent();
+       // issou(newClickEvent);
   }
 
   [ClientRpc]
@@ -69,4 +70,12 @@ public class EventManager : NetworkBehaviour
         break;
       }
   }
+    /*
+     
+    void issou(Action newAction)
+    {
+        functionsToRun.Add(newAction);
+        functionsToRun[0].Invoke();
+    }
+*/
 }
