@@ -49,16 +49,6 @@ public class UIManager : NetworkBehaviour
 
   private void Init()
   {
-    banner.Add(GameObject.Find("UIJ1Banner"));
-    banner.Add(GameObject.Find("UIJ2Banner"));
-    bannerText.Add(GameObject.Find("UIJ1BannerText"));
-    bannerText.Add(GameObject.Find("UIJ2BannerText"));
-    phaseText = GameObject.Find("phaseText");
-
-    scoreRedGMB = GameObject.Find("scoreRedGMB");
-    scoreBlueGMB = GameObject.Find("scoreBlueGMB");
-    messageGeneral = GameObject.Find("messageGeneral");
-
     TurnManager.Instance.changeTurnEvent += OnChangeTurn;
   }
 

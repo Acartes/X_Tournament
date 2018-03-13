@@ -5583,6 +5583,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
+        type: 2}
+      propertyPath: banner.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
+        type: 2}
+      propertyPath: bannerText.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4709403067407232, guid: f565d66adbe13e44498b557dfc635a51, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5635,6 +5645,31 @@ Prefab:
       propertyPath: menuContextuel
       value: 
       objectReference: {fileID: 1992492208}
+    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
+        type: 2}
+      propertyPath: phaseText
+      value: 
+      objectReference: {fileID: 567419979}
+    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
+        type: 2}
+      propertyPath: banner.Array.data[0]
+      value: 
+      objectReference: {fileID: 1368248728}
+    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
+        type: 2}
+      propertyPath: banner.Array.data[1]
+      value: 
+      objectReference: {fileID: 1989665998}
+    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
+        type: 2}
+      propertyPath: bannerText.Array.data[0]
+      value: 
+      objectReference: {fileID: 357110352}
+    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
+        type: 2}
+      propertyPath: bannerText.Array.data[1]
+      value: 
+      objectReference: {fileID: 581017925}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f565d66adbe13e44498b557dfc635a51, type: 2}
   m_IsPrefabParent: 0
