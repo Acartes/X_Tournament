@@ -16,6 +16,8 @@ public class SelectionManager : NetworkBehaviour
   public BallonData selectedBallon;
   public CaseData selectedCase;
   public PersoData selectedPersonnage;
+
+  bool isDisablePersoSelection = false;
   
   public static SelectionManager Instance;
 
@@ -65,6 +67,9 @@ public class SelectionManager : NetworkBehaviour
 
   public void OnNewClick()
   { // Lors d'un click sur une case
+
+    if (isDisablePersoSelection)
+      return;
 
     PersoData hoveredPersonnage = HoverManager.Instance.hoveredPersonnage;
     Phase currentPhase = TurnManager.Instance.currentPhase;
@@ -154,5 +159,15 @@ public class SelectionManager : NetworkBehaviour
     selectedCase.ChangeStatut(Statut.isSelected);
     GameManager.Instance.actualAction = PersoAction.isSelected;
     CaseManager.Instance.StartCoroutine("ShowActions");
+  }
+
+  public void DisablePersoSelection()
+  {
+    isDisablePersoSelection = true;
+  }
+
+  public void EnablePersoSelection()
+  {
+    isDisablePersoSelection = false;
   }
 }

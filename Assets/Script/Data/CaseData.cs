@@ -281,66 +281,70 @@ public class CaseData : NetworkBehaviour
   }
 
   /// <summary>Récupère la case en haut de cette case.</summary>
-  public GameObject GetTopCase()
+  public CaseData GetTopCase()
   {
     GameObject newCase = (GameObject.Find(xCoord - 1 + " " + yCoord + 1) != null) ? GameObject.Find(xCoord - 1 + " " + yCoord + 1) : null;
-    return newCase;
+    return newCase.GetComponent<CaseData>();
   }
 
   /// <summary>Récupère la case en bas de cette case.</summary>
-  public GameObject GetBottomCase()
+  public CaseData GetBottomCase()
   {
     GameObject newCase = (GameObject.Find(xCoord + 1 + " " + (yCoord - 1)) != null) ? GameObject.Find(xCoord + 1 + " " + (yCoord - 1)) : null;
-    return newCase;
+    return newCase.GetComponent<CaseData>();
   }
 
   /// <summary>Récupère la case à gauche de cette case.</summary>
-  public GameObject GetLeftCase()
+  public CaseData GetLeftCase()
   {
     GameObject newCase = (GameObject.Find(xCoord - 1 + " " + (yCoord - 1)) != null) ? GameObject.Find(xCoord - 1 + " " + (yCoord - 1)) : null;
-    return newCase;
+    return newCase.GetComponent<CaseData>();
   }
 
   /// <summary>Récupère la case à droite de cette case.</summary>
-  public GameObject GetRightCase()
+  public CaseData GetRightCase()
   {
     GameObject newCase = (GameObject.Find(xCoord + 1 + " " + yCoord + 1) != null) ? GameObject.Find(xCoord + 1 + " " + yCoord + 1) : null;
-    return newCase;
+    return newCase.GetComponent<CaseData>();
   }
 
   /// <summary>Récupère la case en haut à gauche de cette case.</summary>
-  public GameObject GetTopLeftCase()
+  public CaseData GetTopLeftCase()
   {
     GameObject newCase = (GameObject.Find(xCoord - 1 + " " + yCoord) != null) ? GameObject.Find(xCoord - 1 + " " + yCoord) : null;
-    return newCase;
+    return newCase.GetComponent<CaseData>();
   }
 
   /// <summary>Récupère la case en bas à droite de cette case.</summary>
-  public GameObject GetBottomRightCase()
+  public CaseData GetBottomRightCase()
   {
-    GameObject newCase = (GameObject.Find(xCoord - 1 + " " + yCoord) != null) ? GameObject.Find(xCoord - 1 + " " + yCoord) : null;
-    return newCase;
+    GameObject newCase = (GameObject.Find(xCoord + 1 + " " + yCoord) != null) ? GameObject.Find(xCoord + 1 + " " + yCoord) : null;
+    return newCase.GetComponent<CaseData>();
   }
 
   /// <summary>Récupère la case en haut à droite de cette case.</summary>
-  public GameObject GetTopRightCase()
+  public CaseData GetTopRightCase()
   {
     GameObject newCase = (GameObject.Find(xCoord + " " + yCoord + 1) != null) ? GameObject.Find(xCoord + " " + yCoord + 1) : null;
-    return newCase;
+    return newCase.GetComponent<CaseData>();
   }
 
   /// <summary>Récupère la case en bas à gauche de cette case.</summary>
-  public GameObject GetBottomLeftCase()
+  public CaseData GetBottomLeftCase()
   {
     GameObject newCase = (GameObject.Find(xCoord + " " + (yCoord - 1)) != null) ? GameObject.Find(xCoord + " " + (yCoord - 1)) : null;
-    return newCase;
+    return newCase.GetComponent<CaseData>();
   }
 
-  /// <summary>Récupère la case par rapport à X et Y coordonnées de cette case.</summary>
-  public GameObject GetCaseRelativeCoordinate(int x, int y)
+  /// <summary>Récupère la case par rapport à X et Y coordonnées de cette case./n
+  /// x + 1 = GetBottomRightCase/n
+  /// x - 1 = GetTopLeftCase/n
+  /// y + 1 = GetTopRightCase/n
+  /// y - 1 = GetBottomLeftCase 
+  public CaseData GetCaseRelativeCoordinate(int x, int y)
   {
     GameObject newCase = (GameObject.Find((xCoord + x) + " " + (yCoord + y)) != null) ? GameObject.Find((xCoord + x) + " " + (yCoord + y)) : null;
-    return newCase;
+    return newCase.GetComponent<CaseData>();
   }
 
   /// <summary>Desactive all statuts for this case.</summary>

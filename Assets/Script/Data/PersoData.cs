@@ -25,8 +25,8 @@ public class PersoData : NetworkBehaviour
   public Sprite faceSprite;
   public Sprite backSprite;
 
-  public GameObject Sort1 = null;
-  public GameObject Sort2 = null;
+  public SpellData Spell1 = null;
+  public SpellData Spell2 = null;
 
   SpriteRenderer spriteR;
   bool ShineColorIsRunning = false;
