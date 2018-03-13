@@ -49,7 +49,7 @@ public class MenuContextuel : NetworkBehaviour
 
   void OnDisable()
   {
-    if (!LoadingManager.Instance.isGameReady())
+    if (LoadingManager.Instance.isGameReady())
       CaseManager.Instance.EnableAllColliders();
   }
 
