@@ -130,7 +130,6 @@ public class PlacementBehaviour : NetworkBehaviour
 
   public void CreatePersoPlacement(CaseData hoveredCase, PersoData selectedPersonnage)
   { //
-      
     if (SelectionManager.Instance.selectedPersonnage != null)
       {
         Debug.Log("transformedperso");

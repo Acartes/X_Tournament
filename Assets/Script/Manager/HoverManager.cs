@@ -84,6 +84,9 @@ public class HoverManager : NetworkBehaviour
     hoveredBallon = e.hoveredBallon;
 
     changeColorEnter();
+
+    if (SelectionManager.Instance.selectedPersonnage != null)
+      MoveBehaviour.Instance.createPath();
   }
       
   // *************** //
