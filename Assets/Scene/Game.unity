@@ -5593,6 +5593,16 @@ Prefab:
       propertyPath: bannerText.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
+        type: 2}
+      propertyPath: bannerColor.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
+        type: 2}
+      propertyPath: bannerTextColor.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4709403067407232, guid: f565d66adbe13e44498b557dfc635a51, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5670,6 +5680,86 @@ Prefab:
       propertyPath: bannerText.Array.data[1]
       value: 
       objectReference: {fileID: 581017925}
+    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
+        type: 2}
+      propertyPath: bannerColor.Array.data[0].r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
+        type: 2}
+      propertyPath: bannerColor.Array.data[0].g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
+        type: 2}
+      propertyPath: bannerColor.Array.data[0].b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
+        type: 2}
+      propertyPath: bannerColor.Array.data[0].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
+        type: 2}
+      propertyPath: bannerColor.Array.data[1].r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
+        type: 2}
+      propertyPath: bannerColor.Array.data[1].g
+      value: 0.08965492
+      objectReference: {fileID: 0}
+    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
+        type: 2}
+      propertyPath: bannerColor.Array.data[1].b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
+        type: 2}
+      propertyPath: bannerColor.Array.data[1].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
+        type: 2}
+      propertyPath: bannerTextColor.Array.data[0].r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
+        type: 2}
+      propertyPath: bannerTextColor.Array.data[0].g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
+        type: 2}
+      propertyPath: bannerTextColor.Array.data[0].b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
+        type: 2}
+      propertyPath: bannerTextColor.Array.data[1].r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
+        type: 2}
+      propertyPath: bannerTextColor.Array.data[1].g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
+        type: 2}
+      propertyPath: bannerTextColor.Array.data[1].b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
+        type: 2}
+      propertyPath: bannerTextColor.Array.data[0].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
+        type: 2}
+      propertyPath: bannerTextColor.Array.data[1].a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f565d66adbe13e44498b557dfc635a51, type: 2}
   m_IsPrefabParent: 0

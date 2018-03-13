@@ -136,7 +136,6 @@ public class SelectionManager : NetworkBehaviour
     CaseManager.Instance.RemovePath();
     MoveBehaviour.Instance.pathes.Clear();
     GameManager.Instance.actualAction = PersoAction.isSelected;
-    CaseManager.Instance.StartCoroutine("ShowActions");
 
     if (selectedLastCase != null)
       selectedLastCase.ChangeStatut(Statut.None, Statut.isSelected);
