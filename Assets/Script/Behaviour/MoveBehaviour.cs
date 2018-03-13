@@ -94,7 +94,8 @@ public class MoveBehaviour : NetworkBehaviour
 
     foreach (GameObject path in GoPathes)
       {
-        this.pathes.Add(path.transform);
+        if (path != SelectionManager.Instance.selectedCase.gameObject)
+          this.pathes.Add(path.transform);
       }
 
     /*   if (pathesLast.Count == pathes.Count)
@@ -149,7 +150,7 @@ public class MoveBehaviour : NetworkBehaviour
         path.GetComponent<CaseData>().ChangeStatut(Statut.isMoving);
       }
     Debug.Log("Deplacement");
-    StartCoroutine(Deplacement(SelectionManager.Instance.selectedPersonnage.originPoint.transform.position, SelectionManager.Instance.selectedPersonnage));
+    StartCoroutine(Deplacement(SelectionManager.Instance.selectedPersonnage.originPoint.transform.localPosition, SelectionManager.Instance.selectedPersonnage));
   }
 
   public IEnumerator Deplacement(Vector3 originPoint, PersoData selectedPersonnage)
@@ -171,10 +172,10 @@ public class MoveBehaviour : NetworkBehaviour
 
             selectedPersonnage.RotateTowards(path.gameObject);
 
-            while (selectedPersonnage.transform.position != path.transform.position + originPoint)
+            while (selectedPersonnage.transform.position != path.transform.position - originPoint)
               {
                 fracturedTime += timeUnit + 0.01f;
-                selectedPersonnage.transform.position = Vector3.Lerp(startPos, path.transform.position + originPoint, fracturedTime);
+                selectedPersonnage.transform.position = Vector3.Lerp(startPos, path.transform.position - originPoint, fracturedTime);
                 yield return new WaitForEndOfFrame();
               }
             SelectionManager.Instance.selectedCase = path.gameObject.GetComponent<CaseData>();

@@ -14,6 +14,7 @@ public class HoverEvent : NetworkBehaviour
 
   public override void OnStartClient()
   {
+    GetComponent<PolygonCollider2D>().enabled = false;
     StartCoroutine(waitForInit());
   }
 
@@ -47,6 +48,7 @@ public class HoverEvent : NetworkBehaviour
     string hoveredPersonnage = "null";
     string hoveredBallon = "null";
 
+
     hoveredCase = this.GetComponent<CaseData>().name;
 
     if (GetComponent<CaseData>().personnageData != null)
@@ -63,9 +65,9 @@ public class HoverEvent : NetworkBehaviour
   void OnMouseExit()
   {
     if (!enabled || !LoadingManager.Instance.isGameReady())
-        {
-            RpcFunctions.Instance.CmdHoverEvent("null", "null", "null");
-        }
-        return;
+      {
+        RpcFunctions.Instance.CmdHoverEvent("null", "null", "null");
+      }
+    return;
   }
 }

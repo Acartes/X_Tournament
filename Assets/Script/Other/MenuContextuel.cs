@@ -50,7 +50,10 @@ public class MenuContextuel : NetworkBehaviour
   void OnDisable()
   {
     if (LoadingManager.Instance.isGameReady())
-      CaseManager.Instance.EnableAllColliders();
+      {
+        Debug.Log("Disable has enable colliders");
+        CaseManager.Instance.EnableAllColliders();
+      }
   }
 
   void OnChangeTurn(object sender, PlayerArgs e)
