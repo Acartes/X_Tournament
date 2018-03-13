@@ -28,21 +28,21 @@ public class EventManager : NetworkBehaviour
     PersoData hoveredPersonnage = null;
     BallonData hoveredBallon = null;
 
-    if (hoveredPersonnageString != "null")
+    if (hoveredCaseString != "null")
       hoveredCase = GameObject.Find(hoveredCaseString).GetComponent<CaseData>();
     if (hoveredPersonnageString != "null")
       hoveredPersonnage = GameObject.Find(hoveredPersonnageString).GetComponent<PersoData>();
     if (hoveredBallonString != "null")
       hoveredBallon = GameObject.Find(hoveredBallonString).GetComponent<BallonData>();
 
-      newHoverEvent(this, new HoverArgs(hoveredCase, hoveredPersonnage, hoveredBallon));
+    newHoverEvent(this, new HoverArgs(hoveredCase, hoveredPersonnage, hoveredBallon));
   }
 
   [ClientRpc]
   public void RpcClickEvent()
   {
     newClickEvent();
-       // issou(newClickEvent);
+    // issou(newClickEvent);
   }
 
   [ClientRpc]
@@ -70,7 +70,7 @@ public class EventManager : NetworkBehaviour
         break;
       }
   }
-    /*
+  /*
      
     void issou(Action newAction)
     {
