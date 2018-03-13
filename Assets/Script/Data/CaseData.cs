@@ -138,11 +138,6 @@ public class CaseData : NetworkBehaviour
   // ** Fonctions ** // Fonctions réutilisables ailleurs
   // *************** //
 
-  void navid()
-  {
-    ChangeStatut(Statut.None, Statut.canPunch);
-  }
-
   /// <summary>Change le statut, et met à jour la couleur et le feedback lié au statut</summary>
   public void ChangeStatut(Statut newStatut = Statut.None, Statut oldStatut = Statut.None)
   {
