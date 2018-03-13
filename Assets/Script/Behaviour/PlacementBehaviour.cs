@@ -62,7 +62,7 @@ public class PlacementBehaviour : NetworkBehaviour
 
   public void OnNewClick()
   { // Lors d'un click sur une case
-
+    Debug.Log("OnNewClick");
     Phase currentPhase = TurnManager.Instance.currentPhase;
     Player currentPlayer = TurnManager.Instance.currentPlayer;
     CaseData hoveredCase = HoverManager.Instance.hoveredCase;
@@ -73,12 +73,15 @@ public class PlacementBehaviour : NetworkBehaviour
         SelectionManager.Instance.selectedCase == null &&
         hoveredCase.GetComponent<CaseData>().casePathfinding == PathfindingCase.Walkable)
       {
+        Debug.Log("beforeCreatePerso");
         if ((Statut.placementRed & statut) == Statut.placementRed && currentPlayer == Player.Red)
           {
+            Debug.Log("createPerso");
             CreatePerso(currentPhase, currentPlayer, 0);
           }
         if ((Statut.placementBlue & statut) == Statut.placementBlue && currentPlayer == Player.Blue)
           {
+            Debug.Log("createPerso");
             CreatePerso(currentPhase, currentPlayer, 1);
           }
       }
@@ -120,6 +123,7 @@ public class PlacementBehaviour : NetworkBehaviour
           
         RosterManager.Instance.listHeroJXToPlace[playerIndex].RemoveAt(persoToPlaceNumber);
 
+        Debug.Log("createPersoPlacement");
         CreatePersoPlacement(HoverManager.Instance.hoveredCase, SelectionManager.Instance.selectedPersonnage);
       }
   }
@@ -129,8 +133,8 @@ public class PlacementBehaviour : NetworkBehaviour
       
     if (SelectionManager.Instance.selectedPersonnage != null)
       {
-          
-        selectedPersonnage.transform.position = hoveredCase.transform.position + selectedPersonnage.originPoint.transform.position;
+        Debug.Log("transformedperso");
+        selectedPersonnage.transform.position = hoveredCase.transform.position - selectedPersonnage.originPoint.transform.localPosition;
         selectedPersonnage.owner = TurnManager.Instance.currentPlayer;
         RosterManager.Instance.listHeroPlaced.Add(selectedPersonnage);
 
