@@ -85,8 +85,7 @@ public class HoverManager : NetworkBehaviour
 
     changeColorEnter();
 
-    if (SelectionManager.Instance.selectedPersonnage != null)
-      MoveBehaviour.Instance.createPath();
+
   }
       
   // *************** //
@@ -121,6 +120,13 @@ public class HoverManager : NetworkBehaviour
         break;
       case (Phase.Deplacement):
         hoveredCase.GetComponent<CaseData>().ChangeStatut(Statut.None, Statut.isHovered);
+
+        if (SelectionManager.Instance.selectedPersonnage != null
+            && hoveredCase.casePathfinding == PathfindingCase.Walkable)
+          {
+            MoveBehaviour.Instance.createPath();
+            Pathfinding.Instance.StartPathfinding();
+          }
         break;
       }
   }

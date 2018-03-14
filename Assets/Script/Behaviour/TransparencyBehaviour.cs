@@ -47,22 +47,24 @@ public class TransparencyBehaviour : NetworkBehaviour
     if (lowerCase != null && lowerCase.personnageData != null)
       ApplyTransparency(lowerCase.personnageData);
     else
-      ApplyOpacity(lowerCase.personnageData);
+      {
+        //    ApplyOpacity(lowerCase.personnageData);
+      }
   }
 
   public void ApplyTransparency(PersoData Perso)
   { // Applique la transparence du TransparencyBehaviour sur le personnage.
-    SpriteRenderer PersoSpriteR = Perso.GetComponent<SpriteRenderer>();
+    SpriteRenderer CaseSpriteR = Perso.GetComponent<SpriteRenderer>();
 
-    Color transparency = new Color(PersoSpriteR.color.r, PersoSpriteR.color.g, PersoSpriteR.color.b, alpha);
+    Color transparency = new Color(CaseSpriteR.color.r, CaseSpriteR.color.g, CaseSpriteR.color.b, alpha);
     Perso.GetComponent<SpriteRenderer>().color = transparency;
   }
 
   public void ApplyOpacity(PersoData Perso)
   { // Annule la transparence du personnage.
-    SpriteRenderer PersoSpriteR = Perso.GetComponent<SpriteRenderer>();
+    SpriteRenderer CaseSpriteR = Perso.GetComponent<SpriteRenderer>();
 
-    Color transparency = new Color(PersoSpriteR.color.r, PersoSpriteR.color.g, PersoSpriteR.color.b, 1);
+    Color transparency = new Color(CaseSpriteR.color.r, CaseSpriteR.color.g, CaseSpriteR.color.b, 1);
     Perso.GetComponent<SpriteRenderer>().color = transparency;
   }
 }

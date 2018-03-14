@@ -142,8 +142,11 @@ public class Pathfinding : NetworkBehaviour
     if (flip == true)
       {
         OpenList.Reverse();
-        OpenList.Add(OpenList[0]);
-        OpenList.Remove(OpenList[0]);
+        if (OpenList.Count != 0)
+          {
+            OpenList.Add(OpenList[0]);
+            OpenList.Remove(OpenList[0]);
+          }
       }
     flip = !flip;
 

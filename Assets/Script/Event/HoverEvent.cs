@@ -14,6 +14,7 @@ public class HoverEvent : NetworkBehaviour
 
   public override void OnStartClient()
   {
+    GetComponent<PolygonCollider2D>().enabled = false;
     StartCoroutine(waitForInit());
   }
 
@@ -45,6 +46,7 @@ public class HoverEvent : NetworkBehaviour
     string hoveredCase = "null";
     string hoveredPersonnage = "null";
     string hoveredBallon = "null";
+
 
     hoveredCase = this.GetComponent<CaseData>().name;
 
