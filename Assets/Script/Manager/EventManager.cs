@@ -21,24 +21,57 @@ public class EventManager : NetworkBehaviour
     Debug.Log("EventManager is Instanced");
   }
 
-  [ClientRpc]
-  public void RpcHoverEvent(string hoveredCaseString, string hoveredPersonnageString, string hoveredBallonString)
-  {
-    CaseData hoveredCase = null;
-    PersoData hoveredPersonnage = null;
-    BallonData hoveredBallon = null;
+    [ClientRpc]
+    public void RpcReceiveHoverEvent(string hoveredCaseString, string hoveredPersonnageString, string hoveredBallonString)
+    {
+        if ((RpcFunctions.Instance.localId == 0 && TurnManager.Instance.currentPlayer == Player.Red)
+            || (RpcFunctions.Instance.localId == 1 && TurnManager.Instance.currentPlayer == Player.Blue))
+            return;
 
-    if (hoveredCaseString != "null")
-      hoveredCase = GameObject.Find(hoveredCaseString).GetComponent<CaseData>();
-    if (hoveredPersonnageString != "null")
-      hoveredPersonnage = GameObject.Find(hoveredPersonnageString).GetComponent<PersoData>();
-    if (hoveredBallonString != "null")
-      hoveredBallon = GameObject.Find(hoveredBallonString).GetComponent<BallonData>();
+        CaseData hoveredCase = null;
+        PersoData hoveredPersonnage = null;
+        BallonData hoveredBallon = null;
 
-    newHoverEvent(this, new HoverArgs(hoveredCase, hoveredPersonnage, hoveredBallon));
-  }
+        if (hoveredCaseString != "null")
+            hoveredCase = GameObject.Find(hoveredCaseString).GetComponent<CaseData>();
+        if (hoveredPersonnageString != "null")
+            hoveredPersonnage = GameObject.Find(hoveredPersonnageString).GetComponent<PersoData>();
+        if (hoveredBallonString != "null")
+            hoveredBallon = GameObject.Find(hoveredBallonString).GetComponent<BallonData>();
 
-  [ClientRpc]
+        newHoverEvent(this, new HoverArgs(hoveredCase, hoveredPersonnage, hoveredBallon));
+
+        RpcFunctions.Instance.CmdValidateHoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
+    }
+
+    [ClientRpc]
+    public void RpcValidateHoverEvent(string hoveredCaseString, string hoveredPersonnageString, string hoveredBallonString)
+    {
+        if ((RpcFunctions.Instance.localId == 0 && TurnManager.Instance.currentPlayer == Player.Blue)
+            || (RpcFunctions.Instance.localId == 1 && TurnManager.Instance.currentPlayer == Player.Red))
+            return;
+
+        // le sender a bien reçu la validation que la fonction a été effectuée chez le receiver
+        RpcFunctions.Instance.validatedCommand = true;
+        Debug.Log("event validated");
+
+        CaseData hoveredCase = null;
+        PersoData hoveredPersonnage = null;
+        BallonData hoveredBallon = null;
+
+        if (hoveredCaseString != "null")
+            hoveredCase = GameObject.Find(hoveredCaseString).GetComponent<CaseData>();
+        if (hoveredPersonnageString != "null")
+            hoveredPersonnage = GameObject.Find(hoveredPersonnageString).GetComponent<PersoData>();
+        if (hoveredBallonString != "null")
+            hoveredBallon = GameObject.Find(hoveredBallonString).GetComponent<BallonData>();
+
+        newHoverEvent(this, new HoverArgs(hoveredCase, hoveredPersonnage, hoveredBallon));
+
+
+    }
+
+    [ClientRpc]
   public void RpcClickEvent()
   {
     newClickEvent();

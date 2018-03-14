@@ -35,11 +35,10 @@ public class HoverEvent : NetworkBehaviour
 
   void OnMouseOver()
   {
-  
-    if (RpcFunctions.Instance.localId == 0 && TurnManager.Instance.currentPlayer == Player.Blue)
-      return;
-    if (RpcFunctions.Instance.localId == 1 && TurnManager.Instance.currentPlayer == Player.Red)
-      return;
+
+    if ((RpcFunctions.Instance.localId == 0 && TurnManager.Instance.currentPlayer == Player.Blue)
+      || (RpcFunctions.Instance.localId == 1 && TurnManager.Instance.currentPlayer == Player.Red))
+    return;
 
     if (!enabled || !LoadingManager.Instance.isGameReady())
       return;
@@ -57,17 +56,15 @@ public class HoverEvent : NetworkBehaviour
     if (GetComponent<CaseData>().ballon != null)
       hoveredBallon = GetComponent<CaseData>().ballon.name;
 
-    RpcFunctions.Instance.CmdHoverEvent(hoveredCase, hoveredPersonnage, hoveredBallon);
-
-       
-  }
+    RpcFunctions.Instance.CmdSendHoverEvent(hoveredCase, hoveredPersonnage, hoveredBallon);
+    }
 
   void OnMouseExit()
   {
     if (!enabled || !LoadingManager.Instance.isGameReady())
-      {
-        RpcFunctions.Instance.CmdHoverEvent("null", "null", "null");
-      }
-    return;
+        {
+            RpcFunctions.Instance.CmdSendHoverEvent("null", "null", "null");
+        }
+        return;
   }
 }
