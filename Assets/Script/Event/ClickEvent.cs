@@ -15,7 +15,7 @@ public class ClickEvent : NetworkBehaviour
             return;
 
         if (HoverManager.Instance.hoveredCase != null) {
-            RpcFunctions.Instance.CmdClickEvent();
+            RpcFunctions.Instance.CmdSendClickEvent();
         }
     }
 }

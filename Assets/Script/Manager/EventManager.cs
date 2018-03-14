@@ -27,19 +27,7 @@ public class EventManager : NetworkBehaviour
         if ((RpcFunctions.Instance.localId == 0 && TurnManager.Instance.currentPlayer == Player.Red)
             || (RpcFunctions.Instance.localId == 1 && TurnManager.Instance.currentPlayer == Player.Blue))
             return;
-
-        CaseData hoveredCase = null;
-        PersoData hoveredPersonnage = null;
-        BallonData hoveredBallon = null;
-
-        if (hoveredCaseString != "null")
-            hoveredCase = GameObject.Find(hoveredCaseString).GetComponent<CaseData>();
-        if (hoveredPersonnageString != "null")
-            hoveredPersonnage = GameObject.Find(hoveredPersonnageString).GetComponent<PersoData>();
-        if (hoveredBallonString != "null")
-            hoveredBallon = GameObject.Find(hoveredBallonString).GetComponent<BallonData>();
-
-        newHoverEvent(this, new HoverArgs(hoveredCase, hoveredPersonnage, hoveredBallon));
+        HoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
 
         RpcFunctions.Instance.CmdValidateHoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
     }
@@ -50,11 +38,15 @@ public class EventManager : NetworkBehaviour
         if ((RpcFunctions.Instance.localId == 0 && TurnManager.Instance.currentPlayer == Player.Blue)
             || (RpcFunctions.Instance.localId == 1 && TurnManager.Instance.currentPlayer == Player.Red))
             return;
-
         // le sender a bien reçu la validation que la fonction a été effectuée chez le receiver
         RpcFunctions.Instance.validatedCommand = true;
         Debug.Log("event validated");
 
+        HoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
+    }
+
+    private void HoverEvent(string hoveredCaseString, string hoveredPersonnageString, string hoveredBallonString)
+    {
         CaseData hoveredCase = null;
         PersoData hoveredPersonnage = null;
         BallonData hoveredBallon = null;
@@ -67,18 +59,31 @@ public class EventManager : NetworkBehaviour
             hoveredBallon = GameObject.Find(hoveredBallonString).GetComponent<BallonData>();
 
         newHoverEvent(this, new HoverArgs(hoveredCase, hoveredPersonnage, hoveredBallon));
-
-
     }
 
     [ClientRpc]
-  public void RpcClickEvent()
-  {
-    newClickEvent();
-    // issou(newClickEvent);
-  }
+    public void RpcReceiveClickEvent()
+    {
+        if ((RpcFunctions.Instance.localId == 0 && TurnManager.Instance.currentPlayer == Player.Red)
+    || (RpcFunctions.Instance.localId == 1 && TurnManager.Instance.currentPlayer == Player.Blue))
+            return;
+        newClickEvent();
 
-  [ClientRpc]
+        RpcFunctions.Instance.CmdValidateClickEvent();
+    }
+
+    [ClientRpc]
+    public void RpcValidateClickEvent()
+    {
+        if ((RpcFunctions.Instance.localId == 0 && TurnManager.Instance.currentPlayer == Player.Blue)
+    || (RpcFunctions.Instance.localId == 1 && TurnManager.Instance.currentPlayer == Player.Red))
+            return;
+        // le sender a bien reçu la validation que la fonction a été effectuée chez le receiver
+        RpcFunctions.Instance.validatedCommand = true;
+        newClickEvent();
+    }
+
+    [ClientRpc]
   public void RpcMenuContextuelClick(string buttonName)
   {
     switch (buttonName)
@@ -103,12 +108,5 @@ public class EventManager : NetworkBehaviour
         break;
       }
   }
-  /*
-     
-    void issou(Action newAction)
-    {
-        functionsToRun.Add(newAction);
-        functionsToRun[0].Invoke();
-    }
-*/
+
 }
