@@ -17,7 +17,7 @@ public class CaseManager : NetworkBehaviour
   [Header("  Cases")]
   [Tooltip("La liste de toutes les cases de la grille.")]
   [ReadOnly]
-  static public List<GameObject> listAllCase = new List<GameObject>();
+  static public List<CaseData> listAllCase = new List<CaseData>();
   [Tooltip("Distance entre les cases en x.")]
   public float xCaseOffset = 1;
   [Tooltip("Distance entre les cases en y.")]
@@ -51,7 +51,7 @@ public class CaseManager : NetworkBehaviour
       
     foreach (GameObject cubeNew in GameObject.FindGameObjectsWithTag("case"))
       {
-        listAllCase.Add(cubeNew);
+        listAllCase.Add(cubeNew.GetComponent<CaseData>());
       }
   }
 
@@ -62,9 +62,8 @@ public class CaseManager : NetworkBehaviour
   void ClearAllCases()
   {
     /// <summary>Remet la valeur de toutes les cases par défaut</summary> 
-    foreach (GameObject newCaseGMB in listAllCase)
+    foreach (CaseData newCase in listAllCase)
       {
-        CaseData newCase = newCaseGMB.GetComponent<CaseData>();
         newCase.ballon = null;
         newCase.casePathfinding = PathfindingCase.Walkable;
         newCase.personnageData = null;
@@ -75,18 +74,18 @@ public class CaseManager : NetworkBehaviour
   /// <summary>Colore toutes les cases de la couleur choisi.</summary> 
   public void PaintAllCase(Color newColor)
   {
-    foreach (GameObject newCaseGMB in listAllCase)
+    foreach (CaseData newCase in listAllCase)
       {
-        newCaseGMB.GetComponent<SpriteRenderer>().color = newColor;
+        newCase.GetComponent<SpriteRenderer>().color = newColor;
       }
   }
 
   /// <summary>Change le sprite de toutes les cases avec le sprite choisi.</summary> 
   public void ChangeSpriteAllCase(Sprite newSprite)
   {
-    foreach (GameObject newCaseGMB in listAllCase)
+    foreach (CaseData newCase in listAllCase)
       {
-        newCaseGMB.GetComponent<SpriteRenderer>().sprite = newSprite;
+        newCase.GetComponent<SpriteRenderer>().sprite = newSprite;
       }
   }
 
@@ -95,9 +94,8 @@ public class CaseManager : NetworkBehaviour
   {
     List<CaseData> newList = new List<CaseData>();
 
-    foreach (GameObject newCaseGMB in listAllCase)
+    foreach (CaseData newCase in listAllCase)
       {
-        CaseData newCase = newCaseGMB.GetComponent<CaseData>();
         newList.Add(newCase);
       }
 
@@ -109,9 +107,8 @@ public class CaseManager : NetworkBehaviour
   {
     List<CaseData> newList = new List<CaseData>();
 
-    foreach (GameObject newCaseGMB in listAllCase)
+    foreach (CaseData newCase in listAllCase)
       {
-        CaseData newCase = newCaseGMB.GetComponent<CaseData>();
         if (newCase.ballon != null)
           newList.Add(newCase);
       }
@@ -123,9 +120,8 @@ public class CaseManager : NetworkBehaviour
   {
     List<CaseData> newList = new List<CaseData>();
 
-    foreach (GameObject newCaseGMB in listAllCase)
+    foreach (CaseData newCase in listAllCase)
       {
-        CaseData newCase = newCaseGMB.GetComponent<CaseData>();
         if (newCase.personnageData != null)
           newList.Add(newCase);
       }
@@ -137,9 +133,8 @@ public class CaseManager : NetworkBehaviour
   {
     List<CaseData> newList = new List<CaseData>();
 
-    foreach (GameObject newCaseGMB in listAllCase)
+    foreach (CaseData newCase in listAllCase)
       {
-        CaseData newCase = newCaseGMB.GetComponent<CaseData>();
         if (newCase.personnageData == null && newCase.ballon == null)
           newList.Add(newCase);
       }
@@ -151,9 +146,8 @@ public class CaseManager : NetworkBehaviour
   {
     List<CaseData> newList = new List<CaseData>();
 
-    foreach (GameObject newCaseGMB in listAllCase)
+    foreach (CaseData newCase in listAllCase)
       {
-        CaseData newCase = newCaseGMB.GetComponent<CaseData>();
         if ((statut & newCase.statut) == statut)
           newList.Add(newCase);
       }
@@ -165,10 +159,9 @@ public class CaseManager : NetworkBehaviour
   {
     List<CaseData> newList = new List<CaseData>();
 
-    foreach (GameObject newCaseGMB in listAllCase)
+    foreach (CaseData newCase in listAllCase)
       {
-        CaseData newCase = newCaseGMB.GetComponent<CaseData>();
-        SpriteRenderer SpriteR = newCaseGMB.GetComponent<SpriteRenderer>();
+        SpriteRenderer SpriteR = newCase.GetComponent<SpriteRenderer>();
         if (SpriteR.color == color)
           newList.Add(newCase);
       }
@@ -177,9 +170,8 @@ public class CaseManager : NetworkBehaviour
 
   public void RemovePath()
   { // Cache la route de déplacement
-    foreach (GameObject newCaseGMB in listAllCase)
+    foreach (CaseData newCase in listAllCase)
       {
-        CaseData newCase = newCaseGMB.GetComponent<CaseData>();
         newCase.ChangeStatut(Statut.None, Statut.canMove);
         newCase.ChangeStatut(Statut.None, Statut.canBeTackled);
       }
@@ -187,17 +179,17 @@ public class CaseManager : NetworkBehaviour
 
   public void DisableAllColliders()
   { // Cache la route de déplacement
-    foreach (GameObject newCaseGMB in listAllCase)
+    foreach (CaseData newCase in listAllCase)
       {
-        newCaseGMB.GetComponent<PolygonCollider2D>().enabled = false;
+        newCase.GetComponent<PolygonCollider2D>().enabled = false;
       }
   }
 
   public void EnableAllColliders()
   { // Cache la route de déplacement
-    foreach (GameObject newCaseGMB in listAllCase)
+    foreach (CaseData newCase in listAllCase)
       {
-        newCaseGMB.GetComponent<PolygonCollider2D>().enabled = true;
+        newCase.GetComponent<PolygonCollider2D>().enabled = true;
       }
   }
 

@@ -103,7 +103,7 @@ public class GrilleManager: MonoBehaviour
             cubeNew.GetComponent<SpriteRenderer>().color = ColorManager.Instance.caseColor;
             cubeAll[(int)h].Add(cubeNew);
 
-            CaseManager.listAllCase.Add(cubeNew);
+            CaseManager.listAllCase.Add(cubeNew.GetComponent<CaseData>());
           }
       }
   }

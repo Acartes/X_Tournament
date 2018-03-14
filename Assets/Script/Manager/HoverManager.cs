@@ -122,10 +122,14 @@ public class HoverManager : NetworkBehaviour
         hoveredCase.GetComponent<CaseData>().ChangeStatut(Statut.None, Statut.isHovered);
 
         if (SelectionManager.Instance.selectedPersonnage != null
-            && hoveredCase.casePathfinding == PathfindingCase.Walkable)
+            && hoveredCase.casePathfinding == PathfindingCase.Walkable
+            && GameManager.Instance.actualAction == PersoAction.isSelected)
           {
             MoveBehaviour.Instance.createPath();
             Pathfinding.Instance.StartPathfinding();
+          } else
+          {
+            CaseManager.Instance.RemovePath();
           }
         break;
       }

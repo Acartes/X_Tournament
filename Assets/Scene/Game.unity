@@ -165,12 +165,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 1
   yCoord: 5
+  spriteR: {fileID: 1029042}
 --- !u!114 &1029039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,6 +359,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 6
   yCoord: 6
+  spriteR: {fileID: 2798741}
 --- !u!114 &2798738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,7 +443,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 1, g: 0.21323532, b: 0.21323532, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -539,12 +541,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 16
   yCoord: 5
+  spriteR: {fileID: 4487495}
 --- !u!114 &4487492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -726,12 +729,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 0
+  statut: 16384
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 9
   yCoord: 8
+  spriteR: {fileID: 7680634}
 --- !u!114 &7680631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -815,7 +819,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 1, g: 0.21323532, b: 0.21323532, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -919,6 +923,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 7
   yCoord: 8
+  spriteR: {fileID: 18046052}
 --- !u!114 &18046049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1002,7 +1007,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 1, g: 0.21323532, b: 0.21323532, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1100,12 +1105,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 20480
+  statut: 4096
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 0
   yCoord: 6
+  spriteR: {fileID: 24381325}
 --- !u!114 &24381322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1189,7 +1195,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.9862069, g: 1, b: 0, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1287,12 +1293,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 15
   yCoord: 0
+  spriteR: {fileID: 43124825}
 --- !u!114 &43124822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1474,12 +1481,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 16
   yCoord: 10
+  spriteR: {fileID: 58770290}
 --- !u!114 &58770287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1661,12 +1669,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 4
   yCoord: 9
+  spriteR: {fileID: 59612822}
 --- !u!114 &59612819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1927,6 +1936,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 13
   yCoord: 5
+  spriteR: {fileID: 71337935}
 --- !u!114 &71337932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2010,7 +2020,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.21323532, g: 0.21866123, b: 1, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2108,12 +2118,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 0
+  statut: 16384
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 8
   yCoord: 1
+  spriteR: {fileID: 75754312}
 --- !u!114 &75754309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2197,7 +2208,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 1, g: 0.21323532, b: 0.21323532, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2295,12 +2306,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 0
+  statut: 32768
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 12
   yCoord: 1
+  spriteR: {fileID: 82651276}
 --- !u!114 &82651273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2384,7 +2396,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.21323532, g: 0.21866123, b: 1, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2530,12 +2542,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 16
   yCoord: 9
+  spriteR: {fileID: 89278610}
 --- !u!114 &89278607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2745,12 +2758,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 2
   yCoord: 5
+  spriteR: {fileID: 112917654}
 --- !u!114 &112917651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2932,12 +2946,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 14
   yCoord: 0
+  spriteR: {fileID: 113000709}
 --- !u!114 &113000706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3119,12 +3134,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 20
   yCoord: 8
+  spriteR: {fileID: 114822204}
 --- !u!114 &114822201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3306,12 +3322,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 1
   yCoord: 6
+  spriteR: {fileID: 118769111}
 --- !u!114 &118769108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3571,6 +3588,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 10
   yCoord: 3
+  spriteR: {fileID: 126947526}
 --- !u!114 &126947523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3758,6 +3776,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 12
   yCoord: 0
+  spriteR: {fileID: 128300394}
 --- !u!114 &128300391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3945,6 +3964,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 11
   yCoord: 5
+  spriteR: {fileID: 129014296}
 --- !u!114 &129014293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4132,6 +4152,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 11
   yCoord: 3
+  spriteR: {fileID: 142093903}
 --- !u!114 &142093900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4347,6 +4368,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 6
   yCoord: 3
+  spriteR: {fileID: 151249073}
 --- !u!114 &151249070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4430,7 +4452,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 1, g: 0.21323532, b: 0.21323532, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4672,12 +4694,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 13
   yCoord: 0
+  spriteR: {fileID: 196544161}
 --- !u!114 &196544158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4893,6 +4916,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 8
   yCoord: 5
+  spriteR: {fileID: 222860276}
 --- !u!114 &222860273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5080,6 +5104,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 10
   yCoord: 10
+  spriteR: {fileID: 229280176}
 --- !u!114 &229280173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5258,7 +5283,6 @@ GameObject:
   - component: {fileID: 236118402}
   - component: {fileID: 236118401}
   - component: {fileID: 236118400}
-  - component: {fileID: 236118399}
   m_Layer: 5
   m_Name: IndirectSpell
   m_TagString: Untagged
@@ -5286,21 +5310,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &236118399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114872619794763762, guid: a8aad60271229c54e84830103555d34a,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 236118397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 473f2ad83fce79e43bc8346252936f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selected: 0
-  airEffect: {fileID: 0}
-  fireAirEffect: {fileID: 0}
 --- !u!114 &236118400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5341,13 +5350,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 236118399}
-        m_MethodName: Select
-        m_Mode: 1
+      - m_Target: {fileID: 714736830}
+        m_MethodName: SpellCast
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5452,6 +5461,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 12
   yCoord: 10
+  spriteR: {fileID: 239890633}
 --- !u!114 &239890630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5978,6 +5988,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 14
   yCoord: 4
+  spriteR: {fileID: 245588019}
 --- !u!114 &245588016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6061,7 +6072,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.21323532, g: 0.21866123, b: 1, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -6159,12 +6170,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 15
   yCoord: 10
+  spriteR: {fileID: 265954460}
 --- !u!114 &265954457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6346,12 +6358,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 18
   yCoord: 0
+  spriteR: {fileID: 270065903}
 --- !u!114 &270065900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6533,12 +6546,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 14
   yCoord: 9
+  spriteR: {fileID: 270154666}
 --- !u!114 &270154663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7870,6 +7884,22 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e2cbe59a414e9524999b9af03d28860f, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &271095694 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1038461035143540, guid: e2cbe59a414e9524999b9af03d28860f,
+    type: 2}
+  m_PrefabInternal: {fileID: 271095693}
+--- !u!114 &271095695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 271095694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a1ed85197585c3409f519ae6602f46d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &271567362
 GameObject:
   m_ObjectHideFlags: 0
@@ -7927,12 +7957,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 15
   yCoord: 9
+  spriteR: {fileID: 271567369}
 --- !u!114 &271567366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8114,12 +8145,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 0
+  statut: 32768
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 11
   yCoord: 9
+  spriteR: {fileID: 276615128}
 --- !u!114 &276615125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8203,7 +8235,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.21323532, g: 0.21866123, b: 1, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -8301,12 +8333,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 17
   yCoord: 0
+  spriteR: {fileID: 278465524}
 --- !u!114 &278465521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8516,12 +8549,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 16
   yCoord: 2
+  spriteR: {fileID: 285334912}
 --- !u!114 &285334909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8703,12 +8737,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 1
   yCoord: 8
+  spriteR: {fileID: 306723000}
 --- !u!114 &306722997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8890,12 +8925,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 0
+  statut: 16384
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 8
   yCoord: 9
+  spriteR: {fileID: 310198706}
 --- !u!114 &310198703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8979,7 +9015,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 1, g: 0.21323532, b: 0.21323532, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -9020,34 +9056,6 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!1 &312725044
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 312725045}
-  m_Layer: 0
-  m_Name: Spell
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &312725045
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 312725044}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 39
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &315268663
 GameObject:
   m_ObjectHideFlags: 0
@@ -9148,12 +9156,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 16
   yCoord: 7
+  spriteR: {fileID: 316374943}
 --- !u!114 &316374940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9335,12 +9344,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 14
   yCoord: 1
+  spriteR: {fileID: 319549626}
 --- !u!114 &319549623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9522,12 +9532,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 4
   yCoord: 4
+  spriteR: {fileID: 320836217}
 --- !u!114 &320836214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9756,6 +9767,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 7
   yCoord: 3
+  spriteR: {fileID: 337461595}
 --- !u!114 &337461592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9839,7 +9851,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 1, g: 0.21323532, b: 0.21323532, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -9948,6 +9960,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 7
   yCoord: 2
+  spriteR: {fileID: 341798585}
 --- !u!114 &341798582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10031,7 +10044,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 1, g: 0.21323532, b: 0.21323532, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -10129,12 +10142,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 5
   yCoord: 7
+  spriteR: {fileID: 343150215}
 --- !u!114 &343150212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10322,6 +10336,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 6
   yCoord: 5
+  spriteR: {fileID: 348146225}
 --- !u!114 &348146222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10405,7 +10420,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 1, g: 0.21323532, b: 0.21323532, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -10503,12 +10518,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 15
   yCoord: 4
+  spriteR: {fileID: 348593777}
 --- !u!114 &348593774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10718,12 +10734,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 3
   yCoord: 3
+  spriteR: {fileID: 353783382}
 --- !u!114 &353783379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10911,6 +10928,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 10
   yCoord: 8
+  spriteR: {fileID: 354298352}
 --- !u!114 &354298349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11176,6 +11194,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 10
   yCoord: 2
+  spriteR: {fileID: 364768407}
 --- !u!114 &364768404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11357,12 +11376,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 2
   yCoord: 6
+  spriteR: {fileID: 365519378}
 --- !u!114 &365519375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11550,6 +11570,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 11
   yCoord: 10
+  spriteR: {fileID: 366376202}
 --- !u!114 &366376199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11731,12 +11752,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 18
   yCoord: 10
+  spriteR: {fileID: 371510902}
 --- !u!114 &371510899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11918,12 +11940,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 16
   yCoord: 6
+  spriteR: {fileID: 390430010}
 --- !u!114 &390430007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12158,6 +12181,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 13
   yCoord: 3
+  spriteR: {fileID: 410235310}
 --- !u!114 &410235307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12241,7 +12265,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.21323532, g: 0.21866123, b: 1, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -12412,12 +12436,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 0
+  statut: 16384
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 8
   yCoord: 8
+  spriteR: {fileID: 437951901}
 --- !u!114 &437951898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12501,7 +12526,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 1, g: 0.21323532, b: 0.21323532, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -12605,6 +12630,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 7
   yCoord: 9
+  spriteR: {fileID: 441542076}
 --- !u!114 &441542073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12688,7 +12714,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 1, g: 0.21323532, b: 0.21323532, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -12792,6 +12818,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 9
   yCoord: 0
+  spriteR: {fileID: 448000526}
 --- !u!114 &448000523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12979,6 +13006,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 9
   yCoord: 7
+  spriteR: {fileID: 449719414}
 --- !u!114 &449719411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13182,6 +13210,66 @@ Prefab:
       propertyPath: moveColor.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114343382153939662, guid: 34e4add82a1c460449febc251f9eb4d1,
+        type: 2}
+      propertyPath: atRange.r
+      value: 0.44852942
+      objectReference: {fileID: 0}
+    - target: {fileID: 114343382153939662, guid: 34e4add82a1c460449febc251f9eb4d1,
+        type: 2}
+      propertyPath: atRange.g
+      value: 0.44852942
+      objectReference: {fileID: 0}
+    - target: {fileID: 114343382153939662, guid: 34e4add82a1c460449febc251f9eb4d1,
+        type: 2}
+      propertyPath: atRange.b
+      value: 0.44852942
+      objectReference: {fileID: 0}
+    - target: {fileID: 114343382153939662, guid: 34e4add82a1c460449febc251f9eb4d1,
+        type: 2}
+      propertyPath: atRange.a
+      value: 0.753
+      objectReference: {fileID: 0}
+    - target: {fileID: 114343382153939662, guid: 34e4add82a1c460449febc251f9eb4d1,
+        type: 2}
+      propertyPath: atAoE.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114343382153939662, guid: 34e4add82a1c460449febc251f9eb4d1,
+        type: 2}
+      propertyPath: atAoE.g
+      value: 0.51724136
+      objectReference: {fileID: 0}
+    - target: {fileID: 114343382153939662, guid: 34e4add82a1c460449febc251f9eb4d1,
+        type: 2}
+      propertyPath: atAoE.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114343382153939662, guid: 34e4add82a1c460449febc251f9eb4d1,
+        type: 2}
+      propertyPath: atAoE.a
+      value: 0.384
+      objectReference: {fileID: 0}
+    - target: {fileID: 114343382153939662, guid: 34e4add82a1c460449febc251f9eb4d1,
+        type: 2}
+      propertyPath: atPush.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114343382153939662, guid: 34e4add82a1c460449febc251f9eb4d1,
+        type: 2}
+      propertyPath: atPush.g
+      value: 0.66896534
+      objectReference: {fileID: 0}
+    - target: {fileID: 114343382153939662, guid: 34e4add82a1c460449febc251f9eb4d1,
+        type: 2}
+      propertyPath: atPush.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114343382153939662, guid: 34e4add82a1c460449febc251f9eb4d1,
+        type: 2}
+      propertyPath: atPush.a
+      value: 0.697
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 34e4add82a1c460449febc251f9eb4d1, type: 2}
   m_IsPrefabParent: 0
@@ -13242,12 +13330,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 19
   yCoord: 5
+  spriteR: {fileID: 465867461}
 --- !u!114 &465867458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13806,12 +13895,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 20480
+  statut: 4096
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 0
   yCoord: 3
+  spriteR: {fileID: 472722373}
 --- !u!114 &472722370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13895,7 +13985,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.9862069, g: 1, b: 0, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -13993,12 +14083,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 17
   yCoord: 6
+  spriteR: {fileID: 491247706}
 --- !u!114 &491247703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14180,12 +14271,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 19
   yCoord: 9
+  spriteR: {fileID: 506992365}
 --- !u!114 &506992362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14418,6 +14510,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 10
   yCoord: 7
+  spriteR: {fileID: 517246772}
 --- !u!114 &517246769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14744,12 +14837,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 0
+  statut: 16384
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 8
   yCoord: 7
+  spriteR: {fileID: 532440863}
 --- !u!114 &532440860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14833,7 +14927,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 1, g: 0.21323532, b: 0.21323532, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -15089,12 +15183,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 2
   yCoord: 9
+  spriteR: {fileID: 541484248}
 --- !u!114 &541484245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15282,6 +15377,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 13
   yCoord: 6
+  spriteR: {fileID: 550096014}
 --- !u!114 &550096011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15365,7 +15461,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.21323532, g: 0.21866123, b: 1, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -15463,12 +15559,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 15
   yCoord: 6
+  spriteR: {fileID: 560244815}
 --- !u!114 &560244812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15678,12 +15775,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 0
+  statut: 16384
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 9
   yCoord: 1
+  spriteR: {fileID: 564472138}
 --- !u!114 &564472135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15767,7 +15865,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 1, g: 0.21323532, b: 0.21323532, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -15943,12 +16041,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 17
   yCoord: 7
+  spriteR: {fileID: 570130138}
 --- !u!114 &570130135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16210,12 +16309,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 0
+  statut: 32768
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 12
   yCoord: 2
+  spriteR: {fileID: 584380294}
 --- !u!114 &584380291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16299,7 +16399,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.21323532, g: 0.21866123, b: 1, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -16397,12 +16497,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 2
   yCoord: 1
+  spriteR: {fileID: 590197782}
 --- !u!114 &590197779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16584,12 +16685,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 40960
+  statut: 8192
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 20
   yCoord: 5
+  spriteR: {fileID: 591076810}
 --- !u!114 &591076807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16673,7 +16775,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.9862069, g: 1, b: 0, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -16771,12 +16873,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 6
   yCoord: 10
+  spriteR: {fileID: 603900057}
 --- !u!114 &603900054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16964,6 +17067,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 14
   yCoord: 6
+  spriteR: {fileID: 605312972}
 --- !u!114 &605312969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17047,7 +17151,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.21323532, g: 0.21866123, b: 1, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -17173,12 +17277,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 19
   yCoord: 0
+  spriteR: {fileID: 627058059}
 --- !u!114 &627058056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17366,6 +17471,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 12
   yCoord: 6
+  spriteR: {fileID: 628013286}
 --- !u!114 &628013283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17661,12 +17767,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 20
   yCoord: 9
+  spriteR: {fileID: 659188757}
 --- !u!114 &659188754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17848,12 +17955,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 4
   yCoord: 5
+  spriteR: {fileID: 659364788}
 --- !u!114 &659364785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18160,12 +18268,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 2
   yCoord: 8
+  spriteR: {fileID: 683731574}
 --- !u!114 &683731571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18419,12 +18528,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 2
   yCoord: 4
+  spriteR: {fileID: 696708524}
 --- !u!114 &696708521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18606,12 +18716,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 5
   yCoord: 1
+  spriteR: {fileID: 702237631}
 --- !u!114 &702237628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19025,7 +19136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9303bbfc839707438004250bd9734b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listSpell: []
 --- !u!1 &715574236
 GameObject:
   m_ObjectHideFlags: 0
@@ -19156,12 +19266,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 17
   yCoord: 4
+  spriteR: {fileID: 717198910}
 --- !u!114 &717198907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19349,6 +19460,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 13
   yCoord: 8
+  spriteR: {fileID: 721074367}
 --- !u!114 &721074364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19432,7 +19544,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.21323532, g: 0.21866123, b: 1, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -19530,12 +19642,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 20480
+  statut: 4096
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 0
   yCoord: 7
+  spriteR: {fileID: 730517449}
 --- !u!114 &730517446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19619,7 +19732,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.9862069, g: 1, b: 0, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -19789,12 +19902,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 0
   yCoord: 9
+  spriteR: {fileID: 734853002}
 --- !u!114 &734852999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19976,12 +20090,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 2
   yCoord: 3
+  spriteR: {fileID: 740660988}
 --- !u!114 &740660985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20191,12 +20306,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 16
   yCoord: 3
+  spriteR: {fileID: 764514596}
 --- !u!114 &764514593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20378,12 +20494,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 0
+  statut: 16384
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 9
   yCoord: 9
+  spriteR: {fileID: 765464444}
 --- !u!114 &765464441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20467,7 +20584,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 1, g: 0.21323532, b: 0.21323532, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -20565,12 +20682,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 16
   yCoord: 0
+  spriteR: {fileID: 778191172}
 --- !u!114 &778191169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20752,12 +20870,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 15
   yCoord: 1
+  spriteR: {fileID: 780822446}
 --- !u!114 &780822443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20939,12 +21058,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 1
   yCoord: 1
+  spriteR: {fileID: 788316718}
 --- !u!114 &788316715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21210,6 +21330,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 7
   yCoord: 7
+  spriteR: {fileID: 804028660}
 --- !u!114 &804028657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21293,7 +21414,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 1, g: 0.21323532, b: 0.21323532, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -21391,12 +21512,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 6
   yCoord: 8
+  spriteR: {fileID: 823815374}
 --- !u!114 &823815371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21629,12 +21751,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 40960
+  statut: 8192
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 20
   yCoord: 3
+  spriteR: {fileID: 834891238}
 --- !u!114 &834891235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21718,7 +21841,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.9862069, g: 1, b: 0, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -21816,12 +21939,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 16
   yCoord: 1
+  spriteR: {fileID: 850143335}
 --- !u!114 &850143332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22077,12 +22201,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 5
   yCoord: 2
+  spriteR: {fileID: 862041781}
 --- !u!114 &862041778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22264,12 +22389,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 20
   yCoord: 1
+  spriteR: {fileID: 880777158}
 --- !u!114 &880777155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22451,12 +22577,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 0
   yCoord: 1
+  spriteR: {fileID: 885225045}
 --- !u!114 &885225042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22760,12 +22887,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 18
   yCoord: 3
+  spriteR: {fileID: 907222703}
 --- !u!114 &907222700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23092,12 +23220,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 3
   yCoord: 4
+  spriteR: {fileID: 943035934}
 --- !u!114 &943035931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23279,12 +23408,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 524288
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 7
   yCoord: 10
+  spriteR: {fileID: 957904547}
 --- !u!114 &957904544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23472,6 +23602,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 11
   yCoord: 4
+  spriteR: {fileID: 966016007}
 --- !u!114 &966016004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23653,12 +23784,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 2
   yCoord: 7
+  spriteR: {fileID: 971479103}
 --- !u!114 &971479100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24078,12 +24210,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 3
   yCoord: 7
+  spriteR: {fileID: 1019361702}
 --- !u!114 &1019361699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24265,12 +24398,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 17
   yCoord: 9
+  spriteR: {fileID: 1022131535}
 --- !u!114 &1022131532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24452,12 +24586,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 19
   yCoord: 3
+  spriteR: {fileID: 1022488790}
 --- !u!114 &1022488787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24645,6 +24780,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 10
   yCoord: 4
+  spriteR: {fileID: 1023827420}
 --- !u!114 &1023827417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24826,12 +24962,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 0
   yCoord: 2
+  spriteR: {fileID: 1027889041}
 --- !u!114 &1027889038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25086,12 +25223,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 1
   yCoord: 10
+  spriteR: {fileID: 1036662145}
 --- !u!114 &1036662142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25273,12 +25411,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 2
   yCoord: 0
+  spriteR: {fileID: 1037606417}
 --- !u!114 &1037606414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25460,12 +25599,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 4
   yCoord: 10
+  spriteR: {fileID: 1038588770}
 --- !u!114 &1038588767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25647,12 +25787,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 4
   yCoord: 1
+  spriteR: {fileID: 1042756399}
 --- !u!114 &1042756396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25834,12 +25975,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 17
   yCoord: 10
+  spriteR: {fileID: 1045449252}
 --- !u!114 &1045449249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26027,6 +26169,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 9
   yCoord: 3
+  spriteR: {fileID: 1065025973}
 --- !u!114 &1065025970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26208,12 +26351,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 0
+  statut: 16384
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 8
   yCoord: 3
+  spriteR: {fileID: 1065902661}
 --- !u!114 &1065902658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26297,7 +26441,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 1, g: 0.21323532, b: 0.21323532, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -26395,12 +26539,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 13
   yCoord: 10
+  spriteR: {fileID: 1070213410}
 --- !u!114 &1070213407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26582,12 +26727,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 5
   yCoord: 9
+  spriteR: {fileID: 1082793185}
 --- !u!114 &1082793182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27136,12 +27282,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 17
   yCoord: 5
+  spriteR: {fileID: 1117712533}
 --- !u!114 &1117712530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27323,12 +27470,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 3
   yCoord: 5
+  spriteR: {fileID: 1127934006}
 --- !u!114 &1127934003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27643,6 +27791,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 12
   yCoord: 5
+  spriteR: {fileID: 1132244083}
 --- !u!114 &1132244080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27824,12 +27973,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 2
   yCoord: 10
+  spriteR: {fileID: 1132326887}
 --- !u!114 &1132326884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28011,12 +28161,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 15
   yCoord: 8
+  spriteR: {fileID: 1133715286}
 --- !u!114 &1133715283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28204,6 +28355,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 8
   yCoord: 4
+  spriteR: {fileID: 1139825158}
 --- !u!114 &1139825155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28391,6 +28543,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 7
   yCoord: 5
+  spriteR: {fileID: 1154942156}
 --- !u!114 &1154942153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28474,7 +28627,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 1, g: 0.21323532, b: 0.21323532, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -28578,6 +28731,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 11
   yCoord: 0
+  spriteR: {fileID: 1156179225}
 --- !u!114 &1156179222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28759,12 +28913,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 19
   yCoord: 6
+  spriteR: {fileID: 1159017443}
 --- !u!114 &1159017440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28952,6 +29107,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 8
   yCoord: 0
+  spriteR: {fileID: 1174234518}
 --- !u!114 &1174234515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29133,12 +29289,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 17
   yCoord: 1
+  spriteR: {fileID: 1187062579}
 --- !u!114 &1187062576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29263,6 +29420,128 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!1001 &1188338214
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4953905385896498, guid: 2a5e5be594877c34bba506af0993c55f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953905385896498, guid: 2a5e5be594877c34bba506af0993c55f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953905385896498, guid: 2a5e5be594877c34bba506af0993c55f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953905385896498, guid: 2a5e5be594877c34bba506af0993c55f, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953905385896498, guid: 2a5e5be594877c34bba506af0993c55f, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953905385896498, guid: 2a5e5be594877c34bba506af0993c55f, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953905385896498, guid: 2a5e5be594877c34bba506af0993c55f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953905385896498, guid: 2a5e5be594877c34bba506af0993c55f, type: 2}
+      propertyPath: m_RootOrder
+      value: 39
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755600324448950, guid: 2a5e5be594877c34bba506af0993c55f,
+        type: 2}
+      propertyPath: m_AssetId.i0
+      value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755600324448950, guid: 2a5e5be594877c34bba506af0993c55f,
+        type: 2}
+      propertyPath: m_AssetId.i1
+      value: 94
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755600324448950, guid: 2a5e5be594877c34bba506af0993c55f,
+        type: 2}
+      propertyPath: m_AssetId.i2
+      value: 91
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755600324448950, guid: 2a5e5be594877c34bba506af0993c55f,
+        type: 2}
+      propertyPath: m_AssetId.i3
+      value: 229
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755600324448950, guid: 2a5e5be594877c34bba506af0993c55f,
+        type: 2}
+      propertyPath: m_AssetId.i4
+      value: 148
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755600324448950, guid: 2a5e5be594877c34bba506af0993c55f,
+        type: 2}
+      propertyPath: m_AssetId.i5
+      value: 135
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755600324448950, guid: 2a5e5be594877c34bba506af0993c55f,
+        type: 2}
+      propertyPath: m_AssetId.i6
+      value: 124
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755600324448950, guid: 2a5e5be594877c34bba506af0993c55f,
+        type: 2}
+      propertyPath: m_AssetId.i7
+      value: 52
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755600324448950, guid: 2a5e5be594877c34bba506af0993c55f,
+        type: 2}
+      propertyPath: m_AssetId.i8
+      value: 187
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755600324448950, guid: 2a5e5be594877c34bba506af0993c55f,
+        type: 2}
+      propertyPath: m_AssetId.i9
+      value: 165
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755600324448950, guid: 2a5e5be594877c34bba506af0993c55f,
+        type: 2}
+      propertyPath: m_AssetId.i10
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755600324448950, guid: 2a5e5be594877c34bba506af0993c55f,
+        type: 2}
+      propertyPath: m_AssetId.i11
+      value: 175
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755600324448950, guid: 2a5e5be594877c34bba506af0993c55f,
+        type: 2}
+      propertyPath: m_AssetId.i12
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755600324448950, guid: 2a5e5be594877c34bba506af0993c55f,
+        type: 2}
+      propertyPath: m_AssetId.i13
+      value: 147
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755600324448950, guid: 2a5e5be594877c34bba506af0993c55f,
+        type: 2}
+      propertyPath: m_AssetId.i14
+      value: 197
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755600324448950, guid: 2a5e5be594877c34bba506af0993c55f,
+        type: 2}
+      propertyPath: m_AssetId.i15
+      value: 95
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 2a5e5be594877c34bba506af0993c55f, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1198176927
 GameObject:
   m_ObjectHideFlags: 0
@@ -29326,6 +29605,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 10
   yCoord: 6
+  spriteR: {fileID: 1198176934}
 --- !u!114 &1198176931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29507,12 +29787,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 4
   yCoord: 6
+  spriteR: {fileID: 1213963734}
 --- !u!114 &1213963731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29694,12 +29975,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 3
   yCoord: 8
+  spriteR: {fileID: 1218869844}
 --- !u!114 &1218869841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29881,12 +30163,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 0
+  statut: 32768
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 12
   yCoord: 7
+  spriteR: {fileID: 1221139307}
 --- !u!114 &1221139304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29970,7 +30253,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.21323532, g: 0.21866123, b: 1, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -30068,12 +30351,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 18
   yCoord: 1
+  spriteR: {fileID: 1225814191}
 --- !u!114 &1225814188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30303,12 +30587,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 15
   yCoord: 2
+  spriteR: {fileID: 1230352335}
 --- !u!114 &1230352332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30490,12 +30775,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 0
+  statut: 16384
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 9
   yCoord: 2
+  spriteR: {fileID: 1236582560}
 --- !u!114 &1236582557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30579,7 +30865,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 1, g: 0.21323532, b: 0.21323532, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -30677,12 +30963,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 4
   yCoord: 7
+  spriteR: {fileID: 1239935730}
 --- !u!114 &1239935727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30870,12 +31157,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 6
   yCoord: 1
+  spriteR: {fileID: 1247751026}
 --- !u!114 &1247751023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31057,12 +31345,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 16
   yCoord: 8
+  spriteR: {fileID: 1254474581}
 --- !u!114 &1254474578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31244,12 +31533,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 6
   yCoord: 9
+  spriteR: {fileID: 1287325864}
 --- !u!114 &1287325861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31431,12 +31721,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 18
   yCoord: 6
+  spriteR: {fileID: 1288013731}
 --- !u!114 &1288013728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31683,12 +31974,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 0
+  statut: 16384
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 8
   yCoord: 2
+  spriteR: {fileID: 1302187755}
 --- !u!114 &1302187752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31772,7 +32064,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 1, g: 0.21323532, b: 0.21323532, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -31870,12 +32162,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 20480
+  statut: 4096
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 0
   yCoord: 5
+  spriteR: {fileID: 1304987851}
 --- !u!114 &1304987848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31959,7 +32252,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.9862069, g: 1, b: 0, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -32057,12 +32350,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 15
   yCoord: 3
+  spriteR: {fileID: 1308063965}
 --- !u!114 &1308063962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32250,6 +32544,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 13
   yCoord: 7
+  spriteR: {fileID: 1311094448}
 --- !u!114 &1311094445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32333,7 +32628,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.21323532, g: 0.21866123, b: 1, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -32431,12 +32726,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 6
   yCoord: 0
+  spriteR: {fileID: 1325729136}
 --- !u!114 &1325729133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32646,12 +32942,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 3
   yCoord: 9
+  spriteR: {fileID: 1327480572}
 --- !u!114 &1327480569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32833,12 +33130,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 20
   yCoord: 2
+  spriteR: {fileID: 1330728602}
 --- !u!114 &1330728599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33020,12 +33318,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 15
   yCoord: 5
+  spriteR: {fileID: 1341462979}
 --- !u!114 &1341462976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33213,6 +33512,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 9
   yCoord: 6
+  spriteR: {fileID: 1342494654}
 --- !u!114 &1342494651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33394,12 +33694,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 17
   yCoord: 3
+  spriteR: {fileID: 1346922588}
 --- !u!114 &1346922585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33703,7 +34004,6 @@ GameObject:
   - component: {fileID: 1350444651}
   - component: {fileID: 1350444650}
   - component: {fileID: 1350444649}
-  - component: {fileID: 1350444648}
   m_Layer: 5
   m_Name: DirectSpell
   m_TagString: Untagged
@@ -33731,20 +34031,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1350444648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114625035746928070, guid: a8aad60271229c54e84830103555d34a,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1350444646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bcaaae56c847334cb1beacf9758959e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selected: 0
-  fireSprite: {fileID: 21300000, guid: bfe559cecae63ad438bd8d90c7e08894, type: 3}
 --- !u!114 &1350444649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33785,9 +34071,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1350444648}
-        m_MethodName: Select
-        m_Mode: 1
+      - m_Target: {fileID: 714736830}
+        m_MethodName: SpellCast
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -33890,12 +34176,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 18
   yCoord: 5
+  spriteR: {fileID: 1351213464}
 --- !u!114 &1351213461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34077,12 +34364,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 19
   yCoord: 2
+  spriteR: {fileID: 1352056677}
 --- !u!114 &1352056674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34441,12 +34729,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 4
   yCoord: 0
+  spriteR: {fileID: 1371847331}
 --- !u!114 &1371847328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34628,12 +34917,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 1
   yCoord: 2
+  spriteR: {fileID: 1393799436}
 --- !u!114 &1393799433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34815,12 +35105,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 1
   yCoord: 4
+  spriteR: {fileID: 1397853874}
 --- !u!114 &1397853871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35008,6 +35299,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 9
   yCoord: 4
+  spriteR: {fileID: 1413345817}
 --- !u!114 &1413345814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35261,6 +35553,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 7
   yCoord: 6
+  spriteR: {fileID: 1429909281}
 --- !u!114 &1429909278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35344,7 +35637,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 1, g: 0.21323532, b: 0.21323532, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -35448,6 +35741,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 6
   yCoord: 7
+  spriteR: {fileID: 1438997763}
 --- !u!114 &1438997760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35531,7 +35825,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 1, g: 0.21323532, b: 0.21323532, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -35629,12 +35923,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 18
   yCoord: 2
+  spriteR: {fileID: 1443530392}
 --- !u!114 &1443530389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35816,12 +36111,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 19
   yCoord: 8
+  spriteR: {fileID: 1454549240}
 --- !u!114 &1454549237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36009,6 +36305,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 9
   yCoord: 10
+  spriteR: {fileID: 1459855472}
 --- !u!114 &1459855469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36196,6 +36493,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 10
   yCoord: 1
+  spriteR: {fileID: 1467957481}
 --- !u!114 &1467957478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36383,6 +36681,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 11
   yCoord: 7
+  spriteR: {fileID: 1469896761}
 --- !u!114 &1469896758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36564,12 +36863,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 40960
+  statut: 8192
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 20
   yCoord: 6
+  spriteR: {fileID: 1474638132}
 --- !u!114 &1474638129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36653,7 +36953,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.9862069, g: 1, b: 0, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -36751,12 +37051,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 19
   yCoord: 4
+  spriteR: {fileID: 1483883550}
 --- !u!114 &1483883547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36944,6 +37245,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 10
   yCoord: 0
+  spriteR: {fileID: 1486378804}
 --- !u!114 &1486378801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37125,12 +37427,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 18
   yCoord: 8
+  spriteR: {fileID: 1489648480}
 --- !u!114 &1489648477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37312,12 +37615,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 18
   yCoord: 4
+  spriteR: {fileID: 1494226993}
 --- !u!114 &1494226990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37499,12 +37803,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 19
   yCoord: 7
+  spriteR: {fileID: 1495771157}
 --- !u!114 &1495771154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37692,6 +37997,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 10
   yCoord: 5
+  spriteR: {fileID: 1496540802}
 --- !u!114 &1496540799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37873,12 +38179,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 5
   yCoord: 10
+  spriteR: {fileID: 1502980762}
 --- !u!114 &1502980759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38166,12 +38473,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 19
   yCoord: 10
+  spriteR: {fileID: 1540943583}
 --- !u!114 &1540943580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38353,12 +38661,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 0
+  statut: 32768
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 11
   yCoord: 1
+  spriteR: {fileID: 1543878325}
 --- !u!114 &1543878322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38442,7 +38751,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.21323532, g: 0.21866123, b: 1, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -38662,12 +38971,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 5
   yCoord: 3
+  spriteR: {fileID: 1546782231}
 --- !u!114 &1546782228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38849,12 +39159,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 1
   yCoord: 9
+  spriteR: {fileID: 1552638698}
 --- !u!114 &1552638695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39108,12 +39419,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 6
   yCoord: 2
+  spriteR: {fileID: 1557707719}
 --- !u!114 &1557707716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39295,12 +39607,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 7
   yCoord: 0
+  spriteR: {fileID: 1570186652}
 --- !u!114 &1570186649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39488,6 +39801,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 7
   yCoord: 4
+  spriteR: {fileID: 1597852093}
 --- !u!114 &1597852090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39571,7 +39885,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 1, g: 0.21323532, b: 0.21323532, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -39669,12 +39983,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 0
+  statut: 32768
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 11
   yCoord: 2
+  spriteR: {fileID: 1608961880}
 --- !u!114 &1608961877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39758,7 +40073,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.21323532, g: 0.21866123, b: 1, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -39856,12 +40171,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 5
   yCoord: 6
+  spriteR: {fileID: 1614933942}
 --- !u!114 &1614933939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40043,12 +40359,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 20480
+  statut: 4096
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 0
   yCoord: 4
+  spriteR: {fileID: 1638141086}
 --- !u!114 &1638141083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40132,7 +40449,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.9862069, g: 1, b: 0, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -40230,12 +40547,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 20
   yCoord: 10
+  spriteR: {fileID: 1641598945}
 --- !u!114 &1641598942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40562,12 +40880,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 14
   yCoord: 2
+  spriteR: {fileID: 1675055000}
 --- !u!114 &1675054997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40749,12 +41068,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 0
   yCoord: 8
+  spriteR: {fileID: 1676277038}
 --- !u!114 &1676277035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40936,12 +41256,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 3
   yCoord: 0
+  spriteR: {fileID: 1681826085}
 --- !u!114 &1681826082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41176,6 +41497,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 10
   yCoord: 9
+  spriteR: {fileID: 1683968785}
 --- !u!114 &1683968782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41357,12 +41679,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 16
   yCoord: 4
+  spriteR: {fileID: 1686050236}
 --- !u!114 &1686050233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41544,12 +41867,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 3
   yCoord: 2
+  spriteR: {fileID: 1690362652}
 --- !u!114 &1690362649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41737,6 +42061,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 14
   yCoord: 5
+  spriteR: {fileID: 1695721422}
 --- !u!114 &1695721419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41820,7 +42145,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.21323532, g: 0.21866123, b: 1, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -41924,6 +42249,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 14
   yCoord: 3
+  spriteR: {fileID: 1702598283}
 --- !u!114 &1702598280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42007,7 +42333,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.21323532, g: 0.21866123, b: 1, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -42105,12 +42431,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 0
   yCoord: 10
+  spriteR: {fileID: 1704589747}
 --- !u!114 &1704589744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42292,12 +42619,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 40960
+  statut: 8192
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 20
   yCoord: 4
+  spriteR: {fileID: 1707344956}
 --- !u!114 &1707344953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42381,7 +42709,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.9862069, g: 1, b: 0, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -42479,12 +42807,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 4
   yCoord: 3
+  spriteR: {fileID: 1708753487}
 --- !u!114 &1708753484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42672,6 +43001,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 13
   yCoord: 9
+  spriteR: {fileID: 1723351739}
 --- !u!114 &1723351736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42755,7 +43085,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.21323532, g: 0.21866123, b: 1, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -42796,6 +43126,128 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!1001 &1730729356
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4199130539921200, guid: 0586da191038dfa4785e9dabae66c4a1, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199130539921200, guid: 0586da191038dfa4785e9dabae66c4a1, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199130539921200, guid: 0586da191038dfa4785e9dabae66c4a1, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199130539921200, guid: 0586da191038dfa4785e9dabae66c4a1, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199130539921200, guid: 0586da191038dfa4785e9dabae66c4a1, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199130539921200, guid: 0586da191038dfa4785e9dabae66c4a1, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199130539921200, guid: 0586da191038dfa4785e9dabae66c4a1, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199130539921200, guid: 0586da191038dfa4785e9dabae66c4a1, type: 2}
+      propertyPath: m_RootOrder
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 114853677340438982, guid: 0586da191038dfa4785e9dabae66c4a1,
+        type: 2}
+      propertyPath: m_AssetId.i0
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114853677340438982, guid: 0586da191038dfa4785e9dabae66c4a1,
+        type: 2}
+      propertyPath: m_AssetId.i1
+      value: 134
+      objectReference: {fileID: 0}
+    - target: {fileID: 114853677340438982, guid: 0586da191038dfa4785e9dabae66c4a1,
+        type: 2}
+      propertyPath: m_AssetId.i2
+      value: 218
+      objectReference: {fileID: 0}
+    - target: {fileID: 114853677340438982, guid: 0586da191038dfa4785e9dabae66c4a1,
+        type: 2}
+      propertyPath: m_AssetId.i3
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114853677340438982, guid: 0586da191038dfa4785e9dabae66c4a1,
+        type: 2}
+      propertyPath: m_AssetId.i4
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 114853677340438982, guid: 0586da191038dfa4785e9dabae66c4a1,
+        type: 2}
+      propertyPath: m_AssetId.i5
+      value: 56
+      objectReference: {fileID: 0}
+    - target: {fileID: 114853677340438982, guid: 0586da191038dfa4785e9dabae66c4a1,
+        type: 2}
+      propertyPath: m_AssetId.i6
+      value: 223
+      objectReference: {fileID: 0}
+    - target: {fileID: 114853677340438982, guid: 0586da191038dfa4785e9dabae66c4a1,
+        type: 2}
+      propertyPath: m_AssetId.i7
+      value: 164
+      objectReference: {fileID: 0}
+    - target: {fileID: 114853677340438982, guid: 0586da191038dfa4785e9dabae66c4a1,
+        type: 2}
+      propertyPath: m_AssetId.i8
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 114853677340438982, guid: 0586da191038dfa4785e9dabae66c4a1,
+        type: 2}
+      propertyPath: m_AssetId.i9
+      value: 94
+      objectReference: {fileID: 0}
+    - target: {fileID: 114853677340438982, guid: 0586da191038dfa4785e9dabae66c4a1,
+        type: 2}
+      propertyPath: m_AssetId.i10
+      value: 157
+      objectReference: {fileID: 0}
+    - target: {fileID: 114853677340438982, guid: 0586da191038dfa4785e9dabae66c4a1,
+        type: 2}
+      propertyPath: m_AssetId.i11
+      value: 171
+      objectReference: {fileID: 0}
+    - target: {fileID: 114853677340438982, guid: 0586da191038dfa4785e9dabae66c4a1,
+        type: 2}
+      propertyPath: m_AssetId.i12
+      value: 174
+      objectReference: {fileID: 0}
+    - target: {fileID: 114853677340438982, guid: 0586da191038dfa4785e9dabae66c4a1,
+        type: 2}
+      propertyPath: m_AssetId.i13
+      value: 102
+      objectReference: {fileID: 0}
+    - target: {fileID: 114853677340438982, guid: 0586da191038dfa4785e9dabae66c4a1,
+        type: 2}
+      propertyPath: m_AssetId.i14
+      value: 196
+      objectReference: {fileID: 0}
+    - target: {fileID: 114853677340438982, guid: 0586da191038dfa4785e9dabae66c4a1,
+        type: 2}
+      propertyPath: m_AssetId.i15
+      value: 161
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 0586da191038dfa4785e9dabae66c4a1, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1745229214
 GameObject:
   m_ObjectHideFlags: 0
@@ -42853,12 +43305,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 5
   yCoord: 4
+  spriteR: {fileID: 1745229221}
 --- !u!114 &1745229218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43144,6 +43597,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 7
   yCoord: 1
+  spriteR: {fileID: 1750245847}
 --- !u!114 &1750245844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43227,7 +43681,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 1, g: 0.21323532, b: 0.21323532, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -43746,12 +44200,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 1
   yCoord: 7
+  spriteR: {fileID: 1805241411}
 --- !u!114 &1805241408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43996,12 +44451,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 14
   yCoord: 8
+  spriteR: {fileID: 1834013023}
 --- !u!114 &1834013020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44261,12 +44717,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 19
   yCoord: 1
+  spriteR: {fileID: 1878558359}
 --- !u!114 &1878558356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44448,12 +44905,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 5
   yCoord: 5
+  spriteR: {fileID: 1883063224}
 --- !u!114 &1883063221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44635,12 +45093,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 40960
+  statut: 8192
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 20
   yCoord: 7
+  spriteR: {fileID: 1885640427}
 --- !u!114 &1885640424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44724,7 +45183,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.9862069, g: 1, b: 0, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -44822,12 +45281,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 3
   yCoord: 1
+  spriteR: {fileID: 1890522169}
 --- !u!114 &1890522166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45161,12 +45621,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 4
   yCoord: 8
+  spriteR: {fileID: 1895338964}
 --- !u!114 &1895338961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45354,6 +45815,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 11
   yCoord: 6
+  spriteR: {fileID: 1900331446}
 --- !u!114 &1900331443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45535,12 +45997,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 3
   yCoord: 6
+  spriteR: {fileID: 1902123239}
 --- !u!114 &1902123236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45722,12 +46185,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 4
   yCoord: 2
+  spriteR: {fileID: 1903742688}
 --- !u!114 &1903742685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45909,12 +46373,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 1
   yCoord: 0
+  spriteR: {fileID: 1904686476}
 --- !u!114 &1904686473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46096,12 +46561,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 5
   yCoord: 0
+  spriteR: {fileID: 1906901503}
 --- !u!114 &1906901500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46283,12 +46749,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 20
   yCoord: 0
+  spriteR: {fileID: 1910491312}
 --- !u!114 &1910491309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46470,12 +46937,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 2
   yCoord: 2
+  spriteR: {fileID: 1914855495}
 --- !u!114 &1914855492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46657,12 +47125,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 0
+  statut: 32768
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 12
   yCoord: 3
+  spriteR: {fileID: 1915492780}
 --- !u!114 &1915492777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46746,7 +47215,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.21323532, g: 0.21866123, b: 1, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -46850,6 +47319,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 12
   yCoord: 4
+  spriteR: {fileID: 1916677828}
 --- !u!114 &1916677825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47110,12 +47580,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 17
   yCoord: 2
+  spriteR: {fileID: 1936631638}
 --- !u!114 &1936631635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47297,12 +47768,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 18
   yCoord: 9
+  spriteR: {fileID: 1940783041}
 --- !u!114 &1940783038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47484,12 +47956,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 5
   yCoord: 8
+  spriteR: {fileID: 1941791706}
 --- !u!114 &1941791703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47671,12 +48144,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 14
   yCoord: 10
+  spriteR: {fileID: 1960173861}
 --- !u!114 &1960173858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47858,12 +48332,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 0
   yCoord: 0
+  spriteR: {fileID: 1967260924}
 --- !u!114 &1967260921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48051,6 +48526,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 8
   yCoord: 6
+  spriteR: {fileID: 1975579886}
 --- !u!114 &1975579883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48232,12 +48708,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 1
   yCoord: 3
+  spriteR: {fileID: 1980514520}
 --- !u!114 &1980514517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48425,6 +48902,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 6
   yCoord: 4
+  spriteR: {fileID: 1985896488}
 --- !u!114 &1985896485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48508,7 +48986,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 1, g: 0.21323532, b: 0.21323532, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -48685,6 +49163,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 13
   yCoord: 2
+  spriteR: {fileID: 1991310305}
 --- !u!114 &1991310302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48768,7 +49247,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.21323532, g: 0.21866123, b: 1, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -48866,12 +49345,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 17
   yCoord: 8
+  spriteR: {fileID: 1991495508}
 --- !u!114 &1991495505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49064,6 +49544,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 13
   yCoord: 1
+  spriteR: {fileID: 1993235466}
 --- !u!114 &1993235463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49147,7 +49628,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.21323532, g: 0.21866123, b: 1, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -49403,12 +49884,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 16384
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 3
   yCoord: 10
+  spriteR: {fileID: 2015803701}
 --- !u!114 &2015803698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49705,6 +50187,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 13
   yCoord: 4
+  spriteR: {fileID: 2072035463}
 --- !u!114 &2072035460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49788,7 +50271,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.21323532, g: 0.21866123, b: 1, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -49886,12 +50369,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 0
+  statut: 32768
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 12
   yCoord: 8
+  spriteR: {fileID: 2079936862}
 --- !u!114 &2079936859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49975,7 +50459,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.21323532, g: 0.21866123, b: 1, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -50073,12 +50557,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 18
   yCoord: 7
+  spriteR: {fileID: 2082630088}
 --- !u!114 &2082630085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50338,12 +50823,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 0
+  statut: 32768
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 11
   yCoord: 8
+  spriteR: {fileID: 2100847714}
 --- !u!114 &2100847711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50427,7 +50913,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.21323532, g: 0.21866123, b: 1, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -50531,6 +51017,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 9
   yCoord: 5
+  spriteR: {fileID: 2104664428}
 --- !u!114 &2104664425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50718,6 +51205,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 8
   yCoord: 10
+  spriteR: {fileID: 2107831957}
 --- !u!114 &2107831954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50899,12 +51387,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 0
+  statut: 32768
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 12
   yCoord: 9
+  spriteR: {fileID: 2136159489}
 --- !u!114 &2136159486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50988,7 +51477,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.21323532, g: 0.21866123, b: 1, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -51092,6 +51581,7 @@ MonoBehaviour:
   casePathfinding: 0
   xCoord: 14
   yCoord: 7
+  spriteR: {fileID: 2140308543}
 --- !u!114 &2140308540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51175,7 +51665,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 7cd2a5e5299bac84b904290b4acce06f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 0.21323532, g: 0.21866123, b: 1, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -51273,12 +51763,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbb0ed35a9cfd446807231c925ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statut: 32768
+  statut: 0
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
   casePathfinding: 0
   xCoord: 15
   yCoord: 7
+  spriteR: {fileID: 2143602096}
 --- !u!114 &2143602093
 MonoBehaviour:
   m_ObjectHideFlags: 0

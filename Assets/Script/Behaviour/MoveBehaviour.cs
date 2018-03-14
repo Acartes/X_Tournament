@@ -84,7 +84,7 @@ public class MoveBehaviour : NetworkBehaviour
   { // Créé une route de déplacement pour un personnage
     Debug.Log("createPath");
 
-    if (GameManager.Instance.actualAction == PersoAction.isMoving)
+    if (GameManager.Instance.actualAction != PersoAction.isSelected)
       return;
 
     pathesLast = pathes;

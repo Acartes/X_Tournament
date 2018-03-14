@@ -25,6 +25,12 @@ public class RpcFunctions : NetworkBehaviour
   }
 
   [Command]
+  public void CmdCastSpell(int IDSpell)
+  {
+    SpellManager.Instance.RpcSpellCast(IDSpell);
+  }
+
+  [Command]
   public void CmdChangeTurn()
   {
     TurnManager.Instance.RpcChangeTurn();

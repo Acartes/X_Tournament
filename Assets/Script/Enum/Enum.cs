@@ -37,7 +37,8 @@ public enum PersoAction
   isShoting,
   isIdle,
   isSelected,
-  isWaiting
+  isWaiting,
+  isCasting,
 }
 
 public enum Direction
@@ -84,6 +85,10 @@ public enum WeightType
   isExplosion = 1 << 20,
   isIce = 1 << 21,
   isMud = 1 << 22,
+  // Spells
+  atRange = 1 << 23,
+  atAoE = 1 << 24,
+  atPush = 1 << 25,
 }
 
 [Flags] public enum BallonStatut

@@ -25,6 +25,9 @@ public class ColorManager : NetworkBehaviour
   public Color isMovingColor;
   public Color selectedColor;
   public Color goalColor;
+  public Color atRange;
+  public Color atAoE;
+  public Color atPush;
 
   [Header("  Couleur des personnages")]
   public Color punchedPersonnageColor;
@@ -34,6 +37,12 @@ public class ColorManager : NetworkBehaviour
   // ******************** //
   // ** Initialisation ** // Fonctions de départ, non réutilisable
   // ******************** //
+
+  void Update()
+  {
+    if (Instance == null)
+      Instance = this;
+  }
 
   public override void OnStartClient()
   {

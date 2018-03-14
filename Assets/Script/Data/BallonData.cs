@@ -26,8 +26,6 @@ public class BallonData : NetworkBehaviour
   public CaseData ballonCase;
 
   [Header("Tir")]
-  public GameObject menuContextuel;
-  //MenuContextuel
   public GameObject selectedBallon;
   public Vector3 offsetBallon;
   public float xCoordInc;
@@ -189,7 +187,6 @@ public class BallonData : NetworkBehaviour
     GameManager.Instance.actualAction = PersoAction.isSelected;
     animator.ResetTrigger("Roule");
     animator.SetTrigger("Idle");
-    CaseManager.Instance.StartCoroutine("ShowActions");
     TurnManager.Instance.EnableFinishTurn();
     casesCrossed = 0;
   }

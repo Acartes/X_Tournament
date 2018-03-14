@@ -21,7 +21,7 @@ public class CaseData : NetworkBehaviour
   public int xCoord;
   public int yCoord;
 
-  SpriteRenderer spriteR;
+  public SpriteRenderer spriteR;
   Statut defaultStatut;
   bool ShineColorIsRunning = false;
 
@@ -149,13 +149,16 @@ public class CaseData : NetworkBehaviour
     if ((oldStatut != Statut.None) && ((oldStatut & statut) == oldStatut))
       statut -= (int)oldStatut;
       
-    ChangeColorByStatut(statut);
+    ChangeColorByStatut();
     ChangeFeedbackByStatut(statut, oldStatut);
   }
 
   /// <summary>Change la couleur de la case selon son statut.</summary>
-  private void ChangeColorByStatut(Statut statut)
+  public void ChangeColorByStatut()
   {
+    if (ColorManager.Instance == null)
+      return;
+      
     spriteR.color = ColorManager.Instance.caseColor;
 
     if ((Statut.goalRed & statut) == Statut.goalRed)
@@ -178,6 +181,16 @@ public class CaseData : NetworkBehaviour
       
     if ((Statut.canPunch & statut) == Statut.canPunch)
       spriteR.color = ColorManager.Instance.actionPreColor;
+
+    if ((Statut.atRange & statut) == Statut.atRange)
+      spriteR.color = ColorManager.Instance.atRange;
+
+    if ((Statut.atAoE & statut) == Statut.atAoE)
+      spriteR.color = ColorManager.Instance.atAoE;
+
+    if ((Statut.atPush & statut) == Statut.atPush)
+      spriteR.color = ColorManager.Instance.atPush;
+
 
     if ((Statut.canMove & statut) == Statut.canMove)
       spriteR.color = ColorManager.Instance.moveColor;
@@ -278,7 +291,10 @@ public class CaseData : NetworkBehaviour
   /// <summary>Récupère la case en haut de cette case.</summary>
   public CaseData GetTopCase()
   {
-    GameObject newCase = (GameObject.Find(xCoord - 1 + " " + yCoord + 1) != null) ? GameObject.Find(xCoord - 1 + " " + yCoord + 1) : null;
+    GameObject newCase = (GameObject.Find(xCoord - 1 + " " + (yCoord + 1)) != null) ? GameObject.Find(xCoord - 1 + " " + (yCoord + 1)) : null;
+    if (newCase == null)
+      return null;
+      
     return newCase.GetComponent<CaseData>();
   }
 
@@ -286,6 +302,9 @@ public class CaseData : NetworkBehaviour
   public CaseData GetBottomCase()
   {
     GameObject newCase = (GameObject.Find(xCoord + 1 + " " + (yCoord - 1)) != null) ? GameObject.Find(xCoord + 1 + " " + (yCoord - 1)) : null;
+    if (newCase == null)
+      return null;
+      
     return newCase.GetComponent<CaseData>();
   }
 
@@ -293,13 +312,19 @@ public class CaseData : NetworkBehaviour
   public CaseData GetLeftCase()
   {
     GameObject newCase = (GameObject.Find(xCoord - 1 + " " + (yCoord - 1)) != null) ? GameObject.Find(xCoord - 1 + " " + (yCoord - 1)) : null;
+    if (newCase == null)
+      return null;
+      
     return newCase.GetComponent<CaseData>();
   }
 
   /// <summary>Récupère la case à droite de cette case.</summary>
   public CaseData GetRightCase()
   {
-    GameObject newCase = (GameObject.Find(xCoord + 1 + " " + yCoord + 1) != null) ? GameObject.Find(xCoord + 1 + " " + yCoord + 1) : null;
+    GameObject newCase = (GameObject.Find(xCoord + 1 + " " + (yCoord + 1)) != null) ? GameObject.Find(xCoord + 1 + " " + (yCoord + 1)) : null;
+    if (newCase == null)
+      return null;
+      
     return newCase.GetComponent<CaseData>();
   }
 
@@ -307,6 +332,9 @@ public class CaseData : NetworkBehaviour
   public CaseData GetTopLeftCase()
   {
     GameObject newCase = (GameObject.Find(xCoord - 1 + " " + yCoord) != null) ? GameObject.Find(xCoord - 1 + " " + yCoord) : null;
+    if (newCase == null)
+      return null;
+      
     return newCase.GetComponent<CaseData>();
   }
 
@@ -314,13 +342,19 @@ public class CaseData : NetworkBehaviour
   public CaseData GetBottomRightCase()
   {
     GameObject newCase = (GameObject.Find(xCoord + 1 + " " + yCoord) != null) ? GameObject.Find(xCoord + 1 + " " + yCoord) : null;
+    if (newCase == null)
+      return null;
+      
     return newCase.GetComponent<CaseData>();
   }
 
   /// <summary>Récupère la case en haut à droite de cette case.</summary>
   public CaseData GetTopRightCase()
   {
-    GameObject newCase = (GameObject.Find(xCoord + " " + yCoord + 1) != null) ? GameObject.Find(xCoord + " " + yCoord + 1) : null;
+    GameObject newCase = (GameObject.Find(xCoord + " " + (yCoord + 1)) != null) ? GameObject.Find(xCoord + " " + (yCoord + 1)) : null;
+    if (newCase == null)
+      return null;
+      
     return newCase.GetComponent<CaseData>();
   }
 
@@ -328,6 +362,9 @@ public class CaseData : NetworkBehaviour
   public CaseData GetBottomLeftCase()
   {
     GameObject newCase = (GameObject.Find(xCoord + " " + (yCoord - 1)) != null) ? GameObject.Find(xCoord + " " + (yCoord - 1)) : null;
+    if (newCase == null)
+      return null;
+      
     return newCase.GetComponent<CaseData>();
   }
 
@@ -339,6 +376,9 @@ public class CaseData : NetworkBehaviour
   public CaseData GetCaseRelativeCoordinate(int x, int y)
   {
     GameObject newCase = (GameObject.Find((xCoord + x) + " " + (yCoord + y)) != null) ? GameObject.Find((xCoord + x) + " " + (yCoord + y)) : null;
+    if (newCase == null)
+      return null;
+      
     return newCase.GetComponent<CaseData>();
   }
 
