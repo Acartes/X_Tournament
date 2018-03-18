@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using System.Runtime.Remoting.Messaging;
 
 /// <summary>Gère tous les sorts.</summary>
 public class SpellManager : NetworkBehaviour
@@ -12,12 +13,11 @@ public class SpellManager : NetworkBehaviour
   // ** Variables ** // Toutes les variables sans distinctions
   // *************** //
 
-  SpellData selectedSpell;
-  List<CaseData> rangeList = new List<CaseData>();
-  List<CaseData> AoEList = new List<CaseData>();
-  List<CaseData> pushList = new List<CaseData>();
+  /// <summary>Montre à quelle portée les personnages vont être projetés avant de le lancer</summary>
+  public SpellData selectedSpell;
+  GameObject newSummon;
 
-  bool isSpellCasting = false;
+  public bool isSpellCasting = false;
 
   public static SpellManager Instance;
 
@@ -64,7 +64,10 @@ public class SpellManager : NetworkBehaviour
   void OnNewHover(object sender, HoverArgs e)
   {
     if (isSpellCasting)
-      ShowAreaOfEffect();
+      {
+        selectedSpell.ShowAreaOfEffect();
+        selectedSpell.ShowSummon();
+      }
   }
 
   void OnNewClick()
@@ -110,9 +113,26 @@ public class SpellManager : NetworkBehaviour
   // ** Fonctions ** // Fonctions réutilisables ailleurs
   // *************** //
 
-  /// <summary>Mettre un chiffre correspondant à l'ordre des boutons de sorts du personnage (0 = spell1; 1 = spell2)</summary>
+  /// <summary>Active le tooltip pour le sort</summary>
+  public void SpellTooltipON(int IDSpell)
+  {
+    Tooltip.tooltipObj = ChooseSpell(IDSpell);
+    UIManager.Instance.tooltip.SetActive(true);
+  }
+
+  /// <summary>Désactive le tooltip pour le sort</summary>
+  public void SpellTooltipOFF()
+  {
+    UIManager.Instance.tooltip.SetActive(false);
+  }
+
+  /// <summary>Montre comment le sort doit être lancé, un précast. 
+  /// Mettre un chiffre correspondant à l'ordre des boutons de sorts du personnage (0 = spell1; 1 = spell2)</summary>
   public void SpellCast(int IDSpell)
   {
+    if (isSpellCasting)
+      return;
+      
     RpcFunctions.Instance.CmdCastSpell(IDSpell);
   }
 
@@ -120,163 +140,28 @@ public class SpellManager : NetworkBehaviour
   public void RpcSpellCast(int IDSpell)
   {
     PersoData selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
+    if (selectedPersonnage == null)
+      return;
 
-    switch (IDSpell)
-      {
-      case 0:
-        selectedSpell = SelectionManager.Instance.selectedPersonnage.Spell1;
-        break;
-      case 1:
-        selectedSpell = SelectionManager.Instance.selectedPersonnage.Spell2;
-        break;
-      default:
-        return;
-      }
+    selectedSpell = ChooseSpell(IDSpell);
+      
     if (selectedSpell == null)
       return;
+      
     if (selectedPersonnage.actualPointAction < selectedSpell.costPA)
       return;
 
-    isSpellCasting = true;
     GameManager.Instance.actualAction = PersoAction.isCasting;
     SelectionManager.Instance.DisablePersoSelection();
     TurnManager.Instance.DisableFinishTurn();
-    ShowRange();
-    ShowAreaOfEffect();
-    ShowPushEffect();
+    selectedSpell.ShowRange();
+    selectedSpell.ShowAreaOfEffect();
+    selectedSpell.ShowPushEffect();
+    selectedSpell.ShowSummon();
+    isSpellCasting = true;
   }
 
-  void ShowRange()
-  {
-    int range = selectedSpell.range;
-    List<CaseData> list = new List<CaseData>();
-    List<CaseData> list2 = new List<CaseData>();
-    CaseData selectedCase = SelectionManager.Instance.selectedCase;
-    list.Add(selectedCase);
-
-    if (selectedSpell.isLinear)
-      {
-        for (int i = 0; i < range; i++)
-          {
-            if (selectedCase.GetCaseRelativeCoordinate(i, 0) != null)
-              list.Add(selectedCase.GetCaseRelativeCoordinate(i, 0));
-
-            if (selectedCase.GetCaseRelativeCoordinate(-i, 0) != null)
-              list.Add(selectedCase.GetCaseRelativeCoordinate(-i, 0));
-
-            if (selectedCase.GetCaseRelativeCoordinate(0, i) != null)
-              list.Add(selectedCase.GetCaseRelativeCoordinate(0, i));
-
-            if (selectedCase.GetCaseRelativeCoordinate(0, -i) != null)
-              list.Add(selectedCase.GetCaseRelativeCoordinate(0, -i));
-          }
-      } else
-      {
-        for (int i = 0; i < range; i++)
-          {
-            foreach (CaseData obj in list)
-              {
-                if (obj.GetBottomLeftCase() != null)
-                  list2.Add(obj.GetBottomLeftCase());
-
-                if (obj.GetBottomRightCase() != null)
-                  list2.Add(obj.GetBottomRightCase());
-                    
-                if (obj.GetTopLeftCase() != null)
-                  list2.Add(obj.GetTopLeftCase());
-
-                if (obj.GetTopRightCase() != null)
-                  list2.Add(obj.GetTopRightCase());
-              }
-            list.AddRange(list2);
-            list2.Clear();
-          }
-        list.Remove(selectedCase);
-      }
-    if (rangeList.Count != 0)
-      rangeList.Clear();
-    rangeList.AddRange(list);
-    foreach (CaseData obj in rangeList)
-      {
-        if (obj != null)
-          obj.ChangeStatut(Statut.atRange);
-      }
-
-  }
-
-  void ShowAreaOfEffect()
-  {
-    foreach (CaseData obj in CaseManager.Instance.GetAllCaseWithStatut(Statut.atAoE))
-      {
-        obj.ChangeStatut(Statut.None, Statut.atAoE);
-      }
-
-    int AoE = selectedSpell.areaOfEffect;
-    List<CaseData> list = new List<CaseData>();
-    List<CaseData> list2 = new List<CaseData>();
-    CaseData hoveredCase = HoverManager.Instance.hoveredCase;
-    list.Add(hoveredCase);
-    for (int i = 0; i < AoE; i++)
-      {
-        foreach (CaseData obj in list)
-          {
-            if (obj.GetBottomLeftCase() != null)
-              list2.Add(obj.GetBottomLeftCase());
-
-            if (obj.GetBottomRightCase() != null)
-              list2.Add(obj.GetBottomRightCase());
-
-            if (obj.GetTopLeftCase() != null)
-              list2.Add(obj.GetTopLeftCase());
-
-            if (obj.GetTopRightCase() != null)
-              list2.Add(obj.GetTopRightCase());
-          }
-        list.AddRange(list2);
-        list2.Clear();
-      }
-    list.Remove(hoveredCase);
-
-    if (AoEList.Count != 0)
-      AoEList.Clear();
-      
-    AoEList.AddRange(list);
-    foreach (CaseData obj in AoEList)
-      {
-        obj.ChangeStatut(Statut.atAoE);
-      }
-  }
-
-  void ShowPushEffect()
-  {
-    int push = selectedSpell.pushValue;
-    List<CaseData> list = new List<CaseData>();
-    List<CaseData> list2 = new List<CaseData>();
-    list.Add(SelectionManager.Instance.selectedCase);
-
-    if (selectedSpell.isLinear)
-      {
-        for (int i = 0; i < push; i++)
-          {
-            foreach (CaseData obj in list)
-              {
-                if (obj.GetCaseRelativeCoordinate(i, 0) != null)
-                  list.Add(obj.GetCaseRelativeCoordinate(i, 0));
-              }
-          }
-      }
-
-    if (pushList.Count != 0)
-      pushList.Clear();
-      
-    pushList.AddRange(list);
-    foreach (CaseData obj in pushList)
-      {
-        obj.ChangeStatut(Statut.atPush);
-      }
-  }
-
-  /// <summary>Mettre un chiffre correspondant à l'ordre des boutons de sorts du personnage (0 = spell1; 1 = spell2)</summary>
+  /// <summary>Le sort est lancé à un endroit</summary>
   void SpellCall()
   {
     StartCoroutine(SpellEnd());
@@ -298,5 +183,21 @@ public class SpellManager : NetworkBehaviour
     GameManager.Instance.actualAction = PersoAction.isSelected;
     SelectionManager.Instance.EnablePersoSelection();
     TurnManager.Instance.EnableFinishTurn();
+  }
+
+  /// <summary>Cible le bon sort entre les boutons</summary>
+  SpellData ChooseSpell(int IDSpell)
+  {
+    PersoData selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
+    if (selectedPersonnage == null)
+      return null;
+
+    if (IDSpell == 0)
+      return SelectionManager.Instance.selectedPersonnage.Spell1;
+
+    if (IDSpell == 1)
+      return SelectionManager.Instance.selectedPersonnage.Spell2;
+
+    return null;
   }
 }

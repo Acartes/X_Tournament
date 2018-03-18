@@ -7,15 +7,19 @@ using UnityEngine.Networking;
 public class ClickEvent : NetworkBehaviour
 {
 
-    void OnMouseDown()
-    {
+  void OnMouseDown()
+  {
+    if (!GameManager.Instance.isSoloGame)
+      {
         if (RpcFunctions.Instance.localId == 0 && TurnManager.Instance.currentPlayer == Player.Blue)
-            return;
+          return;
         if (RpcFunctions.Instance.localId == 1 && TurnManager.Instance.currentPlayer == Player.Red)
-            return;
+          return;
+      }
 
-        if (HoverManager.Instance.hoveredCase != null) {
-            RpcFunctions.Instance.CmdSendClickEvent();
-        }
-    }
+    if (HoverManager.Instance.hoveredCase != null)
+      {
+        RpcFunctions.Instance.CmdSendClickEvent();
+      }
+  }
 }

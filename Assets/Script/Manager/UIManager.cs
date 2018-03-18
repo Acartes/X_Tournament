@@ -24,6 +24,7 @@ public class UIManager : NetworkBehaviour
   public GameObject scoreBlueGMB;
   public GameObject messageGeneral;
   public GameObject menuContextuel;
+  public GameObject tooltip;
   public bool isScoreChanging = false;
 
   public static UIManager Instance;

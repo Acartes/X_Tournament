@@ -66,24 +66,6 @@ public class PersoData : NetworkBehaviour
     isTackled = false;
     actualPointMovement = maxPointMovement;
 
-    if (owner == Player.Red)
-      {
-        if (RosterManager.Instance.listHeroJXToPlace.Count < 1)
-          {
-              
-            RosterManager.Instance.listHeroJXToPlace.Add(new List<PersoData>());
-          }
-        RosterManager.Instance.listHeroJXToPlace[0].Add(this);
-      }
-    if (owner == Player.Blue)
-      {
-        if (RosterManager.Instance.listHeroJXToPlace.Count < 2)
-          {
-            RosterManager.Instance.listHeroJXToPlace.Add(new List<PersoData>());
-          }
-        RosterManager.Instance.listHeroJXToPlace[1].Add(this);
-      }
-      
     RosterManager.Instance.listHero.Add(this);
     TurnManager.Instance.changeTurnEvent += OnChangeTurn;
   }

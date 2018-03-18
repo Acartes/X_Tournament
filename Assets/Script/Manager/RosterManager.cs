@@ -13,7 +13,6 @@ public class RosterManager : NetworkBehaviour
 
   public List<PersoData> listHeroJ1;
   public List<PersoData> listHeroJ2;
-  public List<List<PersoData>> listHeroJXToPlace = new List<List<PersoData>>();
   [ReadOnly] public List<PersoData> listHero;
   [ReadOnly] public List<PersoData> listHeroPlaced;
 

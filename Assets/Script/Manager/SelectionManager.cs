@@ -142,11 +142,7 @@ public class SelectionManager : NetworkBehaviour
 
     selectedPersonnage = null;
     selectedCase = null;
-
-    if (currentPhase == Phase.Placement)
-      {
-        PlacementBehaviour.Instance.NextToPlace(TurnManager.Instance.currentPhase, TurnManager.Instance.currentPlayer);
-      }
+     
   }
 
   public void SelectPerso(CaseData hoveredCase, PersoData hoveredPersonnage, Color selectedColor, Phase currentPhase, Player currentPlayer, PersoAction actualAction)

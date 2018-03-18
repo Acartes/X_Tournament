@@ -16,12 +16,15 @@ public class GameManager : NetworkBehaviour
   public Player currentPlayer;
   [Tooltip("Joueur qui joue (Red=0, Blue=1, Neutral=2)")]
   public int indexPlayer;
+  [Tooltip("Nombre de joueurs humains")]
+  public int numberPlayer = -1;
   [Tooltip("Phase actuel (Placement, Deplacement)")]
   public Phase currentPhase;
   [Tooltip("Quel est l'action qu'entreprend le joueur (isMoving, isReplacingBall, isShoting, isIdle)")]
   public PersoAction actualAction;
   public int manaGlobalMax = 20;
   public int manaGlobalActual = 20;
+  [SyncVar] public bool isSoloGame;
 
   public static GameManager Instance;
 
@@ -33,6 +36,15 @@ public class GameManager : NetworkBehaviour
   {
     if (Instance == null)
       Instance = this;
+
+    foreach (NetworkLobbyPlayer obj in GameObject.FindObjectsOfType<NetworkLobbyPlayer>())
+      {
+        numberPlayer++;
+      }
+
+    if (numberPlayer > 1)
+      isSoloGame = false;
+
     Debug.Log("GameManager is Instanced");
     StartCoroutine(waitForInit());
   }
@@ -85,8 +97,6 @@ public class GameManager : NetworkBehaviour
   {
     TurnManager.Instance.enabled = true;
 
-    RosterManager.Instance.listHeroJXToPlace[0] = RosterManager.Instance.listHeroJ1;
-    RosterManager.Instance.listHeroJXToPlace[1] = RosterManager.Instance.listHeroJ2;
     foreach (PersoData obj in RosterManager.Instance.listHeroJ1)
       {
         obj.gameObject.transform.position = new Vector3(999, 999, 999);

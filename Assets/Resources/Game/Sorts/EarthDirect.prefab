@@ -55,7 +55,7 @@ MonoBehaviour:
   costPA: 1
   range: 5
   isLinear: 1
-  areaOfEffect: 0
+  areaOfEffect: 1
   damagePR: 0
   damagePA: 0
   damagePM: 0
@@ -65,6 +65,9 @@ MonoBehaviour:
   summonedObj: {fileID: 1318184873450362, guid: 13d82c74e385f504cb8b9fbd71952d03,
     type: 2}
   isDirect: 1
+  tooltipTitle: Direct Terre
+  tooltipRange: "Port\xE9e : 5 cases"
+  tooltipEffect: Attire la cible de 3 cases.
 --- !u!114 &114755600324448950
 MonoBehaviour:
   m_ObjectHideFlags: 1

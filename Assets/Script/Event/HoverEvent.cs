@@ -35,10 +35,12 @@ public class HoverEvent : NetworkBehaviour
 
   void OnMouseOver()
   {
-
-    if ((RpcFunctions.Instance.localId == 0 && TurnManager.Instance.currentPlayer == Player.Blue)
-      || (RpcFunctions.Instance.localId == 1 && TurnManager.Instance.currentPlayer == Player.Red))
-    return;
+    if (!GameManager.Instance.isSoloGame)
+      {
+        if ((RpcFunctions.Instance.localId == 0 && TurnManager.Instance.currentPlayer == Player.Blue)
+          || (RpcFunctions.Instance.localId == 1 && TurnManager.Instance.currentPlayer == Player.Red))
+          return;
+      }
 
     if (!enabled || !LoadingManager.Instance.isGameReady())
       return;
@@ -46,7 +48,6 @@ public class HoverEvent : NetworkBehaviour
     string hoveredCase = "null";
     string hoveredPersonnage = "null";
     string hoveredBallon = "null";
-
 
     hoveredCase = this.GetComponent<CaseData>().name;
 
@@ -57,14 +58,14 @@ public class HoverEvent : NetworkBehaviour
       hoveredBallon = GetComponent<CaseData>().ballon.name;
 
     RpcFunctions.Instance.CmdSendHoverEvent(hoveredCase, hoveredPersonnage, hoveredBallon);
-    }
+  }
 
   void OnMouseExit()
   {
     if (!enabled || !LoadingManager.Instance.isGameReady())
-        {
-            RpcFunctions.Instance.CmdSendHoverEvent("null", "null", "null");
-        }
-        return;
+      {
+        RpcFunctions.Instance.CmdSendHoverEvent("null", "null", "null");
+      }
+    return;
   }
 }

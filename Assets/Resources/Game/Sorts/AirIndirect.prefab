@@ -55,7 +55,7 @@ MonoBehaviour:
   costPA: 1
   range: 4
   isLinear: 0
-  areaOfEffect: 3
+  areaOfEffect: 1
   damagePR: 0
   damagePA: 0
   damagePM: 0
@@ -65,6 +65,12 @@ MonoBehaviour:
   summonedObj: {fileID: 1318184873450362, guid: 13d82c74e385f504cb8b9fbd71952d03,
     type: 2}
   isDirect: 0
+  tooltipTitle: Sort Indirect Air
+  tooltipRange: "Port\xE9e : 4 cases"
+  tooltipEffect: "Invoque un obstacle \xE0 l\u2019emplacement cibl\xE9, il ne bloque
+    pas la ligne de\r\nvue, la balle et les personnages peuvent le traverser. Lorsqu\u2019une
+    entit\xE9 entre \xE0\r\nl\u2019int\xE9rieur elle est d\xE9cal\xE9 d\u20191 case
+    sur sa gauche."
 --- !u!114 &114755600324448950
 MonoBehaviour:
   m_ObjectHideFlags: 1

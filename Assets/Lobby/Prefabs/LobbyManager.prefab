@@ -604,6 +604,7 @@ GameObject:
   - component: {fileID: 11466428}
   - component: {fileID: 11475086}
   - component: {fileID: 11415508}
+  - component: {fileID: 114006069021833728}
   m_Layer: 5
   m_Name: LobbyManager
   m_TagString: Untagged
@@ -3200,9 +3201,18 @@ MonoBehaviour:
   m_PlayerPrefab: {fileID: 0}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 0
-  m_OfflineScene: NetworkLobby
+  m_OfflineScene: "Lobby r\xE9seau"
   m_OnlineScene: 
-  m_SpawnPrefabs: []
+  m_SpawnPrefabs:
+  - {fileID: 1409412096056796, guid: 4c1c81e440c6cf14dae790263093ec6c, type: 2}
+  - {fileID: 1409412096056796, guid: f674d0a7133f2ec408a85de9bdd2dc28, type: 2}
+  - {fileID: 1409412096056796, guid: d1fdd91c19fecf649842eb8870c276ff, type: 2}
+  - {fileID: 1409412096056796, guid: e67ad0c61b98d214c84c05588b7c7944, type: 2}
+  - {fileID: 1409412096056796, guid: e7f4a2a509618e34e83c2628c6fb6bfe, type: 2}
+  - {fileID: 1409412096056796, guid: 9d8d7fb12b6d0724ead85a75d3e788e7, type: 2}
+  - {fileID: 1409412096056796, guid: b73a5e2e6570b7542ad3036931073f8e, type: 2}
+  - {fileID: 1409412096056796, guid: 51a1605e281ecf54bae3d3711f559d84, type: 2}
+  - {fileID: 1901250649987194, guid: 89e0b04b76150e04bb289739a7227e5b, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -3246,7 +3256,7 @@ MonoBehaviour:
     m_MinNetSimulatorTimeout: 1
     m_MaxNetSimulatorTimeout: 12000
   m_Channels: 0500000000000000
-  m_UseWebSockets: 0
+  m_UseWebSockets: 1
   m_UseSimulator: 0
   m_SimulatedLatency: 1
   m_PacketLossPercentage: 0
@@ -3264,11 +3274,12 @@ MonoBehaviour:
   m_MinPlayers: 2
   m_LobbyPlayerPrefab: {fileID: 11487034, guid: ad727d7e1462ecc4f83c898ecc501997,
     type: 2}
-  m_GamePlayerPrefab: {fileID: 0}
-  m_LobbyScene: 
-  m_PlayScene: 
+  m_GamePlayerPrefab: {fileID: 1263162721159478, guid: 36ba184d7438f394a93919bac0799fe1,
+    type: 2}
+  m_LobbyScene: "Lobby r\xE9seau"
+  m_PlayScene: Game
   lobbySlots: []
-  prematchCountdown: 3
+  prematchCountdown: 0
   topPanel: {fileID: 11424994}
   mainMenuPanel: {fileID: 22442386}
   lobbyPanel: {fileID: 22443498}
@@ -4733,7 +4744,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00000047683716, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -28, y: -28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22428082
@@ -5236,7 +5247,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.0000009536743, y: -163}
+  m_AnchoredPosition: {x: 0, y: -163}
   m_SizeDelta: {x: 100, y: 85}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &22468472
@@ -5695,3 +5706,17 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 155310}
   m_IsPrefabParent: 1
+--- !u!114 &114006069021833728
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 856da9704b0eb9a459c71d063457c92e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P1_GameReady: 0
+  P2_GameReady: 0
+  allGameReady: 0

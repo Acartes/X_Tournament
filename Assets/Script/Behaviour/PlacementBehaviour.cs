@@ -106,13 +106,22 @@ public class PlacementBehaviour : NetworkBehaviour
 
         break;
       case Phase.Placement:
-        PlacementBehaviour.Instance.NextToPlace(TurnManager.Instance.currentPhase, TurnManager.Instance.currentPlayer);
         break;
       }
   }
 
   public void CreatePerso(Phase currentPhase, Player currentPlayer, int playerIndex)
   { // On créé un personnage sur une case
+
+    foreach (PersoData obj in RosterManager.Instance.listHero)
+      {
+        if (obj.owner == currentPlayer && obj.persoCase == null)
+          {
+            SelectionManager.Instance.selectedPersonnage = obj;
+            break;
+          }
+      }
+    /*
     if (RosterManager.Instance.listHeroJXToPlace[playerIndex].Count != 0)
       {
         if (RosterManager.Instance.listHeroJXToPlace[playerIndex][persoToPlaceNumber] != SelectionManager.Instance.selectedPersonnage)
@@ -121,11 +130,11 @@ public class PlacementBehaviour : NetworkBehaviour
 
           }
           
-        RosterManager.Instance.listHeroJXToPlace[playerIndex].RemoveAt(persoToPlaceNumber);
+        RosterManager.Instance.listHeroJXToPlace[playerIndex].RemoveAt(persoToPlaceNumber);*/
 
-        Debug.Log("createPersoPlacement");
-        CreatePersoPlacement(HoverManager.Instance.hoveredCase, SelectionManager.Instance.selectedPersonnage);
-      }
+    Debug.Log("createPersoPlacement");
+    CreatePersoPlacement(HoverManager.Instance.hoveredCase, SelectionManager.Instance.selectedPersonnage);
+    //  }
   }
 
   public void CreatePersoPlacement(CaseData hoveredCase, PersoData selectedPersonnage)
@@ -149,35 +158,6 @@ public class PlacementBehaviour : NetworkBehaviour
 
         SelectionManager.Instance.Deselect(TurnManager.Instance.currentPhase, TurnManager.Instance.currentPlayer);
 
-      }
-  }
-
-  public void NextToPlace(Phase currentPhase, Player currentPlayer)
-  { // Indique quel prochain personnage à placer.
-    if (currentPhase == Phase.Placement)
-      {
-        persoToPlaceNumber = 0;
-        switch (currentPlayer)
-          {
-          case Player.Red:
-            if (RosterManager.Instance.listHeroJXToPlace.Count > 0)
-              {
-                if (RosterManager.Instance.listHeroJXToPlace[0].Count != 0)
-                  {
-                    SelectionManager.Instance.selectedPersonnage = RosterManager.Instance.listHeroJXToPlace[0][persoToPlaceNumber];
-                  }
-              }
-            break;
-          case Player.Blue:
-            if (RosterManager.Instance.listHeroJXToPlace.Count > 1)
-              {
-                if (RosterManager.Instance.listHeroJXToPlace[1].Count != 0)
-                  {
-                    SelectionManager.Instance.selectedPersonnage = RosterManager.Instance.listHeroJXToPlace[1][persoToPlaceNumber];
-                  }
-              }
-            break;
-          }
       }
   }
 
