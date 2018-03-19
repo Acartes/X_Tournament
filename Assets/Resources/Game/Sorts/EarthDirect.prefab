@@ -65,8 +65,9 @@ MonoBehaviour:
   summonedObj: {fileID: 1318184873450362, guid: 13d82c74e385f504cb8b9fbd71952d03,
     type: 2}
   isDirect: 1
-  tooltipTitle: Direct Terre
-  tooltipRange: "Port\xE9e : 5 cases"
+  buttonSprite: {fileID: 21300000, guid: ca112e8ec57ea7a479c8a6c83f4957ac, type: 3}
+  tooltipTitle: Direct <color=#cccc00ff>Terre</color>
+  tooltipRange: "<color=#bbbbbbff>Port\xE9e : </color>5 cases"
   tooltipEffect: Attire la cible de 3 cases.
 --- !u!114 &114755600324448950
 MonoBehaviour:

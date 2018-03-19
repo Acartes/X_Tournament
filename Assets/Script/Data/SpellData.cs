@@ -26,8 +26,12 @@ public class SpellData : NetworkBehaviour
   public int pushValue;
   public bool hurtWhenStopped;
 
-  public GameObject summonedObj;
+  public SummonData summonedObj;
   public bool isDirect;
+
+  public Sprite buttonSprite;
+
+  public Statut newStatut;
 
   List<CaseData> rangeList = new List<CaseData>();
   List<CaseData> AoEList = new List<CaseData>();
@@ -211,7 +215,7 @@ public class SpellData : NetworkBehaviour
     if (summonedObj != null && summonedObj == null)
       {
         summonedObj.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.6f);
-        summonedObj = (GameObject)Instantiate(summonedObj, hoveredCase.transform.position, Quaternion.identity);
+        //     summonedObj = (GameObject)Instantiate(summonedObj, hoveredCase.transform.position - selected, Quaternion.identity);
       }
 
     if (summonedObj != null)

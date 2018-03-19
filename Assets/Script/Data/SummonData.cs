@@ -22,6 +22,8 @@ public class SummonData : NetworkBehaviour
   public int pushRange;
   public Direction pushDirection;
 
+  public Transform originPoint;
+
   public bool disapearWhenHurt;
 
   // ******************** //

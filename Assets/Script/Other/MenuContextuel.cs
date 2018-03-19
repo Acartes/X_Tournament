@@ -31,7 +31,7 @@ public class MenuContextuel : NetworkBehaviour
     ballon = GameObject.Find("Ballon");
     UIManager.Instance.menuContextuel = this.gameObject;
     TurnManager.Instance.changeTurnEvent += OnChangeTurn;
-    this.gameObject.SetActive(false);
+    this.gameObject.transform.position = new Vector3(999, 999, 999);
   }
 
   void OnEnable()
@@ -63,7 +63,7 @@ public class MenuContextuel : NetworkBehaviour
 
     if (MenuContextuel.Instance != null)
       {
-        MenuContextuel.Instance.gameObject.SetActive(false);
+        MenuContextuel.Instance.gameObject.transform.position = new Vector3(999, 999, 999);
       }
   }
 

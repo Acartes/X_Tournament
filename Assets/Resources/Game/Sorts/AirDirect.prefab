@@ -64,10 +64,11 @@ MonoBehaviour:
   hurtWhenStopped: 1
   summonedObj: {fileID: 0}
   isDirect: 1
-  tooltipTitle: <color=#00ff00ff>Air</color> <color=#ffffffff>Direct</color>
-  tooltipRange: "Port\xE9e : 2 cases"
+  buttonSprite: {fileID: 21300000, guid: f0e788ec3e0b2674aaf7fa575b722433, type: 3}
+  tooltipTitle: <color=#00ff00ff>Air</color> Direct
+  tooltipRange: "<color=#bbbbbbff>Port\xE9e : </color>2 cases"
   tooltipEffect: "Repousse la cible de 3 cases. Si elle rencontre un obstacle elle
-    perd 1 PR\r\n(non applicable \xE0 la balle) et est stopp\xE9."
+    perd 1 PR\r (non applicable \xE0 la balle) et est stopp\xE9."
 --- !u!114 &114755600324448950
 MonoBehaviour:
   m_ObjectHideFlags: 1
