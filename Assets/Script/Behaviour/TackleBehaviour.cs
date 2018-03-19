@@ -19,8 +19,8 @@ public class TackleBehaviour : NetworkBehaviour
   public SyncListInt randomIntList;
   int randomIntOrder = 0;
 
-  [ReadOnly] public List<int> ballonTackleLourd = new List<int>();
-  [ReadOnly] public List<int> ballonTackleLeger = new List<int>();
+  public List<int> ballonTackleLourd = new List<int>();
+  public List<int> ballonTackleLeger = new List<int>();
 
 
   Transform playerCase;
@@ -34,6 +34,8 @@ public class TackleBehaviour : NetworkBehaviour
 
   public override void OnStartClient()
   {
+      
+
     if (Instance == null)
       Instance = this;
     Debug.Log(this.GetType() + " is Instanced");

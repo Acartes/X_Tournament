@@ -64,7 +64,7 @@ MonoBehaviour:
   hurtWhenStopped: 1
   summonedObj: {fileID: 0}
   isDirect: 1
-  tooltipTitle: Air Direct
+  tooltipTitle: <color=#00ff00ff>Air</color> <color=#ffffffff>Direct</color>
   tooltipRange: "Port\xE9e : 2 cases"
   tooltipEffect: "Repousse la cible de 3 cases. Si elle rencontre un obstacle elle
     perd 1 PR\r\n(non applicable \xE0 la balle) et est stopp\xE9."

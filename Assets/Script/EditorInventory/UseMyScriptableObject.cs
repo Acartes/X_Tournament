@@ -2,14 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class UseMyScriptableObject : MonoBehaviour {
+public class UseMyScriptableObject : MonoBehaviour
+{
   public MyScriptableObjectClass myScriptableObject;
   private List<Light> myLights;
 
   // Use this for initialization
-  void Start () 
-    {
-      myLights = new List<Light>();
+  void Start()
+  {
+    /*  myLights = new List<Light>();
       foreach (Vector3 spawn in myScriptableObject.spawnPoints) 
         {
           GameObject myLight = new GameObject("Light");
@@ -25,12 +26,13 @@ public class UseMyScriptableObject : MonoBehaviour {
               myLight.GetComponent<Light>().color = myScriptableObject.thisColor;
             }
           myLights.Add (myLight.GetComponent<Light>());
-        }
-    }
+        }*/
+  }
 
   // Update is called once per frame
-    void Update () {
-      if (Input.GetButtonDown ("Fire1")) 
+  void Update()
+  {
+    /* if (Input.GetButtonDown ("Fire1")) 
         {
           foreach (Light light in myLights) 
             {
@@ -40,15 +42,15 @@ public class UseMyScriptableObject : MonoBehaviour {
       if (Input.GetButtonDown("Fire2"))
         {
           UpdateLights();
-        }
+        }*/
 
-    }
+  }
 
-  void UpdateLights () 
-    {
-      foreach (var myLight in myLights)
+  void UpdateLights()
+  {
+    /*  foreach (var myLight in myLights)
         {
           myLight.color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
-        }
-    }
+        }*/
+  }
 }
