@@ -35,14 +35,12 @@ public class HoverEvent : NetworkBehaviour
 
   void OnMouseOver()
   {
-    if (!GameManager.Instance.isSoloGame)
-      {
-        if ((RpcFunctions.Instance.localId == 0 && TurnManager.Instance.currentPlayer == Player.Blue)
-          || (RpcFunctions.Instance.localId == 1 && TurnManager.Instance.currentPlayer == Player.Red))
-          return;
-      }
+        if (!SynchroManager.Instance.canPlayTurn())
+        {
+            return;
+        }
 
-    if (!enabled || !LoadingManager.Instance.isGameReady())
+        if (!enabled || !LoadingManager.Instance.isGameReady())
       return;
 
     string hoveredCase = "null";

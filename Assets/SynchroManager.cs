@@ -10,11 +10,23 @@ public class SynchroManager : NetworkBehaviour
 
     public static SynchroManager Instance;
 
-    public override void OnStartLocalPlayer()
+    public override void OnStartClient()
     {
         Instance = this;
         Debug.Log(this.GetType() + " is Instanced");
 
+    }
+
+    public bool canPlayTurn()
+    {
+        if (!GameManager.Instance.isSoloGame)
+        {
+            if (RpcFunctions.Instance.localId == 0 && TurnManager.Instance.currentPlayer == Player.Blue)
+                return false;
+            if (RpcFunctions.Instance.localId == 1 && TurnManager.Instance.currentPlayer == Player.Red)
+                return false;
+        }
+        return true;
     }
 
     public IEnumerator WaitForHoverEventValidation(string hoveredCase, string hoveredPersonnage, string hoveredBallon)

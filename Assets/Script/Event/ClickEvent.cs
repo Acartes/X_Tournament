@@ -9,11 +9,8 @@ public class ClickEvent : NetworkBehaviour
 
   void OnMouseDown()
   {
-    if (!GameManager.Instance.isSoloGame)
+    if (!SynchroManager.Instance.canPlayTurn())
       {
-        if (RpcFunctions.Instance.localId == 0 && TurnManager.Instance.currentPlayer == Player.Blue)
-          return;
-        if (RpcFunctions.Instance.localId == 1 && TurnManager.Instance.currentPlayer == Player.Red)
           return;
       }
 
