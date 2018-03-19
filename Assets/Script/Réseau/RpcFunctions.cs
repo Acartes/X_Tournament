@@ -9,7 +9,6 @@ using Prototype.NetworkLobby;
 public class RpcFunctions : NetworkBehaviour
 {
 
-  public bool validatedCommand = true;
 
   public static RpcFunctions Instance;
 
@@ -69,31 +68,9 @@ public class RpcFunctions : NetworkBehaviour
     StopAllCoroutines();
 
     // On lance la coroutine a qui on a donne la fonction de validation
-    StartCoroutine(WaitForHoverEventValidation(hoveredCase, hoveredPersonnage, hoveredBallon));
+    StartCoroutine(SynchroManager.Instance.WaitForHoverEventValidation(hoveredCase, hoveredPersonnage, hoveredBallon));
   }
 
-  IEnumerator WaitForHoverEventValidation(string hoveredCase, string hoveredPersonnage, string hoveredBallon)
-  {
-    validatedCommand = false;
-    if (validatedCommand == false)
-      {
-        Debug.Log("wait for validation of event");
-        // si la fonction n'a pas été validé au bout de 0.X secondes, on relance
-        yield return new WaitForSeconds(0.5f);
-      }
-    if (validatedCommand == false)
-      {
-        Debug.Log("event not validated, resend...");
-        CmdSendHoverEvent(hoveredCase, hoveredPersonnage, hoveredBallon);
-      }
-    StopAllCoroutines();
-  }
-
-  [Command]
-  public void CmdValidateHoverEvent(string hoveredCase, string hoveredPersonnage, string hoveredBallon)
-  {
-    EventManager.Instance.RpcValidateHoverEvent(hoveredCase, hoveredPersonnage, hoveredBallon);
-  }
 
   [Command]
   public void CmdSendClickEvent()
@@ -104,30 +81,7 @@ public class RpcFunctions : NetworkBehaviour
     StopAllCoroutines();
 
     // On lance la coroutine a qui on a donne la fonction de validation
-    StartCoroutine(WaitForClickEventValidation());
-  }
-
-  IEnumerator WaitForClickEventValidation()
-  {
-    validatedCommand = false;
-    if (validatedCommand == false)
-      {
-        Debug.Log("wait for validation of event");
-        // si la fonction n'a pas été validé au bout de 0.X secondes, on relance
-        yield return new WaitForSeconds(0.5f);
-      }
-    if (validatedCommand == false)
-      {
-        Debug.Log("event not validated, resend...");
-        EventManager.Instance.RpcValidateClickEvent();
-      }
-    StopAllCoroutines();
-  }
-
-  [Command]
-  public void CmdValidateClickEvent()
-  {
-    EventManager.Instance.RpcValidateClickEvent();
+    StartCoroutine(SynchroManager.Instance.WaitForClickEventValidation());
   }
 
   [Command]
