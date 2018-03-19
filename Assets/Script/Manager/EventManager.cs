@@ -32,7 +32,7 @@ public class EventManager : NetworkBehaviour
       }
     HoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
 
-    RpcFunctions.Instance.CmdValidateHoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
+    SynchroManager.Instance.CmdValidateHoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
   }
 
   [ClientRpc]
@@ -45,7 +45,7 @@ public class EventManager : NetworkBehaviour
           return;
       }
     // le sender a bien reçu la validation que la fonction a été effectuée chez le receiver
-    RpcFunctions.Instance.validatedCommand = true;
+    SynchroManager.Instance.validatedCommand = true;
     Debug.Log("event validated");
 
     HoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
@@ -79,7 +79,7 @@ public class EventManager : NetworkBehaviour
       
     newClickEvent();
 
-    RpcFunctions.Instance.CmdValidateClickEvent();
+    SynchroManager.Instance.CmdValidateClickEvent();
   }
 
   [ClientRpc]
@@ -91,8 +91,8 @@ public class EventManager : NetworkBehaviour
             || (RpcFunctions.Instance.localId == 1 && TurnManager.Instance.currentPlayer == Player.Red))
           return;
       }
-    // le sender a bien reçu la validation que la fonction a été effectuée chez le receiver
-    RpcFunctions.Instance.validatedCommand = true;
+        // le sender a bien reçu la validation que la fonction a été effectuée chez le receiver
+        SynchroManager.Instance.validatedCommand = true;
     newClickEvent();
   }
 
