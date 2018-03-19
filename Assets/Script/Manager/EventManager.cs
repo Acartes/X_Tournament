@@ -107,17 +107,17 @@ public class EventManager : NetworkBehaviour
             
         SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData>().actualPointMovement--;
         ReplacerBalleBehaviour.Instance.ReplacerBalle();
-        MenuContextuel.Instance.gameObject.SetActive(false);
+        MenuContextuel.Instance.gameObject.transform.position = new Vector3(999, 999, 999);
 
         break;
       case ("MenuContextuelTirer"):
         SelectionManager.Instance.selectedBallon.GetComponent<BallonData>().StartCoroutine("Move");
         TurnManager.Instance.StartCoroutine("EnableFinishTurn");
-        MenuContextuel.Instance.gameObject.SetActive(false);
+        MenuContextuel.Instance.gameObject.transform.position = new Vector3(999, 999, 999); 
         break;
       case ("MenuContextuelNothing"):
         TurnManager.Instance.StartCoroutine("EnableFinishTurn");
-        MenuContextuel.Instance.gameObject.SetActive(false);
+        MenuContextuel.Instance.gameObject.transform.position = new Vector3(999, 999, 999);
         break;
       }
   }

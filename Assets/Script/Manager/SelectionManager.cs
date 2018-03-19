@@ -151,6 +151,8 @@ public class SelectionManager : NetworkBehaviour
     selectedCase = hoveredCase;
     selectedPersonnage = hoveredPersonnage;
 
+    UIManager.Instance.ChangeSpriteSpellButton(selectedPersonnage);
+
     selectedCase.ChangeStatut(Statut.isSelected);
     GameManager.Instance.actualAction = PersoAction.isSelected;
   }

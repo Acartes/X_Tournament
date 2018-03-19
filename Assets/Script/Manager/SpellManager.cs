@@ -164,8 +164,27 @@ public class SpellManager : NetworkBehaviour
   /// <summary>Le sort est lancé à un endroit</summary>
   void SpellCall()
   {
-    StartCoroutine(SpellEnd());
+    CaseData hoveredCase = HoverManager.Instance.hoveredCase;
+    if ((Statut.atRange & hoveredCase.statut) != Statut.atRange)
+      return;
 
+    if (selectedSpell.summonedObj != null)
+      {
+        Instantiate(selectedSpell.summonedObj, hoveredCase.transform.position + selectedSpell.summonedObj.originPoint.localPosition, Quaternion.identity);
+      }
+
+    foreach (CaseData obj in CaseManager.listAllCase)
+      {
+        if ((Statut.atAoE & obj.statut) == Statut.atAoE)
+          {
+            obj.ChangeStatut(selectedSpell.newStatut);
+          }
+        if ((Statut.atPush & obj.statut) == Statut.atPush)
+          {
+              
+          }
+      }
+    StartCoroutine(SpellEnd());
   }
 
   IEnumerator SpellEnd()

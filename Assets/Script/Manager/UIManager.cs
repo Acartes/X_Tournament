@@ -26,6 +26,10 @@ public class UIManager : NetworkBehaviour
   public GameObject menuContextuel;
   public GameObject tooltip;
   public bool isScoreChanging = false;
+  public Image spell1;
+  public Image spell2;
+
+  public Sprite defaultButtonSpellSprite;
 
   public static UIManager Instance;
 
@@ -158,6 +162,19 @@ public class UIManager : NetworkBehaviour
     StartCoroutine(GameManager.Instance.NewManche());
 
     isScoreChanging = false;
+  }
+
+  /// <summary>Change le sprite des boutons de sorts par rapport au personnage selectionné.</summary>
+  public void ChangeSpriteSpellButton(PersoData selectedPerso)
+  {
+    spell1.sprite = defaultButtonSpellSprite;
+    spell2.sprite = defaultButtonSpellSprite;
+
+    if (selectedPerso.Spell1 != null)
+      spell1.sprite = selectedPerso.Spell1.buttonSprite;
+
+    if (selectedPerso.Spell2 != null)
+      spell2.sprite = selectedPerso.Spell2.buttonSprite;
   }
 
 
