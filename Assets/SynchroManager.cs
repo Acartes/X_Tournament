@@ -54,7 +54,7 @@ public class SynchroManager : NetworkBehaviour
     [Command]
     public void CmdValidateHoverEvent(string hoveredCase, string hoveredPersonnage, string hoveredBallon)
     {
-        SynchroManager.Instance.RpcValidateHoverEvent(hoveredCase, hoveredPersonnage, hoveredBallon);
+        RpcValidateHoverEvent(hoveredCase, hoveredPersonnage, hoveredBallon);
     }
 
     public IEnumerator WaitForClickEventValidation()
@@ -69,7 +69,7 @@ public class SynchroManager : NetworkBehaviour
         if (validatedCommand == false)
         {
             Debug.Log("event not validated, resend...");
-            SynchroManager.Instance.RpcValidateClickEvent();
+            RpcValidateClickEvent();
         }
         StopAllCoroutines();
     }
@@ -77,24 +77,24 @@ public class SynchroManager : NetworkBehaviour
     [ClientRpc]
     public void RpcReceiveHoverEvent(string hoveredCaseString, string hoveredPersonnageString, string hoveredBallonString)
     {
-        if (!SynchroManager.Instance.canPlayTurn())
+        if (!canPlayTurn())
         {
             return;
         }
         EventManager.Instance.HoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
 
-        SynchroManager.Instance.CmdValidateHoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
+        CmdValidateHoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
     }
 
     [ClientRpc]
     public void RpcValidateHoverEvent(string hoveredCaseString, string hoveredPersonnageString, string hoveredBallonString)
     {
-        if (!SynchroManager.Instance.canPlayTurn())
+        if (!canPlayTurn())
         {
             return;
         }
         // le sender a bien reçu la validation que la fonction a été effectuée chez le receiver
-        SynchroManager.Instance.validatedCommand = true;
+        validatedCommand = true;
         Debug.Log("event validated");
 
         EventManager.Instance.HoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
@@ -109,25 +109,25 @@ public class SynchroManager : NetworkBehaviour
     [ClientRpc]
     public void RpcReceiveClickEvent()
     {
-        if (!SynchroManager.Instance.canPlayTurn())
+        if (!canPlayTurn())
         {
             return;
         }
 
         EventManager.newClickEvent();
 
-        SynchroManager.Instance.CmdValidateClickEvent();
+        CmdValidateClickEvent();
     }
 
     [ClientRpc]
     public void RpcValidateClickEvent()
     {
-        if (!SynchroManager.Instance.canPlayTurn())
+        if (!canPlayTurn())
         {
             return;
         }
         // le sender a bien reçu la validation que la fonction a été effectuée chez le receiver
-        SynchroManager.Instance.validatedCommand = true;
+        validatedCommand = true;
         EventManager.newClickEvent();
     }
 }
