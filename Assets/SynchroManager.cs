@@ -29,6 +29,11 @@ public class SynchroManager : NetworkBehaviour
         return true;
     }
 
+    public bool canSendCommand()
+    {
+        return validatedCommand;
+    }
+
     public IEnumerator WaitForHoverEventValidation(string hoveredCase, string hoveredPersonnage, string hoveredBallon)
     {
         validatedCommand = false;
