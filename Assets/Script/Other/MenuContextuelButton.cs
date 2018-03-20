@@ -49,7 +49,6 @@ public class MenuContextuelButton : MonoBehaviour
   {
     yield return new WaitForSeconds(0.05f);
     GetComponent<BoxCollider2D>().enabled = true;
-
   }
 
   void ChangeColor(Color newColor)

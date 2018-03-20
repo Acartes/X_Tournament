@@ -15,6 +15,7 @@ public class HoverManager : NetworkBehaviour
 
   [Header("  Hover Data")]
   [Tooltip("Case sous le curseur")]
+  /// <summary>Change la couleur de la case lors d'un exit d'hover.</summary>
   [ReadOnly] public CaseData hoveredCase;
   [Tooltip("Personnage sous le curseur")]
   [ReadOnly] public PersoData hoveredPersonnage;
@@ -95,7 +96,7 @@ public class HoverManager : NetworkBehaviour
   /// <summary>Change la couleur de la case lors d'un enter d'hover.</summary>
   private void changeColorEnter()
   { // Change la couleur de la case qui est sur le curseur
-
+      
     Player currentPlayer = GameManager.Instance.currentPlayer;
     Phase currentPhase = GameManager.Instance.currentPhase;
     Color actionColor = ColorManager.Instance.actionColor;

@@ -34,7 +34,7 @@ public class DataManager : NetworkBehaviour
 
   private void Init()
   {
-    TackleBehaviour.Instance.ballonTackleLourd = GameData.balleInterceptionForHeavy;
-    TackleBehaviour.Instance.ballonTackleLeger = GameData.balleInterceptionForLight;
+//    TackleBehaviour.Instance.ballonTackleLourd = GameData.balleInterceptionForHeavy;
+    //  TackleBehaviour.Instance.ballonTackleLeger = GameData.balleInterceptionForLight;
   }
 }

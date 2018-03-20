@@ -24,11 +24,11 @@ public class EventManager : NetworkBehaviour
   [ClientRpc]
   public void RpcReceiveHoverEvent(string hoveredCaseString, string hoveredPersonnageString, string hoveredBallonString)
   {
-        if (!SynchroManager.Instance.canPlayTurn())
-        {
-            return;
-        }
-        HoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
+    if (!SynchroManager.Instance.canPlayTurn())
+      {
+        return;
+      }
+    HoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
 
     SynchroManager.Instance.CmdValidateHoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
   }
@@ -36,12 +36,12 @@ public class EventManager : NetworkBehaviour
   [ClientRpc]
   public void RpcValidateHoverEvent(string hoveredCaseString, string hoveredPersonnageString, string hoveredBallonString)
   {
-        if (!SynchroManager.Instance.canPlayTurn())
-        {
-            return;
-        }
-        // le sender a bien reçu la validation que la fonction a été effectuée chez le receiver
-        SynchroManager.Instance.validatedCommand = true;
+    if (!SynchroManager.Instance.canPlayTurn())
+      {
+        return;
+      }
+    // le sender a bien reçu la validation que la fonction a été effectuée chez le receiver
+    SynchroManager.Instance.validatedCommand = true;
     Debug.Log("event validated");
 
     HoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
@@ -66,12 +66,12 @@ public class EventManager : NetworkBehaviour
   [ClientRpc]
   public void RpcReceiveClickEvent()
   {
-        if (!SynchroManager.Instance.canPlayTurn())
-        {
-            return;
-        }
+    if (!SynchroManager.Instance.canPlayTurn())
+      {
+        return;
+      }
 
-        newClickEvent();
+    newClickEvent();
 
     SynchroManager.Instance.CmdValidateClickEvent();
   }
@@ -79,12 +79,12 @@ public class EventManager : NetworkBehaviour
   [ClientRpc]
   public void RpcValidateClickEvent()
   {
-        if (!SynchroManager.Instance.canPlayTurn())
-        {
-            return;
-        }
-        // le sender a bien reçu la validation que la fonction a été effectuée chez le receiver
-        SynchroManager.Instance.validatedCommand = true;
+    if (!SynchroManager.Instance.canPlayTurn())
+      {
+        return;
+      }
+    // le sender a bien reçu la validation que la fonction a été effectuée chez le receiver
+    SynchroManager.Instance.validatedCommand = true;
     newClickEvent();
   }
 

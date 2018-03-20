@@ -15,7 +15,7 @@ public class SpellManager : NetworkBehaviour
 
   /// <summary>Montre à quelle portée les personnages vont être projetés avant de le lancer</summary>
   public SpellData selectedSpell;
-  GameObject newSummon;
+  public SummonData newSummon;
 
   public bool isSpellCasting = false;
 
@@ -66,7 +66,8 @@ public class SpellManager : NetworkBehaviour
     if (isSpellCasting)
       {
         selectedSpell.ShowAreaOfEffect();
-        selectedSpell.ShowSummon();
+        if (newSummon != null)
+          selectedSpell.ShowSummon(newSummon);
       }
   }
 
@@ -154,10 +155,18 @@ public class SpellManager : NetworkBehaviour
     GameManager.Instance.actualAction = PersoAction.isCasting;
     SelectionManager.Instance.DisablePersoSelection();
     TurnManager.Instance.DisableFinishTurn();
+    CaseData hoveredCase = HoverManager.Instance.hoveredCase;
     selectedSpell.ShowRange();
     selectedSpell.ShowAreaOfEffect();
     selectedSpell.ShowPushEffect();
-    selectedSpell.ShowSummon();
+    newSummon = null;
+    if (selectedSpell.summonedObj != null)
+      {
+        newSummon = (SummonData)Instantiate(selectedSpell.summonedObj, hoveredCase.transform.position + selectedSpell.summonedObj.originPoint.localPosition, Quaternion.identity);
+        newSummon.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.6f);
+        selectedSpell.ShowSummon(newSummon);
+      }
+
     isSpellCasting = true;
   }
 
@@ -168,10 +177,7 @@ public class SpellManager : NetworkBehaviour
     if ((Statut.atRange & hoveredCase.statut) != Statut.atRange)
       return;
 
-    if (selectedSpell.summonedObj != null)
-      {
-        Instantiate(selectedSpell.summonedObj, hoveredCase.transform.position + selectedSpell.summonedObj.originPoint.localPosition, Quaternion.identity);
-      }
+
 
     foreach (CaseData obj in CaseManager.listAllCase)
       {
