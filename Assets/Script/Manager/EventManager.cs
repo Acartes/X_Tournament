@@ -21,33 +21,7 @@ public class EventManager : NetworkBehaviour
     Debug.Log("EventManager is Instanced");
   }
 
-  [ClientRpc]
-  public void RpcReceiveHoverEvent(string hoveredCaseString, string hoveredPersonnageString, string hoveredBallonString)
-  {
-        if (!SynchroManager.Instance.canPlayTurn())
-        {
-            return;
-        }
-        HoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
-
-    SynchroManager.Instance.CmdValidateHoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
-  }
-
-  [ClientRpc]
-  public void RpcValidateHoverEvent(string hoveredCaseString, string hoveredPersonnageString, string hoveredBallonString)
-  {
-        if (!SynchroManager.Instance.canPlayTurn())
-        {
-            return;
-        }
-        // le sender a bien reçu la validation que la fonction a été effectuée chez le receiver
-        SynchroManager.Instance.validatedCommand = true;
-    Debug.Log("event validated");
-
-    HoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
-  }
-
-  private void HoverEvent(string hoveredCaseString, string hoveredPersonnageString, string hoveredBallonString)
+  public void HoverEvent(string hoveredCaseString, string hoveredPersonnageString, string hoveredBallonString)
   {
     CaseData hoveredCase = null;
     PersoData hoveredPersonnage = null;
@@ -61,31 +35,6 @@ public class EventManager : NetworkBehaviour
       hoveredBallon = GameObject.Find(hoveredBallonString).GetComponent<BallonData>();
 
     newHoverEvent(this, new HoverArgs(hoveredCase, hoveredPersonnage, hoveredBallon));
-  }
-
-  [ClientRpc]
-  public void RpcReceiveClickEvent()
-  {
-        if (!SynchroManager.Instance.canPlayTurn())
-        {
-            return;
-        }
-
-        newClickEvent();
-
-    SynchroManager.Instance.CmdValidateClickEvent();
-  }
-
-  [ClientRpc]
-  public void RpcValidateClickEvent()
-  {
-        if (!SynchroManager.Instance.canPlayTurn())
-        {
-            return;
-        }
-        // le sender a bien reçu la validation que la fonction a été effectuée chez le receiver
-        SynchroManager.Instance.validatedCommand = true;
-    newClickEvent();
   }
 
   [ClientRpc]

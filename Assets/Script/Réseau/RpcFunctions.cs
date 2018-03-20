@@ -63,7 +63,7 @@ public class RpcFunctions : NetworkBehaviour
   public void CmdSendHoverEvent(string hoveredCase, string hoveredPersonnage, string hoveredBallon)
   {
     Debug.Log("sending event");
-    EventManager.Instance.RpcReceiveHoverEvent(hoveredCase, hoveredPersonnage, hoveredBallon);
+    SynchroManager.Instance.RpcReceiveHoverEvent(hoveredCase, hoveredPersonnage, hoveredBallon);
     // Au cas où il y a un nouveau hover, la coroutine se reset
     StopAllCoroutines();
 
@@ -76,7 +76,7 @@ public class RpcFunctions : NetworkBehaviour
   public void CmdSendClickEvent()
   {
     Debug.Log("sending event");
-    EventManager.Instance.RpcReceiveClickEvent();
+    SynchroManager.Instance.RpcReceiveClickEvent();
     // Au cas où il y a un nouveau hover, la coroutine se reset
     StopAllCoroutines();
 

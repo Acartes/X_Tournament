@@ -35,10 +35,6 @@ public class HoverEvent : NetworkBehaviour
 
   void OnMouseOver()
   {
-        if (SynchroManager.Instance.canSendCommand())
-        {
-            return;
-        }
         if (!SynchroManager.Instance.canPlayTurn())
         {
             return;

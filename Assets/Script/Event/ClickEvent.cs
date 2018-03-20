@@ -9,10 +9,6 @@ public class ClickEvent : NetworkBehaviour
 
     void OnMouseDown()
     {
-        if (SynchroManager.Instance.canSendCommand())
-        {
-            return;
-        }
         if (!SynchroManager.Instance.canPlayTurn())
         {
             return;
