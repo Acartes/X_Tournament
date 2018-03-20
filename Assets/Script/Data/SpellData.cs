@@ -208,21 +208,10 @@ public class SpellData : NetworkBehaviour
 
 
   /// <summary>Montre l'invocation avant de le lancer</summary>
-  public void ShowSummon()
+  public void ShowSummon(SummonData summon)
   {
     CaseData hoveredCase = HoverManager.Instance.hoveredCase;
-
-    if (summonedObj != null && summonedObj == null)
-      {
-        summonedObj.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.6f);
-        //     summonedObj = (GameObject)Instantiate(summonedObj, hoveredCase.transform.position - selected, Quaternion.identity);
-      }
-
-    if (summonedObj != null)
-      {
-        summonedObj.transform.position = hoveredCase.transform.position;
-      }
-
+    //   summon.transform.position = hoveredCase.transform.position + summon.originPoint.localRotation;
 
   }
 }

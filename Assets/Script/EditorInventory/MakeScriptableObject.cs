@@ -3,18 +3,25 @@ using UnityEngine;
 using System.Collections;
 using UnityEditor;
 
-public class MakeScriptableObject {
+public class MakeScriptableObject
+{
   [MenuItem("Assets/Create/My Scriptable Object")]
   public static void CreateMyAsset()
-    {
-      MyScriptableObjectClass asset = ScriptableObject.CreateInstance<MyScriptableObjectClass>();
+  {
+    MyScriptableObjectClass asset = ScriptableObject.CreateInstance<MyScriptableObjectClass>();
 
-      AssetDatabase.CreateAsset(asset, "Assets/NewScripableObject.asset");
-      AssetDatabase.SaveAssets();
 
-      EditorUtility.FocusProjectWindow();
+    AssetDatabase.CreateAsset(asset, "Assets/NewScripableObject.asset");
+    AssetDatabase.SaveAssets();
+    EditorUtility.FocusProjectWindow();
 
-      Selection.activeObject = asset;
-    }
+    Selection.activeObject = asset;
+
+  }
+
+  void OnGUI()
+  {
+
+  }
 }
 #endif

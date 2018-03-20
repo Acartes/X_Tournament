@@ -11,5 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: GameData
   m_EditorClassIdentifier: Assembly-CSharp::MyScriptableObjectClass
-  balleInterceptionForHeavy: 050000000500000005000000050000000500000005000000
-  balleInterceptionForLight: 050000000500000005000000050000000500000005000000
+  LOL2: 0
+  LOL: 0
+  balleInterceptDionForHeavy: 
+  balleInterceptionForLight: 080000000d00000012000000160000001c00000023000000
