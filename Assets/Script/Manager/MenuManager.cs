@@ -71,7 +71,7 @@ public class MenuManager : NetworkBehaviour
     GameObject menuContextuel = UIManager.Instance.menuContextuel;
     BallonData hoveredBallon = HoverManager.Instance.hoveredBallon;
 
-    MoveBehaviour.Instance.pathes.Clear();
+    MoveBehaviour.Instance.movePathes.Clear();
     SelectionManager.Instance.selectedBallon = hoveredBallon;
     menuContextuel.transform.position = hoveredBallon.transform.position;
     TurnManager.Instance.DisableFinishTurn();

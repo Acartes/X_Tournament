@@ -17,6 +17,7 @@ TagManager:
   - Ballon
   - case
   - textFeedback
+  - Summon
   layers:
   - Default
   - TransparentFX

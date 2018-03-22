@@ -92,6 +92,7 @@ public class CaseData : NetworkBehaviour
             casePathfinding = PathfindingCase.NonWalkable;
             col.gameObject.GetComponent<PersoData>().persoCase = this;
             TransparencyBehaviour.Instance.CheckCaseTransparency(this);
+            EffectManager.Instance.CheckAllEffect(this, col.gameObject);
           }
       }
 
@@ -106,6 +107,26 @@ public class CaseData : NetworkBehaviour
             TransparencyBehaviour.Instance.CheckCaseTransparency(this);
             col.gameObject.GetComponent<BallonData>().xCoord = xCoord;
             col.gameObject.GetComponent<BallonData>().yCoord = yCoord;
+            //EffectManager.Instance.CheckAllEffect(this, col.gameObject);
+          }
+      }
+
+    if (col.tag == "Summon")
+      {
+        if (col.gameObject.GetComponent<SummonData>().caseActual != this)
+          {
+            ballon = col.gameObject.GetComponent<BallonData>();
+            if (!col.gameObject.GetComponent<SummonData>().isTraversable)
+              {
+                casePathfinding = PathfindingCase.NonWalkable;
+              }
+
+            if (col.gameObject.GetComponent<SummonData>().pushAtRange)
+              {
+                statut += (int)Statut.willPush;
+              }
+            
+            col.gameObject.GetComponent<SummonData>().caseActual = this;
           }
       }
   }
@@ -392,5 +413,85 @@ public class CaseData : NetworkBehaviour
   public void ClearStatutToDefault()
   {
     statut = defaultStatut;
+  }
+
+  /// <summary>Get la case en face du personnage ou du ballon, on peut choisir celle à droite aussi</summary>
+  public CaseData GetCaseInFront(Direction direction)
+  {
+    switch (direction)
+      {
+      case Direction.NordEst:
+        return GetCaseRelativeCoordinate(0, 1);
+
+      case Direction.NordOuest: 
+        return GetCaseRelativeCoordinate(-1, 0);
+
+      case Direction.SudEst:   
+        return GetCaseRelativeCoordinate(1, 0);
+
+      case Direction.SudOuest:
+        return GetCaseRelativeCoordinate(0, -1);
+      }
+    return null;
+  }
+
+  /// <summary>Get la case en face du personnage ou du ballon, on peut choisir celle à droite aussi</summary>
+  public CaseData GetCaseAtRight(Direction direction)
+  {
+    switch (direction)
+      {
+      case Direction.NordEst:
+        return GetCaseRelativeCoordinate(-1, 0);
+
+      case Direction.NordOuest:
+        return GetCaseRelativeCoordinate(0, -1);
+
+      case Direction.SudEst:
+        return GetCaseRelativeCoordinate(0, 1);
+
+      case Direction.SudOuest:
+        return GetCaseRelativeCoordinate(1, 0);
+      }
+    return null;
+  }
+
+  /// <summary>Get la case en face du personnage ou du ballon, on peut choisir celle à droite aussi</summary>
+  public CaseData GetCaseAtLeft(Direction direction)
+  {
+    switch (direction)
+      {
+      case Direction.NordEst:
+        return GetCaseRelativeCoordinate(1, 0);
+
+      case Direction.NordOuest:
+        return GetCaseRelativeCoordinate(0, 1);
+
+      case Direction.SudEst:
+        return GetCaseRelativeCoordinate(0, -1);
+
+      case Direction.SudOuest:
+        return GetCaseRelativeCoordinate(-1, 0);
+      }
+    return null;
+  }
+
+  /// <summary>Get la case en face du personnage ou du ballon, on peut choisir celle à droite aussi</summary>
+  public CaseData GetCaseAtBack(Direction direction)
+  {
+    switch (direction)
+      {
+      case Direction.NordEst:
+        return GetCaseRelativeCoordinate(0, -1);
+
+      case Direction.NordOuest: 
+        return GetCaseRelativeCoordinate(1, 0);
+
+      case Direction.SudEst:   
+        return GetCaseRelativeCoordinate(-1, 0);
+
+      case Direction.SudOuest:
+        return GetCaseRelativeCoordinate(0, 1);
+      }
+    return null;
   }
 }

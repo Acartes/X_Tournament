@@ -36,7 +36,7 @@ public class MenuContextuel : NetworkBehaviour
 
   void OnEnable()
   {
-
+    /*
     if (LoadingManager.Instance.isGameReady())
       {
         ballon = GameObject.Find("Ballon");
@@ -44,7 +44,7 @@ public class MenuContextuel : NetworkBehaviour
         transform.position = ballon.transform.position;
         CaseManager.Instance.DisableAllColliders();
         
-      }
+      }*/
   }
 
   void OnDisable()

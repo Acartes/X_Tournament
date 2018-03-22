@@ -77,18 +77,12 @@ public enum WeightType
   // Placement
   placementRed = 1 << 14,
   placementBlue = 1 << 15,
-  // Elements
-  isFire = 1 << 16,
-  isWater = 1 << 17,
-  isEarth = 1 << 18,
-  isWind = 1 << 19,
-  isExplosion = 1 << 20,
-  isIce = 1 << 21,
-  isMud = 1 << 22,
-  // Spells
-  atRange = 1 << 23,
-  atAoE = 1 << 24,
-  atPush = 1 << 25,
+  // Effect
+  willPush = 1 << 16,
+  // Spells Feedback
+  atRange = 1 << 17,
+  atAoE = 1 << 18,
+  atPush = 1 << 19,
 }
 
 [Flags] public enum BallonStatut

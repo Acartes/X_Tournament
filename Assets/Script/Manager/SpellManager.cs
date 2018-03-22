@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Runtime.Remoting.Messaging;
+using NUnit.Framework;
 
 /// <summary>Gère tous les sorts.</summary>
 public class SpellManager : NetworkBehaviour
@@ -16,6 +17,7 @@ public class SpellManager : NetworkBehaviour
   /// <summary>Montre à quelle portée les personnages vont être projetés avant de le lancer</summary>
   public SpellData selectedSpell;
   public SummonData newSummon;
+  bool spellSuccess = false;
 
   public bool isSpellCasting = false;
 
@@ -83,7 +85,7 @@ public class SpellManager : NetworkBehaviour
         SpellCall();
       } else
       {
-        SpellEnd();
+        StartCoroutine(SpellEnd());
       }
   }
 
@@ -162,8 +164,8 @@ public class SpellManager : NetworkBehaviour
     newSummon = null;
     if (selectedSpell.summonedObj != null)
       {
-        newSummon = (SummonData)Instantiate(selectedSpell.summonedObj, hoveredCase.transform.position + selectedSpell.summonedObj.originPoint.localPosition, Quaternion.identity);
-        newSummon.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.6f);
+        newSummon = (SummonData)Instantiate(selectedSpell.summonedObj, hoveredCase.transform.position + selectedSpell.summonedObj.transform.position - selectedSpell.summonedObj.originPoint.position, Quaternion.identity);
+        newSummon.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.3f);
         selectedSpell.ShowSummon(newSummon);
       }
 
@@ -177,7 +179,13 @@ public class SpellManager : NetworkBehaviour
     if ((Statut.atRange & hoveredCase.statut) != Statut.atRange)
       return;
 
+    spellSuccess = true;
 
+    if (newSummon != null)
+      {
+        newSummon.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
+        newSummon.GetComponent<BoxCollider2D>().enabled = true;
+      }
 
     foreach (CaseData obj in CaseManager.listAllCase)
       {
@@ -200,14 +208,21 @@ public class SpellManager : NetworkBehaviour
       {
         obj.ChangeStatut(Statut.None, Statut.atRange);
         obj.ChangeStatut(Statut.None, Statut.atAoE);
-        obj.ChangeStatut(Statut.None, Statut.atPush);
       }
+
+    if (!spellSuccess && newSummon != null)
+      {
+        DestroyImmediate(newSummon.gameObject);
+
+      }
+
+    spellSuccess = false;
 
     yield return new WaitForSeconds(0.5f);
 
     GameManager.Instance.actualAction = PersoAction.isSelected;
     SelectionManager.Instance.EnablePersoSelection();
-    TurnManager.Instance.EnableFinishTurn();
+    StartCoroutine(TurnManager.Instance.EnableFinishTurn());
   }
 
   /// <summary>Cible le bon sort entre les boutons</summary>

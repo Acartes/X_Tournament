@@ -76,7 +76,7 @@ public class SelectionManager : NetworkBehaviour
     Player currentPlayer = TurnManager.Instance.currentPlayer;
     PersoAction actualAction = GameManager.Instance.actualAction;
     CaseData hoveredCase = HoverManager.Instance.hoveredCase;
-    List<Transform> pathes = MoveBehaviour.Instance.pathes;
+    List<Transform> pathes = MoveBehaviour.Instance.movePathes;
     Color selectedColor = ColorManager.Instance.selectedColor;
     Color moveColor = ColorManager.Instance.moveColor;
     Color caseColor = ColorManager.Instance.caseColor;
@@ -134,7 +134,7 @@ public class SelectionManager : NetworkBehaviour
   public void Deselect(Phase currentPhase, Player currentPlayer)
   {
     CaseManager.Instance.RemovePath();
-    MoveBehaviour.Instance.pathes.Clear();
+    MoveBehaviour.Instance.movePathes.Clear();
     GameManager.Instance.actualAction = PersoAction.isSelected;
 
     if (selectedLastCase != null)

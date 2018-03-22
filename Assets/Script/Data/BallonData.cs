@@ -13,7 +13,7 @@ public class BallonData : NetworkBehaviour
   // *************** //
 
   [Header("Data")]
-  [SerializeField] [EnumFlagAttribute] BallonStatut statut;
+  [SerializeField] [EnumFlagAttribute] public BallonStatut statut;
   [Space(100)]
   public bool isMoving = false;
 

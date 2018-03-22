@@ -24,6 +24,8 @@ public class SummonData : NetworkBehaviour
 
   public Transform originPoint;
 
+  public CaseData caseActual;
+
   public bool disapearWhenHurt;
 
   // ******************** //

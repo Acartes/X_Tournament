@@ -150,6 +150,9 @@ public class Pathfinding : NetworkBehaviour
       }
     flip = !flip;
 
+    if (OpenList.Count == 0)
+      return;
+
     Node nextNode = OpenList[0];
     foreach (Node openNode in OpenList)
       {

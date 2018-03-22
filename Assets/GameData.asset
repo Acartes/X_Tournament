@@ -13,5 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MyScriptableObjectClass
   LOL2: 0
   LOL: 0
-  balleInterceptDionForHeavy: 
+  balleInterceptDionForHeavy: 05000000080000000c00000011000000160000001a000000
   balleInterceptionForLight: 080000000d00000012000000160000001c00000023000000

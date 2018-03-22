@@ -21,7 +21,8 @@ public class MakeScriptableObject
 
   void OnGUI()
   {
-
+    GUILayout.BeginHorizontal();
+    EditorUtility.FocusProjectWindow();
   }
 }
 #endif

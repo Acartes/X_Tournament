@@ -211,7 +211,6 @@ public class SpellData : NetworkBehaviour
   public void ShowSummon(SummonData summon)
   {
     CaseData hoveredCase = HoverManager.Instance.hoveredCase;
-    //   summon.transform.position = hoveredCase.transform.position + summon.originPoint.localRotation;
-
+    summon.transform.position = hoveredCase.transform.position + summon.transform.position - summon.originPoint.position;
   }
 }

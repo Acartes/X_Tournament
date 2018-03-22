@@ -188,7 +188,7 @@ public class TackleBehaviour : NetworkBehaviour
                 Debug.Log("(Poids différents) (Si inférieur à " + maxInt + 1 + ", il y a tacle) " + randomInt + "/" + "100" + ": Tackle SUCCESS");
                 SelectionManager.Instance.selectedPersonnage.actualPointMovement = Mathf.CeilToInt(SelectionManager.Instance.selectedPersonnage.actualPointMovement / 4);
                 SelectionManager.Instance.selectedPersonnage.actualPointResistance -= 1;
-                MoveBehaviour.Instance.pathes.Clear();
+                MoveBehaviour.Instance.movePathes.Clear();
               } else
               {
                 FeedbackManager.Instance.ShowInit(randomInt, maxInt, playerCase.gameObject);
