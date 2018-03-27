@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SocialPlatforms;
 
 /// <summary>Tout ce qu'il est possible de faire avec un personnage, ainsi que toutes ses données.</summary>
 public class PersoData : NetworkBehaviour
@@ -19,6 +20,8 @@ public class PersoData : NetworkBehaviour
   public int maxPointAction;
   public int actualPointResistance;
   public int maxPointResistance;
+  /// <summary>Modifie la portée des sorts.</summary>
+  public int rangeModifier;
   public Direction persoDirection;
   public CaseData persoCase;
   public GameObject originPoint;
@@ -192,5 +195,4 @@ public class PersoData : NetworkBehaviour
   {
     ShineColorIsRunning = false;
   }
-
 }

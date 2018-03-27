@@ -17,16 +17,24 @@ public class SummonData : NetworkBehaviour
 
   public bool isTraversable;
 
-  public bool pushAtRange;
+  /// <summary>Push (positif) ou pull(negatif)</summary>
+  public bool canPush;
   public int pushValue;
   public int pushRange;
+  public PushType pushType;
   public Direction pushDirection;
 
   public Transform originPoint;
 
   public CaseData caseActual;
 
-  public bool disapearWhenHurt;
+  public int actualPointResistance;
+  public int maxPointResistance;
+  public bool invulnerable;
+  public bool hurtWhenBounce;
+  public int numberEffectDisapear;
+
+  public int limitInvoc;
 
   // ******************** //
   // ** Initialisation ** // Fonctions de départ, non réutilisable
@@ -52,10 +60,31 @@ public class SummonData : NetworkBehaviour
 
   }
 
+  void Update()
+  {
+    CheckDeath();
+  }
+
   // *************** //
   // ** Fonctions ** // Fonctions réutilisables ailleurs
   // *************** //
 
+  public void CheckDeath()
+  {
+    if (actualPointResistance <= 0 && !invulnerable)
+      Destroy(this.gameObject);
 
+    if (numberEffectDisapear <= 0)
+      Destroy(this.gameObject);
+  }
 
+  public void ApplyEffect(PersoData persoAfflected)
+  {
+    if (canPush)
+      {
+        Debug.Log("no homo 1");
+        EffectManager.Instance.Push(persoAfflected, pushValue, pushType, pushDirection);
+        numberEffectDisapear--;
+      }
+  }
 }

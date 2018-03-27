@@ -73,6 +73,7 @@ MonoBehaviour:
     pas la ligne de\r vue, la balle et les personnages peuvent le traverser. Lorsqu\u2019une
     entit\xE9 entre \xE0\r l\u2019int\xE9rieur elle est d\xE9cal\xE9 d\u20191 case
     sur sa gauche."
+  numberLimitCast: 0
 --- !u!114 &114755600324448950
 MonoBehaviour:
   m_ObjectHideFlags: 1
