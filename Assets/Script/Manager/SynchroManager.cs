@@ -26,6 +26,15 @@ public class SynchroManager : NetworkBehaviour
         return true;
     }
 
+    public bool cannotPlayTurn()
+    {
+        if (!GameManager.Instance.isSoloGame)
+        {
+            return !isYourTurn();
+        }
+        return true;
+    }
+
     public bool isYourTurn()
     {
             if (RpcFunctions.Instance.localId == 0 && TurnManager.Instance.currentPlayer == Player.Blue)
@@ -38,6 +47,18 @@ public class SynchroManager : NetworkBehaviour
     public bool canSendCommand()
     {
         return validatedCommand;
+    }
+
+    [ClientRpc]
+    public void RpcReceiveHoverEvent(string hoveredCaseString, string hoveredPersonnageString, string hoveredBallonString)
+    {
+        if (!canPlayTurn())
+        {
+            return;
+        }
+        EventManager.Instance.HoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
+
+        CmdValidateHoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
     }
 
     public IEnumerator WaitForHoverEventValidation(string hoveredCase, string hoveredPersonnage, string hoveredBallon)
@@ -63,6 +84,20 @@ public class SynchroManager : NetworkBehaviour
         RpcValidateHoverEvent(hoveredCase, hoveredPersonnage, hoveredBallon);
     }
 
+    [ClientRpc]
+    public void RpcValidateHoverEvent(string hoveredCaseString, string hoveredPersonnageString, string hoveredBallonString)
+    {
+        if (!cannotPlayTurn())
+        {
+            return;
+        }
+        // le sender a bien reçu la validation que la fonction a été effectuée chez le receiver
+        validatedCommand = true;
+        Debug.Log("event validated");
+
+        EventManager.Instance.HoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
+    }
+
     public IEnumerator WaitForClickEventValidation()
     {
         validatedCommand = false;
@@ -81,38 +116,6 @@ public class SynchroManager : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void RpcReceiveHoverEvent(string hoveredCaseString, string hoveredPersonnageString, string hoveredBallonString)
-    {
-        if (!canPlayTurn())
-        {
-            return;
-        }
-        EventManager.Instance.HoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
-
-        CmdValidateHoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
-    }
-
-    [ClientRpc]
-    public void RpcValidateHoverEvent(string hoveredCaseString, string hoveredPersonnageString, string hoveredBallonString)
-    {
-        if (!canPlayTurn())
-        {
-            return;
-        }
-        // le sender a bien reçu la validation que la fonction a été effectuée chez le receiver
-        validatedCommand = true;
-        Debug.Log("event validated");
-
-        EventManager.Instance.HoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
-    }
-
-    [Command]
-    public void CmdValidateClickEvent()
-    {
-        RpcValidateClickEvent();
-    }
-
-    [ClientRpc]
     public void RpcReceiveClickEvent()
     {
         if (!canPlayTurn())
@@ -125,10 +128,16 @@ public class SynchroManager : NetworkBehaviour
         CmdValidateClickEvent();
     }
 
+    [Command]
+    public void CmdValidateClickEvent()
+    {
+        RpcValidateClickEvent();
+    }
+
     [ClientRpc]
     public void RpcValidateClickEvent()
     {
-        if (!canPlayTurn())
+        if (!cannotPlayTurn())
         {
             return;
         }

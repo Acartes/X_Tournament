@@ -57,10 +57,6 @@ public class TurnManager : NetworkBehaviour
   /// <summary>Passe au tour suivant.</summary>
   public void ChangeTurn()
   {
-    if (!SynchroManager.Instance.canSendCommand())
-      {
-        return;
-      }
     if (!SynchroManager.Instance.canPlayTurn())
       {
         return;
