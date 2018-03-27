@@ -42,6 +42,8 @@ public class SpellData : NetworkBehaviour
   [TextArea]public string tooltipEffect;
 
   public int numberLimitCast;
+   
+  public AnimationClip animSpell;
 
   // ******************** //
   // ** Initialisation ** // Fonctions de départ, non réutilisable
@@ -219,9 +221,9 @@ public class SpellData : NetworkBehaviour
 
   public void ApplyEffect(PersoData persoAfflicted)
   {
-    Debug.Log("SELECTIONLOL1" + " " + persoAfflicted);
-    Debug.Log("SELECTIONLOL2" + " " + pushValue);
-    Debug.Log("SELECTIONLOL3" + " " + pushDirection);
+    if (animSpell != null)
+      FXManager.Instance.Show(animSpell, persoAfflicted.persoCase.transform);
+      
     EffectManager.Instance.Push(persoAfflicted, pushValue, pushType, pushDirection);
   }
 }

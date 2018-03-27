@@ -142,6 +142,7 @@ public class SpellManager : NetworkBehaviour
   [ClientRpc]
   public void RpcSpellCast(int IDSpell)
   {
+    Debug.Log("GGGGGGGGGGGGGGGGGGG"); 
     PersoData selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
     if (selectedPersonnage == null)
       return;
