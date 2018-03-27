@@ -83,7 +83,7 @@ public class SynchroManager : NetworkBehaviour
     [ClientRpc]
     public void RpcReceiveHoverEvent(string hoveredCaseString, string hoveredPersonnageString, string hoveredBallonString)
     {
-        if (canPlayTurn())
+        if (!canPlayTurn())
         {
             return;
         }
