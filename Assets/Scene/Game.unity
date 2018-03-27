@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38074008, b: 0.35872707, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -6185,7 +6185,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1354031423}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -20644,10 +20644,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb17755c82a1d243ae6153188b3456d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainPortrait: {fileID: 1555672487}
-  SubPortrait1: {fileID: 244951865}
-  SubPortrait2: {fileID: 1095156434}
-  SubPortrait3: {fileID: 1891604440}
+  MainPortrait: {fileID: 1555672491}
+  SubPortrait3: {fileID: 1891604442}
+  SubPortrait2: {fileID: 1095156436}
+  SubPortrait1: {fileID: 244951867}
   Portrait_terre_rouge: {fileID: 21300000, guid: f055945ac84ad2c4a9e28972683df0e0,
     type: 3}
   Portrait_feu_rouge: {fileID: 21300000, guid: a207baa0fe5c6d449b42d53126671fa6, type: 3}
@@ -35748,9 +35748,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 244951866}
-  - {fileID: 1095156435}
   - {fileID: 1891604441}
+  - {fileID: 1095156435}
+  - {fileID: 244951866}
   m_Father: {fileID: 731821233}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -40730,6 +40730,9 @@ GameObject:
   - component: {fileID: 1555672488}
   - component: {fileID: 1555672490}
   - component: {fileID: 1555672489}
+  - component: {fileID: 1555672493}
+  - component: {fileID: 1555672492}
+  - component: {fileID: 1555672491}
   m_Layer: 5
   m_Name: Main
   m_TagString: Untagged
@@ -40791,6 +40794,97 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1555672487}
+--- !u!114 &1555672491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1555672487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e53ac88fa9d88947b3c372e97dcf344, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newHoveredPersonnage: {fileID: 0}
+--- !u!114 &1555672492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1555672487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 168
+    i1: 170
+    i2: 214
+    i3: 2
+    i4: 113
+    i5: 34
+    i6: 156
+    i7: 84
+    i8: 232
+    i9: 72
+    i10: 48
+    i11: 16
+    i12: 53
+    i13: 85
+    i14: 211
+    i15: 74
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!114 &1555672493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1555672487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 244951867}
+          m_MethodName: HoverPerso
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 244951867}
+          m_MethodName: UnHoverPerso
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &1557707712
 GameObject:
   m_ObjectHideFlags: 0
@@ -45178,12 +45272,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af901a4fcb09d97498dc328bebaffcb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  infoPersoPortraits: {fileID: 731821232}
-  infoPersoStats: {fileID: 2016725244}
+  portraits: {fileID: 0}
+  stats: {fileID: 0}
   blueOwnerColor: {r: 0, g: 0.5862067, b: 1, a: 1}
   redOwnerColor: {r: 1, g: 0.30882353, b: 0.30882353, a: 1}
-  noneOwnerColor: {r: 0.6985294, g: 0.6985294, b: 0.6985294, a: 0.47058824}
-  characterList: []
 --- !u!222 &1746731677
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -47293,7 +47385,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1354031423}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
