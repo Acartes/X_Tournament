@@ -59,7 +59,7 @@ public class InfoPerso : NetworkBehaviour
     {
         while (RosterManager.Instance.listHero.Count != 8)
             yield return new WaitForEndOfFrame();
-        portraits.SetupChangePlayerIcons(TurnManager.Instance.currentPlayer, TurnManager.Instance.currentPhase);
+        portraits.SetupChangePlayerIcons(TurnManager.Instance.currentPlayer, TurnManager.Instance.TurnNumber);
     }
 
     public void SelectPerso(PersoData newPerso)
@@ -69,7 +69,7 @@ public class InfoPerso : NetworkBehaviour
 
     public void PlacePerso(PersoData newPerso)
     { // Lors d'un click sur une case
-        portraits.UnGrayPortraitPerso(newPerso);
+        portraits.GrayPortraitPerso(newPerso);
     }
 
     // ************* //

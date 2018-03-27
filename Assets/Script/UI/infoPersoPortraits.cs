@@ -53,7 +53,7 @@ public class infoPersoPortraits : NetworkBehaviour
 
     }
 
-    public void SetupChangePlayerIcons(Player owner, Phase currentPhase)
+    public void SetupChangePlayerIcons(Player owner, int turnNumber)
     {
         foreach (PersoData perso in RosterManager.Instance.listHero)
         {
@@ -101,37 +101,37 @@ public class infoPersoPortraits : NetworkBehaviour
                 }
             }
         }
-        if (currentPhase == Phase.Placement)
+        if (turnNumber < 4) 
         {
-            GrayAllPortraits();
+            UnGrayAllPortraits();
         }
     }
 
-    public void GrayAllPortraits()
+    public void UnGrayAllPortraits()
     {
-        MainPortrait.GrayPortrait();
-        SubPortrait1.GrayPortrait();
-        SubPortrait2.GrayPortrait();
-        SubPortrait3.GrayPortrait();
+        MainPortrait.UnGrayPortrait();
+        SubPortrait1.UnGrayPortrait();
+        SubPortrait2.UnGrayPortrait();
+        SubPortrait3.UnGrayPortrait();
     }
-    public void UnGrayPortraitPerso(PersoData perso)
+    public void GrayPortraitPerso(PersoData perso)
     {
         Debug.Log(perso);
         if (MainPortrait.newHoveredPersonnage == perso)
         {
-            MainPortrait.UnGrayPortrait();
+            MainPortrait.GrayPortrait();
         }
         if (SubPortrait1.newHoveredPersonnage == perso)
         {
-            SubPortrait1.UnGrayPortrait();
+            SubPortrait1.GrayPortrait();
         }
         if (SubPortrait2.newHoveredPersonnage == perso)
         {
-            SubPortrait2.UnGrayPortrait();
+            SubPortrait2.GrayPortrait();
         }
         if (SubPortrait3.newHoveredPersonnage == perso)
         {
-            SubPortrait3.UnGrayPortrait();
+            SubPortrait3.GrayPortrait();
         }
     }
 }
