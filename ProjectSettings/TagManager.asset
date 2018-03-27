@@ -18,6 +18,7 @@ TagManager:
   - case
   - textFeedback
   - Summon
+  - fxFeedback
   layers:
   - Default
   - TransparentFX
