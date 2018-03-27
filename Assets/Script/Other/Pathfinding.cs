@@ -226,7 +226,7 @@ public class Pathfinding : NetworkBehaviour
         Node remonte = current;
         do
         {
-            if (current == null)
+            if (current == null || target == null)
             {
                 pathList = null;
                 break;

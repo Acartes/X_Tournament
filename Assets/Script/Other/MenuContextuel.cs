@@ -51,7 +51,6 @@ public class MenuContextuel : NetworkBehaviour
   {
     if (LoadingManager.Instance.isGameReady())
       {
-        Debug.Log("Disable has enable colliders");
         CaseManager.Instance.EnableAllColliders();
       }
   }

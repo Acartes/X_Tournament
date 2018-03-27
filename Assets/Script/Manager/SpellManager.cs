@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
-using System.Runtime.Remoting.Messaging;
-using NUnit.Framework;
 
 /// <summary>Gère tous les sorts.</summary>
 public class SpellManager : NetworkBehaviour

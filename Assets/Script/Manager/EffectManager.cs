@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-using NUnit.Framework.Constraints;
-using NUnit.Framework.Internal.Commands;
 
 /// <summary>Gère les effets de chaque cases.</summary>
 public class EffectManager : NetworkBehaviour

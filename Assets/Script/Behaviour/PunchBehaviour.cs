@@ -41,7 +41,6 @@ public class PunchBehaviour : NetworkBehaviour
     Player currentPlayer = TurnManager.Instance.currentPlayer;
     PersoAction actualAction = GameManager.Instance.actualAction;
     PersoData selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
-    Debug.Log("POUET1");
   }
 
   public IEnumerator Punch(GameObject hoveredObject)

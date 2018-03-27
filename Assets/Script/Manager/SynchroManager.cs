@@ -21,11 +21,17 @@ public class SynchroManager : NetworkBehaviour
     {
         if (!GameManager.Instance.isSoloGame)
         {
+            return isYourTurn();
+        }
+        return true;
+    }
+
+    public bool isYourTurn()
+    {
             if (RpcFunctions.Instance.localId == 0 && TurnManager.Instance.currentPlayer == Player.Blue)
                 return false;
             if (RpcFunctions.Instance.localId == 1 && TurnManager.Instance.currentPlayer == Player.Red)
                 return false;
-        }
         return true;
     }
 
@@ -77,7 +83,7 @@ public class SynchroManager : NetworkBehaviour
     [ClientRpc]
     public void RpcReceiveHoverEvent(string hoveredCaseString, string hoveredPersonnageString, string hoveredBallonString)
     {
-        if (!canPlayTurn())
+        if (canPlayTurn())
         {
             return;
         }

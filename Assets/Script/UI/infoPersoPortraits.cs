@@ -53,12 +53,11 @@ public class infoPersoPortraits : NetworkBehaviour
 
     }
 
-    public void ChangePlayerIcons(Player owner)
+    public void SetupChangePlayerIcons(Player owner, Phase currentPhase)
     {
         foreach (PersoData perso in RosterManager.Instance.listHero)
         {
             string persoName = perso.gameObject.name;
-            Debug.Log(owner);
 
             if (owner == Player.Red)
             {
@@ -101,6 +100,38 @@ public class infoPersoPortraits : NetworkBehaviour
                     SubPortrait3.setPortraitImage(Portrait_eau_bleu, perso);
                 }
             }
+        }
+        if (currentPhase == Phase.Placement)
+        {
+            GrayAllPortraits();
+        }
+    }
+
+    public void GrayAllPortraits()
+    {
+        MainPortrait.GrayPortrait();
+        SubPortrait1.GrayPortrait();
+        SubPortrait2.GrayPortrait();
+        SubPortrait3.GrayPortrait();
+    }
+    public void UnGrayPortraitPerso(PersoData perso)
+    {
+        Debug.Log(perso);
+        if (MainPortrait.newHoveredPersonnage == perso)
+        {
+            MainPortrait.UnGrayPortrait();
+        }
+        if (SubPortrait1.newHoveredPersonnage == perso)
+        {
+            SubPortrait1.UnGrayPortrait();
+        }
+        if (SubPortrait2.newHoveredPersonnage == perso)
+        {
+            SubPortrait2.UnGrayPortrait();
+        }
+        if (SubPortrait3.newHoveredPersonnage == perso)
+        {
+            SubPortrait3.UnGrayPortrait();
         }
     }
 }

@@ -43,4 +43,14 @@ public class PortraitInteractive : NetworkBehaviour
     {
         RpcFunctions.Instance.CmdSendClickEvent();
     }
+
+    public void GrayPortrait()
+    {
+        GetComponent<Image>().color = Color.grey;
+    }
+
+    public void UnGrayPortrait()
+    {
+        GetComponent<Image>().color = Color.white;
+    }
 }

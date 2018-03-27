@@ -62,7 +62,6 @@ public class PlacementBehaviour : NetworkBehaviour
 
   public void OnNewClick()
   { // Lors d'un click sur une case
-    Debug.Log("OnNewClick");
     Phase currentPhase = TurnManager.Instance.currentPhase;
     Player currentPlayer = TurnManager.Instance.currentPlayer;
     CaseData hoveredCase = HoverManager.Instance.hoveredCase;
@@ -73,10 +72,8 @@ public class PlacementBehaviour : NetworkBehaviour
         SelectionManager.Instance.selectedCase == null &&
         hoveredCase.GetComponent<CaseData>().casePathfinding == PathfindingCase.Walkable)
       {
-        Debug.Log("beforeCreatePerso");
         if ((Statut.placementRed & statut) == Statut.placementRed && currentPlayer == Player.Red)
           {
-            Debug.Log("createPerso");
             CreatePerso(currentPhase, currentPlayer, 0);
           }
         if ((Statut.placementBlue & statut) == Statut.placementBlue && currentPlayer == Player.Blue)
@@ -156,6 +153,7 @@ public class PlacementBehaviour : NetworkBehaviour
             // mettre icone perso bleu
           }
 
+        InfoPerso.Instance.PlacePerso(selectedPersonnage);
         SelectionManager.Instance.Deselect(TurnManager.Instance.currentPhase, TurnManager.Instance.currentPlayer);
 
       }

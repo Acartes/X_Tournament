@@ -35,8 +35,6 @@ public class InfoPerso : NetworkBehaviour
     {
         while (!LoadingManager.Instance.isGameReady())
             yield return new WaitForEndOfFrame();
-        yield return new WaitForSeconds(0.01f);
-
         Init();
     }
 
@@ -50,20 +48,28 @@ public class InfoPerso : NetworkBehaviour
 
     void OnChangeTurn(object sender, PlayerArgs e)
     {
-        if (e.currentPhase == Phase.Placement)
+        if(TurnManager.Instance.currentPhase == Phase.Deplacement && RosterManager.Instance.listHeroPlaced.Count != 8)
         {
             IsVisible(false);
         }
-        if (e.currentPhase == Phase.Deplacement)
-        {
-            IsVisible(true);
-            portraits.ChangePlayerIcons(TurnManager.Instance.currentPlayer);
-        }
+        StartCoroutine(waitForList());
+    }
+
+    IEnumerator waitForList()
+    {
+        while (RosterManager.Instance.listHero.Count != 8)
+            yield return new WaitForEndOfFrame();
+        portraits.SetupChangePlayerIcons(TurnManager.Instance.currentPlayer, TurnManager.Instance.currentPhase);
     }
 
     public void SelectPerso(PersoData newPerso)
     {
         portraits.SelectPerso(newPerso);
+    }
+
+    public void PlacePerso(PersoData newPerso)
+    { // Lors d'un click sur une case
+        portraits.UnGrayPortraitPerso(newPerso);
     }
 
     // ************* //
