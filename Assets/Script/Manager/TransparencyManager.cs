@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class TransparencyBehaviour : NetworkBehaviour
+public class TransparencyManager : NetworkBehaviour
 {
   // *************** //
   // ** Variables ** // Toutes les variables sans distinctions
   // *************** //
 
   [Range(0, 1)] [Tooltip("Niveau de transparence")] public float alpha;
-  [HideInInspector] static public TransparencyBehaviour Instance;
+  [HideInInspector] static public TransparencyManager Instance;
 
   // ******************** //
   // ** Initialisation ** // Fonctions de départ, non réutilisable

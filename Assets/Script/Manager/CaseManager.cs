@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -266,5 +267,115 @@ public class CaseManager : NetworkBehaviour
         return false;
       }
   }
+
+  public List<CaseData> GetCaseByAoEFromCase(CaseData caseCible, int Range, AoEType aoeType, Direction direction = Direction.None)
+  {
+    foreach (CaseData obj in CaseManager.Instance.GetAllCaseWithStatut(Statut.atAoE))
+      {
+        obj.ChangeStatut(Statut.None, Statut.atAoE);
+      }
+    List<CaseData> caseList = new List<CaseData>();
+    switch (aoeType)
+      {
+      case AoEType.Circle:
+        caseList.Add(caseCible);
+        for (int i = 0; i < Range; i++)
+          {
+            int listCount = caseList.Count;
+            for (int y = 0; y < listCount; y++)
+              {
+                if (direction == Direction.SudEst || direction == null)
+                  {
+                    if (caseList[y].GetCaseRelativeCoordinate(1, 0) != null && !caseList.Contains(caseList[y].GetCaseRelativeCoordinate(1, 0)))
+                      {
+                        caseList.Add(caseList[y].GetCaseRelativeCoordinate(1, 0));
+                      }
+                  }
+
+                if (direction == Direction.NordOuest || direction == null)
+                  {
+                    if (caseList[y].GetCaseRelativeCoordinate(-1, 0) != null && !caseList.Contains(caseList[y].GetCaseRelativeCoordinate(-1, 0)))
+                      {
+                        caseList.Add(caseList[y].GetCaseRelativeCoordinate(-1, 0));
+                      }
+                  }
+
+                if (direction == Direction.NordEst || direction == null)
+                  {
+                    if (caseList[y].GetCaseRelativeCoordinate(0, 1) != null && !caseList.Contains(caseList[y].GetCaseRelativeCoordinate(0, 1)))
+                      {
+                        caseList.Add(caseList[y].GetCaseRelativeCoordinate(0, 1));
+                      }
+                  }
+
+                if (direction == Direction.SudOuest || direction == null)
+                  {
+                    if (caseList[y].GetCaseRelativeCoordinate(0, -1) != null && !caseList.Contains(caseList[y].GetCaseRelativeCoordinate(0, -1)))
+                      {
+                        caseList.Add(caseList[y].GetCaseRelativeCoordinate(0, -1));
+                      }
+                  }
+              }
+          }
+        return caseList;
+
+      case AoEType.Croix:
+        caseList.Add(caseCible);
+        for (int i = 0; i < Range; i++)
+          {
+            if (caseCible.GetCaseRelativeCoordinate(i, 0) != null && caseCible.GetCaseRelativeCoordinate(i, 0))
+              caseList.Add(caseCible.GetCaseRelativeCoordinate(i, 0));
+
+            if (caseCible.GetCaseRelativeCoordinate(-i, 0) != null && caseCible.GetCaseRelativeCoordinate(-i, 0))
+              caseList.Add(caseCible.GetCaseRelativeCoordinate(-i, 0));
+
+            if (caseCible.GetCaseRelativeCoordinate(0, i) != null && caseCible.GetCaseRelativeCoordinate(0, i))
+              caseList.Add(caseCible.GetCaseRelativeCoordinate(0, i));
+
+            if (caseCible.GetCaseRelativeCoordinate(0, -i) != null && caseCible.GetCaseRelativeCoordinate(0, -i))
+              caseList.Add(caseCible.GetCaseRelativeCoordinate(0, -i));
+
+          }
+        return caseList;
+
+      case AoEType.Carre:
+        caseList.Add(caseCible);
+        for (int i = 0; i < Range; i++)
+          {
+            int listCount = caseList.Count;
+            for (int y = 0; y < listCount; y++)
+              {
+                if (caseList[y].GetCaseRelativeCoordinate(1, 0) != null && !caseList.Contains(caseList[y].GetCaseRelativeCoordinate(1, 0)))
+                  caseList.Add(caseList[y].GetCaseRelativeCoordinate(1, 0));
+
+                if (caseList[y].GetCaseRelativeCoordinate(-1, 0) != null && !caseList.Contains(caseList[y].GetCaseRelativeCoordinate(-1, 0)))
+                  caseList.Add(caseList[y].GetCaseRelativeCoordinate(-1, 0));
+
+                if (caseList[y].GetCaseRelativeCoordinate(0, 1) != null && !caseList.Contains(caseList[y].GetCaseRelativeCoordinate(0, 1)))
+                  caseList.Add(caseList[y].GetCaseRelativeCoordinate(0, 1));
+
+                if (caseList[y].GetCaseRelativeCoordinate(0, -1) != null && !caseList.Contains(caseList[y].GetCaseRelativeCoordinate(0, -1)))
+                  caseList.Add(caseList[y].GetCaseRelativeCoordinate(0, -1));
+
+                if (caseList[y].GetCaseRelativeCoordinate(1, 1) != null && !caseList.Contains(caseList[y].GetCaseRelativeCoordinate(1, 1)))
+                  caseList.Add(caseList[y].GetCaseRelativeCoordinate(1, 1));
+
+                if (caseList[y].GetCaseRelativeCoordinate(-1, -1) != null && !caseList.Contains(caseList[y].GetCaseRelativeCoordinate(-1, -1)))
+                  caseList.Add(caseList[y].GetCaseRelativeCoordinate(-1, -1));
+
+                if (caseList[y].GetCaseRelativeCoordinate(1, -1) != null && !caseList.Contains(caseList[y].GetCaseRelativeCoordinate(1, -1)))
+                  caseList.Add(caseList[y].GetCaseRelativeCoordinate(1, -1));
+
+                if (caseList[y].GetCaseRelativeCoordinate(-1, 1) != null && !caseList.Contains(caseList[y].GetCaseRelativeCoordinate(-1, 1)))
+                  caseList.Add(caseList[y].GetCaseRelativeCoordinate(-1, 1));
+              }
+          }
+        return caseList;
+      }
+
+    return null;
+
+  }
+  
 
 }

@@ -41,13 +41,6 @@ public class RosterManager : NetworkBehaviour
 
   public void Init()
   {
-
-  }
-
-  /// <summary>Instantie tous les personnages des deux équipes.</summary>
-  [ClientRpc]
-  public void RpcSpawnPlayers()
-  {
     if (isServer)
       {
         foreach (PersoData obj in listHeroJ1)

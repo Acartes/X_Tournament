@@ -164,13 +164,18 @@ MonoBehaviour:
   isStatic: 1
   isBlockingLineOfSight: 0
   isTraversable: 1
-  pushAtRange: 1
+  canPush: 1
   pushValue: 1
   pushRange: 0
-  pushDirection: 3
+  pushDirection: 4
   originPoint: {fileID: 4541752187799740}
   caseActual: {fileID: 0}
-  disapearWhenHurt: 0
+  actualPointResistance: 0
+  maxPointResistance: 0
+  invulnerable: 1
+  hurtWhenBounce: 0
+  numberEffectDisapear: 1
+  limitInvoc: 0
 --- !u!212 &212794348866192826
 SpriteRenderer:
   m_ObjectHideFlags: 1

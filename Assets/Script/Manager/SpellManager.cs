@@ -154,6 +154,7 @@ public class SpellManager : NetworkBehaviour
     if (selectedPersonnage.actualPointAction < selectedSpell.costPA)
       return;
 
+    Debug.Log("ZZZZZZZZZZZZZZz"); 
     GameManager.Instance.actualAction = PersoAction.isCasting;
     SelectionManager.Instance.DisablePersoSelection();
     TurnManager.Instance.DisableFinishTurn();
@@ -161,7 +162,7 @@ public class SpellManager : NetworkBehaviour
     selectedSpell.ShowRange();
     selectedSpell.ShowAreaOfEffect();
     selectedSpell.ShowPushEffect();
-    newSummon = null;
+    //  newSummon = null;
     if (selectedSpell.summonedObj != null)
       {
         newSummon = (SummonData)Instantiate(selectedSpell.summonedObj, hoveredCase.transform.position + selectedSpell.summonedObj.transform.position - selectedSpell.summonedObj.originPoint.position, Quaternion.identity);
@@ -186,12 +187,14 @@ public class SpellManager : NetworkBehaviour
         newSummon.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
         newSummon.GetComponent<BoxCollider2D>().enabled = true;
       }
-
     foreach (CaseData obj in CaseManager.listAllCase)
       {
-        if ((Statut.atAoE & obj.statut) == Statut.atAoE)
+
+        if ((Statut.atAoE & obj.statut) == Statut.atAoE && obj.personnageData != null)
           {
-            obj.ChangeStatut(selectedSpell.newStatut);
+            Debug.Log(SelectionManager.Instance.selectedPersonnage.name);
+            SelectionManager.Instance.selectedPersonnage.RotateTowards(obj.gameObject);
+            selectedSpell.ApplyEffect(obj.personnageData);
           }
         if ((Statut.atPush & obj.statut) == Statut.atPush)
           {
@@ -212,6 +215,7 @@ public class SpellManager : NetworkBehaviour
 
     if (!spellSuccess && newSummon != null)
       {
+        Debug.Log("eeeeeeeeeeeee");
         DestroyImmediate(newSummon.gameObject);
 
       }

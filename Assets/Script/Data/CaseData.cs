@@ -15,6 +15,7 @@ public class CaseData : NetworkBehaviour
   [Space(200)]
   public Statut statut;
   [Space(200)]
+  public SummonData summonData;
   public PersoData personnageData;
   public BallonData ballon;
   public PathfindingCase casePathfinding;
@@ -55,8 +56,7 @@ public class CaseData : NetworkBehaviour
     if (LoadingManager.Instance.isGameReady())
       TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
   }
-
-
+      
   // *************** //
   // ** Events **    // Appel de fonctions au sein de ce script grâce à des events
   // *************** //
@@ -87,12 +87,18 @@ public class CaseData : NetworkBehaviour
       {
         if (col.gameObject.GetComponent<PersoData>().persoCase != this)
           {
-            TransparencyBehaviour.Instance.CheckCaseTransparency(this);
+            TransparencyManager.Instance.CheckCaseTransparency(this);
             personnageData = col.gameObject.GetComponent<PersoData>();
             casePathfinding = PathfindingCase.NonWalkable;
             col.gameObject.GetComponent<PersoData>().persoCase = this;
-            TransparencyBehaviour.Instance.CheckCaseTransparency(this);
-            EffectManager.Instance.CheckAllEffect(this, col.gameObject);
+            TransparencyManager.Instance.CheckCaseTransparency(this);
+            if (summonData != null)
+              {
+                Debug.Log("no homo 0");
+                summonData.ApplyEffect(col.gameObject.GetComponent<PersoData>());
+              }
+            // EffectManager.Instance.CheckAllEffect(this, col.gameObject);
+            //    Destroy(summonData);
           }
       }
 
@@ -100,19 +106,23 @@ public class CaseData : NetworkBehaviour
       {
         if (col.gameObject.GetComponent<BallonData>().ballonCase != this)
           {
-            TransparencyBehaviour.Instance.CheckCaseTransparency(this);
+            TransparencyManager.Instance.CheckCaseTransparency(this);
             ballon = col.gameObject.GetComponent<BallonData>();
             casePathfinding = PathfindingCase.NonWalkable;
             col.gameObject.GetComponent<BallonData>().ballonCase = this;
-            TransparencyBehaviour.Instance.CheckCaseTransparency(this);
+            TransparencyManager.Instance.CheckCaseTransparency(this);
             col.gameObject.GetComponent<BallonData>().xCoord = xCoord;
             col.gameObject.GetComponent<BallonData>().yCoord = yCoord;
-            //EffectManager.Instance.CheckAllEffect(this, col.gameObject);
+            if (summonData != null)
+              {
+                //    summonData.ApplyEffect(col);
+              }
           }
       }
 
     if (col.tag == "Summon")
       {
+        summonData = col.gameObject.GetComponent<SummonData>();
         if (col.gameObject.GetComponent<SummonData>().caseActual != this)
           {
             ballon = col.gameObject.GetComponent<BallonData>();
@@ -121,7 +131,7 @@ public class CaseData : NetworkBehaviour
                 casePathfinding = PathfindingCase.NonWalkable;
               }
 
-            if (col.gameObject.GetComponent<SummonData>().pushAtRange)
+            if (col.gameObject.GetComponent<SummonData>().canPush)
               {
                 statut += (int)Statut.willPush;
               }
@@ -148,7 +158,7 @@ public class CaseData : NetworkBehaviour
         && col.gameObject.GetComponent<BoxCollider2D>().enabled == true
         && GetComponent<PolygonCollider2D>().enabled == true)
       {
-        TransparencyBehaviour.Instance.CheckCaseTransparency(this);
+        TransparencyManager.Instance.CheckCaseTransparency(this);
         ballon = null;
         casePathfinding = PathfindingCase.Walkable;
         ChangeStatut(Statut.None, Statut.canShot);

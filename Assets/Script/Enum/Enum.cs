@@ -43,10 +43,20 @@ public enum PersoAction
 
 public enum Direction
 {
+  /// <summary>-1, 0.</summary>
   NordOuest,
+  /// <summary>0, 1.</summary>
   NordEst,
+  /// <summary>0, -1.</summary>
   SudOuest,
-  SudEst
+  /// <summary>1, 0.</summary>
+  SudEst,
+  Left,
+  Right,
+  Front,
+  Back,
+  /// <summary>nothing.</summary>
+  None
 }
 
 public enum WeightType
@@ -93,4 +103,28 @@ public enum WeightType
   isIntercepted = 1 << 2,
   // CanInteract
   canBounce = 1 << 3
+}
+
+public enum AoEType
+{
+  Circle,
+  Croix,
+  Carre,
+}
+
+public enum ObjectType
+{
+  AllyPerso,
+  EnemyPerso,
+  EmptyCase,
+  Ballon,
+  AllyInvoc,
+  EnemyInvoc,
+  Self,
+}
+
+public enum PushType
+{
+  FromTarget,
+  FromCaster,
 }

@@ -24,14 +24,14 @@ public class SpellData : NetworkBehaviour
   public Element elementCreated;
 
   public int pushValue;
+  public Direction pushDirection;
+  public PushType pushType;
   public bool hurtWhenStopped;
 
   public SummonData summonedObj;
   public bool isDirect;
 
   public Sprite buttonSprite;
-
-  public Statut newStatut;
 
   List<CaseData> rangeList = new List<CaseData>();
   List<CaseData> AoEList = new List<CaseData>();
@@ -40,6 +40,8 @@ public class SpellData : NetworkBehaviour
   [TextArea]public string tooltipTitle;
   [TextArea]public string tooltipRange;
   [TextArea]public string tooltipEffect;
+
+  public int numberLimitCast;
 
   // ******************** //
   // ** Initialisation ** // Fonctions de départ, non réutilisable
@@ -164,7 +166,6 @@ public class SpellData : NetworkBehaviour
         list.AddRange(list2);
         list2.Clear();
       }
-    list.Remove(hoveredCase);
 
     if (AoEList.Count != 0)
       AoEList.Clear();
@@ -184,6 +185,8 @@ public class SpellData : NetworkBehaviour
     List<CaseData> list2 = new List<CaseData>();
     list.Add(SelectionManager.Instance.selectedCase);
 
+    pushList.Clear();
+
     if (isLinear)
       {
         for (int i = 0; i < push; i++)
@@ -191,15 +194,15 @@ public class SpellData : NetworkBehaviour
             foreach (CaseData obj in list)
               {
                 if (obj.GetCaseRelativeCoordinate(i, 0) != null)
-                  list.Add(obj.GetCaseRelativeCoordinate(i, 0));
+                  pushList.Add(obj.GetCaseRelativeCoordinate(i, 0));
               }
           }
       }
 
-    if (pushList.Count != 0)
+    /*  if (pushList.Count != 0)
       pushList.Clear();
 
-    pushList.AddRange(list);
+    pushList.AddRange(list);*/
     foreach (CaseData obj in pushList)
       {
         obj.ChangeStatut(Statut.atPush);
@@ -212,5 +215,13 @@ public class SpellData : NetworkBehaviour
   {
     CaseData hoveredCase = HoverManager.Instance.hoveredCase;
     summon.transform.position = hoveredCase.transform.position + summon.transform.position - summon.originPoint.position;
+  }
+
+  public void ApplyEffect(PersoData persoAfflicted)
+  {
+    Debug.Log("SELECTIONLOL1" + " " + persoAfflicted);
+    Debug.Log("SELECTIONLOL2" + " " + pushValue);
+    Debug.Log("SELECTIONLOL3" + " " + pushDirection);
+    EffectManager.Instance.Push(persoAfflicted, pushValue, pushType, pushDirection);
   }
 }

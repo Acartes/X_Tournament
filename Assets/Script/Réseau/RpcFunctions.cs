@@ -56,7 +56,7 @@ public class RpcFunctions : NetworkBehaviour
   [Command]
   public void CmdSpawnPlayers()
   {
-    RosterManager.Instance.RpcSpawnPlayers();
+    //  RosterManager.Instance.RpcSpawnPlayers();
   }
 
   [Command]
