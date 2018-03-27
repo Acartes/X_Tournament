@@ -1,39 +1,46 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class PortraitInteractive : MonoBehaviour {
+public class PortraitInteractive : NetworkBehaviour
+{
 
     public PersoData newHoveredPersonnage;
 
+    public void setPortraitImage(Sprite newSprite, PersoData newPerso)
+    {
+        GetComponent<Image>().sprite = newSprite;
+        newHoveredPersonnage = newPerso;
+    }
+
     public void HoverPerso() // hover comme chez HoverEvent
     {
+        if (!SynchroManager.Instance.canPlayTurn())
+        {
+            return;
+        }
+        if (!enabled || !LoadingManager.Instance.isGameReady())
+            return;
 
-     /*   CaseData hoveredCase = newHoveredPersonnage.persoCase;
-        PersoData hoveredPersonnage = newHoveredPersonnage;
-        PathfindingCase hoveredPathfinding = newHoveredPersonnage.persoCase.casePathfinding;*/
+        string hoveredCase = newHoveredPersonnage.persoCase.name;
+        string hoveredPersonnage = newHoveredPersonnage.name;
+        string hoveredBallon = "null";
 
-     // RpcFunctions.Instance.CmdHoverEvent(this, new HoverArgs(hoveredCase, hoveredPersonnage, null));
+        RpcFunctions.Instance.CmdSendHoverEvent(hoveredCase, hoveredPersonnage, hoveredBallon);
     }
 
     public void UnHoverPerso() // exit comme chez HoverEvent
     {
-
-      //  PathfindingCase hoveredPathfinding = newHoveredPersonnage.GetComponent<PersoData>().persoCase.GetComponent<CaseData>().casePathfinding;
-
-    //  RpcFunctions.Instance.CmdHoverEvent(null, null, null);
+        if (!enabled || !LoadingManager.Instance.isGameReady())
+        {
+            RpcFunctions.Instance.CmdSendHoverEvent("null", "null", "null");
+        }
     }
 
     public void ClickPerso()
     {
-      //  RpcFunctions.Instance.CmdClickEvent();
-
-     //   StartCoroutine(waitForHover()); // très important sinon le code visuel s'execute après le hover
-    }
-
-    IEnumerator waitForHover() // très important sinon le code visuel s'execute après le hover
-    {
-        yield return new WaitForSeconds(0.05f);
-        HoverPerso();
+        RpcFunctions.Instance.CmdSendClickEvent();
     }
 }

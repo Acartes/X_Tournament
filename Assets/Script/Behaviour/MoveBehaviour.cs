@@ -98,14 +98,6 @@ public class MoveBehaviour : NetworkBehaviour
           this.movePathes.Add(path.transform);
       }
 
-    /*   if (pathesLast.Count == pathes.Count)
-         {
-    return;
-             }*/
-
-    Debug.Log("ACTUAL" + " " + SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData>().actualPointMovement);
-    Debug.Log("PATHCOUNT" + " " + this.movePathes.Count);
-
     // Si le personnage n'a pas assez de PM, alors la route n'est pas créé
     if (this.movePathes.Count > SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData>().actualPointMovement)
       {

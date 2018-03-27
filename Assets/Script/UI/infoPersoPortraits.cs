@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class infoPersoPortraits : MonoBehaviour
+public class infoPersoPortraits : NetworkBehaviour
 {
 
-    public GameObject MainPortrait;
-    public GameObject SubPortrait1;
-    public GameObject SubPortrait2;
-    public GameObject SubPortrait3;
+    public PortraitInteractive MainPortrait;
+    public PortraitInteractive SubPortrait3;
+    public PortraitInteractive SubPortrait2;
+    public PortraitInteractive SubPortrait1;
 
     public Sprite Portrait_terre_rouge;
     public Sprite Portrait_feu_rouge;
@@ -21,63 +22,85 @@ public class infoPersoPortraits : MonoBehaviour
     public Sprite Portrait_air_bleu;
     public Sprite Portrait_eau_bleu;
 
-
-    // Use this for initialization
-    public void setMainPortrait(Sprite newSprite, Player owner)
+    public void SelectPerso(PersoData newPerso)
     {
-        MainPortrait.GetComponent<Image>().sprite = GetIcon(newSprite, owner);
-    }
-    // Use this for initialization
-    public void setSubPortrait1(Sprite newSprite, Player owner)
-    {
-        SubPortrait1.GetComponent<Image>().sprite = GetIcon(newSprite, owner);
-
-    }
-    // Use this for initialization
-    public void setSubPortrait2(Sprite newSprite, Player owner)
-    {
-        SubPortrait2.GetComponent<Image>().sprite = GetIcon(newSprite, owner);
-
-    }
-    // Use this for initialization
-    public void setSubPortrait3(Sprite newSprite, Player owner)
-    {
-        SubPortrait3.GetComponent<Image>().sprite = GetIcon(newSprite, owner);
-    }
-
-    public void Clear()
-    {
-        MainPortrait.GetComponent<Image>().sprite = null;
-        SubPortrait1.GetComponent<Image>().sprite = null;
-        SubPortrait2.GetComponent<Image>().sprite = null;
-        SubPortrait3.GetComponent<Image>().sprite = null;
-    }
-
-    Sprite GetIcon(Sprite sprite, Player owner)
-    {
-
-        if(owner == Player.Red)
+        Sprite tempSpriteData;
+        if (newPerso == SubPortrait3.newHoveredPersonnage)
         {
-            if (sprite.name == "Air_rouge" || sprite.name == "Air_rouge_dos")
-                return Portrait_air_rouge;
-            if (sprite.name == "Terre_rouge" || sprite.name == "Terre_rouge_dos")
-                return Portrait_terre_rouge;
-            if (sprite.name == "Feu_rouge" || sprite.name == "Feu_rouge_dos")
-                return Portrait_feu_rouge;
-            if (sprite.name == "Eau_rouge" || sprite.name == "Eau_rouge_dos")
-                return Portrait_eau_rouge;
+            tempSpriteData = SubPortrait3.GetComponent<Image>().sprite;
+            SubPortrait3.setPortraitImage(SubPortrait2.GetComponent<Image>().sprite, SubPortrait2.newHoveredPersonnage);
+            SubPortrait2.setPortraitImage(SubPortrait1.GetComponent<Image>().sprite, SubPortrait1.newHoveredPersonnage);
+            SubPortrait1.setPortraitImage(MainPortrait.GetComponent<Image>().sprite, MainPortrait.newHoveredPersonnage);
+            MainPortrait.setPortraitImage(tempSpriteData, newPerso);
+            return;
         }
-        else
+        
+        if (newPerso == SubPortrait2.newHoveredPersonnage)
         {
-            if (sprite.name == "Air_bleu" || sprite.name == "Air_bleu_dos")
-                return Portrait_air_bleu;
-            if (sprite.name == "Terre_bleu" || sprite.name == "Terre_bleu_dos")
-                return Portrait_terre_bleu;
-            if (sprite.name == "Feu_bleu" || sprite.name == "Feu_bleu_dos")
-                return Portrait_feu_bleu;
-            if (sprite.name == "Eau_bleu" || sprite.name == "Eau_bleu_dos")
-                return Portrait_eau_bleu;
+            tempSpriteData = SubPortrait2.GetComponent<Image>().sprite;
+            SubPortrait2.setPortraitImage(SubPortrait1.GetComponent<Image>().sprite, SubPortrait1.newHoveredPersonnage);
+            SubPortrait1.setPortraitImage(MainPortrait.GetComponent<Image>().sprite, MainPortrait.newHoveredPersonnage);
+            MainPortrait.setPortraitImage(tempSpriteData, newPerso);
+            return;
         }
-        return null;
+        if (newPerso == SubPortrait1.newHoveredPersonnage)
+        {
+            tempSpriteData = SubPortrait1.GetComponent<Image>().sprite;
+            SubPortrait1.setPortraitImage(MainPortrait.GetComponent<Image>().sprite, MainPortrait.newHoveredPersonnage);
+            MainPortrait.setPortraitImage(tempSpriteData, newPerso);
+            return;
+        }
+
+    }
+
+    public void ChangePlayerIcons(Player owner)
+    {
+        foreach (PersoData perso in RosterManager.Instance.listHero)
+        {
+            string persoName = perso.gameObject.name;
+            Debug.Log(owner);
+
+            if (owner == Player.Red)
+            {
+                if (persoName == "Terre_rouge")
+                {
+                    MainPortrait.setPortraitImage(Portrait_terre_rouge, perso);
+                }
+                if (persoName == "Air_rouge")
+                {
+                    SubPortrait1.setPortraitImage(Portrait_air_rouge, perso);
+
+                }
+                if (persoName == "Feu_rouge")
+                {
+                    SubPortrait2.setPortraitImage(Portrait_feu_rouge, perso);
+
+                }
+                if (persoName == "Eau_rouge")
+                {
+                    SubPortrait3.setPortraitImage(Portrait_eau_rouge, perso);
+
+                }
+            }
+            if (owner == Player.Blue)
+            {
+                if (persoName == "Terre_bleu")
+                {
+                    MainPortrait.setPortraitImage(Portrait_terre_bleu, perso);
+                }
+                if (persoName == "Air_bleu")
+                {
+                    SubPortrait1.setPortraitImage(Portrait_air_bleu, perso);
+                }
+                if (persoName == "Feu_bleu")
+                {
+                    SubPortrait2.setPortraitImage(Portrait_feu_bleu, perso);
+                }
+                if (persoName == "Eau_bleu")
+                {
+                    SubPortrait3.setPortraitImage(Portrait_eau_bleu, perso);
+                }
+            }
+        }
     }
 }
