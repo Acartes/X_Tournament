@@ -63,31 +63,32 @@ public class HoverManager : NetworkBehaviour
     EventManager.newHoverEvent -= OnNewHover;
   }
 
-  // *************** //
-  // ** Events **    // Appel de fonctions au sein de ce script grâce à des events
-  // *************** //
+    // *************** //
+    // ** Events **    // Appel de fonctions au sein de ce script grâce à des events
+    // *************** //
 
-  void OnNewHover(object sender, HoverArgs e)
-  { // Curseur se trouve sur une case ou quitte une case
+    void OnNewHover(object sender, HoverArgs e)
+    { // Curseur se trouve sur une case ou quitte une case
 
-    if (hoveredLastCase == null || hoveredLastCase != hoveredCase)
-      {
-        hoveredLastCase = hoveredCase;
-      }
+        if (hoveredLastCase == null || hoveredLastCase != hoveredCase)
+        {
+            hoveredLastCase = hoveredCase;
+        }
 
-    if (hoveredCase != null)
-      {
-        changeColorExit(GameManager.Instance.currentPhase);
-      }
+        if (hoveredCase != null)
+        {
+            changeColorExit(GameManager.Instance.currentPhase);
+        }
 
-    hoveredPersonnage = e.hoveredPersonnage;
-    hoveredCase = e.hoveredCase;
-    hoveredBallon = e.hoveredBallon;
+        hoveredPersonnage = e.hoveredPersonnage;
+        hoveredCase = e.hoveredCase;
+        hoveredBallon = e.hoveredBallon;
+        if (hoveredCase != null)
+        {
+            changeColorEnter();
+        }
 
-    changeColorEnter();
-
-
-  }
+    }
       
   // *************** //
   // ** Fonctions ** // Fonctions réutilisables ailleurs
@@ -117,10 +118,10 @@ public class HoverManager : NetworkBehaviour
     switch (currentPhase)
       {
       case (Phase.Placement):
-        hoveredCase.GetComponent<CaseData>().ChangeStatut(Statut.None, Statut.isHovered);
+        hoveredCase.ChangeStatut(Statut.None, Statut.isHovered);
         break;
       case (Phase.Deplacement):
-        hoveredCase.GetComponent<CaseData>().ChangeStatut(Statut.None, Statut.isHovered);
+        hoveredCase.ChangeStatut(Statut.None, Statut.isHovered);
 
         if (SelectionManager.Instance.selectedPersonnage != null
             && hoveredCase.casePathfinding == PathfindingCase.Walkable

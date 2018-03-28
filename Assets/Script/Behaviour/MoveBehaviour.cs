@@ -57,6 +57,7 @@ public class MoveBehaviour : NetworkBehaviour
 
   void OnNewClick()
   { // Lors d'un click sur une case
+        if(TurnManager.Instance.currentPhase == Phase.Deplacement)
     StartCoroutine(LateOnNewClick());
   }
 

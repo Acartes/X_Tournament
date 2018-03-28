@@ -140,7 +140,6 @@ public class SpellManager : NetworkBehaviour
   [ClientRpc]
   public void RpcSpellCast(int IDSpell)
   {
-    Debug.Log("GGGGGGGGGGGGGGGGGGG"); 
     PersoData selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
     if (selectedPersonnage == null)
       return;
@@ -153,7 +152,6 @@ public class SpellManager : NetworkBehaviour
     if (selectedPersonnage.actualPointAction < selectedSpell.costPA)
       return;
 
-    Debug.Log("ZZZZZZZZZZZZZZz"); 
     GameManager.Instance.actualAction = PersoAction.isCasting;
     SelectionManager.Instance.DisablePersoSelection();
     TurnManager.Instance.DisableFinishTurn();
@@ -191,7 +189,6 @@ public class SpellManager : NetworkBehaviour
 
         if ((Statut.atAoE & obj.statut) == Statut.atAoE && obj.personnageData != null)
           {
-            Debug.Log(SelectionManager.Instance.selectedPersonnage.name);
             SelectionManager.Instance.selectedPersonnage.RotateTowards(obj.gameObject);
             selectedSpell.ApplyEffect(obj.personnageData);
           }
@@ -214,7 +211,6 @@ public class SpellManager : NetworkBehaviour
 
     if (!spellSuccess && newSummon != null)
       {
-        Debug.Log("eeeeeeeeeeeee");
         DestroyImmediate(newSummon.gameObject);
 
       }

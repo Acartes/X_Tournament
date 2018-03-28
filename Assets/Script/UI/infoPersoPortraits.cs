@@ -24,30 +24,38 @@ public class infoPersoPortraits : NetworkBehaviour
 
     public void SelectPerso(PersoData newPerso)
     {
-        Sprite tempSpriteData;
+        Sprite tempSprite;
+        Color tempColor;
+        PersoData tempPersoData;
         if (newPerso == SubPortrait3.newHoveredPersonnage)
         {
-            tempSpriteData = SubPortrait3.GetComponent<Image>().sprite;
-            SubPortrait3.setPortraitImage(SubPortrait2.GetComponent<Image>().sprite, SubPortrait2.newHoveredPersonnage);
-            SubPortrait2.setPortraitImage(SubPortrait1.GetComponent<Image>().sprite, SubPortrait1.newHoveredPersonnage);
-            SubPortrait1.setPortraitImage(MainPortrait.GetComponent<Image>().sprite, MainPortrait.newHoveredPersonnage);
-            MainPortrait.setPortraitImage(tempSpriteData, newPerso);
+            tempSprite = SubPortrait3.GetComponent<Image>().sprite;
+            tempColor = SubPortrait3.GetComponent<Image>().color;
+            tempPersoData = SubPortrait3.newHoveredPersonnage;
+            SubPortrait3.setPortraitData(SubPortrait2);
+            SubPortrait2.setPortraitData(SubPortrait1);
+            SubPortrait1.setPortraitData(MainPortrait);
+            MainPortrait.setPortraitData(tempSprite, tempColor, tempPersoData);
             return;
         }
         
         if (newPerso == SubPortrait2.newHoveredPersonnage)
         {
-            tempSpriteData = SubPortrait2.GetComponent<Image>().sprite;
-            SubPortrait2.setPortraitImage(SubPortrait1.GetComponent<Image>().sprite, SubPortrait1.newHoveredPersonnage);
-            SubPortrait1.setPortraitImage(MainPortrait.GetComponent<Image>().sprite, MainPortrait.newHoveredPersonnage);
-            MainPortrait.setPortraitImage(tempSpriteData, newPerso);
+            tempSprite = SubPortrait2.GetComponent<Image>().sprite;
+            tempColor = SubPortrait2.GetComponent<Image>().color;
+            tempPersoData = SubPortrait2.newHoveredPersonnage;
+            SubPortrait2.setPortraitData(SubPortrait1);
+            SubPortrait1.setPortraitData(MainPortrait);
+            MainPortrait.setPortraitData(tempSprite, tempColor, tempPersoData);
             return;
         }
         if (newPerso == SubPortrait1.newHoveredPersonnage)
         {
-            tempSpriteData = SubPortrait1.GetComponent<Image>().sprite;
-            SubPortrait1.setPortraitImage(MainPortrait.GetComponent<Image>().sprite, MainPortrait.newHoveredPersonnage);
-            MainPortrait.setPortraitImage(tempSpriteData, newPerso);
+            tempSprite = SubPortrait1.GetComponent<Image>().sprite;
+            tempColor = SubPortrait1.GetComponent<Image>().color;
+            tempPersoData = SubPortrait1.newHoveredPersonnage;
+            SubPortrait1.setPortraitData(MainPortrait);
+            MainPortrait.setPortraitData(tempSprite, tempColor, tempPersoData);
             return;
         }
 
@@ -63,21 +71,21 @@ public class infoPersoPortraits : NetworkBehaviour
             {
                 if (persoName == "Terre_rouge")
                 {
-                    MainPortrait.setPortraitImage(Portrait_terre_rouge, perso);
+                    MainPortrait.setPortraitData(Portrait_terre_rouge, Color.white, perso);
                 }
                 if (persoName == "Air_rouge")
                 {
-                    SubPortrait1.setPortraitImage(Portrait_air_rouge, perso);
+                    SubPortrait1.setPortraitData(Portrait_air_rouge, Color.white, perso);
 
                 }
                 if (persoName == "Feu_rouge")
                 {
-                    SubPortrait2.setPortraitImage(Portrait_feu_rouge, perso);
+                    SubPortrait2.setPortraitData(Portrait_feu_rouge, Color.white, perso);
 
                 }
                 if (persoName == "Eau_rouge")
                 {
-                    SubPortrait3.setPortraitImage(Portrait_eau_rouge, perso);
+                    SubPortrait3.setPortraitData(Portrait_eau_rouge, Color.white, perso);
 
                 }
             }
@@ -85,23 +93,24 @@ public class infoPersoPortraits : NetworkBehaviour
             {
                 if (persoName == "Terre_bleu")
                 {
-                    MainPortrait.setPortraitImage(Portrait_terre_bleu, perso);
+                    MainPortrait.setPortraitData(Portrait_terre_bleu, Color.white, perso);
                 }
                 if (persoName == "Air_bleu")
                 {
-                    SubPortrait1.setPortraitImage(Portrait_air_bleu, perso);
+                    SubPortrait1.setPortraitData(Portrait_air_bleu, Color.white, perso);
                 }
                 if (persoName == "Feu_bleu")
                 {
-                    SubPortrait2.setPortraitImage(Portrait_feu_bleu, perso);
+                    SubPortrait2.setPortraitData(Portrait_feu_bleu, Color.white, perso);
                 }
                 if (persoName == "Eau_bleu")
                 {
-                    SubPortrait3.setPortraitImage(Portrait_eau_bleu, perso);
+                    SubPortrait3.setPortraitData(Portrait_eau_bleu, Color.white, perso);
                 }
             }
         }
-        if (turnNumber < 4) 
+        // au premier tour de jeu on met les portraits en blanc
+        if (turnNumber == 3) 
         {
             UnGrayAllPortraits();
         }
@@ -116,7 +125,6 @@ public class infoPersoPortraits : NetworkBehaviour
     }
     public void GrayPortraitPerso(PersoData perso)
     {
-        Debug.Log(perso);
         if (MainPortrait.newHoveredPersonnage == perso)
         {
             MainPortrait.GrayPortrait();
@@ -132,6 +140,25 @@ public class infoPersoPortraits : NetworkBehaviour
         if (SubPortrait3.newHoveredPersonnage == perso)
         {
             SubPortrait3.GrayPortrait();
+        }
+    }
+    public void UnGrayPortraitPerso(PersoData perso)
+    {
+        if (MainPortrait.newHoveredPersonnage == perso)
+        {
+            MainPortrait.UnGrayPortrait();
+        }
+        if (SubPortrait1.newHoveredPersonnage == perso)
+        {
+            SubPortrait1.UnGrayPortrait();
+        }
+        if (SubPortrait2.newHoveredPersonnage == perso)
+        {
+            SubPortrait2.UnGrayPortrait();
+        }
+        if (SubPortrait3.newHoveredPersonnage == perso)
+        {
+            SubPortrait3.UnGrayPortrait();
         }
     }
 }

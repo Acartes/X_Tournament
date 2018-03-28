@@ -72,6 +72,11 @@ public class InfoPerso : NetworkBehaviour
         portraits.GrayPortraitPerso(newPerso);
     }
 
+    public void EnlevePerso(PersoData newPerso)
+    { // Lors d'un click sur une case
+        portraits.UnGrayPortraitPerso(newPerso);
+    }
+
     // ************* //
     // ** Actions ** //
     // ************* //

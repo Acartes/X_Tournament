@@ -25,7 +25,7 @@ public class PlacementBehaviour : NetworkBehaviour
   {
     if (Instance == null)
       Instance = this;
-    Debug.Log("PlacementBehaviour is Instanced");
+    Debug.Log(this.GetType() + " is Instanced");
     StartCoroutine(waitForInit());
   }
 
@@ -60,85 +60,60 @@ public class PlacementBehaviour : NetworkBehaviour
   }
 
 
-  public void OnNewClick()
-  { // Lors d'un click sur une case
-    Phase currentPhase = TurnManager.Instance.currentPhase;
-    Player currentPlayer = TurnManager.Instance.currentPlayer;
-    CaseData hoveredCase = HoverManager.Instance.hoveredCase;
+    public void OnNewClick()
+    { // Lors d'un click sur une case
+        Phase currentPhase = TurnManager.Instance.currentPhase;
+        Player currentPlayer = TurnManager.Instance.currentPlayer;
+        CaseData hoveredCase = HoverManager.Instance.hoveredCase;
 
-    Statut statut = hoveredCase.statut;
+        if (HoverManager.Instance.hoveredCase == null)
+        {
+            return;
+        }
 
-    if (currentPhase == Phase.Placement &&
+        Statut statut = hoveredCase.statut;
+        
+
+        // Place un perso ami sur une case vide
+        if (currentPhase == Phase.Placement &&
         SelectionManager.Instance.selectedCase == null &&
-        hoveredCase.GetComponent<CaseData>().casePathfinding == PathfindingCase.Walkable)
-      {
-        if ((Statut.placementRed & statut) == Statut.placementRed && currentPlayer == Player.Red)
-          {
-            CreatePerso(currentPhase, currentPlayer, 0);
-          }
-        if ((Statut.placementBlue & statut) == Statut.placementBlue && currentPlayer == Player.Blue)
-          {
-            Debug.Log("createPerso");
-            CreatePerso(currentPhase, currentPlayer, 1);
-          }
-      }
-    if (SelectionManager.Instance.selectedCase != null && HoverManager.Instance.hoveredCase != null)
-    if (currentPhase == Phase.Placement
-        && SelectionManager.Instance.selectedCase != null
-        && HoverManager.Instance.hoveredCase != null
-        && SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData>().persoCase != HoverManager.Instance.hoveredCase
-        && ((Statut.placementRed & statut) == Statut.placementRed && currentPlayer == Player.Red)
-        || ((Statut.placementBlue & statut) == Statut.placementBlue && currentPlayer == Player.Blue))
-      {
-        ChangePersoPosition(hoveredCase, HoverManager.Instance.hoveredPersonnage);
-        SelectionManager.Instance.Deselect(TurnManager.Instance.currentPhase, TurnManager.Instance.currentPlayer);
-      }
-  }
+        hoveredCase.casePathfinding == PathfindingCase.Walkable)
+        {
+            if ((Statut.placementRed & statut) == Statut.placementRed && currentPlayer == Player.Red)
+            {
+                CreatePerso(currentPhase, currentPlayer, 0);
+            }
+            if ((Statut.placementBlue & statut) == Statut.placementBlue && currentPlayer == Player.Blue)
+            {
+                CreatePerso(currentPhase, currentPlayer, 1);
+            }
+        }
+    }
 
-  void OnChangeTurn(object sender, PlayerArgs e)
-  { // Lorsqu'un joueur termine son tour
-    switch (e.currentPhase)
-      {
-      case Phase.Deplacement:
+    void OnChangeTurn(object sender, PlayerArgs e)
+    { // Lorsqu'un joueur termine son tour
+        switch (e.currentPhase)
+        {
+            case Phase.Deplacement:
 
-        break;
-      case Phase.Placement:
-        break;
-      }
-  }
+                break;
+            case Phase.Placement:
+                break;
+        }
+    }
 
   public void CreatePerso(Phase currentPhase, Player currentPlayer, int playerIndex)
   { // On créé un personnage sur une case
 
-    foreach (PersoData obj in RosterManager.Instance.listHero)
-      {
-        if (obj.owner == currentPlayer && obj.persoCase == null)
-          {
-            SelectionManager.Instance.selectedPersonnage = obj;
-            break;
-          }
-      }
-    /*
-    if (RosterManager.Instance.listHeroJXToPlace[playerIndex].Count != 0)
-      {
-        if (RosterManager.Instance.listHeroJXToPlace[playerIndex][persoToPlaceNumber] != SelectionManager.Instance.selectedPersonnage)
-          {
-            SelectionManager.Instance.selectedPersonnage = RosterManager.Instance.listHeroJXToPlace[playerIndex][persoToPlaceNumber];
 
-          }
-          
-        RosterManager.Instance.listHeroJXToPlace[playerIndex].RemoveAt(persoToPlaceNumber);*/
-
-    Debug.Log("createPersoPlacement");
     CreatePersoPlacement(HoverManager.Instance.hoveredCase, SelectionManager.Instance.selectedPersonnage);
     //  }
   }
 
   public void CreatePersoPlacement(CaseData hoveredCase, PersoData selectedPersonnage)
   { //
-    if (SelectionManager.Instance.selectedPersonnage != null)
+    if (SelectionManager.Instance.selectedPersonnage != null && hoveredCase.casePathfinding == PathfindingCase.Walkable)
       {
-        Debug.Log("transformedperso");
         selectedPersonnage.transform.position = hoveredCase.transform.position - selectedPersonnage.originPoint.transform.localPosition;
         selectedPersonnage.owner = TurnManager.Instance.currentPlayer;
         RosterManager.Instance.listHeroPlaced.Add(selectedPersonnage);
@@ -154,13 +129,17 @@ public class PlacementBehaviour : NetworkBehaviour
           }
 
         InfoPerso.Instance.PlacePerso(selectedPersonnage);
-        SelectionManager.Instance.Deselect(TurnManager.Instance.currentPhase, TurnManager.Instance.currentPlayer);
-
       }
   }
 
   public void ChangePersoPosition(CaseData hoveredCase, PersoData hoveredPersonnage)
-  { // Change la position d'un personnage déjà placer vers la case où a cliqué le joueur possesseur.
+  { // Change la position d'un personnage déjà placé vers la case où a cliqué le joueur possesseur.
+
+        if(hoveredCase == null)
+        {
+            hoveredPersonnage.transform.position = Vector3.one * 999;
+            return;
+        }
     if (hoveredCase.GetComponent<CaseData>().casePathfinding == PathfindingCase.Walkable || hoveredPersonnage != null)
       {
         SelectionManager.Instance.selectedCase = hoveredCase;
@@ -175,6 +154,6 @@ public class PlacementBehaviour : NetworkBehaviour
             SelectionManager.Instance.selectedPersonnage = hoveredPersonnage;
           }
       }
-    SelectionManager.Instance.Deselect(TurnManager.Instance.currentPhase, TurnManager.Instance.currentPlayer);
-  }
+        SelectionManager.Instance.Deselect();
+    }
 }
