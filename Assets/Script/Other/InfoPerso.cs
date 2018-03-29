@@ -62,17 +62,17 @@ public class InfoPerso : NetworkBehaviour
         portraits.SetupChangePlayerIcons(TurnManager.Instance.currentPlayer, TurnManager.Instance.TurnNumber);
     }
 
-    public void SelectPerso(PersoData newPerso)
+    public void PersoSelected(PersoData newPerso)
     {
         portraits.SelectPerso(newPerso);
     }
 
-    public void PlacePerso(PersoData newPerso)
+    public void PersoPlaced(PersoData newPerso)
     { // Lors d'un click sur une case
         portraits.GrayPortraitPerso(newPerso);
     }
 
-    public void EnlevePerso(PersoData newPerso)
+    public void PersoRemoved(PersoData newPerso)
     { // Lors d'un click sur une case
         portraits.UnGrayPortraitPerso(newPerso);
     }

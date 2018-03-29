@@ -87,14 +87,11 @@ public class CaseData : NetworkBehaviour
       {
         if (col.gameObject.GetComponent<PersoData>().persoCase != this)
           {
-            TransparencyManager.Instance.CheckCaseTransparency(this);
-            personnageData = col.gameObject.GetComponent<PersoData>();
+                personnageData = col.gameObject.GetComponent<PersoData>();
             casePathfinding = PathfindingCase.NonWalkable;
             col.gameObject.GetComponent<PersoData>().persoCase = this;
-            TransparencyManager.Instance.CheckCaseTransparency(this);
-            if (summonData != null)
+                if (summonData != null)
               {
-                Debug.Log("no homo 0");
                 summonData.ApplyEffect(col.gameObject.GetComponent<PersoData>());
               }
             // EffectManager.Instance.CheckAllEffect(this, col.gameObject);
@@ -106,11 +103,9 @@ public class CaseData : NetworkBehaviour
       {
         if (col.gameObject.GetComponent<BallonData>().ballonCase != this)
           {
-            TransparencyManager.Instance.CheckCaseTransparency(this);
             ballon = col.gameObject.GetComponent<BallonData>();
             casePathfinding = PathfindingCase.NonWalkable;
             col.gameObject.GetComponent<BallonData>().ballonCase = this;
-            TransparencyManager.Instance.CheckCaseTransparency(this);
             col.gameObject.GetComponent<BallonData>().xCoord = xCoord;
             col.gameObject.GetComponent<BallonData>().yCoord = yCoord;
             if (summonData != null)
@@ -139,38 +134,39 @@ public class CaseData : NetworkBehaviour
             col.gameObject.GetComponent<SummonData>().caseActual = this;
           }
       }
-  }
+        TransparencyManager.Instance.CheckCaseTransparency(this);
+    }
 
-  void OnTriggerExit2D(Collider2D col)
+    void OnTriggerExit2D(Collider2D col)
   {
     if (col.tag == "Personnage"
         && col.gameObject.GetComponent<BoxCollider2D>().enabled == true
         && GetComponent<PolygonCollider2D>().enabled == true)
       {
-
         personnageData = null;
         casePathfinding = PathfindingCase.Walkable;
         ChangeStatut(Statut.None, Statut.isSelected);
         ChangeStatut(Statut.None, Statut.isControllable);
-      }
+        }
 
-    if (col.tag == "Ballon"
+        if (col.tag == "Ballon"
         && col.gameObject.GetComponent<BoxCollider2D>().enabled == true
         && GetComponent<PolygonCollider2D>().enabled == true)
       {
-        TransparencyManager.Instance.CheckCaseTransparency(this);
         ballon = null;
         casePathfinding = PathfindingCase.Walkable;
         ChangeStatut(Statut.None, Statut.canShot);
-      }
-  }
+        }
+        TransparencyManager.Instance.CheckCaseTransparency(this);
 
-  // *************** //
-  // ** Fonctions ** // Fonctions réutilisables ailleurs
-  // *************** //
+    }
 
-  /// <summary>Change le statut, et met à jour la couleur et le feedback lié au statut</summary>
-  public void ChangeStatut(Statut newStatut = Statut.None, Statut oldStatut = Statut.None)
+    // *************** //
+    // ** Fonctions ** // Fonctions réutilisables ailleurs
+    // *************** //
+
+    /// <summary>Change le statut, et met à jour la couleur et le feedback lié au statut</summary>
+    public void ChangeStatut(Statut newStatut = Statut.None, Statut oldStatut = Statut.None)
   {
     Statut lastStatut = statut;
 

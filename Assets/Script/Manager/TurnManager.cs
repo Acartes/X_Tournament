@@ -80,7 +80,6 @@ public class TurnManager : NetworkBehaviour
     while (!LoadingManager.Instance.isGameReady())
       yield return new WaitForEndOfFrame();
 
-    Debug.Log("PASS TURN");
     changeTurnEvent(this, new PlayerArgs(currentPlayer, currentPhase));
   }
 

@@ -56,7 +56,10 @@ public class SynchroManager : NetworkBehaviour
         {
             return;
         }
-        EventManager.Instance.HoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
+        if (!GameManager.Instance.isSoloGame) // doublon en solo
+        {
+            EventManager.Instance.HoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
+        }
 
         CmdValidateHoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
     }
@@ -64,12 +67,9 @@ public class SynchroManager : NetworkBehaviour
     public IEnumerator WaitForHoverEventValidation(string hoveredCase, string hoveredPersonnage, string hoveredBallon)
     {
         validatedCommand = false;
-        if (validatedCommand == false)
-        {
-            Debug.Log("wait for validation of event");
+        Debug.Log("wait for validation of event");
             // si la fonction n'a pas été validé au bout de 0.X secondes, on relance
             yield return new WaitForSeconds(0.5f);
-        }
         if (validatedCommand == false)
         {
             Debug.Log("event not validated, resend...");
@@ -122,8 +122,10 @@ public class SynchroManager : NetworkBehaviour
         {
             return;
         }
-
-        EventManager.newClickEvent();
+        if (!GameManager.Instance.isSoloGame) // doublon en solo
+        {
+            EventManager.newClickEvent();
+        }
 
         CmdValidateClickEvent();
     }

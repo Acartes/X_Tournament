@@ -79,23 +79,7 @@ public class SelectionManager : NetworkBehaviour
         switch (currentPhase)
         {
             case (Phase.Placement):
-                // si on selectionne un personnage déjà selectionne, on le fait disparaître du terrain mais il reste selectionne (replaçable)
-                if(hoveredPersonnage != null
-                    && hoveredPersonnage.owner == currentPlayer
-                    && selectedPersonnage == hoveredPersonnage)
-                {
-                    PlacementBehaviour.Instance.ChangePersoPosition(null, selectedPersonnage); // total forcage, préférer SelectPerso() in-game
-                    InfoPerso.Instance.EnlevePerso(selectedPersonnage);
-                }
-
-                // si on selectionne un personnage à partir d'un portrait
-                if (hoveredPersonnage != null
-                    && hoveredPersonnage.owner == currentPlayer)
-                {
-                    selectedPersonnage = hoveredPersonnage; // total forcage, préférer SelectPerso() in-game
-                    InfoPerso.Instance.SelectPerso(hoveredPersonnage); // total forcage, préférer SelectPerso() in-game
-                }
-
+                return; // c'est le scriptPlacementBehaviour qui s'occupe des clicks de phase de placement
                 break;
             case (Phase.Deplacement):
                 if (hoveredPersonnage != null && hoveredPersonnage.owner == currentPlayer)
@@ -117,7 +101,6 @@ public class SelectionManager : NetworkBehaviour
         ResetSelection(ColorManager.Instance.caseColor);
         break;
       case Phase.Placement:
-                Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAA");
                 StartCoroutine(preSelectFirstPerso());
                 break;
       }
@@ -125,19 +108,15 @@ public class SelectionManager : NetworkBehaviour
 
     IEnumerator preSelectFirstPerso()
     {
-        Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAA");
         while (RosterManager.Instance.listHero.Count != 8)
             yield return new WaitForEndOfFrame();
-        Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAA");
         if (TurnManager.Instance.currentPlayer == Player.Red)
         {
             selectedPersonnage = RosterManager.Instance.listHero[0];
-            Debug.Log(selectedPersonnage);
         }
         if (TurnManager.Instance.currentPlayer == Player.Blue)
         {
             selectedPersonnage = RosterManager.Instance.listHero[4];
-            Debug.Log(selectedPersonnage);
         }
     }
 
@@ -176,7 +155,7 @@ public class SelectionManager : NetworkBehaviour
     selectedPersonnage = hoveredPersonnage;
 
         UIManager.Instance.ChangeSpriteSpellButton(selectedPersonnage);
-        InfoPerso.Instance.SelectPerso(hoveredPersonnage);
+        InfoPerso.Instance.PersoSelected(hoveredPersonnage);
 
         selectedCase.ChangeStatut(Statut.isSelected);
     GameManager.Instance.actualAction = PersoAction.isSelected;
