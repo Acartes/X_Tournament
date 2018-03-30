@@ -11,18 +11,18 @@ public class DebugGetId : NetworkBehaviour
   public String text;
 
   public override void OnStartClient()
-    {
-      if (Instance == null)
-        Instance = this;
-      StartCoroutine(waitForInit());
-    }
+  {
+    if (Instance == null)
+      Instance = this;
+    StartCoroutine(waitForInit());
+  }
 
   IEnumerator waitForInit()
-    {
-      while (!LoadingManager.Instance.isGameReady())
-        yield return new WaitForEndOfFrame();
-      Init();
-    }
+  {
+    while (!LoadingManager.Instance.isGameReady())
+      yield return new WaitForEndOfFrame();
+    Init();
+  }
 
   private void Init()
   {
@@ -30,10 +30,10 @@ public class DebugGetId : NetworkBehaviour
   }
 
 
-    private void Update()
-    {
+  private void Update()
+  {
     Instance = this;
-       // GetComponent<Text>().text = RpcFunctions.Instance.localId.ToString();
-      GetComponent<Text>().text = text;
-    }
+    // GetComponent<Text>().text = RpcFunctions.Instance.localId.ToString();
+    GetComponent<Text>().text = text;
+  }
 }

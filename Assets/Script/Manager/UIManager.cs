@@ -8,13 +8,13 @@ using UnityEngine.Networking;
 public class UIManager : NetworkBehaviour
 {
 
-    // *************** //
-    // ** Variables ** // Toutes les variables sans distinctions
-    // *************** //
+  // *************** //
+  // ** Variables ** // Toutes les variables sans distinctions
+  // *************** //
 
-    public Animator animChangeTurn;
-    public List<GameObject> banner;
-    public List<GameObject> bannerText;
+  public Animator animChangeTurn;
+  public List<GameObject> banner;
+  public List<GameObject> bannerText;
   public List<Color> bannerColor;
   public List<Color> bannerTextColor;
   public GameObject phaseText;
@@ -60,7 +60,7 @@ public class UIManager : NetworkBehaviour
 
   void OnDisable()
   {
-    if (LoadingManager.Instance.isGameReady())
+    if (LoadingManager.Instance != null && LoadingManager.Instance.isGameReady())
       {
         TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
       }

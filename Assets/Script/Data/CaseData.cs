@@ -53,7 +53,7 @@ public class CaseData : NetworkBehaviour
 
   void OnDisable()
   {
-    if (LoadingManager.Instance.isGameReady())
+    if (LoadingManager.Instance != null && LoadingManager.Instance.isGameReady())
       TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
   }
       
@@ -87,10 +87,10 @@ public class CaseData : NetworkBehaviour
       {
         if (col.gameObject.GetComponent<PersoData>().persoCase != this)
           {
-                personnageData = col.gameObject.GetComponent<PersoData>();
+            personnageData = col.gameObject.GetComponent<PersoData>();
             casePathfinding = PathfindingCase.NonWalkable;
             col.gameObject.GetComponent<PersoData>().persoCase = this;
-                if (summonData != null)
+            if (summonData != null)
               {
                 summonData.ApplyEffect(col.gameObject.GetComponent<PersoData>());
               }
@@ -134,10 +134,10 @@ public class CaseData : NetworkBehaviour
             col.gameObject.GetComponent<SummonData>().caseActual = this;
           }
       }
-        TransparencyManager.Instance.CheckCaseTransparency(this);
-    }
+    TransparencyManager.Instance.CheckCaseTransparency(this);
+  }
 
-    void OnTriggerExit2D(Collider2D col)
+  void OnTriggerExit2D(Collider2D col)
   {
     if (col.tag == "Personnage"
         && col.gameObject.GetComponent<BoxCollider2D>().enabled == true
@@ -147,26 +147,26 @@ public class CaseData : NetworkBehaviour
         casePathfinding = PathfindingCase.Walkable;
         ChangeStatut(Statut.None, Statut.isSelected);
         ChangeStatut(Statut.None, Statut.isControllable);
-        }
+      }
 
-        if (col.tag == "Ballon"
+    if (col.tag == "Ballon"
         && col.gameObject.GetComponent<BoxCollider2D>().enabled == true
         && GetComponent<PolygonCollider2D>().enabled == true)
       {
         ballon = null;
         casePathfinding = PathfindingCase.Walkable;
         ChangeStatut(Statut.None, Statut.canShot);
-        }
-        TransparencyManager.Instance.CheckCaseTransparency(this);
+      }
+    TransparencyManager.Instance.CheckCaseTransparency(this);
 
-    }
+  }
 
-    // *************** //
-    // ** Fonctions ** // Fonctions réutilisables ailleurs
-    // *************** //
+  // *************** //
+  // ** Fonctions ** // Fonctions réutilisables ailleurs
+  // *************** //
 
-    /// <summary>Change le statut, et met à jour la couleur et le feedback lié au statut</summary>
-    public void ChangeStatut(Statut newStatut = Statut.None, Statut oldStatut = Statut.None)
+  /// <summary>Change le statut, et met à jour la couleur et le feedback lié au statut</summary>
+  public void ChangeStatut(Statut newStatut = Statut.None, Statut oldStatut = Statut.None)
   {
     Statut lastStatut = statut;
 

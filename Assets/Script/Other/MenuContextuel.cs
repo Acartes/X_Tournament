@@ -49,7 +49,7 @@ public class MenuContextuel : NetworkBehaviour
 
   void OnDisable()
   {
-    if (LoadingManager.Instance.isGameReady())
+    if (LoadingManager.Instance != null && LoadingManager.Instance.isGameReady())
       {
         CaseManager.Instance.EnableAllColliders();
       }
@@ -58,7 +58,7 @@ public class MenuContextuel : NetworkBehaviour
   void OnChangeTurn(object sender, PlayerArgs e)
   { // Lorsqu'un joueur termine son tour
 
-        if (MenuContextuel.Instance != null)
+    if (MenuContextuel.Instance != null)
       {
         MenuContextuel.Instance.gameObject.transform.position = new Vector3(999, 999, 999);
       }

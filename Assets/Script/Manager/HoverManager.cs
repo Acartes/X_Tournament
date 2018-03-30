@@ -63,32 +63,32 @@ public class HoverManager : NetworkBehaviour
     EventManager.newHoverEvent -= OnNewHover;
   }
 
-    // *************** //
-    // ** Events **    // Appel de fonctions au sein de ce script grâce à des events
-    // *************** //
+  // *************** //
+  // ** Events **    // Appel de fonctions au sein de ce script grâce à des events
+  // *************** //
 
-    void OnNewHover(object sender, HoverArgs e)
-    { // Curseur se trouve sur une case ou quitte une case
+  void OnNewHover(object sender, HoverArgs e)
+  { // Curseur se trouve sur une case ou quitte une case
 
-        if (hoveredLastCase == null || hoveredLastCase != hoveredCase)
-        {
-            hoveredLastCase = hoveredCase;
-        }
+    if (hoveredLastCase == null || hoveredLastCase != hoveredCase)
+      {
+        hoveredLastCase = hoveredCase;
+      }
 
-        if (hoveredCase != null)
-        {
-            changeColorExit(GameManager.Instance.currentPhase);
-        }
+    if (hoveredCase != null)
+      {
+        changeColorExit(GameManager.Instance.currentPhase);
+      }
 
-        hoveredPersonnage = e.hoveredPersonnage;
-        hoveredCase = e.hoveredCase;
-        hoveredBallon = e.hoveredBallon;
-        if (hoveredCase != null)
-        {
-            changeColorEnter();
-        }
+    hoveredPersonnage = e.hoveredPersonnage;
+    hoveredCase = e.hoveredCase;
+    hoveredBallon = e.hoveredBallon;
+    if (hoveredCase != null)
+      {
+        changeColorEnter();
+      }
 
-    }
+  }
       
   // *************** //
   // ** Fonctions ** // Fonctions réutilisables ailleurs
