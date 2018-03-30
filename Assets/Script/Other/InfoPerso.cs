@@ -57,9 +57,11 @@ public class InfoPerso : NetworkBehaviour
 
     IEnumerator waitForList()
     {
+        IsVisible(false);
         while (RosterManager.Instance.listHero.Count != 8)
             yield return new WaitForEndOfFrame();
         portraits.SetupChangePlayerIcons(TurnManager.Instance.currentPlayer, TurnManager.Instance.TurnNumber);
+        IsVisible(true);
     }
 
     public void PersoSelected(PersoData newPerso)
