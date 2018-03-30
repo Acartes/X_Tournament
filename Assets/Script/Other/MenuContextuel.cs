@@ -58,9 +58,7 @@ public class MenuContextuel : NetworkBehaviour
   void OnChangeTurn(object sender, PlayerArgs e)
   { // Lorsqu'un joueur termine son tour
 
-    SelectionManager.Instance.Deselect(TurnManager.Instance.currentPhase, TurnManager.Instance.currentPlayer);
-
-    if (MenuContextuel.Instance != null)
+        if (MenuContextuel.Instance != null)
       {
         MenuContextuel.Instance.gameObject.transform.position = new Vector3(999, 999, 999);
       }

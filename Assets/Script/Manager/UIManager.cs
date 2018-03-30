@@ -8,12 +8,13 @@ using UnityEngine.Networking;
 public class UIManager : NetworkBehaviour
 {
 
-  // *************** //
-  // ** Variables ** // Toutes les variables sans distinctions
-  // *************** //
+    // *************** //
+    // ** Variables ** // Toutes les variables sans distinctions
+    // *************** //
 
-  public List<GameObject> banner;
-  public List<GameObject> bannerText;
+    public Animator animChangeTurn;
+    public List<GameObject> banner;
+    public List<GameObject> bannerText;
   public List<Color> bannerColor;
   public List<Color> bannerTextColor;
   public GameObject phaseText;
@@ -71,6 +72,8 @@ public class UIManager : NetworkBehaviour
 
   void OnChangeTurn(object sender, PlayerArgs e)
   {
+    animChangeTurn.SetTrigger(e.currentPlayer.ToString());
+
     switch (e.currentPlayer)
       {
       case Player.Red:

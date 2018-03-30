@@ -7,174 +7,174 @@ using UnityEngine.Networking;
 
 public class PlacementBehaviour : NetworkBehaviour
 {
-  // *************** //
-  // ** Variables ** //
-  // *************** //
+    // *************** //
+    // ** Variables ** //
+    // *************** //
 
-  [SerializeField]
-  Material redMat;
-  [SerializeField]
-  Material blueMat;
+    [SerializeField]
+    Material redMat;
+    [SerializeField]
+    Material blueMat;
 
-  [Tooltip("Index du personnage à placer")]
-  int persoToPlaceNumber = -1;
+    [Tooltip("Index du personnage à placer")]
+    int persoToPlaceNumber = -1;
 
-  public static PlacementBehaviour Instance;
+    public static PlacementBehaviour Instance;
 
-  public override void OnStartClient()
-  {
-    if (Instance == null)
-      Instance = this;
-    Debug.Log("PlacementBehaviour is Instanced");
-    StartCoroutine(waitForInit());
-  }
+    public override void OnStartClient()
+    {
+        if (Instance == null)
+            Instance = this;
+        Debug.Log(this.GetType() + " is Instanced");
+        StartCoroutine(waitForInit());
+    }
 
-  IEnumerator waitForInit()
-  {
-    while (!LoadingManager.Instance.isGameReady())
-      {
+    IEnumerator waitForInit()
+    {
+        while (!LoadingManager.Instance.isGameReady())
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        Init();
+    }
+
+    private void Init()
+    {
+        EventManager.newClickEvent += OnNewClick;
+        StartCoroutine(LateOnEnable());
+    }
+
+    IEnumerator LateOnEnable()
+    {
         yield return new WaitForEndOfFrame();
-      }
-    Init();
-  }
+        TurnManager.Instance.changeTurnEvent += OnChangeTurn;
+    }
 
-  private void Init()
-  {
-    EventManager.newClickEvent += OnNewClick;
-    StartCoroutine(LateOnEnable());
-  }
-
-  IEnumerator LateOnEnable()
-  {
-    yield return new WaitForEndOfFrame();
-    TurnManager.Instance.changeTurnEvent += OnChangeTurn;
-  }
-
-  void OnDisable()
-  {
-    if (LoadingManager.Instance.isGameReady())
-      {
-        EventManager.newClickEvent -= OnNewClick;
-        TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
-      }
-  }
+    void OnDisable()
+    {
+        if (LoadingManager.Instance.isGameReady())
+        {
+            EventManager.newClickEvent -= OnNewClick;
+            TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
+        }
+    }
 
 
-  public void OnNewClick()
-  { // Lors d'un click sur une case
-    Phase currentPhase = TurnManager.Instance.currentPhase;
-    Player currentPlayer = TurnManager.Instance.currentPlayer;
-    CaseData hoveredCase = HoverManager.Instance.hoveredCase;
+    public void OnNewClick()
+    {
+        // Lors d'un click sur une case
+        Phase currentPhase = TurnManager.Instance.currentPhase;
+        Player currentPlayer = TurnManager.Instance.currentPlayer;
+        CaseData hoveredCase = HoverManager.Instance.hoveredCase;
 
-    Statut statut = hoveredCase.statut;
+        if (currentPhase != Phase.Placement)
+            return;
 
-    if (currentPhase == Phase.Placement &&
-        SelectionManager.Instance.selectedCase == null &&
-        hoveredCase.GetComponent<CaseData>().casePathfinding == PathfindingCase.Walkable)
-      {
-        if ((Statut.placementRed & statut) == Statut.placementRed && currentPlayer == Player.Red)
-          {
-            CreatePerso(currentPhase, currentPlayer, 0);
-          }
-        if ((Statut.placementBlue & statut) == Statut.placementBlue && currentPlayer == Player.Blue)
-          {
-            Debug.Log("createPerso");
-            CreatePerso(currentPhase, currentPlayer, 1);
-          }
-      }
-    if (SelectionManager.Instance.selectedCase != null && HoverManager.Instance.hoveredCase != null)
-    if (currentPhase == Phase.Placement
-        && SelectionManager.Instance.selectedCase != null
-        && HoverManager.Instance.hoveredCase != null
-        && SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData>().persoCase != HoverManager.Instance.hoveredCase
-        && ((Statut.placementRed & statut) == Statut.placementRed && currentPlayer == Player.Red)
-        || ((Statut.placementBlue & statut) == Statut.placementBlue && currentPlayer == Player.Blue))
-      {
-        ChangePersoPosition(hoveredCase, HoverManager.Instance.hoveredPersonnage);
-        SelectionManager.Instance.Deselect(TurnManager.Instance.currentPhase, TurnManager.Instance.currentPlayer);
-      }
-  }
+        // Place un perso ami sur une case vide
+        if (currentPhase == Phase.Placement &&
+        HoverManager.Instance.hoveredCase != null && HoverManager.Instance.hoveredPersonnage == null &&
+        hoveredCase.casePathfinding == PathfindingCase.Walkable)
+        {
+            Statut statut = hoveredCase.statut;
 
-  void OnChangeTurn(object sender, PlayerArgs e)
-  { // Lorsqu'un joueur termine son tour
-    switch (e.currentPhase)
-      {
-      case Phase.Deplacement:
+            Debug.Log("Place un perso ami sur une case vide");
+            if ((Statut.placementRed & statut) == Statut.placementRed && currentPlayer == Player.Red)
+            {
+                CreatePerso(currentPhase, currentPlayer, 0);
+            }
+            if ((Statut.placementBlue & statut) == Statut.placementBlue && currentPlayer == Player.Blue)
+            {
+                CreatePerso(currentPhase, currentPlayer, 1);
+            }
+        }
+        // si on selectionne un personnage à partir d'un portrait
+        else if (HoverManager.Instance.hoveredPersonnage != null && HoverManager.Instance.hoveredCase == null)
+        {
+            Debug.Log("si on selectionne un personnage à partir d'un portrait");
 
-        break;
-      case Phase.Placement:
-        break;
-      }
-  }
+            SelectionManager.Instance.selectedPersonnage = HoverManager.Instance.hoveredPersonnage; // total forcage, préférer SelectPerso() in-game
+            InfoPerso.Instance.PersoSelected(SelectionManager.Instance.selectedPersonnage); // total forcage, préférer SelectPerso() in-game
+        }
 
-  public void CreatePerso(Phase currentPhase, Player currentPlayer, int playerIndex)
-  { // On créé un personnage sur une case
+        // Fait disparaître un perso placé sur une case
+        else if (HoverManager.Instance.hoveredPersonnage != null && HoverManager.Instance.hoveredCase != null)
+        {
+            Debug.Log("Fait disparaître un perso placé sur une case");
+            SelectionManager.Instance.selectedPersonnage = HoverManager.Instance.hoveredPersonnage; // total forcage, préférer SelectPerso() in-game
 
-    foreach (PersoData obj in RosterManager.Instance.listHero)
-      {
-        if (obj.owner == currentPlayer && obj.persoCase == null)
-          {
-            SelectionManager.Instance.selectedPersonnage = obj;
-            break;
-          }
-      }
-    /*
-    if (RosterManager.Instance.listHeroJXToPlace[playerIndex].Count != 0)
-      {
-        if (RosterManager.Instance.listHeroJXToPlace[playerIndex][persoToPlaceNumber] != SelectionManager.Instance.selectedPersonnage)
-          {
-            SelectionManager.Instance.selectedPersonnage = RosterManager.Instance.listHeroJXToPlace[playerIndex][persoToPlaceNumber];
+            InfoPerso.Instance.PersoSelected(SelectionManager.Instance.selectedPersonnage);
+            InfoPerso.Instance.PersoRemoved(SelectionManager.Instance.selectedPersonnage);
+            ChangePersoPosition(null, SelectionManager.Instance.selectedPersonnage); // total forcage, préférer SelectPerso() in-game
+        }
+    }
 
-          }
-          
-        RosterManager.Instance.listHeroJXToPlace[playerIndex].RemoveAt(persoToPlaceNumber);*/
+    void OnChangeTurn(object sender, PlayerArgs e)
+    { // Lorsqu'un joueur termine son tour
+        switch (e.currentPhase)
+        {
+            case Phase.Deplacement:
 
-    Debug.Log("createPersoPlacement");
-    CreatePersoPlacement(HoverManager.Instance.hoveredCase, SelectionManager.Instance.selectedPersonnage);
-    //  }
-  }
+                break;
+            case Phase.Placement:
+                break;
+        }
+    }
 
-  public void CreatePersoPlacement(CaseData hoveredCase, PersoData selectedPersonnage)
-  { //
-    if (SelectionManager.Instance.selectedPersonnage != null)
-      {
-        Debug.Log("transformedperso");
-        selectedPersonnage.transform.position = hoveredCase.transform.position - selectedPersonnage.originPoint.transform.localPosition;
-        selectedPersonnage.owner = TurnManager.Instance.currentPlayer;
-        RosterManager.Instance.listHeroPlaced.Add(selectedPersonnage);
+    public void CreatePerso(Phase currentPhase, Player currentPlayer, int playerIndex)
+    { // On créé un personnage sur une case
 
-        if (selectedPersonnage.GetComponent<PersoData>().owner == Player.Red)
-          {
-            selectedPersonnage.GetComponent<PersoData>().ChangeRotation(Direction.SudEst);
-            // mettre icone perso rouge
-          } else
-          {
-            selectedPersonnage.GetComponent<PersoData>().ChangeRotation(Direction.NordOuest);
-            // mettre icone perso bleu
-          }
 
-        InfoPerso.Instance.PlacePerso(selectedPersonnage);
-        SelectionManager.Instance.Deselect(TurnManager.Instance.currentPhase, TurnManager.Instance.currentPlayer);
+        CreatePersoPlacement(HoverManager.Instance.hoveredCase, SelectionManager.Instance.selectedPersonnage);
+        //  }
+    }
 
-      }
-  }
+    public void CreatePersoPlacement(CaseData hoveredCase, PersoData selectedPersonnage)
+    { //
+        if (SelectionManager.Instance.selectedPersonnage != null && hoveredCase.casePathfinding == PathfindingCase.Walkable)
+        {
+            selectedPersonnage.transform.position = hoveredCase.transform.position - selectedPersonnage.originPoint.transform.localPosition;
+            selectedPersonnage.owner = TurnManager.Instance.currentPlayer;
+            RosterManager.Instance.listHeroPlaced.Add(selectedPersonnage);
 
-  public void ChangePersoPosition(CaseData hoveredCase, PersoData hoveredPersonnage)
-  { // Change la position d'un personnage déjà placer vers la case où a cliqué le joueur possesseur.
-    if (hoveredCase.GetComponent<CaseData>().casePathfinding == PathfindingCase.Walkable || hoveredPersonnage != null)
-      {
-        SelectionManager.Instance.selectedCase = hoveredCase;
-        SelectionManager.Instance.selectedLastPersonnage = SelectionManager.Instance.selectedPersonnage;
-        SelectionManager.Instance.selectedLastPersonnage.transform.position = SelectionManager.Instance.selectedCase.transform.position + hoveredPersonnage.originPoint.transform.position;
-        if (hoveredPersonnage != null && SelectionManager.Instance.selectedLastCase != null)
-          {
-            SelectionManager.Instance.selectedPersonnage = hoveredPersonnage;
-            SelectionManager.Instance.selectedPersonnage.transform.position = SelectionManager.Instance.selectedLastCase.transform.position + hoveredPersonnage.originPoint.transform.position;
-          } else
-          {
-            SelectionManager.Instance.selectedPersonnage = hoveredPersonnage;
-          }
-      }
-    SelectionManager.Instance.Deselect(TurnManager.Instance.currentPhase, TurnManager.Instance.currentPlayer);
-  }
+            if (selectedPersonnage.GetComponent<PersoData>().owner == Player.Red)
+            {
+                selectedPersonnage.GetComponent<PersoData>().ChangeRotation(Direction.SudEst);
+                // mettre icone perso rouge
+            }
+            else
+            {
+                selectedPersonnage.GetComponent<PersoData>().ChangeRotation(Direction.NordOuest);
+                // mettre icone perso bleu
+            }
+            hoveredCase.personnageData = selectedPersonnage;
+            HoverManager.Instance.hoveredPersonnage = selectedPersonnage;
+            InfoPerso.Instance.PersoPlaced(selectedPersonnage);
+        }
+    }
+
+    public void ChangePersoPosition(CaseData hoveredCase, PersoData selectedPersonnage)
+    { // Change la position d'un personnage déjà placé vers la case où a cliqué le joueur possesseur.
+
+        if (hoveredCase == null)
+        {
+            selectedPersonnage.transform.position = Vector3.one * 999;
+            return;
+        }
+        if (hoveredCase.GetComponent<CaseData>().casePathfinding == PathfindingCase.Walkable || selectedPersonnage != null)
+        {
+            SelectionManager.Instance.selectedCase = hoveredCase;
+            SelectionManager.Instance.selectedLastPersonnage = SelectionManager.Instance.selectedPersonnage;
+            SelectionManager.Instance.selectedLastPersonnage.transform.position = SelectionManager.Instance.selectedCase.transform.position + selectedPersonnage.originPoint.transform.position;
+            if (selectedPersonnage != null && SelectionManager.Instance.selectedLastCase != null)
+            {
+                SelectionManager.Instance.selectedPersonnage = selectedPersonnage;
+                SelectionManager.Instance.selectedPersonnage.transform.position = SelectionManager.Instance.selectedLastCase.transform.position + selectedPersonnage.originPoint.transform.position;
+            }
+            else
+            {
+                SelectionManager.Instance.selectedPersonnage = selectedPersonnage;
+            }
+        }
+        SelectionManager.Instance.Deselect();
+    }
 }

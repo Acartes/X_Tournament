@@ -57,19 +57,26 @@ public class InfoPerso : NetworkBehaviour
 
     IEnumerator waitForList()
     {
+        IsVisible(false);
         while (RosterManager.Instance.listHero.Count != 8)
             yield return new WaitForEndOfFrame();
         portraits.SetupChangePlayerIcons(TurnManager.Instance.currentPlayer, TurnManager.Instance.TurnNumber);
+        IsVisible(true);
     }
 
-    public void SelectPerso(PersoData newPerso)
+    public void PersoSelected(PersoData newPerso)
     {
         portraits.SelectPerso(newPerso);
     }
 
-    public void PlacePerso(PersoData newPerso)
+    public void PersoPlaced(PersoData newPerso)
     { // Lors d'un click sur une case
         portraits.GrayPortraitPerso(newPerso);
+    }
+
+    public void PersoRemoved(PersoData newPerso)
+    { // Lors d'un click sur une case
+        portraits.UnGrayPortraitPerso(newPerso);
     }
 
     // ************* //

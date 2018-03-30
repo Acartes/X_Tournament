@@ -9,10 +9,17 @@ public class PortraitInteractive : NetworkBehaviour
 
     public PersoData newHoveredPersonnage;
 
-    public void setPortraitImage(Sprite newSprite, PersoData newPerso)
+    public void setPortraitData(PortraitInteractive newPortrait)
+    {
+        GetComponent<Image>().sprite = newPortrait.GetComponent<Image>().sprite;
+        GetComponent<Image>().color = newPortrait.GetComponent<Image>().color;
+        newHoveredPersonnage = newPortrait.newHoveredPersonnage;
+    }
+    public void setPortraitData(Sprite newSprite, Color newColor, PersoData newPersoData)
     {
         GetComponent<Image>().sprite = newSprite;
-        newHoveredPersonnage = newPerso;
+        GetComponent<Image>().color = newColor;
+        newHoveredPersonnage = newPersoData;
     }
 
     public void HoverPerso() // hover comme chez HoverEvent
@@ -21,10 +28,11 @@ public class PortraitInteractive : NetworkBehaviour
         {
             return;
         }
+
         if (!enabled || !LoadingManager.Instance.isGameReady())
             return;
 
-        string hoveredCase = newHoveredPersonnage.persoCase.name;
+        string hoveredCase = newHoveredPersonnage.persoCase != null ? newHoveredPersonnage.persoCase.name : "null";
         string hoveredPersonnage = newHoveredPersonnage.name;
         string hoveredBallon = "null";
 
