@@ -29,12 +29,17 @@ public class EventManager : NetworkBehaviour
 
     if (hoveredCaseString != "null")
       hoveredCase = GameObject.Find(hoveredCaseString).GetComponent<CaseData>();
-    if (hoveredPersonnageString != "null")
+        if (hoveredPersonnageString != "null" && hoveredCase != null)
       hoveredPersonnage = hoveredCase.personnageData;
-    if (hoveredBallonString != "null")
+    if (hoveredBallonString != "null" && hoveredCase != null)
       hoveredBallon = hoveredCase.ballon;
 
-    newHoverEvent(this, new HoverArgs(hoveredCase, hoveredPersonnage, hoveredBallon));
+        if (hoveredPersonnage == null && hoveredPersonnageString != "null")
+            hoveredPersonnage = GameObject.Find(hoveredPersonnageString).GetComponent<PersoData>();
+        if (hoveredBallon == null && hoveredBallonString != "null")
+            hoveredBallon = GameObject.Find(hoveredBallonString).GetComponent<BallonData>();
+
+        newHoverEvent(this, new HoverArgs(hoveredCase, hoveredPersonnage, hoveredBallon));
   }
 
   [ClientRpc]
