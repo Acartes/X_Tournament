@@ -62,7 +62,7 @@ public class TackleBehaviour : NetworkBehaviour
 
   void OnDisable()
   {
-    if (LoadingManager.Instance.isGameReady())
+    if (LoadingManager.Instance != null && LoadingManager.Instance.isGameReady())
       {
         TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
       }

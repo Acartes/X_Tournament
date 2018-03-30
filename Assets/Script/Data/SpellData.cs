@@ -29,11 +29,11 @@ public class SpellData : NetworkBehaviour
   public bool hurtWhenStopped;
 
   public SummonData summonedObj;
+  SummonData summonedObjInstancied;
   public bool isDirect;
 
   public Sprite buttonSprite;
 
-  List<CaseData> rangeList = new List<CaseData>();
   List<CaseData> AoEList = new List<CaseData>();
   List<CaseData> pushList = new List<CaseData>();
 
@@ -43,7 +43,17 @@ public class SpellData : NetworkBehaviour
 
   public int numberLimitCast;
    
-  public AnimationClip animSpell;
+  public RuntimeAnimatorController animatorSpell;
+
+  [EnumFlagAttribute]
+  [Space(40)]
+  public ObjectType affectedTarget;
+  [EnumFlagAttribute]
+  [Space(40)]
+  public ObjectType allowedTarget;
+
+  List<CaseData> rangeList = new List<CaseData>();
+  List<CaseData> targetList = new List<CaseData>();
 
   // ******************** //
   // ** Initialisation ** // Fonctions de départ, non réutilisable
@@ -73,13 +83,29 @@ public class SpellData : NetworkBehaviour
   // ** Fonctions ** // Fonctions réutilisables ailleurs
   // *************** //
 
-  /// <summary>Montre la portée du sort avant de le lancer</summary>
-  public void ShowRange()
+  public void ShowAllFeedbacks()
+  {
+    foreach (CaseData obj in CaseManager.listAllCase)
+      {
+        obj.ChangeStatut(Statut.None, Statut.atAoE);
+        obj.ChangeStatut(Statut.None, Statut.atPush);
+      }
+
+    if (!targetList.Contains(HoverManager.Instance.hoveredCase))
+      return;
+
+    ShowAreaOfEffect();
+    ShowPushEffect();
+    ShowSummon();
+  }
+
+  public void newRangeList()
   {
     List<CaseData> list = new List<CaseData>();
     List<CaseData> list2 = new List<CaseData>();
     CaseData selectedCase = SelectionManager.Instance.selectedCase;
     list.Add(selectedCase);
+    rangeList.Clear();
 
     // get des cases
     if (isLinear)
@@ -121,24 +147,81 @@ public class SpellData : NetworkBehaviour
           }
         list.Remove(selectedCase);
       }
-
-    // on montre les cases qu'on a get
-    if (rangeList.Count != 0)
-      rangeList.Clear();
-      
     rangeList.AddRange(list);
+    foreach (CaseData obj in rangeList)
+      {
+        if (obj != null)
+          {
+            obj.ChangeStatut(Statut.atRange);
+          }
+      }
+  }
 
+  bool CheckRange()
+  {
     foreach (CaseData obj in rangeList)
       {
         if (obj != null)
           obj.ChangeStatut(Statut.atRange);
       }
+    return true;
+  }
 
+  bool CheckTarget()
+  {
+    foreach (CaseData obj in targetList)
+      {
+        if (obj != null)
+          obj.ChangeStatut(Statut.canTarget);
+      }
+    return true;
+  }
+
+  public void newTargetList()
+  {
+    bool canShow = false;
+    CaseData hoveredCase = HoverManager.Instance.hoveredCase;
+    targetList.Clear();
+    foreach (CaseData obj in rangeList)
+      {
+        if ((ObjectType.Invoc & allowedTarget) == ObjectType.Invoc)
+        if (obj.summonData != null && !targetList.Contains(obj))
+          targetList.Add(obj);
+
+        if ((ObjectType.AllyPerso & allowedTarget) == ObjectType.AllyPerso)
+        if (obj.personnageData != null && obj.personnageData.owner == GameManager.Instance.currentPlayer && !targetList.Contains(obj))
+          targetList.Add(obj);
+
+        if ((ObjectType.EnemyPerso & allowedTarget) == ObjectType.EnemyPerso)
+        if (obj.personnageData != null && obj.personnageData.owner != GameManager.Instance.currentPlayer && !targetList.Contains(obj))
+          targetList.Add(obj);
+
+        if ((ObjectType.Ballon & allowedTarget) == ObjectType.Ballon)
+        if (obj.ballon != null && !targetList.Contains(obj))
+          targetList.Add(obj);
+
+        if ((ObjectType.EmptyCase & allowedTarget) == ObjectType.EmptyCase)
+        if (obj.casePathfinding == PathfindingCase.Walkable && !targetList.Contains(obj))
+          targetList.Add(obj);
+
+        if (!((ObjectType.Self & allowedTarget) == ObjectType.Self))
+        if (obj == SelectionManager.Instance.selectedCase && targetList.Contains(obj))
+          targetList.Remove(obj);
+      }
+    foreach (CaseData obj in targetList)
+      {
+        if (obj != null)
+          obj.ChangeStatut(Statut.canTarget);
+      }
   }
 
   /// <summary>Montre l'AoE du sort avant de le lancer</summary>
   public void ShowAreaOfEffect()
   {
+
+    CaseData hoveredCase = HoverManager.Instance.hoveredCase;
+    ShowPushEffect();
+
     foreach (CaseData obj in CaseManager.Instance.GetAllCaseWithStatut(Statut.atAoE))
       {
         obj.ChangeStatut(Statut.None, Statut.atAoE);
@@ -147,7 +230,6 @@ public class SpellData : NetworkBehaviour
     int AoE = areaOfEffect;
     List<CaseData> list = new List<CaseData>();
     List<CaseData> list2 = new List<CaseData>();
-    CaseData hoveredCase = HoverManager.Instance.hoveredCase;
     list.Add(hoveredCase);
     for (int i = 0; i < AoE; i++)
       {
@@ -182,47 +264,70 @@ public class SpellData : NetworkBehaviour
   /// <summary>Montre à quelle portée les personnages vont être projetés avant de le lancer</summary>
   public void ShowPushEffect()
   {
-    int push = pushValue;
-    List<CaseData> list = new List<CaseData>();
-    List<CaseData> list2 = new List<CaseData>();
-    list.Add(SelectionManager.Instance.selectedCase);
+    if (HoverManager.Instance.hoveredPersonnage == null)
+      return;
+      
+    PersoData persoAfflicted = HoverManager.Instance.hoveredPersonnage;
+    PushBehaviour.Instance.PushCheck(persoAfflicted.gameObject, pushValue, persoAfflicted.persoCase, pushType, pushDirection);
 
-    pushList.Clear();
-
-    if (isLinear)
-      {
-        for (int i = 0; i < push; i++)
-          {
-            foreach (CaseData obj in list)
-              {
-                if (obj.GetCaseRelativeCoordinate(i, 0) != null)
-                  pushList.Add(obj.GetCaseRelativeCoordinate(i, 0));
-              }
-          }
-      }
+//    foreach (CaseData obj in CaseManager.Instance.GetAllCaseWithStatut(Statut.atPush))
+//      {
+//        obj.ChangeStatut(Statut.None, Statut.atPush);
+//      }
+//
+//    // PushBehaviour.Instance.PushCheck(persoAfflicted, pushValue, pushType, pushDirection);
+//
+//    int push = pushValue;
+//    List<CaseData> list = new List<CaseData>();
+//    List<CaseData> list2 = new List<CaseData>();
+//    list.Add(HoverManager.Instance.hoveredCase);
+//
+//    pushList.Clear();
+//
+//    if (isLinear)
+//      {
+//        for (int i = 0; i < push + 1; i++)
+//          {
+//            foreach (CaseData obj in list)
+//              {
+//                if (obj.GetCaseRelativeCoordinate(i, 0) != null)
+//                  pushList.Add(obj.GetCaseRelativeCoordinate(i, 0));
+//              }
+//          }
+//      }
 
     /*  if (pushList.Count != 0)
       pushList.Clear();
 
     pushList.AddRange(list);*/
-    foreach (CaseData obj in pushList)
-      {
-        obj.ChangeStatut(Statut.atPush);
-      }
+//    foreach (CaseData obj in pushList)
+//      {
+//        obj.ChangeStatut(Statut.atPush);
+//      }
   }
 
 
   /// <summary>Montre l'invocation avant de le lancer</summary>
-  public void ShowSummon(SummonData summon)
+  public void ShowSummon()
   {
     CaseData hoveredCase = HoverManager.Instance.hoveredCase;
-    summon.transform.position = hoveredCase.transform.position + summon.transform.position - summon.originPoint.position;
+    if (summonedObj != null)
+      {
+        if (SummonManager.Instance.lastSummonInstancied == null)
+          {
+            SummonManager.Instance.lastSummonInstancied = (SummonData)Instantiate(summonedObj, hoveredCase.transform.position + summonedObj.transform.position - summonedObj.originPoint.position, Quaternion.identity);
+            SummonManager.Instance.lastSummonInstancied.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.3f);
+          }
+        SummonManager.Instance.lastSummonInstancied.transform.position = hoveredCase.transform.position + SummonManager.Instance.lastSummonInstancied.transform.position - SummonManager.Instance.lastSummonInstancied.originPoint.position;
+      }
+      
+
   }
 
   public void ApplyEffect(PersoData persoAfflicted)
   {
-    if (animSpell != null)
-      FXManager.Instance.Show(animSpell, persoAfflicted.persoCase.transform);
+    if (animatorSpell != null)
+      FXManager.Instance.Show(animatorSpell, persoAfflicted.persoCase.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
       
     EffectManager.Instance.Push(persoAfflicted, pushValue, pushType, pushDirection);
   }

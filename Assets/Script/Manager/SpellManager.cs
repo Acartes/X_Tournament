@@ -14,7 +14,6 @@ public class SpellManager : NetworkBehaviour
 
   /// <summary>Montre à quelle portée les personnages vont être projetés avant de le lancer</summary>
   public SpellData selectedSpell;
-  public SummonData newSummon;
   bool spellSuccess = false;
 
   public bool isSpellCasting = false;
@@ -42,16 +41,14 @@ public class SpellManager : NetworkBehaviour
 
   private void Init()
   {
-    TurnManager.Instance.changeTurnEvent += OnChangeTurn;
     EventManager.newClickEvent += OnNewClick;
     EventManager.newHoverEvent += OnNewHover;
   }
 
   void OnDisable()
   {
-    if (LoadingManager.Instance.isGameReady())
+    if (LoadingManager.Instance != null && LoadingManager.Instance.isGameReady())
       {
-        TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
         EventManager.newClickEvent -= OnNewClick;
         EventManager.newHoverEvent -= OnNewHover;
       }
@@ -63,51 +60,19 @@ public class SpellManager : NetworkBehaviour
 
   void OnNewHover(object sender, HoverArgs e)
   {
-    if (isSpellCasting)
-      {
-        selectedSpell.ShowAreaOfEffect();
-        if (newSummon != null)
-          selectedSpell.ShowSummon(newSummon);
-      }
+    if (GameManager.Instance.actualAction != PersoAction.isCasting)
+      return;
+      
+    selectedSpell.ShowAllFeedbacks();
+    SelectionManager.Instance.selectedPersonnage.RotateTowards(HoverManager.Instance.hoveredCase.gameObject);
   }
 
   void OnNewClick()
   { // Lors d'un click sur une case
-    if (!isSpellCasting)
+    if (GameManager.Instance.actualAction != PersoAction.isCasting)
       return;
 
-    CaseData hoveredCase = HoverManager.Instance.hoveredCase;
-
-    if ((Statut.atRange & hoveredCase.statut) == Statut.atRange)
-      {
-        SpellCall();
-      } else
-      {
-        StartCoroutine(SpellEnd());
-      }
-  }
-
-  void OnChangeTurn(object sender, PlayerArgs e)
-  {
-    switch (e.currentPlayer)
-      {
-      case Player.Red:
-            
-        break;
-      case Player.Blue:
-            
-        break;
-      }
-
-    switch (e.currentPhase)
-      {
-      case Phase.Placement:
-
-        break;
-      case Phase.Deplacement:
-
-        break;
-      }
+    SpellCaseClick();
   }
 
   // *************** //
@@ -129,102 +94,94 @@ public class SpellManager : NetworkBehaviour
 
   /// <summary>Montre comment le sort doit être lancé, un précast. 
   /// Mettre un chiffre correspondant à l'ordre des boutons de sorts du personnage (0 = spell1; 1 = spell2)</summary>
-  public void SpellCast(int IDSpell)
+  public void SpellButtonClick(int IDSpell)
   {
-    if (isSpellCasting)
+    if (GameManager.Instance.actualAction == PersoAction.isCasting)
       return;
       
-    RpcFunctions.Instance.CmdCastSpell(IDSpell);
+    RpcFunctions.Instance.CmdSpellButtonClick(IDSpell);
   }
 
   [ClientRpc]
-  public void RpcSpellCast(int IDSpell)
+  public void RpcSpellButtonClick(int IDSpell)
   {
-    Debug.Log("GGGGGGGGGGGGGGGGGGG"); 
     PersoData selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
-    if (selectedPersonnage == null)
-      return;
-
     selectedSpell = ChooseSpell(IDSpell);
-      
-    if (selectedSpell == null)
-      return;
-      
-    if (selectedPersonnage.actualPointAction < selectedSpell.costPA)
+
+    if (selectedPersonnage == null)// perso exist?
       return;
 
-    Debug.Log("ZZZZZZZZZZZZZZz"); 
+    if (selectedSpell == null)// spell exist?
+      return;
+
+    if (selectedPersonnage.actualPointAction < selectedSpell.costPA)// enough PA?
+      return;
+
     GameManager.Instance.actualAction = PersoAction.isCasting;
     SelectionManager.Instance.DisablePersoSelection();
     TurnManager.Instance.DisableFinishTurn();
-    CaseData hoveredCase = HoverManager.Instance.hoveredCase;
-    selectedSpell.ShowRange();
-    selectedSpell.ShowAreaOfEffect();
-    selectedSpell.ShowPushEffect();
-    //  newSummon = null;
-    if (selectedSpell.summonedObj != null)
-      {
-        newSummon = (SummonData)Instantiate(selectedSpell.summonedObj, hoveredCase.transform.position + selectedSpell.summonedObj.transform.position - selectedSpell.summonedObj.originPoint.position, Quaternion.identity);
-        newSummon.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.3f);
-        selectedSpell.ShowSummon(newSummon);
-      }
 
-    isSpellCasting = true;
+    selectedSpell.newRangeList();
+    selectedSpell.newTargetList();
+    selectedSpell.ShowAllFeedbacks();
   }
 
   /// <summary>Le sort est lancé à un endroit</summary>
-  void SpellCall()
+  void SpellCaseClick()
   {
     CaseData hoveredCase = HoverManager.Instance.hoveredCase;
-    if ((Statut.atRange & hoveredCase.statut) != Statut.atRange)
-      return;
+
+    if ((Statut.canTarget & hoveredCase.statut) != Statut.canTarget)
+      StartCoroutine(SpellEnd());
 
     spellSuccess = true;
 
-    if (newSummon != null)
+    if (SummonManager.Instance.lastSummonInstancied != null)
       {
-        newSummon.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
-        newSummon.GetComponent<BoxCollider2D>().enabled = true;
+        SummonData lastSummonInstancied = SummonManager.Instance.lastSummonInstancied;
+        lastSummonInstancied.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
+        lastSummonInstancied.GetComponent<BoxCollider2D>().enabled = true;
       }
+      
     foreach (CaseData obj in CaseManager.listAllCase)
       {
 
         if ((Statut.atAoE & obj.statut) == Statut.atAoE && obj.personnageData != null)
           {
-            Debug.Log(SelectionManager.Instance.selectedPersonnage.name);
-            SelectionManager.Instance.selectedPersonnage.RotateTowards(obj.gameObject);
             selectedSpell.ApplyEffect(obj.personnageData);
-          }
-        if ((Statut.atPush & obj.statut) == Statut.atPush)
-          {
-              
           }
       }
     StartCoroutine(SpellEnd());
   }
 
-  IEnumerator SpellEnd()
+  void SpellStart()
   {
-    isSpellCasting = false;
+
+  }
+
+  public IEnumerator SpellEnd()
+  {
+    GameManager.Instance.actualAction = PersoAction.isWaiting;
     foreach (CaseData obj in CaseManager.listAllCase)
       {
         obj.ChangeStatut(Statut.None, Statut.atRange);
         obj.ChangeStatut(Statut.None, Statut.atAoE);
+        obj.ChangeStatut(Statut.None, Statut.atPush);
+        obj.ChangeStatut(Statut.None, Statut.canTarget);
       }
 
-    if (!spellSuccess && newSummon != null)
+    if (!spellSuccess && SummonManager.Instance.lastSummonInstancied != null)
       {
-        Debug.Log("eeeeeeeeeeeee");
-        DestroyImmediate(newSummon.gameObject);
-
+        DestroyImmediate(SummonManager.Instance.lastSummonInstancied.gameObject);
       }
-
+    SummonManager.Instance.lastSummonInstancied = null;
     spellSuccess = false;
 
     yield return new WaitForSeconds(0.5f);
 
     GameManager.Instance.actualAction = PersoAction.isSelected;
     SelectionManager.Instance.EnablePersoSelection();
+    MoveBehaviour.Instance.StopAllCoroutines();
     StartCoroutine(TurnManager.Instance.EnableFinishTurn());
   }
 

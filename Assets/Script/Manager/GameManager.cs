@@ -70,7 +70,7 @@ public class GameManager : NetworkBehaviour
 
   void OnDisable()
   {
-    if (LoadingManager.Instance.isGameReady())
+    if (LoadingManager.Instance != null && LoadingManager.Instance.isGameReady())
       {
         TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
       }
@@ -84,7 +84,6 @@ public class GameManager : NetworkBehaviour
   { // Un joueur a terminé son tour
     currentPhase = e.currentPhase;
     currentPlayer = e.currentPlayer;
-    Debug.Log(currentPlayer.ToString() + " " + e.currentPlayer.ToString());
     GameManager.Instance.actualAction = PersoAction.isIdle;
   }
 

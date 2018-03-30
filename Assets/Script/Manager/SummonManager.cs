@@ -12,6 +12,8 @@ public class SummonManager : NetworkBehaviour
 
   public static SummonManager Instance;
 
+  public SummonData lastSummonInstancied;
+
   // ******************** //
   // ** Initialisation ** // Fonctions de départ, non réutilisable
   // ******************** //

@@ -18,6 +18,10 @@ public class FXManager : NetworkBehaviour
 
   public static FXManager Instance;
 
+  Animator animator;
+  AnimatorOverrideController animatorOverrideController;
+  //    public AnimationClipOverrides(int capacity) : base(capacity) {}
+
   // ******************** //
   // ** Initialisation ** // Fonctions de départ, non réutilisable
   // ******************** //
@@ -45,35 +49,42 @@ public class FXManager : NetworkBehaviour
   // *************** //
   // ** Fonctions ** // Fonctions réutilisables ailleurs
   // *************** //
-
-  void Update()
+  void aaa()
   {
-    if (Input.GetKeyDown(KeyCode.A))
-      {
-        foreach (GameObject takenFX in GameObject.FindGameObjectsWithTag("fxFeedback"))
-          {
-            Debug.Log("AAA");
-            takenFX.GetComponent<Animation>().playAutomatically = true;
 
-          }
-      }
   }
 
-  public void Show(AnimationClip clipToPlay, Transform newPos)
+  public void Show(RuntimeAnimatorController animatorPlayed, Transform newPos, Direction direction)
   {
     GameObject takenFX = listFX[0];
     listFX.Remove(takenFX);
 
-    takenFX.transform.position = newPos.localPosition;
-    takenFX.GetComponent<Animation>().clip = clipToPlay;
-    //takenFX.GetComponent<>().
-    StartCoroutine(BackToList(clipToPlay.length, takenFX));
+    takenFX.transform.position = newPos.position + new Vector3(0, 0.5f, 0);
+
+    if (direction == Direction.NordEst)
+      takenFX.transform.localRotation = Quaternion.Euler(0, 0, 25); 
+
+    if (direction == Direction.SudEst)
+      takenFX.transform.localRotation = Quaternion.Euler(0, 0, -25); 
+
+    if (direction == Direction.SudOuest)
+      takenFX.transform.localRotation = Quaternion.Euler(0, 0, -155); 
+
+    if (direction == Direction.NordOuest)
+      takenFX.transform.localRotation = Quaternion.Euler(0, 0, -205); 
+
+    takenFX.GetComponent<Animator>().runtimeAnimatorController = animatorPlayed;
+    takenFX.GetComponent<Animator>().SetTrigger("spellStart");
+
+
+    StartCoroutine(BackToList(animatorPlayed.animationClips[0].length, takenFX));
   }
 
   IEnumerator BackToList(float lenght, GameObject takenFX)
   {
     yield return new WaitForSeconds(lenght);
-    //  takenFX.transform.position = new Vector3(999, 999, 999);
-    //  listFX.Add(takenFX);
+    takenFX.GetComponent<Animator>().ResetTrigger("spellStart");
+    takenFX.transform.position = new Vector3(999, 999, 999);
+    listFX.Add(takenFX);
   }
 }

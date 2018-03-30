@@ -41,6 +41,8 @@ public class EffectManager : NetworkBehaviour
   /// <summary>Check toutes les fonctions de cette classe.</summary>
   public void Push(PersoData persoAfflicted, int pushValue, PushType pushType, Direction pushDirection = Direction.Front)
   {
-    PushBehaviour.Instance.PushEffect(persoAfflicted.gameObject, pushValue, persoAfflicted.persoCase, pushType, pushDirection);
+    PushBehaviour.Instance.StopAllCoroutines();
+    PushBehaviour.Instance.PushCheck(persoAfflicted.gameObject, pushValue, persoAfflicted.persoCase, pushType, pushDirection);
+    PushBehaviour.Instance.PushStart();
   }
 }

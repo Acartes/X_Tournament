@@ -30,9 +30,9 @@ public class RpcFunctions : NetworkBehaviour
   }
 
   [Command]
-  public void CmdCastSpell(int IDSpell)
+  public void CmdSpellButtonClick(int IDSpell)
   {
-    SpellManager.Instance.RpcSpellCast(IDSpell);
+    SpellManager.Instance.RpcSpellButtonClick(IDSpell);
   }
 
   [Command]
@@ -62,7 +62,6 @@ public class RpcFunctions : NetworkBehaviour
   [Command]
   public void CmdSendHoverEvent(string hoveredCase, string hoveredPersonnage, string hoveredBallon)
   {
-    Debug.Log("sending event");
     SynchroManager.Instance.RpcReceiveHoverEvent(hoveredCase, hoveredPersonnage, hoveredBallon);
     // Au cas où il y a un nouveau hover, la coroutine se reset
     StopAllCoroutines();
@@ -75,7 +74,6 @@ public class RpcFunctions : NetworkBehaviour
   [Command]
   public void CmdSendClickEvent()
   {
-    Debug.Log("sending event");
     SynchroManager.Instance.RpcReceiveClickEvent();
     // Au cas où il y a un nouveau hover, la coroutine se reset
     StopAllCoroutines();

@@ -53,8 +53,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1e943ddd2f20214b8f4eafa5267c461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  costPA: 1
-  range: 5
+  costPA: 4
+  range: 3
   isLinear: 1
   areaOfEffect: 0
   damagePR: 0
@@ -72,8 +72,10 @@ MonoBehaviour:
   tooltipRange: "<color=#bbbbbbff>Port\xE9e : </color>2 cases"
   tooltipEffect: "Repousse la cible de 3 cases. Si elle rencontre un obstacle elle
     perd 1 PR\r (non applicable \xE0 la balle) et est stopp\xE9."
-  numberLimitCast: 0
-  animSpell: {fileID: 7400000, guid: 62f0ae7e93a96c84a964b7d95d211609, type: 2}
+  numberLimitCast: 1
+  animatorSpell: {fileID: 9100000, guid: 47dda2be2c6462c45bdb2d7066614823, type: 2}
+  affectedTarget: 27
+  allowedTarget: 27
 --- !u!114 &114755600324448950
 MonoBehaviour:
   m_ObjectHideFlags: 1

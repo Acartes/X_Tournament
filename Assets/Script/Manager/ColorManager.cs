@@ -26,6 +26,7 @@ public class ColorManager : NetworkBehaviour
   public Color selectedColor;
   public Color goalColor;
   public Color atRange;
+  public Color canTarget;
   public Color atAoE;
   public Color atPush;
 

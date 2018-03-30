@@ -82,7 +82,6 @@ public class SummonData : NetworkBehaviour
   {
     if (canPush)
       {
-        Debug.Log("no homo 1");
         EffectManager.Instance.Push(persoAfflected, pushValue, pushType, pushDirection);
         numberEffectDisapear--;
       }

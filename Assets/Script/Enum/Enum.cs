@@ -93,6 +93,7 @@ public enum WeightType
   atRange = 1 << 17,
   atAoE = 1 << 18,
   atPush = 1 << 19,
+  canTarget = 1 << 20,
 }
 
 [Flags] public enum BallonStatut
@@ -112,15 +113,14 @@ public enum AoEType
   Carre,
 }
 
-public enum ObjectType
+[Flags] public enum ObjectType
 {
-  AllyPerso,
-  EnemyPerso,
-  EmptyCase,
-  Ballon,
-  AllyInvoc,
-  EnemyInvoc,
-  Self,
+  AllyPerso = 1 << 0,
+  EnemyPerso = 1 << 1,
+  EmptyCase = 1 << 2,
+  Ballon = 1 << 3,
+  Invoc = 1 << 4,
+  Self = 1 << 5,
 }
 
 public enum PushType

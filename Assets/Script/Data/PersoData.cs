@@ -42,9 +42,7 @@ public class PersoData : NetworkBehaviour
 
   void Awake()
   {
-      
     spriteR = GetComponent<SpriteRenderer>();
-    gameObject.name = spriteR.sprite.name;
   }
 
   // Use this for initialization
@@ -145,21 +143,34 @@ public class PersoData : NetworkBehaviour
     Vector3 originCasePos = persoCase.transform.position;
 
     if (originCasePos.x > targetCasePos.x && originCasePos.y > targetCasePos.y)
-      {
-        ChangeRotation(Direction.SudOuest);
-      }
+      ChangeRotation(Direction.SudOuest);
+
     if (originCasePos.x > targetCasePos.x && originCasePos.y < targetCasePos.y)
-      {
-        ChangeRotation(Direction.NordOuest);
-      }
+      ChangeRotation(Direction.NordOuest);
+
     if (originCasePos.x < targetCasePos.x && originCasePos.y > targetCasePos.y)
-      {
-        ChangeRotation(Direction.SudEst);
-      }
+      ChangeRotation(Direction.SudEst);
+
     if (originCasePos.x < targetCasePos.x && originCasePos.y < targetCasePos.y)
-      {
-        ChangeRotation(Direction.NordEst);
-      }
+      ChangeRotation(Direction.NordEst);
+  }
+
+  public void RotateTowardsReversed(GameObject targetCasePosGMB)
+  {
+    Vector3 targetCasePos = targetCasePosGMB.transform.position;
+    Vector3 originCasePos = persoCase.transform.position;
+
+    if (originCasePos.x > targetCasePos.x && originCasePos.y > targetCasePos.y)
+      ChangeRotation(Direction.NordEst);
+
+    if (originCasePos.x > targetCasePos.x && originCasePos.y < targetCasePos.y)
+      ChangeRotation(Direction.SudEst);
+
+    if (originCasePos.x < targetCasePos.x && originCasePos.y > targetCasePos.y)
+      ChangeRotation(Direction.NordOuest);
+
+    if (originCasePos.x < targetCasePos.x && originCasePos.y < targetCasePos.y)
+      ChangeRotation(Direction.SudOuest);
   }
 
   /// <summary>La couleur du sprite oscille entre deux couleurs.</summary>
