@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 
-public class infoPersoPortraits : NetworkBehaviour
+public class infoPersosPortrait : NetworkBehaviour
 {
 
     public PortraitInteractive MainPortrait;
