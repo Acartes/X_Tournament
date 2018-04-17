@@ -36,18 +36,22 @@ public class MenuContextuel : NetworkBehaviour
 
   void OnEnable()
   {
-    /*
-    if (LoadingManager.Instance.isGameReady())
-      {
-        ballon = GameObject.Find("Ballon");
-        Debug.Log(ballon.transform.position);
-        transform.position = ballon.transform.position;
-        CaseManager.Instance.DisableAllColliders();
-        
-      }*/
-  }
+        /*
+        if (LoadingManager.Instance.isGameReady())
+          {
+            ballon = GameObject.Find("Ballon");
+            Debug.Log(ballon.transform.position);
+            transform.position = ballon.transform.position;
+            CaseManager.Instance.DisableAllColliders();
 
-  void OnDisable()
+          }*/
+        if (LoadingManager.Instance != null && LoadingManager.Instance.isGameReady())
+        {
+            CaseManager.Instance.DisableAllColliders();
+        }
+    }
+
+    void OnDisable()
   {
     if (LoadingManager.Instance != null && LoadingManager.Instance.isGameReady())
       {

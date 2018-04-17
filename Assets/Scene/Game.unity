@@ -15826,7 +15826,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.11614584, y: 0.13800001}
   m_AnchorMax: {x: 0.29218745, y: 0.24700001}
-  m_AnchoredPosition: {x: -5, y: -0.00014305}
+  m_AnchoredPosition: {x: -5, y: -0.00012207031}
   m_SizeDelta: {x: -10, y: 0.0010223}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &513028545
@@ -38416,7 +38416,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1136698787285720, guid: 6bf68d5aa65041645b445542bcd96d53, type: 2}
       propertyPath: m_Name
-      value: MenuManager
+      value: MenuContextuelManager
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114868551512447224, guid: 6bf68d5aa65041645b445542bcd96d53, type: 2}
@@ -38440,7 +38440,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1386062676}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0764bd945cfa11e44a9969f2183c523f, type: 3}
+  m_Script: {fileID: 11500000, guid: 671346264ff134a4b8c3faef29ae6e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   offsetBallon: {x: 0, y: 0, z: 0}
@@ -48767,7 +48767,10 @@ Prefab:
       propertyPath: m_SortingOrder
       value: 100
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 61646455290905572, guid: 23d87dfef9c24a64baf0bf128d1b6d8e, type: 2}
+    - {fileID: 61763173981392428, guid: 23d87dfef9c24a64baf0bf128d1b6d8e, type: 2}
+    - {fileID: 61572966333757548, guid: 23d87dfef9c24a64baf0bf128d1b6d8e, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 23d87dfef9c24a64baf0bf128d1b6d8e, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1831451308
