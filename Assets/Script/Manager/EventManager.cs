@@ -29,17 +29,17 @@ public class EventManager : NetworkBehaviour
 
     if (hoveredCaseString != "null")
       hoveredCase = GameObject.Find(hoveredCaseString).GetComponent<CaseData>();
-        if (hoveredPersonnageString != "null" && hoveredCase != null)
+    if (hoveredPersonnageString != "null" && hoveredCase != null)
       hoveredPersonnage = hoveredCase.personnageData;
     if (hoveredBallonString != "null" && hoveredCase != null)
       hoveredBallon = hoveredCase.ballon;
 
-        if (hoveredPersonnage == null && hoveredPersonnageString != "null")
-            hoveredPersonnage = GameObject.Find(hoveredPersonnageString).GetComponent<PersoData>();
-        if (hoveredBallon == null && hoveredBallonString != "null")
-            hoveredBallon = GameObject.Find(hoveredBallonString).GetComponent<BallonData>();
+    if (hoveredPersonnage == null && hoveredPersonnageString != "null")
+      hoveredPersonnage = GameObject.Find(hoveredPersonnageString).GetComponent<PersoData>();
+    if (hoveredBallon == null && hoveredBallonString != "null")
+      hoveredBallon = GameObject.Find(hoveredBallonString).GetComponent<BallonData>();
 
-        newHoverEvent(this, new HoverArgs(hoveredCase, hoveredPersonnage, hoveredBallon));
+    newHoverEvent(this, new HoverArgs(hoveredCase, hoveredPersonnage, hoveredBallon));
   }
 
   [ClientRpc]
@@ -52,12 +52,14 @@ public class EventManager : NetworkBehaviour
           return;
             
         SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData>().actualPointMovement--;
+        CaseManager.Instance.EnableAllColliders();
         ReplacerBalleBehaviour.Instance.ReplacerBalle();
         MenuContextuel.Instance.gameObject.transform.position = new Vector3(999, 999, 999);
 
         break;
       case ("MenuContextuelTirer"):
         SelectionManager.Instance.selectedBallon.GetComponent<BallonData>().StartCoroutine("Move");
+        CaseManager.Instance.EnableAllColliders();
         TurnManager.Instance.StartCoroutine("EnableFinishTurn");
         MenuContextuel.Instance.gameObject.transform.position = new Vector3(999, 999, 999); 
         break;
