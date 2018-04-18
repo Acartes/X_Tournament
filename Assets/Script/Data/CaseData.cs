@@ -91,7 +91,7 @@ public class CaseData : NetworkBehaviour
             col.gameObject.GetComponent<PersoData>().persoCase = this;
             if (summonData != null)
               {
-                summonData.ApplyEffect(col.gameObject.GetComponent<PersoData>());
+                summonData.ApplyEffect(col.gameObject);
               }
             // EffectManager.Instance.CheckAllEffect(this, col.gameObject);
             //    Destroy(summonData);

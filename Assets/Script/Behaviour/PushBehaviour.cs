@@ -19,6 +19,7 @@ public class PushBehaviour : NetworkBehaviour
   List<Transform> path = new List<Transform>();
 
   PersoData persoAfflicted = null;
+  GameObject objAfflicted;
 
   // ******************** //
   // ** Initialisation ** // Fonctions de départ, non réutilisable
@@ -39,9 +40,14 @@ public class PushBehaviour : NetworkBehaviour
   public void PushCheck(GameObject obj, int pushValue, CaseData caseAfflicted, PushType pushType, Direction pushDirection = Direction.Front)
   {
     MoveBehaviour.Instance.movePathes.Clear();
-    persoAfflicted = obj.GetComponent<PersoData>();
-    Direction persoDirection = persoAfflicted.persoDirection;
-    
+    Direction persoDirection = Direction.None;
+    objAfflicted = obj;
+    if (objAfflicted.GetComponent<PersoData>() != null)
+      {
+        persoAfflicted = objAfflicted.GetComponent<PersoData>();
+        persoDirection = persoAfflicted.persoDirection;
+      }
+      
     CaseData tempCase = null;
 
     path.Clear();
@@ -124,15 +130,23 @@ public class PushBehaviour : NetworkBehaviour
     if (path.Count == 0)
       return;
       
-    StartCoroutine(Deplacement(persoAfflicted.originPoint.transform.localPosition, persoAfflicted, path));
+    StartCoroutine(Deplacement(objAfflicted, path));
   }
 
-  public IEnumerator Deplacement(Vector3 originPoint, PersoData persoAfflicted, List<Transform> pathes)
+  public IEnumerator Deplacement(GameObject objAfflicted, List<Transform> pathes)
   { // On déplace le personnage de case en case jusqu'au click du joueur propriétaire, et entre temps on check s'il est taclé ou non
     TurnManager.Instance.DisableFinishTurn();
 
     GameManager.Instance.actualAction = PersoAction.isMoving;
     Transform lastPath = null;
+
+    Vector3 originPoint = Vector3.zero;
+
+    if (objAfflicted.GetComponent<PersoData>() != null)
+      {
+        originPoint = objAfflicted.GetComponent<PersoData>().originPoint.transform.localPosition;
+      }
+
     foreach (Transform path in pathes)
       {
        
@@ -144,16 +158,19 @@ public class PushBehaviour : NetworkBehaviour
         lastPath = path;
         List<Transform> savePathes = pathes;
 
-        Vector3 startPos = persoAfflicted.transform.position;
+        Vector3 startPos = objAfflicted.transform.position;
         float fracturedTime = 0;
         float timeUnit = travelTime / 60;
  
-        persoAfflicted.RotateTowardsReversed(path.gameObject);
+        if (objAfflicted.GetComponent<PersoData>() != null)
+          {
+            objAfflicted.GetComponent<PersoData>().RotateTowardsReversed(path.gameObject);
+          }
 
-        while (persoAfflicted.transform.position != path.transform.position - originPoint)
+        while (objAfflicted.transform.position != path.transform.position - originPoint)
           {
             fracturedTime += timeUnit + 0.01f;
-            persoAfflicted.transform.position = Vector3.Lerp(startPos, path.transform.position - originPoint, fracturedTime);
+            objAfflicted.transform.position = Vector3.Lerp(startPos, path.transform.position - originPoint, fracturedTime);
             yield return new WaitForEndOfFrame();
           }
       }

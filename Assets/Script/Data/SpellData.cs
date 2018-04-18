@@ -289,11 +289,26 @@ public class SpellData : NetworkBehaviour
 
   }
 
-  public void ApplyEffect(PersoData persoAfflicted)
+  public void ApplyEffect(GameObject objAfflicted)
   {
-    if (animatorSpell != null)
-      FXManager.Instance.Show(animatorSpell, persoAfflicted.persoCase.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
-      
-    EffectManager.Instance.Push(persoAfflicted, pushValue, pushType, pushDirection);
+    if (objAfflicted.GetComponent<PersoData>() != null)
+      {
+        PersoData persoAfflicted = objAfflicted.GetComponent<PersoData>();
+        CaseData caseAfflicted = persoAfflicted.persoCase;
+        if (animatorSpell != null)
+          FXManager.Instance.Show(animatorSpell, persoAfflicted.persoCase.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
+
+        EffectManager.Instance.Push(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection);
+      }
+
+    if (objAfflicted.GetComponent<BallonData>() != null)
+      {
+        BallonData ballonAfflicted = objAfflicted.GetComponent<BallonData>();
+        CaseData caseAfflicted = ballonAfflicted.ballonCase;
+        if (animatorSpell != null)
+          FXManager.Instance.Show(animatorSpell, ballonAfflicted.ballonCase.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
+
+        EffectManager.Instance.Push(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection);
+      }
   }
 }

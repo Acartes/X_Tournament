@@ -73,7 +73,7 @@ MonoBehaviour:
   numberLimitCast: 0
   animatorSpell: {fileID: 9100000, guid: 9fe560b6a5895a74bb77cf012023b40d, type: 2}
   affectedTarget: 27
-  allowedTarget: 19
+  allowedTarget: 27
 --- !u!114 &114755600324448950
 MonoBehaviour:
   m_ObjectHideFlags: 1

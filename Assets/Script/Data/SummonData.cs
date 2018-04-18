@@ -87,36 +87,54 @@ public class SummonData : NetworkBehaviour
   }
 
   /// <summary>Applique les effets selon les paramètres de l'invocation.</summary>
-  public void ApplyEffect(PersoData persoAfflected)
+  public void ApplyEffect(GameObject objAfflicted)
   {
-    if (canPush)
+    PersoData persoAfflicted = null;
+    CaseData caseAfflicted = null;
+    BallonData ballonAfflicted = null;
+
+    if (objAfflicted.GetComponent<PersoData>() != null)
       {
-        EffectManager.Instance.Push(persoAfflected, pushValue, pushType, pushDirection);
+        persoAfflicted = objAfflicted.GetComponent<PersoData>();
+        caseAfflicted = persoAfflicted.persoCase;
       }
+
+    if (objAfflicted.GetComponent<BallonData>() != null)
+      {
+        ballonAfflicted = objAfflicted.GetComponent<BallonData>();
+        caseAfflicted = persoAfflicted.persoCase;
+      }
+          
     if (damagePA != 0)
       {
-        if (reverseDamageOnAlly && persoAfflected.owner == owner)
+        if (reverseDamageOnAlly && persoAfflicted.owner == owner)
           {
             damagePA = -damagePA;
           }
-        EffectManager.Instance.ChangePA(persoAfflected, damagePA);
+        EffectManager.Instance.ChangePA(persoAfflicted, damagePA);
       }
     if (damagePR != 0)
       {
-        if (reverseDamageOnAlly && persoAfflected.owner == owner)
+        if (reverseDamageOnAlly && persoAfflicted.owner == owner)
           {
             damagePR = -damagePR;
           }
-        EffectManager.Instance.ChangePR(persoAfflected, damagePR);
+        EffectManager.Instance.ChangePR(persoAfflicted, damagePR);
       }
     if (damagePM != 0)
       {
-        if (reverseDamageOnAlly && persoAfflected.owner == owner)
+        if (reverseDamageOnAlly && persoAfflicted.owner == owner)
           {
             damagePM = -damagePM;
           }
-        EffectManager.Instance.ChangePM(persoAfflected, damagePM);
+        EffectManager.Instance.ChangePM(persoAfflicted, damagePM);
       }
+      
+    if (canPush)
+      {
+        EffectManager.Instance.Push(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection);
+      }
+
     numberEffectDisapear--;
   }
 }

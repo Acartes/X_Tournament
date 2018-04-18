@@ -142,12 +142,24 @@ public class SpellManager : NetworkBehaviour
         lastSummonInstancied.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
         lastSummonInstancied.GetComponent<BoxCollider2D>().enabled = true;
       }
-      
+
+    Debug.Log("a");
+
     foreach (CaseData obj in CaseManager.listAllCase)
       {
-        if ((Statut.atAoE & obj.statut) == Statut.atAoE && obj.personnageData != null)
+        if ((Statut.atAoE & obj.statut) == Statut.atAoE)
           {
-            selectedSpell.ApplyEffect(obj.personnageData);
+            if (((ObjectType.AllyPerso & selectedSpell.affectedTarget) == ObjectType.AllyPerso) && obj.personnageData != null)
+              {
+                selectedSpell.ApplyEffect(obj.personnageData.gameObject);
+              }
+
+            if (((ObjectType.Ballon & selectedSpell.affectedTarget) == ObjectType.Ballon) && obj.ballon != null)
+              {
+                Debug.Log("b");
+
+                selectedSpell.ApplyEffect(obj.ballon.gameObject);
+              }
           }
       }
     StartCoroutine(SpellEnd());
