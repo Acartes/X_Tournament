@@ -125,7 +125,7 @@ public class UIManager : NetworkBehaviour
   {
     isScoreChanging = true;
 
-    if (winner == Player.Blue)
+    if (winner == Player.Red)
       {
         scoreRed++;
         scoreRedGMB.GetComponent<Text>().text = scoreRed.ToString();
@@ -143,7 +143,7 @@ public class UIManager : NetworkBehaviour
             messageGeneral.GetComponent<Text>().color -= new Color(0, 0, 0, 0.05f);
           }
       }
-    if (winner == Player.Red)
+    if (winner == Player.Blue)
       {
         scoreBlue++;
         scoreBlueGMB.GetComponent<Text>().text = scoreBlue.ToString();
