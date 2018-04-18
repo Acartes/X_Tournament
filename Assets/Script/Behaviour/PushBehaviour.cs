@@ -49,13 +49,28 @@ public class PushBehaviour : NetworkBehaviour
     switch (pushType)
       {
       case PushType.FromCaster:
-        for (int i = 0; i < pushValue; i++)
+        int y = pushValue;
+        while (y != 0)
           {
-            if (caseAfflicted.GetCaseInFront(SelectionManager.Instance.selectedPersonnage.persoDirection) != null)
+            if (y > 0)
               {
-                tempCase = caseAfflicted.GetCaseInFront(SelectionManager.Instance.selectedPersonnage.persoDirection);
-                path.Add(tempCase.transform);
-                caseAfflicted = tempCase;
+                y--;
+                if (caseAfflicted.GetCaseInFront(SelectionManager.Instance.selectedPersonnage.persoDirection) != null)
+                  {
+                    tempCase = caseAfflicted.GetCaseInFront(SelectionManager.Instance.selectedPersonnage.persoDirection);
+                    path.Add(tempCase.transform);
+                    caseAfflicted = tempCase;
+                  }
+              }
+            if (y < 0)
+              {
+                y++;
+                if (caseAfflicted.GetCaseAtBack(SelectionManager.Instance.selectedPersonnage.persoDirection) != null)
+                  {
+                    tempCase = caseAfflicted.GetCaseAtBack(SelectionManager.Instance.selectedPersonnage.persoDirection);
+                    path.Add(tempCase.transform);
+                    caseAfflicted = tempCase;
+                  }
               }
           }
         break;

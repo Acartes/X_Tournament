@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   costPA: 4
-  range: 3
+  range: 5
   isLinear: 1
   areaOfEffect: 1
   damagePR: 0
@@ -62,17 +62,17 @@ MonoBehaviour:
   elementCreated: 2
   pushValue: -3
   pushDirection: 0
-  pushType: 0
+  pushType: 1
   hurtWhenStopped: 0
   summonedObj: {fileID: 0}
   isDirect: 1
-  buttonSprite: {fileID: 21300000, guid: ca112e8ec57ea7a479c8a6c83f4957ac, type: 3}
+  buttonSprite: {fileID: 21300000, guid: 071218cd72f51a8499469a6ea24ccf8a, type: 3}
   tooltipTitle: Direct <color=#cccc00ff>Terre</color>
   tooltipRange: "<color=#bbbbbbff>Port\xE9e : </color>5 cases"
   tooltipEffect: Attire la cible de 3 cases.
   numberLimitCast: 0
   animatorSpell: {fileID: 9100000, guid: 9fe560b6a5895a74bb77cf012023b40d, type: 2}
-  affectedTarget: 19
+  affectedTarget: 27
   allowedTarget: 19
 --- !u!114 &114755600324448950
 MonoBehaviour:

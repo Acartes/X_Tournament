@@ -67,7 +67,7 @@ MonoBehaviour:
   summonedObj: {fileID: 114910890263424662, guid: 13d82c74e385f504cb8b9fbd71952d03,
     type: 2}
   isDirect: 0
-  buttonSprite: {fileID: 21300000, guid: f0e788ec3e0b2674aaf7fa575b722433, type: 3}
+  buttonSprite: {fileID: 21300000, guid: d463a09644c6feb459e6cdf546e9e780, type: 3}
   tooltipTitle: Sort Indirect <color=#00ff00ff>Air</color>
   tooltipRange: "<color=#bbbbbbff>Port\xE9e : </color>4 cases"
   tooltipEffect: "Invoque un obstacle \xE0 l\u2019emplacement cibl\xE9, il ne bloque

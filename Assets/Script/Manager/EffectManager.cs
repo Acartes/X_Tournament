@@ -45,4 +45,20 @@ public class EffectManager : NetworkBehaviour
     PushBehaviour.Instance.PushCheck(persoAfflicted.gameObject, pushValue, persoAfflicted.persoCase, pushType, pushDirection);
     PushBehaviour.Instance.PushStart();
   }
+
+  /// <summary>Augmente ou diminue le nombre de PA de la cible.</summary>
+  public void ChangePA(PersoData persoAfflicted, int number)
+  {
+    persoAfflicted.actualPointAction += number;
+  }
+
+  public void ChangePR(PersoData persoAfflicted, int number)
+  {
+    persoAfflicted.actualPointAction += number;
+  }
+
+  public void ChangePM(PersoData persoAfflicted, int number)
+  {
+    persoAfflicted.actualPointAction += number;
+  }
 }

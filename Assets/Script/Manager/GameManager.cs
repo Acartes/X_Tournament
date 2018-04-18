@@ -95,16 +95,17 @@ public class GameManager : NetworkBehaviour
   public IEnumerator NewManche()
   {
     TurnManager.Instance.enabled = true;
+    GameManager.Instance.actualAction = PersoAction.isIdle;
+    foreach (CaseData obj in CaseManager.Instance.GetAllCase())
+      {
+        obj.ClearStatutToDefault();
+      }
 
-    foreach (PersoData obj in RosterManager.Instance.listHeroJ1)
+    foreach (PersoData obj in RosterManager.Instance.listHeroPlaced)
       {
         obj.gameObject.transform.position = new Vector3(999, 999, 999);
       }
-    foreach (PersoData obj in RosterManager.Instance.listHeroJ2)
-      {
-        obj.gameObject.transform.position = new Vector3(999, 999, 999);
-      }
-
+      
     GameObject.Find("Ballon").transform.position = GameObject.Find("10 5").transform.position;
 
     SelectionManager.Instance.selectedCase = null;
@@ -114,7 +115,7 @@ public class GameManager : NetworkBehaviour
     SelectionManager.Instance.selectedPersonnage = null;
     yield return new WaitForEndOfFrame();
     TurnManager.Instance.TurnNumber = 0;
-    TurnManager.Instance.ChangePhase(Phase.Deplacement);
+    TurnManager.Instance.ChangePhase(Phase.Placement);
   }
 
   /// <summary>Change le joueur en train de jouer par un autre.</summary>

@@ -67,7 +67,7 @@ MonoBehaviour:
   hurtWhenStopped: 1
   summonedObj: {fileID: 0}
   isDirect: 1
-  buttonSprite: {fileID: 21300000, guid: f0e788ec3e0b2674aaf7fa575b722433, type: 3}
+  buttonSprite: {fileID: 21300000, guid: 92edc63da1b1ee748ba7fc7b62f9595c, type: 3}
   tooltipTitle: <color=#00ff00ff>Air</color> Direct
   tooltipRange: "<color=#bbbbbbff>Port\xE9e : </color>2 cases"
   tooltipEffect: "Repousse la cible de 3 cases. Si elle rencontre un obstacle elle

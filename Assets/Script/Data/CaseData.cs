@@ -70,8 +70,8 @@ public class CaseData : NetworkBehaviour
         ChangeStatut();
         break;
       case Phase.Deplacement:
-        statut = 0;
-        ChangeStatut();
+        ChangeStatut(Statut.None, Statut.placementRed);
+        ChangeStatut(Statut.None, Statut.placementBlue);
         break;
       }
   }
@@ -82,7 +82,6 @@ public class CaseData : NetworkBehaviour
 
   void OnTriggerEnter2D(Collider2D col)
   {
-
     if (col.tag == "Personnage")
       {
         if (col.gameObject.GetComponent<PersoData>().persoCase != this)
@@ -96,6 +95,7 @@ public class CaseData : NetworkBehaviour
               }
             // EffectManager.Instance.CheckAllEffect(this, col.gameObject);
             //    Destroy(summonData);
+
           }
       }
 
@@ -112,6 +112,11 @@ public class CaseData : NetworkBehaviour
               {
                 //    summonData.ApplyEffect(col);
               }
+            if (CheckStatut(Statut.goalRed))
+              StartCoroutine(UIManager.Instance.ScoreChange(Player.Blue));
+
+            if (CheckStatut(Statut.goalBlue))
+              StartCoroutine(UIManager.Instance.ScoreChange(Player.Red));
           }
       }
 

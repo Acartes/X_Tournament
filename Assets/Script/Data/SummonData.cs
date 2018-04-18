@@ -34,6 +34,13 @@ public class SummonData : NetworkBehaviour
   public bool hurtWhenBounce;
   public int numberEffectDisapear;
 
+  public int damagePR;
+  public int damagePA;
+  public int damagePM;
+  public bool reverseDamageOnAlly;
+
+  public Player owner;
+
   public int limitInvoc;
 
   // ******************** //
@@ -69,6 +76,7 @@ public class SummonData : NetworkBehaviour
   // ** Fonctions ** // Fonctions réutilisables ailleurs
   // *************** //
 
+  /// <summary>Vérifie si l'invocation est censé être toujours vivant ou pas.</summary>
   public void CheckDeath()
   {
     if (actualPointResistance <= 0 && !invulnerable)
@@ -78,12 +86,37 @@ public class SummonData : NetworkBehaviour
       Destroy(this.gameObject);
   }
 
+  /// <summary>Applique les effets selon les paramètres de l'invocation.</summary>
   public void ApplyEffect(PersoData persoAfflected)
   {
     if (canPush)
       {
         EffectManager.Instance.Push(persoAfflected, pushValue, pushType, pushDirection);
-        numberEffectDisapear--;
       }
+    if (damagePA != 0)
+      {
+        if (reverseDamageOnAlly && persoAfflected.owner == owner)
+          {
+            damagePA = -damagePA;
+          }
+        EffectManager.Instance.ChangePA(persoAfflected, damagePA);
+      }
+    if (damagePR != 0)
+      {
+        if (reverseDamageOnAlly && persoAfflected.owner == owner)
+          {
+            damagePR = -damagePR;
+          }
+        EffectManager.Instance.ChangePR(persoAfflected, damagePR);
+      }
+    if (damagePM != 0)
+      {
+        if (reverseDamageOnAlly && persoAfflected.owner == owner)
+          {
+            damagePM = -damagePM;
+          }
+        EffectManager.Instance.ChangePM(persoAfflected, damagePM);
+      }
+    numberEffectDisapear--;
   }
 }

@@ -269,41 +269,6 @@ public class SpellData : NetworkBehaviour
       
     PersoData persoAfflicted = HoverManager.Instance.hoveredPersonnage;
     PushBehaviour.Instance.PushCheck(persoAfflicted.gameObject, pushValue, persoAfflicted.persoCase, pushType, pushDirection);
-
-//    foreach (CaseData obj in CaseManager.Instance.GetAllCaseWithStatut(Statut.atPush))
-//      {
-//        obj.ChangeStatut(Statut.None, Statut.atPush);
-//      }
-//
-//    // PushBehaviour.Instance.PushCheck(persoAfflicted, pushValue, pushType, pushDirection);
-//
-//    int push = pushValue;
-//    List<CaseData> list = new List<CaseData>();
-//    List<CaseData> list2 = new List<CaseData>();
-//    list.Add(HoverManager.Instance.hoveredCase);
-//
-//    pushList.Clear();
-//
-//    if (isLinear)
-//      {
-//        for (int i = 0; i < push + 1; i++)
-//          {
-//            foreach (CaseData obj in list)
-//              {
-//                if (obj.GetCaseRelativeCoordinate(i, 0) != null)
-//                  pushList.Add(obj.GetCaseRelativeCoordinate(i, 0));
-//              }
-//          }
-//      }
-
-    /*  if (pushList.Count != 0)
-      pushList.Clear();
-
-    pushList.AddRange(list);*/
-//    foreach (CaseData obj in pushList)
-//      {
-//        obj.ChangeStatut(Statut.atPush);
-//      }
   }
 
 

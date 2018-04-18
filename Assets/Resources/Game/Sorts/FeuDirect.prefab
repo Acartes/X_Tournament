@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1674193022069790}
+  m_IsPrefabParent: 1
+--- !u!1 &1674193022069790
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4953905385896498}
+  - component: {fileID: 114539509967211268}
+  - component: {fileID: 114755600324448950}
+  m_Layer: 0
+  m_Name: FeuDirect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4953905385896498
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1674193022069790}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114539509967211268
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1674193022069790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1e943ddd2f20214b8f4eafa5267c461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  costPA: 4
+  range: 4
+  isLinear: 1
+  areaOfEffect: 1
+  damagePR: 2
+  damagePA: 2
+  damagePM: 0
+  elementCreated: 2
+  pushValue: 0
+  pushDirection: 0
+  pushType: 1
+  hurtWhenStopped: 0
+  summonedObj: {fileID: 0}
+  isDirect: 1
+  buttonSprite: {fileID: 21300000, guid: 071218cd72f51a8499469a6ea24ccf8a, type: 3}
+  tooltipTitle: Direct <color=#cccc00ff>Terre</color>
+  tooltipRange: "<color=#bbbbbbff>Port\xE9e : </color>5 cases"
+  tooltipEffect: Attire la cible de 3 cases.
+  numberLimitCast: 0
+  animatorSpell: {fileID: 9100000, guid: 9fe560b6a5895a74bb77cf012023b40d, type: 2}
+  affectedTarget: 19
+  allowedTarget: 19
+--- !u!114 &114755600324448950
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1674193022069790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 220
+    i1: 148
+    i2: 171
+    i3: 151
+    i4: 6
+    i5: 124
+    i6: 54
+    i7: 100
+    i8: 234
+    i9: 156
+    i10: 205
+    i11: 92
+    i12: 93
+    i13: 122
+    i14: 48
+    i15: 80
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0

@@ -145,7 +145,6 @@ public class SpellManager : NetworkBehaviour
       
     foreach (CaseData obj in CaseManager.listAllCase)
       {
-
         if ((Statut.atAoE & obj.statut) == Statut.atAoE && obj.personnageData != null)
           {
             selectedSpell.ApplyEffect(obj.personnageData);

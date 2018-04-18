@@ -48,7 +48,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: AirDirect
+  m_Name: TerreDirect
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -60,7 +60,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: bee1792f191f64f49a7c5b958a089a82, type: 2}
+  m_Motion: {fileID: 7400000, guid: d87fb325beaaa704fa5a5ad93aeb76d7, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

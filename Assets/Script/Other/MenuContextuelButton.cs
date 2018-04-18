@@ -27,11 +27,10 @@ public class MenuContextuelButton : MonoBehaviour
 
   void OnMouseDown()
   {
-    Debug.Log("LOL");
-    if (RpcFunctions.Instance.localId == 0 && TurnManager.Instance.currentPlayer == Player.Blue)
-      return;
-    if (RpcFunctions.Instance.localId == 1 && TurnManager.Instance.currentPlayer == Player.Red)
-      return;
+    if (!SynchroManager.Instance.canPlayTurn())
+      {
+        return;
+      }
 
     RpcFunctions.Instance.CmdMenuContextuelClick(name);
 
