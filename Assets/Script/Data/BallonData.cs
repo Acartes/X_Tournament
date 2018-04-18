@@ -81,7 +81,7 @@ public class BallonData : NetworkBehaviour
 
     GameManager.Instance.actualAction = PersoAction.isShoting;
     TurnManager.Instance.DisableFinishTurn();
-    MenuManager.Instance.isShoting = true;
+        MenuContextuelManager.Instance.isShoting = true;
 
     GameObject nextPosition;
 
@@ -210,7 +210,7 @@ public class BallonData : NetworkBehaviour
         break;
       }
 
-    MenuManager.Instance.isShoting = false;
+        MenuContextuelManager.Instance.isShoting = false;
   }
 
   /// <summary>Change le statut du ballon.</summary>

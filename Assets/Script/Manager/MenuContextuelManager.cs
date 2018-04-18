@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class MenuManager : NetworkBehaviour
+public class MenuContextuelManager : NetworkBehaviour
 {
 
   // *************** //
@@ -20,7 +20,7 @@ public class MenuManager : NetworkBehaviour
   [HideInInspector] public GameObject nextPosition;
   [HideInInspector] public bool canBounce;
 
-  public static MenuManager Instance;
+  public static MenuContextuelManager Instance;
 
   public override void OnStartClient()
   {

@@ -55,7 +55,12 @@ public class HoverEvent : NetworkBehaviour
     if (GetComponent<CaseData>().ballon != null)
       hoveredBallon = GetComponent<CaseData>().ballon.name;
 
-    RpcFunctions.Instance.CmdSendHoverEvent(hoveredCase, hoveredPersonnage, hoveredBallon);
+        if (GameManager.Instance.isSoloGame)
+        {
+            EventManager.Instance.HoverEvent(hoveredCase, hoveredPersonnage, hoveredBallon);
+        }
+        else
+            RpcFunctions.Instance.CmdSendHoverEvent(hoveredCase, hoveredPersonnage, hoveredBallon);
   }
 
   void OnMouseExit()

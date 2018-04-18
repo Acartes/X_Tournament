@@ -15,7 +15,35 @@ public class MenuContextuelButton : MonoBehaviour
     spriteR = GetComponent<SpriteRenderer>();
   }
 
-  void OnMouseExit()
+    private void Update()
+    {
+        if (Collision())
+        {
+            OnMouseOver();
+            if (Input.GetKey("mouse 0"))
+            {
+                OnMouseDown();
+            }
+        }
+        else
+            OnMouseExit();
+    }
+
+    bool Collision()
+    {
+        if (Camera.current == null)
+            return false;
+        if (Input.mousePosition.x <= Camera.current.WorldToScreenPoint(new Vector3(transform.position.x - spriteR.bounds.size.x / 2, transform.position.y, transform.position.z)).x
+            || Input.mousePosition.x >= Camera.current.WorldToScreenPoint(new Vector3(transform.position.x + spriteR.bounds.size.x / 2, transform.position.y, transform.position.z)).x)
+            return false;
+        if (Input.mousePosition.y <= Camera.current.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y - spriteR.bounds.size.y / 2, transform.position.z)).y
+            || Input.mousePosition.y <= Camera.current.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y - spriteR.bounds.size.y / 2, transform.position.z)).y)
+            return false;
+
+        return true;
+    }
+
+    void OnMouseExit()
   {
     ChangeColor(colorExit);
   }
@@ -40,14 +68,12 @@ public class MenuContextuelButton : MonoBehaviour
   void OnEnable()
   {
     ChangeColor(colorExit);
-    GetComponent<BoxCollider2D>().enabled = false;
     StartCoroutine(DebugCollider());
   }
 
   IEnumerator DebugCollider()
   {
     yield return new WaitForSeconds(0.05f);
-    GetComponent<BoxCollider2D>().enabled = true;
   }
 
   void ChangeColor(Color newColor)
