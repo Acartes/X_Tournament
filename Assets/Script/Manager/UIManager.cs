@@ -77,10 +77,10 @@ public class UIManager : NetworkBehaviour
     switch (e.currentPlayer)
       {
       case Player.Red:
-        ChangeBanner(0);
+        ChangeBanner(Player.Red);
         break;
       case Player.Blue:
-        ChangeBanner(1);
+        ChangeBanner(Player.Blue);
         break;
       }
 
@@ -95,19 +95,22 @@ public class UIManager : NetworkBehaviour
       }
   }
 
-  void ChangeBanner(int x)
+  public void ChangeBanner(Player activePlayer)
   {
-    for (int i = 0; i < 2; i++)
+    if (activePlayer == Player.Red)
       {
-        if (i == x)
-          {
-            banner[i].GetComponent<Image>().color = bannerColor[i];
-            bannerText[i].GetComponent<Text>().color = bannerTextColor[i];
-          } else
-          {
-            banner[i].GetComponent<Image>().color = bannerColor[i] - new Color(0.75f, 0.75f, 0.75f, 0.5f);
-            bannerText[i].GetComponent<Text>().color = bannerTextColor[i] - new Color(0.75f, 0.75f, 0.75f, 0.5f);
-          }
+        banner[0].GetComponent<Image>().color = bannerColor[0];
+        bannerText[0].GetComponent<Text>().color = bannerTextColor[0];
+        banner[1].GetComponent<Image>().color = bannerColor[1] - new Color(0.75f, 0.75f, 0.75f, 0.5f);
+        bannerText[1].GetComponent<Text>().color = bannerTextColor[1] - new Color(0.75f, 0.75f, 0.75f, 0.5f);
+      }
+
+    if (activePlayer == Player.Blue)
+      {
+        banner[1].GetComponent<Image>().color = bannerColor[1];
+        bannerText[1].GetComponent<Text>().color = bannerTextColor[1];
+        banner[0].GetComponent<Image>().color = bannerColor[0] - new Color(0.75f, 0.75f, 0.75f, 0.5f);
+        bannerText[0].GetComponent<Text>().color = bannerTextColor[0] - new Color(0.75f, 0.75f, 0.75f, 0.5f);
       }
   }
 
@@ -142,9 +145,13 @@ public class UIManager : NetworkBehaviour
             yield return new WaitForSeconds(0.01f);
             messageGeneral.GetComponent<Text>().color -= new Color(0, 0, 0, 0.05f);
           }
+        GameManager.Instance.ChangeCurrentPlayer(Player.Blue);
+
+
       }
     if (winner == Player.Blue)
       {
+          
         scoreBlue++;
         scoreBlueGMB.GetComponent<Text>().text = scoreBlue.ToString();
         messageGeneral.GetComponent<Text>().text = "J2 marque 1 point !";
@@ -160,6 +167,8 @@ public class UIManager : NetworkBehaviour
             yield return new WaitForSeconds(0.01f);
             messageGeneral.GetComponent<Text>().color -= new Color(0, 0, 0, 0.05f);
           }
+        GameManager.Instance.ChangeCurrentPlayer(Player.Red);
+
       }
 
     StartCoroutine(GameManager.Instance.NewManche());

@@ -96,6 +96,7 @@ public class GameManager : NetworkBehaviour
   {
     TurnManager.Instance.enabled = true;
     GameManager.Instance.actualAction = PersoAction.isIdle;
+    GameManager.Instance.ChangeCurrentPhase(Phase.Placement);
     foreach (CaseData obj in CaseManager.Instance.GetAllCase())
       {
         obj.ClearStatutToDefault();
@@ -122,6 +123,8 @@ public class GameManager : NetworkBehaviour
   public void ChangeCurrentPlayer(Player newPlayer)
   {
     currentPlayer = newPlayer;
+    UIManager.Instance.ChangeBanner(newPlayer);
+    TurnManager.Instance.currentPlayer = newPlayer;
   }
 
   /// <summary>Change la phase actuelle par une autre.</summary>

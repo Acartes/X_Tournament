@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38074008, b: 0.35872707, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -15899,7 +15899,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.11614584, y: 0.13800001}
   m_AnchorMax: {x: 0.29218745, y: 0.24700001}
-  m_AnchoredPosition: {x: -5, y: -0.00015258789}
+  m_AnchoredPosition: {x: -5, y: -0.00012207031}
   m_SizeDelta: {x: -10, y: 0.0010223}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &513028545
@@ -38087,7 +38087,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1368248729
 RectTransform:
   m_ObjectHideFlags: 0
@@ -48027,7 +48027,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1354492756089754, guid: 3566f19b668d2204d82bbb6ecb247f81, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3566f19b668d2204d82bbb6ecb247f81, type: 2}
