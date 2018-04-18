@@ -67,11 +67,11 @@ public class PlacementBehaviour : NetworkBehaviour
     Player currentPlayer = TurnManager.Instance.currentPlayer;
     CaseData hoveredCase = HoverManager.Instance.hoveredCase;
 
-    if (currentPhase != Phase.Placement)
-      return;
+        if (currentPhase != Phase.Placement)
+            return;
 
-    // Place un perso ami sur une case vide
-    if (currentPhase == Phase.Placement &&
+        // Place un perso ami sur une case vide
+        if (currentPhase == Phase.Placement &&
         HoverManager.Instance.hoveredCase != null && HoverManager.Instance.hoveredPersonnage == null &&
         hoveredCase.casePathfinding == PathfindingCase.Walkable)
       {

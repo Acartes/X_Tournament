@@ -11,7 +11,8 @@ public class InfoPerso : NetworkBehaviour
     // ** Variables ** //
     // *************** //
 
-    public infoPersoPortraits portraits;
+    public infoPersosPortrait portrait1;
+    public infoPersosPortrait portrait2;
     public infoPersoStats stats;
 
     public static InfoPerso Instance;
@@ -41,8 +42,6 @@ public class InfoPerso : NetworkBehaviour
     private void Init()
     {
         Instance = this;
-        portraits = transform.GetComponentInChildren<infoPersoPortraits>();
-        stats = transform.GetComponentInChildren<infoPersoStats>();
         TurnManager.Instance.changeTurnEvent += OnChangeTurn;
     }
 
@@ -60,23 +59,33 @@ public class InfoPerso : NetworkBehaviour
         IsVisible(false);
         while (RosterManager.Instance.listHero.Count != 8)
             yield return new WaitForEndOfFrame();
-        portraits.SetupChangePlayerIcons(TurnManager.Instance.currentPlayer, TurnManager.Instance.TurnNumber);
+        portrait1.SetupChangePlayerIcons(Player.Red, TurnManager.Instance.TurnNumber);
+        portrait2.SetupChangePlayerIcons(Player.Blue, TurnManager.Instance.TurnNumber);
         IsVisible(true);
     }
 
     public void PersoSelected(PersoData newPerso)
     {
-        portraits.SelectPerso(newPerso);
+        if (GameManager.Instance.currentPlayer == Player.Red)
+            portrait1.SelectPerso(newPerso);
+        if (GameManager.Instance.currentPlayer == Player.Blue)
+            portrait2.SelectPerso(newPerso);
     }
 
     public void PersoPlaced(PersoData newPerso)
     { // Lors d'un click sur une case
-        portraits.GrayPortraitPerso(newPerso);
+        if (GameManager.Instance.currentPlayer == Player.Red)
+            portrait1.GrayPortraitPerso(newPerso);
+        if (GameManager.Instance.currentPlayer == Player.Blue)
+            portrait2.GrayPortraitPerso(newPerso);
     }
 
     public void PersoRemoved(PersoData newPerso)
     { // Lors d'un click sur une case
-        portraits.UnGrayPortraitPerso(newPerso);
+        if (GameManager.Instance.currentPlayer == Player.Red)
+            portrait1.UnGrayPortraitPerso(newPerso);
+        if (GameManager.Instance.currentPlayer == Player.Blue)
+            portrait2.UnGrayPortraitPerso(newPerso);
     }
 
     // ************* //
@@ -85,7 +94,8 @@ public class InfoPerso : NetworkBehaviour
 
     void IsVisible(bool isVisible)
     { // rend l'interface visible ou invisible
-        portraits.gameObject.SetActive(isVisible);
+        portrait1.gameObject.SetActive(isVisible);
+        portrait2.gameObject.SetActive(isVisible);
         stats.gameObject.SetActive(isVisible);
     }
 }

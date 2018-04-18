@@ -49,6 +49,7 @@ public class PortraitInteractive : NetworkBehaviour
 
     public void ClickPerso()
     {
+        if(GameManager.Instance.currentPlayer == newHoveredPersonnage.owner)
         RpcFunctions.Instance.CmdSendClickEvent();
     }
 

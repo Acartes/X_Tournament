@@ -22,12 +22,19 @@ public class HotkeyManager : NetworkBehaviour
   void Update()
   {
     if (Input.GetKeyDown(KeyCode.Alpha1))
-      SpellManager.Instance.SpellButtonClick(0);
+        {
+            StartCoroutine(SpellManager.Instance.SpellEnd());
+            SpellManager.Instance.SpellButtonClick(0);
+        }
+
 
     if (Input.GetKeyDown(KeyCode.Alpha2))
-      SpellManager.Instance.SpellButtonClick(1);
+        {
+            StartCoroutine(SpellManager.Instance.SpellEnd());
+            SpellManager.Instance.SpellButtonClick(1);
+        }
 
-    if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
       StartCoroutine(SpellManager.Instance.SpellEnd());
   }
 }
