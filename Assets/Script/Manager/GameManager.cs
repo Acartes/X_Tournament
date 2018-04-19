@@ -76,23 +76,33 @@ public class GameManager : NetworkBehaviour
       }
   }
 
-  // *************** //
-  // ** Events **    // Appel de fonctions au sein de ce script grâce à des events
-  // *************** //
+    // *************** //
+    // ** Events **    // Appel de fonctions au sein de ce script grâce à des events
+    // *************** //
 
-  void OnChangeTurn(object sender, PlayerArgs e)
-  { // Un joueur a terminé son tour
-    currentPhase = e.currentPhase;
-    currentPlayer = e.currentPlayer;
-    GameManager.Instance.actualAction = PersoAction.isIdle;
-  }
+    void OnChangeTurn(object sender, PlayerArgs e)
+    { // Un joueur a terminé son tour
+        currentPhase = e.currentPhase;
+        currentPlayer = e.currentPlayer;
+        GameManager.Instance.actualAction = PersoAction.isIdle;
+        if (TurnManager.Instance.currentPhase == Phase.Deplacement) // si on est en jeu
+        {
+            UIManager.Instance.UpdateRemaningMana();
+            if (TurnManager.Instance.TurnNumber != 2 // si on est pas au premier tour de jeu
+        && TurnManager.Instance.TurnNumber % 2 == 0) // et qu'on vient d'arriver sur un nouveau tour rouge
+            {
+                DecrementeManaMax(1);
+                ResetMana();
+            }
+        }
+    }
 
-  // *************** //
-  // ** Fonctions ** // Fonctions réutilisables ailleurs
-  // *************** //
+    // *************** //
+    // ** Fonctions ** // Fonctions réutilisables ailleurs
+    // *************** //
 
-  /// <summary> La partie démarre une nouvelle manche, les joueurs doivent replacer leurs personnages. </summary>
-  public IEnumerator NewManche()
+    /// <summary> La partie démarre une nouvelle manche, les joueurs doivent replacer leurs personnages. </summary>
+    public IEnumerator NewManche()
   {
     TurnManager.Instance.enabled = true;
     GameManager.Instance.actualAction = PersoAction.isIdle;

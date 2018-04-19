@@ -29,8 +29,9 @@ public class UIManager : NetworkBehaviour
   public bool isScoreChanging = false;
   public Image spell1;
   public Image spell2;
+  public Text remainingMana;
 
-  public Sprite defaultButtonSpellSprite;
+    public Sprite defaultButtonSpellSprite;
 
   public static UIManager Instance;
 
@@ -188,6 +189,9 @@ public class UIManager : NetworkBehaviour
     if (selectedPerso.Spell2 != null)
       spell2.sprite = selectedPerso.Spell2.buttonSprite;
   }
-
-
+    /// <summary>Change le sprite des boutons de sorts par rapport au personnage selectionné.</summary>
+    public void UpdateRemaningMana()
+    {
+        remainingMana.text = GameManager.Instance.manaGlobalActual +" / " + GameManager.Instance.manaGlobalMax + " mana.";
+    }
 }

@@ -96,28 +96,36 @@ public class SpellManager : NetworkBehaviour
   /// Mettre un chiffre correspondant à l'ordre des boutons de sorts du personnage (0 = spell1; 1 = spell2)</summary>
   public void SpellButtonClick(int IDSpell)
   {
-    if (GameManager.Instance.actualAction == PersoAction.isCasting)
-      return;
-      
-    RpcFunctions.Instance.CmdSpellButtonClick(IDSpell);
+        if (GameManager.Instance.actualAction == PersoAction.isCasting)
+            return;
+
+        selectedSpell = ChooseSpell(IDSpell);
+        // enough PA?
+        if (GameManager.Instance.manaGlobalActual < selectedSpell.costPA)
+        {
+            Debug.Log("PAS ASSEZ DE PA");
+            selectedSpell = null;
+            return;
+        }
+
+
+        RpcFunctions.Instance.CmdSpellButtonClick(IDSpell);
   }
 
-  [ClientRpc]
-  public void RpcSpellButtonClick(int IDSpell)
-  {
-    PersoData selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
-    selectedSpell = ChooseSpell(IDSpell);
+    [ClientRpc]
+    public void RpcSpellButtonClick(int IDSpell)
+    {
+        PersoData selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
 
-    if (selectedPersonnage == null)// perso exist?
-      return;
+        if (selectedPersonnage == null)// perso exist?
+            return;
 
-    if (selectedSpell == null)// spell exist?
-      return;
+        if (selectedSpell == null)// spell exist?
+            return;
 
-    if (selectedPersonnage.actualPointAction < selectedSpell.costPA)// enough PA?
-      return;
+            
 
-    GameManager.Instance.actualAction = PersoAction.isCasting;
+        GameManager.Instance.actualAction = PersoAction.isCasting;
     SelectionManager.Instance.DisablePersoSelection();
     TurnManager.Instance.DisableFinishTurn();
 
@@ -131,7 +139,9 @@ public class SpellManager : NetworkBehaviour
   {
     CaseData hoveredCase = HoverManager.Instance.hoveredCase;
 
-    if ((Statut.canTarget & hoveredCase.statut) != Statut.canTarget)
+        GameManager.Instance.manaGlobalActual -= selectedSpell.costPA;
+        UIManager.Instance.UpdateRemaningMana();
+            if ((Statut.canTarget & hoveredCase.statut) != Statut.canTarget)
       StartCoroutine(SpellEnd());
 
     spellSuccess = true;
