@@ -110,7 +110,7 @@ public class SpellData : NetworkBehaviour
     // get des cases
     if (isLinear)
       {
-        for (int i = 0; i < range; i++)
+        for (int i = 0; i < range + 1; i++)
           {
             if (selectedCase.GetCaseRelativeCoordinate(i, 0) != null)
               list.Add(selectedCase.GetCaseRelativeCoordinate(i, 0));
@@ -201,7 +201,7 @@ public class SpellData : NetworkBehaviour
           targetList.Add(obj);
 
         if ((ObjectType.EmptyCase & allowedTarget) == ObjectType.EmptyCase)
-        if (obj.casePathfinding == PathfindingCase.Walkable && !targetList.Contains(obj))
+        if (obj.casePathfinding == PathfindingCase.Walkable && !targetList.Contains(obj) && obj.summonData == null)
           targetList.Add(obj);
 
         if (!((ObjectType.Self & allowedTarget) == ObjectType.Self))

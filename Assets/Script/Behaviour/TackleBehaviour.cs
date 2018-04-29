@@ -174,6 +174,7 @@ public class TackleBehaviour : NetworkBehaviour
                 SelectionManager.Instance.selectedPersonnage.actualPointMovement = Mathf.CeilToInt(SelectionManager.Instance.selectedPersonnage.actualPointMovement / 2);
                 SelectionManager.Instance.selectedPersonnage.actualPointResistance -= 1;
                 SelectionManager.Instance.selectedPersonnage.isTackled = true;
+                TurnManager.Instance.EnableFinishTurn();
               } else
               {
                 FeedbackManager.Instance.ShowInit(randomInt, maxInt, playerCase.gameObject);
@@ -189,6 +190,7 @@ public class TackleBehaviour : NetworkBehaviour
                 SelectionManager.Instance.selectedPersonnage.actualPointMovement = Mathf.CeilToInt(SelectionManager.Instance.selectedPersonnage.actualPointMovement / 4);
                 SelectionManager.Instance.selectedPersonnage.actualPointResistance -= 1;
                 MoveBehaviour.Instance.movePathes.Clear();
+                TurnManager.Instance.EnableFinishTurn();
               } else
               {
                 FeedbackManager.Instance.ShowInit(randomInt, maxInt, playerCase.gameObject);

@@ -79,15 +79,20 @@ public class HoverManager : NetworkBehaviour
       {
         changeColorExit(GameManager.Instance.currentPhase);
       }
-
+          
     hoveredPersonnage = e.hoveredPersonnage;
     hoveredCase = e.hoveredCase;
     hoveredBallon = e.hoveredBallon;
+
     if (hoveredCase != null)
       {
         changeColorEnter();
       }
 
+    if (hoveredCase != null && hoveredLastCase != hoveredCase)
+      {
+        changeMovementPattern(GameManager.Instance.currentPhase);
+      }
   }
       
   // *************** //
@@ -122,13 +127,23 @@ public class HoverManager : NetworkBehaviour
         break;
       case (Phase.Deplacement):
         hoveredCase.ChangeStatut(Statut.None, Statut.isHovered);
+        break;
+      }
+  }
 
+  private void changeMovementPattern(Phase currentPhase)
+  {
+    switch (currentPhase)
+      {
+      case (Phase.Placement):
+        break;
+      case (Phase.Deplacement):
         if (SelectionManager.Instance.selectedPersonnage != null
             && hoveredCase.casePathfinding == PathfindingCase.Walkable
             && GameManager.Instance.actualAction == PersoAction.isSelected)
           {
-            MoveBehaviour.Instance.createPath();
             Pathfinding.Instance.StartPathfinding();
+            MoveBehaviour.Instance.createPath();
           } else
           {
             CaseManager.Instance.RemovePath();

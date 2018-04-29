@@ -24,6 +24,7 @@ public class MoveBehaviour : NetworkBehaviour
 
   [HideInInspector] public static MoveBehaviour Instance;
 
+  CaseData hoveredCase;
 
 
   // *************** //
@@ -87,7 +88,7 @@ public class MoveBehaviour : NetworkBehaviour
 
     if (GameManager.Instance.actualAction != PersoAction.isSelected)
       return;
-
+      
     pathesLast = movePathes;
     CaseManager.Instance.RemovePath();
 
