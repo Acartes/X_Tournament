@@ -39,11 +39,22 @@ public class PushBehaviour : NetworkBehaviour
   /// <summary>Check et applique l'effet de poussée.</summary>
   public void PushCheck(GameObject obj, int pushValue, CaseData caseAfflicted, PushType pushType, Direction pushDirection = Direction.Front)
   {
-    MoveBehaviour.Instance.movePathes.Clear();
+
     Direction persoDirection = Direction.None;
+
+    if (obj.GetComponent<BallonData>() != null)
+      {
+        obj.GetComponent<BallonData>().movePath.Clear();
+        obj.GetComponent<BallonData>().StopMove();
+        obj.GetComponent<BallonData>().StopAllCoroutines();
+        persoDirection = obj.GetComponent<BallonData>().ballonDirection;
+
+      }
+      
     objAfflicted = obj;
     if (objAfflicted.GetComponent<PersoData>() != null)
       {
+        MoveBehaviour.Instance.movePathes.Clear();
         persoAfflicted = objAfflicted.GetComponent<PersoData>();
         persoDirection = persoAfflicted.persoDirection;
       }
@@ -116,7 +127,7 @@ public class PushBehaviour : NetworkBehaviour
    
     foreach (Transform pathObj in path)
       {
-        pathObj.GetComponent<CaseData>().ChangeStatut(Statut.atPush);
+        // pathObj.GetComponent<CaseData>().ChangeStatut(Statut.atPush);
       }
 
     
@@ -147,6 +158,11 @@ public class PushBehaviour : NetworkBehaviour
         originPoint = objAfflicted.GetComponent<PersoData>().originPoint.transform.localPosition;
       }
 
+    if (objAfflicted.GetComponent<BallonData>() != null)
+      {
+        originPoint = objAfflicted.GetComponent<BallonData>().offsetBallon;
+      }
+
     foreach (Transform path in pathes)
       {
        
@@ -169,6 +185,7 @@ public class PushBehaviour : NetworkBehaviour
 
         while (objAfflicted.transform.position != path.transform.position - originPoint)
           {
+            Debug.Log("infini");
             fracturedTime += timeUnit + 0.01f;
             objAfflicted.transform.position = Vector3.Lerp(startPos, path.transform.position - originPoint, fracturedTime);
             yield return new WaitForEndOfFrame();

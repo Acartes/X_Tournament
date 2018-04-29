@@ -103,6 +103,7 @@ public class CaseData : NetworkBehaviour
       {
         if (col.gameObject.GetComponent<BallonData>().ballonCase != this)
           {
+            Debug.Log(this.gameObject.name);
             ballon = col.gameObject.GetComponent<BallonData>();
             casePathfinding = PathfindingCase.NonWalkable;
             col.gameObject.GetComponent<BallonData>().ballonCase = this;
@@ -110,7 +111,7 @@ public class CaseData : NetworkBehaviour
             col.gameObject.GetComponent<BallonData>().yCoord = yCoord;
             if (summonData != null)
               {
-                //    summonData.ApplyEffect(col);
+                summonData.ApplyEffect(col.gameObject);
               }
             if (CheckStatut(Statut.goalRed))
               StartCoroutine(UIManager.Instance.ScoreChange(Player.Blue));

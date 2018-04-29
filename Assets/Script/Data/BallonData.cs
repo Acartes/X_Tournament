@@ -81,7 +81,7 @@ public class BallonData : NetworkBehaviour
 
     GameManager.Instance.actualAction = PersoAction.isShoting;
     TurnManager.Instance.DisableFinishTurn();
-        MenuContextuelManager.Instance.isShoting = true;
+    MenuContextuelManager.Instance.isShoting = true;
 
     GameObject nextPosition;
 
@@ -183,6 +183,12 @@ public class BallonData : NetworkBehaviour
         TackleBehaviour.Instance.CheckTackle(this.gameObject, selectedPersonnage);
       }
     endMove:
+    StopMove();
+  }
+
+  /// <summary>Stop le mouvement du ballon.</summary>
+  public void StopMove()
+  {
     isMoving = false;
     GameManager.Instance.actualAction = PersoAction.isSelected;
     animator.ResetTrigger("Roule");
@@ -210,7 +216,7 @@ public class BallonData : NetworkBehaviour
         break;
       }
 
-        MenuContextuelManager.Instance.isShoting = false;
+    MenuContextuelManager.Instance.isShoting = false;
   }
 
   /// <summary>Change le statut du ballon.</summary>

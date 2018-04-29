@@ -102,7 +102,7 @@ public class SummonData : NetworkBehaviour
     if (objAfflicted.GetComponent<BallonData>() != null)
       {
         ballonAfflicted = objAfflicted.GetComponent<BallonData>();
-        caseAfflicted = persoAfflicted.persoCase;
+        caseAfflicted = ballonAfflicted.ballonCase;
       }
           
     if (damagePA != 0)
