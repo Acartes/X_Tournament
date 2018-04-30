@@ -76,8 +76,8 @@ MonoBehaviour:
     d\u2019une combinaison \xE9l\xE9mentaire l\u2019incluant."
   numberLimitCast: 0
   animatorSpell: {fileID: 9100000, guid: abf565835d8e64d4792d5309c23297f0, type: 2}
-  affectedTarget: 20
-  allowedTarget: 20
+  affectedTarget: 4
+  allowedTarget: 4
 --- !u!114 &114755600324448950
 MonoBehaviour:
   m_ObjectHideFlags: 1

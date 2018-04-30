@@ -76,8 +76,8 @@ MonoBehaviour:
     sur sa gauche."
   numberLimitCast: 1
   animatorSpell: {fileID: 9100000, guid: bae8a29eb97ba61468b018622db02aa4, type: 2}
-  affectedTarget: 31
-  allowedTarget: 31
+  affectedTarget: 15
+  allowedTarget: 15
 --- !u!114 &114755600324448950
 MonoBehaviour:
   m_ObjectHideFlags: 1

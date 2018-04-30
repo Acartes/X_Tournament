@@ -419,12 +419,14 @@ public class CaseData : NetworkBehaviour
   public void ClearAllStatut()
   {
     statut = 0;
+    ChangeColorByStatut();
   }
 
   /// <summary>Desactive all statuts for this case except what was already checked in inspector.</summary>
   public void ClearStatutToDefault()
   {
     statut = defaultStatut;
+    ChangeColorByStatut();
   }
 
   /// <summary>Get la case en face du personnage ou du ballon, on peut choisir celle à droite aussi</summary>
