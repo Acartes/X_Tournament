@@ -163,6 +163,14 @@ public class CaseData : NetworkBehaviour
         casePathfinding = PathfindingCase.Walkable;
         ChangeStatut(Statut.None, Statut.canShot);
       }
+
+    if (col.tag == "Summon"
+        && col.gameObject.GetComponent<BoxCollider2D>().enabled == true
+        && GetComponent<PolygonCollider2D>().enabled == true)
+      {
+        summonData = null;
+        casePathfinding = PathfindingCase.Walkable;
+      }
     TransparencyManager.Instance.CheckCaseTransparency(this);
 
   }
@@ -324,6 +332,9 @@ public class CaseData : NetworkBehaviour
   /// <summary>Récupère la case en haut de cette case.</summary>
   public CaseData GetTopCase()
   {
+    if (GameObject.Find(xCoord - 1 + " " + (yCoord + 1)) == null)
+      return null;
+      
     GameObject newCase = (GameObject.Find(xCoord - 1 + " " + (yCoord + 1)) != null) ? GameObject.Find(xCoord - 1 + " " + (yCoord + 1)) : null;
     if (newCase == null)
       return null;
@@ -334,6 +345,9 @@ public class CaseData : NetworkBehaviour
   /// <summary>Récupère la case en bas de cette case.</summary>
   public CaseData GetBottomCase()
   {
+    if (GameObject.Find(xCoord + 1 + " " + (yCoord - 1)) == null)
+      return null;
+      
     GameObject newCase = (GameObject.Find(xCoord + 1 + " " + (yCoord - 1)) != null) ? GameObject.Find(xCoord + 1 + " " + (yCoord - 1)) : null;
     if (newCase == null)
       return null;

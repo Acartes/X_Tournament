@@ -24,36 +24,37 @@ public class TransparencyManager : NetworkBehaviour
     Debug.Log(this.GetType() + " is Instanced");
   }
 
-    // *************** //
-    // ** Fonctions ** // Fonctions réutilisables ailleurs
-    // *************** //
+  // *************** //
+  // ** Fonctions ** // Fonctions réutilisables ailleurs
+  // *************** //
 
-    public void CheckCaseTransparency(CaseData Case, bool doRecursive = true)
-    { // Check s'il y a un personnage ou un ballon au dessus ou en dessous de la case ciblée pour détecter s'il doit faire une transparence ou non.
+  public void CheckCaseTransparency(CaseData Case, bool doRecursive = true)
+  { // Check s'il y a un personnage ou un ballon au dessus ou en dessous de la case ciblée pour détecter s'il doit faire une transparence ou non.
 
-        // GET CASE HAUT ET GET CASE BAS
-        CaseData upperCase = Case.GetTopCase();
-        CaseData lowerCase = Case.GetBottomCase();
+    // GET CASE HAUT ET GET CASE BAS
+    Debug.Log(Case.name);
 
-        if (upperCase != null && upperCase.personnageData != null
-            && Case != null && Case.personnageData != null)
-        {
-            ApplyTransparency(Case.personnageData);
-        }
-        else if (upperCase != null && upperCase.personnageData == null
-            && Case != null && Case.personnageData != null)
-        {
-            ApplyOpacity(Case.personnageData);
-        }
+    CaseData upperCase = Case.GetTopCase();
+    CaseData lowerCase = Case.GetBottomCase();
 
-        if (doRecursive)
-        {
-            CheckCaseTransparency(upperCase, false);
-            CheckCaseTransparency(lowerCase, false);
-        }
-    }
+    if (upperCase != null && upperCase.personnageData != null
+        && Case != null && Case.personnageData != null)
+      {
+        ApplyTransparency(Case.personnageData);
+      } else if (upperCase != null && upperCase.personnageData == null
+                 && Case != null && Case.personnageData != null)
+      {
+        ApplyOpacity(Case.personnageData);
+      }
 
-    public void ApplyTransparency(PersoData Perso)
+    if (doRecursive)
+      {
+        CheckCaseTransparency(upperCase, false);
+        CheckCaseTransparency(lowerCase, false);
+      }
+  }
+
+  public void ApplyTransparency(PersoData Perso)
   { // Applique la transparence du TransparencyBehaviour sur le personnage.
     SpriteRenderer CaseSpriteR = Perso.GetComponent<SpriteRenderer>();
 

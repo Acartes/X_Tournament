@@ -281,7 +281,7 @@ public class SpellData : NetworkBehaviour
         if (SummonManager.Instance.lastSummonInstancied == null)
           {
             SummonManager.Instance.lastSummonInstancied = (SummonData)Instantiate(summonedObj, hoveredCase.transform.position + summonedObj.transform.position - summonedObj.originPoint.position, Quaternion.identity);
-            SummonManager.Instance.lastSummonInstancied.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.3f);
+            SummonManager.Instance.lastSummonInstancied.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 0.3f);
           }
         SummonManager.Instance.lastSummonInstancied.transform.position = hoveredCase.transform.position + SummonManager.Instance.lastSummonInstancied.transform.position - SummonManager.Instance.lastSummonInstancied.originPoint.position;
       }
@@ -296,7 +296,7 @@ public class SpellData : NetworkBehaviour
         PersoData persoAfflicted = objAfflicted.GetComponent<PersoData>();
         CaseData caseAfflicted = persoAfflicted.persoCase;
         if (animatorSpell != null)
-          FXManager.Instance.Show(animatorSpell, persoAfflicted.persoCase.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
+          FXManager.Instance.Show(animatorSpell, caseAfflicted.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
 
         EffectManager.Instance.Push(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection);
       }
@@ -306,7 +306,17 @@ public class SpellData : NetworkBehaviour
         BallonData ballonAfflicted = objAfflicted.GetComponent<BallonData>();
         CaseData caseAfflicted = ballonAfflicted.ballonCase;
         if (animatorSpell != null)
-          FXManager.Instance.Show(animatorSpell, ballonAfflicted.ballonCase.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
+          FXManager.Instance.Show(animatorSpell, caseAfflicted.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
+
+        EffectManager.Instance.Push(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection);
+      }
+
+    if (objAfflicted.GetComponent<SummonData>() != null)
+      {
+        SummonData summonAfflicted = objAfflicted.GetComponent<SummonData>();
+        CaseData caseAfflicted = summonAfflicted.caseActual;
+        if (animatorSpell != null)
+          FXManager.Instance.Show(animatorSpell, caseAfflicted.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
 
         EffectManager.Instance.Push(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection);
       }

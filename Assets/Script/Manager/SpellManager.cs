@@ -153,12 +153,10 @@ public class SpellManager : NetworkBehaviour
     if (SummonManager.Instance.lastSummonInstancied != null)
       {
         SummonData lastSummonInstancied = SummonManager.Instance.lastSummonInstancied;
-        lastSummonInstancied.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
+        lastSummonInstancied.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
         lastSummonInstancied.GetComponent<BoxCollider2D>().enabled = true;
       }
-
-    Debug.Log("a");
-
+          
     foreach (CaseData obj in CaseManager.listAllCase)
       {
         if ((Statut.atAoE & obj.statut) == Statut.atAoE)
@@ -170,9 +168,12 @@ public class SpellManager : NetworkBehaviour
 
             if (((ObjectType.Ballon & selectedSpell.affectedTarget) == ObjectType.Ballon) && obj.ballon != null)
               {
-                Debug.Log("b");
-
                 selectedSpell.ApplyEffect(obj.ballon.gameObject);
+              }
+
+            if (((ObjectType.Invoc & selectedSpell.affectedTarget) == ObjectType.Invoc) && obj.summonData != null)
+              {
+                selectedSpell.ApplyEffect(obj.summonData.gameObject);
               }
           }
       }

@@ -33,6 +33,7 @@ public class SummonData : NetworkBehaviour
   public bool invulnerable;
   public bool hurtWhenBounce;
   public int numberEffectDisapear;
+  public Direction summonDirection = Direction.NordEst;
 
   public int damagePR;
   public int damagePA;

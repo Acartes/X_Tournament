@@ -58,6 +58,11 @@ public class PushBehaviour : NetworkBehaviour
         persoAfflicted = objAfflicted.GetComponent<PersoData>();
         persoDirection = persoAfflicted.persoDirection;
       }
+
+    if (objAfflicted.GetComponent<SummonData>() != null)
+      {
+        persoDirection = objAfflicted.GetComponent<SummonData>().summonDirection;
+      }
       
     CaseData tempCase = null;
 
@@ -140,7 +145,7 @@ public class PushBehaviour : NetworkBehaviour
 
     if (path.Count == 0)
       return;
-      
+
     StartCoroutine(Deplacement(objAfflicted, path));
   }
 
@@ -163,12 +168,16 @@ public class PushBehaviour : NetworkBehaviour
         originPoint = objAfflicted.GetComponent<BallonData>().offsetBallon;
       }
 
+    if (objAfflicted.GetComponent<SummonData>() != null)
+      {
+        originPoint = objAfflicted.GetComponent<SummonData>().originPoint.transform.localPosition;
+      }
+
     foreach (Transform path in pathes)
       {
        
         if (path.GetComponent<CaseData>().casePathfinding == PathfindingCase.NonWalkable)
           {
-              
             break;
           }
         lastPath = path;
@@ -185,7 +194,6 @@ public class PushBehaviour : NetworkBehaviour
 
         while (objAfflicted.transform.position != path.transform.position - originPoint)
           {
-            Debug.Log("infini");
             fracturedTime += timeUnit + 0.01f;
             objAfflicted.transform.position = Vector3.Lerp(startPos, path.transform.position - originPoint, fracturedTime);
             yield return new WaitForEndOfFrame();
