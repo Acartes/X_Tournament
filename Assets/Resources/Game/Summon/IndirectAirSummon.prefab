@@ -167,7 +167,8 @@ MonoBehaviour:
   canPush: 1
   pushValue: 1
   pushRange: 0
-  pushDirection: 4
+  pushType: 0
+  pushDirection: 5
   originPoint: {fileID: 4541752187799740}
   caseActual: {fileID: 0}
   actualPointResistance: 0
@@ -175,6 +176,14 @@ MonoBehaviour:
   invulnerable: 1
   hurtWhenBounce: 0
   numberEffectDisapear: 1
+  summonDirection: 1
+  damagePR: 0
+  damagePA: 0
+  damagePM: 0
+  reverseDamageOnAlly: 0
+  P1Sprite: {fileID: 21300000, guid: 1a5a28b58f13e3b409f294a9ab724429, type: 3}
+  P2Sprite: {fileID: 0}
+  owner: 0
   limitInvoc: 0
 --- !u!212 &212794348866192826
 SpriteRenderer:
