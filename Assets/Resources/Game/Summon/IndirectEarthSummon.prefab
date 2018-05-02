@@ -181,7 +181,7 @@ MonoBehaviour:
   P1Sprite: {fileID: 21300000, guid: 7cf860bdd7b63ee41a664c3178f1c1d2, type: 3}
   P2Sprite: {fileID: 21300000, guid: da4f74b18cc835b4bb9bb76450d3d09e, type: 3}
   owner: 0
-  limitInvoc: 0
+  limitInvoc: 3
 --- !u!114 &114969915162765214
 MonoBehaviour:
   m_ObjectHideFlags: 1
