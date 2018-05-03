@@ -45,11 +45,15 @@ public class EventManager : NetworkBehaviour
   [ClientRpc]
   public void RpcMenuContextuelClick(string buttonName)
   {
+    Debug.Log("Hi Baby : " + buttonName);
     switch (buttonName)
-    {
+      {
       case ("MenuContextuelReplacer"):
         if (SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData>().actualPointMovement < 1)
-          return;
+          {
+            MenuContextuel.Instance.HideMenu();
+            return;
+          }
         SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData>().actualPointMovement--;
         ReplacerBalleBehaviour.Instance.ReplacerBalle();
         MenuContextuel.Instance.HideMenu();
@@ -61,7 +65,7 @@ public class EventManager : NetworkBehaviour
       case ("Nothing"):
         MenuContextuel.Instance.HideMenu();
         break;
-    }
+      }
   }
 
 }

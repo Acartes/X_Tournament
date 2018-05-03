@@ -156,6 +156,8 @@ public class MoveBehaviour : NetworkBehaviour
 
     GameManager.Instance.actualAction = PersoAction.isMoving;
     
+    TackleBehaviour.Instance.CheckTackle(selectedPersonnage.gameObject);
+
     foreach (Transform path in pathes)
       {
         List<Transform> savePathes = pathes;

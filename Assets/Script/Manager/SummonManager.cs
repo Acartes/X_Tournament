@@ -45,6 +45,9 @@ public class SummonManager : NetworkBehaviour
       {
         if (summonAirRedList.Count > summonAirRedList[0].limitInvoc)
           {
+            if (summonAirRedList[0] == null)
+              summonAirRedList.RemoveAt(0);
+              
             Destroy(summonAirRedList[0].gameObject);
             summonAirRedList.RemoveAt(0);
           }
@@ -54,6 +57,9 @@ public class SummonManager : NetworkBehaviour
       {
         if (summonAirBlueList.Count > summonAirBlueList[0].limitInvoc)
           {
+            if (summonAirBlueList[0] == null)
+              summonAirBlueList.RemoveAt(0);
+              
             Destroy(summonAirBlueList[0].gameObject);
             summonAirBlueList.RemoveAt(0);
           }
@@ -63,6 +69,9 @@ public class SummonManager : NetworkBehaviour
       {
         if (summonEarthRedList.Count > summonEarthRedList[0].limitInvoc)
           {
+            if (summonEarthRedList[0] == null)
+              summonEarthRedList.RemoveAt(0);
+              
             Destroy(summonEarthRedList[0].gameObject);
             summonEarthRedList.RemoveAt(0);
           }
@@ -72,6 +81,9 @@ public class SummonManager : NetworkBehaviour
       {
         if (summonEarthBlueList.Count > summonEarthBlueList[0].limitInvoc)
           {
+            if (summonEarthBlueList[0] == null)
+              summonEarthBlueList.RemoveAt(0);
+              
             Destroy(summonEarthBlueList[0].gameObject);
             summonEarthBlueList.RemoveAt(0);
           }
@@ -81,6 +93,9 @@ public class SummonManager : NetworkBehaviour
       {
         if (summonFireRedList.Count > summonFireRedList[0].limitInvoc)
           {
+            if (summonFireRedList[0] == null)
+              summonFireRedList.RemoveAt(0);
+              
             Destroy(summonFireRedList[0].gameObject);
             summonFireRedList.RemoveAt(0);
           }
@@ -90,6 +105,9 @@ public class SummonManager : NetworkBehaviour
       {
         if (summonFireBlueList.Count > summonFireBlueList[0].limitInvoc)
           {
+            if (summonFireBlueList[0] == null)
+              summonFireBlueList.RemoveAt(0);
+              
             Destroy(summonFireBlueList[0].gameObject);
             summonFireBlueList.RemoveAt(0);
           }
@@ -99,6 +117,9 @@ public class SummonManager : NetworkBehaviour
       {
         if (summonWaterRedList.Count > summonWaterRedList[0].limitInvoc)
           {
+            if (summonWaterRedList[0] == null)
+              summonWaterRedList.RemoveAt(0);
+              
             Destroy(summonWaterRedList[0].gameObject);
             summonWaterRedList.RemoveAt(0);
           }
@@ -108,6 +129,9 @@ public class SummonManager : NetworkBehaviour
       {
         if (summonWaterBlueList.Count > summonWaterBlueList[0].limitInvoc)
           {
+            if (summonWaterBlueList[0] == null)
+              summonWaterBlueList.RemoveAt(0);
+              
             Destroy(summonWaterBlueList[0].gameObject);
             summonWaterBlueList.RemoveAt(0);
  

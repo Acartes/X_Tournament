@@ -64,7 +64,7 @@ public class PersoData : NetworkBehaviour
     animator = GetComponentInChildren<Animator>();
     animator.SetBool("Idle", true);
 
-    //gameObject.name = spriteR.sprite.name;
+    gameObject.name = spriteR.sprite.name;
     isTackled = false;
     actualPointMovement = maxPointMovement;
 
@@ -122,25 +122,21 @@ public class PersoData : NetworkBehaviour
         transform.localRotation = Quaternion.Euler(0, 180, 0);
         animator.SetBool("Back", false);
         animator.SetBool("Front", true);
-        spriteR.sprite = faceSprite;
         break;
       case Direction.NordOuest:
-        transform.localRotation = Quaternion.Euler(0, 180, 0);
+        transform.localRotation = Quaternion.Euler(0, 0, 0);
         animator.SetBool("Front", false);
         animator.SetBool("Back", true);
-        spriteR.sprite = backSprite;
         break;
       case Direction.SudEst:
         transform.localRotation = Quaternion.Euler(0, 0, 0);
         animator.SetBool("Back", false);
         animator.SetBool("Front", true);
-        spriteR.sprite = faceSprite;
         break;
       case Direction.NordEst:
-        transform.localRotation = Quaternion.Euler(0, 0, 0);
+        transform.localRotation = Quaternion.Euler(0, 180, 0);
         animator.SetBool("Front", false);
         animator.SetBool("Back", true);
-        spriteR.sprite = backSprite;
         break;
       }
   }

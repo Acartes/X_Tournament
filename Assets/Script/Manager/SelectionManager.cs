@@ -80,7 +80,6 @@ public class SelectionManager : NetworkBehaviour
       {
       case (Phase.Placement):
         return; // c'est le scriptPlacementBehaviour qui s'occupe des clicks de phase de placement
-        break;
       case (Phase.Deplacement):
         if (hoveredPersonnage != null && hoveredPersonnage.owner == currentPlayer)
           { // changement de personnage selectionné
@@ -88,10 +87,10 @@ public class SelectionManager : NetworkBehaviour
           }
         break;
       }
-      InfoPerso.Instance.stats.changePm(Instance.selectedPersonnage.actualPointMovement, Instance.selectedPersonnage.maxPointMovement);
-      InfoPerso.Instance.stats.changePr(Instance.selectedPersonnage.actualPointResistance, Instance.selectedPersonnage.maxPointResistance);
-      InfoPerso.Instance.stats.changePo(Instance.selectedPersonnage.shotStrenght, Instance.selectedPersonnage.shotStrenght);
-    }
+    InfoPerso.Instance.stats.changePm(Instance.selectedPersonnage.actualPointMovement, Instance.selectedPersonnage.maxPointMovement);
+    InfoPerso.Instance.stats.changePr(Instance.selectedPersonnage.actualPointResistance, Instance.selectedPersonnage.maxPointResistance);
+    InfoPerso.Instance.stats.changePo(Instance.selectedPersonnage.shotStrenght, Instance.selectedPersonnage.shotStrenght);
+  }
 
   void OnChangeTurn(object sender, PlayerArgs e)
   { // Lorsqu'un joueur termine son tour
