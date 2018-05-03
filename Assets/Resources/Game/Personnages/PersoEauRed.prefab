@@ -34,12 +34,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4445434289151906}
-  - component: {fileID: 212627234883469394}
   - component: {fileID: 114766648747353004}
   - component: {fileID: 50415124103048680}
   - component: {fileID: 61971609288476504}
   - component: {fileID: 114426245744735858}
-  - component: {fileID: 95160456784171402}
   m_Layer: 2
   m_Name: PersoEauRed
   m_TagString: Personnage
@@ -47,6 +45,37 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1885333050470084
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4427285728367614}
+  - component: {fileID: 212891923309361950}
+  - component: {fileID: 95058376977659056}
+  - component: {fileID: 114719634892732226}
+  m_Layer: 2
+  m_Name: Graph
+  m_TagString: Personnage
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4427285728367614
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1885333050470084}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4445434289151906}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4445434289151906
 Transform:
   m_ObjectHideFlags: 1
@@ -58,6 +87,7 @@ Transform:
   m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children:
   - {fileID: 4597368494171750}
+  - {fileID: 4427285728367614}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -119,16 +149,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1}
   m_EdgeRadius: 0
---- !u!95 &95160456784171402
+--- !u!95 &95058376977659056
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1409412096056796}
-  m_Enabled: 0
+  m_GameObject: {fileID: 1885333050470084}
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 70c553d7ee86da14bb8bf77e562ebaee, type: 2}
+  m_Controller: {fileID: 9100000, guid: d726af6a339d11445a3ec771917fe1fb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -142,6 +172,38 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1409412096056796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 81
+    i1: 161
+    i2: 96
+    i3: 94
+    i4: 40
+    i5: 30
+    i6: 207
+    i7: 84
+    i8: 186
+    i9: 227
+    i10: 211
+    i11: 113
+    i12: 31
+    i13: 85
+    i14: 157
+    i15: 132
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!114 &114719634892732226
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1885333050470084}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
@@ -196,12 +258,13 @@ MonoBehaviour:
   Spell1: {fileID: 0}
   Spell2: {fileID: 0}
   isTackled: 0
---- !u!212 &212627234883469394
+  animator: {fileID: 0}
+--- !u!212 &212891923309361950
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1409412096056796}
+  m_GameObject: {fileID: 1885333050470084}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -228,12 +291,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: 3c8705d6f4589db46a4df9544fe33b4d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4916649af66efd141878e2b1b71780a5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.8, y: 1.2}
+  m_Size: {x: 2.18, y: 6.23}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

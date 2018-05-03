@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SocialPlatforms;
+using System.Security.Cryptography;
 
 /// <summary>Tout ce qu'il est possible de faire avec un personnage, ainsi que toutes ses données.</summary>
 public class PersoData : NetworkBehaviour
@@ -36,19 +37,12 @@ public class PersoData : NetworkBehaviour
 
   public bool isTackled = false;
 
-  Animator animator;
+  public Animator animator;
 
   // ******************** //
   // ** Initialisation ** // Fonctions de départ, non réutilisable
   // ******************** //
 
-  void Awake()
-  {
-    spriteR = GetComponent<SpriteRenderer>();
-    animator = GetComponent<Animator>();
-  }
-
-  // Use this for initialization
   void Start()
   { 
     StartCoroutine(waitForInit());
@@ -66,7 +60,11 @@ public class PersoData : NetworkBehaviour
 
   public void Init()
   {
-    gameObject.name = spriteR.sprite.name;
+    spriteR = GetComponentInChildren<SpriteRenderer>();
+    animator = GetComponentInChildren<Animator>();
+    animator.SetBool("Idle", true);
+
+    //gameObject.name = spriteR.sprite.name;
     isTackled = false;
     actualPointMovement = maxPointMovement;
 
@@ -122,19 +120,26 @@ public class PersoData : NetworkBehaviour
       {
       case Direction.SudOuest:
         transform.localRotation = Quaternion.Euler(0, 180, 0);
-          //  animator
+        animator.SetBool("Back", false);
+        animator.SetBool("Front", true);
         spriteR.sprite = faceSprite;
         break;
       case Direction.NordOuest:
         transform.localRotation = Quaternion.Euler(0, 180, 0);
+        animator.SetBool("Front", false);
+        animator.SetBool("Back", true);
         spriteR.sprite = backSprite;
         break;
       case Direction.SudEst:
         transform.localRotation = Quaternion.Euler(0, 0, 0);
+        animator.SetBool("Back", false);
+        animator.SetBool("Front", true);
         spriteR.sprite = faceSprite;
         break;
       case Direction.NordEst:
         transform.localRotation = Quaternion.Euler(0, 0, 0);
+        animator.SetBool("Front", false);
+        animator.SetBool("Back", true);
         spriteR.sprite = backSprite;
         break;
       }

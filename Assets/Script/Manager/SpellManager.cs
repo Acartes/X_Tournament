@@ -48,10 +48,10 @@ public class SpellManager : NetworkBehaviour
   void OnDisable()
   {
     if (LoadingManager.Instance != null && LoadingManager.Instance.isGameReady())
-    {
-      EventManager.newClickEvent -= OnNewClick;
-      EventManager.newHoverEvent -= OnNewHover;
-    }
+      {
+        EventManager.newClickEvent -= OnNewClick;
+        EventManager.newHoverEvent -= OnNewHover;
+      }
   }
 
   // *************** //
@@ -103,11 +103,11 @@ public class SpellManager : NetworkBehaviour
 
     // enough PA? (global PA/mana)
     if (GameManager.Instance.manaGlobalActual < selectedSpell.costPA)
-    {
-      Debug.Log("PAS ASSEZ DE PA");
-      selectedSpell = null;
-      return;
-    }
+      {
+        Debug.Log("PAS ASSEZ DE PA");
+        selectedSpell = null;
+        return;
+      }
 
     RpcFunctions.Instance.CmdSpellButtonClick(IDSpell);
   }
@@ -116,6 +116,8 @@ public class SpellManager : NetworkBehaviour
   public void RpcSpellButtonClick(int IDSpell)
   {
     PersoData selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
+    selectedPersonnage.animator.SetBool("Idle", false);
+    selectedPersonnage.animator.SetBool("Cast", true);
 
     if (selectedPersonnage == null)// perso exist?
       return;
@@ -141,10 +143,10 @@ public class SpellManager : NetworkBehaviour
 
 
     if ((Statut.canTarget & hoveredCase.statut) != Statut.canTarget)
-    {
-      StartCoroutine(SpellEnd());
-      return;
-    }
+      {
+        StartCoroutine(SpellEnd());
+        return;
+      }
 
     spellSuccess = true;
     GameManager.Instance.manaGlobalActual -= selectedSpell.costPA;
@@ -196,25 +198,25 @@ public class SpellManager : NetworkBehaviour
       }
           
     foreach (CaseData obj in CaseManager.listAllCase)
-    {
-      if ((Statut.atAoE & obj.statut) == Statut.atAoE)
       {
-        if (((ObjectType.AllyPerso & selectedSpell.affectedTarget) == ObjectType.AllyPerso) && obj.personnageData != null)
-        {
-          selectedSpell.ApplyEffect(obj.personnageData.gameObject);
-        }
+        if ((Statut.atAoE & obj.statut) == Statut.atAoE)
+          {
+            if (((ObjectType.AllyPerso & selectedSpell.affectedTarget) == ObjectType.AllyPerso) && obj.personnageData != null)
+              {
+                selectedSpell.ApplyEffect(obj.personnageData.gameObject);
+              }
 
-        if (((ObjectType.Ballon & selectedSpell.affectedTarget) == ObjectType.Ballon) && obj.ballon != null)
-        {
-          selectedSpell.ApplyEffect(obj.ballon.gameObject);
-        }
+            if (((ObjectType.Ballon & selectedSpell.affectedTarget) == ObjectType.Ballon) && obj.ballon != null)
+              {
+                selectedSpell.ApplyEffect(obj.ballon.gameObject);
+              }
 
-        if (((ObjectType.Invoc & selectedSpell.affectedTarget) == ObjectType.Invoc) && obj.summonData != null)
-        {
-          selectedSpell.ApplyEffect(obj.summonData.gameObject);
-        }
+            if (((ObjectType.Invoc & selectedSpell.affectedTarget) == ObjectType.Invoc) && obj.summonData != null)
+              {
+                selectedSpell.ApplyEffect(obj.summonData.gameObject);
+              }
+          }
       }
-    }
     StartCoroutine(SpellEnd());
   }
 
@@ -225,19 +227,21 @@ public class SpellManager : NetworkBehaviour
 
   public IEnumerator SpellEnd()
   {
+    SelectionManager.Instance.selectedPersonnage.animator.SetBool("Cast", false);
+    SelectionManager.Instance.selectedPersonnage.animator.SetBool("Idle", true);
     GameManager.Instance.actualAction = PersoAction.isWaiting;
     foreach (CaseData obj in CaseManager.listAllCase)
-    {
-      obj.ChangeStatut(Statut.None, Statut.atRange);
-      obj.ChangeStatut(Statut.None, Statut.atAoE);
-      obj.ChangeStatut(Statut.None, Statut.atPush);
-      obj.ChangeStatut(Statut.None, Statut.canTarget);
-    }
+      {
+        obj.ChangeStatut(Statut.None, Statut.atRange);
+        obj.ChangeStatut(Statut.None, Statut.atAoE);
+        obj.ChangeStatut(Statut.None, Statut.atPush);
+        obj.ChangeStatut(Statut.None, Statut.canTarget);
+      }
 
     if (!spellSuccess && SummonManager.Instance.lastSummonInstancied != null)
-    {
-      DestroyImmediate(SummonManager.Instance.lastSummonInstancied.gameObject);
-    }
+      {
+        DestroyImmediate(SummonManager.Instance.lastSummonInstancied.gameObject);
+      }
     SummonManager.Instance.lastSummonInstancied = null;
     spellSuccess = false;
 

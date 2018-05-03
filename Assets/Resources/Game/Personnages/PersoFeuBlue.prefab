@@ -26,6 +26,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1374969072595928
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4036733392782090}
+  - component: {fileID: 212710266591409564}
+  - component: {fileID: 95319240036748914}
+  - component: {fileID: 114807794417380540}
+  m_Layer: 2
+  m_Name: Graph
+  m_TagString: Personnage
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1409412096056796
 GameObject:
   m_ObjectHideFlags: 0
@@ -34,12 +52,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4445434289151906}
-  - component: {fileID: 212627234883469394}
   - component: {fileID: 114766648747353004}
   - component: {fileID: 61223595368336792}
   - component: {fileID: 50415124103048680}
   - component: {fileID: 114477864596714876}
-  - component: {fileID: 95288564895397868}
   m_Layer: 2
   m_Name: PersoFeuBlue
   m_TagString: Personnage
@@ -47,6 +63,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4036733392782090
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1374969072595928}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4445434289151906}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4050932027807956
 Transform:
   m_ObjectHideFlags: 1
@@ -71,6 +100,7 @@ Transform:
   m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children:
   - {fileID: 4050932027807956}
+  - {fileID: 4036733392782090}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -119,16 +149,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1}
   m_EdgeRadius: 0
---- !u!95 &95288564895397868
+--- !u!95 &95319240036748914
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1409412096056796}
-  m_Enabled: 0
+  m_GameObject: {fileID: 1374969072595928}
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ca4b56f8c1f349047b48189abb1e3cb2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7487c106474fd38479f7d5eb87ad0ed6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -196,12 +226,45 @@ MonoBehaviour:
   Spell1: {fileID: 0}
   Spell2: {fileID: 0}
   isTackled: 0
---- !u!212 &212627234883469394
+  animator: {fileID: 0}
+--- !u!114 &114807794417380540
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1374969072595928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 231
+    i1: 244
+    i2: 162
+    i3: 165
+    i4: 9
+    i5: 97
+    i6: 142
+    i7: 52
+    i8: 232
+    i9: 60
+    i10: 38
+    i11: 40
+    i12: 198
+    i13: 251
+    i14: 107
+    i15: 254
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!212 &212710266591409564
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1409412096056796}
+  m_GameObject: {fileID: 1374969072595928}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -228,12 +291,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: fb0c6cbdcfd7be54a9d454c7eb75134d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4916649af66efd141878e2b1b71780a5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.34, y: 8.35}
+  m_Size: {x: 2.18, y: 6.23}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
