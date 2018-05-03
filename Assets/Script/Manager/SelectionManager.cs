@@ -88,7 +88,8 @@ public class SelectionManager : NetworkBehaviour
           }
         break;
       }
-  }
+      InfoPerso.Instance.stats.changePm(Instance.selectedPersonnage.actualPointMovement, Instance.selectedPersonnage.maxPointMovement);
+    }
 
   void OnChangeTurn(object sender, PlayerArgs e)
   { // Lorsqu'un joueur termine son tour
