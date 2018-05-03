@@ -65,10 +65,12 @@ public class CaseManager : NetworkBehaviour
     /// <summary>Remet la valeur de toutes les cases par défaut</summary> 
     foreach (CaseData newCase in listAllCase)
       {
+      DisableAllColliders();
         newCase.ballon = null;
         newCase.casePathfinding = PathfindingCase.Walkable;
         newCase.personnageData = null;
         newCase.statut = 0;
+      EnableAllColliders();
       }
   }
 

@@ -171,7 +171,7 @@ public class CaseData : NetworkBehaviour
         summonData = null;
         casePathfinding = PathfindingCase.Walkable;
       }
-    TransparencyManager.Instance.CheckCaseTransparency(this);
+      TransparencyManager.Instance.CheckCaseTransparency(this);
 
   }
 

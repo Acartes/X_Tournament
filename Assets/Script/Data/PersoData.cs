@@ -20,8 +20,8 @@ public class PersoData : NetworkBehaviour
   public int maxPointAction;
   public int actualPointResistance;
   public int maxPointResistance;
-  /// <summary>Modifie la portée des sorts.</summary>
-  public int rangeModifier;
+  /// <summary>Modifie la portée du tir.</summary>
+  public int shotStrenght;
   public Direction persoDirection;
   public CaseData persoCase;
   public GameObject originPoint;

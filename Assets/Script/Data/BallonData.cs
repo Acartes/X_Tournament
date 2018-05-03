@@ -19,8 +19,6 @@ public class BallonData : NetworkBehaviour
 
   [Header("  Temps")]
   public float travelTimeBallon;
-  [Tooltip("Utilisé pour ")]
-  public float ballStrenght;
 
   public Direction ballonDirection;
   public CaseData ballonCase;
@@ -81,7 +79,7 @@ public class BallonData : NetworkBehaviour
 
     GameManager.Instance.actualAction = PersoAction.isShoting;
     TurnManager.Instance.DisableFinishTurn();
-    MenuContextuelManager.Instance.isShoting = true;
+    MenuContextuel.Instance.isShoting = true;
 
     GameObject nextPosition;
 
@@ -115,7 +113,7 @@ public class BallonData : NetworkBehaviour
         xCoordInc -= 0.5f;
         yCoordInc += 0.5f;
       }
-    for (int i = 0; i < ballStrenght; i++)
+    for (int i = 0; i < selectedPersonnage.shotStrenght; i++)
       {
           
         if ((BallonStatut.isIntercepted & statut) == BallonStatut.isIntercepted)
@@ -216,7 +214,7 @@ public class BallonData : NetworkBehaviour
         break;
       }
 
-    MenuContextuelManager.Instance.isShoting = false;
+        MenuContextuel.Instance.isShoting = false;
   }
 
   /// <summary>Change le statut du ballon.</summary>

@@ -31,10 +31,10 @@ public class TransparencyManager : NetworkBehaviour
   public void CheckCaseTransparency(CaseData Case, bool doRecursive = true)
   { // Check s'il y a un personnage ou un ballon au dessus ou en dessous de la case ciblée pour détecter s'il doit faire une transparence ou non.
 
-    // GET CASE HAUT ET GET CASE BAS
-    Debug.Log(Case.name);
+    Debug.Log(GameManager.Instance.currentPhase);
+      // GET CASE HAUT ET GET CASE BAS
 
-    CaseData upperCase = Case.GetTopCase();
+      CaseData upperCase = Case.GetTopCase();
     CaseData lowerCase = Case.GetBottomCase();
 
     if (upperCase != null && upperCase.personnageData != null
