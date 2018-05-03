@@ -9,17 +9,6 @@ public class infoPersoStats : MonoBehaviour {
     public GameObject Pm;
     public GameObject Po; // no homo
 
-    void Start()
-    {
-        changePm(SelectionManager.Instance.selectedPersonnage.maxPointMovement, SelectionManager.Instance.selectedPersonnage.maxPointMovement);
-    }
-    /*IEnumerator waitForEvent()
-    {
-        while (!LoadingManager.Instance.isGameReady())
-            yield return new WaitForEndOfFrame();
-
-        changeTurnEvent(this, new PlayerArgs(currentPlayer, currentPhase));
-    }*/
     // Use this for initialization
     public void changePr(int pr, int maxPr)
     {
