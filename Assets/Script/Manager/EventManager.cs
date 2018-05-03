@@ -46,28 +46,22 @@ public class EventManager : NetworkBehaviour
   public void RpcMenuContextuelClick(string buttonName)
   {
     switch (buttonName)
-      {
+    {
       case ("MenuContextuelReplacer"):
         if (SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData>().actualPointMovement < 1)
           return;
-            
         SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData>().actualPointMovement--;
-        CaseManager.Instance.EnableAllColliders();
         ReplacerBalleBehaviour.Instance.ReplacerBalle();
-        MenuContextuel.Instance.gameObject.transform.position = new Vector3(999, 999, 999);
-
+        MenuContextuel.Instance.HideMenu();
         break;
       case ("MenuContextuelTirer"):
         SelectionManager.Instance.selectedBallon.GetComponent<BallonData>().StartCoroutine("Move");
-        CaseManager.Instance.EnableAllColliders();
-        TurnManager.Instance.StartCoroutine("EnableFinishTurn");
-        MenuContextuel.Instance.gameObject.transform.position = new Vector3(999, 999, 999); 
+        MenuContextuel.Instance.HideMenu();
         break;
-      case ("MenuContextuelNothing"):
-        TurnManager.Instance.StartCoroutine("EnableFinishTurn");
-        MenuContextuel.Instance.gameObject.transform.position = new Vector3(999, 999, 999);
+      case ("Nothing"):
+        MenuContextuel.Instance.HideMenu();
         break;
-      }
+    }
   }
 
 }
