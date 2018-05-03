@@ -11,7 +11,7 @@ public class UIManager : NetworkBehaviour
   // *************** //
   // ** Variables ** // Toutes les variables sans distinctions
   // *************** //
-
+  
   public Animator animChangeTurn;
   public List<GameObject> banner;
   public List<GameObject> bannerText;
@@ -31,8 +31,10 @@ public class UIManager : NetworkBehaviour
   public Image spell1;
   public Image spell2;
   public Text remainingMana;
+  public float statsOffset;
+  public float manaOffset;
 
-    public Sprite defaultButtonSpellSprite;
+  public Sprite defaultButtonSpellSprite;
 
   public static UIManager Instance;
 
@@ -80,9 +82,11 @@ public class UIManager : NetworkBehaviour
       {
       case Player.Red:
         ChangeBanner(Player.Red);
+        SwitchStatsSide(Player.Red);
         break;
       case Player.Blue:
         ChangeBanner(Player.Blue);
+        SwitchStatsSide(Player.Blue);
         break;
       }
 
@@ -114,6 +118,31 @@ public class UIManager : NetworkBehaviour
         banner[0].GetComponent<Image>().color = bannerColor[0] - new Color(0.75f, 0.75f, 0.75f, 0.5f);
         bannerText[0].GetComponent<Text>().color = bannerTextColor[0] - new Color(0.75f, 0.75f, 0.75f, 0.5f);
       }
+  }
+
+  void SwitchStatsSide(Player activePlayer)
+  {
+    if(TurnManager.Instance.TurnNumber < 3)
+    {
+      return;
+    }
+
+    float tempStatsOffset = statsOffset;
+    float tempManaOffset = manaOffset;
+    if (activePlayer == Player.Red)
+    {
+      tempStatsOffset = -tempStatsOffset;
+    }
+    InfoPerso.Instance.stats.transform.GetComponent<RectTransform>().anchoredPosition = new Vector2(InfoPerso.Instance.stats.transform.GetComponent<RectTransform>().anchoredPosition.x + tempStatsOffset, InfoPerso.Instance.stats.transform.GetComponent<RectTransform>().anchoredPosition.y);
+    if (activePlayer == Player.Red)
+    {
+      spell1.transform.parent.GetComponentInParent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+    }
+    else
+      spell1.transform.parent.GetComponentInParent<RectTransform>().anchoredPosition = new Vector2(tempStatsOffset, 0);
+
+    remainingMana.transform.GetComponent<RectTransform>().anchoredPosition = new Vector2(remainingMana.transform.GetComponent<RectTransform>().anchoredPosition.x + tempManaOffset, remainingMana.transform.GetComponent<RectTransform>().anchoredPosition.y);
+
   }
 
   void ChangePhase(int x)

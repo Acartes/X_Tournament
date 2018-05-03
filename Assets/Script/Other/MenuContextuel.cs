@@ -110,15 +110,6 @@ public class MenuContextuel : NetworkBehaviour
     menuContextuel.transform.position = hoveredBallon.transform.position;
     TurnManager.Instance.DisableFinishTurn();
     activated = true;
-
-//    StartCoroutine(waitForActivate());
-  }
-
-  IEnumerator waitForActivate()
-  {
-    yield return new WaitUntil(() => Input.GetKeyUp("mouse 0"));
-    yield return new WaitForSeconds(0.5f);
-    activated = true;
   }
 
   public void HideMenu()

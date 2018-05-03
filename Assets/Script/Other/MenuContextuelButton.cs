@@ -9,6 +9,7 @@ public class MenuContextuelButton : MonoBehaviour
 
   public Color colorEnter;
   public Color colorExit;
+  public Color colorDisable;
 
   public bool collision;
 
@@ -19,6 +20,10 @@ public class MenuContextuelButton : MonoBehaviour
 
   public bool Collision()
   {
+    if(spriteR.color == colorDisable)
+    {
+      return false;
+    }
     if (Camera.current == null)
       return false;
     if (Input.mousePosition.x <= Camera.current.WorldToScreenPoint(new Vector3(transform.position.x - spriteR.bounds.size.x / 2, transform.position.y, transform.position.z)).x
@@ -40,6 +45,11 @@ public class MenuContextuelButton : MonoBehaviour
     ChangeColor(colorEnter);
   }
 
+  public void Disable()
+  {
+    ChangeColor(colorDisable);
+  }
+
   private void Update()
   {
     if (Collision())
@@ -52,10 +62,16 @@ public class MenuContextuelButton : MonoBehaviour
       collision = false;
       MouseExit();
     }
+
+    if (name == "MenuContextuelReplacer" && SelectionManager.Instance.selectedPersonnage.actualPointMovement == 0)
+    {
+      Disable();
+    }
+
   }
 
 
-    void OnEnable()
+  void OnEnable()
   {
     ChangeColor(colorExit);
     StartCoroutine(DebugCollider());

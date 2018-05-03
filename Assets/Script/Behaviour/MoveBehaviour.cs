@@ -155,7 +155,8 @@ public class MoveBehaviour : NetworkBehaviour
     TurnManager.Instance.DisableFinishTurn();
 
     GameManager.Instance.actualAction = PersoAction.isMoving;
-    
+    TackleBehaviour.Instance.CheckTackle(selectedPersonnage.gameObject);
+
     foreach (Transform path in pathes)
       {
         List<Transform> savePathes = pathes;
