@@ -217,7 +217,7 @@ MonoBehaviour:
   maxPointAction: 4
   actualPointResistance: 5
   maxPointResistance: 5
-  shotStrenght: 3
+  shotStrenght: 4
   persoDirection: 0
   persoCase: {fileID: 0}
   originPoint: {fileID: 1306470593966898}

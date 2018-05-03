@@ -24,44 +24,32 @@ public class infoPersosPortrait : NetworkBehaviour
 
     public void SelectPerso(PersoData newPerso)
     {
-        Sprite tempSprite;
-        Color tempColor;
-        PersoData tempPersoData;
-        if (newPerso == SubPortrait3.newHoveredPersonnage)
-        {
-            tempSprite = SubPortrait3.GetComponent<Image>().sprite;
-            tempColor = SubPortrait3.GetComponent<Image>().color;
-            tempPersoData = SubPortrait3.newHoveredPersonnage;
-            SubPortrait3.setPortraitData(SubPortrait2);
-            SubPortrait2.setPortraitData(SubPortrait1);
-            SubPortrait1.setPortraitData(MainPortrait);
-            MainPortrait.setPortraitData(tempSprite, tempColor, tempPersoData);
-            return;
-        }
-        
-        if (newPerso == SubPortrait2.newHoveredPersonnage)
-        {
-            tempSprite = SubPortrait2.GetComponent<Image>().sprite;
-            tempColor = SubPortrait2.GetComponent<Image>().color;
-            tempPersoData = SubPortrait2.newHoveredPersonnage;
-            SubPortrait2.setPortraitData(SubPortrait1);
-            SubPortrait1.setPortraitData(MainPortrait);
-            MainPortrait.setPortraitData(tempSprite, tempColor, tempPersoData);
-            return;
-        }
-        if (newPerso == SubPortrait1.newHoveredPersonnage)
-        {
-            tempSprite = SubPortrait1.GetComponent<Image>().sprite;
-            tempColor = SubPortrait1.GetComponent<Image>().color;
-            tempPersoData = SubPortrait1.newHoveredPersonnage;
-            SubPortrait1.setPortraitData(MainPortrait);
-            MainPortrait.setPortraitData(tempSprite, tempColor, tempPersoData);
-            return;
-        }
+    SubPortrait3.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 100);
+    SubPortrait2.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 100);
+    SubPortrait1.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 100);
+    MainPortrait.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 100);
 
+    if (newPerso == MainPortrait.newHoveredPersonnage)
+    {
+      MainPortrait.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
     }
+    if (newPerso == SubPortrait1.newHoveredPersonnage)
+    {
+      SubPortrait1.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
+    }
+      if (newPerso == SubPortrait2.newHoveredPersonnage)
+    {
+        SubPortrait2.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
+      }
 
-    public void SetupChangePlayerIcons(Player owner, int turnNumber)
+    if (newPerso == SubPortrait3.newHoveredPersonnage)
+    {
+        SubPortrait3.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
+      }
+
+  }
+
+  public void SetupChangePlayerIcons(Player owner, int turnNumber)
     {
         foreach (PersoData perso in RosterManager.Instance.listHero)
         {
