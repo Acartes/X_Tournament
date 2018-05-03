@@ -182,7 +182,7 @@ MonoBehaviour:
   weightType: 1
   owner: 0
   actualPointMovement: 6
-  maxPointMovement: 6
+  maxPointMovement: 4
   actualPointAction: 4
   maxPointAction: 4
   actualPointResistance: 5

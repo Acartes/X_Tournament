@@ -189,6 +189,7 @@ public class MoveBehaviour : NetworkBehaviour
       {
         SelectionManager.Instance.selectedCase.GetComponent<CaseData>().casePathfinding = PathfindingCase.NonWalkable;
         SelectionManager.Instance.selectedPersonnage.actualPointMovement -= pathes.Count;
+        InfoPerso.Instance.stats.changePm(SelectionManager.Instance.selectedPersonnage.actualPointMovement, SelectionManager.Instance.selectedPersonnage.maxPointMovement);
         pathes.Clear();
       } else
       {

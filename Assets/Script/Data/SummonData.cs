@@ -40,6 +40,9 @@ public class SummonData : NetworkBehaviour
   public int damagePM;
   public bool reverseDamageOnAlly;
 
+  public Sprite P1Sprite;
+  public Sprite P2Sprite;
+
   public Player owner;
 
   public int limitInvoc;
@@ -48,7 +51,7 @@ public class SummonData : NetworkBehaviour
   // ** Initialisation ** // Fonctions de départ, non réutilisable
   // ******************** //
 
-  void Start()
+  void Awake()
   { 
     StartCoroutine(waitForInit());
   }
@@ -137,5 +140,30 @@ public class SummonData : NetworkBehaviour
       }
 
     numberEffectDisapear--;
+  }
+
+  public void ChangeSpriteByPlayer()
+  {
+    Debug.Log("LOL " + owner);
+    if (GetComponentInChildren<SpriteRenderer>() != null)
+      {
+        if (P2Sprite != null)
+          {
+            if (owner == Player.Red)
+              {
+                GetComponentInChildren<SpriteRenderer>().sprite = P1Sprite;
+              }
+            if (owner == Player.Blue)
+              {
+                GetComponentInChildren<SpriteRenderer>().sprite = P2Sprite;
+              }
+          } else
+          {
+            if (P1Sprite != null)
+              {
+                GetComponentInChildren<SpriteRenderer>().sprite = P1Sprite;
+              }
+          }
+      }
   }
 }

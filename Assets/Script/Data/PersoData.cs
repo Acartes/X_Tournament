@@ -36,6 +36,8 @@ public class PersoData : NetworkBehaviour
 
   public bool isTackled = false;
 
+  Animator animator;
+
   // ******************** //
   // ** Initialisation ** // Fonctions de départ, non réutilisable
   // ******************** //
@@ -43,6 +45,7 @@ public class PersoData : NetworkBehaviour
   void Awake()
   {
     spriteR = GetComponent<SpriteRenderer>();
+    animator = GetComponent<Animator>();
   }
 
   // Use this for initialization
@@ -119,6 +122,7 @@ public class PersoData : NetworkBehaviour
       {
       case Direction.SudOuest:
         transform.localRotation = Quaternion.Euler(0, 180, 0);
+          //  animator
         spriteR.sprite = faceSprite;
         break;
       case Direction.NordOuest:
