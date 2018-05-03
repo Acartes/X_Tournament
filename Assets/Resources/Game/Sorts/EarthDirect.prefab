@@ -55,7 +55,7 @@ MonoBehaviour:
   costPA: 4
   range: 5
   isLinear: 1
-  areaOfEffect: 1
+  areaOfEffect: 0
   damagePR: 0
   damagePA: 0
   damagePM: 0
