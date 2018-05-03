@@ -24,6 +24,7 @@ public class UIManager : NetworkBehaviour
   public GameObject scoreRedGMB;
   public GameObject scoreBlueGMB;
   public GameObject messageGeneral;
+  public Image Victory;
   public GameObject menuContextuel;
   public GameObject tooltip;
   public bool isScoreChanging = false;
@@ -172,6 +173,20 @@ public class UIManager : NetworkBehaviour
 
       }
 
+    if (scoreRed == 2 || scoreBlue == 2)
+    {
+      Victory.transform.gameObject.SetActive(true);
+      if (scoreRed == 2)
+      {
+        Victory.transform.GetComponentInChildren<Text>().color = Color.red;
+        Victory.transform.GetComponentInChildren<Text>().text = "Victoire du joueur rouge";
+      }
+      if (scoreBlue == 2)
+      {
+        Victory.transform.GetComponentInChildren<Text>().color = Color.blue;
+        Victory.transform.GetComponentInChildren<Text>().text = "Victoire du joueur bleu";
+      }
+    }
     StartCoroutine(GameManager.Instance.NewManche());
 
     isScoreChanging = false;
