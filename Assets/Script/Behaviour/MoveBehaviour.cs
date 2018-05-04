@@ -171,7 +171,9 @@ public class MoveBehaviour : NetworkBehaviour
             float timeUnit = travelTime / 60;
 
             selectedPersonnage.RotateTowards(path.gameObject);
-            
+            SelectionManager.Instance.selectedPersonnage.actualPointMovement -= 1;
+            InfoPerso.Instance.stats.changePm(SelectionManager.Instance.selectedPersonnage.actualPointMovement, SelectionManager.Instance.selectedPersonnage.maxPointMovement);
+
             while (selectedPersonnage.transform.position != path.transform.position - originPoint)
               {
                 fracturedTime += timeUnit + 0.01f;
@@ -190,8 +192,6 @@ public class MoveBehaviour : NetworkBehaviour
     if (!selectedPersonnage.isTackled)
       {
         SelectionManager.Instance.selectedCase.GetComponent<CaseData>().casePathfinding = PathfindingCase.NonWalkable;
-        SelectionManager.Instance.selectedPersonnage.actualPointMovement -= pathes.Count;
-        InfoPerso.Instance.stats.changePm(SelectionManager.Instance.selectedPersonnage.actualPointMovement, SelectionManager.Instance.selectedPersonnage.maxPointMovement);
         pathes.Clear();
       } else
       {

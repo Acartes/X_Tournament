@@ -128,11 +128,6 @@ public class CaseData : NetworkBehaviour
                 casePathfinding = PathfindingCase.NonWalkable;
               }
 
-            if (col.gameObject.GetComponent<SummonData>().canPush)
-              {
-                statut += (int)Statut.willPush;
-              }
-
             if (personnageData != null)
               {
                 summonData.ApplyEffect(personnageData.gameObject);

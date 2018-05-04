@@ -65,6 +65,7 @@ public class SelectionManager : NetworkBehaviour
     if (isDisablePersoSelection)
       return;
 
+ 
     PersoData hoveredPersonnage = HoverManager.Instance.hoveredPersonnage;
     Phase currentPhase = TurnManager.Instance.currentPhase;
     Player currentPlayer = TurnManager.Instance.currentPlayer;

@@ -91,7 +91,7 @@ public class GameManager : NetworkBehaviour
       {
         UIManager.Instance.UpdateRemaningMana();
         if (TurnManager.Instance.TurnNumber != 2// si on est pas au premier tour de jeu
-                && TurnManager.Instance.TurnNumber % 2 == 0) // et qu'on vient d'arriver sur un nouveau tour rouge
+            && TurnManager.Instance.TurnNumber % 2 == 0) // et qu'on vient d'arriver sur un nouveau tour rouge
           {
             DecrementeManaMax(1);
           }
@@ -124,7 +124,6 @@ public class GameManager : NetworkBehaviour
     SelectionManager.Instance.selectedPersonnage = null;
     SelectionManager.Instance.selectedLastCase = null;
     SelectionManager.Instance.selectedLastPersonnage = null;
-    SelectionManager.Instance.selectedPersonnage = null;
     yield return new WaitForEndOfFrame();
     TurnManager.Instance.TurnNumber = 0;
     TurnManager.Instance.ChangePhase(Phase.Placement);

@@ -48,9 +48,12 @@ public class PushBehaviour : NetworkBehaviour
 
     if (obj.GetComponent<BallonData>() != null)
       {
-        caseNumberRestant = SelectionManager.Instance.selectedPersonnage.shotStrenght - obj.GetComponent<BallonData>().casesCrossed;
-        obj.GetComponent<BallonData>().StopMove();
-        obj.GetComponent<BallonData>().StopAllCoroutines();
+        if (obj.GetComponent<BallonData>().casesCrossed != 0)
+          {
+            caseNumberRestant = SelectionManager.Instance.selectedPersonnage.shotStrenght - obj.GetComponent<BallonData>().casesCrossed;
+            obj.GetComponent<BallonData>().StopMove();
+            obj.GetComponent<BallonData>().StopAllCoroutines();
+          }
         persoDirection = obj.GetComponent<BallonData>().ballonDirection;
       }
       
@@ -58,6 +61,10 @@ public class PushBehaviour : NetworkBehaviour
     if (objAfflicted.GetComponent<PersoData>() != null)
       {
         caseNumberRestant = pathRestant;
+        foreach (Transform path in MoveBehaviour.Instance.movePathes)
+          {
+            path.GetComponent<CaseData>().ChangeStatut(Statut.None, Statut.isMoving);
+          }
         MoveBehaviour.Instance.movePathes.Clear();
         persoAfflicted = objAfflicted.GetComponent<PersoData>();
         persoDirection = persoAfflicted.persoDirection;
@@ -242,6 +249,7 @@ public class PushBehaviour : NetworkBehaviour
         pathRestant--;
       }
     GameManager.Instance.actualAction = PersoAction.isSelected;
+    SelectionManager.Instance.selectedCase = SelectionManager.Instance.selectedPersonnage.persoCase;
     CaseManager.Instance.RemovePath();
 
     if (lastPath != null)

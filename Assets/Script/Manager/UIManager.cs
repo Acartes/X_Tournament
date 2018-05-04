@@ -122,23 +122,22 @@ public class UIManager : NetworkBehaviour
 
   void SwitchStatsSide(Player activePlayer)
   {
-    if(TurnManager.Instance.TurnNumber < 3)
-    {
-      return;
-    }
+    if (TurnManager.Instance.TurnNumber < 3)
+      {
+        return;
+      }
 
     float tempStatsOffset = statsOffset;
     float tempManaOffset = manaOffset;
     if (activePlayer == Player.Red)
-    {
-      tempStatsOffset = -tempStatsOffset;
-    }
+      {
+        tempStatsOffset = -tempStatsOffset;
+      }
     InfoPerso.Instance.stats.transform.GetComponent<RectTransform>().anchoredPosition = new Vector2(InfoPerso.Instance.stats.transform.GetComponent<RectTransform>().anchoredPosition.x + tempStatsOffset, InfoPerso.Instance.stats.transform.GetComponent<RectTransform>().anchoredPosition.y);
     if (activePlayer == Player.Red)
-    {
-      spell1.transform.parent.GetComponentInParent<RectTransform>().anchoredPosition = new Vector2(0, 0);
-    }
-    else
+      {
+        spell1.transform.parent.GetComponentInParent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+      } else
       spell1.transform.parent.GetComponentInParent<RectTransform>().anchoredPosition = new Vector2(tempStatsOffset, 0);
 
     remainingMana.transform.GetComponent<RectTransform>().anchoredPosition = new Vector2(remainingMana.transform.GetComponent<RectTransform>().anchoredPosition.x + tempManaOffset, remainingMana.transform.GetComponent<RectTransform>().anchoredPosition.y);
@@ -176,6 +175,7 @@ public class UIManager : NetworkBehaviour
             yield return new WaitForSeconds(0.01f);
             messageGeneral.GetComponent<Text>().color -= new Color(0, 0, 0, 0.05f);
           }
+        SelectionManager.Instance.selectedPersonnage = RosterManager.Instance.listHero[0];
         GameManager.Instance.ChangeCurrentPlayer(Player.Blue);
 
 
@@ -198,24 +198,25 @@ public class UIManager : NetworkBehaviour
             yield return new WaitForSeconds(0.01f);
             messageGeneral.GetComponent<Text>().color -= new Color(0, 0, 0, 0.05f);
           }
+        SelectionManager.Instance.selectedPersonnage = RosterManager.Instance.listHero[4];
         GameManager.Instance.ChangeCurrentPlayer(Player.Red);
 
       }
 
     if (scoreRed == 2 || scoreBlue == 2)
-    {
-      Victory.transform.gameObject.SetActive(true);
-      if (scoreRed == 2)
       {
-        Victory.transform.GetComponentInChildren<Text>().color = Color.red;
-        Victory.transform.GetComponentInChildren<Text>().text = "Victoire du joueur rouge";
+        Victory.transform.gameObject.SetActive(true);
+        if (scoreRed == 2)
+          {
+            Victory.transform.GetComponentInChildren<Text>().color = Color.red;
+            Victory.transform.GetComponentInChildren<Text>().text = "Victoire du joueur rouge";
+          }
+        if (scoreBlue == 2)
+          {
+            Victory.transform.GetComponentInChildren<Text>().color = Color.blue;
+            Victory.transform.GetComponentInChildren<Text>().text = "Victoire du joueur bleu";
+          }
       }
-      if (scoreBlue == 2)
-      {
-        Victory.transform.GetComponentInChildren<Text>().color = Color.blue;
-        Victory.transform.GetComponentInChildren<Text>().text = "Victoire du joueur bleu";
-      }
-    }
     StartCoroutine(GameManager.Instance.NewManche());
 
     isScoreChanging = false;
@@ -233,9 +234,10 @@ public class UIManager : NetworkBehaviour
     if (selectedPerso.Spell2 != null)
       spell2.sprite = selectedPerso.Spell2.buttonSprite;
   }
-    /// <summary>Change le sprite des boutons de sorts par rapport au personnage selectionné.</summary>
-    public void UpdateRemaningMana()
-    {
-        remainingMana.text = GameManager.Instance.manaGlobalActual +" / " + GameManager.Instance.manaGlobalMax + " mana.";
-    }
+
+  /// <summary>Change le sprite des boutons de sorts par rapport au personnage selectionné.</summary>
+  public void UpdateRemaningMana()
+  {
+    remainingMana.text = GameManager.Instance.manaGlobalActual + " / " + GameManager.Instance.manaGlobalMax + " mana.";
+  }
 }

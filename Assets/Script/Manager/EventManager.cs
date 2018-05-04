@@ -45,7 +45,6 @@ public class EventManager : NetworkBehaviour
   [ClientRpc]
   public void RpcMenuContextuelClick(string buttonName)
   {
-    Debug.Log("Hi Baby : " + buttonName);
     switch (buttonName)
       {
       case ("MenuContextuelReplacer"):
