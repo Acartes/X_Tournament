@@ -163,7 +163,7 @@ public class BallonData : NetworkBehaviour
                 ballonDirection = Direction.SudEst;
               }
           }
-        ChangeRotation();
+        ChangeRotation(ballonDirection);
         Vector3 startPos = transform.position;
         float fracturedTime = 0;
         float timeUnit = travelTimeBallon / 60;
@@ -193,9 +193,10 @@ public class BallonData : NetworkBehaviour
   }
 
   /// <summary>Change la rotation du sprite du ballon.</summary>
-  public void ChangeRotation()
+  public void ChangeRotation(Direction direction)
   {
-    switch (ballonDirection)
+    ballonDirection = direction;
+    switch (direction)
       {
       case Direction.SudOuest:
         transform.localRotation = Quaternion.Euler(0, 0, 180);
@@ -256,5 +257,23 @@ public class BallonData : NetworkBehaviour
   public void StopShineColor()
   {
     ShineColorIsRunning = false;
+  }
+
+  public void RotateTowardsReversed(GameObject targetCasePosGMB)
+  {
+    Vector3 targetCasePos = targetCasePosGMB.transform.position;
+    Vector3 originCasePos = ballonCase.transform.position;
+ 
+    if (originCasePos.x > targetCasePos.x && originCasePos.y > targetCasePos.y)
+      ChangeRotation(Direction.NordEst);
+
+    if (originCasePos.x > targetCasePos.x && originCasePos.y < targetCasePos.y)
+      ChangeRotation(Direction.SudEst);
+
+    if (originCasePos.x < targetCasePos.x && originCasePos.y > targetCasePos.y)
+      ChangeRotation(Direction.NordOuest);
+
+    if (originCasePos.x < targetCasePos.x && originCasePos.y < targetCasePos.y)
+      ChangeRotation(Direction.SudOuest);
   }
 }

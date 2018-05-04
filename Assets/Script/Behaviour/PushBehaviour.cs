@@ -48,7 +48,7 @@ public class PushBehaviour : NetworkBehaviour
 
     if (obj.GetComponent<BallonData>() != null)
       {
-        if (obj.GetComponent<BallonData>().casesCrossed != 0)
+        if (obj.GetComponent<BallonData>().isMoving)
           {
             caseNumberRestant = SelectionManager.Instance.selectedPersonnage.shotStrenght - obj.GetComponent<BallonData>().casesCrossed;
             obj.GetComponent<BallonData>().StopMove();
@@ -238,6 +238,11 @@ public class PushBehaviour : NetworkBehaviour
         if (objAfflicted.GetComponent<PersoData>() != null)
           {
             objAfflicted.GetComponent<PersoData>().RotateTowardsReversed(path.gameObject);
+          }
+
+        if (objAfflicted.GetComponent<BallonData>() != null)
+          {
+            objAfflicted.GetComponent<BallonData>().RotateTowardsReversed(path.gameObject);
           }
 
         while (objAfflicted.transform.position != path.transform.position - originPoint)
