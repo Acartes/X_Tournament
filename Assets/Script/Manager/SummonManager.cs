@@ -138,4 +138,90 @@ public class SummonManager : NetworkBehaviour
           }
       }
   }
+
+  public void AddSummon(SummonData summon)
+  {
+    SpellData selectedSpell = SpellManager.Instance.selectedSpell;
+    if (summon.owner == Player.Red)
+      {
+        if (summon.element == Element.Air)
+          {
+            SummonManager.Instance.summonAirRedList.Add(summon);
+          }
+        if (summon.element == Element.Eau)
+          {
+            SummonManager.Instance.summonWaterRedList.Add(summon);
+          }
+        if (summon.element == Element.Feu)
+          {
+            SummonManager.Instance.summonFireRedList.Add(summon);
+          }
+        if (summon.element == Element.Terre)
+          {
+            SummonManager.Instance.summonEarthRedList.Add(summon);
+          }
+      }
+    if (summon.owner == Player.Blue)
+      {
+        if (summon.element == Element.Air)
+          {
+            SummonManager.Instance.summonAirBlueList.Add(summon);
+          }
+        if (summon.element == Element.Eau)
+          {
+            SummonManager.Instance.summonWaterBlueList.Add(summon);
+          }
+        if (summon.element == Element.Feu)
+          {
+            SummonManager.Instance.summonFireBlueList.Add(summon);
+          }
+        if (summon.element == Element.Terre)
+          {
+            SummonManager.Instance.summonEarthBlueList.Add(summon);
+          }
+      }
+  }
+
+  public void RemoveSummon(SummonData summon)
+  {
+    SpellData selectedSpell = SpellManager.Instance.selectedSpell;
+    if (summon.owner == Player.Red)
+      {
+        if (summon.element == Element.Air)
+          {
+            SummonManager.Instance.summonAirRedList.Remove(summon);
+          }
+        if (summon.element == Element.Eau)
+          {
+            SummonManager.Instance.summonWaterRedList.Remove(summon);
+          }
+        if (summon.element == Element.Feu)
+          {
+            SummonManager.Instance.summonFireRedList.Remove(summon);
+          }
+        if (summon.element == Element.Terre)
+          {
+            SummonManager.Instance.summonEarthRedList.Remove(summon);
+          }
+      }
+    if (summon.owner == Player.Blue)
+      {
+        if (summon.element == Element.Air)
+          {
+            SummonManager.Instance.summonAirBlueList.Remove(summon);
+          }
+        if (summon.element == Element.Eau)
+          {
+            SummonManager.Instance.summonWaterBlueList.Remove(summon);
+          }
+        if (summon.element == Element.Feu)
+          {
+            SummonManager.Instance.summonFireBlueList.Remove(summon);
+          }
+        if (summon.element == Element.Terre)
+          {
+            SummonManager.Instance.summonEarthBlueList.Remove(summon);
+          }
+      }
+  }
 }

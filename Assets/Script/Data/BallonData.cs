@@ -37,8 +37,6 @@ public class BallonData : NetworkBehaviour
   SpriteRenderer spriteR;
   bool ShineColorIsRunning = false;
 
-  [HideInInspector] public List<Transform> movePath;
-
   // ******************** //
   // ** Initialisation ** // Fonctions de départ, non réutilisable
   // ******************** //
@@ -115,7 +113,6 @@ public class BallonData : NetworkBehaviour
       }
     for (int i = 0; i < selectedPersonnage.shotStrenght; i++)
       {
-          
         if ((BallonStatut.isIntercepted & statut) == BallonStatut.isIntercepted)
           {
             ChangeStatut(BallonStatut.None, BallonStatut.isIntercepted);
@@ -214,7 +211,7 @@ public class BallonData : NetworkBehaviour
         break;
       }
 
-        MenuContextuel.Instance.isShoting = false;
+    MenuContextuel.Instance.isShoting = false;
   }
 
   /// <summary>Change le statut du ballon.</summary>

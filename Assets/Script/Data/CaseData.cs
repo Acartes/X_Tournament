@@ -93,9 +93,6 @@ public class CaseData : NetworkBehaviour
               {
                 summonData.ApplyEffect(col.gameObject);
               }
-            // EffectManager.Instance.CheckAllEffect(this, col.gameObject);
-            //    Destroy(summonData);
-
           }
       }
 
@@ -126,7 +123,6 @@ public class CaseData : NetworkBehaviour
         summonData = col.gameObject.GetComponent<SummonData>();
         if (col.gameObject.GetComponent<SummonData>().caseActual != this)
           {
-            ballon = col.gameObject.GetComponent<BallonData>();
             if (!col.gameObject.GetComponent<SummonData>().isTraversable)
               {
                 casePathfinding = PathfindingCase.NonWalkable;
@@ -135,6 +131,15 @@ public class CaseData : NetworkBehaviour
             if (col.gameObject.GetComponent<SummonData>().canPush)
               {
                 statut += (int)Statut.willPush;
+              }
+
+            if (personnageData != null)
+              {
+                summonData.ApplyEffect(personnageData.gameObject);
+              }
+            if (ballon != null)
+              {
+                summonData.ApplyEffect(ballon.gameObject);
               }
             
             col.gameObject.GetComponent<SummonData>().caseActual = this;
@@ -165,13 +170,12 @@ public class CaseData : NetworkBehaviour
       }
 
     if (col.tag == "Summon"
-        && col.gameObject.GetComponent<BoxCollider2D>().enabled == true
         && GetComponent<PolygonCollider2D>().enabled == true)
       {
         summonData = null;
         casePathfinding = PathfindingCase.Walkable;
       }
-      TransparencyManager.Instance.CheckCaseTransparency(this);
+    TransparencyManager.Instance.CheckCaseTransparency(this);
 
   }
 
@@ -233,8 +237,7 @@ public class CaseData : NetworkBehaviour
       spriteR.color = ColorManager.Instance.atPush;
 
 
-    if ((Statut.canMove & statut) == Statut.canMove)
-      spriteR.color = ColorManager.Instance.moveColor;
+
     if ((Statut.canBeTackled & statut) == Statut.canBeTackled)
       spriteR.color = ColorManager.Instance.enemyColor;
     if ((Statut.canShot & statut) == Statut.canShot)
@@ -257,6 +260,9 @@ public class CaseData : NetworkBehaviour
         if ((Statut.isControllable & statut) == Statut.isControllable)
           spriteR.color = ColorManager.Instance.actionColor;
       }
+
+    if ((Statut.canMove & statut) == Statut.canMove)
+      spriteR.color = ColorManager.Instance.moveColor;
   }
 
   /// <summary>Change le feedback visuel de la case selon son statut.</summary>

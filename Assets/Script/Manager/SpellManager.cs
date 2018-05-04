@@ -18,6 +18,8 @@ public class SpellManager : NetworkBehaviour
 
   public bool isSpellCasting = false;
 
+  public GameObject ownerCircle;
+
   public static SpellManager Instance;
 
   // ******************** //
@@ -156,44 +158,17 @@ public class SpellManager : NetworkBehaviour
       {
         SummonData lastSummonInstancied = SummonManager.Instance.lastSummonInstancied;
         lastSummonInstancied.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
+        GameObject newOwnerCircle = (GameObject)Instantiate(ownerCircle, lastSummonInstancied.originPoint.position, Quaternion.identity);
+        newOwnerCircle.transform.parent = lastSummonInstancied.originPoint;
         lastSummonInstancied.GetComponent<BoxCollider2D>().enabled = true;
+        SummonManager.Instance.AddSummon(lastSummonInstancied);
         if (lastSummonInstancied.owner == Player.Red)
           {
-            if (selectedSpell.elementCreated == Element.Air)
-              {
-                SummonManager.Instance.summonAirRedList.Add(lastSummonInstancied);
-              }
-            if (selectedSpell.elementCreated == Element.Eau)
-              {
-                SummonManager.Instance.summonWaterRedList.Add(lastSummonInstancied);
-              }
-            if (selectedSpell.elementCreated == Element.Feu)
-              {
-                SummonManager.Instance.summonFireRedList.Add(lastSummonInstancied);
-              }
-            if (selectedSpell.elementCreated == Element.Terre)
-              {
-                SummonManager.Instance.summonEarthRedList.Add(lastSummonInstancied);
-              }
+            newOwnerCircle.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.4f);
           }
         if (lastSummonInstancied.owner == Player.Blue)
           {
-            if (selectedSpell.elementCreated == Element.Air)
-              {
-                SummonManager.Instance.summonAirBlueList.Add(lastSummonInstancied);
-              }
-            if (selectedSpell.elementCreated == Element.Eau)
-              {
-                SummonManager.Instance.summonWaterBlueList.Add(lastSummonInstancied);
-              }
-            if (selectedSpell.elementCreated == Element.Feu)
-              {
-                SummonManager.Instance.summonFireBlueList.Add(lastSummonInstancied);
-              }
-            if (selectedSpell.elementCreated == Element.Terre)
-              {
-                SummonManager.Instance.summonEarthBlueList.Add(lastSummonInstancied);
-              }
+            newOwnerCircle.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.4f);
           }
       }
           

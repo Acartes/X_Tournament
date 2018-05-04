@@ -86,3 +86,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedSpell: {fileID: 0}
   isSpellCasting: 0
+  ownerCircle: {fileID: 1904797735193658, guid: 43bfea3dae5ad324195655694cee0c8f,
+    type: 2}

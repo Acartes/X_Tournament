@@ -20,10 +20,10 @@ public class MenuContextuelButton : MonoBehaviour
 
   public bool Collision()
   {
-    if(spriteR.color == colorDisable)
-    {
-      return false;
-    }
+    if (spriteR.color == colorDisable)
+      {
+        return false;
+      }
     if (Camera.current == null)
       return false;
     if (Input.mousePosition.x <= Camera.current.WorldToScreenPoint(new Vector3(transform.position.x - spriteR.bounds.size.x / 2, transform.position.y, transform.position.z)).x
@@ -53,21 +53,21 @@ public class MenuContextuelButton : MonoBehaviour
   private void Update()
   {
     if (Collision())
-    {
-      collision = true;
-      MouseOver();
-    }
-    else
-    {
-      collision = false;
-      MouseExit();
-    }
-
-    if (name == "MenuContextuelReplacer" && SelectionManager.Instance.selectedPersonnage.actualPointMovement == 0)
-    {
-      Disable();
-    }
-
+      {
+        collision = true;
+        MouseOver();
+      } else
+      {
+        collision = false;
+        MouseExit();
+      }
+    if (MenuContextuel.Instance.activated)
+      {
+        if (name == "MenuContextuelReplacer" && SelectionManager.Instance.selectedPersonnage.actualPointMovement == 0)
+          {
+            Disable();
+          }
+      }
   }
 
 

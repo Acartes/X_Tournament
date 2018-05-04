@@ -16,10 +16,12 @@ public class PushBehaviour : NetworkBehaviour
 
   public float travelTime;
 
-  List<Transform> path = new List<Transform>();
+  List<Transform> pathList = new List<Transform>();
 
   PersoData persoAfflicted = null;
   GameObject objAfflicted;
+
+  public int pathRestant = 0;
 
   // ******************** //
   // ** Initialisation ** // Fonctions de départ, non réutilisable
@@ -39,21 +41,23 @@ public class PushBehaviour : NetworkBehaviour
   /// <summary>Check et applique l'effet de poussée.</summary>
   public void PushCheck(GameObject obj, int pushValue, CaseData caseAfflicted, PushType pushType, Direction pushDirection = Direction.Front)
   {
-
     Direction persoDirection = Direction.None;
+    int caseNumberRestant = 0;
+
+    caseNumberRestant = pathRestant;
 
     if (obj.GetComponent<BallonData>() != null)
       {
-        obj.GetComponent<BallonData>().movePath.Clear();
+        caseNumberRestant = SelectionManager.Instance.selectedPersonnage.shotStrenght - obj.GetComponent<BallonData>().casesCrossed;
         obj.GetComponent<BallonData>().StopMove();
         obj.GetComponent<BallonData>().StopAllCoroutines();
         persoDirection = obj.GetComponent<BallonData>().ballonDirection;
-
       }
       
     objAfflicted = obj;
     if (objAfflicted.GetComponent<PersoData>() != null)
       {
+        caseNumberRestant = pathRestant;
         MoveBehaviour.Instance.movePathes.Clear();
         persoAfflicted = objAfflicted.GetComponent<PersoData>();
         persoDirection = persoAfflicted.persoDirection;
@@ -66,7 +70,7 @@ public class PushBehaviour : NetworkBehaviour
       
     CaseData tempCase = null;
 
-    path.Clear();
+    pathList.Clear();
 
     switch (pushType)
       {
@@ -80,7 +84,7 @@ public class PushBehaviour : NetworkBehaviour
                 if (caseAfflicted.GetCaseInFront(SelectionManager.Instance.selectedPersonnage.persoDirection) != null)
                   {
                     tempCase = caseAfflicted.GetCaseInFront(SelectionManager.Instance.selectedPersonnage.persoDirection);
-                    path.Add(tempCase.transform);
+                    pathList.Add(tempCase.transform);
                     caseAfflicted = tempCase;
                   }
               }
@@ -90,7 +94,7 @@ public class PushBehaviour : NetworkBehaviour
                 if (caseAfflicted.GetCaseAtBack(SelectionManager.Instance.selectedPersonnage.persoDirection) != null)
                   {
                     tempCase = caseAfflicted.GetCaseAtBack(SelectionManager.Instance.selectedPersonnage.persoDirection);
-                    path.Add(tempCase.transform);
+                    pathList.Add(tempCase.transform);
                     caseAfflicted = tempCase;
                   }
               }
@@ -111,13 +115,42 @@ public class PushBehaviour : NetworkBehaviour
             if (pushDirection == Direction.Front)
               tempCase = caseAfflicted.GetCaseInFront(persoDirection);
 
-            if (tempCase == null)
-              break;
+            if (tempCase == null || tempCase.casePathfinding == PathfindingCase.NonWalkable)
+              {
+                caseAfflicted.casePathfinding = PathfindingCase.Walkable;
+                pathList.Add(caseAfflicted.transform); 
+                break;
+              } else
+              {
+                pathList.Add(tempCase.transform);
+                caseAfflicted = tempCase;
+              }
+          }
 
-            if (tempCase.casePathfinding == PathfindingCase.NonWalkable)
-              break;
-            path.Add(tempCase.transform);
-            caseAfflicted = tempCase;
+        if (caseNumberRestant != 0)
+          {
+
+            for (int i = 0; i < caseNumberRestant - 1; i++)
+              {
+                if (pushDirection == Direction.Left)
+                  tempCase = pathList[i].GetComponent<CaseData>().GetCaseAtLeft(persoDirection);
+
+                if (pushDirection == Direction.Right)
+                  tempCase = pathList[i].GetComponent<CaseData>().GetCaseAtRight(persoDirection);
+
+                if (pushDirection == Direction.Back)
+                  tempCase = pathList[i].GetComponent<CaseData>().GetCaseAtBack(persoDirection);
+
+                if (pushDirection == Direction.Front)
+                  tempCase = pathList[i].GetComponent<CaseData>().GetCaseInFront(persoDirection);
+
+                if (tempCase == null || tempCase.casePathfinding == PathfindingCase.NonWalkable)
+                  {
+                    break;
+                  }
+                pathList.Add(tempCase.transform);
+                caseAfflicted = tempCase;
+              }
           }
         break;
       }
@@ -127,10 +160,10 @@ public class PushBehaviour : NetworkBehaviour
         caseObj.GetComponent<CaseData>().ChangeStatut(Statut.None, Statut.atPush);
       }
 
-    if (path.Count == 0)
+    if (pathList.Count == 0)
       return;
    
-    foreach (Transform pathObj in path)
+    foreach (Transform pathObj in pathList)
       {
         // pathObj.GetComponent<CaseData>().ChangeStatut(Statut.atPush);
       }
@@ -143,10 +176,10 @@ public class PushBehaviour : NetworkBehaviour
     MoveBehaviour.Instance.StopAllCoroutines();
     StopAllCoroutines();
 
-    if (path.Count == 0)
+    if (pathList.Count == 0)
       return;
 
-    StartCoroutine(Deplacement(objAfflicted, path));
+    StartCoroutine(Deplacement(objAfflicted, pathList));
   }
 
   public IEnumerator Deplacement(GameObject objAfflicted, List<Transform> pathes)
@@ -173,9 +206,10 @@ public class PushBehaviour : NetworkBehaviour
         originPoint = objAfflicted.GetComponent<SummonData>().originPoint.transform.localPosition;
       }
 
+    pathRestant = pathes.Count;
+
     foreach (Transform path in pathes)
       {
-       
         if (path.GetComponent<CaseData>().casePathfinding == PathfindingCase.NonWalkable)
           {
             if (path.GetComponent<CaseData>().summonData != null)
@@ -190,8 +224,6 @@ public class PushBehaviour : NetworkBehaviour
             break;
           }
         lastPath = path;
-        List<Transform> savePathes = pathes;
-
         Vector3 startPos = objAfflicted.transform.position;
         float fracturedTime = 0;
         float timeUnit = travelTime / 60;
@@ -207,6 +239,7 @@ public class PushBehaviour : NetworkBehaviour
             objAfflicted.transform.position = Vector3.Lerp(startPos, path.transform.position - originPoint, fracturedTime);
             yield return new WaitForEndOfFrame();
           }
+        pathRestant--;
       }
     GameManager.Instance.actualAction = PersoAction.isSelected;
     CaseManager.Instance.RemovePath();
@@ -215,6 +248,7 @@ public class PushBehaviour : NetworkBehaviour
       lastPath.GetComponent<CaseData>().casePathfinding = PathfindingCase.NonWalkable;
       
     pathes.Clear();
+    pathRestant = 0;
 
     StartCoroutine(TurnManager.Instance.EnableFinishTurn());
     yield return new WaitForEndOfFrame();

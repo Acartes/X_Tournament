@@ -282,13 +282,12 @@ public class SpellData : NetworkBehaviour
           {
             SummonManager.Instance.lastSummonInstancied = (SummonData)Instantiate(summonedObj, hoveredCase.transform.position + summonedObj.transform.position - summonedObj.originPoint.position, Quaternion.identity);
             SummonManager.Instance.lastSummonInstancied.owner = GameManager.Instance.currentPlayer;
+            SummonManager.Instance.lastSummonInstancied.element = elementCreated;
             SummonManager.Instance.lastSummonInstancied.ChangeSpriteByPlayer();
             SummonManager.Instance.lastSummonInstancied.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 0.3f);
           }
         SummonManager.Instance.lastSummonInstancied.transform.position = hoveredCase.transform.position + SummonManager.Instance.lastSummonInstancied.transform.position - SummonManager.Instance.lastSummonInstancied.originPoint.position;
       }
-      
-
   }
 
   public void ApplyEffect(GameObject objAfflicted)

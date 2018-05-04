@@ -47,6 +47,8 @@ public class SummonData : NetworkBehaviour
 
   public int limitInvoc;
 
+  public Element element;
+
   // ******************** //
   // ** Initialisation ** // Fonctions de départ, non réutilisable
   // ******************** //
@@ -83,11 +85,12 @@ public class SummonData : NetworkBehaviour
   /// <summary>Vérifie si l'invocation est censé être toujours vivant ou pas.</summary>
   public void CheckDeath()
   {
-    if (actualPointResistance <= 0 && !invulnerable)
-      Destroy(this.gameObject);
+    if ((actualPointResistance <= 0 && !invulnerable) || numberEffectDisapear <= 0)
+      {
+        SummonManager.Instance.RemoveSummon(this);
+        Destroy(this.gameObject);
+      }
 
-    if (numberEffectDisapear <= 0)
-      Destroy(this.gameObject);
   }
 
   /// <summary>Applique les effets selon les paramètres de l'invocation.</summary>
@@ -102,7 +105,6 @@ public class SummonData : NetworkBehaviour
         persoAfflicted = objAfflicted.GetComponent<PersoData>();
         caseAfflicted = persoAfflicted.persoCase;
       }
-
     if (objAfflicted.GetComponent<BallonData>() != null)
       {
         ballonAfflicted = objAfflicted.GetComponent<BallonData>();
@@ -144,7 +146,6 @@ public class SummonData : NetworkBehaviour
 
   public void ChangeSpriteByPlayer()
   {
-    Debug.Log("LOL " + owner);
     if (GetComponentInChildren<SpriteRenderer>() != null)
       {
         if (P2Sprite != null)
