@@ -220,14 +220,26 @@ public class PushBehaviour : NetworkBehaviour
         if (path.GetComponent<CaseData>().casePathfinding == PathfindingCase.NonWalkable)
           {
             if (path.GetComponent<CaseData>().summonData != null)
-              path.GetComponent<CaseData>().summonData.actualPointResistance--;
-            if (path.GetComponent<CaseData>().summonData != null)
-              path.GetComponent<CaseData>().personnageData.actualPointResistance--;
-
+              {
+                AfterFeedbackManager.Instance.PRText(1, path.gameObject);
+                path.GetComponent<CaseData>().summonData.actualPointResistance--;
+              }
+            if (path.GetComponent<CaseData>().personnageData != null)
+              {
+                AfterFeedbackManager.Instance.PRText(1, path.gameObject);
+                path.GetComponent<CaseData>().personnageData.actualPointResistance--;
+              }
+              
             if (objAfflicted.GetComponent<PersoData>() != null)
-              objAfflicted.GetComponent<PersoData>().actualPointResistance--;
-            if (objAfflicted.GetComponent<SummonData>() != null)
-              objAfflicted.GetComponent<SummonData>().actualPointResistance--;
+              {
+                AfterFeedbackManager.Instance.PRText(1, objAfflicted);
+                objAfflicted.GetComponent<PersoData>().actualPointResistance--;
+              }
+            if (objAfflicted.GetComponent<SummonData>() != null && !objAfflicted.GetComponent<SummonData>().invulnerable)
+              {
+                AfterFeedbackManager.Instance.PRText(1, objAfflicted);
+                objAfflicted.GetComponent<SummonData>().actualPointResistance--;
+              }
             break;
           }
         lastPath = path;

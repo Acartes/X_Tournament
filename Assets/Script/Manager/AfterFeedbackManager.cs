@@ -61,4 +61,29 @@ public class AfterFeedbackManager : NetworkBehaviour
     takenText.transform.position = new Vector3(999, 999, 999);
     listTextFeedback.Add(takenText);
   }
+
+  public void PRText(int PRchanged, GameObject obj)
+  {
+    StartCoroutine(PRTextCoroutine(PRchanged, obj));
+  }
+
+  IEnumerator PRTextCoroutine(int PRchanged, GameObject obj)
+  {
+    Debug.Log(obj.name);
+    GameObject takenText = listTextFeedback[0];
+    listTextFeedback.Remove(takenText);
+    takenText.GetComponent<TextMesh>().text = "-" + PRchanged.ToString();
+    takenText.transform.position = obj.transform.position;
+
+    takenText.GetComponent<TextMesh>().color = new Color(1, 0, 0, 1f);
+
+    for (int i = 0; i < 300; i++)
+      {
+        takenText.GetComponent<TextMesh>().color -= new Color(0, 0, 0, 0.0033f);
+        takenText.transform.position += new Vector3(0, 0.01f, 0);
+        yield return new WaitForEndOfFrame();
+      }
+    takenText.transform.position = new Vector3(999, 999, 999);
+    listTextFeedback.Add(takenText);
+  }
 }
