@@ -100,7 +100,6 @@ public class CaseData : NetworkBehaviour
       {
         if (col.gameObject.GetComponent<BallonData>().ballonCase != this)
           {
-            Debug.Log(this.gameObject.name);
             ballon = col.gameObject.GetComponent<BallonData>();
             casePathfinding = PathfindingCase.NonWalkable;
             col.gameObject.GetComponent<BallonData>().ballonCase = this;
@@ -264,9 +263,9 @@ public class CaseData : NetworkBehaviour
   private void ChangeFeedbackByStatut(Statut statut, Statut oldStatut)
   {
     if ((Statut.canBeTackled & statut) == Statut.canBeTackled)
-      FeedbackManager.Instance.PredictInit(50, gameObject);
+      BeforeFeedbackManager.Instance.PredictInit(50, gameObject);
     if (oldStatut == (Statut.canBeTackled))
-      FeedbackManager.Instance.PredictEnd(gameObject);
+      BeforeFeedbackManager.Instance.PredictEnd(gameObject);
   }
 
   /// <summary>Change la couleur de la case.</summary>

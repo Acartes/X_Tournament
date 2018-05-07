@@ -46,8 +46,6 @@ public class GrilleManager: MonoBehaviour
     pressToGenerate = false;
     if (Instance == null)
       Instance = this;
-    Debug.Log("GrilleManager is Instanced");
-
   }
 
   void Update()

@@ -25,7 +25,6 @@ public class PlacementBehaviour : NetworkBehaviour
   {
     if (Instance == null)
       Instance = this;
-    Debug.Log(this.GetType() + " is Instanced");
     StartCoroutine(waitForInit());
   }
 
@@ -67,17 +66,16 @@ public class PlacementBehaviour : NetworkBehaviour
     Player currentPlayer = TurnManager.Instance.currentPlayer;
     CaseData hoveredCase = HoverManager.Instance.hoveredCase;
 
-        if (currentPhase != Phase.Placement)
-            return;
+    if (currentPhase != Phase.Placement)
+      return;
 
-        // Place un perso ami sur une case vide
-        if (currentPhase == Phase.Placement &&
+    // Place un perso ami sur une case vide
+    if (currentPhase == Phase.Placement &&
         HoverManager.Instance.hoveredCase != null && HoverManager.Instance.hoveredPersonnage == null &&
         hoveredCase.casePathfinding == PathfindingCase.Walkable)
       {
         Statut statut = hoveredCase.statut;
 
-        Debug.Log("Place un perso ami sur une case vide");
         if ((Statut.placementRed & statut) == Statut.placementRed && currentPlayer == Player.Red)
           {
             CreatePerso(currentPhase, currentPlayer, 0);
@@ -90,17 +88,14 @@ public class PlacementBehaviour : NetworkBehaviour
         // si on selectionne un personnage à partir d'un portrait
         else if (HoverManager.Instance.hoveredPersonnage != null && HoverManager.Instance.hoveredCase == null)
       {
-        Debug.Log("si on selectionne un personnage à partir d'un portrait");
-
         SelectionManager.Instance.selectedPersonnage = HoverManager.Instance.hoveredPersonnage; // total forcage, préférer SelectPerso() in-game
         InfoPerso.Instance.PersoSelected(SelectionManager.Instance.selectedPersonnage); // total forcage, préférer SelectPerso() in-game
       }
 
         // Fait disparaître un perso placé sur une case
         else if (HoverManager.Instance.hoveredPersonnage != null && HoverManager.Instance.hoveredCase != null &&
-      hoveredCase.personnageData.owner == currentPlayer)
+                 hoveredCase.personnageData.owner == currentPlayer)
       {
-        Debug.Log("Fait disparaître un perso placé sur une case");
         SelectionManager.Instance.selectedPersonnage = HoverManager.Instance.hoveredPersonnage; // total forcage, préférer SelectPerso() in-game
 
         InfoPerso.Instance.PersoSelected(SelectionManager.Instance.selectedPersonnage);

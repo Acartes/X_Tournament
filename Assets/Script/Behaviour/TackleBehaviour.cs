@@ -38,7 +38,6 @@ public class TackleBehaviour : NetworkBehaviour
 
     if (Instance == null)
       Instance = this;
-    Debug.Log(this.GetType() + " is Instanced");
     StartCoroutine(waitForInit());
   }
 
@@ -146,20 +145,15 @@ public class TackleBehaviour : NetworkBehaviour
 
         if (randomInt < maxInt)
           {
-            FeedbackManager.Instance.ShowInit(randomInt, maxInt, playerCase.gameObject);
-            Debug.Log("(Si inférieur à " + (maxInt + 1) + ", il y a interception) " + randomInt + "/" + maxInt + ": Interception SUCCESS");
+            AfterFeedbackManager.Instance.TackleText(randomInt, maxInt, playerCase.gameObject);
             GameManager.Instance.actualAction = PersoAction.isWaiting;
             movingObj.GetComponent<BallonData>().ChangeStatut(BallonStatut.isIntercepted);
-          } else
-          {
-            Debug.Log("(Si inférieur à " + (maxInt + 1) + ", il n'y a pas interception " + randomInt + "/" + maxInt + ": Interception FAILURE");
           }
       }
   }
 
   void TacklePlayer(PersoData perso, GameObject movingObj)
   {
-
     if (perso.owner != currentPlayer)
       {
         StartCoroutine(TackleEffect(perso, playerCase));
@@ -168,32 +162,28 @@ public class TackleBehaviour : NetworkBehaviour
             maxInt = 50;
             if (randomInt < maxInt)
               {
-                FeedbackManager.Instance.ShowInit(randomInt, maxInt, playerCase.gameObject);
-                Debug.Log("(Même poids) (Si inférieur à " + maxInt + 1 + ", il y a a tackle) " + randomInt + "/" + "100" + ": Tackle SUCCESS");
+                AfterFeedbackManager.Instance.TackleText(randomInt, maxInt, playerCase.gameObject);
                 SelectionManager.Instance.selectedPersonnage.actualPointMovement = Mathf.CeilToInt(SelectionManager.Instance.selectedPersonnage.actualPointMovement / 2);
                 SelectionManager.Instance.selectedPersonnage.actualPointResistance -= 1;
                 SelectionManager.Instance.selectedPersonnage.isTackled = true;
                 TurnManager.Instance.EnableFinishTurn();
               } else
               {
-                FeedbackManager.Instance.ShowInit(randomInt, maxInt, playerCase.gameObject);
-                Debug.Log("(Même poids) (Si inférieur à 51 il n'y a pas tacle) " + randomInt + "/" + "100" + ": Tackle FAILED");
+                AfterFeedbackManager.Instance.TackleText(randomInt, maxInt, playerCase.gameObject);
               }
           } else
           {
             maxInt = 25;
             if (randomInt < maxInt)
               {
-                FeedbackManager.Instance.ShowInit(randomInt, maxInt, playerCase.gameObject);
-                Debug.Log("(Poids différents) (Si inférieur à " + maxInt + 1 + ", il y a tacle) " + randomInt + "/" + "100" + ": Tackle SUCCESS");
+                AfterFeedbackManager.Instance.TackleText(randomInt, maxInt, playerCase.gameObject);
                 SelectionManager.Instance.selectedPersonnage.actualPointMovement = Mathf.CeilToInt(SelectionManager.Instance.selectedPersonnage.actualPointMovement / 4);
                 SelectionManager.Instance.selectedPersonnage.actualPointResistance -= 1;
                 MoveBehaviour.Instance.movePathes.Clear();
                 TurnManager.Instance.EnableFinishTurn();
               } else
               {
-                FeedbackManager.Instance.ShowInit(randomInt, maxInt, playerCase.gameObject);
-                Debug.Log("(Poids différents) (Si inférieur à " + maxInt + 1 + ", il n'y a pas tacle) " + randomInt + "/" + "100" + ": Tackle FAILED");
+                AfterFeedbackManager.Instance.TackleText(randomInt, maxInt, playerCase.gameObject);
               }
           }
       }

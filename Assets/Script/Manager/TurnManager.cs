@@ -17,10 +17,10 @@ public class TurnManager : NetworkBehaviour
   public EventHandler<PlayerArgs> changeTurnEvent;
   public Player currentPlayer = Player.Red;
   public Phase currentPhase = Phase.Placement;
-    public GameObject finishTurnButton;
+  public GameObject finishTurnButton;
   public Animator visualFeedback;
 
-    bool canChangeTurn = true;
+  bool canChangeTurn = true;
 
   public static TurnManager Instance;
 
@@ -32,7 +32,6 @@ public class TurnManager : NetworkBehaviour
   {
     if (Instance == null)
       Instance = this;
-    Debug.Log(this.GetType() + " is Instanced");
     StartCoroutine(waitForInit());
   }
 
@@ -87,9 +86,6 @@ public class TurnManager : NetworkBehaviour
   [ClientRpc]
   public void RpcChangeTurn()
   {
-    Debug.Log("rpc");
-    Debug.Log("Sending command on all clients");
-
     TackleBehaviour.Instance.SetupRandomList();
 
     switch (currentPlayer)

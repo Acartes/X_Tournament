@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class FeedbackManager : NetworkBehaviour
+public class BeforeFeedbackManager : NetworkBehaviour
 {
 
-  public static FeedbackManager Instance;
+  public static BeforeFeedbackManager Instance;
 
   public List<GameObject> listTextFeedback;
   public List<GameObject> listTextFeedbackPredict;
@@ -16,7 +16,6 @@ public class FeedbackManager : NetworkBehaviour
   {
     if (Instance == null)
       Instance = this;
-    Debug.Log(this.GetType() + " is Instanced");
     StartCoroutine(waitForInit());
   }
 
@@ -30,36 +29,7 @@ public class FeedbackManager : NetworkBehaviour
 
   void InitGame()
   {
-    listTextFeedback.AddRange(GameObject.FindGameObjectsWithTag("textFeedback"));
-  }
-
-  public void ShowInit(int randomInt, int maxInt, GameObject obj)
-  {
-    StartCoroutine(Show(randomInt, maxInt, obj));
-  }
-
-  IEnumerator Show(int randomInt, int maxInt, GameObject obj)
-  {
-    GameObject takenText = listTextFeedback[0];
-    listTextFeedback.Remove(takenText);
-    takenText.GetComponent<TextMesh>().text = randomInt + "/" + maxInt;
-    takenText.transform.position = obj.transform.position;
-    if (randomInt < maxInt)
-      {
-        takenText.GetComponent<TextMesh>().color = new Color(0, 1, 0, 1f);
-      } else
-      {
-        takenText.GetComponent<TextMesh>().color = new Color(1, 0, 0, 1f);
-      }
-
-    for (int i = 0; i < 300; i++)
-      {
-        takenText.GetComponent<TextMesh>().color -= new Color(0, 0, 0, 0.0033f);
-        takenText.transform.position += new Vector3(0, 0.01f, 0);
-        yield return new WaitForEndOfFrame();
-      }
-    takenText.transform.position = new Vector3(999, 999, 999);
-    listTextFeedback.Add(takenText);
+    listTextFeedback.AddRange(GameObject.FindGameObjectsWithTag("textBeforeFeedback"));
   }
 
   public void PredictInit(int maxInt, GameObject obj)

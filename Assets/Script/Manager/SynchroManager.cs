@@ -13,8 +13,6 @@ public class SynchroManager : NetworkBehaviour
   public override void OnStartClient()
   {
     Instance = this;
-    Debug.Log(this.GetType() + " is Instanced");
-
   }
 
   public bool canPlayTurn()

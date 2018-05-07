@@ -23,7 +23,6 @@ public class Pathfinding : NetworkBehaviour
   {
     if (Instance == null)
       Instance = this;
-    Debug.Log(this.GetType() + " is Instanced");
   }
 
   [System.Serializable]
