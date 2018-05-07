@@ -28,7 +28,6 @@ public class RosterManager : NetworkBehaviour
   {
     if (Instance == null)
       Instance = this;
-    Debug.Log("RosterManager is Instanced");
     StartCoroutine(waitForInit());
   }
 

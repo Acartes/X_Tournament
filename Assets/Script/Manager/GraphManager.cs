@@ -21,6 +21,5 @@ public class GraphManager : NetworkBehaviour
   {
     if (Instance == null)
       Instance = this;
-    Debug.Log("GraphManager is Instanced");
   }
 }

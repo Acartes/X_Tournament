@@ -90,7 +90,6 @@ public class BallonData : NetworkBehaviour
     xCoordInc = 0;
     yCoordInc = 0;
     transform.localRotation = Quaternion.Euler(0, 0, 0);
-    Debug.Log(selectedPersonnage.transform.position + " " + transform.position);
 
     if (selectedPersonnage.transform.position.x > transform.position.x)
       {

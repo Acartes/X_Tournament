@@ -17,7 +17,6 @@ public class RpcFunctions : NetworkBehaviour
   public override void OnStartLocalPlayer()
   {
     Instance = this;
-    Debug.Log(this.GetType() + " is Instanced");
     if (isServer)
       {
         LoadingManager.Instance.P1_GameReady = false;

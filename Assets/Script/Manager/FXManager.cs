@@ -30,7 +30,6 @@ public class FXManager : NetworkBehaviour
   {
     if (Instance == null)
       Instance = this;
-    Debug.Log(this.GetType() + " is Instanced");
     StartCoroutine(waitForInit());
   }
 
@@ -49,10 +48,6 @@ public class FXManager : NetworkBehaviour
   // *************** //
   // ** Fonctions ** // Fonctions réutilisables ailleurs
   // *************** //
-  void aaa()
-  {
-
-  }
 
   public void Show(RuntimeAnimatorController animatorPlayed, Transform newPos, Direction direction)
   {
@@ -76,8 +71,10 @@ public class FXManager : NetworkBehaviour
     takenFX.GetComponent<Animator>().runtimeAnimatorController = animatorPlayed;
     takenFX.GetComponent<Animator>().SetTrigger("spellStart");
 
-
-    StartCoroutine(BackToList(animatorPlayed.animationClips[0].length, takenFX));
+    if (animatorPlayed.animationClips.Length != 0)
+      {
+        StartCoroutine(BackToList(animatorPlayed.animationClips[0].length, takenFX));
+      }
   }
 
   IEnumerator BackToList(float lenght, GameObject takenFX)

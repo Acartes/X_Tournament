@@ -51,7 +51,6 @@ public class PunchBehaviour : NetworkBehaviour
     punchedPersonnage.actualPointResistance--;
     Color punchedPersonnageColor = punchedPersonnage.GetComponent<SpriteRenderer>().color;
     punchedPersonnage.GetComponent<SpriteRenderer>().color = new Color(1, 1, 0);
-    Debug.Log("POUET2");
     for (int i = 100; i > 0; i = i - 10)
       {
         yield return new WaitForSeconds(0.01f);

@@ -49,6 +49,5 @@ public class ColorManager : NetworkBehaviour
   {
     if (Instance == null)
       Instance = this;
-    Debug.Log("ColorManager is Instanced");
   }
 }

@@ -36,7 +36,6 @@ public class HoverManager : NetworkBehaviour
   {
     if (Instance == null)
       Instance = this;
-    Debug.Log("HoverManager is Instanced");
     StartCoroutine(waitForInit());
   }
 

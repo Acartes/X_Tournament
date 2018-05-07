@@ -100,7 +100,6 @@ public class CaseData : NetworkBehaviour
       {
         if (col.gameObject.GetComponent<BallonData>().ballonCase != this)
           {
-            Debug.Log(this.gameObject.name);
             ballon = col.gameObject.GetComponent<BallonData>();
             casePathfinding = PathfindingCase.NonWalkable;
             col.gameObject.GetComponent<BallonData>().ballonCase = this;

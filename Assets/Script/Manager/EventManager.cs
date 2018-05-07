@@ -17,8 +17,6 @@ public class EventManager : NetworkBehaviour
   {
     if (Instance == null)
       Instance = this;
-
-    Debug.Log("EventManager is Instanced");
   }
 
   public void HoverEvent(string hoveredCaseString, string hoveredPersonnageString, string hoveredBallonString)

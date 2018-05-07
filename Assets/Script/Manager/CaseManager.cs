@@ -34,7 +34,6 @@ public class CaseManager : NetworkBehaviour
   {
     if (Instance == null)
       Instance = this;
-    Debug.Log("CaseManager is Instanced");
     StartCoroutine(waitForInit());
   }
 
@@ -65,12 +64,12 @@ public class CaseManager : NetworkBehaviour
     /// <summary>Remet la valeur de toutes les cases par défaut</summary> 
     foreach (CaseData newCase in listAllCase)
       {
-      DisableAllColliders();
+        DisableAllColliders();
         newCase.ballon = null;
         newCase.casePathfinding = PathfindingCase.Walkable;
         newCase.personnageData = null;
         newCase.statut = 0;
-      EnableAllColliders();
+        EnableAllColliders();
       }
   }
 

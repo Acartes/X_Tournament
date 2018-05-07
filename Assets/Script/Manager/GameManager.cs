@@ -45,7 +45,6 @@ public class GameManager : NetworkBehaviour
     if (numberPlayer > 1)
       isSoloGame = false;
 
-    Debug.Log("GameManager is Instanced");
     StartCoroutine(waitForInit());
   }
 

@@ -73,7 +73,6 @@ public class MoveBehaviour : NetworkBehaviour
         && actualAction == PersoAction.isSelected
         && movePathes.Contains(hoveredCase.transform))
       {
-        Debug.Log("SendDeplacement");
         SendDeplacement();
       }
   }
@@ -84,7 +83,6 @@ public class MoveBehaviour : NetworkBehaviour
 
   public void createPath()
   { // Créé une route de déplacement pour un personnage
-    Debug.Log("createPath");
 
     if (GameManager.Instance.actualAction != PersoAction.isSelected)
       return;
@@ -146,7 +144,6 @@ public class MoveBehaviour : NetworkBehaviour
       {
         path.GetComponent<CaseData>().ChangeStatut(Statut.isMoving);
       }
-    Debug.Log("Deplacement");
     StartCoroutine(Deplacement(SelectionManager.Instance.selectedPersonnage.originPoint.transform.localPosition, SelectionManager.Instance.selectedPersonnage, movePathes));
   }
 

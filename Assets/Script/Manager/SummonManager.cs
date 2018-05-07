@@ -31,7 +31,6 @@ public class SummonManager : NetworkBehaviour
   {
     if (Instance == null)
       Instance = this;
-    Debug.Log(this.GetType() + " is Instanced");
   }
 
   void Update()

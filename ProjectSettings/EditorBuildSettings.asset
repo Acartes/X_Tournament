@@ -8,6 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/Scene/Lobby r\xE9seau.unity"
     guid: c83c2bfea0e3c62408d0e0f0300e4899
-  - enabled: 0
-    path: 
-    guid: ef8413b53f383474bb770e82ac2bb944
+  - enabled: 1
+    path: Assets/Scene/Game.unity
+    guid: 39f261e720853c54bb489146dbd41d06

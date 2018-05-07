@@ -11,7 +11,6 @@ public class MenuContextuel : NetworkBehaviour
   // ** Variables ** //
   // *************** //
 
-
   [Tooltip("J'utilise parfois cette variable pour être sûr que le ballon soit bien centré où je veux sans bouger son transform")]
   [ReadOnly]
   public Vector3 offsetBallon;
@@ -33,7 +32,6 @@ public class MenuContextuel : NetworkBehaviour
   {
     if (Instance == null)
       Instance = this;
-    Debug.Log(this.GetType() + " is Instanced");
     StartCoroutine(waitForInit());
   }
 
@@ -64,9 +62,9 @@ public class MenuContextuel : NetworkBehaviour
 
       }*/
     if (LoadingManager.Instance != null && LoadingManager.Instance.isGameReady())
-    {
-      CaseManager.Instance.DisableAllColliders();
-    }
+      {
+        CaseManager.Instance.DisableAllColliders();
+      }
   }
 
 
@@ -74,9 +72,9 @@ public class MenuContextuel : NetworkBehaviour
   {
     EventManager.newClickEvent -= OnNewClick;
     if (LoadingManager.Instance != null && LoadingManager.Instance.isGameReady())
-    {
-      CaseManager.Instance.EnableAllColliders();
-    }
+      {
+        CaseManager.Instance.EnableAllColliders();
+      }
   }
 
   public void OnNewClick()
@@ -90,12 +88,12 @@ public class MenuContextuel : NetworkBehaviour
         && selectedPersonnage != null
         && hoveredBallon != null
         && actualAction == PersoAction.isSelected)
-    {
-      if (CaseManager.Instance.CheckAdjacent(hoveredBallon.gameObject, selectedPersonnage.gameObject) == true)
       {
-        buttonShotMenu();
+        if (CaseManager.Instance.CheckAdjacent(hoveredBallon.gameObject, selectedPersonnage.gameObject) == true)
+          {
+            buttonShotMenu();
+          }
       }
-    }
   }
 
   public void buttonShotMenu()
@@ -115,12 +113,12 @@ public class MenuContextuel : NetworkBehaviour
   public void HideMenu()
   {
     if (Instance != null)
-    {
-      CaseManager.Instance.EnableAllColliders();
-      TurnManager.Instance.StartCoroutine("EnableFinishTurn");
-      MenuContextuel.Instance.gameObject.transform.position = new Vector3(999, 999, 999);
-      activated = false;
-    }
+      {
+        CaseManager.Instance.EnableAllColliders();
+        TurnManager.Instance.StartCoroutine("EnableFinishTurn");
+        MenuContextuel.Instance.gameObject.transform.position = new Vector3(999, 999, 999);
+        activated = false;
+      }
   }
 
   private void Update()
@@ -128,29 +126,27 @@ public class MenuContextuel : NetworkBehaviour
     if (!activated)
       return;
     if (Input.GetKeyDown("mouse 0"))
-    {
-      if (buttonShot.collision)
       {
-        Clicked(buttonShot.transform.name);
+        if (buttonShot.collision)
+          {
+            Clicked(buttonShot.transform.name);
+          } else if (buttonReplace.collision)
+          {
+            Clicked(buttonReplace.transform.name);
+          } else
+          {
+            Clicked("Nothing");
+          }
+        activated = false;
       }
-      else if (buttonReplace.collision)
-      {
-        Clicked(buttonReplace.transform.name);
-      }
-      else
-      {
-        Clicked("Nothing");
-      }
-      activated = false;
-    }
   }
 
   private void Clicked(string name)
   {
     if (!SynchroManager.Instance.canPlayTurn())
-    {
-      return;
-    }
+      {
+        return;
+      }
     RpcFunctions.Instance.CmdMenuContextuelClick(name);
   }
 

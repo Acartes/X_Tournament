@@ -20,8 +20,6 @@ public class TransparencyManager : NetworkBehaviour
   {
     if (Instance == null)
       Instance = this;
-
-    Debug.Log(this.GetType() + " is Instanced");
   }
 
   // *************** //
@@ -31,22 +29,28 @@ public class TransparencyManager : NetworkBehaviour
   public void CheckCaseTransparency(CaseData Case, bool doRecursive = true)
   { // Check s'il y a un personnage ou un ballon au dessus ou en dessous de la case ciblée pour détecter s'il doit faire une transparence ou non.
 
-    Debug.Log(GameManager.Instance.currentPhase);
     // GET CASE HAUT ET GET CASE BAS
+    CaseData upperCase = null;
+    CaseData lowerCase = null;
 
-    CaseData upperCase = Case.GetTopCase();
-    CaseData lowerCase = Case.GetBottomCase();
-
-    if (upperCase != null && upperCase.personnageData != null
-        && Case != null && Case.personnageData != null)
+    if (Case != null)
       {
-        ApplyTransparency(Case.personnageData);
-      } else if (upperCase != null && upperCase.personnageData == null
-                 && Case != null && Case.personnageData != null)
-      {
-        ApplyOpacity(Case.personnageData);
+        upperCase = Case.GetTopCase();
+        lowerCase = Case.GetBottomCase();
       }
-
+      
+    if (upperCase != null)
+      {
+        if (upperCase != null && upperCase.personnageData != null
+            && Case != null && Case.personnageData != null)
+          {
+            ApplyTransparency(Case.personnageData);
+          } else if (upperCase != null && upperCase.personnageData == null
+                     && Case != null && Case.personnageData != null)
+          {
+            ApplyOpacity(Case.personnageData);
+          }
+      }
     if (doRecursive)
       {
         CheckCaseTransparency(upperCase, false);

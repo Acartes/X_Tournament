@@ -30,7 +30,6 @@ public class SpellManager : NetworkBehaviour
   {
     if (Instance == null)
       Instance = this;
-    Debug.Log(this.GetType() + " is Instanced");
     StartCoroutine(waitForInit());
   }
 
@@ -106,7 +105,6 @@ public class SpellManager : NetworkBehaviour
     // enough PA? (global PA/mana)
     if (GameManager.Instance.manaGlobalActual < selectedSpell.costPA)
       {
-        Debug.Log("PAS ASSEZ DE PA");
         selectedSpell = null;
         return;
       }
