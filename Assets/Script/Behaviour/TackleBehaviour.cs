@@ -34,7 +34,7 @@ public class TackleBehaviour : NetworkBehaviour
 
   public override void OnStartClient()
   {
-      
+
 
     if (Instance == null)
       Instance = this;
@@ -62,9 +62,9 @@ public class TackleBehaviour : NetworkBehaviour
   void OnDisable()
   {
     if (LoadingManager.Instance != null && LoadingManager.Instance.isGameReady())
-      {
-        TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
-      }
+    {
+      TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
+    }
   }
 
   // *************** //
@@ -79,9 +79,9 @@ public class TackleBehaviour : NetworkBehaviour
       return;
 
     for (int i = 0; i < 100; i++)
-      {
-        randomIntList.Add(UnityEngine.Random.Range(0, 100));
-      }
+    {
+      randomIntList.Add(UnityEngine.Random.Range(0, 100));
+    }
   }
 
   void OnChangeTurn(object sender, PlayerArgs e)
@@ -100,27 +100,27 @@ public class TackleBehaviour : NetworkBehaviour
     randomInt = randomIntList[randomIntOrder];
 
     foreach (PersoData perso in RosterManager.Instance.listHeroPlaced)
+    {
+      playerCase = SelectionManager.Instance.selectedCase.transform;
+      currentPlayer = TurnManager.Instance.currentPlayer;
+
+      if (movingObj != null && perso != shotingPersonnage)
       {
-        playerCase = SelectionManager.Instance.selectedCase.transform;
-        currentPlayer = TurnManager.Instance.currentPlayer;
-            
-        if (movingObj != null && perso != shotingPersonnage)
+        if (perso != movingObj && CaseManager.Instance.CheckAdjacent(perso.gameObject, movingObj.gameObject) == true)
+        {
+          randomIntOrder++;
+          switch (movingObj.name)
           {
-            if (perso != movingObj && CaseManager.Instance.CheckAdjacent(perso.gameObject, movingObj.gameObject) == true)
-              {
-                randomIntOrder++;
-                switch (movingObj.name)
-                  {
-                  case ("Ballon"):
-                    TackleBall(perso, movingObj);
-                    break;
-                  default:
-                    TacklePlayer(perso, movingObj);
-                    break;
-                  }
-              }
+            case ("Ballon"):
+              TackleBall(perso, movingObj);
+              break;
+            default:
+              TacklePlayer(perso, movingObj);
+              break;
           }
+        }
       }
+    }
   }
   // *************** //
   // ** Effet Tacle** //
@@ -130,63 +130,66 @@ public class TackleBehaviour : NetworkBehaviour
   {
 
     if (perso.owner != currentPlayer)
+    {
+      if (SelectionManager.Instance.selectedPersonnage.weightType == WeightType.Heavy)
       {
-        if (SelectionManager.Instance.selectedPersonnage.weightType == WeightType.Heavy)
-          {
-            maxInt = ballonTackleLourd[movingObj.GetComponent<BallonData>().casesCrossed - 1];
-          }
-        if (SelectionManager.Instance.selectedPersonnage.weightType == WeightType.Light)
-          {
-            maxInt = ballonTackleLeger[movingObj.GetComponent<BallonData>().casesCrossed - 1];
-          }
-
-        playerCase = movingObj.GetComponent<BallonData>().ballonCase.transform;
-        StartCoroutine(TackleEffect(perso, movingObj.transform));
-
-        if (randomInt < maxInt)
-          {
-            AfterFeedbackManager.Instance.TackleText(randomInt, maxInt, playerCase.gameObject);
-            GameManager.Instance.actualAction = PersoAction.isWaiting;
-            movingObj.GetComponent<BallonData>().ChangeStatut(BallonStatut.isIntercepted);
-          }
+        maxInt = ballonTackleLourd[movingObj.GetComponent<BallonData>().casesCrossed - 1];
       }
+      if (SelectionManager.Instance.selectedPersonnage.weightType == WeightType.Light)
+      {
+        maxInt = ballonTackleLeger[movingObj.GetComponent<BallonData>().casesCrossed - 1];
+      }
+
+      playerCase = movingObj.GetComponent<BallonData>().ballonCase.transform;
+      StartCoroutine(TackleEffect(perso, movingObj.transform));
+
+      if (randomInt < maxInt)
+      {
+        AfterFeedbackManager.Instance.TackleText(randomInt, maxInt, playerCase.gameObject);
+        GameManager.Instance.actualAction = PersoAction.isWaiting;
+        movingObj.GetComponent<BallonData>().ChangeStatut(BallonStatut.isIntercepted);
+      }
+    }
   }
 
   void TacklePlayer(PersoData perso, GameObject movingObj)
   {
     if (perso.owner != currentPlayer)
+    {
+      StartCoroutine(TackleEffect(perso, playerCase));
+      if (movingObj.GetComponent<PersoData>().weightType == perso.weightType)
       {
-        StartCoroutine(TackleEffect(perso, playerCase));
-        if (movingObj.GetComponent<PersoData>().weightType == perso.weightType)
-          {
-            maxInt = 50;
-            if (randomInt < maxInt)
-              {
-                AfterFeedbackManager.Instance.TackleText(randomInt, maxInt, playerCase.gameObject);
-                SelectionManager.Instance.selectedPersonnage.actualPointMovement = Mathf.CeilToInt(SelectionManager.Instance.selectedPersonnage.actualPointMovement / 2);
-                SelectionManager.Instance.selectedPersonnage.actualPointResistance -= 1;
-                SelectionManager.Instance.selectedPersonnage.isTackled = true;
-                TurnManager.Instance.EnableFinishTurn();
-              } else
-              {
-                AfterFeedbackManager.Instance.TackleText(randomInt, maxInt, playerCase.gameObject);
-              }
-          } else
-          {
-            maxInt = 25;
-            if (randomInt < maxInt)
-              {
-                AfterFeedbackManager.Instance.TackleText(randomInt, maxInt, playerCase.gameObject);
-                SelectionManager.Instance.selectedPersonnage.actualPointMovement = Mathf.CeilToInt(SelectionManager.Instance.selectedPersonnage.actualPointMovement / 4);
-                SelectionManager.Instance.selectedPersonnage.actualPointResistance -= 1;
-                MoveBehaviour.Instance.movePathes.Clear();
-                TurnManager.Instance.EnableFinishTurn();
-              } else
-              {
-                AfterFeedbackManager.Instance.TackleText(randomInt, maxInt, playerCase.gameObject);
-              }
-          }
+        maxInt = 50;
+        if (randomInt < maxInt)
+        {
+          AfterFeedbackManager.Instance.TackleText(randomInt, maxInt, playerCase.gameObject);
+          SelectionManager.Instance.selectedPersonnage.actualPointMovement = Mathf.CeilToInt(SelectionManager.Instance.selectedPersonnage.actualPointMovement / 2);
+          SelectionManager.Instance.selectedPersonnage.actualPointResistance -= 1;
+          SelectionManager.Instance.selectedPersonnage.isTackled = true;
+          TurnManager.Instance.EnableFinishTurn();
+        }
+        else
+        {
+          AfterFeedbackManager.Instance.TackleText(randomInt, maxInt, playerCase.gameObject);
+        }
       }
+      else
+      {
+        maxInt = 25;
+        if (randomInt < maxInt)
+        {
+          AfterFeedbackManager.Instance.TackleText(randomInt, maxInt, playerCase.gameObject);
+          SelectionManager.Instance.selectedPersonnage.actualPointMovement = Mathf.CeilToInt(SelectionManager.Instance.selectedPersonnage.actualPointMovement / 4);
+          SelectionManager.Instance.selectedPersonnage.actualPointResistance -= 1;
+          MoveBehaviour.Instance.movePathes.Clear();
+          TurnManager.Instance.EnableFinishTurn();
+        }
+        else
+        {
+          AfterFeedbackManager.Instance.TackleText(randomInt, maxInt, playerCase.gameObject);
+        }
+      }
+    }
   }
 
   // *************** //
@@ -196,31 +199,31 @@ public class TackleBehaviour : NetworkBehaviour
   IEnumerator TackleEffect(PersoData punchingPersonnage, Transform playerCase)
   { // Effet visuel à chaque fois que le personnage se déplaçant se fait taclé
     if (punchingPersonnage.GetComponent<BoxCollider2D>().enabled != false)
+    {
+
+      punchingPersonnage.GetComponent<BoxCollider2D>().enabled = false;
+
+      Vector3 startPos = punchingPersonnage.transform.position;
+
+      float fracturedTime = 0;
+      float timeUnit = tackleAnimTime / 60;
+
+      while (fracturedTime < 2)
       {
-
-        punchingPersonnage.GetComponent<BoxCollider2D>().enabled = false;
-
-        Vector3 startPos = punchingPersonnage.transform.position;
-
-        float fracturedTime = 0;
-        float timeUnit = tackleAnimTime / 60;
-
-        while (fracturedTime < 2)
-          {
-            fracturedTime += timeUnit + 0.01f;
-            punchingPersonnage.transform.position = Vector3.Lerp(startPos, playerCase.position - punchingPersonnage.originPoint.transform.localPosition, fracturedTime);
-            yield return new WaitForEndOfFrame();
-          }
-
-        fracturedTime = 0;
-
-        while (fracturedTime < 2)
-          {
-            fracturedTime += timeUnit + 0.01f;
-            punchingPersonnage.transform.position = Vector3.Lerp(playerCase.position - punchingPersonnage.originPoint.transform.localPosition, startPos, fracturedTime);
-            yield return new WaitForEndOfFrame();
-          }
-        punchingPersonnage.GetComponent<BoxCollider2D>().enabled = true;
+        fracturedTime += timeUnit + 0.01f;
+        punchingPersonnage.transform.position = Vector3.Lerp(startPos, playerCase.position - punchingPersonnage.originPoint.transform.localPosition, fracturedTime);
+        yield return new WaitForEndOfFrame();
       }
+
+      fracturedTime = 0;
+
+      while (fracturedTime < 2)
+      {
+        fracturedTime += timeUnit + 0.01f;
+        punchingPersonnage.transform.position = Vector3.Lerp(playerCase.position - punchingPersonnage.originPoint.transform.localPosition, startPos, fracturedTime);
+        yield return new WaitForEndOfFrame();
+      }
+      punchingPersonnage.GetComponent<BoxCollider2D>().enabled = true;
+    }
   }
 }

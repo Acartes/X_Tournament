@@ -65,12 +65,12 @@ public class SynchroManager : NetworkBehaviour
   public IEnumerator WaitForHoverEventValidation(string hoveredCase, string hoveredPersonnage, string hoveredBallon)
   {
     validatedCommand = false;
-    Debug.Log("wait for validation of event");
+//    Debug.Log("wait for validation of event");
     // si la fonction n'a pas été validé au bout de 0.X secondes, on relance
     yield return new WaitForSeconds(0.5f);
     if (validatedCommand == false)
       {
-        Debug.Log("event not validated, resend...");
+//        Debug.Log("event not validated, resend...");
         RpcFunctions.Instance.CmdSendHoverEvent(hoveredCase, hoveredPersonnage, hoveredBallon);
       }
     StopAllCoroutines();
@@ -91,7 +91,7 @@ public class SynchroManager : NetworkBehaviour
       }
     // le sender a bien reçu la validation que la fonction a été effectuée chez le receiver
     validatedCommand = true;
-    Debug.Log("event validated");
+//    Debug.Log("event validated");
 
     EventManager.Instance.HoverEvent(hoveredCaseString, hoveredPersonnageString, hoveredBallonString);
   }
@@ -101,13 +101,13 @@ public class SynchroManager : NetworkBehaviour
     validatedCommand = false;
     if (validatedCommand == false)
       {
-        Debug.Log("wait for validation of event");
+//        Debug.Log("wait for validation of event");
         // si la fonction n'a pas été validé au bout de 0.X secondes, on relance
         yield return new WaitForSeconds(0.5f);
       }
     if (validatedCommand == false)
       {
-        Debug.Log("event not validated, resend...");
+//        Debug.Log("event not validated, resend...");
         RpcValidateClickEvent();
       }
     StopAllCoroutines();

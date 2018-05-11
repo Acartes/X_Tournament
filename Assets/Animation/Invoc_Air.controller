@@ -63,7 +63,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Invoc_Terre
+  m_Name: Invoc_Air
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -75,7 +75,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 8cc0d78afcfe81e40b4b674876001b50, type: 2}
+  m_Motion: {fileID: 7400000, guid: 66c8619123c758d40a0b82145334c7b9, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -90,7 +90,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102745932678004544}
-    m_Position: {x: 256, y: -40, z: 0}
+    m_Position: {x: 252, y: -36, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

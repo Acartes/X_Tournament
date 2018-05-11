@@ -92,7 +92,10 @@ public class SpellData : NetworkBehaviour
       }
 
     if (!targetList.Contains(HoverManager.Instance.hoveredCase))
+    {
+      BeforeFeedbackManager.Instance.HidePrediction();
       return;
+    }
 
     ShowAreaOfEffect();
     ShowPushEffect();
@@ -264,11 +267,23 @@ public class SpellData : NetworkBehaviour
   /// <summary>Montre à quelle portée les personnages vont être projetés avant de le lancer</summary>
   public void ShowPushEffect()
   {
-    if (HoverManager.Instance.hoveredPersonnage == null)
+    if (HoverManager.Instance.hoveredPersonnage == null && HoverManager.Instance.hoveredBallon == null)
       return;
-      
-    PersoData persoAfflicted = HoverManager.Instance.hoveredPersonnage;
-    PushBehaviour.Instance.PushCheck(persoAfflicted.gameObject, pushValue, persoAfflicted.persoCase, pushType, pushDirection);
+
+    if (HoverManager.Instance.hoveredPersonnage)
+    {
+      PersoData persoAfflicted = HoverManager.Instance.hoveredPersonnage;
+      PushBehaviour.Instance.PushCheck(persoAfflicted.gameObject, pushValue, persoAfflicted.persoCase, pushType, pushDirection);
+      if(persoAfflicted.persoCase != PushBehaviour.Instance.caseFinalShow)
+        BeforeFeedbackManager.Instance.PredictDeplacement(persoAfflicted.gameObject, PushBehaviour.Instance.caseFinalShow);
+    }
+    else if (HoverManager.Instance.hoveredBallon)
+    {
+      BallonData ballonAfflicted = HoverManager.Instance.hoveredBallon;
+      PushBehaviour.Instance.PushCheck(ballonAfflicted.gameObject, pushValue, ballonAfflicted.ballonCase, pushType, pushDirection);
+      if (ballonAfflicted.ballonCase != PushBehaviour.Instance.caseFinalShow)
+        BeforeFeedbackManager.Instance.PredictDeplacement(ballonAfflicted.gameObject, PushBehaviour.Instance.caseFinalShow);
+    }
   }
 
 
@@ -284,9 +299,9 @@ public class SpellData : NetworkBehaviour
             SummonManager.Instance.lastSummonInstancied.owner = GameManager.Instance.currentPlayer;
             SummonManager.Instance.lastSummonInstancied.element = elementCreated;
             SummonManager.Instance.lastSummonInstancied.ChangeSpriteByPlayer();
-            SummonManager.Instance.lastSummonInstancied.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 0.3f);
-          }
-        SummonManager.Instance.lastSummonInstancied.transform.position = hoveredCase.transform.position + SummonManager.Instance.lastSummonInstancied.transform.position - SummonManager.Instance.lastSummonInstancied.originPoint.position;
+        SummonManager.Instance.lastSummonInstancied.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 0.3f);
+      }
+      SummonManager.Instance.lastSummonInstancied.transform.position = hoveredCase.transform.position + SummonManager.Instance.lastSummonInstancied.transform.position - SummonManager.Instance.lastSummonInstancied.originPoint.position;
       }
   }
 
