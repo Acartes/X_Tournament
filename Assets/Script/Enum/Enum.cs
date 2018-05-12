@@ -128,3 +128,11 @@ public enum PushType
   FromTarget,
   FromCaster,
 }
+
+public enum CollisionType
+{
+  None,
+  Moving,
+  Blocking,
+  Both
+}

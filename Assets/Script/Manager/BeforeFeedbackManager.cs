@@ -11,6 +11,7 @@ public class BeforeFeedbackManager : NetworkBehaviour
   public List<GameObject> listTextFeedback;
   public List<GameObject> listTextFeedbackPredict;
   public List<GameObject> listPersoPredict;
+  public SpriteRenderer showObj;
 
   public override void OnStartClient()
   {
@@ -67,5 +68,30 @@ public class BeforeFeedbackManager : NetworkBehaviour
     objText.name = "textFeedback";
     listTextFeedback.Add(objText);
     objText.transform.position = new Vector3(999, 999, 999);
+  }
+
+  public void PredictDeplacement(GameObject obj, CaseData newCaseObj)
+  {
+    if (newCaseObj == null)
+      return;
+    showObj.transform.gameObject.SetActive(false);
+    if (obj.GetComponent<PersoData>() != null)
+    {
+      PersoData persoData = obj.GetComponent<PersoData>();
+      showObj.sprite = persoData.transform.GetComponentInChildren<SpriteRenderer>().sprite;
+      showObj.transform.position = newCaseObj.transform.position - persoData.originPoint.transform.localPosition;
+    }
+    if(obj.GetComponent<BallonData>() != null)
+    {
+      BallonData ballonData = obj.GetComponent<BallonData>();
+      showObj.sprite = ballonData.transform.GetComponent<SpriteRenderer>().sprite;
+      showObj.transform.position = newCaseObj.transform.position;
+    }
+    showObj.transform.gameObject.SetActive(true);
+  }
+
+  public void HidePrediction()
+  {
+    showObj.transform.gameObject.SetActive(false);
   }
 }

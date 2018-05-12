@@ -68,7 +68,6 @@ public class AfterFeedbackManager : NetworkBehaviour
 
   IEnumerator PRTextCoroutine(int PRchanged, GameObject obj)
   {
-    Debug.Log(obj.name);
     GameObject takenText = listTextFeedback[0];
     listTextFeedback.Remove(takenText);
     takenText.GetComponent<TextMesh>().text = "-" + PRchanged.ToString();
