@@ -79,13 +79,15 @@ public class BeforeFeedbackManager : NetworkBehaviour
     {
       PersoData persoData = obj.GetComponent<PersoData>();
       showObj.sprite = persoData.transform.GetComponentInChildren<SpriteRenderer>().sprite;
-      showObj.transform.position = newCaseObj.transform.position - persoData.originPoint.transform.localPosition;
+      showObj.transform.position = newCaseObj.transform.position - persoData.originPoint.transform.localPosition + Vector3.up * 0.1f;
+      showObj.transform.localScale = new Vector3(1.5625f, 1.5625f, 1);
     }
     if(obj.GetComponent<BallonData>() != null)
     {
       BallonData ballonData = obj.GetComponent<BallonData>();
       showObj.sprite = ballonData.transform.GetComponent<SpriteRenderer>().sprite;
-      showObj.transform.position = newCaseObj.transform.position;
+      showObj.transform.position = newCaseObj.transform.position - ballonData.offsetBallon;
+      showObj.transform.localScale = new Vector3(1.25f, 1.25f, 1);
     }
     showObj.transform.gameObject.SetActive(true);
   }

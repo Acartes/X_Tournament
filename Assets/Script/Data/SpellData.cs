@@ -276,6 +276,8 @@ public class SpellData : NetworkBehaviour
       PushBehaviour.Instance.PushCheck(persoAfflicted.gameObject, pushValue, persoAfflicted.persoCase, pushType, pushDirection);
       if(persoAfflicted.persoCase != PushBehaviour.Instance.caseFinalShow)
         BeforeFeedbackManager.Instance.PredictDeplacement(persoAfflicted.gameObject, PushBehaviour.Instance.caseFinalShow);
+      else
+        BeforeFeedbackManager.Instance.HidePrediction();
     }
     else if (HoverManager.Instance.hoveredBallon)
     {
@@ -283,6 +285,8 @@ public class SpellData : NetworkBehaviour
       PushBehaviour.Instance.PushCheck(ballonAfflicted.gameObject, pushValue, ballonAfflicted.ballonCase, pushType, pushDirection);
       if (ballonAfflicted.ballonCase != PushBehaviour.Instance.caseFinalShow)
         BeforeFeedbackManager.Instance.PredictDeplacement(ballonAfflicted.gameObject, PushBehaviour.Instance.caseFinalShow);
+      else
+        BeforeFeedbackManager.Instance.HidePrediction();
     }
   }
 

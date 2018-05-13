@@ -16,7 +16,7 @@ public class PushBehaviour : NetworkBehaviour
 
   public float travelTime;
 
-  List<Transform> pathList = new List<Transform>();
+  public List<Transform> pathList = new List<Transform>();
 
   PersoData persoAfflicted = null;
   public CaseData caseFinalShow = null; // la case à montrer pour le pré-rendu
@@ -25,6 +25,10 @@ public class PushBehaviour : NetworkBehaviour
   public int pathRestant = 0;
 
   int pushValue;
+  /// <summary>
+  /// Est-ce que la tornade fait des dégats alors que le perso ne bouge pas?
+  /// </summary>
+  bool stillTornadoDamage;
 
   // ******************** //
   // ** Initialisation ** // Fonctions de départ, non réutilisable
@@ -113,6 +117,7 @@ public class PushBehaviour : NetworkBehaviour
         }
         break;
       case PushType.FromTarget:
+        stillTornadoDamage = false;
         for (int i = 0; i < pushValue; i++)
         {
           if (pushDirection == Direction.Left)
@@ -131,6 +136,7 @@ public class PushBehaviour : NetworkBehaviour
           {
             caseAfflicted.casePathfinding = PathfindingCase.Walkable;
             pathList.Add(caseAfflicted.transform);
+            stillTornadoDamage = true;
             break;
           }
           else
@@ -175,13 +181,6 @@ public class PushBehaviour : NetworkBehaviour
 
     if (pathList.Count == 0)
       return;
-
-    foreach (Transform pathObj in pathList)
-    {
-      // pathObj.GetComponent<CaseData>().ChangeStatut(Statut.atPush);
-    }
-
-
   }
 
   public void PushStart()
@@ -269,15 +268,39 @@ public class PushBehaviour : NetworkBehaviour
         objAfflicted.transform.position = Vector3.Lerp(startPos, path.transform.position - originPoint, fracturedTime);
         yield return new WaitForEndOfFrame();
       }
+      if (stillTornadoDamage)
+      {
+        AfterFeedbackManager.Instance.PRText(1, objAfflicted);
+        objAfflicted.GetComponent<PersoData>().actualPointResistance--;
+        CaseData afflictedCase = objAfflicted.GetComponent<PersoData>().persoCase;
+        CaseData rightCase = afflictedCase.GetCaseAtRight(objAfflicted.GetComponent<PersoData>().persoDirection);
+        if (rightCase != null)
+        {
+          Debug.Log(rightCase.name);
+          Debug.Break();
+          if (rightCase.personnageData != null)
+          {
+            Debug.Log(rightCase.personnageData.name);
+            Debug.Break();
+            AfterFeedbackManager.Instance.PRText(1, rightCase.gameObject);
+            rightCase.GetComponent<CaseData>().personnageData.actualPointResistance--;
+          }
+          if (rightCase.summonData != null)
+          {
+            AfterFeedbackManager.Instance.PRText(1, rightCase.gameObject);
+            rightCase.GetComponent<CaseData>().summonData.actualPointResistance--;
+          }
+        }
+      }
       pathRestant--;
     }
     GameManager.Instance.actualAction = PersoAction.isSelected;
     SelectionManager.Instance.selectedCase = SelectionManager.Instance.selectedPersonnage.persoCase;
     CaseManager.Instance.RemovePath();
 
-    if (objectCollision == false)
+    if (objectCollision == false && objAfflicted.GetComponent<PersoData>() != null)
     {
-      if (objAfflicted.GetComponent<PersoData>() != null && pushValue > pathes.Count)
+      if (pushValue > pathes.Count)
       {
         AfterFeedbackManager.Instance.PRText(1, objAfflicted);
         objAfflicted.GetComponent<PersoData>().actualPointResistance--;
@@ -298,17 +321,35 @@ public class PushBehaviour : NetworkBehaviour
     CaseData nextCase = caseAfflicted;
     int y = pushValue;
     caseFinalShow = null;
+    if (pushType == PushType.FromTarget) // tornade à implémenter
+      return;
     while (y != 0)
     {
       if (y > 0)
       {
         y--;
-        if (caseAfflicted.GetCaseInFront(SelectionManager.Instance.selectedPersonnage.persoDirection) != null)
+        if (nextCase.GetCaseInFront(SelectionManager.Instance.selectedPersonnage.persoDirection) != null)
         {
           nextCase = nextCase.GetCaseInFront(SelectionManager.Instance.selectedPersonnage.persoDirection);
           if (nextCase.casePathfinding == PathfindingCase.NonWalkable)
           {
             caseFinalShow = nextCase.GetCaseAtBack(SelectionManager.Instance.selectedPersonnage.persoDirection);
+          }
+        }
+      }
+      if (y < 0)
+      {
+        y++;
+        if (nextCase.GetCaseAtBack(SelectionManager.Instance.selectedPersonnage.persoDirection) != null)
+        {
+          nextCase = nextCase.GetCaseAtBack(SelectionManager.Instance.selectedPersonnage.persoDirection);
+          if (nextCase.casePathfinding == PathfindingCase.NonWalkable)
+          {
+            if(y == 1)
+              caseFinalShow = caseAfflicted;
+            else
+              caseFinalShow = nextCase.GetCaseInFront(SelectionManager.Instance.selectedPersonnage.persoDirection);
+            break;
           }
         }
       }
