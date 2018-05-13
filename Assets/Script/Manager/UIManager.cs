@@ -136,10 +136,15 @@ public class UIManager : NetworkBehaviour
     if (activePlayer == Player.Red)
       {
         spell1.transform.parent.GetComponentInParent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+        spell2.transform.parent.GetComponentInParent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+        remainingMana.transform.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
       } else
-      spell1.transform.parent.GetComponentInParent<RectTransform>().anchoredPosition = new Vector2(tempStatsOffset, 0);
+      {
+        spell1.transform.parent.GetComponentInParent<RectTransform>().anchoredPosition = new Vector2(tempStatsOffset, 0);
+        spell2.transform.parent.GetComponentInParent<RectTransform>().anchoredPosition = new Vector2(tempStatsOffset, 0);
+        remainingMana.transform.GetComponent<RectTransform>().anchoredPosition = new Vector2(remainingMana.transform.GetComponent<RectTransform>().anchoredPosition.x + tempManaOffset, remainingMana.transform.GetComponent<RectTransform>().anchoredPosition.y);
+      }
 
-    remainingMana.transform.GetComponent<RectTransform>().anchoredPosition = new Vector2(remainingMana.transform.GetComponent<RectTransform>().anchoredPosition.x + tempManaOffset, remainingMana.transform.GetComponent<RectTransform>().anchoredPosition.y);
 
   }
 
