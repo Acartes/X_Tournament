@@ -35,7 +35,6 @@ public class MoveBehaviour : NetworkBehaviour
   {
     if (Instance == null)
       Instance = this;
-    Debug.Log("MoveBehaviour is Instanced");
     StartCoroutine(waitForInit());
   }
 
