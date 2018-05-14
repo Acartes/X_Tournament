@@ -47,7 +47,7 @@ public class SummonManager : NetworkBehaviour
             if (summonAirRedList[0] == null)
               summonAirRedList.RemoveAt(0);
               
-            Destroy(summonAirRedList[0].gameObject);
+            summonAirRedList[0].GetComponent<SummonData>().Death();
             summonAirRedList.RemoveAt(0);
           }
       }
@@ -59,7 +59,7 @@ public class SummonManager : NetworkBehaviour
             if (summonAirBlueList[0] == null)
               summonAirBlueList.RemoveAt(0);
               
-            Destroy(summonAirBlueList[0].gameObject);
+            summonAirBlueList[0].GetComponent<SummonData>().Death();
             summonAirBlueList.RemoveAt(0);
           }
       }
@@ -71,7 +71,7 @@ public class SummonManager : NetworkBehaviour
             if (summonEarthRedList[0] == null)
               summonEarthRedList.RemoveAt(0);
               
-            Destroy(summonEarthRedList[0].gameObject);
+            summonEarthRedList[0].GetComponent<SummonData>().Death();
             summonEarthRedList.RemoveAt(0);
           }
       }
@@ -83,7 +83,7 @@ public class SummonManager : NetworkBehaviour
             if (summonEarthBlueList[0] == null)
               summonEarthBlueList.RemoveAt(0);
               
-            Destroy(summonEarthBlueList[0].gameObject);
+            summonEarthBlueList[0].GetComponent<SummonData>().Death();
             summonEarthBlueList.RemoveAt(0);
           }
       }
@@ -95,7 +95,7 @@ public class SummonManager : NetworkBehaviour
             if (summonFireRedList[0] == null)
               summonFireRedList.RemoveAt(0);
               
-            Destroy(summonFireRedList[0].gameObject);
+            summonFireRedList[0].GetComponent<SummonData>().Death();
             summonFireRedList.RemoveAt(0);
           }
       }
@@ -107,7 +107,7 @@ public class SummonManager : NetworkBehaviour
             if (summonFireBlueList[0] == null)
               summonFireBlueList.RemoveAt(0);
               
-            Destroy(summonFireBlueList[0].gameObject);
+            summonFireBlueList[0].GetComponent<SummonData>().Death();
             summonFireBlueList.RemoveAt(0);
           }
       }
@@ -119,7 +119,7 @@ public class SummonManager : NetworkBehaviour
             if (summonWaterRedList[0] == null)
               summonWaterRedList.RemoveAt(0);
               
-            Destroy(summonWaterRedList[0].gameObject);
+            summonWaterRedList[0].GetComponent<SummonData>().Death();
             summonWaterRedList.RemoveAt(0);
           }
       }
@@ -131,7 +131,7 @@ public class SummonManager : NetworkBehaviour
             if (summonWaterBlueList[0] == null)
               summonWaterBlueList.RemoveAt(0);
               
-            Destroy(summonWaterBlueList[0].gameObject);
+            summonWaterBlueList[0].GetComponent<SummonData>().Death();
             summonWaterBlueList.RemoveAt(0);
  
           }
