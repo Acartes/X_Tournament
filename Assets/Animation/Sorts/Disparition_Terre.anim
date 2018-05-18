@@ -26,7 +26,7 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.11764706
+        time: 0.16666667
         value: 1
         inSlope: 0
         outSlope: 0
@@ -48,7 +48,7 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.11764706
+        time: 0.16666667
         value: 1
         inSlope: 0
         outSlope: 0
@@ -70,7 +70,7 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.11764706
+        time: 0.16666667
         value: 1
         inSlope: 0
         outSlope: 0
@@ -92,7 +92,7 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.11764706
+        time: 0.16666667
         value: 0
         inSlope: 0
         outSlope: 0
@@ -108,15 +108,15 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 21300000, guid: f08d0179e2116b14c94b04434c04683c, type: 3}
-    - time: 0.05882353
+    - time: 0.083333336
       value: {fileID: 21300000, guid: 3b26f207aa1526243a657b5ab5a34471, type: 3}
-    - time: 0.11764706
+    - time: 0.16666667
       value: {fileID: 21300000, guid: 9d8d9e30312781c419965671d71950d2, type: 3}
-    - time: 0.1764706
+    - time: 0.25
       value: {fileID: 21300000, guid: 37970eb8d0ca6d540ac0c09408f9a715, type: 3}
-    - time: 0.23529412
+    - time: 0.33333334
       value: {fileID: 21300000, guid: b263cbb7e0abac14e9b4d2c0b343127a, type: 3}
-    - time: 0.29411766
+    - time: 0.41666666
       value: {fileID: 21300000, guid: 3c77733fc0f9f424b91d26d0ad8e56c2, type: 3}
     attribute: m_Sprite
     path: DisparitionAnim/SpawnAnim (1)
@@ -125,15 +125,15 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 21300000, guid: f08d0179e2116b14c94b04434c04683c, type: 3}
-    - time: 0.05882353
+    - time: 0.083333336
       value: {fileID: 21300000, guid: 3b26f207aa1526243a657b5ab5a34471, type: 3}
-    - time: 0.11764706
+    - time: 0.16666667
       value: {fileID: 21300000, guid: 9d8d9e30312781c419965671d71950d2, type: 3}
-    - time: 0.1764706
+    - time: 0.25
       value: {fileID: 21300000, guid: 37970eb8d0ca6d540ac0c09408f9a715, type: 3}
-    - time: 0.23529412
+    - time: 0.33333334
       value: {fileID: 21300000, guid: b263cbb7e0abac14e9b4d2c0b343127a, type: 3}
-    - time: 0.29411766
+    - time: 0.41666666
       value: {fileID: 21300000, guid: 3c77733fc0f9f424b91d26d0ad8e56c2, type: 3}
     attribute: m_Sprite
     path: DisparitionAnim/SpawnAnim (2)
@@ -142,15 +142,15 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 21300000, guid: f08d0179e2116b14c94b04434c04683c, type: 3}
-    - time: 0.05882353
+    - time: 0.083333336
       value: {fileID: 21300000, guid: 3b26f207aa1526243a657b5ab5a34471, type: 3}
-    - time: 0.11764706
+    - time: 0.16666667
       value: {fileID: 21300000, guid: 9d8d9e30312781c419965671d71950d2, type: 3}
-    - time: 0.1764706
+    - time: 0.25
       value: {fileID: 21300000, guid: 37970eb8d0ca6d540ac0c09408f9a715, type: 3}
-    - time: 0.23529412
+    - time: 0.33333334
       value: {fileID: 21300000, guid: b263cbb7e0abac14e9b4d2c0b343127a, type: 3}
-    - time: 0.29411766
+    - time: 0.41666666
       value: {fileID: 21300000, guid: 3c77733fc0f9f424b91d26d0ad8e56c2, type: 3}
     attribute: m_Sprite
     path: DisparitionAnim/SpawnAnim (3)
@@ -159,21 +159,21 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 21300000, guid: f08d0179e2116b14c94b04434c04683c, type: 3}
-    - time: 0.05882353
+    - time: 0.083333336
       value: {fileID: 21300000, guid: 3b26f207aa1526243a657b5ab5a34471, type: 3}
-    - time: 0.11764706
+    - time: 0.16666667
       value: {fileID: 21300000, guid: 9d8d9e30312781c419965671d71950d2, type: 3}
-    - time: 0.1764706
+    - time: 0.25
       value: {fileID: 21300000, guid: 37970eb8d0ca6d540ac0c09408f9a715, type: 3}
-    - time: 0.23529412
+    - time: 0.33333334
       value: {fileID: 21300000, guid: b263cbb7e0abac14e9b4d2c0b343127a, type: 3}
-    - time: 0.29411766
+    - time: 0.41666666
       value: {fileID: 21300000, guid: 3c77733fc0f9f424b91d26d0ad8e56c2, type: 3}
     attribute: m_Sprite
     path: DisparitionAnim/SpawnAnim (4)
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 17
+  m_SampleRate: 12
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -266,7 +266,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.3529412
+    m_StopTime: 0.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -292,7 +292,7 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.11764706
+        time: 0.16666667
         value: 1
         inSlope: 0
         outSlope: 0
@@ -314,7 +314,7 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.11764706
+        time: 0.16666667
         value: 1
         inSlope: 0
         outSlope: 0
@@ -336,7 +336,7 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.11764706
+        time: 0.16666667
         value: 1
         inSlope: 0
         outSlope: 0
@@ -358,7 +358,7 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.11764706
+        time: 0.16666667
         value: 0
         inSlope: 0
         outSlope: 0
@@ -375,7 +375,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_Events:
-  - time: 0.3529412
+  - time: 0.5
     functionName: DestroyIt
     data: 
     objectReferenceParameter: {fileID: 0}
