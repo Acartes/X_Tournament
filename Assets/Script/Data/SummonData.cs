@@ -90,8 +90,9 @@ public class SummonData : NetworkBehaviour
   /// <summary>Vérifie si l'invocation est censé être toujours vivant ou pas.</summary>
   public void CheckDeath()
   {
-    if ((actualPointResistance <= 0 && !invulnerable) || numberEffectDisapear <= 0 && !isDeath)
+    if (((actualPointResistance <= 0 && !invulnerable) || numberEffectDisapear <= 0) && !isDeath)
       {
+        Debug.Log("lol");
         isDeath = true;
         SummonManager.Instance.RemoveSummon(this);
         Death();
