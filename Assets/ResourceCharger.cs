@@ -5,6 +5,8 @@ using UnityEngine.Networking;
 
 public class ResourceCharger : NetworkBehaviour
 {
+  public Object[] allSprite;
+
   public override void OnStartClient()
   {
     StartCoroutine(waitForInit());
@@ -19,6 +21,8 @@ public class ResourceCharger : NetworkBehaviour
 
   void Init()
   {
+    SpriteRenderer rend = GetComponent<SpriteRenderer>();
+    allSprite = Resources.LoadAll("Sprite", typeof(Sprite));
     StartCoroutine(GoDestroy());
   }
 

@@ -34,7 +34,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1212714497007954}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -56,14 +56,19 @@ MonoBehaviour:
   hoverStrongColor: {r: 1, g: 0.9724138, b: 0, a: 1}
   caseColor: {r: 1, g: 1, b: 1, a: 0.27450982}
   enemyColor: {r: 1, g: 0.022058845, b: 0.022058845, a: 0.78431374}
-  moveColor: {r: 0, g: 0.5448277, b: 1, a: 0.5882353}
+  moveColor: {r: 0.2827587, g: 1, b: 0, a: 1}
   actionPreColor: {r: 0.6137934, g: 0, b: 1, a: 0.39215687}
   actionColor: {r: 0.6137934, g: 0, b: 1, a: 0.7058824}
   placementZoneRed: {r: 1, g: 0.21323532, b: 0.21323532, a: 0.19607843}
   placementZoneBlue: {r: 0.21323532, g: 0.21866123, b: 1, a: 0.19607843}
-  isMovingColor: {r: 0, g: 0, b: 0, a: 0}
+  isMovingColor: {r: 0, g: 0.54509807, b: 1, a: 0.5882353}
   selectedColor: {r: 0, g: 1, b: 0.91724133, a: 0.3529412}
   goalColor: {r: 0.9862069, g: 1, b: 0, a: 0.78431374}
+  atRange: {r: 0.44852942, g: 0.44852942, b: 0.44852942, a: 0.5882353}
+  canTarget: {r: 0.44852942, g: 0.44852942, b: 0.44852942, a: 0.9411765}
+  atAoE: {r: 1, g: 0.51724136, b: 0, a: 0.384}
+  atPush: {r: 0, g: 0.66896534, b: 1, a: 0.697}
+  canMovePrevisu: {r: 1, g: 0.5441177, b: 0.987424, a: 1}
   punchedPersonnageColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114382122946761116
 MonoBehaviour:

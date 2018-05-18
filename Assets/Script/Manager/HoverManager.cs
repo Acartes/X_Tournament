@@ -78,6 +78,8 @@ public class HoverManager : NetworkBehaviour
       {
         changeColorExit(GameManager.Instance.currentPhase);
       }
+
+
           
     hoveredPersonnage = e.hoveredPersonnage;
     hoveredCase = e.hoveredCase;
