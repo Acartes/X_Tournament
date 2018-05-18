@@ -49,12 +49,17 @@ public class SummonData : NetworkBehaviour
 
   public Element element;
 
+  Animator animator;
+
+  bool isDeath = false;
+
   // ******************** //
   // ** Initialisation ** // Fonctions de départ, non réutilisable
   // ******************** //
 
   void Awake()
   { 
+    animator = GetComponent<Animator>();
     StartCoroutine(waitForInit());
   }
 
@@ -85,12 +90,23 @@ public class SummonData : NetworkBehaviour
   /// <summary>Vérifie si l'invocation est censé être toujours vivant ou pas.</summary>
   public void CheckDeath()
   {
-    if ((actualPointResistance <= 0 && !invulnerable) || numberEffectDisapear <= 0)
+    if ((actualPointResistance <= 0 && !invulnerable) || numberEffectDisapear <= 0 && !isDeath)
       {
+        isDeath = true;
         SummonManager.Instance.RemoveSummon(this);
-        Destroy(this.gameObject);
+        Death();
       }
+  }
 
+  public void Death()
+  {
+    animator.SetTrigger("Disparition");
+    GetComponent<BoxCollider2D>().enabled = false;
+  }
+
+  public void DestroyIt()
+  {
+    Destroy(this.gameObject);
   }
 
   /// <summary>Applique les effets selon les paramètres de l'invocation.</summary>
