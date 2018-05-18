@@ -60,4 +60,9 @@ PushBehaviour.Instance.StopAllCoroutines();
   {
     persoAfflicted.actualPointAction += number;
   }
+
+  public void ChangePR(SummonData summonAfflicted, int number)
+  {
+    summonAfflicted.actualPointResistance += number;
+  }
 }

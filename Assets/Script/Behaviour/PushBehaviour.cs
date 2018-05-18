@@ -117,6 +117,7 @@ public class PushBehaviour : NetworkBehaviour
         }
         break;
       case PushType.FromTarget:
+        GetShownCase(obj, givenPushValue, caseAfflicted, pushType, pushDirection);
         stillTornadoDamage = false;
         for (int i = 0; i < pushValue; i++)
         {
@@ -321,42 +322,106 @@ public class PushBehaviour : NetworkBehaviour
     CaseData nextCase = caseAfflicted;
     int y = pushValue;
     caseFinalShow = null;
-    if (pushType == PushType.FromTarget) // tornade à implémenter
-      return;
-    while (y != 0)
-    {
-      if (y > 0)
+    if (pushType == PushType.FromCaster)
+    { // tornade à implémenter
+      while (y != 0)
       {
-        y--;
-        if (nextCase.GetCaseInFront(SelectionManager.Instance.selectedPersonnage.persoDirection) != null)
+        if (y > 0)
         {
-          nextCase = nextCase.GetCaseInFront(SelectionManager.Instance.selectedPersonnage.persoDirection);
-          if (nextCase.casePathfinding == PathfindingCase.NonWalkable)
+          y--;
+          if (nextCase.GetCaseInFront(SelectionManager.Instance.selectedPersonnage.persoDirection) != null)
           {
-            caseFinalShow = nextCase.GetCaseAtBack(SelectionManager.Instance.selectedPersonnage.persoDirection);
+            nextCase = nextCase.GetCaseInFront(SelectionManager.Instance.selectedPersonnage.persoDirection);
+            if (nextCase.casePathfinding == PathfindingCase.NonWalkable)
+            {
+              caseFinalShow = nextCase.GetCaseAtBack(SelectionManager.Instance.selectedPersonnage.persoDirection);
+            }
+          }
+        }
+        if (y < 0)
+        {
+          y++;
+          if (nextCase.GetCaseAtBack(SelectionManager.Instance.selectedPersonnage.persoDirection) != null)
+          {
+            nextCase = nextCase.GetCaseAtBack(SelectionManager.Instance.selectedPersonnage.persoDirection);
+            if (nextCase.casePathfinding == PathfindingCase.NonWalkable)
+            {
+              if (y == 1)
+                caseFinalShow = caseAfflicted;
+              else
+                caseFinalShow = nextCase.GetCaseInFront(SelectionManager.Instance.selectedPersonnage.persoDirection);
+              break;
+            }
           }
         }
       }
-      if (y < 0)
+      if (caseFinalShow == null)
       {
-        y++;
-        if (nextCase.GetCaseAtBack(SelectionManager.Instance.selectedPersonnage.persoDirection) != null)
-        {
-          nextCase = nextCase.GetCaseAtBack(SelectionManager.Instance.selectedPersonnage.persoDirection);
-          if (nextCase.casePathfinding == PathfindingCase.NonWalkable)
-          {
-            if(y == 1)
-              caseFinalShow = caseAfflicted;
-            else
-              caseFinalShow = nextCase.GetCaseInFront(SelectionManager.Instance.selectedPersonnage.persoDirection);
-            break;
-          }
-        }
+        caseFinalShow = nextCase;
       }
     }
-    if (caseFinalShow == null)
+    else if (pushType == PushType.FromTarget)
     {
-      caseFinalShow = nextCase;
+      if (pushDirection == Direction.Left) { }
+        caseFinalShow = nextCase.GetCaseAtLeft(SelectionManager.Instance.selectedPersonnage.persoDirection);
+
+      if (pushDirection == Direction.Right)
+        caseFinalShow = nextCase.GetCaseAtRight(SelectionManager.Instance.selectedPersonnage.persoDirection);
+
+      if (pushDirection == Direction.Back)
+        caseFinalShow = nextCase.GetCaseAtBack(SelectionManager.Instance.selectedPersonnage.persoDirection);
+
+      if (pushDirection == Direction.Front)
+        caseFinalShow = nextCase.GetCaseInFront(SelectionManager.Instance.selectedPersonnage.persoDirection);
+
+      pushDirection = SelectionManager.Instance.selectedPersonnage.persoDirection;
+
+      for (int i = 0; i < pushValue; i++)
+      {
+
+
+        if (nextCase != null)
+          if (nextCase.summonData != null)
+            if (nextCase.summonData.name.Contains("Air"))
+            {
+              if (pushDirection == Direction.NordEst)
+                pushDirection = Direction.NordOuest;
+              if (pushDirection == Direction.NordOuest)
+                pushDirection = Direction.SudOuest;
+              if (pushDirection == Direction.SudOuest)
+                pushDirection = Direction.SudEst;
+              if (pushDirection == Direction.SudEst)
+                pushDirection = Direction.NordEst;
+            }
+        /*
+        if (pushDirection == Direction.Left)
+          caseFinalShow = nextCase.GetCaseAtLeft(SelectionManager.Instance.selectedPersonnage.persoDirection);
+
+        if (pushDirection == Direction.Right)
+          caseFinalShow = nextCase.GetCaseAtRight(SelectionManager.Instance.selectedPersonnage.persoDirection);
+
+        if (pushDirection == Direction.Back)
+          caseFinalShow = nextCase.GetCaseAtBack(SelectionManager.Instance.selectedPersonnage.persoDirection);
+
+        if (pushDirection == Direction.Front)
+          caseFinalShow = nextCase.GetCaseInFront(SelectionManager.Instance.selectedPersonnage.persoDirection);
+
+        if (tempCase == null || tempCase.casePathfinding == PathfindingCase.NonWalkable)
+        {
+          caseAfflicted.casePathfinding = PathfindingCase.Walkable;
+          pathList.Add(caseAfflicted.transform);
+          stillTornadoDamage = true;
+          break;
+        }
+        else
+        {
+          pathList.Add(tempCase.transform);
+          caseAfflicted = tempCase;
+        }*/
+      }
+
+      //GetCaseAtRight(objAfflicted.GetComponent<PersoData>().persoDirection);
     }
+
   }
 }
