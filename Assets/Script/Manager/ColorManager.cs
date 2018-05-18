@@ -29,6 +29,7 @@ public class ColorManager : NetworkBehaviour
   public Color canTarget;
   public Color atAoE;
   public Color atPush;
+  public Color canMovePrevisu;
 
   [Header("  Couleur des personnages")]
   public Color punchedPersonnageColor;

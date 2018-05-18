@@ -230,7 +230,8 @@ public class CaseData : NetworkBehaviour
     if ((Statut.atPush & statut) == Statut.atPush)
       spriteR.color = ColorManager.Instance.atPush;
 
-
+    if ((Statut.canMovePrevisu & statut) == Statut.canMovePrevisu)
+      spriteR.color = ColorManager.Instance.canMovePrevisu;
 
     if ((Statut.canBeTackled & statut) == Statut.canBeTackled)
       spriteR.color = ColorManager.Instance.enemyColor;

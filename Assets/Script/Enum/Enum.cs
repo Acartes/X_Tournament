@@ -94,6 +94,8 @@ public enum WeightType
   atAoE = 1 << 18,
   atPush = 1 << 19,
   canTarget = 1 << 20,
+  // Other Feedback
+  canMovePrevisu = 1 << 21,
 }
 
 [Flags] public enum BallonStatut
