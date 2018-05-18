@@ -223,7 +223,7 @@ MonoBehaviour:
   originPoint: {fileID: 1306470593966898}
   faceSprite: {fileID: 21300000, guid: fb0c6cbdcfd7be54a9d454c7eb75134d, type: 3}
   backSprite: {fileID: 21300000, guid: 8c4826da99982464cacec1844e9ef06f, type: 3}
-  Spell1: {fileID: 0}
+  Spell1: {fileID: 114539509967211268, guid: dc94ab97067c3664ea9ccd5c5d7a3050, type: 2}
   Spell2: {fileID: 0}
   isTackled: 0
   animator: {fileID: 0}

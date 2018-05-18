@@ -61,16 +61,20 @@ public class AfterFeedbackManager : NetworkBehaviour
     listTextFeedback.Add(takenText);
   }
 
-  public void PRText(int PRchanged, GameObject obj)
+  public void PRText(int PRchanged, GameObject obj, bool negativeValue = true)
   {
     StartCoroutine(PRTextCoroutine(PRchanged, obj));
   }
 
-  IEnumerator PRTextCoroutine(int PRchanged, GameObject obj)
+  IEnumerator PRTextCoroutine(int PRchanged, GameObject obj, bool negativeValue = true)
   {
     GameObject takenText = listTextFeedback[0];
     listTextFeedback.Remove(takenText);
-    takenText.GetComponent<TextMesh>().text = "-" + PRchanged.ToString();
+    if(negativeValue)
+      takenText.GetComponent<TextMesh>().text = "-" + PRchanged.ToString();
+    else
+      takenText.GetComponent<TextMesh>().text = "+" + PRchanged.ToString();
+
     takenText.transform.position = obj.transform.position;
 
     takenText.GetComponent<TextMesh>().color = new Color(1, 0, 0, 1f);

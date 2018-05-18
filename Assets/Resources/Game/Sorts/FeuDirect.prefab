@@ -59,9 +59,9 @@ MonoBehaviour:
   damagePR: 2
   damagePA: 2
   damagePM: 0
-  elementCreated: 2
+  elementCreated: 0
   pushValue: 0
-  pushDirection: 0
+  pushDirection: 8
   pushType: 1
   hurtWhenStopped: 0
   summonedObj: {fileID: 0}
