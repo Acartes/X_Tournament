@@ -362,19 +362,19 @@ public class SpellData : NetworkBehaviour
       if (animatorSpell != null)
         FXManager.Instance.Show(animatorSpell, caseAfflicted.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
 
-      if (persoAfflicted.owner == SelectionManager.Instance.selectedPersonnage.owner || !reverseDamageOnAlly)
-      {
-        EffectManager.Instance.ChangePR(persoAfflicted, damagePR);
-        AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject, true);
-        EffectManager.Instance.ChangePA(persoAfflicted, damagePA);
-        EffectManager.Instance.ChangePM(persoAfflicted, damagePM);
-      }
-      else if (persoAfflicted.owner != SelectionManager.Instance.selectedPersonnage.owner)
+      if (persoAfflicted.owner != SelectionManager.Instance.selectedPersonnage.owner || !reverseDamageOnAlly)
       {
         EffectManager.Instance.ChangePR(persoAfflicted, -damagePR);
         AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject);
         EffectManager.Instance.ChangePADebuff(persoAfflicted, -damagePA);
         EffectManager.Instance.ChangePMDebuff(persoAfflicted, -damagePM);
+      }
+      else if (persoAfflicted.owner == SelectionManager.Instance.selectedPersonnage.owner)
+      {
+        EffectManager.Instance.ChangePR(persoAfflicted, damagePR);
+        AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject, true);
+        EffectManager.Instance.ChangePA(persoAfflicted, damagePA);
+        EffectManager.Instance.ChangePM(persoAfflicted, damagePM);
       }
     }
     if (objAfflicted.GetComponent<SummonData>() != null)

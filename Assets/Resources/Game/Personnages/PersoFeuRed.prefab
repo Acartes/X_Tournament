@@ -249,6 +249,9 @@ MonoBehaviour:
   maxPointAction: 4
   actualPointResistance: 5
   maxPointResistance: 5
+  pmDebuff: 0
+  paDebuff: 0
+  prDebuff: 0
   shotStrenght: 4
   persoDirection: 0
   persoCase: {fileID: 0}
@@ -256,7 +259,7 @@ MonoBehaviour:
   faceSprite: {fileID: 21300000, guid: 935b379233e062a4c97e8607584d6cf2, type: 3}
   backSprite: {fileID: 21300000, guid: db0663b8cfb41774e85280bff9285d82, type: 3}
   Spell1: {fileID: 114539509967211268, guid: dc94ab97067c3664ea9ccd5c5d7a3050, type: 2}
-  Spell2: {fileID: 0}
+  Spell2: {fileID: 114539509967211268, guid: cc732baab2b0cc045a4913f75ce1b86a, type: 2}
   isTackled: 0
   animator: {fileID: 0}
 --- !u!212 &212647557626642132

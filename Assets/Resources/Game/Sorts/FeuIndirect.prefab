@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114539509967211268}
   - component: {fileID: 114755600324448950}
   m_Layer: 0
-  m_Name: FeuDirect
+  m_Name: FeuIndirect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,29 +52,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1e943ddd2f20214b8f4eafa5267c461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  costPA: 4
-  range: 4
-  isLinear: 1
+  costPA: 2
+  range: 5
+  isLinear: 0
   areaOfEffect: 0
-  damagePR: 2
-  damagePA: 2
+  damagePR: 0
+  damagePA: 0
   damagePM: 0
-  reverseDamageOnAlly: 1
-  elementCreated: 0
+  reverseDamageOnAlly: 0
+  elementCreated: 1
   pushValue: 0
-  pushDirection: 8
-  pushType: 1
+  pushDirection: 0
+  pushType: 0
   hurtWhenStopped: 0
-  summonedObj: {fileID: 0}
-  isDirect: 1
-  buttonSprite: {fileID: 21300000, guid: 2d80f58ba99df624a884c09ebe9e8b96, type: 3}
-  tooltipTitle: Direct <color=#cccc00ff>Terre</color>
-  tooltipRange: "<color=#bbbbbbff>Port\xE9e : </color>5 cases"
-  tooltipEffect: Attire la cible de 3 cases.
-  numberLimitCast: 0
-  animatorSpell: {fileID: 9100000, guid: 9fe560b6a5895a74bb77cf012023b40d, type: 2}
-  affectedTarget: 19
-  allowedTarget: 19
+  summonedObj: {fileID: 114910890263424662, guid: 13d82c74e385f504cb8b9fbd71952d03,
+    type: 2}
+  isDirect: 0
+  buttonSprite: {fileID: 21300000, guid: d463a09644c6feb459e6cdf546e9e780, type: 3}
+  tooltipTitle: Sort Indirect <color=#00ff00ff>Air</color>
+  tooltipRange: "<color=#bbbbbbff>Port\xE9e : </color>4 cases"
+  tooltipEffect: "Invoque un obstacle \xE0 l\u2019emplacement cibl\xE9, il ne bloque
+    pas la ligne de\r vue, la balle et les personnages peuvent le traverser. Lorsqu\u2019une
+    entit\xE9 entre \xE0\r l\u2019int\xE9rieur elle est d\xE9cal\xE9 d\u20191 case
+    sur sa gauche."
+  numberLimitCast: 1
+  animatorSpell: {fileID: 9100000, guid: bae8a29eb97ba61468b018622db02aa4, type: 2}
+  affectedTarget: 15
+  allowedTarget: 15
 --- !u!114 &114755600324448950
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -89,21 +93,21 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 220
-    i1: 148
-    i2: 171
-    i3: 151
-    i4: 6
-    i5: 124
-    i6: 54
-    i7: 100
-    i8: 234
-    i9: 156
-    i10: 205
-    i11: 92
-    i12: 93
-    i13: 122
-    i14: 48
-    i15: 80
+    i0: 7
+    i1: 21
+    i2: 55
+    i3: 50
+    i4: 148
+    i5: 0
+    i6: 71
+    i7: 132
+    i8: 168
+    i9: 218
+    i10: 126
+    i11: 201
+    i12: 110
+    i13: 145
+    i14: 112
+    i15: 101
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
