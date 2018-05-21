@@ -62,7 +62,7 @@ public class HoverFeedbackManager : NetworkBehaviour
   public void ShowMovement(PersoData perso)
   {
     List<CaseData> caseList = new List<CaseData>();
-    int movement = HoverManager.Instance.hoveredPersonnage.actualPointMovement;
+    int movement = perso.actualPointMovement;
     caseList.Add(perso.persoCase);
 
     for (int i = 0; i < movement; i++)
