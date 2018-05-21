@@ -8,7 +8,7 @@ using System.Security.Cryptography;
 /// <summary>Tout ce qu'il est possible de faire avec un personnage, ainsi que toutes ses données.</summary>
 public class PersoData : NetworkBehaviour
 {
-  
+
   // *************** //
   // ** Variables ** // Toutes les variables sans distinctions
   // *************** //
@@ -21,6 +21,10 @@ public class PersoData : NetworkBehaviour
   public int maxPointAction;
   public int actualPointResistance;
   public int maxPointResistance;
+
+  public int pmDebuff;
+  public int paDebuff;
+  public int prDebuff;
   /// <summary>Modifie la portée du tir.</summary>
   public int shotStrenght;
   public Direction persoDirection;
@@ -44,7 +48,7 @@ public class PersoData : NetworkBehaviour
   // ******************** //
 
   void Start()
-  { 
+  {
     StartCoroutine(waitForInit());
   }
 
@@ -52,9 +56,9 @@ public class PersoData : NetworkBehaviour
   {
     yield return new WaitForEndOfFrame();
     while (TurnManager.Instance == null)
-      {
-        yield return null;
-      }
+    {
+      yield return null;
+    }
     Init();
   }
 
@@ -84,12 +88,18 @@ public class PersoData : NetworkBehaviour
   public void OnChangeTurn(object sender, PlayerArgs e)
   {
     if (e.currentPlayer == owner)
-      {
-        ResetPM();
-        ResetPA();
-      }
+    {
+      ResetPM();
+      ResetPA();
+      actualPointMovement += pmDebuff;
+      actualPointAction += paDebuff;
+      actualPointResistance += prDebuff;
+      pmDebuff = 0;
+      prDebuff = 0;
+      paDebuff = 0;
+    }
   }
-  
+
   // *************** //
   // ** Fonctions ** // Fonctions réutilisables ailleurs
   // *************** //
@@ -117,7 +127,7 @@ public class PersoData : NetworkBehaviour
   {
     persoDirection = direction;
     switch (persoDirection)
-      {
+    {
       case Direction.SudOuest:
         transform.localRotation = Quaternion.Euler(0, 180, 0);
         animator.SetBool("Back", false);
@@ -138,7 +148,7 @@ public class PersoData : NetworkBehaviour
         animator.SetBool("Front", false);
         animator.SetBool("Back", true);
         break;
-      }
+    }
   }
 
   /// <summary>Change la direction du personnage en direction de la case ciblée.</summary>
@@ -190,20 +200,20 @@ public class PersoData : NetworkBehaviour
     ShineColorIsRunning = true;
 
     while (ShineColorIsRunning)
+    {
+      Color colorx = color1;
+      color1 = color2;
+      color2 = colorx;
+      for (int i = 0; i < 100; i++)
       {
-        Color colorx = color1;
-        color1 = color2;
-        color2 = colorx;
-        for (int i = 0; i < 100; i++)
-          {
-            if (!ShineColorIsRunning)
-              break;
+        if (!ShineColorIsRunning)
+          break;
 
-            spriteR.color += (color1 - color2) / 100;
-            yield return new WaitForSeconds(time + 0.01f);
-          }
-
+        spriteR.color += (color1 - color2) / 100;
+        yield return new WaitForSeconds(time + 0.01f);
       }
+
+    }
   }
 
   /// <summary>Stop la fonction StartShineColor</summary>

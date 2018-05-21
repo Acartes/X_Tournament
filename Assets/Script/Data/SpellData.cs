@@ -21,6 +21,7 @@ public class SpellData : NetworkBehaviour
   public int damagePR;
   public int damagePA;
   public int damagePM;
+  public bool reverseDamageOnAlly;
   public Element elementCreated;
 
   public int pushValue;
@@ -312,7 +313,7 @@ public class SpellData : NetworkBehaviour
 
   public void ApplyEffect(GameObject objAfflicted)
   {
-    if (pushValue > 0)
+    if (pushValue != 0)
       ApplyPushEffect(objAfflicted);
     else
     {
@@ -361,12 +362,21 @@ public class SpellData : NetworkBehaviour
       if (animatorSpell != null)
         FXManager.Instance.Show(animatorSpell, caseAfflicted.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
 
-      EffectManager.Instance.ChangePR(persoAfflicted, damagePR);
-      AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject);
-      EffectManager.Instance.ChangePA(persoAfflicted, damagePA);
-      EffectManager.Instance.ChangePM(persoAfflicted, damagePM);
+      if (persoAfflicted.owner == SelectionManager.Instance.selectedPersonnage.owner || !reverseDamageOnAlly)
+      {
+        EffectManager.Instance.ChangePR(persoAfflicted, damagePR);
+        AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject, true);
+        EffectManager.Instance.ChangePA(persoAfflicted, damagePA);
+        EffectManager.Instance.ChangePM(persoAfflicted, damagePM);
+      }
+      else if (persoAfflicted.owner != SelectionManager.Instance.selectedPersonnage.owner)
+      {
+        EffectManager.Instance.ChangePR(persoAfflicted, -damagePR);
+        AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject);
+        EffectManager.Instance.ChangePADebuff(persoAfflicted, -damagePA);
+        EffectManager.Instance.ChangePMDebuff(persoAfflicted, -damagePM);
+      }
     }
-
     if (objAfflicted.GetComponent<SummonData>() != null)
     {
       SummonData summonAfflicted = objAfflicted.GetComponent<SummonData>();
@@ -374,7 +384,7 @@ public class SpellData : NetworkBehaviour
       if (animatorSpell != null)
         FXManager.Instance.Show(animatorSpell, caseAfflicted.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
 
-      EffectManager.Instance.ChangePR(summonAfflicted, damagePR);
+      EffectManager.Instance.ChangePR(summonAfflicted, -damagePR);
     }
   }
 }
