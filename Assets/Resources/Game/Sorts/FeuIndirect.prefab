@@ -64,8 +64,8 @@ MonoBehaviour:
   pushValue: 0
   pushDirection: 0
   pushType: 0
-  hurtWhenStopped: 0
-  summonedObj: {fileID: 114910890263424662, guid: 13d82c74e385f504cb8b9fbd71952d03,
+  hurtWhenStopped: 1
+  summonedObj: {fileID: 114910890263424662, guid: d6496e8c0af292840b671d7275d79827,
     type: 2}
   isDirect: 0
   buttonSprite: {fileID: 21300000, guid: d463a09644c6feb459e6cdf546e9e780, type: 3}

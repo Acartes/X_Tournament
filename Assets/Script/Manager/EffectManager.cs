@@ -46,9 +46,9 @@ PushBehaviour.Instance.StopAllCoroutines();
   }
 
   /// <summary>Augmente ou diminue le nombre de PA de la cible.</summary>
-  public void ChangePA(PersoData persoAfflicted, int number)
+  public void ChangePA(int number)
   {
-    persoAfflicted.actualPointAction += number;
+    GameManager.Instance.manaGlobalActual += number;
   }
 
   public void ChangePR(PersoData persoAfflicted, int number)

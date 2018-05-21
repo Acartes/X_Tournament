@@ -301,11 +301,11 @@ MonoBehaviour:
   isStatic: 1
   isBlockingLineOfSight: 0
   isTraversable: 1
-  canPush: 1
-  pushValue: 1
+  canPush: 0
+  pushValue: 0
   pushRange: 0
   pushType: 0
-  pushDirection: 5
+  pushDirection: 8
   originPoint: {fileID: 4541752187799740}
   caseActual: {fileID: 0}
   actualPointResistance: 0
@@ -314,11 +314,11 @@ MonoBehaviour:
   hurtWhenBounce: 0
   numberEffectDisapear: 1
   summonDirection: 1
-  damagePR: 0
+  damagePR: 2
   damagePA: 0
   damagePM: 0
-  reverseDamageOnAlly: 0
-  P1Sprite: {fileID: 21300000, guid: 1a5a28b58f13e3b409f294a9ab724429, type: 3}
+  reverseDamageOnAlly: 1
+  P1Sprite: {fileID: 21300000, guid: 7134979acc72df94fa3825d44def3ddd, type: 3}
   P2Sprite: {fileID: 0}
   owner: 0
   limitInvoc: 3

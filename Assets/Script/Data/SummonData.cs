@@ -113,6 +113,8 @@ public class SummonData : NetworkBehaviour
   /// <summary>Applique les effets selon les paramètres de l'invocation.</summary>
   public void ApplyEffect(GameObject objAfflicted)
   {
+    print("aaa");
+
     PersoData persoAfflicted = null;
     CaseData caseAfflicted = null;
     BallonData ballonAfflicted = null;
@@ -134,9 +136,9 @@ public class SummonData : NetworkBehaviour
       damagePR = -damagePR;
       damagePM = -damagePM;
     }
-    EffectManager.Instance.ChangePA(persoAfflicted, damagePA);
-    EffectManager.Instance.ChangePR(persoAfflicted, damagePR);
-    EffectManager.Instance.ChangePM(persoAfflicted, damagePM);
+    EffectManager.Instance.ChangePA(persoAfflicted, -damagePA);
+    EffectManager.Instance.ChangePR(persoAfflicted, -damagePR);
+    EffectManager.Instance.ChangePM(persoAfflicted, -damagePM);
 
     if (canPush)
     {
