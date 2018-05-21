@@ -53,12 +53,27 @@ PushBehaviour.Instance.StopAllCoroutines();
 
   public void ChangePR(PersoData persoAfflicted, int number)
   {
-    persoAfflicted.actualPointAction += number;
+    persoAfflicted.actualPointResistance += number;
   }
 
   public void ChangePM(PersoData persoAfflicted, int number)
   {
-    persoAfflicted.actualPointAction += number;
+    persoAfflicted.actualPointMovement += number;
+  }
+
+  public void ChangePADebuff(PersoData persoAfflicted, int number)
+  {
+    persoAfflicted.paDebuff += number;
+  }
+
+  public void ChangePRDebuff(PersoData persoAfflicted, int number)
+  {
+    persoAfflicted.prDebuff += number;
+  }
+
+  public void ChangePMDebuff(PersoData persoAfflicted, int number)
+  {
+    persoAfflicted.pmDebuff += number;
   }
 
   public void ChangePR(SummonData summonAfflicted, int number)
