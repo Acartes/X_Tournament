@@ -61,9 +61,9 @@ PushBehaviour.Instance.StopAllCoroutines();
     persoAfflicted.actualPointMovement += number;
   }
 
-  public void ChangePADebuff(PersoData persoAfflicted, int number)
+  public void ChangePADebuff(int number)
   {
-    persoAfflicted.paDebuff += number;
+    GameManager.Instance.paDebuff += number;
   }
 
   public void ChangePRDebuff(PersoData persoAfflicted, int number)

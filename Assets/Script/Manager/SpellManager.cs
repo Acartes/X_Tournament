@@ -150,7 +150,7 @@ public class SpellManager : NetworkBehaviour
     GameManager.Instance.manaGlobalActual -= selectedSpell.costPA;
     UIManager.Instance.UpdateRemaningMana();
 
-    if (SummonManager.Instance.lastSummonInstancied != null)
+    if (SummonManager.Instance.lastSummonInstancied != null && !selectedSpell.summonOnCross) // normal summon
     {
       SummonData lastSummonInstancied = SummonManager.Instance.lastSummonInstancied;
       lastSummonInstancied.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
@@ -165,6 +165,24 @@ public class SpellManager : NetworkBehaviour
       if (lastSummonInstancied.owner == Player.Blue)
       {
         ownerCircle.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.4f);
+      }
+    }
+    if (SummonManager.Instance.crossSummonList != null && selectedSpell.summonOnCross) // cross summon
+    {
+      foreach (SummonData item in SummonManager.Instance.crossSummonList)
+      {
+        item.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
+        item.GetComponent<Animator>().enabled = true;
+        item.GetComponent<BoxCollider2D>().enabled = true;
+        GameObject ownerCircle = item.originPoint.GetChild(0).gameObject;
+        if (item.owner == Player.Red)
+        {
+          ownerCircle.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.4f);
+        }
+        if (item.owner == Player.Blue)
+        {
+          ownerCircle.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.4f);
+        }
       }
     }
 
@@ -209,9 +227,20 @@ public class SpellManager : NetworkBehaviour
       obj.ChangeStatut(Statut.None, Statut.canTarget);
     }
 
-    if (!spellSuccess && SummonManager.Instance.lastSummonInstancied != null)
+    if (!spellSuccess)
     {
-      DestroyImmediate(SummonManager.Instance.lastSummonInstancied.gameObject);
+      if(SummonManager.Instance.lastSummonInstancied != null) // sort indirect
+      {
+        DestroyImmediate(SummonManager.Instance.lastSummonInstancied.gameObject);
+      }
+      if(SummonManager.Instance.crossSummonList != null) // prévisu cross
+      {
+        foreach (SummonData item in SummonManager.Instance.crossSummonList)
+        {
+          DestroyImmediate(item.gameObject);
+        }
+        SummonManager.Instance.crossSummonList.Clear();
+      }
     }
     SummonManager.Instance.lastSummonInstancied = null;
     spellSuccess = false;
@@ -238,5 +267,22 @@ public class SpellManager : NetworkBehaviour
       return SelectionManager.Instance.selectedPersonnage.Spell2;
 
     return null;
+  }
+
+  private void summonObj(SummonData summon)
+  {
+    summon.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
+    summon.GetComponent<Animator>().enabled = true;
+    summon.GetComponent<BoxCollider2D>().enabled = true;
+    SummonManager.Instance.AddSummon(summon);
+    GameObject ownerCircle = summon.originPoint.GetChild(0).gameObject;
+    if (summon.owner == Player.Red)
+    {
+      ownerCircle.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.4f);
+    }
+    if (summon.owner == Player.Blue)
+    {
+      ownerCircle.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.4f);
+    }
   }
 }

@@ -28,6 +28,8 @@ public class GameManager : NetworkBehaviour
 
   public static GameManager Instance;
 
+  public int paDebuff;
+
   // ******************** //
   // ** Initialisation ** // Fonctions de départ, non réutilisable
   // ******************** //
@@ -38,9 +40,9 @@ public class GameManager : NetworkBehaviour
       Instance = this;
 
     foreach (NetworkLobbyPlayer obj in GameObject.FindObjectsOfType<NetworkLobbyPlayer>())
-      {
-        numberPlayer++;
-      }
+    {
+      numberPlayer++;
+    }
 
     if (numberPlayer > 1)
       isSoloGame = false;
@@ -56,7 +58,7 @@ public class GameManager : NetworkBehaviour
   }
 
   private void Init()
-  { 
+  {
     actualAction = PersoAction.isIdle;
     StartCoroutine(LateOnEnable());
   }
@@ -70,9 +72,9 @@ public class GameManager : NetworkBehaviour
   void OnDisable()
   {
     if (LoadingManager.Instance != null && LoadingManager.Instance.isGameReady())
-      {
-        TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
-      }
+    {
+      TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
+    }
   }
 
   // *************** //
@@ -87,14 +89,16 @@ public class GameManager : NetworkBehaviour
     ResetMana();
 
     if (TurnManager.Instance.currentPhase == Phase.Deplacement) // si on est en jeu
-      {
-        UIManager.Instance.UpdateRemaningMana();
-        if (TurnManager.Instance.TurnNumber != 2// si on est pas au premier tour de jeu
+    {
+      UIManager.Instance.UpdateRemaningMana();
+      if (TurnManager.Instance.TurnNumber != 2// si on est pas au premier tour de jeu
             && TurnManager.Instance.TurnNumber % 2 == 0) // et qu'on vient d'arriver sur un nouveau tour rouge
-          {
-            DecrementeManaMax(1);
-          }
+      {
+        DecrementeManaMax(1);
       }
+      manaGlobalActual += paDebuff;
+      paDebuff = 0;
+    }
   }
 
   // *************** //
@@ -108,15 +112,15 @@ public class GameManager : NetworkBehaviour
     GameManager.Instance.actualAction = PersoAction.isIdle;
     GameManager.Instance.ChangeCurrentPhase(Phase.Placement);
     foreach (CaseData obj in CaseManager.Instance.GetAllCase())
-      {
-        obj.ClearStatutToDefault();
-      }
+    {
+      obj.ClearStatutToDefault();
+    }
 
     foreach (PersoData obj in RosterManager.Instance.listHeroPlaced)
-      {
-        obj.gameObject.transform.position = new Vector3(999, 999, 999);
-      }
-      
+    {
+      obj.gameObject.transform.position = new Vector3(999, 999, 999);
+    }
+
     GameObject.Find("Ballon").transform.position = GameObject.Find("10 5").transform.position;
 
     SelectionManager.Instance.selectedCase = null;
