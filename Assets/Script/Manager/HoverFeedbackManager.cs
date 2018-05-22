@@ -90,12 +90,7 @@ public class HoverFeedbackManager : NetworkBehaviour
               }
           }
       }
-
-    Debug.Log(caseList.Count);
-          
-    caseList.Remove(perso.persoCase);
-
-    foreach (CaseData newCase in caseList)
+     foreach (CaseData newCase in caseList)
       {
         newCase.ChangeStatut(Statut.canMovePrevisu);
       }
