@@ -171,6 +171,11 @@ public class SpellManager : NetworkBehaviour
     {
       foreach (SummonData item in SummonManager.Instance.crossSummonList)
       {
+        if (item.transform.position.x > 500)
+        {
+          Destroy(item.gameObject);
+          continue;
+        }
         item.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
         item.GetComponent<Animator>().enabled = true;
         item.GetComponent<BoxCollider2D>().enabled = true;
@@ -184,6 +189,7 @@ public class SpellManager : NetworkBehaviour
           ownerCircle.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.4f);
         }
       }
+      SummonManager.Instance.crossSummonList.Clear();
     }
 
     foreach (CaseData obj in CaseManager.listAllCase)

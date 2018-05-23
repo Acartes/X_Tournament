@@ -31,6 +31,7 @@ public class SummonData : NetworkBehaviour
   public int actualPointResistance;
   public int maxPointResistance;
   public bool invulnerable;
+  public bool makeBallExplosive;
   public bool hurtWhenBounce;
   public int numberEffectDisapear;
   public Direction summonDirection = Direction.NordEst;
@@ -123,10 +124,14 @@ public class SummonData : NetworkBehaviour
         caseAfflicted = persoAfflicted.persoCase;
       }
     if (objAfflicted.GetComponent<BallonData>() != null)
+    {
+      ballonAfflicted = objAfflicted.GetComponent<BallonData>();
+      caseAfflicted = ballonAfflicted.ballonCase;
+      if (makeBallExplosive)
       {
-        ballonAfflicted = objAfflicted.GetComponent<BallonData>();
-        caseAfflicted = ballonAfflicted.ballonCase;
+        ballonAfflicted.isExplosive = true;
       }
+    }
 
     if (reverseDamageOnAlly && persoAfflicted.owner == owner)
     {

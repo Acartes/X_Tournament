@@ -396,7 +396,7 @@ public class SpellData : NetworkBehaviour
         if (animatorSpell != null)
           FXManager.Instance.Show(animatorSpell, caseAfflicted.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
 
-        EffectManager.Instance.Push(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection);
+        EffectManager.Instance. Push(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection);
       }
 
     if (objAfflicted.GetComponent<BallonData>() != null)
@@ -422,6 +422,8 @@ public class SpellData : NetworkBehaviour
 
   public void ApplyStatsEffect(GameObject objAfflicted)
   {
+    PersoData persoAfflicted = objAfflicted.GetComponent<PersoData>();
+    CaseData caseAfflicted = persoAfflicted.persoCase;
     if (objAfflicted.GetComponent<PersoData>() != null)
       {
         EffectManager.Instance.ChangePR(persoAfflicted, -damagePR);
@@ -436,15 +438,15 @@ public class SpellData : NetworkBehaviour
         EffectManager.Instance.ChangePA(damagePA);
         EffectManager.Instance.ChangePM(persoAfflicted, damagePM);
       }
-    }
+      
     if (objAfflicted.GetComponent<SummonData>() != null)
       {
         SummonData summonAfflicted = objAfflicted.GetComponent<SummonData>();
-        CaseData caseAfflicted = summonAfflicted.caseActual;
         if (animatorSpell != null)
-          FXManager.Instance.Show(animatorSpell, caseAfflicted.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
+          FXManager.Instance.Show(animatorSpell, summonAfflicted.caseActual.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
 
         EffectManager.Instance.ChangePR(summonAfflicted, -damagePR);
       }
   }
 }
+
