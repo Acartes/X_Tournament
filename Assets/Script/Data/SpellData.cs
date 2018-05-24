@@ -276,6 +276,9 @@ public class SpellData : NetworkBehaviour
     if (HoverManager.Instance.hoveredPersonnage == null && HoverManager.Instance.hoveredBallon == null)
       return;
 
+    if (pushDirection == Direction.None)
+      return;
+
     if (HoverManager.Instance.hoveredPersonnage)
       {
         PersoData persoAfflicted = HoverManager.Instance.hoveredPersonnage;
@@ -423,8 +426,11 @@ public class SpellData : NetworkBehaviour
   public void ApplyStatsEffect(GameObject objAfflicted)
   {
     PersoData persoAfflicted = objAfflicted.GetComponent<PersoData>();
-    CaseData caseAfflicted = persoAfflicted.persoCase;
-    if (objAfflicted.GetComponent<PersoData>() != null)
+    SummonData summonAfflicted = objAfflicted.GetComponent<SummonData>();
+    if (persoAfflicted)
+    {
+      CaseData caseAfflicted = persoAfflicted.persoCase;
+      if (persoAfflicted.owner != SelectionManager.Instance.selectedPersonnage.owner)
       {
         EffectManager.Instance.ChangePR(persoAfflicted, -damagePR);
         AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject);
@@ -438,10 +444,10 @@ public class SpellData : NetworkBehaviour
         EffectManager.Instance.ChangePA(damagePA);
         EffectManager.Instance.ChangePM(persoAfflicted, damagePM);
       }
-      
-    if (objAfflicted.GetComponent<SummonData>() != null)
+    }
+
+    if (summonAfflicted != null)
       {
-        SummonData summonAfflicted = objAfflicted.GetComponent<SummonData>();
         if (animatorSpell != null)
           FXManager.Instance.Show(animatorSpell, summonAfflicted.caseActual.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
 

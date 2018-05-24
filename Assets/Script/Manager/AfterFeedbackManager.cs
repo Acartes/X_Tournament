@@ -11,6 +11,7 @@ public class AfterFeedbackManager : NetworkBehaviour
   public List<GameObject> listTextFeedback;
   public List<GameObject> listTextFeedbackPredict;
   public List<GameObject> listPersoPredict;
+  public Animator explodeEffect;
 
   public override void OnStartClient()
   {
@@ -70,14 +71,19 @@ public class AfterFeedbackManager : NetworkBehaviour
   {
     GameObject takenText = listTextFeedback[0];
     listTextFeedback.Remove(takenText);
-    if(positiveValue)
-      takenText.GetComponent<TextMesh>().text = "+" + PRchanged.ToString();
+    if (positiveValue)
+    {
+      takenText.GetComponent<TextMesh>().color = new Color(1, 0, 0, 1f);
+      takenText.GetComponent<TextMesh>().text = "+" + Mathf.Abs(PRchanged).ToString();
+    }
     else
+    {
+      takenText.GetComponent<TextMesh>().color = new Color(1, 0, 0, 1f);
       takenText.GetComponent<TextMesh>().text = "-" + PRchanged.ToString();
+    }
 
     takenText.transform.position = obj.transform.position;
 
-    takenText.GetComponent<TextMesh>().color = new Color(1, 0, 0, 1f);
 
     for (int i = 0; i < 300; i++)
       {
@@ -87,5 +93,11 @@ public class AfterFeedbackManager : NetworkBehaviour
       }
     takenText.transform.position = new Vector3(999, 999, 999);
     listTextFeedback.Add(takenText);
+  }
+
+  public void ExplodeEffect(GameObject target)
+  {
+    explodeEffect.transform.position = target.transform.position + Vector3.up * 0.5f;
+    explodeEffect.SetTrigger("BOOM");
   }
 }

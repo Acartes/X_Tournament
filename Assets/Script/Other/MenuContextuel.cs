@@ -115,7 +115,7 @@ public class MenuContextuel : NetworkBehaviour
     if (Instance != null)
       {
         CaseManager.Instance.EnableAllColliders();
-        TurnManager.Instance.StartCoroutine("EnableFinishTurn");
+      TurnManager.Instance.StartCoroutine("EnableFinishTurn");
         MenuContextuel.Instance.gameObject.transform.position = new Vector3(999, 999, 999);
         activated = false;
       }

@@ -17,6 +17,7 @@ public class PushBehaviour : NetworkBehaviour
   public float travelTime;
 
   public List<Transform> pathList = new List<Transform>();
+  public List<IEnumerator> ienumeratorList = new List<IEnumerator>();
 
   PersoData persoAfflicted = null;
   public CaseData caseFinalShow = null; // la case à montrer pour le pré-rendu
@@ -173,6 +174,26 @@ public class PushBehaviour : NetworkBehaviour
           }
         }
         break;
+      case PushType.FromTerrain:
+        if (pushDirection == Direction.SudOuest)
+          tempCase = caseAfflicted.GetBottomLeftCase();
+
+        if (pushDirection == Direction.SudEst)
+          tempCase = caseAfflicted.GetBottomRightCase();
+
+        if (pushDirection == Direction.NordOuest)
+          tempCase = caseAfflicted.GetTopLeftCase();
+
+        if (pushDirection == Direction.NordEst)
+          tempCase = caseAfflicted.GetTopRightCase();
+        if (tempCase == null || tempCase.casePathfinding == PathfindingCase.NonWalkable)
+        {
+          break;
+        }
+        pathList.Add(tempCase.transform);
+        caseAfflicted = tempCase;
+        break;
+
     }
 
     foreach (CaseData caseObj in CaseManager.Instance.GetAllCaseWithStatut(Statut.atPush))
@@ -189,12 +210,14 @@ public class PushBehaviour : NetworkBehaviour
     MoveBehaviour.Instance.StopAllCoroutines();
     StopAllCoroutines();
 
-    StartCoroutine(Deplacement(objAfflicted, pathList));
+    ienumeratorList.Add(Deplacement(objAfflicted, pathList));
+    StartCoroutine(ienumeratorList[ienumeratorList.Count - 1]);
   }
 
   public IEnumerator Deplacement(GameObject objAfflicted, List<Transform> pathes)
   { // On déplace le personnage de case en case jusqu'au click du joueur propriétaire, et entre temps on check s'il est taclé ou non
     TurnManager.Instance.DisableFinishTurn();
+    IEnumerator thisFunc = ienumeratorList[ienumeratorList.Count - 1];
 
     GameManager.Instance.actualAction = PersoAction.isMoving;
     Transform lastPath = null;
@@ -277,8 +300,6 @@ public class PushBehaviour : NetworkBehaviour
         CaseData rightCase = afflictedCase.GetCaseAtRight(objAfflicted.GetComponent<PersoData>().persoDirection);
         if (rightCase != null)
         {
-          Debug.Log(rightCase.name);
-          Debug.Break();
           if (rightCase.personnageData != null)
           {
             Debug.Log(rightCase.personnageData.name);
@@ -314,11 +335,13 @@ public class PushBehaviour : NetworkBehaviour
     pathRestant = 0;
 
     StartCoroutine(TurnManager.Instance.EnableFinishTurn());
+    ienumeratorList.Remove(thisFunc);
     yield return new WaitForEndOfFrame();
   }
 
   public void GetShownCase(GameObject obj, int givenPushValue, CaseData caseAfflicted, PushType pushType, Direction pushDirection = Direction.Front)
   {
+    Debug.Log(caseAfflicted);
     CaseData nextCase = caseAfflicted;
     int y = pushValue;
     caseFinalShow = null;
@@ -362,7 +385,7 @@ public class PushBehaviour : NetworkBehaviour
     }
     else if (pushType == PushType.FromTarget)
     {
-      if (pushDirection == Direction.Left) { }
+      if (pushDirection == Direction.Left)
         caseFinalShow = nextCase.GetCaseAtLeft(SelectionManager.Instance.selectedPersonnage.persoDirection);
 
       if (pushDirection == Direction.Right)

@@ -91,8 +91,8 @@ public class PersoData : NetworkBehaviour
     {
       ResetPM();
       ResetPA();
-      actualPointMovement += pmDebuff;
-      actualPointResistance += prDebuff;
+      EffectManager.Instance.ChangePM(this, pmDebuff);
+      EffectManager.Instance.ChangePR(this, prDebuff);
       pmDebuff = 0;
       prDebuff = 0;
     }

@@ -68,9 +68,9 @@ public class SummonData : NetworkBehaviour
   {
     yield return new WaitForEndOfFrame();
     while (TurnManager.Instance == null)
-      {
-        yield return null;
-      }
+    {
+      yield return null;
+    }
     Init();
   }
 
@@ -92,12 +92,11 @@ public class SummonData : NetworkBehaviour
   public void CheckDeath()
   {
     if (((actualPointResistance <= 0 && !invulnerable) || numberEffectDisapear <= 0) && !isDeath)
-      {
-        Debug.Log("lol");
-        isDeath = true;
-        SummonManager.Instance.RemoveSummon(this);
-        Death();
-      }
+    {
+      isDeath = true;
+      SummonManager.Instance.RemoveSummon(this);
+      Death();
+    }
   }
 
   public void Death()
@@ -114,18 +113,36 @@ public class SummonData : NetworkBehaviour
   /// <summary>Applique les effets selon les paramètres de l'invocation.</summary>
   public void ApplyEffect(GameObject objAfflicted)
   {
-    PersoData persoAfflicted = null;
+    PersoData persoAfflicted = objAfflicted.GetComponent<PersoData>();
     CaseData caseAfflicted = null;
-    BallonData ballonAfflicted = null;
+    BallonData ballonAfflicted = objAfflicted.GetComponent<BallonData>();
 
-    if (objAfflicted.GetComponent<PersoData>() != null)
+    if (persoAfflicted != null)
+    {
+      caseAfflicted = persoAfflicted.persoCase;
+      if ((damagePR != 0 || damagePA != 0 || damagePM != 0))
       {
         persoAfflicted = objAfflicted.GetComponent<PersoData>();
         caseAfflicted = persoAfflicted.persoCase;
+        if (reverseDamageOnAlly && persoAfflicted.owner == owner)
+        {
+          damagePA = -damagePA;
+          damagePR = -damagePR;
+          damagePM = -damagePM;
+          AfterFeedbackManager.Instance.PRText(damagePR, objAfflicted, true);
+        }
+        else
+        {
+          AfterFeedbackManager.Instance.PRText(damagePR, objAfflicted);
+        }
+        EffectManager.Instance.ChangePA(-damagePA);
+        EffectManager.Instance.ChangePR(persoAfflicted, -damagePR);
+        EffectManager.Instance.ChangePM(persoAfflicted, -damagePM);
+
       }
-    if (objAfflicted.GetComponent<BallonData>() != null)
+    }
+    if (ballonAfflicted != null)
     {
-      ballonAfflicted = objAfflicted.GetComponent<BallonData>();
       caseAfflicted = ballonAfflicted.ballonCase;
       if (makeBallExplosive)
       {
@@ -133,20 +150,10 @@ public class SummonData : NetworkBehaviour
       }
     }
 
-    if (reverseDamageOnAlly && persoAfflicted.owner == owner)
-    {
-      damagePA = -damagePA;
-      damagePR = -damagePR;
-      damagePM = -damagePM;
-    }
-    EffectManager.Instance.ChangePA(-damagePA);
-    EffectManager.Instance.ChangePR(persoAfflicted, -damagePR);
-    EffectManager.Instance.ChangePM(persoAfflicted, -damagePM);
-
     if (canPush)
-      {
-        EffectManager.Instance.Push(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection);
-      }
+    {
+      EffectManager.Instance.Push(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection);
+    }
 
     numberEffectDisapear--;
   }
@@ -154,24 +161,25 @@ public class SummonData : NetworkBehaviour
   public void ChangeSpriteByPlayer()
   {
     if (GetComponentInChildren<SpriteRenderer>() != null)
+    {
+      if (P2Sprite != null)
       {
-        if (P2Sprite != null)
-          {
-            if (owner == Player.Red)
-              {
-                GetComponentInChildren<SpriteRenderer>().sprite = P1Sprite;
-              }
-            if (owner == Player.Blue)
-              {
-                GetComponentInChildren<SpriteRenderer>().sprite = P2Sprite;
-              }
-          } else
-          {
-            if (P1Sprite != null)
-              {
-                GetComponentInChildren<SpriteRenderer>().sprite = P1Sprite;
-              }
-          }
+        if (owner == Player.Red)
+        {
+          GetComponentInChildren<SpriteRenderer>().sprite = P1Sprite;
+        }
+        if (owner == Player.Blue)
+        {
+          GetComponentInChildren<SpriteRenderer>().sprite = P2Sprite;
+        }
       }
+      else
+      {
+        if (P1Sprite != null)
+        {
+          GetComponentInChildren<SpriteRenderer>().sprite = P1Sprite;
+        }
+      }
+    }
   }
 }

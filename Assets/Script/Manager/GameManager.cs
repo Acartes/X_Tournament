@@ -96,7 +96,7 @@ public class GameManager : NetworkBehaviour
       {
         DecrementeManaMax(1);
       }
-      manaGlobalActual += paDebuff;
+      EffectManager.Instance.ChangePA(paDebuff);
       paDebuff = 0;
     }
   }

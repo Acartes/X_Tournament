@@ -119,6 +119,8 @@ public class CaseData : NetworkBehaviour
 
     if (col.tag == "Summon")
       {
+      if (summonData != null && summonData != col.gameObject.GetComponent<SummonData>())
+        Destroy(summonData.gameObject);
         summonData = col.gameObject.GetComponent<SummonData>();
         if (col.gameObject.GetComponent<SummonData>().caseActual != this)
           {

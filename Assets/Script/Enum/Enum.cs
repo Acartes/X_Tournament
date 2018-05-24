@@ -129,6 +129,7 @@ public enum PushType
 {
   FromTarget,
   FromCaster,
+  FromTerrain,
 }
 
 public enum CollisionType
