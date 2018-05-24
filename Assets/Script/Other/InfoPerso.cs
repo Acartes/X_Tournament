@@ -57,25 +57,18 @@ public class InfoPerso : NetworkBehaviour
   {
     IsVisible(false);
     while (RosterManager.Instance.listHero.Count != 8)
-      yield return new WaitForSeconds(0.02f);
-    portrait1.DeselectPerso();
-    portrait2.DeselectPerso();
+      yield return new WaitForEndOfFrame();
     portrait1.SetupChangePlayerIcons(Player.Red, TurnManager.Instance.TurnNumber);
     portrait2.SetupChangePlayerIcons(Player.Blue, TurnManager.Instance.TurnNumber);
     IsVisible(true);
-    InfoPerso.Instance.PersoSelected(SelectionManager.Instance.selectedPersonnage);
   }
 
   public void PersoSelected(PersoData newPerso)
   {
-    if (TurnManager.Instance.currentPlayer == Player.Red)
-      {
-        portrait1.SelectPerso(newPerso);
-      }
-    if (TurnManager.Instance.currentPlayer == Player.Blue)
-      {
-        portrait2.SelectPerso(newPerso);
-      }
+    if (GameManager.Instance.currentPlayer == Player.Red)
+      portrait1.SelectPerso(newPerso);
+    if (GameManager.Instance.currentPlayer == Player.Blue)
+      portrait2.SelectPerso(newPerso);
   }
 
   public void PersoPlaced(PersoData newPerso)
