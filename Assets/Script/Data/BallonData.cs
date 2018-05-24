@@ -18,6 +18,7 @@ public class BallonData : NetworkBehaviour
   public BallonStatut statut;
   [Space(100)]
   public bool isMoving = false;
+  public bool isExplosive = false;
 
   [Header("  Temps")]
   public float travelTimeBallon;
@@ -80,6 +81,11 @@ public class BallonData : NetworkBehaviour
     GameManager.Instance.actualAction = PersoAction.isShoting;
     TurnManager.Instance.DisableFinishTurn();
     MenuContextuel.Instance.isShoting = true;
+
+    if (isExplosive)
+    {
+      explode();
+    }
 
     GameObject nextPosition;
 
@@ -279,5 +285,28 @@ public class BallonData : NetworkBehaviour
 
     if (originCasePos.x < targetCasePos.x && originCasePos.y < targetCasePos.y)
       ChangeRotation(Direction.SudOuest);
+  }
+
+  private void explode()
+  {
+    CaseData tempCase;
+    tempCase = ballonCase.GetBottomLeftCase();
+    isExplosive = false;
+  }
+
+  private void damageAndPush(CaseData tempCase, Direction direction)
+  {
+    if (tempCase != null)
+    {
+      if (tempCase.personnageData != null || tempCase.ballon)
+      {
+        EffectManager.Instance.Push(tempCase.gameObject, tempCase, 1, PushType.FromCaster, direction);
+        EffectManager.Instance.ChangePR(tempCase.personnageData, -1);
+      }
+      if (tempCase.summonData != null && !tempCase.summonData.invulnerable)
+      {
+        EffectManager.Instance.ChangePR(tempCase.summonData, -1);
+      }
+    }
   }
 }

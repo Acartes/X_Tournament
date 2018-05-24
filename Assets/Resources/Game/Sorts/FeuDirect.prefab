@@ -65,7 +65,9 @@ MonoBehaviour:
   pushDirection: 8
   pushType: 1
   hurtWhenStopped: 0
-  summonedObj: {fileID: 0}
+  summonedObj: {fileID: 114910890263424662, guid: d6496e8c0af292840b671d7275d79827,
+    type: 2}
+  summonOnCross: 1
   isDirect: 1
   buttonSprite: {fileID: 21300000, guid: 2d80f58ba99df624a884c09ebe9e8b96, type: 3}
   tooltipTitle: Direct <color=#cccc00ff>Terre</color>

@@ -30,6 +30,11 @@ public class SpellData : NetworkBehaviour
   public bool hurtWhenStopped;
 
   public SummonData summonedObj;
+  /// <summary>
+  /// Specifique au sort direct de feu
+  /// Fait une invocation dans les 4 directions autour de la cible
+  /// </summary>
+  public bool summonOnCross;
   SummonData summonedObjInstancied;
   public bool isDirect;
 
@@ -295,7 +300,9 @@ public class SpellData : NetworkBehaviour
   public void ShowSummon()
   {
     CaseData hoveredCase = HoverManager.Instance.hoveredCase;
-    if (summonedObj != null)
+    if (summonedObj != null && !summonOnCross)
+    {
+      if (SummonManager.Instance.lastSummonInstancied == null)
       {
         if (SummonManager.Instance.lastSummonInstancied == null)
           {
@@ -307,8 +314,69 @@ public class SpellData : NetworkBehaviour
           }
         SummonManager.Instance.lastSummonInstancied.transform.position = hoveredCase.transform.position + SummonManager.Instance.lastSummonInstancied.transform.position - SummonManager.Instance.lastSummonInstancied.originPoint.position;
       }
-  }
+      SummonManager.Instance.lastSummonInstancied.transform.position = hoveredCase.transform.position + SummonManager.Instance.lastSummonInstancied.transform.position - SummonManager.Instance.lastSummonInstancied.originPoint.position;
+    }
+    if (SummonManager.Instance.crossSummonList != null && summonOnCross)
+    {
+      // ne sert uniquement si les données sont incomplètes
+      if (SummonManager.Instance.crossSummonList.Count != 4) //Init ou reset
+      {
+        // reset les anciennes données
+        foreach (SummonData item in SummonManager.Instance.crossSummonList)
+        {
+          Destroy(item.gameObject);
+        }
+        SummonManager.Instance.crossSummonList.Clear();
 
+        // creation des nouvelles données
+        for (int j = 0; j < 4; j++)
+        {
+          SummonData summon = new SummonData();
+          summon = (SummonData)Instantiate(summonedObj);
+          SummonManager.Instance.crossSummonList.Add(summon);
+          summon.owner = GameManager.Instance.currentPlayer;
+          summon.element = elementCreated;
+          summon.ChangeSpriteByPlayer();
+          summon.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 0.3f);
+        }
+      }
+      // on place les summon
+      int i = 0;
+      CaseData closeCase = hoveredCase.GetTopLeftCase();
+      SummonData tempSummon = new SummonData();
+      if (closeCase != null)
+      {
+        tempSummon = SummonManager.Instance.crossSummonList[i];
+        tempSummon.transform.position = closeCase.transform.position + tempSummon.transform.position - tempSummon.originPoint.position;
+        i++;
+      }
+      closeCase = hoveredCase.GetTopRightCase();
+      if (closeCase != null)
+      {
+        tempSummon = SummonManager.Instance.crossSummonList[i];
+        tempSummon.transform.position = closeCase.transform.position + tempSummon.transform.position - tempSummon.originPoint.position;
+        i++;
+      }
+      closeCase = hoveredCase.GetBottomLeftCase();
+      if (closeCase != null)
+      {
+        tempSummon = SummonManager.Instance.crossSummonList[i];
+        tempSummon.transform.position = closeCase.transform.position + tempSummon.transform.position - tempSummon.originPoint.position;
+        i++;
+      }
+      closeCase = hoveredCase.GetBottomRightCase();
+      if (closeCase != null)
+      {
+        tempSummon = SummonManager.Instance.crossSummonList[i];
+        tempSummon.transform.position = closeCase.transform.position + tempSummon.transform.position - tempSummon.originPoint.position;
+        i++;
+      }
+      for (int f = i; f < SummonManager.Instance.crossSummonList.Count; f++)
+      {
+        SummonManager.Instance.crossSummonList[f].transform.position = Vector2.one * 1000;
+      }
+    }
+  }
   public void ApplyEffect(GameObject objAfflicted)
   {
     if (pushValue != 0)
@@ -328,7 +396,7 @@ public class SpellData : NetworkBehaviour
         if (animatorSpell != null)
           FXManager.Instance.Show(animatorSpell, caseAfflicted.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
 
-        EffectManager.Instance.Push(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection);
+        EffectManager.Instance. Push(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection);
       }
 
     if (objAfflicted.GetComponent<BallonData>() != null)
@@ -354,35 +422,31 @@ public class SpellData : NetworkBehaviour
 
   public void ApplyStatsEffect(GameObject objAfflicted)
   {
+    PersoData persoAfflicted = objAfflicted.GetComponent<PersoData>();
+    CaseData caseAfflicted = persoAfflicted.persoCase;
     if (objAfflicted.GetComponent<PersoData>() != null)
       {
-        PersoData persoAfflicted = objAfflicted.GetComponent<PersoData>();
-        CaseData caseAfflicted = persoAfflicted.persoCase;
-        if (animatorSpell != null)
-          FXManager.Instance.Show(animatorSpell, caseAfflicted.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
-
-        if (persoAfflicted.owner != SelectionManager.Instance.selectedPersonnage.owner || !reverseDamageOnAlly)
-          {
-            EffectManager.Instance.ChangePR(persoAfflicted, -damagePR);
-            AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject);
-            EffectManager.Instance.ChangePADebuff(persoAfflicted, -damagePA);
-            EffectManager.Instance.ChangePMDebuff(persoAfflicted, -damagePM);
-          } else if (persoAfflicted.owner == SelectionManager.Instance.selectedPersonnage.owner)
-          {
-            EffectManager.Instance.ChangePR(persoAfflicted, damagePR);
-            AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject, true);
-            EffectManager.Instance.ChangePA(damagePA);
-            EffectManager.Instance.ChangePM(persoAfflicted, damagePM);
-          }
+        EffectManager.Instance.ChangePR(persoAfflicted, -damagePR);
+        AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject);
+        EffectManager.Instance.ChangePADebuff(-damagePA);
+        EffectManager.Instance.ChangePMDebuff(persoAfflicted, -damagePM);
       }
+      else if (persoAfflicted.owner == SelectionManager.Instance.selectedPersonnage.owner)
+      {
+        EffectManager.Instance.ChangePR(persoAfflicted, damagePR);
+        AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject, true);
+        EffectManager.Instance.ChangePA(damagePA);
+        EffectManager.Instance.ChangePM(persoAfflicted, damagePM);
+      }
+      
     if (objAfflicted.GetComponent<SummonData>() != null)
       {
         SummonData summonAfflicted = objAfflicted.GetComponent<SummonData>();
-        CaseData caseAfflicted = summonAfflicted.caseActual;
         if (animatorSpell != null)
-          FXManager.Instance.Show(animatorSpell, caseAfflicted.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
+          FXManager.Instance.Show(animatorSpell, summonAfflicted.caseActual.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
 
         EffectManager.Instance.ChangePR(summonAfflicted, -damagePR);
       }
   }
 }
+

@@ -92,11 +92,9 @@ public class PersoData : NetworkBehaviour
       ResetPM();
       ResetPA();
       actualPointMovement += pmDebuff;
-      actualPointAction += paDebuff;
       actualPointResistance += prDebuff;
       pmDebuff = 0;
       prDebuff = 0;
-      paDebuff = 0;
     }
   }
 

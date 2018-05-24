@@ -31,6 +31,7 @@ public class SummonData : NetworkBehaviour
   public int actualPointResistance;
   public int maxPointResistance;
   public bool invulnerable;
+  public bool makeBallExplosive;
   public bool hurtWhenBounce;
   public int numberEffectDisapear;
   public Direction summonDirection = Direction.NordEst;
@@ -113,8 +114,6 @@ public class SummonData : NetworkBehaviour
   /// <summary>Applique les effets selon les paramètres de l'invocation.</summary>
   public void ApplyEffect(GameObject objAfflicted)
   {
-    print("aaa");
-
     PersoData persoAfflicted = null;
     CaseData caseAfflicted = null;
     BallonData ballonAfflicted = null;
@@ -125,17 +124,21 @@ public class SummonData : NetworkBehaviour
         caseAfflicted = persoAfflicted.persoCase;
       }
     if (objAfflicted.GetComponent<BallonData>() != null)
+    {
+      ballonAfflicted = objAfflicted.GetComponent<BallonData>();
+      caseAfflicted = ballonAfflicted.ballonCase;
+      if (makeBallExplosive)
       {
-        ballonAfflicted = objAfflicted.GetComponent<BallonData>();
-        caseAfflicted = ballonAfflicted.ballonCase;
+        ballonAfflicted.isExplosive = true;
       }
+    }
 
     if (reverseDamageOnAlly && persoAfflicted.owner == owner)
-      {
-        damagePA = -damagePA;
-        damagePR = -damagePR;
-        damagePM = -damagePM;
-      }
+    {
+      damagePA = -damagePA;
+      damagePR = -damagePR;
+      damagePM = -damagePM;
+    }
     EffectManager.Instance.ChangePA(-damagePA);
     EffectManager.Instance.ChangePR(persoAfflicted, -damagePR);
     EffectManager.Instance.ChangePM(persoAfflicted, -damagePM);
