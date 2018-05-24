@@ -97,8 +97,8 @@ public class SelectionManager : NetworkBehaviour
 
   void OnChangeTurn(object sender, PlayerArgs e)
   { // Lorsqu'un joueur termine son tour
-
-    Deselect();
+    if (TurnManager.Instance.TurnNumber != 0)
+      Deselect();
 
     switch (e.currentPhase)
       {
@@ -114,15 +114,9 @@ public class SelectionManager : NetworkBehaviour
   IEnumerator preSelectFirstPerso()
   {
     while (RosterManager.Instance.listHero.Count != 8)
-      yield return new WaitForEndOfFrame();
-    if (TurnManager.Instance.currentPlayer == Player.Red)
-      {
-        selectedPersonnage = RosterManager.Instance.listHero[0];
-      }
-    if (TurnManager.Instance.currentPlayer == Player.Blue)
-      {
-        selectedPersonnage = RosterManager.Instance.listHero[4];
-      }
+      yield return new WaitForSeconds(0.01f);
+
+    SelectPersoInPortraits();
   }
 
   // *************** //
@@ -144,13 +138,13 @@ public class SelectionManager : NetworkBehaviour
     CaseManager.Instance.RemovePath();
     MoveBehaviour.Instance.movePathes.Clear();
     GameManager.Instance.actualAction = PersoAction.isSelected;
+    UIManager.Instance.HideStats();
 
     if (selectedLastCase != null)
       selectedLastCase.ChangeStatut(Statut.None, Statut.isSelected);
 
     selectedPersonnage = null;
     selectedCase = null;
-     
   }
 
   public void SelectPerso(CaseData hoveredCase, PersoData hoveredPersonnage, Color selectedColor, Phase currentPhase, Player currentPlayer, PersoAction actualAction)
@@ -174,5 +168,25 @@ public class SelectionManager : NetworkBehaviour
   public void EnablePersoSelection()
   {
     isDisablePersoSelection = false;
+  }
+
+  public void SelectPersoInPortraits()
+  {
+    if (TurnManager.Instance.currentPlayer == Player.Red)
+      {
+        selectedPersonnage = RosterManager.Instance.listHero[0];
+
+        InfoPerso.Instance.stats.changePm(selectedPersonnage.actualPointMovement, selectedPersonnage.maxPointMovement);
+        InfoPerso.Instance.stats.changePr(selectedPersonnage.actualPointResistance, selectedPersonnage.maxPointResistance);
+        InfoPerso.Instance.stats.changePo(selectedPersonnage.shotStrenght, selectedPersonnage.shotStrenght);
+      }
+    if (TurnManager.Instance.currentPlayer == Player.Blue)
+      {
+        selectedPersonnage = RosterManager.Instance.listHero[4];
+
+        InfoPerso.Instance.stats.changePm(selectedPersonnage.actualPointMovement, Instance.selectedPersonnage.maxPointMovement);
+        InfoPerso.Instance.stats.changePr(selectedPersonnage.actualPointResistance, Instance.selectedPersonnage.maxPointResistance);
+        InfoPerso.Instance.stats.changePo(selectedPersonnage.shotStrenght, selectedPersonnage.shotStrenght);
+      }
   }
 }
