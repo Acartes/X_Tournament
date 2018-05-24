@@ -33,6 +33,8 @@ public class UIManager : NetworkBehaviour
   public Text remainingMana;
   public float statsOffset;
   public float manaOffset;
+  GameObject StatsRed;
+  GameObject StatsBlue;
 
   public Sprite defaultButtonSpellSprite;
 
@@ -243,5 +245,17 @@ public class UIManager : NetworkBehaviour
   public void UpdateRemaningMana()
   {
     remainingMana.text = GameManager.Instance.manaGlobalActual + " / " + GameManager.Instance.manaGlobalMax + " mana.";
+  }
+
+  public void HideStats()
+  { 
+    if (StatsRed == null)
+      StatsRed = GameObject.Find("StatsRed");
+
+    if (StatsBlue == null)
+      StatsBlue = GameObject.Find("StatsBlue");
+      
+    StatsRed.GetComponent<RectTransform>().localScale = new Vector3(0, 0, 0);
+    StatsBlue.GetComponent<RectTransform>().localScale = new Vector3(0, 0, 0);
   }
 }
