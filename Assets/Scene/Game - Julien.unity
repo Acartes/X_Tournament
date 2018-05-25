@@ -5775,26 +5775,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 2060604419}
     m_Modifications:
-    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
-        type: 2}
-      propertyPath: banner.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
-        type: 2}
-      propertyPath: bannerText.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
-        type: 2}
-      propertyPath: bannerColor.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
-        type: 2}
-      propertyPath: bannerTextColor.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4709403067407232, guid: f565d66adbe13e44498b557dfc635a51, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5829,29 +5809,9 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
         type: 2}
-      propertyPath: scoreRedGMB
+      propertyPath: animChangeTurn
       value: 
-      objectReference: {fileID: 666557584}
-    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
-        type: 2}
-      propertyPath: scoreBlueGMB
-      value: 
-      objectReference: {fileID: 799853567}
-    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
-        type: 2}
-      propertyPath: messageGeneral
-      value: 
-      objectReference: {fileID: 1535090599}
-    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
-        type: 2}
-      propertyPath: menuContextuel
-      value: 
-      objectReference: {fileID: 1992492208}
-    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
-        type: 2}
-      propertyPath: phaseText
-      value: 
-      objectReference: {fileID: 567419979}
+      objectReference: {fileID: 1683060336}
     - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
         type: 2}
       propertyPath: banner.Array.data[0]
@@ -5874,84 +5834,34 @@ Prefab:
       objectReference: {fileID: 581017925}
     - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
         type: 2}
-      propertyPath: bannerColor.Array.data[0].r
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: phaseText
+      value: 
+      objectReference: {fileID: 567419979}
     - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
         type: 2}
-      propertyPath: bannerColor.Array.data[0].g
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: scoreRedGMB
+      value: 
+      objectReference: {fileID: 666557584}
     - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
         type: 2}
-      propertyPath: bannerColor.Array.data[0].b
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: scoreBlueGMB
+      value: 
+      objectReference: {fileID: 799853567}
     - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
         type: 2}
-      propertyPath: bannerColor.Array.data[0].a
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: messageGeneral
+      value: 
+      objectReference: {fileID: 1535090599}
     - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
         type: 2}
-      propertyPath: bannerColor.Array.data[1].r
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: Victory
+      value: 
+      objectReference: {fileID: 491989392}
     - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
         type: 2}
-      propertyPath: bannerColor.Array.data[1].g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
-        type: 2}
-      propertyPath: bannerColor.Array.data[1].b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
-        type: 2}
-      propertyPath: bannerColor.Array.data[1].a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
-        type: 2}
-      propertyPath: bannerTextColor.Array.data[0].r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
-        type: 2}
-      propertyPath: bannerTextColor.Array.data[0].g
-      value: 0.29411763
-      objectReference: {fileID: 0}
-    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
-        type: 2}
-      propertyPath: bannerTextColor.Array.data[0].b
-      value: 0.29411763
-      objectReference: {fileID: 0}
-    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
-        type: 2}
-      propertyPath: bannerTextColor.Array.data[1].r
-      value: 0.24264705
-      objectReference: {fileID: 0}
-    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
-        type: 2}
-      propertyPath: bannerTextColor.Array.data[1].g
-      value: 0.37322518
-      objectReference: {fileID: 0}
-    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
-        type: 2}
-      propertyPath: bannerTextColor.Array.data[1].b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
-        type: 2}
-      propertyPath: bannerTextColor.Array.data[0].a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
-        type: 2}
-      propertyPath: bannerTextColor.Array.data[1].a
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: menuContextuel
+      value: 
+      objectReference: {fileID: 1992492208}
     - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
         type: 2}
       propertyPath: tooltip
@@ -5969,29 +5879,9 @@ Prefab:
       objectReference: {fileID: 1939424204}
     - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
         type: 2}
-      propertyPath: animChangeTurn
-      value: 
-      objectReference: {fileID: 1683060336}
-    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
-        type: 2}
       propertyPath: remainingMana
       value: 
       objectReference: {fileID: 874331954}
-    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
-        type: 2}
-      propertyPath: Victory
-      value: 
-      objectReference: {fileID: 491989392}
-    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
-        type: 2}
-      propertyPath: statsOffset
-      value: 1377
-      objectReference: {fileID: 0}
-    - target: {fileID: 114758752575449284, guid: f565d66adbe13e44498b557dfc635a51,
-        type: 2}
-      propertyPath: manaOffset
-      value: 1600
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f565d66adbe13e44498b557dfc635a51, type: 2}
   m_IsPrefabParent: 0
@@ -16380,7 +16270,7 @@ Prefab:
     - target: {fileID: 224169053830614870, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224600343404669988, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
@@ -16400,7 +16290,7 @@ Prefab:
     - target: {fileID: 224600343404669988, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -162.5
       objectReference: {fileID: 0}
     - target: {fileID: 224875455445349952, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
@@ -16420,7 +16310,7 @@ Prefab:
     - target: {fileID: 224875455445349952, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -275
       objectReference: {fileID: 0}
     - target: {fileID: 224294638564435376, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
@@ -16440,7 +16330,7 @@ Prefab:
     - target: {fileID: 224294638564435376, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -387.5
       objectReference: {fileID: 0}
     - target: {fileID: 224928548828919444, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
@@ -16460,7 +16350,7 @@ Prefab:
     - target: {fileID: 224928548828919444, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224628034115328028, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
@@ -16480,7 +16370,7 @@ Prefab:
     - target: {fileID: 224628034115328028, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -162.5
       objectReference: {fileID: 0}
     - target: {fileID: 224298402374264698, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
@@ -16500,7 +16390,7 @@ Prefab:
     - target: {fileID: 224298402374264698, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -275
       objectReference: {fileID: 0}
     - target: {fileID: 224101063631756828, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
@@ -16520,12 +16410,12 @@ Prefab:
     - target: {fileID: 224101063631756828, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -387.5
       objectReference: {fileID: 0}
     - target: {fileID: 224430155940683150, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 6.899994
+      value: 6.9000015
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a8aad60271229c54e84830103555d34a, type: 2}

@@ -34,7 +34,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1859924039827034}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -84,10 +84,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 629c154773fa0ce46b1e58e735a88d0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  banner: []
-  bannerText: []
-  bannerColor: []
-  bannerTextColor: []
+  animChangeTurn: {fileID: 0}
+  banner:
+  - {fileID: 0}
+  - {fileID: 0}
+  bannerText:
+  - {fileID: 0}
+  - {fileID: 0}
+  bannerColor:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  bannerTextColor:
+  - {r: 1, g: 0.29411763, b: 0.29411763, a: 1}
+  - {r: 0.24264705, g: 0.37322518, b: 1, a: 1}
   phaseText: {fileID: 0}
   phaseTextMessage:
   - Phase de Placement
@@ -97,10 +106,14 @@ MonoBehaviour:
   scoreRedGMB: {fileID: 0}
   scoreBlueGMB: {fileID: 0}
   messageGeneral: {fileID: 0}
+  Victory: {fileID: 0}
   menuContextuel: {fileID: 0}
   tooltip: {fileID: 0}
   isScoreChanging: 0
   spell1: {fileID: 0}
   spell2: {fileID: 0}
+  remainingMana: {fileID: 0}
+  statsOffset: 1377
+  manaOffset: 1600
   defaultButtonSpellSprite: {fileID: 21300000, guid: b333b17f29117f444b66c5a3e9fb2c8b,
     type: 3}
