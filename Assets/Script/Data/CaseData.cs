@@ -56,7 +56,7 @@ public class CaseData : NetworkBehaviour
     if (LoadingManager.Instance != null && LoadingManager.Instance.isGameReady())
       TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
   }
-      
+
   // *************** //
   // ** Events **    // Appel de fonctions au sein de ce script grâce à des events
   // *************** //
@@ -65,7 +65,7 @@ public class CaseData : NetworkBehaviour
   {
 
     switch (e.currentPhase)
-      {
+    {
       case Phase.Placement:
         ChangeStatut();
         break;
@@ -73,7 +73,7 @@ public class CaseData : NetworkBehaviour
         ChangeStatut(Statut.None, Statut.placementRed);
         ChangeStatut(Statut.None, Statut.placementBlue);
         break;
-      }
+    }
   }
 
   // ************* //
@@ -83,64 +83,58 @@ public class CaseData : NetworkBehaviour
   void OnTriggerEnter2D(Collider2D col)
   {
     if (col.tag == "Personnage")
+    {
+      personnageData = col.gameObject.GetComponent<PersoData>();
+      casePathfinding = PathfindingCase.NonWalkable;
+      col.gameObject.GetComponent<PersoData>().persoCase = this;
+      if (summonData != null)
       {
-        if (col.gameObject.GetComponent<PersoData>().persoCase != this)
-          {
-            personnageData = col.gameObject.GetComponent<PersoData>();
-            casePathfinding = PathfindingCase.NonWalkable;
-            col.gameObject.GetComponent<PersoData>().persoCase = this;
-            if (summonData != null)
-              {
-                summonData.ApplyEffect(col.gameObject);
-              }
-          }
+        summonData.ApplyEffect(col.gameObject);
       }
+    }
 
     if (col.tag == "Ballon")
+    {
+      ballon = col.gameObject.GetComponent<BallonData>();
+      casePathfinding = PathfindingCase.NonWalkable;
+      col.gameObject.GetComponent<BallonData>().ballonCase = this;
+      col.gameObject.GetComponent<BallonData>().xCoord = xCoord;
+      col.gameObject.GetComponent<BallonData>().yCoord = yCoord;
+      if (summonData != null)
       {
-        if (col.gameObject.GetComponent<BallonData>().ballonCase != this)
-          {
-            ballon = col.gameObject.GetComponent<BallonData>();
-            casePathfinding = PathfindingCase.NonWalkable;
-            col.gameObject.GetComponent<BallonData>().ballonCase = this;
-            col.gameObject.GetComponent<BallonData>().xCoord = xCoord;
-            col.gameObject.GetComponent<BallonData>().yCoord = yCoord;
-            if (summonData != null)
-              {
-                summonData.ApplyEffect(col.gameObject);
-              }
-            if (CheckStatut(Statut.goalRed))
-              StartCoroutine(UIManager.Instance.ScoreChange(Player.Blue));
-
-            if (CheckStatut(Statut.goalBlue))
-              StartCoroutine(UIManager.Instance.ScoreChange(Player.Red));
-          }
+        summonData.ApplyEffect(col.gameObject);
       }
+      if (CheckStatut(Statut.goalRed))
+        StartCoroutine(UIManager.Instance.ScoreChange(Player.Blue));
+
+      if (CheckStatut(Statut.goalBlue))
+        StartCoroutine(UIManager.Instance.ScoreChange(Player.Red));
+    }
 
     if (col.tag == "Summon")
-      {
+    {
       if (summonData != null && summonData != col.gameObject.GetComponent<SummonData>())
         Destroy(summonData.gameObject);
-        summonData = col.gameObject.GetComponent<SummonData>();
-        if (col.gameObject.GetComponent<SummonData>().caseActual != this)
-          {
-            if (!col.gameObject.GetComponent<SummonData>().isTraversable)
-              {
-                casePathfinding = PathfindingCase.NonWalkable;
-              }
+      summonData = col.gameObject.GetComponent<SummonData>();
+      if (col.gameObject.GetComponent<SummonData>().caseActual != this)
+      {
+        if (!col.gameObject.GetComponent<SummonData>().isTraversable)
+        {
+          casePathfinding = PathfindingCase.NonWalkable;
+        }
 
-            if (personnageData != null)
-              {
-                summonData.ApplyEffect(personnageData.gameObject);
-              }
-            if (ballon != null)
-              {
-                summonData.ApplyEffect(ballon.gameObject);
-              }
-            
-            col.gameObject.GetComponent<SummonData>().caseActual = this;
-          }
+        if (personnageData != null)
+        {
+          summonData.ApplyEffect(personnageData.gameObject);
+        }
+        if (ballon != null)
+        {
+          summonData.ApplyEffect(ballon.gameObject);
+        }
+
+        col.gameObject.GetComponent<SummonData>().caseActual = this;
       }
+    }
     TransparencyManager.Instance.CheckCaseTransparency(this);
   }
 
@@ -149,28 +143,29 @@ public class CaseData : NetworkBehaviour
     if (col.tag == "Personnage"
         && col.gameObject.GetComponent<BoxCollider2D>().enabled == true
         && GetComponent<PolygonCollider2D>().enabled == true)
-      {
-        personnageData = null;
-        casePathfinding = PathfindingCase.Walkable;
-        ChangeStatut(Statut.None, Statut.isSelected);
-        ChangeStatut(Statut.None, Statut.isControllable);
-      }
+    {
+      personnageData = null;
+      casePathfinding = PathfindingCase.Walkable;
+      ChangeStatut(Statut.None, Statut.isSelected);
+      ChangeStatut(Statut.None, Statut.isControllable);
+    }
 
     if (col.tag == "Ballon"
         && col.gameObject.GetComponent<BoxCollider2D>().enabled == true
         && GetComponent<PolygonCollider2D>().enabled == true)
-      {
-        ballon = null;
-        casePathfinding = PathfindingCase.Walkable;
-        ChangeStatut(Statut.None, Statut.canShot);
-      }
+    {
+      ballon = null;
+      casePathfinding = PathfindingCase.Walkable;
+      ChangeStatut(Statut.None, Statut.canShot);
+    }
 
     if (col.tag == "Summon"
         && GetComponent<PolygonCollider2D>().enabled == true)
-      {
-        summonData = null;
+    {
+      if (!summonData.isTraversable)
         casePathfinding = PathfindingCase.Walkable;
-      }
+      summonData = null;
+    }
     TransparencyManager.Instance.CheckCaseTransparency(this);
 
   }
@@ -186,10 +181,10 @@ public class CaseData : NetworkBehaviour
 
     if ((newStatut != Statut.None) && !((newStatut & statut) == newStatut))
       statut += (int)newStatut;
-      
+
     if ((oldStatut != Statut.None) && ((oldStatut & statut) == oldStatut))
       statut -= (int)oldStatut;
-      
+
     ChangeColorByStatut();
     ChangeFeedbackByStatut(statut, oldStatut);
   }
@@ -199,7 +194,7 @@ public class CaseData : NetworkBehaviour
   {
     if (ColorManager.Instance == null)
       return;
-      
+
     spriteR.color = ColorManager.Instance.caseColor;
 
     if ((Statut.goalRed & statut) == Statut.goalRed)
@@ -216,10 +211,10 @@ public class CaseData : NetworkBehaviour
 
     if ((Statut.isSelected & statut) == Statut.isSelected)
       spriteR.color = ColorManager.Instance.selectedColor;
-      
+
     if ((Statut.canReplace & statut) == Statut.canReplace)
       spriteR.color = ColorManager.Instance.actionPreColor;
-      
+
     if ((Statut.canPunch & statut) == Statut.canPunch)
       spriteR.color = ColorManager.Instance.actionPreColor;
 
@@ -246,17 +241,17 @@ public class CaseData : NetworkBehaviour
       spriteR.color = ColorManager.Instance.enemyColor;
 
     if ((Statut.isHovered & statut) == Statut.isHovered)
-      {
-        spriteR.color = ColorManager.Instance.hoverColor;
-        if ((Statut.canReplace & statut) == Statut.canReplace)
-          spriteR.color = ColorManager.Instance.actionColor;
-        if ((Statut.canPunch & statut) == Statut.canPunch)
-          spriteR.color = ColorManager.Instance.actionColor;
-        if ((Statut.canShot & statut) == Statut.canShot)
-          spriteR.color = ColorManager.Instance.actionColor;
-        if ((Statut.isControllable & statut) == Statut.isControllable)
-          spriteR.color = ColorManager.Instance.actionColor;
-      }
+    {
+      spriteR.color = ColorManager.Instance.hoverColor;
+      if ((Statut.canReplace & statut) == Statut.canReplace)
+        spriteR.color = ColorManager.Instance.actionColor;
+      if ((Statut.canPunch & statut) == Statut.canPunch)
+        spriteR.color = ColorManager.Instance.actionColor;
+      if ((Statut.canShot & statut) == Statut.canShot)
+        spriteR.color = ColorManager.Instance.actionColor;
+      if ((Statut.isControllable & statut) == Statut.isControllable)
+        spriteR.color = ColorManager.Instance.actionColor;
+    }
 
     if ((Statut.canMove & statut) == Statut.canMove)
       spriteR.color = ColorManager.Instance.moveColor;
@@ -291,24 +286,24 @@ public class CaseData : NetworkBehaviour
 
     if (ShineColorIsRunning)
       StopCoroutine(StartShineColor(color1, color2, time));
-      
+
     ShineColorIsRunning = true;
 
     while (ShineColorIsRunning)
+    {
+      Color colorx = color1;
+      color1 = color2;
+      color2 = colorx;
+      for (int i = 0; i < 100; i++)
       {
-        Color colorx = color1;
-        color1 = color2;
-        color2 = colorx;
-        for (int i = 0; i < 100; i++)
-          {
-            if (!ShineColorIsRunning)
-              break;
- 
-            spriteR.color += (color1 - color2) / 100;
-            yield return new WaitForSeconds(time + 0.01f);
-          }
+        if (!ShineColorIsRunning)
+          break;
 
+        spriteR.color += (color1 - color2) / 100;
+        yield return new WaitForSeconds(time + 0.01f);
       }
+
+    }
   }
 
   /// <summary>Stop la fonction StartShineColor</summary>
@@ -337,11 +332,11 @@ public class CaseData : NetworkBehaviour
   {
     if (GameObject.Find(xCoord - 1 + " " + (yCoord + 1)) == null)
       return null;
-      
+
     GameObject newCase = (GameObject.Find(xCoord - 1 + " " + (yCoord + 1)) != null) ? GameObject.Find(xCoord - 1 + " " + (yCoord + 1)) : null;
     if (newCase == null)
       return null;
-      
+
     return newCase.GetComponent<CaseData>();
   }
 
@@ -350,11 +345,11 @@ public class CaseData : NetworkBehaviour
   {
     if (GameObject.Find(xCoord + 1 + " " + (yCoord - 1)) == null)
       return null;
-      
+
     GameObject newCase = (GameObject.Find(xCoord + 1 + " " + (yCoord - 1)) != null) ? GameObject.Find(xCoord + 1 + " " + (yCoord - 1)) : null;
     if (newCase == null)
       return null;
-      
+
     return newCase.GetComponent<CaseData>();
   }
 
@@ -364,7 +359,7 @@ public class CaseData : NetworkBehaviour
     GameObject newCase = (GameObject.Find(xCoord - 1 + " " + (yCoord - 1)) != null) ? GameObject.Find(xCoord - 1 + " " + (yCoord - 1)) : null;
     if (newCase == null)
       return null;
-      
+
     return newCase.GetComponent<CaseData>();
   }
 
@@ -374,7 +369,7 @@ public class CaseData : NetworkBehaviour
     GameObject newCase = (GameObject.Find(xCoord + 1 + " " + (yCoord + 1)) != null) ? GameObject.Find(xCoord + 1 + " " + (yCoord + 1)) : null;
     if (newCase == null)
       return null;
-      
+
     return newCase.GetComponent<CaseData>();
   }
 
@@ -384,7 +379,7 @@ public class CaseData : NetworkBehaviour
     GameObject newCase = (GameObject.Find(xCoord - 1 + " " + yCoord) != null) ? GameObject.Find(xCoord - 1 + " " + yCoord) : null;
     if (newCase == null)
       return null;
-      
+
     return newCase.GetComponent<CaseData>();
   }
 
@@ -394,7 +389,7 @@ public class CaseData : NetworkBehaviour
     GameObject newCase = (GameObject.Find(xCoord + 1 + " " + yCoord) != null) ? GameObject.Find(xCoord + 1 + " " + yCoord) : null;
     if (newCase == null)
       return null;
-      
+
     return newCase.GetComponent<CaseData>();
   }
 
@@ -404,7 +399,7 @@ public class CaseData : NetworkBehaviour
     GameObject newCase = (GameObject.Find(xCoord + " " + (yCoord + 1)) != null) ? GameObject.Find(xCoord + " " + (yCoord + 1)) : null;
     if (newCase == null)
       return null;
-      
+
     return newCase.GetComponent<CaseData>();
   }
 
@@ -414,7 +409,7 @@ public class CaseData : NetworkBehaviour
     GameObject newCase = (GameObject.Find(xCoord + " " + (yCoord - 1)) != null) ? GameObject.Find(xCoord + " " + (yCoord - 1)) : null;
     if (newCase == null)
       return null;
-      
+
     return newCase.GetComponent<CaseData>();
   }
 
@@ -428,7 +423,7 @@ public class CaseData : NetworkBehaviour
     GameObject newCase = (GameObject.Find((xCoord + x) + " " + (yCoord + y)) != null) ? GameObject.Find((xCoord + x) + " " + (yCoord + y)) : null;
     if (newCase == null)
       return null;
-      
+
     return newCase.GetComponent<CaseData>();
   }
 
@@ -450,19 +445,19 @@ public class CaseData : NetworkBehaviour
   public CaseData GetCaseInFront(Direction direction)
   {
     switch (direction)
-      {
+    {
       case Direction.NordEst:
         return GetCaseRelativeCoordinate(0, 1);
 
-      case Direction.NordOuest: 
+      case Direction.NordOuest:
         return GetCaseRelativeCoordinate(-1, 0);
 
-      case Direction.SudEst:   
+      case Direction.SudEst:
         return GetCaseRelativeCoordinate(1, 0);
 
       case Direction.SudOuest:
         return GetCaseRelativeCoordinate(0, -1);
-      }
+    }
     return null;
   }
 
@@ -470,7 +465,7 @@ public class CaseData : NetworkBehaviour
   public CaseData GetCaseAtRight(Direction direction)
   {
     switch (direction)
-      {
+    {
       case Direction.NordEst:
         return GetCaseRelativeCoordinate(-1, 0);
 
@@ -482,7 +477,7 @@ public class CaseData : NetworkBehaviour
 
       case Direction.SudOuest:
         return GetCaseRelativeCoordinate(1, 0);
-      }
+    }
     return null;
   }
 
@@ -490,7 +485,7 @@ public class CaseData : NetworkBehaviour
   public CaseData GetCaseAtLeft(Direction direction)
   {
     switch (direction)
-      {
+    {
       case Direction.NordEst:
         return GetCaseRelativeCoordinate(1, 0);
 
@@ -502,7 +497,7 @@ public class CaseData : NetworkBehaviour
 
       case Direction.SudOuest:
         return GetCaseRelativeCoordinate(-1, 0);
-      }
+    }
     return null;
   }
 
@@ -510,19 +505,19 @@ public class CaseData : NetworkBehaviour
   public CaseData GetCaseAtBack(Direction direction)
   {
     switch (direction)
-      {
+    {
       case Direction.NordEst:
         return GetCaseRelativeCoordinate(0, -1);
 
-      case Direction.NordOuest: 
+      case Direction.NordOuest:
         return GetCaseRelativeCoordinate(1, 0);
 
-      case Direction.SudEst:   
+      case Direction.SudEst:
         return GetCaseRelativeCoordinate(-1, 0);
 
       case Direction.SudOuest:
         return GetCaseRelativeCoordinate(0, 1);
-      }
+    }
     return null;
   }
 }

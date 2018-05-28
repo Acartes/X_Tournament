@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224931782285719678}
-  - component: {fileID: 114896714227869398}
   - component: {fileID: 222453905958261172}
   - component: {fileID: 114877427544497230}
   m_Layer: 2
@@ -60,9 +59,6 @@ GameObject:
   - component: {fileID: 61822696837114426}
   - component: {fileID: 50049419022378680}
   - component: {fileID: 95033208338254766}
-  - component: {fileID: 114582548134271758}
-  - component: {fileID: 114365016202699120}
-  - component: {fileID: 114770491906629778}
   - component: {fileID: 114882323806002418}
   m_Layer: 2
   m_Name: Ballon
@@ -184,48 +180,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &114365016202699120
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1901250649987194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 1, y: -1}
-  m_UseGraphicAlpha: 1
---- !u!114 &114582548134271758
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1901250649987194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 1, y: -1}
-  m_UseGraphicAlpha: 1
---- !u!114 &114770491906629778
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1901250649987194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 1, y: -1}
-  m_UseGraphicAlpha: 1
 --- !u!114 &114877427544497230
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -237,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: fa46ecc7c90e7b443aa97c667c4d9620, type: 2}
+  m_Material: {fileID: 2100000, guid: e1c70fa38f2f75345a3f7040e78809d2, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -285,19 +239,6 @@ MonoBehaviour:
     i15: 91
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &114896714227869398
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1247944768902330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9edb40e3ae10abb469a6c3b476932783, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sourceRender: {fileID: 212581235755661426}
-  selfRender: {fileID: 114877427544497230}
 --- !u!114 &114970312933832190
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -311,11 +252,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statut: 0
   isMoving: 0
+  isExplosive: 0
   travelTimeBallon: 5
-  ballStrenght: 5
   ballonDirection: 0
   ballonCase: {fileID: 0}
-  menuContextuel: {fileID: 0}
   selectedBallon: {fileID: 0}
   offsetBallon: {x: 0, y: 0, z: 0}
   xCoordInc: 0
@@ -323,7 +263,11 @@ MonoBehaviour:
   xCoord: 0
   yCoord: 0
   canRebond: 0
-  movePath: []
+  casesCrossed: 0
+  spriteR: {fileID: 0}
+  img: {fileID: 114877427544497230}
+  shaderNormal: {fileID: 2100000, guid: e1c70fa38f2f75345a3f7040e78809d2, type: 2}
+  shaderExplosive: {fileID: 2100000, guid: 198773fd7279fe4408a49d861820e62c, type: 2}
 --- !u!212 &212581235755661426
 SpriteRenderer:
   m_ObjectHideFlags: 1

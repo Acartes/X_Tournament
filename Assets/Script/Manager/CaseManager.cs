@@ -191,6 +191,7 @@ public class CaseManager : NetworkBehaviour
   { // Cache la route de déplacement
     foreach (CaseData newCase in listAllCase)
       {
+      if(newCase != null)
         newCase.GetComponent<PolygonCollider2D>().enabled = true;
       }
   }

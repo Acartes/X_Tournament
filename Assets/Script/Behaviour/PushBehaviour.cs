@@ -214,6 +214,12 @@ public class PushBehaviour : NetworkBehaviour
     StartCoroutine(ienumeratorList[ienumeratorList.Count - 1]);
   }
 
+  public void MultiplePushStart()
+  {
+    ienumeratorList.Add(Deplacement(objAfflicted, pathList));
+    StartCoroutine(ienumeratorList[ienumeratorList.Count - 1]);
+  }
+
   public IEnumerator Deplacement(GameObject objAfflicted, List<Transform> pathes)
   { // On déplace le personnage de case en case jusqu'au click du joueur propriétaire, et entre temps on check s'il est taclé ou non
     TurnManager.Instance.DisableFinishTurn();
@@ -221,6 +227,9 @@ public class PushBehaviour : NetworkBehaviour
 
     GameManager.Instance.actualAction = PersoAction.isMoving;
     Transform lastPath = null;
+
+    List<Transform> tempPath = pathes.GetRange(0, pathes.Count);
+
 
     Vector3 originPoint = Vector3.zero;
 
@@ -239,11 +248,11 @@ public class PushBehaviour : NetworkBehaviour
       originPoint = objAfflicted.GetComponent<SummonData>().originPoint.transform.localPosition;
     }
 
-    pathRestant = pathes.Count;
+    pathRestant = tempPath.Count;
 
     bool objectCollision = false;
 
-    foreach (Transform path in pathes)
+    foreach (Transform path in tempPath)
     {
       if (path.GetComponent<CaseData>().casePathfinding == PathfindingCase.NonWalkable)
       {
@@ -286,18 +295,34 @@ public class PushBehaviour : NetworkBehaviour
         objAfflicted.GetComponent<BallonData>().RotateTowardsReversed(path.gameObject);
       }
 
-      while (objAfflicted.transform.position != path.transform.position - originPoint)
+      Debug.Log(objAfflicted);
+      Debug.Log(path.ToString() + " | " + path.transform.position.ToString());
+      while (fracturedTime < 1)
       {
         fracturedTime += timeUnit + 0.01f;
         objAfflicted.transform.position = Vector3.Lerp(startPos, path.transform.position - originPoint, fracturedTime);
         yield return new WaitForEndOfFrame();
       }
-      if (stillTornadoDamage)
+      if (stillTornadoDamage && objAfflicted.GetComponent<SummonData>() == null)
       {
-        AfterFeedbackManager.Instance.PRText(1, objAfflicted);
-        objAfflicted.GetComponent<PersoData>().actualPointResistance--;
-        CaseData afflictedCase = objAfflicted.GetComponent<PersoData>().persoCase;
-        CaseData rightCase = afflictedCase.GetCaseAtRight(objAfflicted.GetComponent<PersoData>().persoDirection);
+        CaseData afflictedCase = null;
+        PersoData persoAfficted = objAfflicted.GetComponent<PersoData>();
+        Direction rightDirection = Direction.None;
+        if (persoAfficted != null)
+        {
+          AfterFeedbackManager.Instance.PRText(1, objAfflicted);
+          persoAfficted.actualPointResistance--;
+          afflictedCase = persoAfficted.persoCase;
+          rightDirection = persoAfficted.persoDirection;
+        }
+        BallonData ballonAfficted = objAfflicted.GetComponent<BallonData>();
+        if (ballonAfficted != null)
+        {
+          afflictedCase = ballonAfficted.ballonCase ;
+          rightDirection = ballonAfficted.ballonDirection;
+        }
+
+        CaseData rightCase = afflictedCase.GetCaseAtRight(rightDirection);
         if (rightCase != null)
         {
           if (rightCase.personnageData != null)
@@ -322,7 +347,7 @@ public class PushBehaviour : NetworkBehaviour
 
     if (objectCollision == false && objAfflicted.GetComponent<PersoData>() != null)
     {
-      if (pushValue > pathes.Count)
+      if (pushValue > tempPath.Count)
       {
         AfterFeedbackManager.Instance.PRText(1, objAfflicted);
         objAfflicted.GetComponent<PersoData>().actualPointResistance--;
@@ -331,7 +356,7 @@ public class PushBehaviour : NetworkBehaviour
     if (lastPath != null)
       lastPath.GetComponent<CaseData>().casePathfinding = PathfindingCase.NonWalkable;
 
-    pathes.Clear();
+    tempPath.Clear();
     pathRestant = 0;
 
     StartCoroutine(TurnManager.Instance.EnableFinishTurn());

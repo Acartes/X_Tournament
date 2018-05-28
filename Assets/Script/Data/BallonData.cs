@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Networking;
 using System;
 
@@ -37,7 +38,10 @@ public class BallonData : NetworkBehaviour
   public int casesCrossed;
 
   Animator animator;
-  SpriteRenderer spriteR;
+  public SpriteRenderer spriteR;
+  public Image img;
+  public Material shaderNormal;
+  public Material shaderExplosive;
   bool ShineColorIsRunning = false;
 
   // ******************** //
@@ -285,24 +289,28 @@ public class BallonData : NetworkBehaviour
     if (originCasePos.x < targetCasePos.x && originCasePos.y < targetCasePos.y)
       ChangeRotation(Direction.SudOuest);
   }
-
+  public void setExplosive()
+  {
+    img.material = shaderExplosive;
+    isExplosive = true;
+  }
   private void explode()
   {
     AfterFeedbackManager.Instance.ExplodeEffect(ballonCase.gameObject);
+    img.material = shaderNormal;
     StartCoroutine(explosion());
   }
 
   IEnumerator explosion()
   {
     CaseData caseExplosion = ballonCase;
-    yield return new WaitUntil(() => GameManager.Instance.actualAction != PersoAction.isMoving);
     damageAndPush(caseExplosion.GetBottomLeftCase(), Direction.SudOuest);
-    yield return new WaitUntil(() => GameManager.Instance.actualAction != PersoAction.isMoving);
+    yield return new WaitForEndOfFrame();
     damageAndPush(caseExplosion.GetBottomRightCase(), Direction.SudEst);
-    yield return new WaitUntil(() => GameManager.Instance.actualAction != PersoAction.isMoving);
+    yield return new WaitForEndOfFrame();
     damageAndPush(caseExplosion.GetTopRightCase(), Direction.NordEst);
-    yield return new WaitUntil(() => GameManager.Instance.actualAction != PersoAction.isMoving);
-    damageAndPush(ballonCase.GetTopLeftCase(), Direction.NordOuest);
+    yield return new WaitForEndOfFrame();
+    damageAndPush(caseExplosion.GetTopLeftCase(), Direction.NordOuest);
     isExplosive = false;
   }
 
@@ -310,7 +318,7 @@ public class BallonData : NetworkBehaviour
   {
     if (tempCase == null)
       return;
-    if (tempCase.personnageData != null || tempCase.ballon)
+    if (tempCase.personnageData != null)
     {
       EffectManager.Instance.MultiplePush(tempCase.personnageData.gameObject, tempCase, 1, PushType.FromTerrain, direction);
       if (tempCase.personnageData.owner != SelectionManager.Instance.selectedPersonnage.owner)

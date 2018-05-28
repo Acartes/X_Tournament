@@ -382,6 +382,8 @@ public class SpellData : NetworkBehaviour
   }
   public void ApplyEffect(GameObject objAfflicted)
   {
+    BeforeFeedbackManager.Instance.HidePrediction();
+
     if (pushValue != 0)
       ApplyPushEffect(objAfflicted);
     else
@@ -432,15 +434,21 @@ public class SpellData : NetworkBehaviour
       CaseData caseAfflicted = persoAfflicted.persoCase;
       if (persoAfflicted.owner != SelectionManager.Instance.selectedPersonnage.owner)
       {
-        EffectManager.Instance.ChangePR(persoAfflicted, -damagePR);
-        AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject);
+        if(damagePR != 0)
+        {
+          EffectManager.Instance.ChangePR(persoAfflicted, -damagePR);
+          AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject);
+        }
         EffectManager.Instance.ChangePADebuff(-damagePA);
         EffectManager.Instance.ChangePMDebuff(persoAfflicted, -damagePM);
       }
       else if (persoAfflicted.owner == SelectionManager.Instance.selectedPersonnage.owner)
       {
-        EffectManager.Instance.ChangePR(persoAfflicted, damagePR);
-        AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject, true);
+        if (damagePR != 0)
+        {
+          EffectManager.Instance.ChangePR(persoAfflicted, damagePR);
+          AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject, true);
+        }
         EffectManager.Instance.ChangePA(damagePA);
         EffectManager.Instance.ChangePM(persoAfflicted, damagePM);
       }

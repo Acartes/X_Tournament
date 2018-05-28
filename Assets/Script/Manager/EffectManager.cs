@@ -54,14 +54,14 @@ public class EffectManager : NetworkBehaviour
     }
 
     PushBehaviour.Instance.PushCheck(objAfflicted, pushValue, caseAfflicted, pushType, pushDirection);
-    PushBehaviour.Instance.PushStart();
+    PushBehaviour.Instance.MultiplePushStart();
   }
 
   /// <summary>Un push multiple. Ne marche pas avec la tornade.</summary>
   public void MultiplePush(GameObject objAfflicted, CaseData caseAfflicted, int pushValue, PushType pushType, Direction pushDirection = Direction.Front)
   {
     PushBehaviour.Instance.PushCheck(objAfflicted, pushValue, caseAfflicted, pushType, pushDirection);
-    PushBehaviour.Instance.PushStart();
+    PushBehaviour.Instance.MultiplePushStart();
   }
 
   /// <summary>Augmente ou diminue le nombre de PA de la cible.</summary>
