@@ -58,7 +58,6 @@ public class PlacementBehaviour : NetworkBehaviour
       }
   }
 
-
   public void OnNewClick()
   {
     // Lors d'un click sur une case
@@ -97,8 +96,8 @@ public class PlacementBehaviour : NetworkBehaviour
       }
 
         // Fait disparaître un perso placé sur une case
-        else if (HoverManager.Instance.hoveredPersonnage != null && HoverManager.Instance.hoveredCase != null &&
-                 hoveredCase.personnageData.owner == currentPlayer)
+      else if (HoverManager.Instance.hoveredPersonnage != null && HoverManager.Instance.hoveredCase != null && hoveredCase.personnageData != null &&
+               hoveredCase.personnageData.owner == currentPlayer)
       {
         SelectionManager.Instance.selectedPersonnage = HoverManager.Instance.hoveredPersonnage; // total forcage, préférer SelectPerso() in-game
 
@@ -113,7 +112,6 @@ public class PlacementBehaviour : NetworkBehaviour
     switch (e.currentPhase)
       {
       case Phase.Deplacement:
-
         break;
       case Phase.Placement:
         break;
@@ -122,10 +120,7 @@ public class PlacementBehaviour : NetworkBehaviour
 
   public void CreatePerso(Phase currentPhase, Player currentPlayer, int playerIndex)
   { // On créé un personnage sur une case
-
-
     CreatePersoPlacement(HoverManager.Instance.hoveredCase, SelectionManager.Instance.selectedPersonnage);
-    //  }
   }
 
   public void CreatePersoPlacement(CaseData hoveredCase, PersoData selectedPersonnage)

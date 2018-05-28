@@ -22,6 +22,8 @@ public class SpellManager : NetworkBehaviour
 
   public EventHandler<PlayerArgs> changeTurnEvent;
 
+  public Dictionary<string, PersoData> PersosHitPerSpell = new Dictionary<string, PersoData>();
+
   // ******************** //
   // ** Initialisation ** // Fonctions de départ, non réutilisable
   // ******************** //
@@ -44,6 +46,7 @@ public class SpellManager : NetworkBehaviour
   {
     EventManager.newClickEvent += OnNewClick;
     EventManager.newHoverEvent += OnNewHover;
+    TurnManager.Instance.changeTurnEvent += OnChangeTurn;
   }
 
   void OnDisable()
@@ -52,12 +55,18 @@ public class SpellManager : NetworkBehaviour
       {
         EventManager.newClickEvent -= OnNewClick;
         EventManager.newHoverEvent -= OnNewHover;
-      }
+      TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
+    }
   }
 
   // *************** //
   // ** Events **    // Appel de fonctions au sein de ce script grâce à des events
   // *************** //
+
+  void OnChangeTurn(object sender, PlayerArgs e)
+  { // Lorsqu'un joueur termine son tour
+    PersosHitPerSpell.Clear();
+  }
 
   void OnNewHover(object sender, HoverArgs e)
   {
@@ -140,13 +149,14 @@ public class SpellManager : NetworkBehaviour
   void SpellCaseClick()
   {
     CaseData hoveredCase = HoverManager.Instance.hoveredCase;
-
-
-    if ((Statut.canTarget & hoveredCase.statut) != Statut.canTarget)
-      {
-        StartCoroutine(SpellEnd());
-        return;
-      }
+    PersoData isPersoTarget = null;
+    PersosHitPerSpell.TryGetValue(selectedSpell.name, out isPersoTarget);
+    if (((Statut.canTarget & hoveredCase.statut) != Statut.canTarget)
+      || (hoveredCase.personnageData != null && isPersoTarget != null))
+    {
+      StartCoroutine(SpellEnd());
+      return;
+    }
 
     spellSuccess = true;
     GameManager.Instance.manaGlobalActual -= selectedSpell.costPA;
@@ -224,6 +234,9 @@ public class SpellManager : NetworkBehaviour
 
   public IEnumerator SpellEnd()
   {
+    if (SelectionManager.Instance.selectedPersonnage == null)
+      yield return null;
+      
     SelectionManager.Instance.selectedPersonnage.animator.SetBool("Cast", false);
     SelectionManager.Instance.selectedPersonnage.animator.SetBool("Idle", true);
     GameManager.Instance.actualAction = PersoAction.isWaiting;

@@ -82,7 +82,6 @@ public class SpellData : NetworkBehaviour
 
   public void Init()
   {
-
   }
 
   // *************** //
@@ -402,6 +401,7 @@ public class SpellData : NetworkBehaviour
           FXManager.Instance.Show(animatorSpell, caseAfflicted.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
 
         EffectManager.Instance. Push(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection);
+      SpellManager.Instance.PersosHitPerSpell.Add(this.name, persoAfflicted);
       }
 
     if (objAfflicted.GetComponent<BallonData>() != null)

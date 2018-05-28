@@ -42,14 +42,15 @@ public class AfterFeedbackManager : NetworkBehaviour
   {
     GameObject takenText = listTextFeedback[0];
     listTextFeedback.Remove(takenText);
-    takenText.GetComponent<TextMesh>().text = randomInt + "/" + maxInt;
     takenText.transform.position = obj.transform.position;
     if (randomInt < maxInt)
       {
-        takenText.GetComponent<TextMesh>().color = new Color(0, 1, 0, 1f);
+        takenText.GetComponent<TextMesh>().text = "Tackled!";
+        takenText.GetComponent<TextMesh>().color = new Color(0, .7f, 0, 1f);
       } else
       {
-        takenText.GetComponent<TextMesh>().color = new Color(1, 0, 0, 1f);
+        takenText.GetComponent<TextMesh>().text = "Miss!";
+        takenText.GetComponent<TextMesh>().color = new Color(.9f, 0, 0, 1f);
       }
 
     for (int i = 0; i < 300; i++)
@@ -72,15 +73,14 @@ public class AfterFeedbackManager : NetworkBehaviour
     GameObject takenText = listTextFeedback[0];
     listTextFeedback.Remove(takenText);
     if (positiveValue)
-    {
-      takenText.GetComponent<TextMesh>().color = new Color(1, 0, 0, 1f);
-      takenText.GetComponent<TextMesh>().text = "+" + Mathf.Abs(PRchanged).ToString();
-    }
-    else
-    {
-      takenText.GetComponent<TextMesh>().color = new Color(1, 0, 0, 1f);
-      takenText.GetComponent<TextMesh>().text = "-" + PRchanged.ToString();
-    }
+      {
+        takenText.GetComponent<TextMesh>().color = new Color(1, 0, 0, 1f);
+        takenText.GetComponent<TextMesh>().text = "+" + Mathf.Abs(PRchanged).ToString();
+      } else
+      {
+        takenText.GetComponent<TextMesh>().color = new Color(1, 0, 0, 1f);
+        takenText.GetComponent<TextMesh>().text = "-" + PRchanged.ToString();
+      }
 
     takenText.transform.position = obj.transform.position;
 
