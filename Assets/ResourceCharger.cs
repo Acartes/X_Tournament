@@ -23,12 +23,16 @@ public class ResourceCharger : NetworkBehaviour
   {
     SpriteRenderer rend = GetComponent<SpriteRenderer>();
     allSprite = Resources.LoadAll("Sprite", typeof(Sprite));
+    foreach (Sprite sprite in allSprite)
+      {
+        rend.sprite = sprite;
+      }
     StartCoroutine(GoDestroy());
   }
 
   IEnumerator GoDestroy()
   {
-    yield return new WaitForSeconds(3f);
+    yield return new WaitForSeconds(0.01f);
     Destroy(this.gameObject);
   }
 }

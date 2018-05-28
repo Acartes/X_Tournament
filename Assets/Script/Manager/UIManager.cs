@@ -254,7 +254,7 @@ public class UIManager : NetworkBehaviour
 
     if (StatsBlue == null)
       StatsBlue = GameObject.Find("StatsBlue");
-      
+
     StatsRed.GetComponent<RectTransform>().localScale = new Vector3(0, 0, 0);
     StatsBlue.GetComponent<RectTransform>().localScale = new Vector3(0, 0, 0);
   }
