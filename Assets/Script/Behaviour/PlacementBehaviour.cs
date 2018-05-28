@@ -97,8 +97,8 @@ public class PlacementBehaviour : NetworkBehaviour
       }
 
         // Fait disparaître un perso placé sur une case
-        else if (HoverManager.Instance.hoveredPersonnage != null && HoverManager.Instance.hoveredCase != null &&
-                 hoveredCase.personnageData.owner == currentPlayer)
+      else if (HoverManager.Instance.hoveredPersonnage != null && HoverManager.Instance.hoveredCase != null && hoveredCase.personnageData != null &&
+               hoveredCase.personnageData.owner == currentPlayer)
       {
         SelectionManager.Instance.selectedPersonnage = HoverManager.Instance.hoveredPersonnage; // total forcage, préférer SelectPerso() in-game
 

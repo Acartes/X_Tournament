@@ -7,59 +7,63 @@ using UnityEngine.Networking;
 public class PortraitInteractive : NetworkBehaviour
 {
 
-    public PersoData newHoveredPersonnage;
+  public PersoData newHoveredPersonnage;
 
-    public void setPortraitData(PortraitInteractive newPortrait)
-    {
-        GetComponent<Image>().sprite = newPortrait.GetComponent<Image>().sprite;
-        GetComponent<Image>().color = newPortrait.GetComponent<Image>().color;
-        newHoveredPersonnage = newPortrait.newHoveredPersonnage;
-    }
-    public void setPortraitData(Sprite newSprite, Color newColor, PersoData newPersoData)
-    {
-        GetComponent<Image>().sprite = newSprite;
-        GetComponent<Image>().color = newColor;
-        newHoveredPersonnage = newPersoData;
-    }
+  public void setPortraitData(PortraitInteractive newPortrait)
+  {
+    GetComponent<Image>().sprite = newPortrait.GetComponent<Image>().sprite;
+    GetComponent<Image>().color = newPortrait.GetComponent<Image>().color;
+    newHoveredPersonnage = newPortrait.newHoveredPersonnage;
+  }
 
-    public void HoverPerso() // hover comme chez HoverEvent
-    {
-        if (!SynchroManager.Instance.canPlayTurn())
-        {
-            return;
-        }
+  public void setPortraitData(Sprite newSprite, Color newColor, PersoData newPersoData)
+  {
+    GetComponent<Image>().sprite = newSprite;
+    GetComponent<Image>().color = newColor;
+    newHoveredPersonnage = newPersoData;
+  }
 
-        if (!enabled || !LoadingManager.Instance.isGameReady())
-            return;
+  public void HoverPerso() // hover comme chez HoverEvent
+  {
+    if (!SynchroManager.Instance.canPlayTurn())
+      {
+        return;
+      }
 
-        string hoveredCase = newHoveredPersonnage.persoCase != null ? newHoveredPersonnage.persoCase.name : "null";
-        string hoveredPersonnage = newHoveredPersonnage.name;
-        string hoveredBallon = "null";
+    if (!enabled || !LoadingManager.Instance.isGameReady())
+      return;
 
-        RpcFunctions.Instance.CmdSendHoverEvent(hoveredCase, hoveredPersonnage, hoveredBallon);
-    }
+    if (newHoveredPersonnage == null)
+      return;
+      
+    string hoveredCase = newHoveredPersonnage.persoCase != null ? newHoveredPersonnage.persoCase.name : "null";
+    string hoveredPersonnage = newHoveredPersonnage.name;
+    string hoveredBallon = "null";
 
-    public void UnHoverPerso() // exit comme chez HoverEvent
-    {
-        if (!enabled || !LoadingManager.Instance.isGameReady())
-        {
-            RpcFunctions.Instance.CmdSendHoverEvent("null", "null", "null");
-        }
-    }
+    RpcFunctions.Instance.CmdSendHoverEvent(hoveredCase, hoveredPersonnage, hoveredBallon);
+  }
 
-    public void ClickPerso()
-    {
-        if(GameManager.Instance.currentPlayer == newHoveredPersonnage.owner)
-        RpcFunctions.Instance.CmdSendClickEvent();
-    }
+  public void UnHoverPerso() // exit comme chez HoverEvent
+  {
+    if (!enabled || !LoadingManager.Instance.isGameReady())
+      {
+        RpcFunctions.Instance.CmdSendHoverEvent("null", "null", "null");
+      }
+  }
 
-    public void GrayPortrait()
-    {
-        GetComponent<Image>().color = Color.grey;
-    }
+  public void ClickPerso()
+  {
+    if (GameManager.Instance.currentPlayer == newHoveredPersonnage.owner)
+      RpcFunctions.Instance.CmdSendClickEvent();
+  }
 
-    public void UnGrayPortrait()
-    {
-        GetComponent<Image>().color = Color.white;
-    }
+  public void GrayPortrait()
+  {
+    GetComponent<Image>().color = Color.grey;
+  }
+
+  public void UnGrayPortrait()
+  {
+    GetComponent<Image>().color = Color.white;
+  }
 }
