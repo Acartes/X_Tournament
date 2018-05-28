@@ -150,7 +150,12 @@ public class SpellManager : NetworkBehaviour
   {
     CaseData hoveredCase = HoverManager.Instance.hoveredCase;
     PersoData isPersoTarget = null;
-    PersosHitPerSpell.TryGetValue(selectedSpell.name, out isPersoTarget);
+
+    if (hoveredCase.personnageData != null)
+    {
+      PersosHitPerSpell.TryGetValue(selectedSpell.name, out isPersoTarget);
+    }
+
     if (((Statut.canTarget & hoveredCase.statut) != Statut.canTarget)
       || (hoveredCase.personnageData != null && isPersoTarget != null))
     {

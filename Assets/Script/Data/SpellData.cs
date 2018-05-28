@@ -402,7 +402,7 @@ public class SpellData : NetworkBehaviour
 
         EffectManager.Instance. Push(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection);
       SpellManager.Instance.PersosHitPerSpell.Add(this.name, persoAfflicted);
-      }
+    }
 
     if (objAfflicted.GetComponent<BallonData>() != null)
       {
@@ -431,6 +431,8 @@ public class SpellData : NetworkBehaviour
     SummonData summonAfflicted = objAfflicted.GetComponent<SummonData>();
     if (persoAfflicted)
     {
+      SpellManager.Instance.PersosHitPerSpell.Add(this.name, persoAfflicted);
+
       CaseData caseAfflicted = persoAfflicted.persoCase;
       if (persoAfflicted.owner != SelectionManager.Instance.selectedPersonnage.owner)
       {

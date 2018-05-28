@@ -294,9 +294,6 @@ public class PushBehaviour : NetworkBehaviour
       {
         objAfflicted.GetComponent<BallonData>().RotateTowardsReversed(path.gameObject);
       }
-
-      Debug.Log(objAfflicted);
-      Debug.Log(path.ToString() + " | " + path.transform.position.ToString());
       while (fracturedTime < 1)
       {
         fracturedTime += timeUnit + 0.01f;
