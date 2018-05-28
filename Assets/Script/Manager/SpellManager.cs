@@ -224,6 +224,9 @@ public class SpellManager : NetworkBehaviour
 
   public IEnumerator SpellEnd()
   {
+    if (SelectionManager.Instance.selectedPersonnage == null)
+      yield return null;
+      
     SelectionManager.Instance.selectedPersonnage.animator.SetBool("Cast", false);
     SelectionManager.Instance.selectedPersonnage.animator.SetBool("Idle", true);
     GameManager.Instance.actualAction = PersoAction.isWaiting;

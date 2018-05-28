@@ -53,9 +53,9 @@ public class BeforeFeedbackManager : NetworkBehaviour
     listTextFeedback.Remove(takenText);
     listTextFeedbackPredict.Add(takenText);
     listPersoPredict.Add(obj);
-    takenText.GetComponent<TextMesh>().text = maxInt + "%";
-    takenText.transform.position = obj.transform.position;
-    takenText.GetComponent<TextMesh>().color = new Color(1, 1, 0, 1f);
+    takenText.GetComponent<TextMesh>().text = "!";
+    takenText.transform.position = obj.transform.position + new Vector3(0, 0.25f, 0);
+    takenText.GetComponent<TextMesh>().color = new Color(.9f, 0, 0, 1f);
   }
 
   public void PredictEnd(GameObject obj)
@@ -76,19 +76,19 @@ public class BeforeFeedbackManager : NetworkBehaviour
       return;
     showObj.transform.gameObject.SetActive(false);
     if (obj.GetComponent<PersoData>() != null)
-    {
-      PersoData persoData = obj.GetComponent<PersoData>();
-      showObj.sprite = persoData.transform.GetComponentInChildren<SpriteRenderer>().sprite;
-      showObj.transform.position = newCaseObj.transform.position - persoData.originPoint.transform.localPosition + Vector3.up * 0.1f;
-      showObj.transform.localScale = new Vector3(1.5625f, 1.5625f, 1);
-    }
-    if(obj.GetComponent<BallonData>() != null)
-    {
-      BallonData ballonData = obj.GetComponent<BallonData>();
-      showObj.sprite = ballonData.transform.GetComponent<SpriteRenderer>().sprite;
-      showObj.transform.position = newCaseObj.transform.position - ballonData.offsetBallon;
-      showObj.transform.localScale = new Vector3(1.25f, 1.25f, 1);
-    }
+      {
+        PersoData persoData = obj.GetComponent<PersoData>();
+        showObj.sprite = persoData.transform.GetComponentInChildren<SpriteRenderer>().sprite;
+        showObj.transform.position = newCaseObj.transform.position - persoData.originPoint.transform.localPosition + Vector3.up * 0.1f;
+        showObj.transform.localScale = new Vector3(1.5625f, 1.5625f, 1);
+      }
+    if (obj.GetComponent<BallonData>() != null)
+      {
+        BallonData ballonData = obj.GetComponent<BallonData>();
+        showObj.sprite = ballonData.transform.GetComponent<SpriteRenderer>().sprite;
+        showObj.transform.position = newCaseObj.transform.position - ballonData.offsetBallon;
+        showObj.transform.localScale = new Vector3(1.25f, 1.25f, 1);
+      }
     showObj.transform.gameObject.SetActive(true);
   }
 
