@@ -73,9 +73,9 @@ public class MoveBehaviour : NetworkBehaviour
     if (movePathes.Count != 0
         && actualAction == PersoAction.isSelected
         && movePathes.Contains(hoveredCase.transform))
-      {
-        SendDeplacement();
-      }
+    {
+      SendDeplacement();
+    }
   }
 
   // *************** //
@@ -87,26 +87,27 @@ public class MoveBehaviour : NetworkBehaviour
 
     if (GameManager.Instance.actualAction != PersoAction.isSelected)
       return;
-      
+
     pathesLast = movePathes;
     CaseManager.Instance.RemovePath();
 
     this.movePathes.Clear();
 
     foreach (GameObject path in GoPathes)
-      {
-        if (path != SelectionManager.Instance.selectedCase.gameObject)
-          this.movePathes.Add(path.transform);
-      }
+    {
+      if (path != SelectionManager.Instance.selectedCase.gameObject)
+        this.movePathes.Add(path.transform);
+    }
 
     // Si le personnage n'a pas assez de PM, alors la route n'est pas créé
     if (this.movePathes.Count > SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData>().actualPointMovement)
-      {
-        this.movePathes.Clear();
-      } else
-      {
-        ShowPath();
-      }
+    {
+      this.movePathes.Clear();
+    }
+    else
+    {
+      ShowPath();
+    }
   }
 
   public void ShowPath()
@@ -117,19 +118,19 @@ public class MoveBehaviour : NetworkBehaviour
     Player currentPlayer = GameManager.Instance.currentPlayer;
     Color enemyColor = ColorManager.Instance.enemyColor;
     foreach (Transform path in this.movePathes)
+    {
+      path.GetComponent<CaseData>().ChangeStatut(Statut.canMove);
+      foreach (PersoData persoCompared in RosterManager.Instance.listHero)
       {
-        path.GetComponent<CaseData>().ChangeStatut(Statut.canMove);
-        foreach (PersoData persoCompared in RosterManager.Instance.listHero)
-          {
-            if (persoCompared.owner != currentPlayer
-                && persoCompared.persoCase != null
-                && CaseManager.Instance.CheckAdjacent(path.gameObject, persoCompared.gameObject) == true)
-              {
-                path.GetComponent<CaseData>().ChangeStatut(Statut.canBeTackled);
-                //   FeedbackManager.Instance.PredictInit(50, path.gameObject);
-              }
-          }
+        if (persoCompared.owner != currentPlayer
+            && persoCompared.persoCase != null
+            && CaseManager.Instance.CheckAdjacent(path.gameObject, persoCompared.gameObject) == true)
+        {
+          path.GetComponent<CaseData>().ChangeStatut(Statut.canBeTackled);
+          //   FeedbackManager.Instance.PredictInit(50, path.gameObject);
+        }
       }
+    }
   }
 
   // *************** //
@@ -142,9 +143,9 @@ public class MoveBehaviour : NetworkBehaviour
     Color caseColor = ColorManager.Instance.caseColor;
 
     foreach (Transform path in movePathes)
-      {
-        path.GetComponent<CaseData>().ChangeStatut(Statut.isMoving);
-      }
+    {
+      path.GetComponent<CaseData>().ChangeStatut(Statut.isMoving);
+    }
     ienumeratorList.Add(Deplacement(SelectionManager.Instance.selectedPersonnage.originPoint.transform.localPosition, SelectionManager.Instance.selectedPersonnage, movePathes));
     StartCoroutine(ienumeratorList[ienumeratorList.Count - 1]);
   }
@@ -155,50 +156,53 @@ public class MoveBehaviour : NetworkBehaviour
     IEnumerator thisFunc = ienumeratorList[ienumeratorList.Count - 1];
 
     GameManager.Instance.actualAction = PersoAction.isMoving;
-    
+
     TackleBehaviour.Instance.CheckTackle(selectedPersonnage.gameObject);
 
-    foreach (Transform path in pathes)
+    List<Transform> tempPath = pathes.GetRange(0, pathes.Count);
+
+    foreach (Transform path in tempPath)
+    {
+      if (selectedPersonnage.isTackled)
       {
-        List<Transform> savePathes = pathes;
-        if (selectedPersonnage.isTackled)
-          {
-            path.GetComponent<CaseData>().ChangeStatut(Statut.isTackled, Statut.isMoving);
-          } else
-          {
-            Vector3 startPos = SelectionManager.Instance.selectedPersonnage.transform.position;
-            float fracturedTime = 0;
-            float timeUnit = travelTime / 60;
-
-            selectedPersonnage.RotateTowards(path.gameObject);
-            SelectionManager.Instance.selectedPersonnage.actualPointMovement -= 1;
-            InfoPerso.Instance.stats.changePm(SelectionManager.Instance.selectedPersonnage.actualPointMovement, SelectionManager.Instance.selectedPersonnage.maxPointMovement);
-
-            while (selectedPersonnage.transform.position != path.transform.position - originPoint)
-              {
-                fracturedTime += timeUnit + 0.01f;
-                selectedPersonnage.transform.position = Vector3.Lerp(startPos, path.transform.position - originPoint, fracturedTime);
-                yield return new WaitForEndOfFrame();
-              }
-            SelectionManager.Instance.selectedCase = path.gameObject.GetComponent<CaseData>();
-            path.GetComponent<CaseData>().ChangeStatut(Statut.None, Statut.isMoving);
-            TackleBehaviour.Instance.CheckTackle(selectedPersonnage.gameObject);
-          }
+        path.GetComponent<CaseData>().ChangeStatut(Statut.isTackled, Statut.isMoving);
       }
-    SelectionManager.Instance.selectedCase = pathes[pathes.Count - 1].gameObject.GetComponent<CaseData>();
+      else
+      {
+        Vector3 startPos = SelectionManager.Instance.selectedPersonnage.transform.position;
+        float fracturedTime = 0;
+        float timeUnit = travelTime / 60;
+
+        selectedPersonnage.RotateTowards(path.gameObject);
+        SelectionManager.Instance.selectedPersonnage.actualPointMovement -= 1;
+        InfoPerso.Instance.stats.changePm(SelectionManager.Instance.selectedPersonnage.actualPointMovement, SelectionManager.Instance.selectedPersonnage.maxPointMovement);
+
+        while (selectedPersonnage.transform.position != path.transform.position - originPoint)
+        {
+          fracturedTime += timeUnit + 0.01f;
+          selectedPersonnage.transform.position = Vector3.Lerp(startPos, path.transform.position - originPoint, fracturedTime);
+          yield return new WaitForEndOfFrame();
+        }
+        SelectionManager.Instance.selectedCase = path.gameObject.GetComponent<CaseData>();
+        path.GetComponent<CaseData>().ChangeStatut(Statut.None, Statut.isMoving);
+        TackleBehaviour.Instance.CheckTackle(selectedPersonnage.gameObject);
+      }
+    }
+    SelectionManager.Instance.selectedCase = tempPath[tempPath.Count - 1].gameObject.GetComponent<CaseData>();
     SelectionManager.Instance.selectedCase.GetComponent<CaseData>().ChangeStatut(Statut.None, Statut.isMoving);
     GameManager.Instance.actualAction = PersoAction.isSelected;
     CaseManager.Instance.RemovePath();
     if (!selectedPersonnage.isTackled)
-      {
-        SelectionManager.Instance.selectedCase.GetComponent<CaseData>().casePathfinding = PathfindingCase.NonWalkable;
-        pathes.Clear();
-      } else
-      {
-        selectedPersonnage.isTackled = false;
-        SelectionManager.Instance.selectedPersonnage.actualPointMovement = 0;
-        pathes.Clear();
-      }
+    {
+      SelectionManager.Instance.selectedCase.GetComponent<CaseData>().casePathfinding = PathfindingCase.NonWalkable;
+      tempPath.Clear();
+    }
+    else
+    {
+      selectedPersonnage.isTackled = false;
+      SelectionManager.Instance.selectedPersonnage.actualPointMovement = 0;
+      tempPath.Clear();
+    }
     StartCoroutine(TurnManager.Instance.EnableFinishTurn());
     ienumeratorList.Remove(thisFunc);
     yield return new WaitForEndOfFrame();
