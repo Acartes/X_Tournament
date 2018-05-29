@@ -68,6 +68,7 @@ public class EffectManager : NetworkBehaviour
   public void ChangePA(int number)
   {
     GameManager.Instance.manaGlobalActual += number;
+    if(number < 0)
     GameManager.Instance.manaGlobalActual = Mathf.Clamp(GameManager.Instance.manaGlobalActual, 0, GameManager.Instance.manaGlobalMax); // on peut pas dépasser le max
   }
 
