@@ -429,11 +429,13 @@ public class SpellData : NetworkBehaviour
   {
     PersoData persoAfflicted = objAfflicted.GetComponent<PersoData>();
     SummonData summonAfflicted = objAfflicted.GetComponent<SummonData>();
+    CaseData caseAfflicted = null;
+
     if (persoAfflicted)
     {
       SpellManager.Instance.PersosHitPerSpell.Add(this.name, persoAfflicted);
 
-      CaseData caseAfflicted = persoAfflicted.persoCase;
+      caseAfflicted = persoAfflicted.persoCase;
       if (persoAfflicted.owner != SelectionManager.Instance.selectedPersonnage.owner)
       {
         if(damagePR != 0)
@@ -451,18 +453,23 @@ public class SpellData : NetworkBehaviour
           EffectManager.Instance.ChangePR(persoAfflicted, damagePR);
           AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject, true);
         }
-        EffectManager.Instance.ChangePA(damagePA);
+        GameManager.Instance.manaGlobalActual += damagePA;
         EffectManager.Instance.ChangePM(persoAfflicted, damagePM);
       }
     }
 
     if (summonAfflicted != null)
       {
-        if (animatorSpell != null)
-          FXManager.Instance.Show(animatorSpell, summonAfflicted.caseActual.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
+      caseAfflicted = summonAfflicted.caseActual;
 
+      if (damagePR != 0)
+      {
         EffectManager.Instance.ChangePR(summonAfflicted, -damagePR);
+        AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject);
       }
+    }
+    FXManager.Instance.Show(animatorSpell, caseAfflicted.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
+
   }
 }
 
