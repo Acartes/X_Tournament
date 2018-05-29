@@ -89,11 +89,6 @@ public class EffectManager : NetworkBehaviour
     GameManager.Instance.paDebuff += number;
   }
 
-  public void ChangePRDebuff(PersoData persoAfflicted, int number)
-  {
-    persoAfflicted.prDebuff += number;
-  }
-
   public void ChangePMDebuff(PersoData persoAfflicted, int number)
   {
     persoAfflicted.pmDebuff += number;

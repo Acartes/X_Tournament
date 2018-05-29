@@ -83,7 +83,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1409412096056796}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 9.505741, y: 2.317515, z: 0}
   m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children:
   - {fileID: 4597368494171750}
@@ -249,14 +249,16 @@ MonoBehaviour:
   maxPointAction: 4
   actualPointResistance: 5
   maxPointResistance: 5
+  pmDebuff: 0
+  paDebuff: 0
   shotStrenght: 3
   persoDirection: 0
   persoCase: {fileID: 0}
   originPoint: {fileID: 1002261531145270}
   faceSprite: {fileID: 21300000, guid: 3c8705d6f4589db46a4df9544fe33b4d, type: 3}
   backSprite: {fileID: 21300000, guid: a0317f0f00f8f934abf69f33c5c8b9e9, type: 3}
-  Spell1: {fileID: 0}
-  Spell2: {fileID: 0}
+  Spell1: {fileID: 114539509967211268, guid: 7948bd4d0d429d14bbc161d5613d858d, type: 2}
+  Spell2: {fileID: 114539509967211268, guid: 8c0e28509492ecc47950edc6f0e95c72, type: 2}
   isTackled: 0
   animator: {fileID: 0}
 --- !u!212 &212891923309361950
