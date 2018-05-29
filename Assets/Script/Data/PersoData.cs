@@ -24,7 +24,6 @@ public class PersoData : NetworkBehaviour
 
   public int pmDebuff;
   public int paDebuff;
-  public int prDebuff;
   /// <summary>Modifie la portée du tir.</summary>
   public int shotStrenght;
   public Direction persoDirection;
@@ -92,9 +91,7 @@ public class PersoData : NetworkBehaviour
       ResetPM();
       ResetPA();
       EffectManager.Instance.ChangePM(this, pmDebuff);
-      EffectManager.Instance.ChangePR(this, prDebuff);
       pmDebuff = 0;
-      prDebuff = 0;
     }
   }
 
