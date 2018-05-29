@@ -39,6 +39,7 @@ public class PersoData : NetworkBehaviour
   bool ShineColorIsRunning = false;
 
   public bool isTackled = false;
+  public int timeStunned = 0;
 
   public Animator animator;
 
@@ -80,6 +81,11 @@ public class PersoData : NetworkBehaviour
     TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
   }
 
+  private void Update()
+  {
+    CheckDeath();
+  }
+
   // *************** //
   // ** Events **    // Appel de fonctions au sein de ce script grâce à des events
   // *************** //
@@ -92,12 +98,24 @@ public class PersoData : NetworkBehaviour
       ResetPA();
       EffectManager.Instance.ChangePM(this, pmDebuff);
       pmDebuff = 0;
+      if (timeStunned > 0)
+        timeStunned--;
+      if (timeStunned == 0)
+        actualPointResistance = maxPointResistance;
     }
   }
 
   // *************** //
   // ** Fonctions ** // Fonctions réutilisables ailleurs
   // *************** //
+
+  /// <summary>Vérifie si l'invocation est censé être toujours vivant ou pas.</summary>
+  public void CheckDeath()
+  {
+    if (actualPointResistance <= 0){
+      timeStunned = 3;
+    }
+  }
 
   /// <summary>Fixe les PM actuel du personnage à ses PM max.</summary>
   public void ResetPM()
