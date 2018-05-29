@@ -69,13 +69,11 @@ MonoBehaviour:
     type: 2}
   summonOnCross: 0
   isDirect: 0
-  buttonSprite: {fileID: 21300000, guid: 7134979acc72df94fa3825d44def3ddd, type: 3}
-  tooltipTitle: Sort Indirect <color=#00ff00ff>Air</color>
-  tooltipRange: "<color=#bbbbbbff>Port\xE9e : </color>4 cases"
-  tooltipEffect: "Invoque un obstacle \xE0 l\u2019emplacement cibl\xE9, il ne bloque
-    pas la ligne de\r vue, la balle et les personnages peuvent le traverser. Lorsqu\u2019une
-    entit\xE9 entre \xE0\r l\u2019int\xE9rieur elle est d\xE9cal\xE9 d\u20191 case
-    sur sa gauche."
+  buttonSprite: {fileID: 21300000, guid: 2cef2f5f51ab3be4fb6a7a1549755592, type: 3}
+  tooltipTitle: Sort Indirect <color=#ff0000ff>Feu</color>
+  tooltipRange: "<color=#bbbbbbff>Port\xE9e : </color>5 cases"
+  tooltipEffect: "Place 1 case feu \xE0 l'emplacement cibl\xE9.\nSur ennemi : -1 PR\nSur
+    alli\xE9 : +1 PR"
   numberLimitCast: 1
   animatorSpell: {fileID: 9100000, guid: bae8a29eb97ba61468b018622db02aa4, type: 2}
   affectedTarget: 15

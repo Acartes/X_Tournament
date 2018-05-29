@@ -46,11 +46,11 @@ public class AfterFeedbackManager : NetworkBehaviour
     if (randomInt < maxInt)
       {
         takenText.GetComponent<TextMesh>().text = "Tackled!";
-        takenText.GetComponent<TextMesh>().color = new Color(0, .7f, 0, 1f);
+        takenText.GetComponent<TextMesh>().color = new Color(0, .4f, 0, 1f);
       } else
       {
         takenText.GetComponent<TextMesh>().text = "Miss!";
-        takenText.GetComponent<TextMesh>().color = new Color(.9f, 0, 0, 1f);
+        takenText.GetComponent<TextMesh>().color = new Color(.8f, 0, 0, 1f);
       }
 
     for (int i = 0; i < 300; i++)
@@ -75,11 +75,11 @@ public class AfterFeedbackManager : NetworkBehaviour
     if (positiveValue)
       {
         takenText.GetComponent<TextMesh>().color = new Color(1, 0, 0, 1f);
-        takenText.GetComponent<TextMesh>().text = "+" + Mathf.Abs(PRchanged).ToString();
+        takenText.GetComponent<TextMesh>().text = "+" + Mathf.Abs(PRchanged).ToString() + "PR";
       } else
       {
         takenText.GetComponent<TextMesh>().color = new Color(1, 0, 0, 1f);
-        takenText.GetComponent<TextMesh>().text = "-" + PRchanged.ToString();
+        takenText.GetComponent<TextMesh>().text = "-" + PRchanged.ToString() + "PR";
       }
 
     takenText.transform.position = obj.transform.position;
