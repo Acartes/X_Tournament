@@ -55,8 +55,8 @@ public class SpellManager : NetworkBehaviour
       {
         EventManager.newClickEvent -= OnNewClick;
         EventManager.newHoverEvent -= OnNewHover;
-      TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
-    }
+        TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
+      }
   }
 
   // *************** //
@@ -92,6 +92,7 @@ public class SpellManager : NetworkBehaviour
   /// <summary>Active le tooltip pour le sort</summary>
   public void SpellTooltipON(int IDSpell)
   {
+    UIManager.Instance.UIIsHovered = true;
     Tooltip.tooltipObj = ChooseSpell(IDSpell);
     UIManager.Instance.tooltip.SetActive(true);
   }
@@ -99,6 +100,7 @@ public class SpellManager : NetworkBehaviour
   /// <summary>Désactive le tooltip pour le sort</summary>
   public void SpellTooltipOFF()
   {
+    UIManager.Instance.UIIsHovered = false;
     UIManager.Instance.tooltip.SetActive(false);
   }
 
@@ -107,6 +109,12 @@ public class SpellManager : NetworkBehaviour
   public void SpellButtonClick(int IDSpell)
   {
     if (GameManager.Instance.actualAction == PersoAction.isCasting)
+      return;
+
+    if (SelectionManager.Instance.selectedCase == null)
+      return;
+
+    if (GameManager.Instance.currentPhase == Phase.Placement)
       return;
 
     selectedSpell = ChooseSpell(IDSpell);
@@ -152,16 +160,16 @@ public class SpellManager : NetworkBehaviour
     PersoData isPersoTarget = null;
 
     if (hoveredCase.personnageData != null)
-    {
-      PersosHitPerSpell.TryGetValue(selectedSpell.name, out isPersoTarget);
-    }
+      {
+        PersosHitPerSpell.TryGetValue(selectedSpell.name, out isPersoTarget);
+      }
 
     if (((Statut.canTarget & hoveredCase.statut) != Statut.canTarget)
-      || (hoveredCase.personnageData != null && isPersoTarget != null))
-    {
-      StartCoroutine(SpellEnd());
-      return;
-    }
+        || (hoveredCase.personnageData != null && isPersoTarget != null))
+      {
+        StartCoroutine(SpellEnd());
+        return;
+      }
 
     spellSuccess = true;
     GameManager.Instance.manaGlobalActual -= selectedSpell.costPA;
