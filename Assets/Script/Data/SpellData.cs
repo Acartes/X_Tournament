@@ -109,6 +109,9 @@ public class SpellData : NetworkBehaviour
 
   public void newRangeList()
   {
+    if (SelectionManager.Instance.selectedCase == null)
+      return;
+
     List<CaseData> list = new List<CaseData>();
     List<CaseData> list2 = new List<CaseData>();
     CaseData selectedCase = SelectionManager.Instance.selectedCase;
@@ -435,7 +438,12 @@ public class SpellData : NetworkBehaviour
     {
       SpellManager.Instance.PersosHitPerSpell.Add(this.name, persoAfflicted);
 
-      caseAfflicted = persoAfflicted.persoCase;
+      if (persoAfflicted.timeStunned > 0)
+      {
+        return;
+      }
+
+        caseAfflicted = persoAfflicted.persoCase;
       if (persoAfflicted.owner != SelectionManager.Instance.selectedPersonnage.owner)
       {
         if(damagePR != 0)

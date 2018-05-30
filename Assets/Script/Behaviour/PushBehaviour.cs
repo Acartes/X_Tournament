@@ -263,14 +263,20 @@ public class PushBehaviour : NetworkBehaviour
         }
         if (path.GetComponent<CaseData>().personnageData != null)
         {
-          AfterFeedbackManager.Instance.PRText(1, path.gameObject);
-          path.GetComponent<CaseData>().personnageData.actualPointResistance--;
+          if (path.GetComponent<CaseData>().personnageData.timeStunned == 0)
+          {
+            AfterFeedbackManager.Instance.PRText(1, path.gameObject);
+            path.GetComponent<CaseData>().personnageData.actualPointResistance--;
+          }
         }
 
         if (objAfflicted.GetComponent<PersoData>() != null)
         {
-          AfterFeedbackManager.Instance.PRText(1, objAfflicted);
-          objAfflicted.GetComponent<PersoData>().actualPointResistance--;
+          if (objAfflicted.GetComponent<PersoData>().timeStunned == 0)
+          {
+            AfterFeedbackManager.Instance.PRText(1, objAfflicted);
+            objAfflicted.GetComponent<PersoData>().actualPointResistance--;
+          }
         }
         if (objAfflicted.GetComponent<SummonData>() != null && !objAfflicted.GetComponent<SummonData>().invulnerable)
         {
@@ -307,10 +313,13 @@ public class PushBehaviour : NetworkBehaviour
         Direction rightDirection = Direction.None;
         if (persoAfficted != null)
         {
-          AfterFeedbackManager.Instance.PRText(1, objAfflicted);
-          persoAfficted.actualPointResistance--;
-          afflictedCase = persoAfficted.persoCase;
-          rightDirection = persoAfficted.persoDirection;
+          if (persoAfficted.timeStunned == 0)
+          {
+            AfterFeedbackManager.Instance.PRText(1, objAfflicted);
+            persoAfficted.actualPointResistance--;
+            afflictedCase = persoAfficted.persoCase;
+            rightDirection = persoAfficted.persoDirection;
+          }
         }
         BallonData ballonAfficted = objAfflicted.GetComponent<BallonData>();
         if (ballonAfficted != null)
@@ -324,10 +333,11 @@ public class PushBehaviour : NetworkBehaviour
         {
           if (rightCase.personnageData != null)
           {
-            Debug.Log(rightCase.personnageData.name);
-            Debug.Break();
-            AfterFeedbackManager.Instance.PRText(1, rightCase.gameObject);
-            rightCase.GetComponent<CaseData>().personnageData.actualPointResistance--;
+            if (persoAfficted.timeStunned == 0)
+            {
+              AfterFeedbackManager.Instance.PRText(1, rightCase.gameObject);
+              rightCase.GetComponent<CaseData>().personnageData.actualPointResistance--;
+            }
           }
           if (rightCase.summonData != null)
           {
@@ -346,8 +356,11 @@ public class PushBehaviour : NetworkBehaviour
     {
       if (pushValue > tempPath.Count)
       {
-        AfterFeedbackManager.Instance.PRText(1, objAfflicted);
-        objAfflicted.GetComponent<PersoData>().actualPointResistance--;
+        if (objAfflicted.GetComponent<PersoData>().timeStunned == 0)
+        {
+          AfterFeedbackManager.Instance.PRText(1, objAfflicted);
+          objAfflicted.GetComponent<PersoData>().actualPointResistance--;
+        }
       }
     }
     if (lastPath != null)

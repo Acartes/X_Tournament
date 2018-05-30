@@ -98,10 +98,16 @@ public class PersoData : NetworkBehaviour
       ResetPA();
       EffectManager.Instance.ChangePM(this, pmDebuff);
       pmDebuff = 0;
-      if (timeStunned > 0)
-        timeStunned--;
-      if (timeStunned == 0)
+      if (timeStunned == 1)
+      {
         actualPointResistance = maxPointResistance;
+        timeStunned = 0;
+      }
+      if(timeStunned > 0)
+      {
+        Debug.Log("ISSOU");
+        timeStunned--;
+      }
     }
   }
 
@@ -112,8 +118,12 @@ public class PersoData : NetworkBehaviour
   /// <summary>Vérifie si l'invocation est censé être toujours vivant ou pas.</summary>
   public void CheckDeath()
   {
-    if (actualPointResistance <= 0){
+    if (actualPointResistance <= 0 && timeStunned == 0){
       timeStunned = 3;
+      if(SelectionManager.Instance.selectedPersonnage == this)
+      {
+        SelectionManager.Instance.Deselect();
+      }
     }
   }
 
@@ -167,6 +177,9 @@ public class PersoData : NetworkBehaviour
   /// <summary>Change la direction du personnage en direction de la case ciblée.</summary>
   public void RotateTowards(GameObject targetCasePosGMB)
   {
+    if (persoCase == null)
+      return;
+
     Vector3 targetCasePos = targetCasePosGMB.transform.position;
     Vector3 originCasePos = persoCase.transform.position;
 

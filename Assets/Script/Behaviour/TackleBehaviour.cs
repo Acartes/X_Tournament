@@ -101,6 +101,11 @@ public class TackleBehaviour : NetworkBehaviour
 
     foreach (PersoData perso in RosterManager.Instance.listHeroPlaced)
     {
+      if(perso.timeStunned > 0)
+      {
+        return;
+      }
+
       playerCase = SelectionManager.Instance.selectedCase.transform;
       currentPlayer = TurnManager.Instance.currentPlayer;
 
