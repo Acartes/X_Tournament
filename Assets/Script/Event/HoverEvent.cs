@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.Networking;
+using UnityEngine.Experimental.UIElements;
 
 public class HoverEvent : NetworkBehaviour
 {
@@ -35,12 +36,15 @@ public class HoverEvent : NetworkBehaviour
 
   void OnMouseOver()
   {
-        if (!SynchroManager.Instance.canPlayTurn())
-        {
-            return;
-        }
+    if (!SynchroManager.Instance.canPlayTurn())
+      {
+        return;
+      }
 
-        if (!enabled || !LoadingManager.Instance.isGameReady())
+    if (!enabled || !LoadingManager.Instance.isGameReady())
+      return;
+
+    if (UIManager.Instance.UIIsHovered)
       return;
 
     string hoveredCase = "null";
@@ -57,12 +61,11 @@ public class HoverEvent : NetworkBehaviour
     if (GetComponent<CaseData>().ballon != null)
       hoveredBallon = GetComponent<CaseData>().ballon.name;
 
-        if (GameManager.Instance.isSoloGame)
-        {
-            EventManager.Instance.HoverEvent(hoveredCase, hoveredPersonnage, hoveredBallon);
-        }
-        else
-            RpcFunctions.Instance.CmdSendHoverEvent(hoveredCase, hoveredPersonnage, hoveredBallon);
+    if (GameManager.Instance.isSoloGame)
+      {
+        EventManager.Instance.HoverEvent(hoveredCase, hoveredPersonnage, hoveredBallon);
+      } else
+      RpcFunctions.Instance.CmdSendHoverEvent(hoveredCase, hoveredPersonnage, hoveredBallon);
   }
 
   void OnMouseExit()

@@ -147,5 +147,15 @@ public class TurnManager : NetworkBehaviour
   {
     return TurnNumber / 2;
   }
+
+  public void HoverButton()
+  {
+    UIManager.Instance.UIIsHovered = true;
+  }
+
+  public void UnhoverButton()
+  {
+    UIManager.Instance.UIIsHovered = false;
+  }
 }
 

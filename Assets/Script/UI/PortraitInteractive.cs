@@ -29,9 +29,11 @@ public class PortraitInteractive : NetworkBehaviour
       {
         return;
       }
-
+          
     if (!enabled || !LoadingManager.Instance.isGameReady())
       return;
+
+    UIManager.Instance.UIIsHovered = true;
 
     if (newHoveredPersonnage == null)
       return;
@@ -48,8 +50,11 @@ public class PortraitInteractive : NetworkBehaviour
 
   public void UnHoverPerso() // exit comme chez HoverEvent
   {
+    UIManager.Instance.UIIsHovered = false;
+
     if (!enabled || !LoadingManager.Instance.isGameReady())
       {
+        UIManager.Instance.UIIsHovered = false;
         RpcFunctions.Instance.CmdSendHoverEvent("null", "null", "null");
       }
   }

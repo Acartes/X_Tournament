@@ -35,6 +35,7 @@ public class UIManager : NetworkBehaviour
   public float manaOffset;
   GameObject StatsRed;
   GameObject StatsBlue;
+  public bool UIIsHovered = false;
 
   public Sprite defaultButtonSpellSprite;
 
