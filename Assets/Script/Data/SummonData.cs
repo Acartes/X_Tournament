@@ -120,7 +120,11 @@ public class SummonData : NetworkBehaviour
     if (persoAfflicted != null)
     {
       caseAfflicted = persoAfflicted.persoCase;
-      if ((damagePR != 0 || damagePA != 0 || damagePM != 0))
+      if (persoAfflicted.timeStunned > 0)
+      {
+        return;
+      }
+        if ((damagePR != 0 || damagePA != 0 || damagePM != 0))
       {
         persoAfflicted = objAfflicted.GetComponent<PersoData>();
         caseAfflicted = persoAfflicted.persoCase;

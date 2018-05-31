@@ -38,6 +38,9 @@ public class PortraitInteractive : NetworkBehaviour
     if (newHoveredPersonnage == null)
       return;
 
+    if (newHoveredPersonnage.timeStunned > 0)
+      return;
+
     string hoveredCase = newHoveredPersonnage.persoCase != null ? newHoveredPersonnage.persoCase.name : "null";
     string hoveredPersonnage = newHoveredPersonnage.name;
     string hoveredBallon = "null";

@@ -65,6 +65,10 @@ public class AfterFeedbackManager : NetworkBehaviour
 
   public void PRText(int PRchanged, GameObject obj, bool positiveValue = false)
   {
+    if (obj.GetComponent<PersoData>() && obj.GetComponent<PersoData>().timeStunned > 0)
+    {
+      return;
+    }
     StartCoroutine(PRTextCoroutine(PRchanged, obj, positiveValue));
   }
 

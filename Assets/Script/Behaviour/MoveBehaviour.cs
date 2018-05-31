@@ -161,8 +161,28 @@ public class MoveBehaviour : NetworkBehaviour
 
     List<Transform> tempPath = pathes.GetRange(0, pathes.Count);
 
+    PersoData persoSelected = SelectionManager.Instance.selectedPersonnage;
+
     foreach (Transform path in tempPath)
     {
+      if (SelectionManager.Instance.selectedPersonnage == null)
+      {
+        CaseData caseSelected = persoSelected.persoCase;
+
+        caseSelected.GetComponent<CaseData>().ChangeStatut(Statut.None, Statut.isMoving);
+        GameManager.Instance.actualAction = PersoAction.isSelected;
+        CaseManager.Instance.RemovePath();
+        caseSelected.GetComponent<CaseData>().casePathfinding = PathfindingCase.NonWalkable;
+        tempPath.Clear();
+        StartCoroutine(TurnManager.Instance.EnableFinishTurn());
+        ienumeratorList.Remove(thisFunc);
+        yield return new WaitForEndOfFrame();
+        yield return null;
+      }
+      else
+      {
+        persoSelected = SelectionManager.Instance.selectedPersonnage;
+      }
       if (selectedPersonnage.isTackled)
       {
         path.GetComponent<CaseData>().ChangeStatut(Statut.isTackled, Statut.isMoving);

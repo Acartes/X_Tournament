@@ -138,7 +138,7 @@ public class BallonData : NetworkBehaviour
         if (nextPosition.GetComponent<CaseData>().casePathfinding == PathfindingCase.NonWalkable)
         {
           AfterFeedbackManager.Instance.PRText(1, nextPosition);
-          if (nextPosition.GetComponent<CaseData>().personnageData != null)
+          if (nextPosition.GetComponent<CaseData>().personnageData != null && nextPosition.GetComponent<CaseData>().personnageData.timeStunned == 0)
           {
             nextPosition.GetComponent<CaseData>().personnageData.actualPointResistance--;
           }
@@ -318,8 +318,15 @@ public class BallonData : NetworkBehaviour
   {
     if (tempCase == null)
       return;
+
     if (tempCase.personnageData != null)
     {
+      Debug.Log(tempCase.personnageData + " | stun time : " + tempCase.personnageData.timeStunned);
+      if (tempCase.personnageData.timeStunned > 0)
+      {
+        return;
+      }
+
       EffectManager.Instance.MultiplePush(tempCase.personnageData.gameObject, tempCase, 1, PushType.FromTerrain, direction);
       if (tempCase.personnageData.owner != SelectionManager.Instance.selectedPersonnage.owner)
       {

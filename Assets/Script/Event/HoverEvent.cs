@@ -52,6 +52,8 @@ public class HoverEvent : NetworkBehaviour
     string hoveredBallon = "null";
 
     hoveredCase = this.GetComponent<CaseData>().name;
+    if (GetComponent<CaseData>().personnageData != null && GetComponent<CaseData>().personnageData.timeStunned > 0)
+      return;
 
     if (GetComponent<CaseData>().personnageData != null)
       hoveredPersonnage = GetComponent<CaseData>().personnageData.name;

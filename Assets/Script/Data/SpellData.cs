@@ -435,6 +435,8 @@ public class SpellData : NetworkBehaviour
     CaseData caseAfflicted = null;
 
     if (persoAfflicted)
+<<<<<<< HEAD
+>>>>>>> c5f3ef0b93bdbe14c8035649df1246093bed83aa
       {
         SpellManager.Instance.PersosHitPerSpell.Add(this.name, persoAfflicted);
 
