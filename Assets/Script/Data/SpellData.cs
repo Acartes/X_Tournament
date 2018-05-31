@@ -111,6 +111,9 @@ public class SpellData : NetworkBehaviour
 
   public void newRangeList()
   {
+    if (SelectionManager.Instance.selectedCase == null)
+      return;
+
     List<CaseData> list = new List<CaseData>();
     List<CaseData> list2 = new List<CaseData>();
     CaseData selectedCase = SelectionManager.Instance.selectedCase;
@@ -436,6 +439,17 @@ public class SpellData : NetworkBehaviour
 
     if (persoAfflicted)
 <<<<<<< HEAD
+=======
+    {
+      SpellManager.Instance.PersosHitPerSpell.Add(this.name, persoAfflicted);
+
+      if (persoAfflicted.timeStunned > 0)
+      {
+        return;
+      }
+
+        caseAfflicted = persoAfflicted.persoCase;
+      if (persoAfflicted.owner != SelectionManager.Instance.selectedPersonnage.owner)
 >>>>>>> c5f3ef0b93bdbe14c8035649df1246093bed83aa
       {
         SpellManager.Instance.PersosHitPerSpell.Add(this.name, persoAfflicted);
