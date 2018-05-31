@@ -72,6 +72,7 @@ MonoBehaviour:
   buttonSprite: {fileID: 21300000, guid: 2cef2f5f51ab3be4fb6a7a1549755592, type: 3}
   tooltipTitle: Sort Indirect <color=#ff0000ff>Feu</color>
   tooltipRange: "<color=#bbbbbbff>Port\xE9e : </color>5 cases"
+  tooltipCost: "<color=#bbbbbbff>Co\xFBt : </color>2 mana"
   tooltipEffect: "Place 1 case feu \xE0 l'emplacement cibl\xE9.\nSur ennemi : -1 PR\nSur
     alli\xE9 : +1 PR"
   numberLimitCast: 1

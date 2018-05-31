@@ -59,6 +59,7 @@ MonoBehaviour:
   damagePR: 0
   damagePA: 0
   damagePM: 0
+  reverseDamageOnAlly: 0
   elementCreated: 2
   pushValue: 0
   pushDirection: 0
@@ -66,14 +67,27 @@ MonoBehaviour:
   hurtWhenStopped: 0
   summonedObj: {fileID: 114365672426740566, guid: 3522c1ae342922d4b8e784dbed3927c8,
     type: 2}
+  summonOnCross: 0
   isDirect: 0
   buttonSprite: {fileID: 21300000, guid: 7d3b1ac49688a1648ba4aa4390ff789b, type: 3}
   tooltipTitle: Sort Indirect <color=#cccc00ff>Terre</color>
   tooltipRange: "<color=#bbbbbbff>Port\xE9e : </color>5 cases"
+  tooltipCost: "<color=#bbbbbbff>Co\xFBt : </color>2 mana"
   tooltipEffect: "Invoque un obstacle \xE0 l\u2019emplacement cibl\xE9, il bloque
     la ligne de vue, ni\r la balle ni les personnages ne peuvent marcher dessus, il
     se d\xE9truit apr\xE8s avoir re\xE7u\r un coup, un impact (balle, punch) ou lors
-    d\u2019une combinaison \xE9l\xE9mentaire l\u2019incluant."
+    d\u2019une combinaison \xE9l\xE9mentaire l\u2019incluant.\nInvoque un obstacle
+    \xE0 l\u2019emplacement cibl\xE9, il bloque la ligne de vue, ni\r la balle ni
+    les personnages ne peuvent marcher dessus, il se d\xE9truit apr\xE8s avoir re\xE7u\r
+    un coup, un impact (balle, punch) ou lors d\u2019une combinaison \xE9l\xE9mentaire
+    l\u2019incluant.\nInvoque un obstacle \xE0 l\u2019emplacement cibl\xE9, il bloque
+    la ligne de vue, ni\r la balle ni les personnages ne peuvent marcher dessus, il
+    se d\xE9truit apr\xE8s avoir re\xE7u\r un coup, un impact (balle, punch) ou lors
+    d\u2019une combinaison \xE9l\xE9mentaire l\u2019incluant.\nInvoque un obstacle
+    \xE0 l\u2019emplacement cibl\xE9, il bloque la ligne de vue, ni\r la balle ni
+    les personnages ne peuvent marcher dessus, il se d\xE9truit apr\xE8s avoir re\xE7u\r
+    un coup, un impact (balle, punch) ou lors d\u2019une combinaison \xE9l\xE9mentaire
+    l\u2019incluant."
   numberLimitCast: 0
   animatorSpell: {fileID: 9100000, guid: abf565835d8e64d4792d5309c23297f0, type: 2}
   affectedTarget: 4

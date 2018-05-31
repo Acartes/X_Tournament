@@ -48,14 +48,14 @@ public class BeforeFeedbackManager : NetworkBehaviour
     if (listTextFeedback.Count == 0)
       return;
 
-    GameObject takenText = listTextFeedback[0];
+    /* GameObject takenText = listTextFeedback[0];
     takenText.name = obj.name + " " + "feedback";
     listTextFeedback.Remove(takenText);
     listTextFeedbackPredict.Add(takenText);
     listPersoPredict.Add(obj);
     takenText.GetComponent<TextMesh>().text = "!";
     takenText.transform.position = obj.transform.position + new Vector3(0, 0.25f, 0);
-    takenText.GetComponent<TextMesh>().color = new Color(.9f, 0, 0, 1f);
+    takenText.GetComponent<TextMesh>().color = new Color(.9f, 0, 0, 1f);*/
   }
 
   public void PredictEnd(GameObject obj)

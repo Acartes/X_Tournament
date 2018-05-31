@@ -69,9 +69,10 @@ MonoBehaviour:
     type: 2}
   summonOnCross: 1
   isDirect: 1
-  buttonSprite: {fileID: 21300000, guid: 6424719eb870d1a44be245981cec838e, type: 3}
+  buttonSprite: {fileID: 21300000, guid: 2aab7f3f735bbeb45aa92fcaea3a7cdf, type: 3}
   tooltipTitle: Direct <color=#ff0000ff>Feu</color>
   tooltipRange: "<color=#bbbbbbff>Port\xE9e : </color>4 cases"
+  tooltipCost: "<color=#bbbbbbff>Co\xFBt : </color>4 mana"
   tooltipEffect: "Sur alli\xE9 : +2 PR, +2 Mana\nSur ennemi : -2 PR, -2 Mana\nCr\xE9e
     4 cases feu \xE0 1 PO de la cible."
   numberLimitCast: 0
