@@ -177,7 +177,7 @@ public class SpellManager : NetworkBehaviour
       StartCoroutine(SpellEnd());
       return;
     }
-
+    
     spellSuccess = true;
     GameManager.Instance.manaGlobalActual -= selectedSpell.costPA;
 
@@ -260,6 +260,23 @@ public class SpellManager : NetworkBehaviour
     }
       StartCoroutine(SpellEnd());
   }
+
+  /// <summary>Le sort est lancé à un endroit</summary>
+  void SpellRotateClick(Direction direction)
+  {
+    switch (direction)
+    {
+      case Direction.Front:
+        break;
+      case Direction.Back:
+        break;
+      case Direction.Right:
+        break;
+      case Direction.Left:
+        break;
+    }
+  }
+
 
   public IEnumerator SpellEnd()
   {
