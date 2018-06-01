@@ -83,6 +83,10 @@ public class BallonData : NetworkBehaviour
     CaseData hoveredCase = HoverManager.Instance.hoveredCase;
     PersoData selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
 
+    if (GameManager.Instance.manaGlobalActual < 2)
+      yield return null;
+    EffectManager.Instance.ChangePA(-2);
+
     GameManager.Instance.actualAction = PersoAction.isShoting;
     TurnManager.Instance.DisableFinishTurn();
     MenuContextuel.Instance.isShoting = true;
