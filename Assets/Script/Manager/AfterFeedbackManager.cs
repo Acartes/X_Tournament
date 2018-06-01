@@ -30,7 +30,7 @@ public class AfterFeedbackManager : NetworkBehaviour
 
   void InitGame()
   {
-    listTextFeedback.AddRange(GameObject.FindGameObjectsWithTag("textAfterFeedback"));
+    listTextFeedback.AddRange(GameObject.FindGameObjectsWithTag("AfterFeedback"));
   }
 
   public void TackleText(int randomInt, int maxInt, GameObject obj)
@@ -45,17 +45,19 @@ public class AfterFeedbackManager : NetworkBehaviour
     takenText.transform.position = obj.transform.position;
     if (randomInt < maxInt)
       {
-        takenText.GetComponent<TextMesh>().text = "Tackled!";
-        takenText.GetComponent<TextMesh>().color = new Color(0, .4f, 0, 1f);
+        takenText.GetComponentInChildren<TextMesh>().text = "Tackled!";
+        takenText.GetComponentInChildren<TextMesh>().color = new Color(0, .4f, 0, 1f);
+        takenText.GetComponentInChildren<SpriteRenderer>().gameObject.SetActive(false);
       } else
       {
-        takenText.GetComponent<TextMesh>().text = "Miss!";
-        takenText.GetComponent<TextMesh>().color = new Color(.8f, 0, 0, 1f);
+        takenText.GetComponentInChildren<TextMesh>().text = "Miss!";
+        takenText.GetComponentInChildren<TextMesh>().color = new Color(.8f, 0, 0, 1f);
+        takenText.GetComponentInChildren<SpriteRenderer>().gameObject.SetActive(false);
       }
 
     for (int i = 0; i < 300; i++)
       {
-        takenText.GetComponent<TextMesh>().color -= new Color(0, 0, 0, 0.0033f);
+        takenText.GetComponentInChildren<TextMesh>().color -= new Color(0, 0, 0, 0.0033f);
         takenText.transform.position += new Vector3(0, 0.01f, 0);
         yield return new WaitForEndOfFrame();
       }
@@ -66,9 +68,9 @@ public class AfterFeedbackManager : NetworkBehaviour
   public void PRText(int PRchanged, GameObject obj, bool positiveValue = false)
   {
     if (obj.GetComponent<PersoData>() && obj.GetComponent<PersoData>().timeStunned > 0)
-    {
-      return;
-    }
+      {
+        return;
+      }
     StartCoroutine(PRTextCoroutine(PRchanged, obj, positiveValue));
   }
 
@@ -78,12 +80,16 @@ public class AfterFeedbackManager : NetworkBehaviour
     listTextFeedback.Remove(takenText);
     if (positiveValue)
       {
-        takenText.GetComponent<TextMesh>().color = new Color(1, 0, 0, 1f);
-        takenText.GetComponent<TextMesh>().text = "+" + Mathf.Abs(PRchanged).ToString() + "PR";
+        takenText.GetComponentInChildren<TextMesh>().color = new Color(1, 0, 0, 1f);
+        takenText.GetComponentInChildren<TextMesh>().text = "+" + Mathf.Abs(PRchanged).ToString();
+        takenText.GetComponentInChildren<SpriteRenderer>().gameObject.SetActive(true);
+        takenText.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
       } else
       {
-        takenText.GetComponent<TextMesh>().color = new Color(1, 0, 0, 1f);
-        takenText.GetComponent<TextMesh>().text = "-" + PRchanged.ToString() + "PR";
+        takenText.GetComponentInChildren<TextMesh>().color = new Color(1, 0, 0, 1f);
+        takenText.GetComponentInChildren<TextMesh>().text = "-" + PRchanged.ToString();
+        takenText.GetComponentInChildren<SpriteRenderer>().gameObject.SetActive(true);
+        takenText.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
       }
 
     takenText.transform.position = obj.transform.position;
@@ -91,7 +97,8 @@ public class AfterFeedbackManager : NetworkBehaviour
 
     for (int i = 0; i < 300; i++)
       {
-        takenText.GetComponent<TextMesh>().color -= new Color(0, 0, 0, 0.0033f);
+        takenText.GetComponentInChildren<TextMesh>().color -= new Color(0, 0, 0, 0.0033f);
+        takenText.GetComponentInChildren<SpriteRenderer>().color -= new Color(0, 0, 0, 0.0033f);
         takenText.transform.position += new Vector3(0, 0.01f, 0);
         yield return new WaitForEndOfFrame();
       }

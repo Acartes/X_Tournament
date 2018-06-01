@@ -28,6 +28,9 @@ public class MenuContextuel : NetworkBehaviour
 
   public bool activated;
 
+  GameObject menuContextuelReplacerTooltip;
+  GameObject menuContextuelTirerTooltip;
+
   public override void OnStartClient()
   {
     if (Instance == null)
@@ -115,7 +118,7 @@ public class MenuContextuel : NetworkBehaviour
     if (Instance != null)
       {
         CaseManager.Instance.EnableAllColliders();
-      TurnManager.Instance.StartCoroutine("EnableFinishTurn");
+        TurnManager.Instance.StartCoroutine("EnableFinishTurn");
         MenuContextuel.Instance.gameObject.transform.position = new Vector3(999, 999, 999);
         activated = false;
       }

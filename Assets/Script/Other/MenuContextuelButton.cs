@@ -13,9 +13,24 @@ public class MenuContextuelButton : MonoBehaviour
 
   public bool collision;
 
+  GameObject menuContextuelReplacerTooltip;
+  GameObject menuContextuelTirerTooltip;
+
   void Start()
   {
+    menuContextuelReplacerTooltip = GameObject.Find("MenuContextuelReplacerTooltip");
+    menuContextuelTirerTooltip = GameObject.Find("MenuContextuelTirerTooltip");
     spriteR = GetComponent<SpriteRenderer>();
+
+    switch (name)
+      {
+      case "MenuContextuelReplacer":
+        menuContextuelReplacerTooltip.SetActive(false);
+        break;
+      case "MenuContextuelTirer":
+        menuContextuelTirerTooltip.SetActive(false);
+        break;
+      }
   }
 
   public bool Collision()
@@ -38,11 +53,29 @@ public class MenuContextuelButton : MonoBehaviour
   public void MouseExit()
   {
     ChangeColor(colorExit);
+    switch (name)
+      {
+      case "MenuContextuelReplacer":
+        menuContextuelReplacerTooltip.SetActive(false);
+        break;
+      case "MenuContextuelTirer":
+        menuContextuelTirerTooltip.SetActive(false);
+        break;
+      }
   }
 
   public void MouseOver()
   {
     ChangeColor(colorEnter);
+    switch (name)
+      {
+      case "MenuContextuelReplacer":
+        menuContextuelReplacerTooltip.SetActive(true);
+        break;
+      case "MenuContextuelTirer":
+        menuContextuelTirerTooltip.SetActive(true);
+        break;
+      }
   }
 
   public void Disable()
