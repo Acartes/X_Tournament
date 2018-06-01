@@ -180,7 +180,6 @@ public class SpellManager : NetworkBehaviour
 
     spellSuccess = true;
     GameManager.Instance.manaGlobalActual -= selectedSpell.costPA;
-    UIManager.Instance.UpdateRemaningMana();
 
     if (ManaManager.Instance == null)
       return;
