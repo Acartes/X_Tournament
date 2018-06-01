@@ -40,7 +40,13 @@ public class EffectManager : NetworkBehaviour
   /// <summary>Check toutes les fonctions de cette classe.</summary>
   public void Push(GameObject objAfflicted, CaseData caseAfflicted, int pushValue, PushType pushType, Direction pushDirection = Direction.Front)
   {
-    if (PushBehaviour.Instance.ienumeratorList.Count != 0)
+    StartCoroutine(PushDelayed(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection));
+  }
+
+  IEnumerator PushDelayed(GameObject objAfflicted, CaseData caseAfflicted, int pushValue, PushType pushType, Direction pushDirection = Direction.Front)
+  {
+    yield return new WaitForSeconds(0.05f);
+        if (PushBehaviour.Instance.ienumeratorList.Count != 0)
     {
       PushBehaviour.Instance.StopCoroutine(PushBehaviour.Instance.ienumeratorList[0]);
       Debug.Log(PushBehaviour.Instance.ienumeratorList[0].ToString());
@@ -55,6 +61,7 @@ public class EffectManager : NetworkBehaviour
 
     PushBehaviour.Instance.PushCheck(objAfflicted, pushValue, caseAfflicted, pushType, pushDirection);
     PushBehaviour.Instance.MultiplePushStart();
+
   }
 
   /// <summary>Un push multiple. Ne marche pas avec la tornade.</summary>
@@ -72,16 +79,19 @@ public class EffectManager : NetworkBehaviour
     GameManager.Instance.manaGlobalActual = Mathf.Clamp(GameManager.Instance.manaGlobalActual, 0, GameManager.Instance.manaGlobalMax); // on peut pas dépasser le max
   }
 
-  public void ChangePR(PersoData persoAfflicted, int number)
+  public void ChangePr(PersoData persoAfflicted, int number)
   {
     persoAfflicted.actualPointResistance += number;
     persoAfflicted.actualPointResistance = Mathf.Clamp(persoAfflicted.actualPointResistance, 0, persoAfflicted.maxPointResistance); // on peut pas dépasser le max
+    InfoPerso.Instance.stats.updatePr(persoAfflicted.actualPointResistance);
+
   }
 
-  public void ChangePM(PersoData persoAfflicted, int number)
+  public void ChangePm(PersoData persoAfflicted, int number)
   {
     persoAfflicted.actualPointMovement += number;
     persoAfflicted.actualPointMovement = Mathf.Clamp(persoAfflicted.actualPointMovement, 0, persoAfflicted.maxPointMovement); // on peut pas dépasser le max
+    InfoPerso.Instance.stats.updatePm(persoAfflicted.actualPointMovement);
   }
 
   public void ChangePADebuff(int number)
@@ -89,12 +99,12 @@ public class EffectManager : NetworkBehaviour
     GameManager.Instance.paDebuff += number;
   }
 
-  public void ChangePMDebuff(PersoData persoAfflicted, int number)
+  public void ChangePmDebuff(PersoData persoAfflicted, int number)
   {
     persoAfflicted.pmDebuff += number;
   }
 
-  public void ChangePR(SummonData summonAfflicted, int number)
+  public void ChangePr(SummonData summonAfflicted, int number)
   {
     summonAfflicted.actualPointResistance += number;
   }

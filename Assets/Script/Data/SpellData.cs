@@ -30,6 +30,7 @@ public class SpellData : NetworkBehaviour
   public bool hurtWhenStopped;
 
   public SummonData summonedObj;
+  public bool rotateSummon;
   /// <summary>
   /// Specifique au sort direct de feu
   /// Fait une invocation dans les 4 directions autour de la cible
@@ -37,6 +38,8 @@ public class SpellData : NetworkBehaviour
   public bool summonOnCross;
   SummonData summonedObjInstancied;
   public bool isDirect;
+
+  public SpellData nextSpell;
 
   public Sprite buttonSprite;
 
@@ -391,8 +394,15 @@ public class SpellData : NetworkBehaviour
   {
     BeforeFeedbackManager.Instance.HidePrediction();
 
+    if (rotateSummon)
+    {
+      ApplyRotateEffect(objAfflicted);
+    }
+
     if (pushValue != 0)
+    {
       ApplyPushEffect(objAfflicted);
+    }
     else
     {
       ApplyStatsEffect(objAfflicted);
@@ -453,21 +463,21 @@ public class SpellData : NetworkBehaviour
       {
         if (damagePR != 0)
         {
-          EffectManager.Instance.ChangePR(persoAfflicted, -damagePR);
+          EffectManager.Instance.ChangePr(persoAfflicted, -damagePR);
           AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject);
         }
         EffectManager.Instance.ChangePADebuff(-damagePA);
-        EffectManager.Instance.ChangePMDebuff(persoAfflicted, -damagePM);
+        EffectManager.Instance.ChangePmDebuff(persoAfflicted, -damagePM);
       }
       else if (persoAfflicted.owner == SelectionManager.Instance.selectedPersonnage.owner)
       {
         if (damagePR != 0)
         {
-          EffectManager.Instance.ChangePR(persoAfflicted, damagePR);
+          EffectManager.Instance.ChangePr(persoAfflicted, damagePR);
           AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject, true);
         }
         GameManager.Instance.manaGlobalActual += damagePA;
-        EffectManager.Instance.ChangePM(persoAfflicted, damagePM);
+        EffectManager.Instance.ChangePm(persoAfflicted, damagePM);
       }
 
       if (summonAfflicted != null)
@@ -476,12 +486,37 @@ public class SpellData : NetworkBehaviour
 
         if (damagePR != 0)
         {
-          EffectManager.Instance.ChangePR(summonAfflicted, -damagePR);
+          EffectManager.Instance.ChangePr(summonAfflicted, -damagePR);
           AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject);
         }
       }
       FXManager.Instance.Show(animatorSpell, caseAfflicted.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
 
+    }
+  }
+
+  public void ApplyRotateEffect(GameObject objAfflicted)
+  {
+    CaseData initialCase = objAfflicted.GetComponent<CaseData>();
+    CaseData tempCase = initialCase.GetCaseRelativeCoordinate(0, -1);
+    if (tempCase != null && tempCase.summonData != null && tempCase.summonData == SpellManager.Instance.lastCaseUsed.summonData)
+    {
+      tempCase.summonData.pushDirection = Direction.Front;
+    }
+    tempCase = initialCase.GetCaseRelativeCoordinate(0, 1);
+    if (tempCase != null && tempCase.summonData != null && tempCase.summonData == SpellManager.Instance.lastCaseUsed.summonData)
+    {
+      tempCase.summonData.pushDirection = Direction.Back;
+    }
+    tempCase = initialCase.GetCaseRelativeCoordinate(-1, 0);
+    if (tempCase != null && tempCase.summonData != null && tempCase.summonData == SpellManager.Instance.lastCaseUsed.summonData)
+    {
+      tempCase.summonData.pushDirection = Direction.Left;
+    }
+    tempCase = initialCase.GetCaseRelativeCoordinate(1, 0);
+    if (tempCase != null && tempCase.summonData != null && tempCase.summonData == SpellManager.Instance.lastCaseUsed.summonData)
+    {
+      tempCase.summonData.pushDirection = Direction.Right;
     }
   }
 }

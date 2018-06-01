@@ -74,6 +74,10 @@ public class PersoData : NetworkBehaviour
 
     RosterManager.Instance.listHero.Add(this);
     TurnManager.Instance.changeTurnEvent += OnChangeTurn;
+
+    actualPointResistance = maxPointResistance;
+    actualPointMovement = maxPointMovement;
+    actualPointAction = maxPointAction;
   }
 
   void OnDisable()
@@ -96,7 +100,7 @@ public class PersoData : NetworkBehaviour
     {
       ResetPM();
       ResetPA();
-      EffectManager.Instance.ChangePM(this, pmDebuff);
+      EffectManager.Instance.ChangePm(this, pmDebuff);
       pmDebuff = 0;
       if (timeStunned == 1)
       {

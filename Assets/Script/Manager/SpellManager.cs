@@ -24,6 +24,8 @@ public class SpellManager : NetworkBehaviour
 
   public Dictionary<string, PersoData> PersosHitPerSpell = new Dictionary<string, PersoData>();
 
+  public CaseData lastCaseUsed;
+
   // ******************** //
   // ** Initialisation ** // Fonctions de départ, non réutilisable
   // ******************** //
@@ -79,6 +81,7 @@ public class SpellManager : NetworkBehaviour
 
   void OnNewClick()
   { // Lors d'un click sur une case
+
     if (GameManager.Instance.actualAction != PersoAction.isCasting)
       return;
 
@@ -119,6 +122,12 @@ public class SpellManager : NetworkBehaviour
 
     selectedSpell = ChooseSpell(IDSpell);
 
+    if(IDSpell == 3)
+    {
+      selectedSpell = ChooseSpell(1).nextSpell;
+      SelectionManager.Instance.selectedCase = lastCaseUsed;
+    }
+
     // enough PA? (global PA/mana)
     if (GameManager.Instance.manaGlobalActual < selectedSpell.costPA)
       {
@@ -136,13 +145,11 @@ public class SpellManager : NetworkBehaviour
     selectedPersonnage.animator.SetBool("Idle", false);
     selectedPersonnage.animator.SetBool("Cast", true);
 
-    if (selectedPersonnage == null)// perso exist?
-      return;
-
     if (selectedSpell == null)// spell exist?
       return;
 
-
+    if (selectedPersonnage == null && !selectedSpell.rotateSummon)// perso exist?
+      return;
 
     GameManager.Instance.actualAction = PersoAction.isCasting;
     SelectionManager.Instance.DisablePersoSelection();
@@ -160,89 +167,99 @@ public class SpellManager : NetworkBehaviour
     PersoData isPersoTarget = null;
 
     if (hoveredCase.personnageData != null)
-      {
-        PersosHitPerSpell.TryGetValue(selectedSpell.name, out isPersoTarget);
-      }
+    {
+      PersosHitPerSpell.TryGetValue(selectedSpell.name, out isPersoTarget);
+    }
 
     if (((Statut.canTarget & hoveredCase.statut) != Statut.canTarget)
         || (hoveredCase.personnageData != null && isPersoTarget != null))
-      {
-        StartCoroutine(SpellEnd());
-        return;
-      }
+    {
+      StartCoroutine(SpellEnd());
+      return;
+    }
 
     spellSuccess = true;
     GameManager.Instance.manaGlobalActual -= selectedSpell.costPA;
     UIManager.Instance.UpdateRemaningMana();
 
+    if (ManaManager.Instance == null)
+      return;
+
+    ManaManager.Instance.ChangeActualMana(SelectionManager.Instance.selectedPersonnage.owner, selectedSpell.costPA);
+
     if (SummonManager.Instance.lastSummonInstancied != null && !selectedSpell.summonOnCross) // normal summon
+    {
+      SummonData lastSummonInstancied = SummonManager.Instance.lastSummonInstancied;
+      lastSummonInstancied.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
+      lastSummonInstancied.GetComponent<Animator>().enabled = true;
+      lastSummonInstancied.GetComponent<BoxCollider2D>().enabled = true;
+      SummonManager.Instance.AddSummon(lastSummonInstancied);
+      GameObject ownerCircle = lastSummonInstancied.originPoint.GetChild(0).gameObject;
+      if (lastSummonInstancied.owner == Player.Red)
       {
-        SummonData lastSummonInstancied = SummonManager.Instance.lastSummonInstancied;
-        lastSummonInstancied.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
-        lastSummonInstancied.GetComponent<Animator>().enabled = true;
-        lastSummonInstancied.GetComponent<BoxCollider2D>().enabled = true;
-        SummonManager.Instance.AddSummon(lastSummonInstancied);
-        GameObject ownerCircle = lastSummonInstancied.originPoint.GetChild(0).gameObject;
-        if (lastSummonInstancied.owner == Player.Red)
-          {
-            ownerCircle.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.4f);
-          }
-        if (lastSummonInstancied.owner == Player.Blue)
-          {
-            ownerCircle.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.4f);
-          }
+        ownerCircle.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.4f);
       }
+      if (lastSummonInstancied.owner == Player.Blue)
+      {
+        ownerCircle.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.4f);
+      }
+    }
     if (SummonManager.Instance.crossSummonList != null && selectedSpell.summonOnCross) // cross summon
+    {
+      foreach (SummonData item in SummonManager.Instance.crossSummonList)
       {
-        foreach (SummonData item in SummonManager.Instance.crossSummonList)
-          {
-            if (item.transform.position.x > 500)
-              {
-                Destroy(item.gameObject);
-                continue;
-              }
-            item.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
-            item.GetComponent<Animator>().enabled = true;
-            item.GetComponent<BoxCollider2D>().enabled = true;
-            GameObject ownerCircle = item.originPoint.GetChild(0).gameObject;
-            if (item.owner == Player.Red)
-              {
-                ownerCircle.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.4f);
-              }
-            if (item.owner == Player.Blue)
-              {
-                ownerCircle.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.4f);
-              }
-          }
-        SummonManager.Instance.crossSummonList.Clear();
+        if (item.transform.position.x > 500)
+        {
+          Destroy(item.gameObject);
+          continue;
+        }
+        item.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
+        item.GetComponent<Animator>().enabled = true;
+        item.GetComponent<BoxCollider2D>().enabled = true;
+        GameObject ownerCircle = item.originPoint.GetChild(0).gameObject;
+        if (item.owner == Player.Red)
+        {
+          ownerCircle.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.4f);
+        }
+        if (item.owner == Player.Blue)
+        {
+          ownerCircle.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.4f);
+        }
       }
+      SummonManager.Instance.crossSummonList.Clear();
+    }
 
     foreach (CaseData obj in CaseManager.listAllCase)
+    {
+      if ((Statut.atAoE & obj.statut) == Statut.atAoE)
       {
-        if ((Statut.atAoE & obj.statut) == Statut.atAoE)
-          {
-            if (((ObjectType.AllyPerso & selectedSpell.affectedTarget) == ObjectType.AllyPerso) && obj.personnageData != null)
-              {
-                selectedSpell.ApplyEffect(obj.personnageData.gameObject);
-              }
+        if (selectedSpell.nextSpell) // sert juste pour determiner l'ancienne case de la tornade pour la tourner
+        {
+          lastCaseUsed = obj;
+        }
+        if (((ObjectType.AllyPerso & selectedSpell.affectedTarget) == ObjectType.AllyPerso) && obj.personnageData != null)
+        {
+          selectedSpell.ApplyEffect(obj.personnageData.gameObject);
+        }
 
-            if (((ObjectType.Ballon & selectedSpell.affectedTarget) == ObjectType.Ballon) && obj.ballon != null)
-              {
-                selectedSpell.ApplyEffect(obj.ballon.gameObject);
-              }
+        if (((ObjectType.Ballon & selectedSpell.affectedTarget) == ObjectType.Ballon) && obj.ballon != null)
+        {
+          selectedSpell.ApplyEffect(obj.ballon.gameObject);
+        }
 
-            if (((ObjectType.Invoc & selectedSpell.affectedTarget) == ObjectType.Invoc) && obj.summonData != null)
-              {
-                selectedSpell.ApplyEffect(obj.summonData.gameObject);
-              }
-          }
+        if (((ObjectType.Invoc & selectedSpell.affectedTarget) == ObjectType.Invoc) && obj.summonData != null)
+        {
+          selectedSpell.ApplyEffect(obj.summonData.gameObject);
+        }
+
+        if (selectedSpell.rotateSummon)
+        {
+          selectedSpell.ApplyEffect(obj.gameObject);
+          break;
+        }
       }
-    StartCoroutine(SpellEnd());
-  }
-
-  void SpellStart()
-  {
-
+    }
+      StartCoroutine(SpellEnd());
   }
 
   public IEnumerator SpellEnd()
@@ -285,6 +302,11 @@ public class SpellManager : NetworkBehaviour
     SelectionManager.Instance.EnablePersoSelection();
     MoveBehaviour.Instance.StopAllCoroutines();
     StartCoroutine(TurnManager.Instance.EnableFinishTurn());
+
+    if (selectedSpell.nextSpell)
+    {
+      SpellButtonClick(3);
+    }
   }
 
   /// <summary>Cible le bon sort entre les boutons</summary>

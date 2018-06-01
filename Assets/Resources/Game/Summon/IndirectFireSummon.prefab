@@ -309,7 +309,7 @@ MonoBehaviour:
   originPoint: {fileID: 4541752187799740}
   caseActual: {fileID: 0}
   actualPointResistance: 0
-  maxPointResistance: 2
+  maxPointResistance: 1
   invulnerable: 1
   makeBallExplosive: 1
   hurtWhenBounce: 0

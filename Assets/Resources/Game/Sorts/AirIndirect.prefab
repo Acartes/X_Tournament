@@ -67,8 +67,11 @@ MonoBehaviour:
   hurtWhenStopped: 0
   summonedObj: {fileID: 114910890263424662, guid: 13d82c74e385f504cb8b9fbd71952d03,
     type: 2}
+  rotateSummon: 0
   summonOnCross: 0
   isDirect: 0
+  nextSpell: {fileID: 114539509967211268, guid: 031d6e7e44ae9914fb7904535945d61c,
+    type: 2}
   buttonSprite: {fileID: 21300000, guid: d463a09644c6feb459e6cdf546e9e780, type: 3}
   tooltipTitle: Sort Indirect <color=#00ff00ff>Air</color>
   tooltipRange: "<color=#bbbbbbff>Port\xE9e : </color>4 cases"

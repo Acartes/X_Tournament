@@ -90,9 +90,9 @@ public class PlacementBehaviour : NetworkBehaviour
         SelectionManager.Instance.selectedPersonnage = HoverManager.Instance.hoveredPersonnage; // total forcage, préférer SelectPerso() in-game
         InfoPerso.Instance.PersoSelected(SelectionManager.Instance.selectedPersonnage); // total forcage, préférer SelectPerso() in-game
 
-        InfoPerso.Instance.stats.changePm(SelectionManager.Instance.selectedPersonnage.actualPointMovement, SelectionManager.Instance.selectedPersonnage.maxPointMovement);
-        InfoPerso.Instance.stats.changePr(SelectionManager.Instance.selectedPersonnage.actualPointResistance, SelectionManager.Instance.selectedPersonnage.maxPointResistance);
-        InfoPerso.Instance.stats.changePo(SelectionManager.Instance.selectedPersonnage.shotStrenght, SelectionManager.Instance.selectedPersonnage.shotStrenght);
+        InfoPerso.Instance.stats.updatePm(SelectionManager.Instance.selectedPersonnage.actualPointMovement);
+        InfoPerso.Instance.stats.updatePr(SelectionManager.Instance.selectedPersonnage.actualPointResistance);
+        InfoPerso.Instance.stats.updatePo(SelectionManager.Instance.selectedPersonnage.shotStrenght);
       }
 
         // Fait disparaître un perso placé sur une case

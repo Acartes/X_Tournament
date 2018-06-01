@@ -20,6 +20,7 @@ public class BallonData : NetworkBehaviour
   [Space(100)]
   public bool isMoving = false;
   public bool isExplosive = false;
+  public Player explosionOwner = Player.Neutral;
 
   [Header("  Temps")]
   public float travelTimeBallon;
@@ -89,6 +90,7 @@ public class BallonData : NetworkBehaviour
     if (isExplosive)
     {
       explode();
+      yield return null;
     }
     GameObject nextPosition;
 
@@ -289,8 +291,9 @@ public class BallonData : NetworkBehaviour
     if (originCasePos.x < targetCasePos.x && originCasePos.y < targetCasePos.y)
       ChangeRotation(Direction.SudOuest);
   }
-  public void setExplosive()
+  public void setExplosive(Player owner)
   {
+    explosionOwner = owner;
     img.material = shaderExplosive;
     isExplosive = true;
   }
@@ -321,27 +324,26 @@ public class BallonData : NetworkBehaviour
 
     if (tempCase.personnageData != null)
     {
-      Debug.Log(tempCase.personnageData + " | stun time : " + tempCase.personnageData.timeStunned);
       if (tempCase.personnageData.timeStunned > 0)
       {
         return;
       }
 
       EffectManager.Instance.MultiplePush(tempCase.personnageData.gameObject, tempCase, 1, PushType.FromTerrain, direction);
-      if (tempCase.personnageData.owner != SelectionManager.Instance.selectedPersonnage.owner)
+      if (tempCase.personnageData.owner == explosionOwner)
       {
-        EffectManager.Instance.ChangePR(tempCase.personnageData, -1);
-        AfterFeedbackManager.Instance.PRText(1, tempCase.gameObject); // la case d'arrivée est PushBehaviour.Instance.pathList[0].gameObject
+        EffectManager.Instance.ChangePr(tempCase.personnageData, 1);
+        AfterFeedbackManager.Instance.PRText(1, tempCase.gameObject, true); // la case d'arrivée est PushBehaviour.Instance.pathList[0].gameObject
       }
-      else if (tempCase.personnageData.owner == SelectionManager.Instance.selectedPersonnage.owner)
+      else if (tempCase.personnageData.owner != explosionOwner)
       {
-        EffectManager.Instance.ChangePR(tempCase.personnageData, 1);
-        AfterFeedbackManager.Instance.PRText(1, tempCase.gameObject, true);
+        EffectManager.Instance.ChangePr(tempCase.personnageData, -1);
+        AfterFeedbackManager.Instance.PRText(1, tempCase.gameObject);
       }
     }
     if (tempCase.summonData != null && !tempCase.summonData.invulnerable)
     {
-      EffectManager.Instance.ChangePR(tempCase.summonData, -1);
+      EffectManager.Instance.ChangePr(tempCase.summonData, -1);
       AfterFeedbackManager.Instance.PRText(1, tempCase.gameObject);
     }
   }

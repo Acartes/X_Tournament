@@ -195,7 +195,7 @@ public class MoveBehaviour : NetworkBehaviour
 
         selectedPersonnage.RotateTowards(path.gameObject);
         SelectionManager.Instance.selectedPersonnage.actualPointMovement -= 1;
-        InfoPerso.Instance.stats.changePm(SelectionManager.Instance.selectedPersonnage.actualPointMovement, SelectionManager.Instance.selectedPersonnage.maxPointMovement);
+        InfoPerso.Instance.stats.updatePm(SelectionManager.Instance.selectedPersonnage.actualPointMovement);
 
         while (selectedPersonnage.transform.position != path.transform.position - originPoint)
         {

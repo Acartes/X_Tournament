@@ -45,7 +45,7 @@ public class PushBehaviour : NetworkBehaviour
   // ** Fonctions ** // Fonctions réutilisables ailleurs
   // *************** //
 
-  /// <summary>Check et applique l'effet de poussée.</summary>
+  /// <summary>Check et prépare l'effet de poussée.</summary>
   public void PushCheck(GameObject obj, int givenPushValue, CaseData caseAfflicted, PushType pushType, Direction pushDirection = Direction.Front)
   {
     Direction persoDirection = Direction.None;
@@ -120,6 +120,7 @@ public class PushBehaviour : NetworkBehaviour
       case PushType.FromTarget:
         GetShownCase(obj, givenPushValue, caseAfflicted, pushType, pushDirection);
         stillTornadoDamage = false;
+
         for (int i = 0; i < pushValue; i++)
         {
           if (pushDirection == Direction.Left)
@@ -129,7 +130,9 @@ public class PushBehaviour : NetworkBehaviour
             tempCase = caseAfflicted.GetCaseAtRight(persoDirection);
 
           if (pushDirection == Direction.Back)
+          {
             tempCase = caseAfflicted.GetCaseAtBack(persoDirection);
+          }
 
           if (pushDirection == Direction.Front)
             tempCase = caseAfflicted.GetCaseInFront(persoDirection);
@@ -150,7 +153,6 @@ public class PushBehaviour : NetworkBehaviour
 
         if (caseNumberRestant != 0)
         {
-
           for (int i = 0; i < caseNumberRestant - 1; i++)
           {
             if (pushDirection == Direction.Left)
@@ -252,6 +254,8 @@ public class PushBehaviour : NetworkBehaviour
 
     bool objectCollision = false;
 
+    PersoData persoSelected = SelectionManager.Instance.selectedPersonnage;
+
     foreach (Transform path in tempPath)
     {
       if (path.GetComponent<CaseData>().casePathfinding == PathfindingCase.NonWalkable)
@@ -349,7 +353,7 @@ public class PushBehaviour : NetworkBehaviour
       pathRestant--;
     }
     GameManager.Instance.actualAction = PersoAction.isSelected;
-    SelectionManager.Instance.selectedCase = SelectionManager.Instance.selectedPersonnage.persoCase;
+    SelectionManager.Instance.selectedCase = persoSelected.persoCase;
     CaseManager.Instance.RemovePath();
 
     if (objectCollision == false && objAfflicted.GetComponent<PersoData>() != null)
@@ -376,7 +380,6 @@ public class PushBehaviour : NetworkBehaviour
 
   public void GetShownCase(GameObject obj, int givenPushValue, CaseData caseAfflicted, PushType pushType, Direction pushDirection = Direction.Front)
   {
-    Debug.Log(caseAfflicted);
     CaseData nextCase = caseAfflicted;
     int y = pushValue;
     caseFinalShow = null;
@@ -427,7 +430,9 @@ public class PushBehaviour : NetworkBehaviour
         caseFinalShow = nextCase.GetCaseAtRight(SelectionManager.Instance.selectedPersonnage.persoDirection);
 
       if (pushDirection == Direction.Back)
+      {
         caseFinalShow = nextCase.GetCaseAtBack(SelectionManager.Instance.selectedPersonnage.persoDirection);
+      }
 
       if (pushDirection == Direction.Front)
         caseFinalShow = nextCase.GetCaseInFront(SelectionManager.Instance.selectedPersonnage.persoDirection);

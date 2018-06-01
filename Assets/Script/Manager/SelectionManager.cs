@@ -89,9 +89,9 @@ public class SelectionManager : NetworkBehaviour
       }
     if (selectedPersonnage != null)
       {
-        InfoPerso.Instance.stats.changePm(Instance.selectedPersonnage.actualPointMovement, Instance.selectedPersonnage.maxPointMovement);
-        InfoPerso.Instance.stats.changePr(Instance.selectedPersonnage.actualPointResistance, Instance.selectedPersonnage.maxPointResistance);
-        InfoPerso.Instance.stats.changePo(Instance.selectedPersonnage.shotStrenght, Instance.selectedPersonnage.shotStrenght);
+        InfoPerso.Instance.stats.updatePm(Instance.selectedPersonnage.actualPointMovement);
+        InfoPerso.Instance.stats.updatePr(Instance.selectedPersonnage.actualPointResistance);
+        InfoPerso.Instance.stats.updatePo(Instance.selectedPersonnage.shotStrenght);
       }
   }
 
@@ -176,17 +176,17 @@ public class SelectionManager : NetworkBehaviour
       {
         selectedPersonnage = RosterManager.Instance.listHero[0];
 
-        InfoPerso.Instance.stats.changePm(selectedPersonnage.actualPointMovement, selectedPersonnage.maxPointMovement);
-        InfoPerso.Instance.stats.changePr(selectedPersonnage.actualPointResistance, selectedPersonnage.maxPointResistance);
-        InfoPerso.Instance.stats.changePo(selectedPersonnage.shotStrenght, selectedPersonnage.shotStrenght);
+        InfoPerso.Instance.stats.updatePm(selectedPersonnage.actualPointMovement);
+        InfoPerso.Instance.stats.updatePr(selectedPersonnage.actualPointResistance);
+        InfoPerso.Instance.stats.updatePo(selectedPersonnage.shotStrenght);
       }
     if (TurnManager.Instance.currentPlayer == Player.Blue)
       {
         selectedPersonnage = RosterManager.Instance.listHero[4];
 
-        InfoPerso.Instance.stats.changePm(selectedPersonnage.actualPointMovement, Instance.selectedPersonnage.maxPointMovement);
-        InfoPerso.Instance.stats.changePr(selectedPersonnage.actualPointResistance, Instance.selectedPersonnage.maxPointResistance);
-        InfoPerso.Instance.stats.changePo(selectedPersonnage.shotStrenght, selectedPersonnage.shotStrenght);
+        InfoPerso.Instance.stats.updatePm(selectedPersonnage.actualPointMovement);
+        InfoPerso.Instance.stats.updatePr(selectedPersonnage.actualPointResistance);
+        InfoPerso.Instance.stats.updatePo(selectedPersonnage.shotStrenght);
       }
   }
 }

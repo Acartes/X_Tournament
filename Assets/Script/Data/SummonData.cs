@@ -140,8 +140,8 @@ public class SummonData : NetworkBehaviour
           AfterFeedbackManager.Instance.PRText(damagePR, objAfflicted);
         }
         EffectManager.Instance.ChangePA(-damagePA);
-        EffectManager.Instance.ChangePR(persoAfflicted, -damagePR);
-        EffectManager.Instance.ChangePM(persoAfflicted, -damagePM);
+        EffectManager.Instance.ChangePr(persoAfflicted, -damagePR);
+        EffectManager.Instance.ChangePm(persoAfflicted, -damagePM);
 
       }
     }
@@ -150,7 +150,7 @@ public class SummonData : NetworkBehaviour
       caseAfflicted = ballonAfflicted.ballonCase;
       if (makeBallExplosive)
       {
-        ballonAfflicted.setExplosive();
+        ballonAfflicted.setExplosive(owner);
       }
     }
 
