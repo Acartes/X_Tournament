@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38074008, b: 0.35872707, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -14962,7 +14962,7 @@ Prefab:
     - target: {fileID: 20401718109909976, guid: 7ea3e8ab9a1eceb479dcc12b1b775395,
         type: 2}
       propertyPath: orthographic size
-      value: 6.13
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114813047906774396, guid: 7ea3e8ab9a1eceb479dcc12b1b775395,
         type: 2}
@@ -14972,7 +14972,7 @@ Prefab:
     - target: {fileID: 114813047906774396, guid: 7ea3e8ab9a1eceb479dcc12b1b775395,
         type: 2}
       propertyPath: maxZoomOut
-      value: 6.13
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114813047906774396, guid: 7ea3e8ab9a1eceb479dcc12b1b775395,
         type: 2}
