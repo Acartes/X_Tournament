@@ -76,18 +76,7 @@ MonoBehaviour:
   tooltipEffect: "Invoque un obstacle \xE0 l\u2019emplacement cibl\xE9, il bloque
     la ligne de vue, ni\r la balle ni les personnages ne peuvent marcher dessus, il
     se d\xE9truit apr\xE8s avoir re\xE7u\r un coup, un impact (balle, punch) ou lors
-    d\u2019une combinaison \xE9l\xE9mentaire l\u2019incluant.\nInvoque un obstacle
-    \xE0 l\u2019emplacement cibl\xE9, il bloque la ligne de vue, ni\r la balle ni
-    les personnages ne peuvent marcher dessus, il se d\xE9truit apr\xE8s avoir re\xE7u\r
-    un coup, un impact (balle, punch) ou lors d\u2019une combinaison \xE9l\xE9mentaire
-    l\u2019incluant.\nInvoque un obstacle \xE0 l\u2019emplacement cibl\xE9, il bloque
-    la ligne de vue, ni\r la balle ni les personnages ne peuvent marcher dessus, il
-    se d\xE9truit apr\xE8s avoir re\xE7u\r un coup, un impact (balle, punch) ou lors
-    d\u2019une combinaison \xE9l\xE9mentaire l\u2019incluant.\nInvoque un obstacle
-    \xE0 l\u2019emplacement cibl\xE9, il bloque la ligne de vue, ni\r la balle ni
-    les personnages ne peuvent marcher dessus, il se d\xE9truit apr\xE8s avoir re\xE7u\r
-    un coup, un impact (balle, punch) ou lors d\u2019une combinaison \xE9l\xE9mentaire
-    l\u2019incluant."
+    d\u2019une combinaison \xE9l\xE9mentaire l\u2019incluant."
   numberLimitCast: 0
   animatorSpell: {fileID: 9100000, guid: abf565835d8e64d4792d5309c23297f0, type: 2}
   affectedTarget: 4
