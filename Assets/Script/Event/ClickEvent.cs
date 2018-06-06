@@ -7,16 +7,19 @@ using UnityEngine.Networking;
 public class ClickEvent : NetworkBehaviour
 {
 
-    void OnMouseDown()
-    {
-        if (!SynchroManager.Instance.canPlayTurn())
-        {
-            return;
-        }
+  void OnMouseDown()
+  {
+    if (!SynchroManager.Instance.canPlayTurn())
+      {
+        return;
+      }
 
-        if (HoverManager.Instance.hoveredCase != null)
-        {
-            RpcFunctions.Instance.CmdSendClickEvent();
-        }
-    }
+    if (UIManager.Instance.UIIsHovered)
+      return;
+
+    if (HoverManager.Instance.hoveredCase != null)
+      {
+        RpcFunctions.Instance.CmdSendClickEvent();
+      }
+  }
 }
