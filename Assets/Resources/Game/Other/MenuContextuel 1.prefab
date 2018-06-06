@@ -362,8 +362,8 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1300091712238890}
-  m_Text: "Pour 1 de mana, replace la balle \nsur une des cases adjacentes au \npersonnage
-    selectionn\xE9."
+  m_Text: "Pour 1 point de d\xE9placement, replace la balle \nsur une des cases adjacentes
+    au \npersonnage selectionn\xE9."
   m_OffsetZ: 0
   m_CharacterSize: 16
   m_LineSpacing: 1

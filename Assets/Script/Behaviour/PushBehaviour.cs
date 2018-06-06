@@ -177,25 +177,53 @@ public class PushBehaviour : NetworkBehaviour
         }
         break;
       case PushType.FromTerrain:
-        if (pushDirection == Direction.SudOuest)
-          tempCase = caseAfflicted.GetBottomLeftCase();
-
-        if (pushDirection == Direction.SudEst)
-          tempCase = caseAfflicted.GetBottomRightCase();
-
-        if (pushDirection == Direction.NordOuest)
-          tempCase = caseAfflicted.GetTopLeftCase();
-
-        if (pushDirection == Direction.NordEst)
-          tempCase = caseAfflicted.GetTopRightCase();
-        if (tempCase == null || tempCase.casePathfinding == PathfindingCase.NonWalkable)
+        for (int i = 0; i < pushValue; i++)
         {
-          break;
-        }
-        pathList.Add(tempCase.transform);
-        caseAfflicted = tempCase;
-        break;
+          if (pushDirection == Direction.SudOuest)
+            tempCase = caseAfflicted.GetBottomLeftCase();
 
+          if (pushDirection == Direction.SudEst)
+            tempCase = caseAfflicted.GetBottomRightCase();
+
+          if (pushDirection == Direction.NordOuest)
+            tempCase = caseAfflicted.GetTopLeftCase();
+
+          if (pushDirection == Direction.NordEst)
+            tempCase = caseAfflicted.GetTopRightCase();
+
+          pathList.Add(tempCase.transform);
+          caseAfflicted = tempCase;
+          if (tempCase == null || tempCase.casePathfinding == PathfindingCase.NonWalkable)
+          {
+            break;
+          }
+        }
+
+        if (caseNumberRestant != 0)
+        {
+          for (int i = 0; i < caseNumberRestant - 1; i++)
+          {
+            if (pushDirection == Direction.SudOuest)
+              tempCase = caseAfflicted.GetBottomLeftCase();
+
+            if (pushDirection == Direction.SudEst)
+              tempCase = caseAfflicted.GetBottomRightCase();
+
+            if (pushDirection == Direction.NordOuest)
+              tempCase = caseAfflicted.GetTopLeftCase();
+
+            if (pushDirection == Direction.NordEst)
+              tempCase = caseAfflicted.GetTopRightCase();
+
+            pathList.Add(tempCase.transform);
+            caseAfflicted = tempCase;
+            if (tempCase == null || tempCase.casePathfinding == PathfindingCase.NonWalkable)
+            {
+              break;
+            }
+          }
+        }
+        break;
     }
 
     foreach (CaseData caseObj in CaseManager.Instance.GetAllCaseWithStatut(Statut.atPush))
@@ -238,11 +266,13 @@ public class PushBehaviour : NetworkBehaviour
     if (objAfflicted.GetComponent<PersoData>() != null)
     {
       originPoint = objAfflicted.GetComponent<PersoData>().originPoint.transform.localPosition;
+      objAfflicted.GetComponent<PersoData>().isPushed = true;
     }
 
     if (objAfflicted.GetComponent<BallonData>() != null)
     {
       originPoint = objAfflicted.GetComponent<BallonData>().offsetBallon;
+      objAfflicted.GetComponent<BallonData>().isPushed = true;
     }
 
     if (objAfflicted.GetComponent<SummonData>() != null)

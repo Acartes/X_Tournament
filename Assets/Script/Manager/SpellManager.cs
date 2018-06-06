@@ -14,7 +14,7 @@ public class SpellManager : NetworkBehaviour
 
   /// <summary>Montre à quelle portée les personnages vont être projetés avant de le lancer</summary>
   public SpellData selectedSpell;
-  bool spellSuccess = false;
+  public bool spellSuccess = false;
 
   public bool isSpellCasting = false;
 
@@ -72,7 +72,8 @@ public class SpellManager : NetworkBehaviour
 
   void OnNewHover(object sender, HoverArgs e)
   {
-    if (GameManager.Instance.actualAction != PersoAction.isCasting)
+    if (GameManager.Instance.actualAction != PersoAction.isCasting
+      || HoverManager.Instance.hoveredCase == null)
       return;
 
     selectedSpell.ShowAllFeedbacks();
@@ -122,12 +123,6 @@ public class SpellManager : NetworkBehaviour
 
     selectedSpell = ChooseSpell(IDSpell);
 
-    if(IDSpell == 3)
-    {
-      selectedSpell = ChooseSpell(1).nextSpell;
-      SelectionManager.Instance.selectedCase = lastCaseUsed;
-    }
-
     // enough PA? (global PA/mana)
     if (GameManager.Instance.manaGlobalActual < selectedSpell.costPA)
       {
@@ -163,6 +158,8 @@ public class SpellManager : NetworkBehaviour
   /// <summary>Le sort est lancé à un endroit</summary>
   void SpellCaseClick()
   {
+    spellSuccess = false;
+
     CaseData hoveredCase = HoverManager.Instance.hoveredCase;
     PersoData isPersoTarget = null;
 
@@ -186,22 +183,15 @@ public class SpellManager : NetworkBehaviour
 
     ManaManager.Instance.ChangeActualMana(SelectionManager.Instance.selectedPersonnage.owner, selectedSpell.costPA);
 
+    if (selectedSpell.rotateSummon) // rotate summon
+    {
+      selectedSpell.ApplyEffect(SummonManager.Instance.lastSummonInstancied.gameObject);
+      return;
+    }
+
     if (SummonManager.Instance.lastSummonInstancied != null && !selectedSpell.summonOnCross) // normal summon
     {
-      SummonData lastSummonInstancied = SummonManager.Instance.lastSummonInstancied;
-      lastSummonInstancied.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
-      lastSummonInstancied.GetComponent<Animator>().enabled = true;
-      lastSummonInstancied.GetComponent<BoxCollider2D>().enabled = true;
-      SummonManager.Instance.AddSummon(lastSummonInstancied);
-      GameObject ownerCircle = lastSummonInstancied.originPoint.GetChild(0).gameObject;
-      if (lastSummonInstancied.owner == Player.Red)
-      {
-        ownerCircle.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.4f);
-      }
-      if (lastSummonInstancied.owner == Player.Blue)
-      {
-        ownerCircle.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.4f);
-      }
+      SummonInvoc();
     }
     if (SummonManager.Instance.crossSummonList != null && selectedSpell.summonOnCross) // cross summon
     {
@@ -250,33 +240,28 @@ public class SpellManager : NetworkBehaviour
         {
           selectedSpell.ApplyEffect(obj.summonData.gameObject);
         }
-
-        if (selectedSpell.rotateSummon)
-        {
-          selectedSpell.ApplyEffect(obj.gameObject);
-          break;
-        }
       }
     }
       StartCoroutine(SpellEnd());
   }
 
-  /// <summary>Le sort est lancé à un endroit</summary>
-  void SpellRotateClick(Direction direction)
+  public void SummonInvoc(SummonData item = null)
   {
-    switch (direction)
+    SummonData lastSummonInstancied = SummonManager.Instance.lastSummonInstancied;
+    lastSummonInstancied.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
+    lastSummonInstancied.GetComponent<Animator>().enabled = true;
+    lastSummonInstancied.GetComponent<BoxCollider2D>().enabled = true;
+    SummonManager.Instance.AddSummon(lastSummonInstancied);
+    GameObject ownerCircle = lastSummonInstancied.originPoint.GetChild(0).gameObject;
+    if (lastSummonInstancied.owner == Player.Red)
     {
-      case Direction.Front:
-        break;
-      case Direction.Back:
-        break;
-      case Direction.Right:
-        break;
-      case Direction.Left:
-        break;
+      ownerCircle.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.4f);
+    }
+    if (lastSummonInstancied.owner == Player.Blue)
+    {
+      ownerCircle.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.4f);
     }
   }
-
 
   public IEnumerator SpellEnd()
   {
@@ -293,14 +278,16 @@ public class SpellManager : NetworkBehaviour
         obj.ChangeStatut(Statut.None, Statut.atPush);
         obj.ChangeStatut(Statut.None, Statut.canTarget);
       }
-
+    Debug.Log("spellSuccess is " + spellSuccess);
+    Debug.Log("SummonManager.Instance.lastSummonInstancied is " + SummonManager.Instance.lastSummonInstancied);
     if (!spellSuccess)
       {
         if (SummonManager.Instance.lastSummonInstancied != null) // sort indirect
           {
-            DestroyImmediate(SummonManager.Instance.lastSummonInstancied.gameObject);
-          }
-        if (SummonManager.Instance.crossSummonList != null) // prévisu cross
+        Debug.Log("DestroyImmediate(" + SummonManager.Instance.lastSummonInstancied.gameObject + ")");
+        DestroyImmediate(SummonManager.Instance.lastSummonInstancied.gameObject);
+      }
+      if (SummonManager.Instance.crossSummonList != null) // prévisu cross
           {
             foreach (SummonData item in SummonManager.Instance.crossSummonList)
               {
@@ -318,11 +305,6 @@ public class SpellManager : NetworkBehaviour
     SelectionManager.Instance.EnablePersoSelection();
     MoveBehaviour.Instance.StopAllCoroutines();
     StartCoroutine(TurnManager.Instance.EnableFinishTurn());
-
-    if (selectedSpell.nextSpell)
-    {
-      SpellButtonClick(3);
-    }
   }
 
   /// <summary>Cible le bon sort entre les boutons</summary>

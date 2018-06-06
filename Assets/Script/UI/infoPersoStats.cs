@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor;
 using UnityEngine.Networking;
 
 public class infoPersoStats : NetworkBehaviour

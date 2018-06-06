@@ -202,8 +202,13 @@ public class SpellData : NetworkBehaviour
     foreach (CaseData obj in rangeList)
     {
       if ((ObjectType.Invoc & allowedTarget) == ObjectType.Invoc)
-        if (obj.summonData != null && !targetList.Contains(obj))
-          targetList.Add(obj);
+      {
+        if (obj.summonData != null && !targetList.Contains(obj) && !obj.summonData.isTraversable)
+        {
+          if (pushValue == 0 || pushValue > 0 && !obj.summonData.isStatic)
+            targetList.Add(obj);
+        }
+      }
 
       if ((ObjectType.AllyPerso & allowedTarget) == ObjectType.AllyPerso)
         if (obj.personnageData != null && obj.personnageData.owner == GameManager.Instance.currentPlayer && !targetList.Contains(obj))
@@ -396,7 +401,7 @@ public class SpellData : NetworkBehaviour
 
     if (rotateSummon)
     {
-      ApplyRotateEffect(objAfflicted);
+      MenuRotateContexuel.Instance.transform.gameObject.SetActive(true);
     }
 
     if (pushValue != 0)
@@ -492,31 +497,6 @@ public class SpellData : NetworkBehaviour
       }
       FXManager.Instance.Show(animatorSpell, caseAfflicted.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
 
-    }
-  }
-
-  public void ApplyRotateEffect(GameObject objAfflicted)
-  {
-    CaseData initialCase = objAfflicted.GetComponent<CaseData>();
-    CaseData tempCase = initialCase.GetCaseRelativeCoordinate(0, -1);
-    if (tempCase != null && tempCase.summonData != null && tempCase.summonData == SpellManager.Instance.lastCaseUsed.summonData)
-    {
-      tempCase.summonData.pushDirection = Direction.Front;
-    }
-    tempCase = initialCase.GetCaseRelativeCoordinate(0, 1);
-    if (tempCase != null && tempCase.summonData != null && tempCase.summonData == SpellManager.Instance.lastCaseUsed.summonData)
-    {
-      tempCase.summonData.pushDirection = Direction.Back;
-    }
-    tempCase = initialCase.GetCaseRelativeCoordinate(-1, 0);
-    if (tempCase != null && tempCase.summonData != null && tempCase.summonData == SpellManager.Instance.lastCaseUsed.summonData)
-    {
-      tempCase.summonData.pushDirection = Direction.Left;
-    }
-    tempCase = initialCase.GetCaseRelativeCoordinate(1, 0);
-    if (tempCase != null && tempCase.summonData != null && tempCase.summonData == SpellManager.Instance.lastCaseUsed.summonData)
-    {
-      tempCase.summonData.pushDirection = Direction.Right;
     }
   }
 }

@@ -37,6 +37,7 @@ public class BallonData : NetworkBehaviour
   public float yCoord;
   public bool canRebond;
   public int casesCrossed;
+  public bool isPushed;
 
   Animator animator;
   public SpriteRenderer spriteR;
@@ -90,6 +91,7 @@ public class BallonData : NetworkBehaviour
     GameManager.Instance.actualAction = PersoAction.isShoting;
     TurnManager.Instance.DisableFinishTurn();
     MenuContextuel.Instance.isShoting = true;
+    isPushed = false;
 
     if (isExplosive)
     {

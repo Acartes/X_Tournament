@@ -52,8 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1e943ddd2f20214b8f4eafa5267c461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  costPA: 0
-  range: 1
+  costPA: 2
+  range: 5
   isLinear: 0
   areaOfEffect: 0
   damagePR: 0

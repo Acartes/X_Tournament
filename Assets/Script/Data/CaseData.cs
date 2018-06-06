@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -65,7 +64,7 @@ public class CaseData : NetworkBehaviour
   {
 
     switch (e.currentPhase)
-      {
+    {
       case Phase.Placement:
         ChangeStatut();
         break;
@@ -73,7 +72,7 @@ public class CaseData : NetworkBehaviour
         ChangeStatut(Statut.None, Statut.placementRed);
         ChangeStatut(Statut.None, Statut.placementBlue);
         break;
-      }
+    }
   }
 
   // ************* //
@@ -83,58 +82,58 @@ public class CaseData : NetworkBehaviour
   void OnTriggerEnter2D(Collider2D col)
   {
     if (col.tag == "Personnage")
+    {
+      personnageData = col.gameObject.GetComponent<PersoData>();
+      casePathfinding = PathfindingCase.NonWalkable;
+      col.gameObject.GetComponent<PersoData>().persoCase = this;
+      if (summonData != null)
       {
-        personnageData = col.gameObject.GetComponent<PersoData>();
-        casePathfinding = PathfindingCase.NonWalkable;
-        col.gameObject.GetComponent<PersoData>().persoCase = this;
-        if (summonData != null)
-          {
-            summonData.ApplyEffect(col.gameObject);
-          }
+        summonData.ApplyEffect(col.gameObject);
       }
+    }
 
     if (col.tag == "Ballon")
+    {
+      ballon = col.gameObject.GetComponent<BallonData>();
+      casePathfinding = PathfindingCase.NonWalkable;
+      col.gameObject.GetComponent<BallonData>().ballonCase = this;
+      col.gameObject.GetComponent<BallonData>().xCoord = xCoord;
+      col.gameObject.GetComponent<BallonData>().yCoord = yCoord;
+      if (summonData != null)
       {
-        ballon = col.gameObject.GetComponent<BallonData>();
-        casePathfinding = PathfindingCase.NonWalkable;
-        col.gameObject.GetComponent<BallonData>().ballonCase = this;
-        col.gameObject.GetComponent<BallonData>().xCoord = xCoord;
-        col.gameObject.GetComponent<BallonData>().yCoord = yCoord;
-        if (summonData != null)
-          {
-            summonData.ApplyEffect(col.gameObject);
-          }
-        if (CheckStatut(Statut.goalRed))
-          StartCoroutine(UIManager.Instance.ScoreChange(Player.Blue));
-
-        if (CheckStatut(Statut.goalBlue))
-          StartCoroutine(UIManager.Instance.ScoreChange(Player.Red));
+        summonData.ApplyEffect(col.gameObject);
       }
+      if (CheckStatut(Statut.goalRed))
+        StartCoroutine(UIManager.Instance.ScoreChange(Player.Blue));
+
+      if (CheckStatut(Statut.goalBlue))
+        StartCoroutine(UIManager.Instance.ScoreChange(Player.Red));
+    }
 
     if (col.tag == "Summon")
+    {
+      if (summonData != null && summonData != col.gameObject.GetComponent<SummonData>())
+        Destroy(summonData.gameObject);
+      summonData = col.gameObject.GetComponent<SummonData>();
+      if (col.gameObject.GetComponent<SummonData>().caseActual != this)
       {
-        if (summonData != null && summonData != col.gameObject.GetComponent<SummonData>())
-          Destroy(summonData.gameObject);
-        summonData = col.gameObject.GetComponent<SummonData>();
-        if (col.gameObject.GetComponent<SummonData>().caseActual != this)
-          {
-            if (!col.gameObject.GetComponent<SummonData>().isTraversable)
-              {
-                casePathfinding = PathfindingCase.NonWalkable;
-              }
+        if (!col.gameObject.GetComponent<SummonData>().isTraversable)
+        {
+          casePathfinding = PathfindingCase.NonWalkable;
+        }
 
-            if (personnageData != null)
-              {
-                summonData.ApplyEffect(personnageData.gameObject);
-              }
-            if (ballon != null)
-              {
-                summonData.ApplyEffect(ballon.gameObject);
-              }
+        if (personnageData != null)
+        {
+          summonData.ApplyEffect(personnageData.gameObject);
+        }
+        if (ballon != null)
+        {
+          summonData.ApplyEffect(ballon.gameObject);
+        }
 
-            col.gameObject.GetComponent<SummonData>().caseActual = this;
-          }
+        col.gameObject.GetComponent<SummonData>().caseActual = this;
       }
+    }
     TransparencyManager.Instance.CheckCaseTransparency(this);
   }
 
@@ -143,29 +142,29 @@ public class CaseData : NetworkBehaviour
     if (col.tag == "Personnage"
         && col.gameObject.GetComponent<BoxCollider2D>().enabled == true
         && GetComponent<PolygonCollider2D>().enabled == true)
-      {
-        personnageData = null;
-        casePathfinding = PathfindingCase.Walkable;
-        ChangeStatut(Statut.None, Statut.isSelected);
-        ChangeStatut(Statut.None, Statut.isControllable);
-      }
+    {
+      personnageData = null;
+      casePathfinding = PathfindingCase.Walkable;
+      ChangeStatut(Statut.None, Statut.isSelected);
+      ChangeStatut(Statut.None, Statut.isControllable);
+    }
 
     if (col.tag == "Ballon"
         && col.gameObject.GetComponent<BoxCollider2D>().enabled == true
         && GetComponent<PolygonCollider2D>().enabled == true)
-      {
-        ballon = null;
-        casePathfinding = PathfindingCase.Walkable;
-        ChangeStatut(Statut.None, Statut.canShot);
-      }
+    {
+      ballon = null;
+      casePathfinding = PathfindingCase.Walkable;
+      ChangeStatut(Statut.None, Statut.canShot);
+    }
 
     if (col.tag == "Summon"
         && GetComponent<PolygonCollider2D>().enabled == true)
-      {
-        if (!summonData.isTraversable)
-          casePathfinding = PathfindingCase.Walkable;
-        summonData = null;
-      }
+    {
+      if (!summonData.isTraversable)
+        casePathfinding = PathfindingCase.Walkable;
+      summonData = null;
+    }
     TransparencyManager.Instance.CheckCaseTransparency(this);
 
   }
@@ -238,17 +237,17 @@ public class CaseData : NetworkBehaviour
 
 
     if ((Statut.isHovered & statut) == Statut.isHovered)
-      {
-        spriteR.color = ColorManager.Instance.hoverColor;
-        if ((Statut.canReplace & statut) == Statut.canReplace)
-          spriteR.color = ColorManager.Instance.actionColor;
-        if ((Statut.canPunch & statut) == Statut.canPunch)
-          spriteR.color = ColorManager.Instance.actionColor;
-        if ((Statut.canShot & statut) == Statut.canShot)
-          spriteR.color = ColorManager.Instance.actionColor;
-        if ((Statut.isControllable & statut) == Statut.isControllable)
-          spriteR.color = ColorManager.Instance.actionColor;
-      }
+    {
+      spriteR.color = ColorManager.Instance.hoverColor;
+      if ((Statut.canReplace & statut) == Statut.canReplace)
+        spriteR.color = ColorManager.Instance.actionColor;
+      if ((Statut.canPunch & statut) == Statut.canPunch)
+        spriteR.color = ColorManager.Instance.actionColor;
+      if ((Statut.canShot & statut) == Statut.canShot)
+        spriteR.color = ColorManager.Instance.actionColor;
+      if ((Statut.isControllable & statut) == Statut.isControllable)
+        spriteR.color = ColorManager.Instance.actionColor;
+    }
 
     if ((Statut.canMove & statut) == Statut.canMove)
       spriteR.color = ColorManager.Instance.moveColor;
@@ -290,20 +289,20 @@ public class CaseData : NetworkBehaviour
     ShineColorIsRunning = true;
 
     while (ShineColorIsRunning)
+    {
+      Color colorx = color1;
+      color1 = color2;
+      color2 = colorx;
+      for (int i = 0; i < 100; i++)
       {
-        Color colorx = color1;
-        color1 = color2;
-        color2 = colorx;
-        for (int i = 0; i < 100; i++)
-          {
-            if (!ShineColorIsRunning)
-              break;
+        if (!ShineColorIsRunning)
+          break;
 
-            spriteR.color += (color1 - color2) / 100;
-            yield return new WaitForSeconds(time + 0.01f);
-          }
-
+        spriteR.color += (color1 - color2) / 100;
+        yield return new WaitForSeconds(time + 0.01f);
       }
+
+    }
   }
 
   /// <summary>Stop la fonction StartShineColor</summary>
@@ -445,7 +444,7 @@ public class CaseData : NetworkBehaviour
   public CaseData GetCaseInFront(Direction direction)
   {
     switch (direction)
-      {
+    {
       case Direction.NordEst:
         return GetCaseRelativeCoordinate(0, 1);
 
@@ -457,7 +456,7 @@ public class CaseData : NetworkBehaviour
 
       case Direction.SudOuest:
         return GetCaseRelativeCoordinate(0, -1);
-      }
+    }
     return null;
   }
 
@@ -465,7 +464,7 @@ public class CaseData : NetworkBehaviour
   public CaseData GetCaseAtRight(Direction direction)
   {
     switch (direction)
-      {
+    {
       case Direction.NordEst:
         return GetCaseRelativeCoordinate(-1, 0);
 
@@ -477,7 +476,7 @@ public class CaseData : NetworkBehaviour
 
       case Direction.SudOuest:
         return GetCaseRelativeCoordinate(1, 0);
-      }
+    }
     return null;
   }
 
@@ -485,7 +484,7 @@ public class CaseData : NetworkBehaviour
   public CaseData GetCaseAtLeft(Direction direction)
   {
     switch (direction)
-      {
+    {
       case Direction.NordEst:
         return GetCaseRelativeCoordinate(1, 0);
 
@@ -497,7 +496,7 @@ public class CaseData : NetworkBehaviour
 
       case Direction.SudOuest:
         return GetCaseRelativeCoordinate(-1, 0);
-      }
+    }
     return null;
   }
 
@@ -505,7 +504,7 @@ public class CaseData : NetworkBehaviour
   public CaseData GetCaseAtBack(Direction direction)
   {
     switch (direction)
-      {
+    {
       case Direction.NordEst:
         return GetCaseRelativeCoordinate(0, -1);
 
@@ -517,7 +516,7 @@ public class CaseData : NetworkBehaviour
 
       case Direction.SudOuest:
         return GetCaseRelativeCoordinate(0, 1);
-      }
+    }
     return null;
   }
 }

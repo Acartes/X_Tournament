@@ -45,8 +45,9 @@ public class EffectManager : NetworkBehaviour
 
   IEnumerator PushDelayed(GameObject objAfflicted, CaseData caseAfflicted, int pushValue, PushType pushType, Direction pushDirection = Direction.Front)
   {
-    yield return new WaitForSeconds(0.05f);
-        if (PushBehaviour.Instance.ienumeratorList.Count != 0)
+    if (objAfflicted.GetComponent<PersoData>())
+      yield return new WaitForSeconds(0.05f);
+    if (PushBehaviour.Instance.ienumeratorList.Count != 0)
     {
       PushBehaviour.Instance.StopCoroutine(PushBehaviour.Instance.ienumeratorList[0]);
       Debug.Log(PushBehaviour.Instance.ienumeratorList[0].ToString());
@@ -67,9 +68,41 @@ public class EffectManager : NetworkBehaviour
   /// <summary>Un push multiple. Ne marche pas avec la tornade.</summary>
   public void MultiplePush(GameObject objAfflicted, CaseData caseAfflicted, int pushValue, PushType pushType, Direction pushDirection = Direction.Front)
   {
+    StartCoroutine(MultiplePushDelayed(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection));
+  }
+
+  IEnumerator MultiplePushDelayed(GameObject objAfflicted, CaseData caseAfflicted, int pushValue, PushType pushType, Direction pushDirection = Direction.Front)
+  {
+    if (objAfflicted.GetComponent<PersoData>())
+      yield return new WaitForSeconds(0.10f);
+
+    if (objAfflicted.GetComponent<BallonData>() && objAfflicted.GetComponent<BallonData>().isPushed == false)
+    {
+      yield return new WaitForSeconds(0.12f);
+    }
+    if (objAfflicted.GetComponent<BallonData>() && objAfflicted.GetComponent<BallonData>().isPushed == true)
+    {
+      yield return new WaitForSeconds(0.02f);
+
+      if (PushBehaviour.Instance.ienumeratorList.Count != 0)
+      {
+        PushBehaviour.Instance.StopCoroutine(PushBehaviour.Instance.ienumeratorList[0]);
+        Debug.Log(PushBehaviour.Instance.ienumeratorList[0].ToString());
+        PushBehaviour.Instance.ienumeratorList.Remove(PushBehaviour.Instance.ienumeratorList[0]);
+      }
+      if (MoveBehaviour.Instance.ienumeratorList.Count != 0)
+      {
+        MoveBehaviour.Instance.StopCoroutine(MoveBehaviour.Instance.ienumeratorList[0]);
+        Debug.Log(MoveBehaviour.Instance.ienumeratorList[0].ToString());
+        MoveBehaviour.Instance.ienumeratorList.Remove(MoveBehaviour.Instance.ienumeratorList[0]);
+      }
+    }
+
+
     PushBehaviour.Instance.PushCheck(objAfflicted, pushValue, caseAfflicted, pushType, pushDirection);
     PushBehaviour.Instance.MultiplePushStart();
   }
+
 
   /// <summary>Augmente ou diminue le nombre de PA de la cible.</summary>
   public void ChangePA(int number)
@@ -107,5 +140,13 @@ public class EffectManager : NetworkBehaviour
   public void ChangePr(SummonData summonAfflicted, int number)
   {
     summonAfflicted.actualPointResistance += number;
+  }
+
+  public void Rotate(GameObject objAfflicted, Direction newDirection)
+  {
+    Debug.Log(objAfflicted.GetComponent<SummonData>());
+    Debug.Log(newDirection);
+    if (objAfflicted.GetComponent<SummonData>())
+      objAfflicted.GetComponent<SummonData>().pushDirection = newDirection;
   }
 }

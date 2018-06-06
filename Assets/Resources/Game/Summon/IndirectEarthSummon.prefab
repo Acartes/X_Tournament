@@ -517,6 +517,7 @@ MonoBehaviour:
   actualPointResistance: 1
   maxPointResistance: 1
   invulnerable: 0
+  makeBallExplosive: 0
   hurtWhenBounce: 1
   numberEffectDisapear: 1
   summonDirection: 1
@@ -528,7 +529,7 @@ MonoBehaviour:
   P2Sprite: {fileID: 21300000, guid: da4f74b18cc835b4bb9bb76450d3d09e, type: 3}
   owner: 0
   limitInvoc: 3
-  element: 0
+  element: 2
 --- !u!114 &114969915162765214
 MonoBehaviour:
   m_ObjectHideFlags: 1

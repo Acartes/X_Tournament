@@ -34,6 +34,9 @@ public class HotkeyManager : NetworkBehaviour
       }
 
     if (Input.GetKeyDown(KeyCode.Mouse1))
+    {
+      SpellManager.Instance.spellSuccess = false;
       StartCoroutine(SpellManager.Instance.SpellEnd());
+    }
   }
 }

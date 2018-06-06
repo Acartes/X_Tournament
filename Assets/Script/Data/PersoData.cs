@@ -41,6 +41,8 @@ public class PersoData : NetworkBehaviour
   public bool isTackled = false;
   public int timeStunned = 0;
 
+  public bool isPushed;
+
   public Animator animator;
 
   // ******************** //
@@ -109,7 +111,6 @@ public class PersoData : NetworkBehaviour
       }
       if(timeStunned > 0)
       {
-        Debug.Log("ISSOU");
         timeStunned--;
       }
     }

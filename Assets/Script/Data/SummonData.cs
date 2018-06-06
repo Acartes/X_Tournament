@@ -156,7 +156,7 @@ public class SummonData : NetworkBehaviour
 
     if (canPush)
     {
-      EffectManager.Instance.Push(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection);
+      EffectManager.Instance.MultiplePush(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection);
     }
 
     numberEffectDisapear--;
