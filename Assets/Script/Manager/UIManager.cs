@@ -30,6 +30,8 @@ public class UIManager : NetworkBehaviour
   public bool isScoreChanging = false;
   public Image spell1;
   public Image spell2;
+  public Text spellButtonText1;
+  public Text spellButtonText2;
   public float statsOffset;
   public float manaOffset;
   GameObject StatsRed;
@@ -204,10 +206,26 @@ public class UIManager : NetworkBehaviour
     spell2.sprite = defaultButtonSpellSprite;
 
     if (selectedPerso.Spell1 != null)
-      spell1.sprite = selectedPerso.Spell1.buttonSprite;
+      {
+        spell1.sprite = selectedPerso.Spell1.buttonSprite;
+        spellButtonText1 = GameObject.Find("DirectSpellText").GetComponent<Text>();
+        spellButtonText1.text = " ";
+        if (selectedPerso.Spell1.costPA != 0)
+          {
+            spellButtonText1.text = selectedPerso.Spell1.costPA.ToString();
+          }
+      }
 
     if (selectedPerso.Spell2 != null)
-      spell2.sprite = selectedPerso.Spell2.buttonSprite;
+      {
+        spell2.sprite = selectedPerso.Spell2.buttonSprite;
+        spellButtonText2 = GameObject.Find("IndirectSpellText").GetComponent<Text>();
+        spellButtonText2.text = " ";
+        if (selectedPerso.Spell2.costPA != 0)
+          {
+            spellButtonText2.text = selectedPerso.Spell2.costPA.ToString();
+          }
+      }
   }
 
   public void HideStats()
