@@ -272,6 +272,7 @@ public class SpellManager : NetworkBehaviour
     SelectionManager.Instance.selectedPersonnage.animator.SetBool("Cast", false);
     SelectionManager.Instance.selectedPersonnage.animator.SetBool("Idle", true);
     ManaManager.Instance.Desactived();
+    ManaManager.Instance.SpellButtonFeedbackOFF();
     GameManager.Instance.actualAction = PersoAction.isWaiting;
     foreach (CaseData obj in CaseManager.listAllCase)
       {
