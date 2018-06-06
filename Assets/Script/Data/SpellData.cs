@@ -399,6 +399,16 @@ public class SpellData : NetworkBehaviour
   {
     BeforeFeedbackManager.Instance.HidePrediction();
 
+    if (objAfflicted.GetComponent<PersoData>())
+    {
+      objAfflicted.GetComponent<PersoData>().spellHit.Add(this);
+    }
+    if (objAfflicted.GetComponent<BallonData>())
+    {
+      objAfflicted.GetComponent<BallonData>().spellHit.Add(this);
+    }
+
+
     if (rotateSummon)
       {
         MenuRotateContexuel.Instance.transform.gameObject.SetActive(true);
@@ -423,7 +433,6 @@ public class SpellData : NetworkBehaviour
           FXManager.Instance.Show(animatorSpell, caseAfflicted.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
 
         EffectManager.Instance.Push(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection);
-        SpellManager.Instance.PersosHitPerSpell.Add(this.name, persoAfflicted);
       }
 
     if (objAfflicted.GetComponent<BallonData>() != null)
@@ -455,8 +464,6 @@ public class SpellData : NetworkBehaviour
 
     if (persoAfflicted)
       {
-        SpellManager.Instance.PersosHitPerSpell.Add(this.name, persoAfflicted);
-
         if (persoAfflicted.timeStunned > 0)
           {
             return;

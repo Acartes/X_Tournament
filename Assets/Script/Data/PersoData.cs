@@ -45,6 +45,11 @@ public class PersoData : NetworkBehaviour
 
   public Animator animator;
 
+  /// <summary>
+  /// Tous les sorts qui ont touché le personnage ce tour-ci
+  /// </summary>
+  public List<SpellData> spellHit = new List<SpellData>();
+
   // ******************** //
   // ** Initialisation ** // Fonctions de départ, non réutilisable
   // ******************** //
@@ -98,6 +103,7 @@ public class PersoData : NetworkBehaviour
 
   public void OnChangeTurn(object sender, PlayerArgs e)
   {
+    spellHit.Clear();
     if (e.currentPlayer == owner)
     {
       ResetPM();

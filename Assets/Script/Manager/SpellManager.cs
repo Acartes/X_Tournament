@@ -22,7 +22,7 @@ public class SpellManager : NetworkBehaviour
 
   public EventHandler<PlayerArgs> changeTurnEvent;
 
-  public Dictionary<string, PersoData> PersosHitPerSpell = new Dictionary<string, PersoData>();
+  public Dictionary<string, List<PersoData>> PersosHitPerSpell = new Dictionary<string, List<PersoData>>();
 
   public CaseData lastCaseUsed;
 
@@ -164,13 +164,9 @@ public class SpellManager : NetworkBehaviour
     CaseData hoveredCase = HoverManager.Instance.hoveredCase;
     PersoData isPersoTarget = null;
 
-    if (hoveredCase.personnageData != null)
-      {
-        PersosHitPerSpell.TryGetValue(selectedSpell.name, out isPersoTarget);
-      }
-
     if (((Statut.canTarget & hoveredCase.statut) != Statut.canTarget)
-        || (hoveredCase.personnageData != null && isPersoTarget != null))
+        || (hoveredCase.personnageData != null && hoveredCase.personnageData.spellHit.Contains(selectedSpell))
+        || (hoveredCase.ballon != null && hoveredCase.ballon.spellHit.Contains(selectedSpell)))
       {
         StartCoroutine(SpellEnd());
         return;

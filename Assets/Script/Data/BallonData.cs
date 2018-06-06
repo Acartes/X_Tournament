@@ -46,6 +46,11 @@ public class BallonData : NetworkBehaviour
   public Material shaderExplosive;
   bool ShineColorIsRunning = false;
 
+  /// <summary>
+  /// Tous les sorts qui ont touché le ballon ce tour-ci
+  /// </summary>
+  public List<SpellData> spellHit = new List<SpellData>();
+
   // ******************** //
   // ** Initialisation ** // Fonctions de départ, non réutilisable
   // ******************** //
@@ -71,14 +76,24 @@ public class BallonData : NetworkBehaviour
   private void Init()
   {
     animator = GetComponent<Animator>();
+    TurnManager.Instance.changeTurnEvent += OnChangeTurn;
   }
 
   // *************** //
-  // ** Fonctions ** // Fonctions réutilisables ailleurs
+  // ** Events **    // Appel de fonctions au sein de ce script grâce à des events
   // *************** //
 
-  /// <summary>Déplace le ballon devant le personnage ayant tiré.</summary>
-  public IEnumerator Move()
+  public void OnChangeTurn(object sender, PlayerArgs e)
+  {
+    spellHit.Clear();
+  }
+
+    // *************** //
+    // ** Fonctions ** // Fonctions réutilisables ailleurs
+    // *************** //
+
+    /// <summary>Déplace le ballon devant le personnage ayant tiré.</summary>
+    public IEnumerator Move()
   {
     casesCrossed = 0;
     CaseData hoveredCase = HoverManager.Instance.hoveredCase;
