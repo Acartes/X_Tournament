@@ -45,7 +45,10 @@ public class HoverEvent : NetworkBehaviour
       return;
 
     if (UIManager.Instance.UIIsHovered)
-      return;
+      {
+        RpcFunctions.Instance.CmdSendHoverEvent("null", "null", "null");
+        return;
+      }
 
     string hoveredCase = "null";
     string hoveredPersonnage = "null";
