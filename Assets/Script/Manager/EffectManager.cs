@@ -74,7 +74,7 @@ public class EffectManager : NetworkBehaviour
   IEnumerator MultiplePushDelayed(GameObject objAfflicted, CaseData caseAfflicted, int pushValue, PushType pushType, Direction pushDirection = Direction.Front)
   {
     if (objAfflicted.GetComponent<PersoData>())
-      yield return new WaitForSeconds(0.10f);
+      yield return new WaitForSeconds(0.05f);
 
     if (objAfflicted.GetComponent<BallonData>() && objAfflicted.GetComponent<BallonData>().isPushed == false)
     {

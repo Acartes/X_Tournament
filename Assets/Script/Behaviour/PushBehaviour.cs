@@ -260,6 +260,10 @@ public class PushBehaviour : NetworkBehaviour
 
     List<Transform> tempPath = pathes.GetRange(0, pathes.Count);
 
+    if(GameManager.Instance.actualAction == PersoAction.isMoving)
+    {
+      MoveBehaviour.Instance.StopAllCoroutines();
+    }
 
     Vector3 originPoint = Vector3.zero;
 
