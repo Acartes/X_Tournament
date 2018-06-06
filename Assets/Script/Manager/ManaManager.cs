@@ -22,6 +22,11 @@ public class ManaManager : NetworkBehaviour
   public List<GameObject> manaBarRedBarBilles = new List<GameObject>();
   public List<GameObject> manaBarBlueBarBilles = new List<GameObject>();
 
+  GameObject manaBarRedFX;
+  GameObject manaBarBlueFX;
+
+  Color initialBilleColor = new Color();
+
   // ******************** //
   // ** Initialisation ** // Fonctions de départ, non réutilisable
   // ******************** //
@@ -48,6 +53,11 @@ public class ManaManager : NetworkBehaviour
     manaBarRedBotBar = GameObject.Find("manaBarRedBotBar");
     manaBarBlueTopBar = GameObject.Find("manaBarBlueTopBar");
     manaBarBlueBotBar = GameObject.Find("manaBarBlueBotBar");
+    manaBarRedFX = GameObject.Find("manaBarRedFX");
+    manaBarBlueFX = GameObject.Find("manaBarBlueFX");
+
+    manaBarRedFX.SetActive(false);
+    manaBarBlueFX.SetActive(false);
 
     List<GameObject> manaBarRedTopBarBilles = new List<GameObject>();
     List<GameObject> manaBarRedBotBarBilles = new List<GameObject>();
@@ -75,6 +85,7 @@ public class ManaManager : NetworkBehaviour
     manaBarRedBotBarBilles.RemoveAt(0);
     manaBarBlueTopBarBilles.RemoveAt(0);
     manaBarBlueBotBarBilles.RemoveAt(0);
+    initialBilleColor = manaBarRedTopBarBilles[0].GetComponent<Image>().color;
 
     for (int i = 0; i < manaBarRedTopBarBilles.Count; i++)
       {
@@ -136,6 +147,7 @@ public class ManaManager : NetworkBehaviour
 
     for (int i = 0; i < manaBarRedBarBilles.Count; i++)
       {
+        manaBarRedBarBilles[i].GetComponent<Image>().color = initialBilleColor;
         manaBarRedBarBilles[i].SetActive(true);
         if (i > manaActuelRed - 1)
           manaBarRedBarBilles[i].SetActive(false);
@@ -143,9 +155,66 @@ public class ManaManager : NetworkBehaviour
 
     for (int i = 0; i < manaBarBlueBarBilles.Count; i++)
       {
+        manaBarBlueBarBilles[i].GetComponent<Image>().color = initialBilleColor;
         manaBarBlueBarBilles[i].SetActive(true);
         if (i > manaActuelBlue - 1)
           manaBarBlueBarBilles[i].SetActive(false);
       }
+  }
+
+  public void Actived()
+  {
+    switch (SelectionManager.Instance.selectedPersonnage.owner)
+      {
+      case Player.Red:
+        manaBarRedFX.SetActive(true);
+        break;
+      case Player.Blue:
+        manaBarBlueFX.SetActive(true);
+        break;
+      }
+  }
+
+  public void Desactived()
+  {
+    switch (SelectionManager.Instance.selectedPersonnage.owner)
+      {
+      case Player.Red:
+        manaBarRedFX.SetActive(false);
+        break;
+      case Player.Blue:
+        manaBarBlueFX.SetActive(false);
+        break;
+      }
+  }
+
+  public void SpellButtonFeedbackON()
+  {
+    if (SelectionManager.Instance.selectedPersonnage.owner == Player.Red)
+      {
+        remainingManaRed.text = "Mana : " + manaActuelRed + " / " + manaMaxRed + "<color=#ff0000ff> - " + SpellManager.Instance.selectedSpell.costPA + "</color>";
+        for (int i = 0; i < manaBarRedBarBilles.Count; i++)
+          {
+            if (i > manaActuelRed - 1 - SpellManager.Instance.selectedSpell.costPA)
+              {
+                manaBarRedBarBilles[i].GetComponent<Image>().color = new Color(1, 0, 0, 0.6f);
+              }
+          }
+      } else
+      {
+        remainingManaBlue.text = "Mana : " + manaActuelBlue + " / " + manaMaxBlue + "<color=#ff0000ff> - " + SpellManager.Instance.selectedSpell.costPA + "</color>";
+        for (int i = 0; i < manaBarRedBarBilles.Count; i++)
+          {
+            if (i > manaActuelBlue - 1 - SpellManager.Instance.selectedSpell.costPA)
+              {
+                manaBarBlueBarBilles[i].GetComponent<Image>().color = new Color(1, 0, 0, 0.6f);
+              }
+          }
+      }
+  }
+
+  public void SpellButtonFeedbackOFF()
+  {
+    UpdateMana();
   }
 }
