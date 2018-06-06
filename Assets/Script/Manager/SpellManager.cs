@@ -73,7 +73,7 @@ public class SpellManager : NetworkBehaviour
   void OnNewHover(object sender, HoverArgs e)
   {
     if (GameManager.Instance.actualAction != PersoAction.isCasting
-      || HoverManager.Instance.hoveredCase == null)
+        || HoverManager.Instance.hoveredCase == null)
       return;
 
     selectedSpell.ShowAllFeedbacks();
@@ -139,6 +139,7 @@ public class SpellManager : NetworkBehaviour
     PersoData selectedPersonnage = SelectionManager.Instance.selectedPersonnage;
     selectedPersonnage.animator.SetBool("Idle", false);
     selectedPersonnage.animator.SetBool("Cast", true);
+    ManaManager.Instance.Actived();
 
     if (selectedSpell == null)// spell exist?
       return;
@@ -164,16 +165,16 @@ public class SpellManager : NetworkBehaviour
     PersoData isPersoTarget = null;
 
     if (hoveredCase.personnageData != null)
-    {
-      PersosHitPerSpell.TryGetValue(selectedSpell.name, out isPersoTarget);
-    }
+      {
+        PersosHitPerSpell.TryGetValue(selectedSpell.name, out isPersoTarget);
+      }
 
     if (((Statut.canTarget & hoveredCase.statut) != Statut.canTarget)
         || (hoveredCase.personnageData != null && isPersoTarget != null))
-    {
-      StartCoroutine(SpellEnd());
-      return;
-    }
+      {
+        StartCoroutine(SpellEnd());
+        return;
+      }
     
     spellSuccess = true;
     GameManager.Instance.manaGlobalActual -= selectedSpell.costPA;
@@ -184,65 +185,65 @@ public class SpellManager : NetworkBehaviour
     ManaManager.Instance.ChangeActualMana(SelectionManager.Instance.selectedPersonnage.owner, selectedSpell.costPA);
 
     if (selectedSpell.rotateSummon) // rotate summon
-    {
-      selectedSpell.ApplyEffect(SummonManager.Instance.lastSummonInstancied.gameObject);
-      return;
-    }
+      {
+        selectedSpell.ApplyEffect(SummonManager.Instance.lastSummonInstancied.gameObject);
+        return;
+      }
 
     if (SummonManager.Instance.lastSummonInstancied != null && !selectedSpell.summonOnCross) // normal summon
-    {
-      SummonInvoc();
-    }
-    if (SummonManager.Instance.crossSummonList != null && selectedSpell.summonOnCross) // cross summon
-    {
-      foreach (SummonData item in SummonManager.Instance.crossSummonList)
       {
-        if (item.transform.position.x > 500)
-        {
-          Destroy(item.gameObject);
-          continue;
-        }
-        item.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
-        item.GetComponent<Animator>().enabled = true;
-        item.GetComponent<BoxCollider2D>().enabled = true;
-        GameObject ownerCircle = item.originPoint.GetChild(0).gameObject;
-        if (item.owner == Player.Red)
-        {
-          ownerCircle.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.4f);
-        }
-        if (item.owner == Player.Blue)
-        {
-          ownerCircle.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.4f);
-        }
+        SummonInvoc();
       }
-      SummonManager.Instance.crossSummonList.Clear();
-    }
+    if (SummonManager.Instance.crossSummonList != null && selectedSpell.summonOnCross) // cross summon
+      {
+        foreach (SummonData item in SummonManager.Instance.crossSummonList)
+          {
+            if (item.transform.position.x > 500)
+              {
+                Destroy(item.gameObject);
+                continue;
+              }
+            item.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
+            item.GetComponent<Animator>().enabled = true;
+            item.GetComponent<BoxCollider2D>().enabled = true;
+            GameObject ownerCircle = item.originPoint.GetChild(0).gameObject;
+            if (item.owner == Player.Red)
+              {
+                ownerCircle.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.4f);
+              }
+            if (item.owner == Player.Blue)
+              {
+                ownerCircle.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.4f);
+              }
+          }
+        SummonManager.Instance.crossSummonList.Clear();
+      }
 
     foreach (CaseData obj in CaseManager.listAllCase)
-    {
-      if ((Statut.atAoE & obj.statut) == Statut.atAoE)
       {
-        if (selectedSpell.nextSpell) // sert juste pour determiner l'ancienne case de la tornade pour la tourner
-        {
-          lastCaseUsed = obj;
-        }
-        if (((ObjectType.AllyPerso & selectedSpell.affectedTarget) == ObjectType.AllyPerso) && obj.personnageData != null)
-        {
-          selectedSpell.ApplyEffect(obj.personnageData.gameObject);
-        }
+        if ((Statut.atAoE & obj.statut) == Statut.atAoE)
+          {
+            if (selectedSpell.nextSpell) // sert juste pour determiner l'ancienne case de la tornade pour la tourner
+              {
+                lastCaseUsed = obj;
+              }
+            if (((ObjectType.AllyPerso & selectedSpell.affectedTarget) == ObjectType.AllyPerso) && obj.personnageData != null)
+              {
+                selectedSpell.ApplyEffect(obj.personnageData.gameObject);
+              }
 
-        if (((ObjectType.Ballon & selectedSpell.affectedTarget) == ObjectType.Ballon) && obj.ballon != null)
-        {
-          selectedSpell.ApplyEffect(obj.ballon.gameObject);
-        }
+            if (((ObjectType.Ballon & selectedSpell.affectedTarget) == ObjectType.Ballon) && obj.ballon != null)
+              {
+                selectedSpell.ApplyEffect(obj.ballon.gameObject);
+              }
 
-        if (((ObjectType.Invoc & selectedSpell.affectedTarget) == ObjectType.Invoc) && obj.summonData != null)
-        {
-          selectedSpell.ApplyEffect(obj.summonData.gameObject);
-        }
+            if (((ObjectType.Invoc & selectedSpell.affectedTarget) == ObjectType.Invoc) && obj.summonData != null)
+              {
+                selectedSpell.ApplyEffect(obj.summonData.gameObject);
+              }
+          }
       }
-    }
-      StartCoroutine(SpellEnd());
+    StartCoroutine(SpellEnd());
   }
 
   public void SummonInvoc(SummonData item = null)
@@ -254,13 +255,13 @@ public class SpellManager : NetworkBehaviour
     SummonManager.Instance.AddSummon(lastSummonInstancied);
     GameObject ownerCircle = lastSummonInstancied.originPoint.GetChild(0).gameObject;
     if (lastSummonInstancied.owner == Player.Red)
-    {
-      ownerCircle.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.4f);
-    }
+      {
+        ownerCircle.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.4f);
+      }
     if (lastSummonInstancied.owner == Player.Blue)
-    {
-      ownerCircle.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.4f);
-    }
+      {
+        ownerCircle.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.4f);
+      }
   }
 
   public IEnumerator SpellEnd()
@@ -270,6 +271,7 @@ public class SpellManager : NetworkBehaviour
       
     SelectionManager.Instance.selectedPersonnage.animator.SetBool("Cast", false);
     SelectionManager.Instance.selectedPersonnage.animator.SetBool("Idle", true);
+    ManaManager.Instance.Desactived();
     GameManager.Instance.actualAction = PersoAction.isWaiting;
     foreach (CaseData obj in CaseManager.listAllCase)
       {
@@ -278,16 +280,14 @@ public class SpellManager : NetworkBehaviour
         obj.ChangeStatut(Statut.None, Statut.atPush);
         obj.ChangeStatut(Statut.None, Statut.canTarget);
       }
-    Debug.Log("spellSuccess is " + spellSuccess);
-    Debug.Log("SummonManager.Instance.lastSummonInstancied is " + SummonManager.Instance.lastSummonInstancied);
+ 
     if (!spellSuccess)
       {
         if (SummonManager.Instance.lastSummonInstancied != null) // sort indirect
           {
-        Debug.Log("DestroyImmediate(" + SummonManager.Instance.lastSummonInstancied.gameObject + ")");
-        DestroyImmediate(SummonManager.Instance.lastSummonInstancied.gameObject);
-      }
-      if (SummonManager.Instance.crossSummonList != null) // prévisu cross
+            DestroyImmediate(SummonManager.Instance.lastSummonInstancied.gameObject);
+          }
+        if (SummonManager.Instance.crossSummonList != null) // prévisu cross
           {
             foreach (SummonData item in SummonManager.Instance.crossSummonList)
               {
