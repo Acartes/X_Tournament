@@ -150,8 +150,8 @@ public class SelectionManager : NetworkBehaviour
   public void SelectPerso(CaseData hoveredCase, PersoData hoveredPersonnage, Color selectedColor, Phase currentPhase, Player currentPlayer, PersoAction actualAction)
   {
     Deselect();
-    selectedCase = hoveredCase;
     selectedPersonnage = hoveredPersonnage;
+    selectedCase = selectedPersonnage.persoCase;
 
     UIManager.Instance.ChangeSpriteSpellButton(selectedPersonnage);
     InfoPerso.Instance.PersoSelected(hoveredPersonnage);
