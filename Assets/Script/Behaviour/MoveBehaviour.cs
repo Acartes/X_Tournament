@@ -124,7 +124,8 @@ public class MoveBehaviour : NetworkBehaviour
       {
         if (persoCompared.owner != currentPlayer
             && persoCompared.persoCase != null
-            && CaseManager.Instance.CheckAdjacent(path.gameObject, persoCompared.gameObject) == true)
+            && CaseManager.Instance.CheckAdjacent(path.gameObject, persoCompared.gameObject) == true
+            && persoCompared.timeStunned == 0)
         {
           path.GetComponent<CaseData>().ChangeStatut(Statut.canBeTackled);
           //   FeedbackManager.Instance.PredictInit(50, path.gameObject);
