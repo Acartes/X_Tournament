@@ -3337,7 +3337,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &114822198
 Transform:
   m_ObjectHideFlags: 0
@@ -3377,7 +3377,7 @@ MonoBehaviour:
   summonData: {fileID: 0}
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
-  casePathfinding: 0
+  casePathfinding: 1
   xCoord: 20
   yCoord: 8
   spriteR: {fileID: 114822204}
@@ -27568,6 +27568,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 2060604419}
     m_Modifications:
+    - target: {fileID: 114835983972812786, guid: bab42843362c84641ab639251aca839a,
+        type: 2}
+      propertyPath: spellUse.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114835983972812786, guid: bab42843362c84641ab639251aca839a,
+        type: 2}
+      propertyPath: spellName.Array.size
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4416684397407088, guid: bab42843362c84641ab639251aca839a, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -27599,6 +27609,46 @@ Prefab:
     - target: {fileID: 4416684397407088, guid: bab42843362c84641ab639251aca839a, type: 2}
       propertyPath: m_RootOrder
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 114835983972812786, guid: bab42843362c84641ab639251aca839a,
+        type: 2}
+      propertyPath: spellName.Array.data[0]
+      value: FeuDirect
+      objectReference: {fileID: 0}
+    - target: {fileID: 114835983972812786, guid: bab42843362c84641ab639251aca839a,
+        type: 2}
+      propertyPath: spellName.Array.data[1]
+      value: FeuIndirect
+      objectReference: {fileID: 0}
+    - target: {fileID: 114835983972812786, guid: bab42843362c84641ab639251aca839a,
+        type: 2}
+      propertyPath: spellName.Array.data[2]
+      value: EauDirect
+      objectReference: {fileID: 0}
+    - target: {fileID: 114835983972812786, guid: bab42843362c84641ab639251aca839a,
+        type: 2}
+      propertyPath: spellName.Array.data[3]
+      value: EauIndirect
+      objectReference: {fileID: 0}
+    - target: {fileID: 114835983972812786, guid: bab42843362c84641ab639251aca839a,
+        type: 2}
+      propertyPath: spellName.Array.data[4]
+      value: AirDirect
+      objectReference: {fileID: 0}
+    - target: {fileID: 114835983972812786, guid: bab42843362c84641ab639251aca839a,
+        type: 2}
+      propertyPath: spellName.Array.data[5]
+      value: AirIndirect
+      objectReference: {fileID: 0}
+    - target: {fileID: 114835983972812786, guid: bab42843362c84641ab639251aca839a,
+        type: 2}
+      propertyPath: spellName.Array.data[6]
+      value: TerreDirect
+      objectReference: {fileID: 0}
+    - target: {fileID: 114835983972812786, guid: bab42843362c84641ab639251aca839a,
+        type: 2}
+      propertyPath: spellName.Array.data[7]
+      value: TerreIndirect
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bab42843362c84641ab639251aca839a, type: 2}
@@ -33685,7 +33735,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1027889035
 Transform:
   m_ObjectHideFlags: 0
@@ -33725,7 +33775,7 @@ MonoBehaviour:
   summonData: {fileID: 0}
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
-  casePathfinding: 0
+  casePathfinding: 1
   xCoord: 0
   yCoord: 2
   spriteR: {fileID: 1027889041}
@@ -43064,7 +43114,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1330728596
 Transform:
   m_ObjectHideFlags: 0
@@ -43104,7 +43154,7 @@ MonoBehaviour:
   summonData: {fileID: 0}
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
-  casePathfinding: 0
+  casePathfinding: 1
   xCoord: 20
   yCoord: 2
   spriteR: {fileID: 1330728602}
@@ -51095,7 +51145,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1676277032
 Transform:
   m_ObjectHideFlags: 0
@@ -51135,7 +51185,7 @@ MonoBehaviour:
   summonData: {fileID: 0}
   personnageData: {fileID: 0}
   ballon: {fileID: 0}
-  casePathfinding: 0
+  casePathfinding: 1
   xCoord: 0
   yCoord: 8
   spriteR: {fileID: 1676277038}
@@ -56594,7 +56644,7 @@ Prefab:
     - target: {fileID: 224928548828919444, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224628034115328028, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
@@ -56614,7 +56664,7 @@ Prefab:
     - target: {fileID: 224628034115328028, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -150
       objectReference: {fileID: 0}
     - target: {fileID: 224298402374264698, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
@@ -56634,7 +56684,7 @@ Prefab:
     - target: {fileID: 224298402374264698, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -250
       objectReference: {fileID: 0}
     - target: {fileID: 224101063631756828, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
@@ -56654,7 +56704,7 @@ Prefab:
     - target: {fileID: 224101063631756828, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -350
       objectReference: {fileID: 0}
     - target: {fileID: 224169053830614870, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
@@ -56674,7 +56724,7 @@ Prefab:
     - target: {fileID: 224169053830614870, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224600343404669988, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
@@ -56694,7 +56744,7 @@ Prefab:
     - target: {fileID: 224600343404669988, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -150
       objectReference: {fileID: 0}
     - target: {fileID: 224875455445349952, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
@@ -56714,7 +56764,7 @@ Prefab:
     - target: {fileID: 224875455445349952, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -250
       objectReference: {fileID: 0}
     - target: {fileID: 224294638564435376, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
@@ -56734,7 +56784,7 @@ Prefab:
     - target: {fileID: 224294638564435376, guid: a8aad60271229c54e84830103555d34a,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -350
       objectReference: {fileID: 0}
     - target: {fileID: 114703785703499746, guid: a8aad60271229c54e84830103555d34a,
         type: 2}

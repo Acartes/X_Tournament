@@ -149,4 +149,40 @@ public class EffectManager : NetworkBehaviour
     if (objAfflicted.GetComponent<SummonData>())
       objAfflicted.GetComponent<SummonData>().pushDirection = newDirection;
   }
+
+  public void doExplosion(CaseData caseAfflicted)
+  {
+    StartCoroutine(doExplosionCoroutine(caseAfflicted));
+  }
+
+  public IEnumerator doExplosionCoroutine(CaseData caseAfflicted)
+  {
+    damageAndPush(caseAfflicted.GetBottomLeftCase(), Direction.SudOuest);
+    yield return new WaitForEndOfFrame();
+    damageAndPush(caseAfflicted.GetBottomRightCase(), Direction.SudEst);
+    yield return new WaitForEndOfFrame();
+    damageAndPush(caseAfflicted.GetTopRightCase(), Direction.NordEst);
+    yield return new WaitForEndOfFrame();
+    damageAndPush(caseAfflicted.GetTopLeftCase(), Direction.NordOuest);
+  }
+
+  private void damageAndPush(CaseData tempCase, Direction direction)
+  {
+    if (tempCase == null)
+      return;
+
+    if (tempCase.personnageData != null)
+    {
+      if (tempCase.personnageData.timeStunned > 0)
+      {
+        return;
+      }
+      EffectManager.Instance.MultiplePush(tempCase.personnageData.gameObject, tempCase, 1, PushType.FromTerrain, direction);
+    }
+    if (tempCase.ballon != null)
+    {
+      EffectManager.Instance.MultiplePush(tempCase.ballon.gameObject, tempCase, 1, PushType.FromTerrain, direction);
+    }
+  }
+
 }

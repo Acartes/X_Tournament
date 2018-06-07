@@ -77,7 +77,7 @@ MonoBehaviour:
   tooltipCost: "<color=#bbbbbbff>Co\xFBt : </color>2 mana"
   tooltipEffect: "Place 1 case feu \xE0 l'emplacement cibl\xE9.\nSur ennemi : -1 PR\nSur
     alli\xE9 : +1 PR"
-  numberLimitCast: 1
+  maxUsePerTurn: 3
   animatorSpell: {fileID: 9100000, guid: bae8a29eb97ba61468b018622db02aa4, type: 2}
   affectedTarget: 15
   allowedTarget: 15
