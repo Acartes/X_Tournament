@@ -39,6 +39,8 @@ public class PushBehaviour : NetworkBehaviour
   {
     if (Instance == null)
       Instance = this;
+
+    MultiplePushStart();
   }
 
   // *************** //
