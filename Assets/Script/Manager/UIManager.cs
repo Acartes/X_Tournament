@@ -11,19 +11,20 @@ public class UIManager : NetworkBehaviour
   // *************** //
   // ** Variables ** // Toutes les variables sans distinctions
   // *************** //
-  
-  public Animator animChangeTurn;
-  public List<GameObject> banner;
-  public List<GameObject> bannerText;
+
+  Animator animChangeTurn;
+  GameObject banner;
+  Text bannerJ1Text;
+  Text bannerJ2Text;
   public List<Color> bannerColor;
   public List<Color> bannerTextColor;
-  public GameObject phaseText;
+  GameObject phaseText;
   public List<string> phaseTextMessage;
   public int scoreRed = 0;
   public int scoreBlue = 0;
-  public GameObject scoreRedGMB;
-  public GameObject scoreBlueGMB;
-  public GameObject messageGeneral;
+  GameObject scoreRedGMB;
+  GameObject scoreBlueGMB;
+  GameObject messageGeneral;
   public Image Victory;
   public GameObject menuContextuel;
   public GameObject tooltip;
@@ -62,6 +63,14 @@ public class UIManager : NetworkBehaviour
 
   private void Init()
   {
+    scoreRedGMB = GameObject.Find("scoreRedGMB");
+    scoreBlueGMB = GameObject.Find("scoreBlueGMB");
+    phaseText = GameObject.Find("phaseText");
+    messageGeneral = GameObject.Find("messageGeneral");
+    banner = GameObject.Find("Banner");
+    bannerJ1Text = GameObject.Find("PseudoJ1").GetComponent<Text>();
+    bannerJ2Text = GameObject.Find("PseudoJ2").GetComponent<Text>();
+    animChangeTurn = GameObject.Find("Gameplay Feedback").GetComponent<Animator>();
     TurnManager.Instance.changeTurnEvent += OnChangeTurn;
   }
 
@@ -106,18 +115,16 @@ public class UIManager : NetworkBehaviour
   {
     if (activePlayer == Player.Red)
       {
-        banner[0].GetComponent<Image>().color = bannerColor[0];
-        bannerText[0].GetComponent<Text>().color = bannerTextColor[0];
-        banner[1].GetComponent<Image>().color = bannerColor[1] - new Color(0.75f, 0.75f, 0.75f, 0.5f);
-        bannerText[1].GetComponent<Text>().color = bannerTextColor[1] - new Color(0.75f, 0.75f, 0.75f, 0.5f);
+        banner.GetComponent<Image>().color = bannerColor[0];
+        bannerJ1Text.GetComponent<Text>().color = bannerTextColor[0];
+        bannerJ2Text.GetComponent<Text>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
       }
 
     if (activePlayer == Player.Blue)
       {
-        banner[1].GetComponent<Image>().color = bannerColor[1];
-        bannerText[1].GetComponent<Text>().color = bannerTextColor[1];
-        banner[0].GetComponent<Image>().color = bannerColor[0] - new Color(0.75f, 0.75f, 0.75f, 0.5f);
-        bannerText[0].GetComponent<Text>().color = bannerTextColor[0] - new Color(0.75f, 0.75f, 0.75f, 0.5f);
+        banner.GetComponent<Image>().color = bannerColor[1];
+        bannerJ1Text.GetComponent<Text>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+        bannerJ2Text.GetComponent<Text>().color = bannerTextColor[1];
       }
   }
 

@@ -17,7 +17,7 @@ public class TurnManager : NetworkBehaviour
   public EventHandler<PlayerArgs> changeTurnEvent;
   public Player currentPlayer = Player.Red;
   public Phase currentPhase = Phase.Placement;
-  public GameObject finishTurnButton;
+  GameObject finishTurnButton;
   public Animator visualFeedback;
 
   bool canChangeTurn = true;
@@ -125,6 +125,7 @@ public class TurnManager : NetworkBehaviour
   /// <summary>Réactive et dégrise le bouton "Passer le tour"</summary>
   public IEnumerator EnableFinishTurn()
   {
+    finishTurnButton = GameObject.Find("finishTurn");
     if (finishTurnButton.GetComponent<Button>().interactable != true)
       {
         finishTurnButton.GetComponent<Button>().enabled = false;
