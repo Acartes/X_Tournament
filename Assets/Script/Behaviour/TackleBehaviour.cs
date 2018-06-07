@@ -106,7 +106,7 @@ public class TackleBehaviour : NetworkBehaviour
 
       if (movingObj != null && perso != shotingPersonnage)
       {
-        if (perso != movingObj && CaseManager.Instance.CheckAdjacent(perso.gameObject, movingObj.gameObject) == true)
+        if (perso != movingObj && perso.timeStunned == 0 && CaseManager.Instance.CheckAdjacent(perso.gameObject, movingObj.gameObject) == true)
         {
           randomIntOrder++;
           switch (movingObj.name)

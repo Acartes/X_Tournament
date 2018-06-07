@@ -75,7 +75,7 @@ MonoBehaviour:
   tooltipRange: "<color=#bbbbbbff>Port\xE9e : </color>5 cases"
   tooltipCost: "<color=#bbbbbbff>Co\xFBt : </color>4 mana"
   tooltipEffect: Attire la cible de 3 cases.
-  numberLimitCast: 0
+  maxUsePerTurn: 1
   animatorSpell: {fileID: 9100000, guid: 9fe560b6a5895a74bb77cf012023b40d, type: 2}
   affectedTarget: 27
   allowedTarget: 27

@@ -54,7 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   costPA: 4
-  range: 2
+  range: 3
   isLinear: 1
   areaOfEffect: 0
   damagePR: 0
@@ -77,7 +77,7 @@ MonoBehaviour:
   tooltipCost: "<color=#bbbbbbff>Co\xFBt : </color>4 mana"
   tooltipEffect: "Repousse la cible de 3 cases. Si elle rencontre un obstacle elle
     perd 1 PR\r (non applicable \xE0 la balle) et est stopp\xE9."
-  numberLimitCast: 1
+  maxUsePerTurn: 1
   animatorSpell: {fileID: 9100000, guid: 47dda2be2c6462c45bdb2d7066614823, type: 2}
   affectedTarget: 27
   allowedTarget: 27

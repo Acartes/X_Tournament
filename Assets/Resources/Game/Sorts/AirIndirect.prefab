@@ -80,7 +80,7 @@ MonoBehaviour:
     pas la ligne de\r vue, la balle et les personnages peuvent le traverser. Lorsqu\u2019une
     entit\xE9 entre \xE0\r l\u2019int\xE9rieur elle est d\xE9cal\xE9 d\u20191 case
     sur sa gauche."
-  numberLimitCast: 1
+  maxUsePerTurn: 3
   animatorSpell: {fileID: 9100000, guid: bae8a29eb97ba61468b018622db02aa4, type: 2}
   affectedTarget: 15
   allowedTarget: 15
