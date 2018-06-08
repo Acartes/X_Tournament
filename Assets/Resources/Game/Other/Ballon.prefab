@@ -74,7 +74,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1901250649987194}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8, y: -0.15, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children:
   - {fileID: 224933005573464056}
@@ -124,7 +124,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.20157433, y: 0.22048038}
+  m_Size: {x: 0.1, y: 0.1}
   m_EdgeRadius: 0
 --- !u!95 &95033208338254766
 Animator:
@@ -253,6 +253,7 @@ MonoBehaviour:
   statut: 0
   isMoving: 0
   isExplosive: 0
+  explosionOwner: 2
   travelTimeBallon: 5
   ballonDirection: 0
   ballonCase: {fileID: 0}
@@ -264,10 +265,13 @@ MonoBehaviour:
   yCoord: 0
   canRebond: 0
   casesCrossed: 0
+  isPushed: 0
+  pushedDebt: 0
   spriteR: {fileID: 0}
   img: {fileID: 114877427544497230}
   shaderNormal: {fileID: 2100000, guid: e1c70fa38f2f75345a3f7040e78809d2, type: 2}
   shaderExplosive: {fileID: 2100000, guid: 198773fd7279fe4408a49d861820e62c, type: 2}
+  spellHit: []
 --- !u!212 &212581235755661426
 SpriteRenderer:
   m_ObjectHideFlags: 1

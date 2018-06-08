@@ -62,8 +62,6 @@ public class MenuRotateContexuel : NetworkBehaviour
               {
                 button.MouseExit();
 
-                Debug.Log("down");
-
                 if (button.name.Contains("NordEst"))
                   {
                     SummonManager.Instance.lastSummonInstancied.gameObject.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().sprite = button.GetComponent<SpriteRenderer>().sprite;

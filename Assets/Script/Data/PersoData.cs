@@ -41,6 +41,7 @@ public class PersoData : NetworkBehaviour
   public bool isTackled = false;
   public int timeStunned = 0;
 
+  public int pushedDebt;
   public bool isPushed;
 
   public Animator animator;

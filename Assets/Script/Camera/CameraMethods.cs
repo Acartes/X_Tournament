@@ -61,7 +61,6 @@ public class CameraMethods : MonoBehaviour
 
     if (Input.GetKey(KeyCode.Mouse1))
       {
-        Debug.Log(Camera.main.ScreenToViewportPoint(Input.mousePosition));
         transform.position += new Vector3(Camera.main.ScreenToViewportPoint(Input.mousePosition).x - 0.5f, Camera.main.ScreenToViewportPoint(Input.mousePosition).y - 0.5f, 0);
       }
 
