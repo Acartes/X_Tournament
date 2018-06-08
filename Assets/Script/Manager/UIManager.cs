@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using System.Net;
 
 /// <summary>Gère tous les feedback de type UI, sur un canvas ou bien des feedback.</summary>
 public class UIManager : NetworkBehaviour
@@ -16,6 +17,8 @@ public class UIManager : NetworkBehaviour
   GameObject banner;
   Text bannerJ1Text;
   Text bannerJ2Text;
+  public Image directSpell;
+  public Image indirectSpell;
   public List<Color> bannerColor;
   public List<Color> bannerTextColor;
   GameObject phaseText;
@@ -63,6 +66,9 @@ public class UIManager : NetworkBehaviour
 
   private void Init()
   {
+    directSpell = GameObject.Find("DirectSpell").GetComponent<Image>();
+    indirectSpell = GameObject.Find("IndirectSpell").GetComponent<Image>();
+    scoreBlueGMB = GameObject.Find("scoreBlueGMB");
     scoreRedGMB = GameObject.Find("scoreRedGMB");
     scoreBlueGMB = GameObject.Find("scoreBlueGMB");
     phaseText = GameObject.Find("phaseText");
@@ -245,5 +251,35 @@ public class UIManager : NetworkBehaviour
 
     StatsRed.GetComponent<RectTransform>().localScale = new Vector3(0, 0, 0);
     StatsBlue.GetComponent<RectTransform>().localScale = new Vector3(0, 0, 0);
+  }
+
+  public void GreyButton(string spell)
+  {
+    if (spell == "spell 1")
+      {
+        spell1.color = new Color(0.5f, 0.5f, 0.5f, 0.6f);
+        directSpell.color = new Color(0.5f, 0.5f, 0.5f, 0.6f);
+      }
+
+    if (spell == "spell 2")
+      {
+        spell2.color = new Color(0.5f, 0.5f, 0.5f, 0.6f);
+        indirectSpell.color = new Color(0.5f, 0.5f, 0.5f, 0.6f);
+      }
+  }
+
+  public void UngreyButton(string spell)
+  {
+    if (spell == "spell 1")
+      {
+        spell1.color = new Color(1, 1, 1, 1);
+        directSpell.color = new Color(1, 1, 1, 1);
+      }
+
+    if (spell == "spell 2")
+      {
+        spell2.color = new Color(1, 1, 1, 1);
+        indirectSpell.color = new Color(1, 1, 1, 1);
+      }
   }
 }

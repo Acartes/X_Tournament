@@ -48,17 +48,17 @@ public class EffectManager : NetworkBehaviour
     if (objAfflicted.GetComponent<PersoData>())
       yield return new WaitForSeconds(0.05f);
     if (PushBehaviour.Instance.ienumeratorList.Count != 0)
-    {
-      PushBehaviour.Instance.StopCoroutine(PushBehaviour.Instance.ienumeratorList[0]);
-      Debug.Log(PushBehaviour.Instance.ienumeratorList[0].ToString());
-      PushBehaviour.Instance.ienumeratorList.Remove(PushBehaviour.Instance.ienumeratorList[0]);
-    }
+      {
+        PushBehaviour.Instance.StopCoroutine(PushBehaviour.Instance.ienumeratorList[0]);
+        Debug.Log(PushBehaviour.Instance.ienumeratorList[0].ToString());
+        PushBehaviour.Instance.ienumeratorList.Remove(PushBehaviour.Instance.ienumeratorList[0]);
+      }
     if (MoveBehaviour.Instance.ienumeratorList.Count != 0)
-    {
-      MoveBehaviour.Instance.StopCoroutine(MoveBehaviour.Instance.ienumeratorList[0]);
-      Debug.Log(MoveBehaviour.Instance.ienumeratorList[0].ToString());
-      MoveBehaviour.Instance.ienumeratorList.Remove(MoveBehaviour.Instance.ienumeratorList[0]);
-    }
+      {
+        MoveBehaviour.Instance.StopCoroutine(MoveBehaviour.Instance.ienumeratorList[0]);
+        Debug.Log(MoveBehaviour.Instance.ienumeratorList[0].ToString());
+        MoveBehaviour.Instance.ienumeratorList.Remove(MoveBehaviour.Instance.ienumeratorList[0]);
+      }
 
     PushBehaviour.Instance.PushCheck(objAfflicted, pushValue, caseAfflicted, pushType, pushDirection);
     PushBehaviour.Instance.MultiplePushStart();
@@ -77,26 +77,26 @@ public class EffectManager : NetworkBehaviour
       yield return new WaitForSeconds(0.05f);
 
     if (objAfflicted.GetComponent<BallonData>() && objAfflicted.GetComponent<BallonData>().isPushed == false)
-    {
-      yield return new WaitForSeconds(0.12f);
-    }
+      {
+        yield return new WaitForSeconds(0.12f);
+      }
     if (objAfflicted.GetComponent<BallonData>() && objAfflicted.GetComponent<BallonData>().isPushed == true)
-    {
-      yield return new WaitForSeconds(0.02f);
+      {
+        yield return new WaitForSeconds(0.02f);
 
-      if (PushBehaviour.Instance.ienumeratorList.Count != 0)
-      {
-        PushBehaviour.Instance.StopCoroutine(PushBehaviour.Instance.ienumeratorList[0]);
-        Debug.Log(PushBehaviour.Instance.ienumeratorList[0].ToString());
-        PushBehaviour.Instance.ienumeratorList.Remove(PushBehaviour.Instance.ienumeratorList[0]);
+        if (PushBehaviour.Instance.ienumeratorList.Count != 0)
+          {
+            PushBehaviour.Instance.StopCoroutine(PushBehaviour.Instance.ienumeratorList[0]);
+            Debug.Log(PushBehaviour.Instance.ienumeratorList[0].ToString());
+            PushBehaviour.Instance.ienumeratorList.Remove(PushBehaviour.Instance.ienumeratorList[0]);
+          }
+        if (MoveBehaviour.Instance.ienumeratorList.Count != 0)
+          {
+            MoveBehaviour.Instance.StopCoroutine(MoveBehaviour.Instance.ienumeratorList[0]);
+            Debug.Log(MoveBehaviour.Instance.ienumeratorList[0].ToString());
+            MoveBehaviour.Instance.ienumeratorList.Remove(MoveBehaviour.Instance.ienumeratorList[0]);
+          }
       }
-      if (MoveBehaviour.Instance.ienumeratorList.Count != 0)
-      {
-        MoveBehaviour.Instance.StopCoroutine(MoveBehaviour.Instance.ienumeratorList[0]);
-        Debug.Log(MoveBehaviour.Instance.ienumeratorList[0].ToString());
-        MoveBehaviour.Instance.ienumeratorList.Remove(MoveBehaviour.Instance.ienumeratorList[0]);
-      }
-    }
 
 
     PushBehaviour.Instance.PushCheck(objAfflicted, pushValue, caseAfflicted, pushType, pushDirection);
@@ -108,8 +108,8 @@ public class EffectManager : NetworkBehaviour
   public void ChangePA(int number)
   {
     GameManager.Instance.manaGlobalActual += number;
-    if(number < 0)
-    GameManager.Instance.manaGlobalActual = Mathf.Clamp(GameManager.Instance.manaGlobalActual, 0, GameManager.Instance.manaGlobalMax); // on peut pas dépasser le max
+    if (number < 0)
+      GameManager.Instance.manaGlobalActual = Mathf.Clamp(GameManager.Instance.manaGlobalActual, 0, GameManager.Instance.manaGlobalMax); // on peut pas dépasser le max
   }
 
   public void ChangePr(PersoData persoAfflicted, int number)
@@ -117,7 +117,7 @@ public class EffectManager : NetworkBehaviour
     persoAfflicted.actualPointResistance += number;
     persoAfflicted.actualPointResistance = Mathf.Clamp(persoAfflicted.actualPointResistance, 0, persoAfflicted.maxPointResistance); // on peut pas dépasser le max
     InfoPerso.Instance.stats.updatePr(persoAfflicted.actualPointResistance);
-
+    persoAfflicted.StartShineColor(persoAfflicted.GetComponent<SpriteRenderer>().color, Color.red, 5f);
   }
 
   public void ChangePm(PersoData persoAfflicted, int number)
@@ -172,17 +172,17 @@ public class EffectManager : NetworkBehaviour
       return;
 
     if (tempCase.personnageData != null)
-    {
-      if (tempCase.personnageData.timeStunned > 0)
       {
-        return;
+        if (tempCase.personnageData.timeStunned > 0)
+          {
+            return;
+          }
+        EffectManager.Instance.MultiplePush(tempCase.personnageData.gameObject, tempCase, 1, PushType.FromTerrain, direction);
       }
-      EffectManager.Instance.MultiplePush(tempCase.personnageData.gameObject, tempCase, 1, PushType.FromTerrain, direction);
-    }
     if (tempCase.ballon != null)
-    {
-      EffectManager.Instance.MultiplePush(tempCase.ballon.gameObject, tempCase, 1, PushType.FromTerrain, direction);
-    }
+      {
+        EffectManager.Instance.MultiplePush(tempCase.ballon.gameObject, tempCase, 1, PushType.FromTerrain, direction);
+      }
   }
 
 }

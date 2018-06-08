@@ -96,6 +96,7 @@ public enum WeightType
   canTarget = 1 << 20,
   // Other Feedback
   canMovePrevisu = 1 << 21,
+  shotPrevisu = 1 << 22,
 }
 
 [Flags] public enum BallonStatut

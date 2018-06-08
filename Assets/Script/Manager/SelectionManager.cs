@@ -54,6 +54,36 @@ public class SelectionManager : NetworkBehaviour
       }
   }
 
+  private void Update()
+  {
+    if (selectedPersonnage == null)
+      return;
+      
+    if (selectedPersonnage.Spell1 != null)
+      {
+        if ((selectedPersonnage.owner == Player.Red && ManaManager.Instance.manaActuelRed < selectedPersonnage.Spell1.costPA)
+            || (selectedPersonnage.owner == Player.Blue && ManaManager.Instance.manaActuelBlue < selectedPersonnage.Spell1.costPA))
+          {
+            UIManager.Instance.GreyButton("spell 1");
+          } else
+          {
+            UIManager.Instance.UngreyButton("spell 1");
+          }
+      }
+
+    if (selectedPersonnage.Spell2 != null)
+      {
+        if ((selectedPersonnage.owner == Player.Red && ManaManager.Instance.manaActuelRed < selectedPersonnage.Spell2.costPA)
+        || (selectedPersonnage.owner == Player.Blue && ManaManager.Instance.manaActuelBlue < selectedPersonnage.Spell2.costPA))
+          {
+            UIManager.Instance.GreyButton("spell 2");
+          } else
+          {
+            UIManager.Instance.UngreyButton("spell 2");
+          }
+      }
+  }
+
   // *************** //
   // ** Events **    // Appel de fonctions au sein de ce script grâce à des events
   // *************** //
