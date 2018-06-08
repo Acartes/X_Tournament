@@ -188,24 +188,24 @@ public class ManaManager : NetworkBehaviour
       }
   }
 
-  public void SpellButtonFeedbackON()
+  public void SpellButtonFeedbackON(int cost)
   {
     if (SelectionManager.Instance.selectedPersonnage.owner == Player.Red)
       {
-        remainingManaRed.text = "Mana : " + manaActuelRed + " / " + manaMaxRed + "<color=#ff0000ff> - " + SpellManager.Instance.selectedSpell.costPA + "</color>";
+        remainingManaRed.text = "Mana : " + manaActuelRed + " / " + manaMaxRed + "<color=#ff0000ff> - " + cost + "</color>";
         for (int i = 0; i < manaBarRedBarBilles.Count; i++)
           {
-            if (i > manaActuelRed - 1 - SpellManager.Instance.selectedSpell.costPA)
+            if (i > manaActuelRed - 1 - cost)
               {
                 manaBarRedBarBilles[i].GetComponent<Image>().color = new Color(1, 0, 0, 0.6f);
               }
           }
       } else
       {
-        remainingManaBlue.text = "Mana : " + manaActuelBlue + " / " + manaMaxBlue + "<color=#ff0000ff> - " + SpellManager.Instance.selectedSpell.costPA + "</color>";
+        remainingManaBlue.text = "Mana : " + manaActuelBlue + " / " + manaMaxBlue + "<color=#ff0000ff> - " + cost + "</color>";
         for (int i = 0; i < manaBarRedBarBilles.Count; i++)
           {
-            if (i > manaActuelBlue - 1 - SpellManager.Instance.selectedSpell.costPA)
+            if (i > manaActuelBlue - 1 - cost)
               {
                 manaBarBlueBarBilles[i].GetComponent<Image>().color = new Color(1, 0, 0, 0.6f);
               }

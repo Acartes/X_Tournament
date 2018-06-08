@@ -69,9 +69,9 @@ public class SpellManager : NetworkBehaviour
   void OnChangeTurn(object sender, PlayerArgs e)
   { // Lorsqu'un joueur termine son tour
     for (int i = 0; i < spellUse.Count; i++)
-    {
-      spellUse[i] = 0;
-    }
+      {
+        spellUse[i] = 0;
+      }
   }
 
   void OnNewHover(object sender, HoverArgs e)
@@ -128,7 +128,13 @@ public class SpellManager : NetworkBehaviour
     selectedSpell = ChooseSpell(IDSpell);
 
     // enough PA? (global PA/mana)
-    if (GameManager.Instance.manaGlobalActual < selectedSpell.costPA)
+    if (GameManager.Instance.currentPlayer == Player.Red && ManaManager.Instance.manaActuelRed < selectedSpell.costPA)
+      {
+        selectedSpell = null;
+        return;
+      }
+
+    if (GameManager.Instance.currentPlayer == Player.Blue && ManaManager.Instance.manaActuelBlue < selectedSpell.costPA)
       {
         selectedSpell = null;
         return;
@@ -171,33 +177,33 @@ public class SpellManager : NetworkBehaviour
         || (hoveredCase.personnageData != null && hoveredCase.personnageData.spellHit.Contains(selectedSpell))
         || (hoveredCase.ballon != null && hoveredCase.ballon.spellHit.Contains(selectedSpell)))
       {
-      spellSuccess = false;
-      StartCoroutine(SpellEnd());
-        return;
-      }
-
-    for (int i = 0; i < SpellManager.Instance.spellName.Count; i++)
-    {
-      if (spellName[i] == selectedSpell.name && spellUse[i] >= selectedSpell.maxUsePerTurn)
-      {
         spellSuccess = false;
         StartCoroutine(SpellEnd());
         return;
       }
-      if (spellName[i] == selectedSpell.name)
+
+    for (int i = 0; i < SpellManager.Instance.spellName.Count; i++)
       {
-        spellUse[i]++;
+        if (spellName[i] == selectedSpell.name && spellUse[i] >= selectedSpell.maxUsePerTurn)
+          {
+            spellSuccess = false;
+            StartCoroutine(SpellEnd());
+            return;
+          }
+        if (spellName[i] == selectedSpell.name)
+          {
+            spellUse[i]++;
+          }
       }
-    }
 
     if (HoverManager.Instance.hoveredBallon)
-    {
-      HoverManager.Instance.hoveredBallon.spellHit.Add(selectedSpell);
-    }
+      {
+        HoverManager.Instance.hoveredBallon.spellHit.Add(selectedSpell);
+      }
     if (HoverManager.Instance.hoveredPersonnage)
-    {
-      HoverManager.Instance.hoveredPersonnage.spellHit.Add(selectedSpell);
-    }
+      {
+        HoverManager.Instance.hoveredPersonnage.spellHit.Add(selectedSpell);
+      }
 
     spellSuccess = true;
     GameManager.Instance.manaGlobalActual -= selectedSpell.costPA;

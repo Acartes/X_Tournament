@@ -58,6 +58,9 @@ public class MenuContextuelButton : MonoBehaviour
         menuContextuelReplacerTooltip.SetActive(false);
         break;
       case "MenuContextuelTirer":
+        ManaManager.Instance.Desactived();
+        ManaManager.Instance.ChangeActualMana(GameManager.Instance.currentPlayer, 0);
+        GameObject.Find("Ballon").GetComponent<BallonData>().ShotDeprevisualisation();
         menuContextuelTirerTooltip.SetActive(false);
         break;
       }
@@ -72,6 +75,9 @@ public class MenuContextuelButton : MonoBehaviour
         menuContextuelReplacerTooltip.SetActive(true);
         break;
       case "MenuContextuelTirer":
+        ManaManager.Instance.Actived();
+        ManaManager.Instance.SpellButtonFeedbackON(2);
+        GameObject.Find("Ballon").GetComponent<BallonData>().ShotPrevisualisation();
         menuContextuelTirerTooltip.SetActive(true);
         break;
       }
@@ -96,6 +102,22 @@ public class MenuContextuelButton : MonoBehaviour
     if (MenuContextuel.Instance.activated)
       {
         if (name == "MenuContextuelReplacer" && SelectionManager.Instance.selectedPersonnage.actualPointMovement == 0)
+          {
+            Disable();
+          }
+      }
+
+    if (MenuContextuel.Instance.activated)
+      {
+        if (name == "MenuContextuelTirer" && ManaManager.Instance.manaActuelRed < 2 && SelectionManager.Instance.selectedPersonnage.owner == Player.Red)
+          {
+            Disable();
+          }
+      }
+
+    if (MenuContextuel.Instance.activated)
+      {
+        if (name == "MenuContextuelTirer" && ManaManager.Instance.manaActuelBlue < 2 && SelectionManager.Instance.selectedPersonnage.owner == Player.Blue)
           {
             Disable();
           }
