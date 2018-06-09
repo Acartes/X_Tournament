@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114539509967211268}
   - component: {fileID: 114755600324448950}
   m_Layer: 0
-  m_Name: EarthIndirect
+  m_Name: TerreIndirect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,6 +65,7 @@ MonoBehaviour:
   pushDirection: 0
   pushType: 0
   hurtWhenStopped: 0
+  explosion: 0
   summonedObj: {fileID: 114365672426740566, guid: 3522c1ae342922d4b8e784dbed3927c8,
     type: 2}
   rotateSummon: 0

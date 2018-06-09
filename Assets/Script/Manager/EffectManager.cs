@@ -6,183 +6,182 @@ using UnityEngine.Networking;
 /// <summary>Gère les effets de chaque cases.</summary>
 public class EffectManager : NetworkBehaviour
 {
-  // *************** //
-  // ** Variables ** // Toutes les variables sans distinctions
-  // *************** //
+	// *************** //
+	// ** Variables ** // Toutes les variables sans distinctions
+	// *************** //
 
-  public static EffectManager Instance;
+	public static EffectManager Instance;
 
-  bool isPushing = false;
-  bool oneTime = true;
+	bool isPushing = false;
+	bool oneTime = true;
 
-  // ******************** //
-  // ** Initialisation ** // Fonctions de départ, non réutilisable
-  // ******************** //
+	// ******************** //
+	// ** Initialisation ** // Fonctions de départ, non réutilisable
+	// ******************** //
 
-  public override void OnStartClient()
-  {
-    if (Instance == null)
-      Instance = this;
-    StartCoroutine(waitForInit());
-  }
+	public override void OnStartClient()
+	{
+		if (Instance == null)
+			Instance = this;
+		StartCoroutine(waitForInit());
+	}
 
-  IEnumerator waitForInit()
-  {
-    while (!LoadingManager.Instance.isGameReady())
-      yield return new WaitForEndOfFrame();
+	IEnumerator waitForInit()
+	{
+		while (!LoadingManager.Instance.isGameReady())
+			yield return new WaitForEndOfFrame();
 
-  }
+	}
 
-  // *************** //
-  // ** Fonctions ** // Fonctions réutilisables ailleurs
-  // *************** //
+	// *************** //
+	// ** Fonctions ** // Fonctions réutilisables ailleurs
+	// *************** //
 
-  /// <summary>Check toutes les fonctions de cette classe.</summary>
-  public void Push(GameObject objAfflicted, CaseData caseAfflicted, int pushValue, PushType pushType, Direction pushDirection = Direction.Front)
-  {
-    StartCoroutine(PushDelayed(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection));
-  }
+	/// <summary>Check toutes les fonctions de cette classe.</summary>
+	public void Push(GameObject objAfflicted, CaseData caseAfflicted, int pushValue, PushType pushType, Direction pushDirection = Direction.Front)
+	{
+		StartCoroutine(PushDelayed(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection));
+	}
 
-  IEnumerator PushDelayed(GameObject objAfflicted, CaseData caseAfflicted, int pushValue, PushType pushType, Direction pushDirection = Direction.Front)
-  {
-    if (objAfflicted.GetComponent<PersoData>())
-      yield return new WaitForSeconds(0.05f);
-    if (PushBehaviour.Instance.ienumeratorList.Count != 0)
-      {
-        PushBehaviour.Instance.StopCoroutine(PushBehaviour.Instance.ienumeratorList[0]);
-        Debug.Log(PushBehaviour.Instance.ienumeratorList[0].ToString());
-        PushBehaviour.Instance.ienumeratorList.Remove(PushBehaviour.Instance.ienumeratorList[0]);
-      }
-    if (MoveBehaviour.Instance.ienumeratorList.Count != 0)
-      {
-        MoveBehaviour.Instance.StopCoroutine(MoveBehaviour.Instance.ienumeratorList[0]);
-        Debug.Log(MoveBehaviour.Instance.ienumeratorList[0].ToString());
-        MoveBehaviour.Instance.ienumeratorList.Remove(MoveBehaviour.Instance.ienumeratorList[0]);
-      }
+	IEnumerator PushDelayed(GameObject objAfflicted, CaseData caseAfflicted, int pushValue, PushType pushType, Direction pushDirection = Direction.Front)
+	{
+		if (objAfflicted.GetComponent<PersoData>())
+			yield return new WaitForSeconds(0.05f);
+		if (PushBehaviour.Instance.ienumeratorList.Count != 0)
+		{
+			PushBehaviour.Instance.StopCoroutine(PushBehaviour.Instance.ienumeratorList[0]);
+			Debug.Log(PushBehaviour.Instance.ienumeratorList[0].ToString());
+			PushBehaviour.Instance.ienumeratorList.Remove(PushBehaviour.Instance.ienumeratorList[0]);
+		}
+		if (MoveBehaviour.Instance.ienumeratorList.Count != 0)
+		{
+			MoveBehaviour.Instance.StopCoroutine(MoveBehaviour.Instance.ienumeratorList[0]);
+			Debug.Log(MoveBehaviour.Instance.ienumeratorList[0].ToString());
+			MoveBehaviour.Instance.ienumeratorList.Remove(MoveBehaviour.Instance.ienumeratorList[0]);
+		}
 
-    PushBehaviour.Instance.PushCheck(objAfflicted, pushValue, caseAfflicted, pushType, pushDirection);
-    PushBehaviour.Instance.MultiplePushStart();
+		PushBehaviour.Instance.PushCheck(objAfflicted, pushValue, caseAfflicted, pushType, pushDirection);
+		PushBehaviour.Instance.MultiplePushStart();
 
-  }
+	}
 
-  /// <summary>Un push multiple. Ne marche pas avec la tornade.</summary>
-  public void MultiplePush(GameObject objAfflicted, CaseData caseAfflicted, int pushValue, PushType pushType, Direction pushDirection = Direction.Front)
-  {
-    StartCoroutine(MultiplePushDelayed(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection));
-  }
+	/// <summary>Un push multiple. Ne marche pas avec la tornade.</summary>
+	public void MultiplePush(GameObject objAfflicted, CaseData caseAfflicted, int pushValue, PushType pushType, Direction pushDirection = Direction.Front)
+	{
+		StartCoroutine(MultiplePushDelayed(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection));
+	}
 
-  IEnumerator MultiplePushDelayed(GameObject objAfflicted, CaseData caseAfflicted, int pushValue, PushType pushType, Direction pushDirection = Direction.Front)
-  {
-    if (objAfflicted.GetComponent<PersoData>())
-      yield return new WaitForSeconds(0.05f);
+	IEnumerator MultiplePushDelayed(GameObject objAfflicted, CaseData caseAfflicted, int pushValue, PushType pushType, Direction pushDirection = Direction.Front)
+	{
+		if (objAfflicted.GetComponent<PersoData>())
+			yield return new WaitForSeconds(0.05f);
 
-    if (objAfflicted.GetComponent<BallonData>() && objAfflicted.GetComponent<BallonData>().isPushed == false)
-      {
-        yield return new WaitForSeconds(0.12f);
-      }
-    if (objAfflicted.GetComponent<BallonData>() && objAfflicted.GetComponent<BallonData>().isPushed == true)
-      {
-        yield return new WaitForSeconds(0.02f);
+		if (objAfflicted.GetComponent<BallonData>() && objAfflicted.GetComponent<BallonData>().isPushed == false)
+		{
+			yield return new WaitForSeconds(0.12f);
+		}
+		if (objAfflicted.GetComponent<BallonData>() && objAfflicted.GetComponent<BallonData>().isPushed == true)
+		{
+			yield return new WaitForSeconds(0.02f);
 
-        if (PushBehaviour.Instance.ienumeratorList.Count != 0)
-          {
-            PushBehaviour.Instance.StopCoroutine(PushBehaviour.Instance.ienumeratorList[0]);
-            Debug.Log(PushBehaviour.Instance.ienumeratorList[0].ToString());
-            PushBehaviour.Instance.ienumeratorList.Remove(PushBehaviour.Instance.ienumeratorList[0]);
-          }
-        if (MoveBehaviour.Instance.ienumeratorList.Count != 0)
-          {
-            MoveBehaviour.Instance.StopCoroutine(MoveBehaviour.Instance.ienumeratorList[0]);
-            Debug.Log(MoveBehaviour.Instance.ienumeratorList[0].ToString());
-            MoveBehaviour.Instance.ienumeratorList.Remove(MoveBehaviour.Instance.ienumeratorList[0]);
-          }
-      }
-
-
-    PushBehaviour.Instance.PushCheck(objAfflicted, pushValue, caseAfflicted, pushType, pushDirection);
-    PushBehaviour.Instance.MultiplePushStart();
-  }
+			if (PushBehaviour.Instance.ienumeratorList.Count != 0)
+			{
+				PushBehaviour.Instance.StopCoroutine(PushBehaviour.Instance.ienumeratorList[0]);
+				Debug.Log(PushBehaviour.Instance.ienumeratorList[0].ToString());
+				PushBehaviour.Instance.ienumeratorList.Remove(PushBehaviour.Instance.ienumeratorList[0]);
+			}
+			if (MoveBehaviour.Instance.ienumeratorList.Count != 0)
+			{
+				MoveBehaviour.Instance.StopCoroutine(MoveBehaviour.Instance.ienumeratorList[0]);
+				Debug.Log(MoveBehaviour.Instance.ienumeratorList[0].ToString());
+				MoveBehaviour.Instance.ienumeratorList.Remove(MoveBehaviour.Instance.ienumeratorList[0]);
+			}
+		}
 
 
-  /// <summary>Augmente ou diminue le nombre de PA de la cible.</summary>
-  public void ChangePA(int number)
-  {
-    GameManager.Instance.manaGlobalActual += number;
-    if (number < 0)
-      GameManager.Instance.manaGlobalActual = Mathf.Clamp(GameManager.Instance.manaGlobalActual, 0, GameManager.Instance.manaGlobalMax); // on peut pas dépasser le max
-  }
+		PushBehaviour.Instance.PushCheck(objAfflicted, pushValue, caseAfflicted, pushType, pushDirection);
+		PushBehaviour.Instance.MultiplePushStart();
+	}
 
-  public void ChangePr(PersoData persoAfflicted, int number)
-  {
-    persoAfflicted.actualPointResistance += number;
-    persoAfflicted.actualPointResistance = Mathf.Clamp(persoAfflicted.actualPointResistance, 0, persoAfflicted.maxPointResistance); // on peut pas dépasser le max
-    InfoPerso.Instance.stats.updatePr(persoAfflicted.actualPointResistance);
-    persoAfflicted.StartShineColor(persoAfflicted.GetComponent<SpriteRenderer>().color, Color.red, 5f);
-  }
 
-  public void ChangePm(PersoData persoAfflicted, int number)
-  {
-    persoAfflicted.actualPointMovement += number;
-    persoAfflicted.actualPointMovement = Mathf.Clamp(persoAfflicted.actualPointMovement, 0, persoAfflicted.maxPointMovement); // on peut pas dépasser le max
-    InfoPerso.Instance.stats.updatePm(persoAfflicted.actualPointMovement);
-  }
+	/// <summary>Augmente ou diminue le nombre de PA de la cible.</summary>
+	public void ChangePA(int number)
+	{
+		GameManager.Instance.manaGlobalActual += number;
+		if (number < 0)
+			GameManager.Instance.manaGlobalActual = Mathf.Clamp(GameManager.Instance.manaGlobalActual, 0, GameManager.Instance.manaGlobalMax); // on peut pas dépasser le max
+	}
 
-  public void ChangePADebuff(int number)
-  {
-    GameManager.Instance.paDebuff += number;
-  }
+	public void ChangePr(PersoData persoAfflicted, int number)
+	{
+		persoAfflicted.actualPointResistance += number;
+		persoAfflicted.actualPointResistance = Mathf.Clamp(persoAfflicted.actualPointResistance, 0, persoAfflicted.maxPointResistance); // on peut pas dépasser le max
+		InfoPerso.Instance.stats.updatePr(persoAfflicted.actualPointResistance);
+	}
 
-  public void ChangePmDebuff(PersoData persoAfflicted, int number)
-  {
-    persoAfflicted.pmDebuff += number;
-  }
+	public void ChangePm(PersoData persoAfflicted, int number)
+	{
+		persoAfflicted.actualPointMovement += number;
+		persoAfflicted.actualPointMovement = Mathf.Clamp(persoAfflicted.actualPointMovement, 0, persoAfflicted.maxPointMovement); // on peut pas dépasser le max
+		InfoPerso.Instance.stats.updatePm(persoAfflicted.actualPointMovement);
+	}
 
-  public void ChangePr(SummonData summonAfflicted, int number)
-  {
-    summonAfflicted.actualPointResistance += number;
-  }
+	public void ChangePADebuff(int number)
+	{
+		GameManager.Instance.paDebuff += number;
+	}
 
-  public void Rotate(GameObject objAfflicted, Direction newDirection)
-  {
-    Debug.Log(objAfflicted.GetComponent<SummonData>());
-    Debug.Log(newDirection);
-    if (objAfflicted.GetComponent<SummonData>())
-      objAfflicted.GetComponent<SummonData>().pushDirection = newDirection;
-  }
+	public void ChangePmDebuff(PersoData persoAfflicted, int number)
+	{
+		persoAfflicted.pmDebuff += number;
+	}
 
-  public void doExplosion(CaseData caseAfflicted)
-  {
-    StartCoroutine(doExplosionCoroutine(caseAfflicted));
-  }
+	public void ChangePr(SummonData summonAfflicted, int number)
+	{
+		summonAfflicted.actualPointResistance += number;
+	}
 
-  public IEnumerator doExplosionCoroutine(CaseData caseAfflicted)
-  {
-    damageAndPush(caseAfflicted.GetBottomLeftCase(), Direction.SudOuest);
-    yield return new WaitForEndOfFrame();
-    damageAndPush(caseAfflicted.GetBottomRightCase(), Direction.SudEst);
-    yield return new WaitForEndOfFrame();
-    damageAndPush(caseAfflicted.GetTopRightCase(), Direction.NordEst);
-    yield return new WaitForEndOfFrame();
-    damageAndPush(caseAfflicted.GetTopLeftCase(), Direction.NordOuest);
-  }
+	public void Rotate(GameObject objAfflicted, Direction newDirection)
+	{
+		Debug.Log(objAfflicted.GetComponent<SummonData>());
+		Debug.Log(newDirection);
+		if (objAfflicted.GetComponent<SummonData>())
+			objAfflicted.GetComponent<SummonData>().pushDirection = newDirection;
+	}
 
-  private void damageAndPush(CaseData tempCase, Direction direction)
-  {
-    if (tempCase == null)
-      return;
+	public void doExplosion(CaseData caseAfflicted)
+	{
+		StartCoroutine(doExplosionCoroutine(caseAfflicted));
+	}
 
-    if (tempCase.personnageData != null)
-      {
-        if (tempCase.personnageData.timeStunned > 0)
-          {
-            return;
-          }
-        EffectManager.Instance.MultiplePush(tempCase.personnageData.gameObject, tempCase, 1, PushType.FromTerrain, direction);
-      }
-    if (tempCase.ballon != null)
-      {
-        EffectManager.Instance.MultiplePush(tempCase.ballon.gameObject, tempCase, 1, PushType.FromTerrain, direction);
-      }
-  }
+	public IEnumerator doExplosionCoroutine(CaseData caseAfflicted)
+	{
+		damageAndPush(caseAfflicted.GetBottomLeftCase(), Direction.SudOuest);
+		yield return new WaitForEndOfFrame();
+		damageAndPush(caseAfflicted.GetBottomRightCase(), Direction.SudEst);
+		yield return new WaitForEndOfFrame();
+		damageAndPush(caseAfflicted.GetTopRightCase(), Direction.NordEst);
+		yield return new WaitForEndOfFrame();
+		damageAndPush(caseAfflicted.GetTopLeftCase(), Direction.NordOuest);
+	}
+
+	private void damageAndPush(CaseData tempCase, Direction direction)
+	{
+		if (tempCase == null)
+			return;
+
+		if (tempCase.personnageData != null)
+		{
+			if (tempCase.personnageData.timeStunned > 0)
+			{
+				return;
+			}
+			EffectManager.Instance.MultiplePush(tempCase.personnageData.gameObject, tempCase, 1, PushType.FromTerrain, direction);
+		}
+		if (tempCase.ballon != null)
+		{
+			EffectManager.Instance.MultiplePush(tempCase.ballon.gameObject, tempCase, 1, PushType.FromTerrain, direction);
+		}
+	}
 
 }
