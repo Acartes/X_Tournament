@@ -19,7 +19,6 @@ public class MoveBehaviour : NetworkBehaviour
   public List<GameObject> GoPathes;
   // déplacement
   public List<Transform> movePathes;
-  public List<IEnumerator> ienumeratorList = new List<IEnumerator>();
 
   // déplacement
   [ReadOnly] public List<Transform> pathesLast;
@@ -147,14 +146,12 @@ public class MoveBehaviour : NetworkBehaviour
     {
       path.GetComponent<CaseData>().ChangeStatut(Statut.isMoving);
     }
-    ienumeratorList.Add(Deplacement(SelectionManager.Instance.selectedPersonnage.originPoint.transform.localPosition, SelectionManager.Instance.selectedPersonnage, movePathes));
-    StartCoroutine(ienumeratorList[ienumeratorList.Count - 1]);
+    StartCoroutine(Deplacement(SelectionManager.Instance.selectedPersonnage.originPoint.transform.localPosition, SelectionManager.Instance.selectedPersonnage, movePathes));
   }
 
   public IEnumerator Deplacement(Vector3 originPoint, PersoData selectedPersonnage, List<Transform> pathes)
   { // On déplace le personnage de case en case jusqu'au click du joueur propriétaire, et entre temps on check s'il est taclé ou non
     TurnManager.Instance.DisableFinishTurn();
-    IEnumerator thisFunc = ienumeratorList[ienumeratorList.Count - 1];
 
     GameManager.Instance.actualAction = PersoAction.isMoving;
 
@@ -176,7 +173,6 @@ public class MoveBehaviour : NetworkBehaviour
         caseSelected.GetComponent<CaseData>().casePathfinding = PathfindingCase.NonWalkable;
         tempPath.Clear();
         StartCoroutine(TurnManager.Instance.EnableFinishTurn());
-        ienumeratorList.Remove(thisFunc);
         yield return new WaitForEndOfFrame();
         yield return null;
       }
@@ -225,7 +221,6 @@ public class MoveBehaviour : NetworkBehaviour
       tempPath.Clear();
     }
     StartCoroutine(TurnManager.Instance.EnableFinishTurn());
-    ienumeratorList.Remove(thisFunc);
     yield return new WaitForEndOfFrame();
   }
 }

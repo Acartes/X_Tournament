@@ -116,6 +116,7 @@ public class SummonData : NetworkBehaviour
     PersoData persoAfflicted = objAfflicted.GetComponent<PersoData>();
     CaseData caseAfflicted = null;
     BallonData ballonAfflicted = objAfflicted.GetComponent<BallonData>();
+    SummonData summonAfflicted = objAfflicted.GetComponent<SummonData>();
 
     if (persoAfflicted != null)
     {
@@ -124,7 +125,7 @@ public class SummonData : NetworkBehaviour
       {
         return;
       }
-        if ((damagePR != 0 || damagePA != 0 || damagePM != 0))
+      if ((damagePR != 0 || damagePA != 0 || damagePM != 0))
       {
         persoAfflicted = objAfflicted.GetComponent<PersoData>();
         caseAfflicted = persoAfflicted.persoCase;
