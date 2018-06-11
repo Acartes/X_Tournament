@@ -7,183 +7,187 @@ using UnityEngine.Networking;
 public class SummonData : NetworkBehaviour
 {
 
-  // *************** //
-  // ** Variables ** // Toutes les variables sans distinctions
-  // *************** //
+	// *************** //
+	// ** Variables ** // Toutes les variables sans distinctions
+	// *************** //
 
-  public bool isStatic;
+	public bool isStatic;
 
-  public bool isBlockingLineOfSight;
+	public bool isBlockingLineOfSight;
 
-  public bool isTraversable;
+	public bool isTraversable;
 
-  /// <summary>Push (positif) ou pull(negatif)</summary>
-  public bool canPush;
-  public int pushValue;
-  public int pushRange;
-  public PushType pushType;
-  public Direction pushDirection;
+	/// <summary>Push (positif) ou pull(negatif)</summary>
+	public bool canPush;
+	public int pushValue;
+	public int pushRange;
+	public PushType pushType;
+	public Direction pushDirection;
 
-  public Transform originPoint;
+	public Transform originPoint;
 
-  public CaseData caseActual;
+	public CaseData caseActual;
 
-  public int actualPointResistance;
-  public int maxPointResistance;
-  public bool invulnerable;
-  public bool makeBallExplosive;
-  public bool hurtWhenBounce;
-  public int numberEffectDisapear;
-  public Direction summonDirection = Direction.NordEst;
+	public int actualPointResistance;
+	public int maxPointResistance;
+	public bool invulnerable;
+	public bool makeBallExplosive;
+	public bool hurtWhenBounce;
+	public int numberEffectDisapear;
+	public Direction summonDirection = Direction.NordEst;
 
-  public int damagePR;
-  public int damagePA;
-  public int damagePM;
-  public bool reverseDamageOnAlly;
+	public int damagePR;
+	public int damagePA;
+	public int damagePM;
+	public bool reverseDamageOnAlly;
 
-  public Sprite P1Sprite;
-  public Sprite P2Sprite;
+	public Sprite P1Sprite;
+	public Sprite P2Sprite;
 
-  public Player owner;
+	public Player owner;
 
-  public int limitInvoc;
+	public int limitInvoc;
 
-  public Element element;
+	public Element element;
 
-  Animator animator;
+	Animator animator;
 
-  bool isDeath = false;
+	bool isDeath = false;
 
-  // ******************** //
-  // ** Initialisation ** // Fonctions de départ, non réutilisable
-  // ******************** //
+	// ******************** //
+	// ** Initialisation ** // Fonctions de départ, non réutilisable
+	// ******************** //
 
-  void Awake()
-  {
-    animator = GetComponent<Animator>();
-    StartCoroutine(waitForInit());
-  }
+	void Awake()
+	{
+		animator = GetComponent<Animator>();
+		StartCoroutine(waitForInit());
+	}
 
-  IEnumerator waitForInit()
-  {
-    yield return new WaitForEndOfFrame();
-    while (TurnManager.Instance == null)
-    {
-      yield return null;
-    }
-    Init();
-  }
+	IEnumerator waitForInit()
+	{
+		yield return new WaitForEndOfFrame();
+		while (TurnManager.Instance == null)
+		{
+			yield return null;
+		}
+		Init();
+	}
 
-  public void Init()
-  {
+	public void Init()
+	{
 
-  }
+	}
 
-  void Update()
-  {
-    CheckDeath();
-  }
+	void Update()
+	{
+		CheckDeath();
+	}
 
-  // *************** //
-  // ** Fonctions ** // Fonctions réutilisables ailleurs
-  // *************** //
+	// *************** //
+	// ** Fonctions ** // Fonctions réutilisables ailleurs
+	// *************** //
 
-  /// <summary>Vérifie si l'invocation est censé être toujours vivant ou pas.</summary>
-  public void CheckDeath()
-  {
-    if (((actualPointResistance <= 0 && !invulnerable) || numberEffectDisapear <= 0) && !isDeath)
-    {
-      isDeath = true;
-      SummonManager.Instance.RemoveSummon(this);
-      Death();
-    }
-  }
+	public void SummonInvocEnded()
+	{
+		TransparencyManager.Instance.CheckCaseTransparency(caseActual);
+	}
 
-  public void Death()
-  {
-    animator.SetTrigger("Disparition");
-    GetComponent<BoxCollider2D>().enabled = false;
-  }
+	/// <summary>Vérifie si l'invocation est censé être toujours vivant ou pas.</summary>
+	public void CheckDeath()
+	{
+		if (((actualPointResistance <= 0 && !invulnerable) || numberEffectDisapear <= 0) && !isDeath)
+		{
+			isDeath = true;
+			SummonManager.Instance.RemoveSummon(this);
+			Death();
+		}
+	}
 
-  public void DestroyIt()
-  {
-    Destroy(this.gameObject);
-  }
+	public void Death()
+	{
+		animator.enabled = true;
+		animator.SetTrigger("Disparition");
+		GetComponent<BoxCollider2D>().enabled = false;
+	}
 
-  /// <summary>Applique les effets selon les paramètres de l'invocation.</summary>
-  public void ApplyEffect(GameObject objAfflicted)
-  {
-    PersoData persoAfflicted = objAfflicted.GetComponent<PersoData>();
-    CaseData caseAfflicted = null;
-    BallonData ballonAfflicted = objAfflicted.GetComponent<BallonData>();
+	public void DestroyIt()
+	{
+		Destroy(this.gameObject);
+	}
 
-    if (persoAfflicted != null)
-    {
-      caseAfflicted = persoAfflicted.persoCase;
-      if (persoAfflicted.timeStunned > 0)
-      {
-        return;
-      }
-        if ((damagePR != 0 || damagePA != 0 || damagePM != 0))
-      {
-        persoAfflicted = objAfflicted.GetComponent<PersoData>();
-        caseAfflicted = persoAfflicted.persoCase;
-        if (reverseDamageOnAlly && persoAfflicted.owner == owner)
-        {
-          damagePA = -damagePA;
-          damagePR = -damagePR;
-          damagePM = -damagePM;
-          AfterFeedbackManager.Instance.PRText(damagePR, objAfflicted, true);
-        }
-        else
-        {
-          AfterFeedbackManager.Instance.PRText(damagePR, objAfflicted);
-        }
-        EffectManager.Instance.ChangePA(-damagePA);
-        EffectManager.Instance.ChangePr(persoAfflicted, -damagePR);
-        EffectManager.Instance.ChangePm(persoAfflicted, -damagePM);
+	/// <summary>Applique les effets selon les paramètres de l'invocation.</summary>
+	public void ApplyEffect(GameObject objAfflicted)
+	{
+		PersoData persoAfflicted = objAfflicted.GetComponent<PersoData>();
+		CaseData caseAfflicted = null;
+		BallonData ballonAfflicted = objAfflicted.GetComponent<BallonData>();
 
-      }
-    }
-    if (ballonAfflicted != null)
-    {
-      caseAfflicted = ballonAfflicted.ballonCase;
-      if (makeBallExplosive)
-      {
-        ballonAfflicted.setExplosive(owner);
-      }
-    }
+		if (persoAfflicted != null)
+		{
+			caseAfflicted = persoAfflicted.persoCase;
+			if (persoAfflicted.timeStunned > 0)
+			{
+				return;
+			}
+			if ((damagePR != 0 || damagePA != 0 || damagePM != 0))
+			{
+				persoAfflicted = objAfflicted.GetComponent<PersoData>();
+				caseAfflicted = persoAfflicted.persoCase;
+				if (reverseDamageOnAlly && persoAfflicted.owner == owner)
+				{
+					damagePA = -damagePA;
+					damagePR = -damagePR;
+					damagePM = -damagePM;
+					AfterFeedbackManager.Instance.PRText(damagePR, objAfflicted, true);
+				} else
+				{
+					AfterFeedbackManager.Instance.PRText(damagePR, objAfflicted);
+				}
+				EffectManager.Instance.ChangePA(-damagePA);
+				EffectManager.Instance.ChangePr(persoAfflicted, -damagePR);
+				EffectManager.Instance.ChangePm(persoAfflicted, -damagePM);
 
-    if (canPush)
-    {
-      EffectManager.Instance.MultiplePush(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection);
-    }
+			}
+		}
+		if (ballonAfflicted != null)
+		{
+			caseAfflicted = ballonAfflicted.ballonCase;
+			if (makeBallExplosive)
+			{
+				ballonAfflicted.setExplosive(owner);
+			}
+		}
 
-    numberEffectDisapear--;
-  }
+		if (canPush)
+		{
+			EffectManager.Instance.MultiplePush(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection);
+		}
 
-  public void ChangeSpriteByPlayer()
-  {
-    if (GetComponentInChildren<SpriteRenderer>() != null)
-    {
-      if (P2Sprite != null)
-      {
-        if (owner == Player.Red)
-        {
-          GetComponentInChildren<SpriteRenderer>().sprite = P1Sprite;
-        }
-        if (owner == Player.Blue)
-        {
-          GetComponentInChildren<SpriteRenderer>().sprite = P2Sprite;
-        }
-      }
-      else
-      {
-        if (P1Sprite != null)
-        {
-          GetComponentInChildren<SpriteRenderer>().sprite = P1Sprite;
-        }
-      }
-    }
-  }
+		numberEffectDisapear--;
+	}
+
+	public void ChangeSpriteByPlayer()
+	{
+		if (GetComponentInChildren<SpriteRenderer>() != null)
+		{
+			if (P2Sprite != null)
+			{
+				if (owner == Player.Red)
+				{
+					GetComponentInChildren<SpriteRenderer>().sprite = P1Sprite;
+				}
+				if (owner == Player.Blue)
+				{
+					GetComponentInChildren<SpriteRenderer>().sprite = P2Sprite;
+				}
+			} else
+			{
+				if (P1Sprite != null)
+				{
+					GetComponentInChildren<SpriteRenderer>().sprite = P1Sprite;
+				}
+			}
+		}
+	}
 }

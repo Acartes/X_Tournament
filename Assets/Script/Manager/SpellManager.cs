@@ -117,7 +117,10 @@ public class SpellManager : NetworkBehaviour
 	public void SpellButtonClick(int IDSpell)
 	{
 		if (GameManager.Instance.actualAction == PersoAction.isCasting)
-			return;
+		{
+			spellSuccess = false;
+			StartCoroutine(SpellEnd());
+		}
 
 		if (SelectionManager.Instance.selectedCase == null)
 			return;
@@ -329,10 +332,10 @@ public class SpellManager : NetworkBehaviour
 		}
 		SummonManager.Instance.lastSummonInstancied = null;
 		spellSuccess = false;
-
+		GameManager.Instance.actualAction = PersoAction.isSelected;
 		yield return new WaitForSeconds(0.5f);
 
-		GameManager.Instance.actualAction = PersoAction.isSelected;
+
 		SelectionManager.Instance.EnablePersoSelection();
 		MoveBehaviour.Instance.StopAllCoroutines();
 		StartCoroutine(TurnManager.Instance.EnableFinishTurn());

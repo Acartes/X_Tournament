@@ -7,216 +7,216 @@ using UnityEngine.Networking;
 public class SelectionManager : NetworkBehaviour
 {
 
-  // *************** //
-  // ** Variables ** // Toutes les variables sans distinctions
-  // *************** //
+	// *************** //
+	// ** Variables ** // Toutes les variables sans distinctions
+	// *************** //
 
-  public CaseData selectedLastCase;
-  public PersoData selectedLastPersonnage;
-  public BallonData selectedBallon;
-  public CaseData selectedCase;
-  public PersoData selectedPersonnage;
+	public CaseData selectedLastCase;
+	public PersoData selectedLastPersonnage;
+	public BallonData selectedBallon;
+	public CaseData selectedCase;
+	public PersoData selectedPersonnage;
 
-  bool isDisablePersoSelection = false;
+	bool isDisablePersoSelection = false;
   
-  public static SelectionManager Instance;
+	public static SelectionManager Instance;
 
-  // ******************** //
-  // ** Initialisation ** // Fonctions de départ, non réutilisable
-  // ******************** //
+	// ******************** //
+	// ** Initialisation ** // Fonctions de départ, non réutilisable
+	// ******************** //
 
-  public override void OnStartClient()
-  {
-    if (Instance == null)
-      Instance = this;
-    StartCoroutine(waitForInit());
-  }
+	public override void OnStartClient()
+	{
+		if (Instance == null)
+			Instance = this;
+		StartCoroutine(waitForInit());
+	}
 
-  IEnumerator waitForInit()
-  {
-    while (!LoadingManager.Instance.isGameReady())
-      yield return new WaitForEndOfFrame();
-    Init();
-  }
+	IEnumerator waitForInit()
+	{
+		while (!LoadingManager.Instance.isGameReady())
+			yield return new WaitForEndOfFrame();
+		Init();
+	}
 
-  private void Init()
-  {
-    EventManager.newClickEvent += OnNewClick;
-    TurnManager.Instance.changeTurnEvent += OnChangeTurn;
-  }
+	private void Init()
+	{
+		EventManager.newClickEvent += OnNewClick;
+		TurnManager.Instance.changeTurnEvent += OnChangeTurn;
+	}
 
-  void OnDisable()
-  {
-    if (LoadingManager.Instance != null && LoadingManager.Instance.isGameReady())
-      {
-        EventManager.newClickEvent -= OnNewClick;
-        TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
-      }
-  }
+	void OnDisable()
+	{
+		if (LoadingManager.Instance != null && LoadingManager.Instance.isGameReady())
+		{
+			EventManager.newClickEvent -= OnNewClick;
+			TurnManager.Instance.changeTurnEvent -= OnChangeTurn;
+		}
+	}
 
-  private void Update()
-  {
-    if (selectedPersonnage == null)
-      return;
-      
-    if (selectedPersonnage.Spell1 != null)
-      {
-        if ((selectedPersonnage.owner == Player.Red && ManaManager.Instance.manaActuelRed < selectedPersonnage.Spell1.costPA)
-            || (selectedPersonnage.owner == Player.Blue && ManaManager.Instance.manaActuelBlue < selectedPersonnage.Spell1.costPA))
-          {
-            UIManager.Instance.GreyButton("spell 1");
-          } else
-          {
-            UIManager.Instance.UngreyButton("spell 1");
-          }
-      }
+	private void Update()
+	{
+		if (selectedPersonnage == null)
+			return;
 
-    if (selectedPersonnage.Spell2 != null)
-      {
-        if ((selectedPersonnage.owner == Player.Red && ManaManager.Instance.manaActuelRed < selectedPersonnage.Spell2.costPA)
-        || (selectedPersonnage.owner == Player.Blue && ManaManager.Instance.manaActuelBlue < selectedPersonnage.Spell2.costPA))
-          {
-            UIManager.Instance.GreyButton("spell 2");
-          } else
-          {
-            UIManager.Instance.UngreyButton("spell 2");
-          }
-      }
-  }
+		if (selectedPersonnage.Spell1 != null)
+		{
+			if ((selectedPersonnage.owner == Player.Red && ManaManager.Instance.manaActuelRed < selectedPersonnage.Spell1.costPA)
+			    || (selectedPersonnage.owner == Player.Blue && ManaManager.Instance.manaActuelBlue < selectedPersonnage.Spell1.costPA))
+			{
+				UIManager.Instance.GreyButton("spell 1");
+			} else
+			{
+				//	UIManager.Instance.UngreyButton("spell 1");
+			}
+		}
 
-  // *************** //
-  // ** Events **    // Appel de fonctions au sein de ce script grâce à des events
-  // *************** //
+		if (selectedPersonnage.Spell2 != null)
+		{
+			if ((selectedPersonnage.owner == Player.Red && ManaManager.Instance.manaActuelRed < selectedPersonnage.Spell2.costPA)
+			    || (selectedPersonnage.owner == Player.Blue && ManaManager.Instance.manaActuelBlue < selectedPersonnage.Spell2.costPA))
+			{
+				UIManager.Instance.GreyButton("spell 2");
+			} else
+			{
+				//	UIManager.Instance.UngreyButton("spell 2");
+			}
+		}
+	}
 
-  public void OnNewClick()
-  { // Lors d'un click sur une case
+	// *************** //
+	// ** Events **    // Appel de fonctions au sein de ce script grâce à des events
+	// *************** //
 
-    if (isDisablePersoSelection)
-      return;
+	public void OnNewClick()
+	{ // Lors d'un click sur une case
+
+		if (isDisablePersoSelection)
+			return;
 
  
-    PersoData hoveredPersonnage = HoverManager.Instance.hoveredPersonnage;
-    Phase currentPhase = TurnManager.Instance.currentPhase;
-    Player currentPlayer = TurnManager.Instance.currentPlayer;
-    PersoAction actualAction = GameManager.Instance.actualAction;
-    CaseData hoveredCase = HoverManager.Instance.hoveredCase;
-    List<Transform> pathes = MoveBehaviour.Instance.movePathes;
-    Color selectedColor = ColorManager.Instance.selectedColor;
-    Color moveColor = ColorManager.Instance.moveColor;
-    Color caseColor = ColorManager.Instance.caseColor;
+		PersoData hoveredPersonnage = HoverManager.Instance.hoveredPersonnage;
+		Phase currentPhase = TurnManager.Instance.currentPhase;
+		Player currentPlayer = TurnManager.Instance.currentPlayer;
+		PersoAction actualAction = GameManager.Instance.actualAction;
+		CaseData hoveredCase = HoverManager.Instance.hoveredCase;
+		List<Transform> pathes = MoveBehaviour.Instance.movePathes;
+		Color selectedColor = ColorManager.Instance.selectedColor;
+		Color moveColor = ColorManager.Instance.moveColor;
+		Color caseColor = ColorManager.Instance.caseColor;
 
-    selectedLastCase = selectedCase;
-    switch (currentPhase)
-      {
-      case (Phase.Placement):
-        return; // c'est le scriptPlacementBehaviour qui s'occupe des clicks de phase de placement
-      case (Phase.Deplacement):
-        if (hoveredPersonnage != null && hoveredPersonnage.owner == currentPlayer)
-          { // changement de personnage selectionné
-            SelectPerso(hoveredCase, hoveredPersonnage, selectedColor, currentPhase, currentPlayer, actualAction);
-          }
-        break;
-      }
-    if (selectedPersonnage != null)
-      {
-        InfoPerso.Instance.stats.updatePm(Instance.selectedPersonnage.actualPointMovement);
-        InfoPerso.Instance.stats.updatePr(Instance.selectedPersonnage.actualPointResistance);
-        InfoPerso.Instance.stats.updatePo(Instance.selectedPersonnage.shotStrenght);
-      }
-  }
+		selectedLastCase = selectedCase;
+		switch (currentPhase)
+		{
+			case (Phase.Placement):
+				return; // c'est le scriptPlacementBehaviour qui s'occupe des clicks de phase de placement
+			case (Phase.Deplacement):
+				if (hoveredPersonnage != null && hoveredPersonnage.owner == currentPlayer)
+				{ // changement de personnage selectionné
+					SelectPerso(hoveredCase, hoveredPersonnage, selectedColor, currentPhase, currentPlayer, actualAction);
+				}
+				break;
+		}
+		if (selectedPersonnage != null)
+		{
+			InfoPerso.Instance.stats.updatePm(Instance.selectedPersonnage.actualPointMovement);
+			InfoPerso.Instance.stats.updatePr(Instance.selectedPersonnage.actualPointResistance);
+			InfoPerso.Instance.stats.updatePo(Instance.selectedPersonnage.shotStrenght);
+		}
+	}
 
-  void OnChangeTurn(object sender, PlayerArgs e)
-  { // Lorsqu'un joueur termine son tour
-    if (TurnManager.Instance.TurnNumber != 0)
-      Deselect();
+	void OnChangeTurn(object sender, PlayerArgs e)
+	{ // Lorsqu'un joueur termine son tour
+		if (TurnManager.Instance.TurnNumber != 0)
+			Deselect();
 
-    switch (e.currentPhase)
-      {
-      case Phase.Deplacement:
-        ResetSelection(ColorManager.Instance.caseColor);
-        break;
-      case Phase.Placement:
-        StartCoroutine(preSelectFirstPerso());
-        break;
-      }
-  }
+		switch (e.currentPhase)
+		{
+			case Phase.Deplacement:
+				ResetSelection(ColorManager.Instance.caseColor);
+				break;
+			case Phase.Placement:
+				StartCoroutine(preSelectFirstPerso());
+				break;
+		}
+	}
 
-  IEnumerator preSelectFirstPerso()
-  {
-    while (RosterManager.Instance.listHero.Count != 8)
-      yield return new WaitForSeconds(0.01f);
+	IEnumerator preSelectFirstPerso()
+	{
+		while (RosterManager.Instance.listHero.Count != 8)
+			yield return new WaitForSeconds(0.01f);
 
-    SelectPersoInPortraits();
-  }
+		SelectPersoInPortraits();
+	}
 
-  // *************** //
-  // ** Fonctions ** // Fonctions réutilisables ailleurs
-  // *************** //
+	// *************** //
+	// ** Fonctions ** // Fonctions réutilisables ailleurs
+	// *************** //
 
-  public void ResetSelection(Color caseColor)
-  {
-    if (selectedCase != null)
-      {
-        selectedCase.ChangeStatut(Statut.None, Statut.isSelected);
-      }
-    selectedCase = null;
-    selectedPersonnage = null;
-  }
+	public void ResetSelection(Color caseColor)
+	{
+		if (selectedCase != null)
+		{
+			selectedCase.ChangeStatut(Statut.None, Statut.isSelected);
+		}
+		selectedCase = null;
+		selectedPersonnage = null;
+	}
 
-  public void Deselect()
-  {
-    CaseManager.Instance.RemovePath();
-    MoveBehaviour.Instance.movePathes.Clear();
-    GameManager.Instance.actualAction = PersoAction.isSelected;
-    UIManager.Instance.HideStats();
+	public void Deselect()
+	{
+		CaseManager.Instance.RemovePath();
+		MoveBehaviour.Instance.movePathes.Clear();
+		GameManager.Instance.actualAction = PersoAction.isSelected;
+		UIManager.Instance.HideStats();
 
-    if (selectedLastCase != null)
-      selectedLastCase.ChangeStatut(Statut.None, Statut.isSelected);
+		if (selectedLastCase != null)
+			selectedLastCase.ChangeStatut(Statut.None, Statut.isSelected);
 
-    selectedPersonnage = null;
-    selectedCase = null;
-  }
+		selectedPersonnage = null;
+		selectedCase = null;
+	}
 
-  public void SelectPerso(CaseData hoveredCase, PersoData hoveredPersonnage, Color selectedColor, Phase currentPhase, Player currentPlayer, PersoAction actualAction)
-  {
-    Deselect();
-    selectedPersonnage = hoveredPersonnage;
-    selectedCase = selectedPersonnage.persoCase;
+	public void SelectPerso(CaseData hoveredCase, PersoData hoveredPersonnage, Color selectedColor, Phase currentPhase, Player currentPlayer, PersoAction actualAction)
+	{
+		Deselect();
+		selectedPersonnage = hoveredPersonnage;
+		selectedCase = selectedPersonnage.persoCase;
 
-    UIManager.Instance.ChangeSpriteSpellButton(selectedPersonnage);
-    InfoPerso.Instance.PersoSelected(hoveredPersonnage);
+		UIManager.Instance.ChangeSpriteSpellButton(selectedPersonnage);
+		InfoPerso.Instance.PersoSelected(hoveredPersonnage);
 
-    selectedCase.ChangeStatut(Statut.isSelected);
-    GameManager.Instance.actualAction = PersoAction.isSelected;
-  }
+		selectedCase.ChangeStatut(Statut.isSelected);
+		GameManager.Instance.actualAction = PersoAction.isSelected;
+	}
 
-  public void DisablePersoSelection()
-  {
-    isDisablePersoSelection = true;
-  }
+	public void DisablePersoSelection()
+	{
+		isDisablePersoSelection = true;
+	}
 
-  public void EnablePersoSelection()
-  {
-    isDisablePersoSelection = false;
-  }
+	public void EnablePersoSelection()
+	{
+		isDisablePersoSelection = false;
+	}
 
-  public void SelectPersoInPortraits()
-  {
-    if (TurnManager.Instance.currentPlayer == Player.Red)
-      {
-        selectedPersonnage = RosterManager.Instance.listHero[0];
+	public void SelectPersoInPortraits()
+	{
+		if (TurnManager.Instance.currentPlayer == Player.Red)
+		{
+			selectedPersonnage = RosterManager.Instance.listHero[0];
 
-        InfoPerso.Instance.stats.updatePm(selectedPersonnage.actualPointMovement);
-        InfoPerso.Instance.stats.updatePr(selectedPersonnage.actualPointResistance);
-        InfoPerso.Instance.stats.updatePo(selectedPersonnage.shotStrenght);
-      }
-    if (TurnManager.Instance.currentPlayer == Player.Blue)
-      {
-        selectedPersonnage = RosterManager.Instance.listHero[4];
+			InfoPerso.Instance.stats.updatePm(selectedPersonnage.actualPointMovement);
+			InfoPerso.Instance.stats.updatePr(selectedPersonnage.actualPointResistance);
+			InfoPerso.Instance.stats.updatePo(selectedPersonnage.shotStrenght);
+		}
+		if (TurnManager.Instance.currentPlayer == Player.Blue)
+		{
+			selectedPersonnage = RosterManager.Instance.listHero[4];
 
-        InfoPerso.Instance.stats.updatePm(selectedPersonnage.actualPointMovement);
-        InfoPerso.Instance.stats.updatePr(selectedPersonnage.actualPointResistance);
-        InfoPerso.Instance.stats.updatePo(selectedPersonnage.shotStrenght);
-      }
-  }
+			InfoPerso.Instance.stats.updatePm(selectedPersonnage.actualPointMovement);
+			InfoPerso.Instance.stats.updatePr(selectedPersonnage.actualPointResistance);
+			InfoPerso.Instance.stats.updatePo(selectedPersonnage.shotStrenght);
+		}
+	}
 }

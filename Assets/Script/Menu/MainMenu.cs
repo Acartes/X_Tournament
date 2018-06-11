@@ -2,23 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Prototype.NetworkLobby;
 
 public class MainMenu : MonoBehaviour
 {
 
-  public void PlayGame()
-  {
-    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-  }
+	public void PlayGame()
+	{
+		LobbyManager.Instance.mainMenuPanel.gameObject.SetActive(true);
+		LobbyManager.Instance.mainMenuPanel.gameObject.GetComponent<LobbyMainMenu>().OnClickHost();
+		//SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+	}
 
-  public void QuitGame()
-  {
-    Application.Quit();
-  }
+	public void QuitGame()
+	{
+		Application.Quit();
+	}
 
-  public void Parsec()
-  {
-    Debug.Log("aazazaza");
-    Application.OpenURL("https://parsecgaming.com/");
-  }
+	public void Parsec()
+	{
+		Debug.Log("aazazaza");
+		Application.OpenURL("https://parsecgaming.com/");
+	}
 }

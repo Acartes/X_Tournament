@@ -5,72 +5,82 @@ using UnityEngine.Networking;
 
 public class TransparencyManager : NetworkBehaviour
 {
-  // *************** //
-  // ** Variables ** // Toutes les variables sans distinctions
-  // *************** //
+	// *************** //
+	// ** Variables ** // Toutes les variables sans distinctions
+	// *************** //
 
-  [Range(0, 1)] [Tooltip("Niveau de transparence")] public float alpha;
-  [HideInInspector] static public TransparencyManager Instance;
+	[Range(0, 1)] [Tooltip("Niveau de transparence")] public float alpha;
+	[HideInInspector] static public TransparencyManager Instance;
 
-  // ******************** //
-  // ** Initialisation ** // Fonctions de départ, non réutilisable
-  // ******************** //
+	// ******************** //
+	// ** Initialisation ** // Fonctions de départ, non réutilisable
+	// ******************** //
 
-  public override void OnStartClient()
-  {
-    if (Instance == null)
-      Instance = this;
-  }
+	public override void OnStartClient()
+	{
+		if (Instance == null)
+			Instance = this;
+	}
 
-  // *************** //
-  // ** Fonctions ** // Fonctions réutilisables ailleurs
-  // *************** //
+	// *************** //
+	// ** Fonctions ** // Fonctions réutilisables ailleurs
+	// *************** //
 
-  public void CheckCaseTransparency(CaseData Case, bool doRecursive = true)
-  { // Check s'il y a un personnage ou un ballon au dessus ou en dessous de la case ciblée pour détecter s'il doit faire une transparence ou non.
+	public void CheckCaseTransparency(CaseData Case, bool doRecursive = true)
+	{ // Check s'il y a un personnage ou un ballon au dessus ou en dessous de la case ciblée pour détecter s'il doit faire une transparence ou non.
 
-    // GET CASE HAUT ET GET CASE BAS
-    CaseData upperCase = null;
-    CaseData lowerCase = null;
-
-    if (Case != null)
-      {
-        upperCase = Case.GetTopCase();
-        lowerCase = Case.GetBottomCase();
-      }
+		// GET CASE HAUT ET GET CASE BAS
+		CaseData upperCase = null;
+		CaseData lowerCase = null;
+		if (Case != null)
+		{
+			upperCase = Case.GetTopCase();
+			lowerCase = Case.GetBottomCase();
+		}
       
-    if (upperCase != null)
-      {
-        if (upperCase != null && upperCase.personnageData != null
-            && Case != null && Case.personnageData != null)
-          {
-            ApplyTransparency(Case.personnageData);
-          } else if (upperCase != null && upperCase.personnageData == null
-                     && Case != null && Case.personnageData != null)
-          {
-            ApplyOpacity(Case.personnageData);
-          }
-      }
-    if (doRecursive)
-      {
-        CheckCaseTransparency(upperCase, false);
-        CheckCaseTransparency(lowerCase, false);
-      }
-  }
+		if (upperCase != null)
+		{
+			if (upperCase.personnageData != null || upperCase.summonData != null)
+			{
+				if (Case.personnageData != null)
+					ApplyTransparency(Case.personnageData.gameObject);
 
-  public void ApplyTransparency(PersoData Perso)
-  { // Applique la transparence du TransparencyBehaviour sur le personnage.
-    SpriteRenderer CaseSpriteR = Perso.GetComponentInChildren<SpriteRenderer>();
+				if (Case.summonData != null)
+					ApplyTransparency(Case.summonData.gameObject);
+			} else if (upperCase != null && upperCase.personnageData == null || upperCase.summonData == null)
+			{
+				if (Case.personnageData != null)
+					ApplyOpacity(Case.personnageData.gameObject);
 
-    Color transparency = new Color(CaseSpriteR.color.r, CaseSpriteR.color.g, CaseSpriteR.color.b, alpha);
-    Perso.GetComponentInChildren<SpriteRenderer>().color = transparency;
-  }
+				if (Case.summonData != null)
+					ApplyOpacity(Case.summonData.gameObject);
+			}
+		}
 
-  public void ApplyOpacity(PersoData Perso)
-  { // Annule la transparence du personnage.
-    SpriteRenderer CaseSpriteR = Perso.GetComponentInChildren<SpriteRenderer>();
+		if (doRecursive)
+		{
+			CheckCaseTransparency(upperCase, false);
+			CheckCaseTransparency(lowerCase, false);
+		}
+	}
 
-    Color transparency = new Color(CaseSpriteR.color.r, CaseSpriteR.color.g, CaseSpriteR.color.b, 1);
-    Perso.GetComponentInChildren<SpriteRenderer>().color = transparency;
-  }
+	public void ApplyTransparency(GameObject obj)
+	{ // Applique la transparence du TransparencyBehaviour sur le personnage.
+		SpriteRenderer CaseSpriteR = obj.GetComponentInChildren<SpriteRenderer>();
+		if (obj.GetComponent<Animator>() != null)
+			obj.GetComponent<Animator>().enabled = false;
+		
+		Color transparency = new Color(CaseSpriteR.color.r, CaseSpriteR.color.g, CaseSpriteR.color.b, alpha);
+		obj.GetComponentInChildren<SpriteRenderer>().color = transparency;
+	}
+
+	public void ApplyOpacity(GameObject obj)
+	{ // Annule la transparence du personnage.
+		SpriteRenderer CaseSpriteR = obj.GetComponentInChildren<SpriteRenderer>();
+		if (obj.GetComponent<Animator>() != null)
+			obj.GetComponent<Animator>().enabled = false;
+		
+		Color transparency = new Color(CaseSpriteR.color.r, CaseSpriteR.color.g, CaseSpriteR.color.b, 1);
+		obj.GetComponentInChildren<SpriteRenderer>().color = transparency;
+	}
 }

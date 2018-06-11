@@ -28,7 +28,7 @@ public class UIManager : NetworkBehaviour
 	GameObject scoreRedGMB;
 	GameObject scoreBlueGMB;
 	GameObject messageGeneral;
-	public Image Victory;
+	public GameObject Victory;
 	public GameObject menuContextuel;
 	public GameObject tooltip;
 	public bool isScoreChanging = false;
@@ -41,6 +41,8 @@ public class UIManager : NetworkBehaviour
 	GameObject StatsRed;
 	GameObject StatsBlue;
 	public bool UIIsHovered = false;
+	public Sprite victoryJ1;
+	public Sprite victoryJ2;
 
 	public Sprite defaultButtonSpellSprite;
 
@@ -78,6 +80,7 @@ public class UIManager : NetworkBehaviour
 		bannerJ2Text = GameObject.Find("PseudoJ2").GetComponent<Text>();
 		animChangeTurn = GameObject.Find("Gameplay Feedback").GetComponent<Animator>();
 		TurnManager.Instance.changeTurnEvent += OnChangeTurn;
+		ChangeSpriteSpellButton(null);
 	}
 
 	void OnDisable()
@@ -190,24 +193,22 @@ public class UIManager : NetworkBehaviour
 			}
 			SelectionManager.Instance.selectedPersonnage = RosterManager.Instance.listHero[4];
 			GameManager.Instance.ChangeCurrentPlayer(Player.Red);
-
 		}
 
-		if (scoreRed == 2 || scoreBlue == 2)
+		if (scoreRed == 1 || scoreBlue == 1)
 		{
-			Victory.transform.gameObject.SetActive(true);
-			if (scoreRed == 2)
+			Victory.SetActive(true);
+			if (scoreRed == 1)
 			{
-				Victory.transform.GetComponentInChildren<Text>().color = Color.red;
-				Victory.transform.GetComponentInChildren<Text>().text = "Victoire du joueur rouge";
+				Victory.GetComponentInChildren<Image>().sprite = victoryJ1;
 			}
-			if (scoreBlue == 2)
+			if (scoreBlue == 1)
 			{
-				Victory.transform.GetComponentInChildren<Text>().color = Color.blue;
-				Victory.transform.GetComponentInChildren<Text>().text = "Victoire du joueur bleu";
+				Victory.GetComponentInChildren<Image>().sprite = victoryJ2;
 			}
+			yield return null;
 		}
-		StartCoroutine(GameManager.Instance.NewManche());
+		//StartCoroutine(GameManager.Instance.NewManche());
 
 		isScoreChanging = false;
 	}
@@ -217,7 +218,18 @@ public class UIManager : NetworkBehaviour
 	{
 		spell1.sprite = defaultButtonSpellSprite;
 		spell2.sprite = defaultButtonSpellSprite;
+
+		GameObject.Find("DirectSpellCost").GetComponent<Text>().text = " ";
+		GameObject.Find("IndirectSpellCost").GetComponent<Text>().text = " ";
+		GameObject.Find("DirectSpellLimit").GetComponent<Text>().text = " ";
+		GameObject.Find("IndirectSpellLimit").GetComponent<Text>().text = " ";
+
+		UngreyButton("spell 1");
+		UngreyButton("spell 2");
 	
+		if (selectedPerso == null)
+			return;
+
 		if (selectedPerso.Spell1 != null)
 		{
 			spell1.sprite = selectedPerso.Spell1.buttonSprite;
@@ -226,7 +238,7 @@ public class UIManager : NetworkBehaviour
 			{
 				if (SpellManager.Instance.spellName[i] == selectedPerso.Spell1.name)
 				{
-					ChangeSpellTextLimit(GameObject.Find("DirectSpellLimit").GetComponent<Text>(), SpellManager.Instance.spellUse[i], selectedPerso.Spell1.maxUsePerTurn);
+					ChangeSpellTextLimit(GameObject.Find("DirectSpellLimit").GetComponent<Text>(), SpellManager.Instance.spellUse[i], selectedPerso.Spell1.maxUsePerTurn, "spell 1");
 				}
 			}
 		}
@@ -239,7 +251,7 @@ public class UIManager : NetworkBehaviour
 			{
 				if (SpellManager.Instance.spellName[i] == selectedPerso.Spell2.name)
 				{
-					ChangeSpellTextLimit(GameObject.Find("IndirectSpellLimit").GetComponent<Text>(), SpellManager.Instance.spellUse[i], selectedPerso.Spell2.maxUsePerTurn);
+					ChangeSpellTextLimit(GameObject.Find("IndirectSpellLimit").GetComponent<Text>(), SpellManager.Instance.spellUse[i], selectedPerso.Spell2.maxUsePerTurn, "spell 2");
 				}
 			}
 		}
@@ -256,12 +268,14 @@ public class UIManager : NetworkBehaviour
 	}
 
 	/// <summary>Change le sprite des boutons de sorts par rapport au personnage selectionné.</summary>
-	public void ChangeSpellTextLimit(Text spellLimit, int limit, int limitMax)
+	public void ChangeSpellTextLimit(Text spellLimit, int limit, int limitMax, string spellString)
 	{
 		spellLimit.text = " ";
 		if (limitMax != 0)
 		{
 			spellLimit.text = (limitMax - limit).ToString() + "/" + limitMax.ToString();
+			if (limitMax - limit == 0)
+				GreyButton(spellString);
 		}
 	}
 
