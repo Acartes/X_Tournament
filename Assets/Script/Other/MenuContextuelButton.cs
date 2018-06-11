@@ -114,7 +114,7 @@ public class MenuContextuelButton : MonoBehaviour
 				Disable();
 			}
 		}
-
+		/*
 		if (MenuContextuel.Instance.activated)
 		{
 			if (name == "MenuContextuelTirer" && ManaManager.Instance.manaActuelRed < 2 && SelectionManager.Instance.selectedPersonnage.owner == Player.Red)
@@ -129,7 +129,7 @@ public class MenuContextuelButton : MonoBehaviour
 			{
 				Disable();
 			}
-		}
+		}*/
 	}
 
 

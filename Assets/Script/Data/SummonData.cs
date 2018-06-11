@@ -7,7 +7,6 @@ using UnityEngine.Networking;
 public class SummonData : NetworkBehaviour
 {
 
-<<<<<<< HEAD
 	// *************** //
 	// ** Variables ** // Toutes les variables sans distinctions
 	// *************** //
@@ -191,11 +190,11 @@ public class SummonData : NetworkBehaviour
 			}
 		}
 	}
-=======
-  // *************** //
-  // ** Variables ** // Toutes les variables sans distinctions
-  // *************** //
-
+}
+// *************** //
+// ** Variables ** // Toutes les variables sans distinctions
+// *************** //
+/*
   public bool isStatic;
 
   public bool isBlockingLineOfSight;
@@ -372,5 +371,4 @@ public class SummonData : NetworkBehaviour
       }
     }
   }
->>>>>>> 735f925a3a1a64509cdbdfcd1cea257ff3a8ac21
-}
+}*/

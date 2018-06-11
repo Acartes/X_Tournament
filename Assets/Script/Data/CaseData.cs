@@ -218,10 +218,10 @@ public class CaseData : NetworkBehaviour
 		if ((Statut.goalBlue & statut) == Statut.goalBlue)
 			spriteR.color = ColorManager.Instance.goalColor;
 
-		if ((Statut.placementRed & statut) == Statut.placementRed)
+		if (((Statut.placementRed & statut) == Statut.placementRed) && GameManager.Instance.currentPlayer == Player.Red)
 			spriteR.color = ColorManager.Instance.placementZoneRed;
 
-		if ((Statut.placementBlue & statut) == Statut.placementBlue)
+		if (((Statut.placementBlue & statut) == Statut.placementBlue) && GameManager.Instance.currentPlayer == Player.Blue)
 			spriteR.color = ColorManager.Instance.placementZoneBlue;
 
 		if ((Statut.isSelected & statut) == Statut.isSelected)

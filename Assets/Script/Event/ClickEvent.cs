@@ -12,9 +12,6 @@ public class ClickEvent : NetworkBehaviour
 
 	void OnMouseDown()
 	{
-//		LobbyManager.Instance.StopHost();
-//		LobbyManager.Instance.StopServer();
-//		return;
 
 		if (!SynchroManager.Instance.canPlayTurn())
 		{
