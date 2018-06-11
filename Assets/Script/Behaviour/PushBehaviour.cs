@@ -17,7 +17,6 @@ public class PushBehaviour : NetworkBehaviour
   public float travelTime;
 
   public List<Transform> pathList = new List<Transform>();
-  public List<IEnumerator> ienumeratorList = new List<IEnumerator>();
 
   PersoData persoAfflicted = null;
   public CaseData caseFinalShow = null; // la case à montrer pour le pré-rendu
@@ -56,8 +55,8 @@ public class PushBehaviour : NetworkBehaviour
     {
       if (obj.GetComponent<BallonData>().isMoving)
       {
-        if (SelectionManager.Instance.selectedPersonnage.shotStrenght - obj.GetComponent<BallonData>().casesCrossed > 0)
-          pushValue += SelectionManager.Instance.selectedPersonnage.shotStrenght - obj.GetComponent<BallonData>().casesCrossed;
+       // if (SelectionManager.Instance.selectedPersonnage.shotStrenght - obj.GetComponent<BallonData>().casesCrossed > 0)
+       //   pushValue += SelectionManager.Instance.selectedPersonnage.shotStrenght - obj.GetComponent<BallonData>().casesCrossed;
         persoDirection = obj.GetComponent<BallonData>().ballonDirection;
         obj.GetComponent<BallonData>().StopMove();
         obj.GetComponent<BallonData>().StopAllCoroutines();
@@ -71,7 +70,7 @@ public class PushBehaviour : NetworkBehaviour
       {
         path.GetComponent<CaseData>().ChangeStatut(Statut.None, Statut.isMoving);
       }
-      pushValue += objAfflicted.GetComponent<PersoData>().pushedDebt;
+      //      pushValue += objAfflicted.GetComponent<PersoData>().pushedDebt;
       objAfflicted.GetComponent<PersoData>().pushedDebt = 0;
       MoveBehaviour.Instance.movePathes.Clear();
       persoAfflicted = objAfflicted.GetComponent<PersoData>();
@@ -92,91 +91,91 @@ public class PushBehaviour : NetworkBehaviour
     switch (pushType)
     {
       case PushType.FromCaster:
-        GetShownCase(obj, pushValue, caseAfflicted, pushType, pushDirection);
-        int y = pushValue;
-        pushValue = Mathf.Abs(pushValue);
-        while (y != 0)
+      GetShownCase(obj, pushValue, caseAfflicted, pushType, pushDirection);
+      int y = pushValue;
+      pushValue = Mathf.Abs(pushValue);
+      while (y != 0)
+      {
+        if (y > 0)
         {
-          if (y > 0)
+          y--;
+          if (caseAfflicted.GetCaseInFront(SelectionManager.Instance.selectedPersonnage.persoDirection) != null || tempCase.summonData != null && tempCase.summonData.name.Contains("Air"))
           {
-            y--;
-            if (caseAfflicted.GetCaseInFront(SelectionManager.Instance.selectedPersonnage.persoDirection) != null)
-            {
-              tempCase = caseAfflicted.GetCaseInFront(SelectionManager.Instance.selectedPersonnage.persoDirection); ;
-              pathList.Add(tempCase.transform);
-              caseAfflicted = tempCase;
-            }
-          }
-          if (y < 0)
-          {
-            y++;
-            if (caseAfflicted.GetCaseAtBack(SelectionManager.Instance.selectedPersonnage.persoDirection) != null)
-            {
-              tempCase = caseAfflicted.GetCaseAtBack(SelectionManager.Instance.selectedPersonnage.persoDirection);
-              pathList.Add(tempCase.transform);
-              caseAfflicted = tempCase;
-            }
-          }
-        }
-        break;
-      case PushType.FromTarget:
-        GetShownCase(obj, pushValue, caseAfflicted, pushType, pushDirection);
-        stillTornadoDamage = false;
-
-        for (int i = 0; i < pushValue; i++)
-        {
-          if (pushDirection == Direction.Left)
-            tempCase = caseAfflicted.GetCaseAtLeft(persoDirection);
-
-          if (pushDirection == Direction.Right)
-            tempCase = caseAfflicted.GetCaseAtRight(persoDirection);
-
-          if (pushDirection == Direction.Back)
-          {
-            tempCase = caseAfflicted.GetCaseAtBack(persoDirection);
-          }
-
-          if (pushDirection == Direction.Front)
-            tempCase = caseAfflicted.GetCaseInFront(persoDirection);
-
-          if (tempCase == null || tempCase.casePathfinding == PathfindingCase.NonWalkable)
-          {
-            caseAfflicted.casePathfinding = PathfindingCase.Walkable;
-            pathList.Add(caseAfflicted.transform);
-            stillTornadoDamage = true;
-            break;
-          }
-          else
-          {
+            tempCase = caseAfflicted.GetCaseInFront(SelectionManager.Instance.selectedPersonnage.persoDirection); ;
             pathList.Add(tempCase.transform);
             caseAfflicted = tempCase;
           }
         }
-
-        break;
-      case PushType.FromTerrain:
-        for (int i = 0; i < pushValue; i++)
+        if (y < 0)
         {
-          if (pushDirection == Direction.SudOuest)
-            tempCase = caseAfflicted.GetBottomLeftCase();
-
-          if (pushDirection == Direction.SudEst)
-            tempCase = caseAfflicted.GetBottomRightCase();
-
-          if (pushDirection == Direction.NordOuest)
-            tempCase = caseAfflicted.GetTopLeftCase();
-
-          if (pushDirection == Direction.NordEst)
-            tempCase = caseAfflicted.GetTopRightCase();
-
-          pathList.Add(tempCase.transform);
-          caseAfflicted = tempCase;
-          if (tempCase == null || tempCase.casePathfinding == PathfindingCase.NonWalkable)
+          y++;
+          if (caseAfflicted.GetCaseAtBack(SelectionManager.Instance.selectedPersonnage.persoDirection) != null || tempCase.summonData != null && tempCase.summonData.name.Contains("Air"))
           {
-            break;
+            tempCase = caseAfflicted.GetCaseAtBack(SelectionManager.Instance.selectedPersonnage.persoDirection);
+            pathList.Add(tempCase.transform);
+            caseAfflicted = tempCase;
           }
         }
-        break;
+      }
+      break;
+      case PushType.FromTarget:
+      GetShownCase(obj, pushValue, caseAfflicted, pushType, pushDirection);
+      stillTornadoDamage = false;
+
+      for (int i = 0; i < pushValue; i++)
+      {
+        if (pushDirection == Direction.Left)
+          tempCase = caseAfflicted.GetCaseAtLeft(persoDirection);
+
+        if (pushDirection == Direction.Right)
+          tempCase = caseAfflicted.GetCaseAtRight(persoDirection);
+
+        if (pushDirection == Direction.Back)
+        {
+          tempCase = caseAfflicted.GetCaseAtBack(persoDirection);
+        }
+
+        if (pushDirection == Direction.Front)
+          tempCase = caseAfflicted.GetCaseInFront(persoDirection);
+
+        if (tempCase == null || tempCase.casePathfinding == PathfindingCase.NonWalkable || tempCase.summonData != null && tempCase.summonData.name.Contains("Air"))
+        {
+          caseAfflicted.casePathfinding = PathfindingCase.Walkable;
+          pathList.Add(caseAfflicted.transform);
+          stillTornadoDamage = true;
+          break;
+        }
+        else
+        {
+          pathList.Add(tempCase.transform);
+          caseAfflicted = tempCase;
+        }
+      }
+
+      break;
+      case PushType.FromTerrain:
+      for (int i = 0; i < pushValue; i++)
+      {
+        if (pushDirection == Direction.SudOuest)
+          tempCase = caseAfflicted.GetBottomLeftCase();
+
+        if (pushDirection == Direction.SudEst)
+          tempCase = caseAfflicted.GetBottomRightCase();
+
+        if (pushDirection == Direction.NordOuest)
+          tempCase = caseAfflicted.GetTopLeftCase();
+
+        if (pushDirection == Direction.NordEst)
+          tempCase = caseAfflicted.GetTopRightCase();
+
+        pathList.Add(tempCase.transform);
+        caseAfflicted = tempCase;
+        if (tempCase == null || tempCase.casePathfinding == PathfindingCase.NonWalkable || tempCase.summonData != null && tempCase.summonData.name.Contains("Air"))
+        {
+          break;
+        }
+      }
+      break;
     }
 
     foreach (CaseData caseObj in CaseManager.Instance.GetAllCaseWithStatut(Statut.atPush))
@@ -192,31 +191,23 @@ public class PushBehaviour : NetworkBehaviour
     MoveBehaviour.Instance.StopAllCoroutines();
     StopAllCoroutines();
 
-    ienumeratorList.Add(Deplacement(objAfflicted, pathList));
-    StartCoroutine(ienumeratorList[ienumeratorList.Count - 1]);
+    StartCoroutine(Deplacement(objAfflicted, pathList));
   }
 
   public void MultiplePushStart()
   {
-    ienumeratorList.Add(Deplacement(objAfflicted, pathList));
-    StartCoroutine(ienumeratorList[ienumeratorList.Count - 1]);
+    StartCoroutine(Deplacement(objAfflicted, pathList));
   }
 
   public IEnumerator Deplacement(GameObject objAfflicted, List<Transform> pathes)
   { // On déplace le personnage de case en case jusqu'au click du joueur propriétaire, et entre temps on check s'il est taclé ou non
-
     TurnManager.Instance.DisableFinishTurn();
-    IEnumerator thisFunc = ienumeratorList[ienumeratorList.Count - 1];
-  
+
     GameManager.Instance.actualAction = PersoAction.isMoving;
     Transform lastPath = null;
 
     List<Transform> tempPath = pathes.GetRange(0, pathes.Count);
-
-    if(GameManager.Instance.actualAction == PersoAction.isMoving)
-    {
-      MoveBehaviour.Instance.StopAllCoroutines();
-    }
+    bool stopDeplacement = false;
 
     Vector3 originPoint = Vector3.zero;
 
@@ -291,12 +282,24 @@ public class PushBehaviour : NetworkBehaviour
       {
         objAfflicted.GetComponent<BallonData>().RotateTowardsReversed(path.gameObject);
       }
+
+      if (path.GetComponent<CaseData>() != null && path.GetComponent<CaseData>().summonData != null && path.GetComponent<CaseData>().summonData.name.Contains("Air"))
+      {
+        stopDeplacement = true;
+      }
+
       while (fracturedTime < 1)
       {
         fracturedTime += timeUnit + 0.01f;
         objAfflicted.transform.position = Vector3.Lerp(startPos, path.transform.position - originPoint, fracturedTime);
         yield return new WaitForEndOfFrame();
       }
+
+      if (stopDeplacement)
+      {
+        break;
+      }
+
       if (stillTornadoDamage && objAfflicted.GetComponent<SummonData>() == null)
       {
         CaseData afflictedCase = null;
@@ -315,7 +318,7 @@ public class PushBehaviour : NetworkBehaviour
         BallonData ballonAfficted = objAfflicted.GetComponent<BallonData>();
         if (ballonAfficted != null)
         {
-          afflictedCase = ballonAfficted.ballonCase ;
+          afflictedCase = ballonAfficted.ballonCase;
           rightDirection = ballonAfficted.ballonDirection;
         }
 
@@ -338,6 +341,7 @@ public class PushBehaviour : NetworkBehaviour
         }
       }
       pushValue--;
+
       if (objAfflicted.GetComponent<BallonData>())
       {
         //        obj.GetComponent<BallonData>().StopMove();
@@ -352,7 +356,7 @@ public class PushBehaviour : NetworkBehaviour
     SelectionManager.Instance.selectedCase = persoSelected.persoCase;
     CaseManager.Instance.RemovePath();
 
-      if (objectCollision == false && objAfflicted.GetComponent<PersoData>() != null)
+    if (objectCollision == false && objAfflicted.GetComponent<PersoData>() != null)
     {
       if (pushValue > tempPath.Count)
       {
@@ -364,13 +368,10 @@ public class PushBehaviour : NetworkBehaviour
       }
     }
 
-    if (lastPath != null)
-      lastPath.GetComponent<CaseData>().casePathfinding = PathfindingCase.NonWalkable;
     retainedPushValue = pushValue;
     tempPath.Clear();
 
     StartCoroutine(TurnManager.Instance.EnableFinishTurn());
-    ienumeratorList.Remove(thisFunc);
     yield return new WaitForEndOfFrame();
   }
 
@@ -437,8 +438,6 @@ public class PushBehaviour : NetworkBehaviour
 
       for (int i = 0; i < pushValue; i++)
       {
-
-
         if (nextCase != null)
           if (nextCase.summonData != null)
             if (nextCase.summonData.name.Contains("Air"))
