@@ -269,8 +269,6 @@ public class SpellManager : NetworkBehaviour
 
 				if (((ObjectType.Invoc & selectedSpell.affectedTarget) == ObjectType.Invoc) && obj.summonData != null)
 				{
-          Debug.Log("yeah");
-
           selectedSpell.ApplyEffect(obj.summonData.gameObject);
 				}
 			}

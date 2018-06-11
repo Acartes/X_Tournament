@@ -401,7 +401,6 @@ public class SpellData : NetworkBehaviour
 
   public void ApplyEffect(GameObject objAfflicted)
   {
-    Debug.Log("yeah2");
     BeforeFeedbackManager.Instance.HidePrediction();
 
     if (rotateSummon)
@@ -415,7 +414,6 @@ public class SpellData : NetworkBehaviour
     }
     if ((damagePR != 0 || damagePA != 0 || damagePM != 0))
     {
-      Debug.Log("yeah3");
       ApplyStatsEffect(objAfflicted);
     }
 
@@ -477,35 +475,34 @@ public class SpellData : NetworkBehaviour
       }
 
       caseAfflicted = persoAfflicted.persoCase;
-      if (persoAfflicted.owner != SelectionManager.Instance.selectedPersonnage.owner)
-      {
-        EffectManager.Instance.ChangePr(persoAfflicted, -damagePR);
-        AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject);
-        EffectManager.Instance.ChangePADebuff(-damagePA);
-        EffectManager.Instance.ChangePmDebuff(persoAfflicted, -damagePM);
-      }
-      else if (persoAfflicted.owner == SelectionManager.Instance.selectedPersonnage.owner)
+      if (reverseDamageOnAlly)
       {
         EffectManager.Instance.ChangePr(persoAfflicted, damagePR);
         AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject, true);
         GameManager.Instance.manaGlobalActual += damagePA;
         EffectManager.Instance.ChangePm(persoAfflicted, damagePM);
       }
+      else
+      {
+        EffectManager.Instance.ChangePr(persoAfflicted, -damagePR);
+        AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject);
+        EffectManager.Instance.ChangePADebuff(-damagePA);
+        EffectManager.Instance.ChangePmDebuff(persoAfflicted, -damagePM);
+      }
     }
     if (summonAfflicted != null)
     {
       caseAfflicted = summonAfflicted.caseActual;
-      if (summonAfflicted.owner != SelectionManager.Instance.selectedPersonnage.owner)
-      {
-        EffectManager.Instance.ChangePr(summonAfflicted, -damagePR);
-        AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject);
-      }
-      else if (summonAfflicted.owner == SelectionManager.Instance.selectedPersonnage.owner)
+      if (reverseDamageOnAlly)
       {
         EffectManager.Instance.ChangePr(summonAfflicted, damagePR);
         AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject, true);
       }
-
+      else
+      {
+        EffectManager.Instance.ChangePr(summonAfflicted, -damagePR);
+        AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject);
+      }
     }
     FXManager.Instance.Show(animatorSpell, caseAfflicted.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
   }

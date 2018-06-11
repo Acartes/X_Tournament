@@ -109,10 +109,10 @@ public class BallonData : NetworkBehaviour
     isPushed = false;
 
     if (isExplosive)
-      {
-        explode();
-        yield return null;
-      }
+    {
+      explode();
+      yield return null;
+    }
     GameObject nextPosition;
 
     animator.SetTrigger("Roule");
@@ -126,87 +126,93 @@ public class BallonData : NetworkBehaviour
     transform.localRotation = Quaternion.Euler(0, 0, 0);
 
     if (selectedPersonnage.transform.position.x > transform.position.x)
-      {
-        xCoordInc -= 0.5f;
-        yCoordInc -= 0.5f;
-      } else if (selectedPersonnage.transform.position.x < transform.position.x)
-      {
-        xCoordInc += 0.5f;
-        yCoordInc += 0.5f;
-      }
+    {
+      xCoordInc -= 0.5f;
+      yCoordInc -= 0.5f;
+    }
+    else if (selectedPersonnage.transform.position.x < transform.position.x)
+    {
+      xCoordInc += 0.5f;
+      yCoordInc += 0.5f;
+    }
 
     if (selectedPersonnage.transform.position.y - 0.5f > transform.position.y)
-      {
-        xCoordInc += 0.5f;
-        yCoordInc -= 0.5f;
-      } else if (selectedPersonnage.transform.position.y - 0.5f < transform.position.y)
-      {
-        xCoordInc -= 0.5f;
-        yCoordInc += 0.5f;
-      }
+    {
+      xCoordInc += 0.5f;
+      yCoordInc -= 0.5f;
+    }
+    else if (selectedPersonnage.transform.position.y - 0.5f < transform.position.y)
+    {
+      xCoordInc -= 0.5f;
+      yCoordInc += 0.5f;
+    }
     for (int i = 0; i < selectedPersonnage.shotStrenght; i++)
+    {
+      if ((BallonStatut.isIntercepted & statut) == BallonStatut.isIntercepted)
       {
-        if ((BallonStatut.isIntercepted & statut) == BallonStatut.isIntercepted)
-          {
-            ChangeStatut(BallonStatut.None, BallonStatut.isIntercepted);
-            break;
-          }
-        xCoordNext += xCoordInc;
-        yCoordNext += yCoordInc;
-        if (GameObject.Find(xCoordNext.ToString() + " " + yCoordNext.ToString()) != null)
-          {
-            nextPosition = GameObject.Find(xCoordNext.ToString() + " " + yCoordNext.ToString());
-            if (nextPosition.GetComponent<CaseData>().casePathfinding == PathfindingCase.NonWalkable)
-              {
-                AfterFeedbackManager.Instance.PRText(1, nextPosition);
-                if (nextPosition.GetComponent<CaseData>().personnageData != null && nextPosition.GetComponent<CaseData>().personnageData.timeStunned == 0)
-                  {
-                    nextPosition.GetComponent<CaseData>().personnageData.actualPointResistance--;
-                  }
-                if (nextPosition.GetComponent<CaseData>().summonData != null)
-                  {
-                    nextPosition.GetComponent<CaseData>().summonData.actualPointResistance--;
-                  }
-                goto endMove;
-              }
-          } else
-          {
-            goto endMove;
-          }
-
-        if (xCoordNext == ballonCase.GetComponent<CaseData>().xCoord)
-          {
-            if (yCoordNext < ballonCase.GetComponent<CaseData>().yCoord)
-              {
-                ballonDirection = Direction.SudOuest;
-              } else
-              {
-                ballonDirection = Direction.NordEst;
-              }
-          } else if (yCoordNext == ballonCase.GetComponent<CaseData>().yCoord)
-          {
-            if (xCoordNext < ballonCase.GetComponent<CaseData>().xCoord)
-              {
-                ballonDirection = Direction.NordOuest;
-              } else
-              {
-                ballonDirection = Direction.SudEst;
-              }
-          }
-        ChangeRotation(ballonDirection);
-        Vector3 startPos = transform.position;
-        float fracturedTime = 0;
-        float timeUnit = travelTimeBallon / 60;
-        while (transform.position != nextPosition.transform.position)
-          {
-            fracturedTime += timeUnit + 0.01f;
-            transform.position = Vector3.Lerp(startPos, nextPosition.transform.position, fracturedTime);
-            yield return new WaitForEndOfFrame();
-          }
-        casesCrossed++;
-
-        TackleBehaviour.Instance.CheckTackle(this.gameObject, selectedPersonnage);
+        ChangeStatut(BallonStatut.None, BallonStatut.isIntercepted);
+        break;
       }
+      xCoordNext += xCoordInc;
+      yCoordNext += yCoordInc;
+      if (GameObject.Find(xCoordNext.ToString() + " " + yCoordNext.ToString()) != null)
+      {
+        nextPosition = GameObject.Find(xCoordNext.ToString() + " " + yCoordNext.ToString());
+        if (nextPosition.GetComponent<CaseData>().casePathfinding == PathfindingCase.NonWalkable)
+        {
+          AfterFeedbackManager.Instance.PRText(1, nextPosition);
+          if (nextPosition.GetComponent<CaseData>().personnageData != null && nextPosition.GetComponent<CaseData>().personnageData.timeStunned == 0)
+          {
+            nextPosition.GetComponent<CaseData>().personnageData.actualPointResistance--;
+          }
+          if (nextPosition.GetComponent<CaseData>().summonData != null)
+          {
+            nextPosition.GetComponent<CaseData>().summonData.actualPointResistance--;
+          }
+          goto endMove;
+        }
+      }
+      else
+      {
+        goto endMove;
+      }
+
+      if (xCoordNext == ballonCase.GetComponent<CaseData>().xCoord)
+      {
+        if (yCoordNext < ballonCase.GetComponent<CaseData>().yCoord)
+        {
+          ballonDirection = Direction.SudOuest;
+        }
+        else
+        {
+          ballonDirection = Direction.NordEst;
+        }
+      }
+      else if (yCoordNext == ballonCase.GetComponent<CaseData>().yCoord)
+      {
+        if (xCoordNext < ballonCase.GetComponent<CaseData>().xCoord)
+        {
+          ballonDirection = Direction.NordOuest;
+        }
+        else
+        {
+          ballonDirection = Direction.SudEst;
+        }
+      }
+      ChangeRotation(ballonDirection);
+      Vector3 startPos = transform.position;
+      float fracturedTime = 0;
+      float timeUnit = travelTimeBallon / 60;
+      while (transform.position != nextPosition.transform.position)
+      {
+        fracturedTime += timeUnit + 0.01f;
+        transform.position = Vector3.Lerp(startPos, nextPosition.transform.position, fracturedTime);
+        yield return new WaitForEndOfFrame();
+      }
+      casesCrossed++;
+
+      TackleBehaviour.Instance.CheckTackle(this.gameObject, selectedPersonnage);
+    }
     endMove:
     StopMove();
   }
@@ -227,20 +233,20 @@ public class BallonData : NetworkBehaviour
   {
     ballonDirection = direction;
     switch (direction)
-      {
+    {
       case Direction.SudOuest:
-        transform.localRotation = Quaternion.Euler(0, 0, 180);
-        break;
+      transform.localRotation = Quaternion.Euler(0, 0, 180);
+      break;
       case Direction.NordOuest:
-        transform.localRotation = Quaternion.Euler(0, 0, 120);
-        break;
+      transform.localRotation = Quaternion.Euler(0, 0, 120);
+      break;
       case Direction.SudEst:
-        transform.localRotation = Quaternion.Euler(0, 0, 300);
-        break;
+      transform.localRotation = Quaternion.Euler(0, 0, 300);
+      break;
       case Direction.NordEst:
-        transform.localRotation = Quaternion.Euler(0, 0, 0);
-        break;
-      }
+      transform.localRotation = Quaternion.Euler(0, 0, 0);
+      break;
+    }
 
     MenuContextuel.Instance.isShoting = false;
   }
@@ -267,20 +273,20 @@ public class BallonData : NetworkBehaviour
     ShineColorIsRunning = true;
 
     while (ShineColorIsRunning)
+    {
+      Color colorx = color1;
+      color1 = color2;
+      color2 = colorx;
+      for (int i = 0; i < 100; i++)
       {
-        Color colorx = color1;
-        color1 = color2;
-        color2 = colorx;
-        for (int i = 0; i < 100; i++)
-          {
-            if (!ShineColorIsRunning)
-              break;
+        if (!ShineColorIsRunning)
+          break;
 
-            spriteR.color += (color1 - color2) / 100;
-            yield return new WaitForSeconds(time + 0.01f);
-          }
-
+        spriteR.color += (color1 - color2) / 100;
+        yield return new WaitForSeconds(time + 0.01f);
       }
+
+    }
   }
 
   /// <summary>Stop la fonction StartShineColor</summary>
@@ -339,29 +345,18 @@ public class BallonData : NetworkBehaviour
     if (tempCase == null)
       return;
 
-    if (tempCase.personnageData != null)
-      {
-        if (tempCase.personnageData.timeStunned > 0)
-          {
-            return;
-          }
-
-        EffectManager.Instance.MultiplePush(tempCase.personnageData.gameObject, tempCase, 1, PushType.FromTerrain, direction);
-        if (tempCase.personnageData.owner == explosionOwner)
-          {
-            EffectManager.Instance.ChangePr(tempCase.personnageData, 1);
-            AfterFeedbackManager.Instance.PRText(1, tempCase.gameObject, true); // la case d'arrivée est PushBehaviour.Instance.pathList[0].gameObject
-          } else if (tempCase.personnageData.owner != explosionOwner)
-          {
-            EffectManager.Instance.ChangePr(tempCase.personnageData, -1);
-            AfterFeedbackManager.Instance.PRText(1, tempCase.gameObject);
-          }
-      }
+    if (tempCase.personnageData != null && tempCase.personnageData.timeStunned == 0)
+    {
+      EffectManager.Instance.MultiplePush(tempCase.personnageData.gameObject, tempCase, 1, PushType.FromTerrain, direction);
+      EffectManager.Instance.ChangePr(tempCase.personnageData, 1);
+      AfterFeedbackManager.Instance.PRText(1, tempCase.gameObject);
+    }
     if (tempCase.summonData != null && !tempCase.summonData.invulnerable)
-      {
-        EffectManager.Instance.ChangePr(tempCase.summonData, -1);
-        AfterFeedbackManager.Instance.PRText(1, tempCase.gameObject);
-      }
+    {
+      EffectManager.Instance.ChangePr(tempCase.summonData, -1);
+      AfterFeedbackManager.Instance.PRText(1, tempCase.gameObject);
+    }
+
   }
 
   public void ShotPrevisualisation()
@@ -371,19 +366,19 @@ public class BallonData : NetworkBehaviour
     CaseData newCase = ballonCase.GetCaseInFront(SelectionManager.Instance.selectedCase.GetDirectionBetween(ballonCase));
     newCase.ChangeStatut(Statut.shotPrevisu, Statut.None);
     for (int i = 0; i < SelectionManager.Instance.selectedPersonnage.shotStrenght - 1; i++)
-      {
-        if (newCase.GetCaseInFront(SelectionManager.Instance.selectedCase.GetDirectionBetween(newCase)) == null)
-          break;
-        newCase = newCase.GetCaseInFront(SelectionManager.Instance.selectedCase.GetDirectionBetween(newCase));
-        newCase.ChangeStatut(Statut.shotPrevisu, Statut.None);
-      }
+    {
+      if (newCase.GetCaseInFront(SelectionManager.Instance.selectedCase.GetDirectionBetween(newCase)) == null)
+        break;
+      newCase = newCase.GetCaseInFront(SelectionManager.Instance.selectedCase.GetDirectionBetween(newCase));
+      newCase.ChangeStatut(Statut.shotPrevisu, Statut.None);
+    }
   }
 
   public void ShotDeprevisualisation()
   {
     foreach (CaseData newCase in CaseManager.Instance.GetAllCase())
-      {
-        newCase.ChangeStatut(Statut.None, Statut.shotPrevisu);
-      }
+    {
+      newCase.ChangeStatut(Statut.None, Statut.shotPrevisu);
+    }
   }
 }

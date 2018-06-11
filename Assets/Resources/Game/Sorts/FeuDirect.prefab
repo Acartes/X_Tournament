@@ -59,7 +59,7 @@ MonoBehaviour:
   damagePR: 1
   damagePA: 0
   damagePM: 0
-  reverseDamageOnAlly: 1
+  reverseDamageOnAlly: 0
   elementCreated: 0
   pushValue: 0
   pushDirection: 8
