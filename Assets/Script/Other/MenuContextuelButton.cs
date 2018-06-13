@@ -59,7 +59,7 @@ public class MenuContextuelButton : MonoBehaviour
 				break;
 			case "MenuContextuelTirer":
 				ManaManager.Instance.Desactived();
-				ManaManager.Instance.ChangeActualMana(GameManager.Instance.currentPlayer, 0);
+				ManaManager.Instance.ChangeActualMana(GameManager.Instance.currentPlayer, 2);
 				if (GameObject.Find("Ballon") != null)
 					GameObject.Find("Ballon").GetComponent<BallonData>().ShotDeprevisualisation();
 				
@@ -114,7 +114,7 @@ public class MenuContextuelButton : MonoBehaviour
 				Disable();
 			}
 		}
-		/*
+
 		if (MenuContextuel.Instance.activated)
 		{
 			if (name == "MenuContextuelTirer" && ManaManager.Instance.manaActuelRed < 2 && SelectionManager.Instance.selectedPersonnage.owner == Player.Red)
@@ -129,11 +129,11 @@ public class MenuContextuelButton : MonoBehaviour
 			{
 				Disable();
 			}
-		}*/
+		}
 	}
 
 
-	void OnEnable()
+	public void Enable()
 	{
 		ChangeColor(colorExit);
 		StartCoroutine(DebugCollider());

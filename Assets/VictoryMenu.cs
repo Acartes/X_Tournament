@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using NUnit.Framework;
 using Prototype.NetworkLobby;
 using UnityEngine.Networking;
 
@@ -20,5 +19,10 @@ public class VictoryMenu : NetworkBehaviour
 	public void MenuPrincipal()
 	{
 		StartCoroutine(MenuFade.Instance.FadeIn("Menu"));
+	}
+
+	public void Quitter()
+	{
+		Application.Quit();
 	}
 }

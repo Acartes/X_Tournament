@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
-
+using System;
 
 public class PlacementBehaviour : NetworkBehaviour
 {
@@ -58,6 +58,34 @@ public class PlacementBehaviour : NetworkBehaviour
 		}
 	}
 
+	void Update()
+	{
+		if (TurnManager.Instance == null)
+			return;
+		
+		if (GameManager.Instance.currentPhase == Phase.Placement)
+		{
+			int allPlaced = 0;
+
+			foreach (PersoData perso in RosterManager.Instance.listHeroPlaced)
+			{
+				if (GameManager.Instance.currentPlayer == Player.Red && perso.owner == Player.Red)
+					allPlaced++;
+
+				if (GameManager.Instance.currentPlayer == Player.Blue && perso.owner == Player.Blue)
+					allPlaced++;
+			}
+
+			if (allPlaced == 4)
+			{
+				StartCoroutine(TurnManager.Instance.EnableFinishTurn());
+			} else
+			{
+				TurnManager.Instance.DisableFinishTurn();
+			}
+		}
+	}
+
 	public void OnNewClick()
 	{
 		// Lors d'un click sur une case
@@ -100,6 +128,8 @@ public class PlacementBehaviour : NetworkBehaviour
 		             hoveredCase.personnageData.owner == currentPlayer)
 		{
 			SelectionManager.Instance.selectedPersonnage = HoverManager.Instance.hoveredPersonnage; // total forcage, préférer SelectPerso() in-game
+			InfoPerso.Instance.PersoSelected(SelectionManager.Instance.selectedPersonnage);
+			SelectionManager.Instance.selectedPersonnage.persoCase = null;
 
 			InfoPerso.Instance.PersoSelected(SelectionManager.Instance.selectedPersonnage);
 			InfoPerso.Instance.PersoRemoved(SelectionManager.Instance.selectedPersonnage);
@@ -129,7 +159,10 @@ public class PlacementBehaviour : NetworkBehaviour
 		{
 			selectedPersonnage.transform.position = hoveredCase.transform.position - selectedPersonnage.originPoint.transform.localPosition;
 			selectedPersonnage.owner = TurnManager.Instance.currentPlayer;
-			RosterManager.Instance.listHeroPlaced.Add(selectedPersonnage);
+			if (!RosterManager.Instance.listHeroPlaced.Contains(selectedPersonnage))
+			{
+				RosterManager.Instance.listHeroPlaced.Add(selectedPersonnage);
+			}
 
 			if (selectedPersonnage.GetComponent<PersoData>().owner == Player.Red)
 			{
@@ -151,6 +184,7 @@ public class PlacementBehaviour : NetworkBehaviour
 
 		if (hoveredCase == null)
 		{
+			RosterManager.Instance.listHeroPlaced.Remove(selectedPersonnage);
 			selectedPersonnage.transform.position = Vector3.one * 999;
 			return;
 		}

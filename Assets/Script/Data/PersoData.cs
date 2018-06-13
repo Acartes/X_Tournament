@@ -39,6 +39,7 @@ public class PersoData : NetworkBehaviour
 	bool ShineColorIsRunning = false;
 
 	public bool isTackled = false;
+	public bool isPlaced = false;
 	public int timeStunned = 0;
 
 	public int pushedDebt;
@@ -86,6 +87,9 @@ public class PersoData : NetworkBehaviour
 		actualPointResistance = maxPointResistance;
 		actualPointMovement = maxPointMovement;
 		actualPointAction = maxPointAction;
+
+		if (owner == Player.Blue)
+			ChangeRotation(Direction.NordOuest);
 	}
 
 	void OnDisable()

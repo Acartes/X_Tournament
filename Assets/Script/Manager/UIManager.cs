@@ -200,11 +200,11 @@ public class UIManager : NetworkBehaviour
 			Victory.SetActive(true);
 			if (scoreRed == 1)
 			{
-				Victory.GetComponentInChildren<Image>().sprite = victoryJ1;
+				GameObject.Find("VictoryScreen").GetComponent<Image>().sprite = victoryJ1;
 			}
 			if (scoreBlue == 1)
 			{
-				Victory.GetComponentInChildren<Image>().sprite = victoryJ2;
+				GameObject.Find("VictoryScreen").GetComponent<Image>().sprite = victoryJ2;
 			}
 			yield return null;
 		}

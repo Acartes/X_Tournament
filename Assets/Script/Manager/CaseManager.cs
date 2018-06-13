@@ -56,6 +56,14 @@ public class CaseManager : NetworkBehaviour
 		}
 	}
 
+	void Update()
+	{
+		foreach (CaseData obj in CaseManager.Instance.GetAllCase())
+		{
+			obj.ChangeColorByStatut();
+		}
+	}
+
 	// *************** //
 	// ** Fonctions ** // Fonctions réutilisables ailleurs
 	// *************** //

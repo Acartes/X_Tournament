@@ -78,7 +78,7 @@ public class TackleBehaviour : NetworkBehaviour
 		if (!isServer)
 			return;
 
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 1000; i++)
 		{
 			randomIntList.Add(UnityEngine.Random.Range(0, 100));
 		}
@@ -97,6 +97,7 @@ public class TackleBehaviour : NetworkBehaviour
 	{ // Vérifie si le personnage peut être taclé, et si c'est le cas, fait un test de chance pour savoir s'il est taclé
 		playerCase = SelectionManager.Instance.selectedCase.transform;
 		currentPlayer = TurnManager.Instance.currentPlayer;
+		Debug.Log(randomIntOrder + " " + randomIntList.Count);
 		randomInt = randomIntList[randomIntOrder];
 
 		foreach (PersoData perso in RosterManager.Instance.listHeroPlaced)
@@ -164,7 +165,6 @@ public class TackleBehaviour : NetworkBehaviour
 				{
 					AfterFeedbackManager.Instance.TackleText(randomInt, maxInt, playerCase.gameObject);
 					SelectionManager.Instance.selectedPersonnage.actualPointMovement = Mathf.CeilToInt(SelectionManager.Instance.selectedPersonnage.actualPointMovement / 2);
-					SelectionManager.Instance.selectedPersonnage.actualPointResistance -= 1;
 					SelectionManager.Instance.selectedPersonnage.isTackled = true;
 					TurnManager.Instance.EnableFinishTurn();
 				} else
@@ -178,7 +178,6 @@ public class TackleBehaviour : NetworkBehaviour
 				{
 					AfterFeedbackManager.Instance.TackleText(randomInt, maxInt, playerCase.gameObject);
 					SelectionManager.Instance.selectedPersonnage.actualPointMovement = Mathf.CeilToInt(SelectionManager.Instance.selectedPersonnage.actualPointMovement / 4);
-					SelectionManager.Instance.selectedPersonnage.actualPointResistance -= 1;
 					SelectionManager.Instance.selectedPersonnage.isTackled = true;
 					TurnManager.Instance.EnableFinishTurn();
 				} else
