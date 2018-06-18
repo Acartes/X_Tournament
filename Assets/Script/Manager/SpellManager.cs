@@ -332,9 +332,8 @@ public class SpellManager : NetworkBehaviour
 		}
 		SummonManager.Instance.lastSummonInstancied = null;
 		spellSuccess = false;
-		GameManager.Instance.actualAction = PersoAction.isSelected;
-		yield return new WaitForSeconds(0.5f);
-
+    yield return new WaitForSeconds(0.5f);
+    GameManager.Instance.actualAction = PersoAction.isSelected;
 
 		SelectionManager.Instance.EnablePersoSelection();
 		MoveBehaviour.Instance.StopAllCoroutines();

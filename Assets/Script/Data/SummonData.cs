@@ -155,7 +155,7 @@ public class SummonData : NetworkBehaviour
 			caseAfflicted = ballonAfflicted.ballonCase;
 			if (makeBallExplosive)
 			{
-				ballonAfflicted.setExplosive(owner);
+				ballonAfflicted.explode();
 			}
 		}
 

@@ -315,10 +315,10 @@ MonoBehaviour:
   hurtWhenBounce: 0
   numberEffectDisapear: 1
   summonDirection: 1
-  damagePR: 2
-  damagePA: 0
+  damagePR: 1
+  damagePA: -1
   damagePM: 0
-  reverseDamageOnAlly: 1
+  reverseDamageOnAlly: 0
   P1Sprite: {fileID: 21300000, guid: 7134979acc72df94fa3825d44def3ddd, type: 3}
   P2Sprite: {fileID: 0}
   owner: 0

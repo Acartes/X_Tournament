@@ -320,7 +320,7 @@ public class BallonData : NetworkBehaviour
     isExplosive = true;
   }
 
-  private void explode()
+  public void explode()
   {
     AfterFeedbackManager.Instance.ExplodeEffect(ballonCase.gameObject);
     img.material = shaderNormal;
@@ -330,29 +330,31 @@ public class BallonData : NetworkBehaviour
   IEnumerator explosion()
   {
     CaseData caseExplosion = ballonCase;
-    damageAndPush(caseExplosion.GetBottomLeftCase(), Direction.SudOuest);
+    damageTarget(caseExplosion.GetBottomLeftCase(), Direction.SudOuest);
     yield return new WaitForEndOfFrame();
-    damageAndPush(caseExplosion.GetBottomRightCase(), Direction.SudEst);
+    damageTarget(caseExplosion.GetBottomRightCase(), Direction.SudEst);
     yield return new WaitForEndOfFrame();
-    damageAndPush(caseExplosion.GetTopRightCase(), Direction.NordEst);
+    damageTarget(caseExplosion.GetTopRightCase(), Direction.NordEst);
     yield return new WaitForEndOfFrame();
-    damageAndPush(caseExplosion.GetTopLeftCase(), Direction.NordOuest);
+    damageTarget(caseExplosion.GetTopLeftCase(), Direction.NordOuest);
     isExplosive = false;
   }
 
-  private void damageAndPush(CaseData tempCase, Direction direction)
+  private void damageTarget(CaseData tempCase, Direction direction)
   {
     if (tempCase == null)
       return;
-
+    Debug.Log("tryDamage");
     if (tempCase.personnageData != null && tempCase.personnageData.timeStunned == 0)
     {
-      EffectManager.Instance.MultiplePush(tempCase.personnageData.gameObject, tempCase, 1, PushType.FromTerrain, direction);
+      Debug.Log("perso");
+      //EffectManager.Instance.MultiplePush(tempCase.personnageData.gameObject, tempCase, 1, PushType.FromTerrain, direction);
       EffectManager.Instance.ChangePr(tempCase.personnageData, 1);
       AfterFeedbackManager.Instance.PRText(1, tempCase.gameObject);
     }
     if (tempCase.summonData != null && !tempCase.summonData.invulnerable)
     {
+      Debug.Log("summon");
       EffectManager.Instance.ChangePr(tempCase.summonData, -1);
       AfterFeedbackManager.Instance.PRText(1, tempCase.gameObject);
     }

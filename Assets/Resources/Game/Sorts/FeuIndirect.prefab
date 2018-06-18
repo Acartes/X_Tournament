@@ -65,6 +65,7 @@ MonoBehaviour:
   pushDirection: 8
   pushType: 0
   hurtWhenStopped: 1
+  explosion: 0
   summonedObj: {fileID: 114910890263424662, guid: d6496e8c0af292840b671d7275d79827,
     type: 2}
   rotateSummon: 0
@@ -77,7 +78,7 @@ MonoBehaviour:
   tooltipCost: "<color=#bbbbbbff>Co\xFBt : </color>2 mana"
   tooltipEffect: "Place 1 case feu \xE0 l'emplacement cibl\xE9.\nSur ennemi : -1 PR\nSur
     alli\xE9 : +1 PR"
-  maxUsePerTurn: 3
+  maxUsePerTurn: 2
   animatorSpell: {fileID: 9100000, guid: bae8a29eb97ba61468b018622db02aa4, type: 2}
   affectedTarget: 15
   allowedTarget: 15

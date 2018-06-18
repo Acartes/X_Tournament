@@ -460,6 +460,7 @@ public class SpellData : NetworkBehaviour
   {
     PersoData persoAfflicted = objAfflicted.GetComponent<PersoData>();
     SummonData summonAfflicted = objAfflicted.GetComponent<SummonData>();
+    BallonData ballonAfflicted = objAfflicted.GetComponent<BallonData>();
     CaseData caseAfflicted = null;
 
     if (damagePR == 0)
@@ -478,6 +479,7 @@ public class SpellData : NetworkBehaviour
       if (reverseDamageOnAlly)
       {
         EffectManager.Instance.ChangePr(persoAfflicted, damagePR);
+        EffectManager.Instance.ChangePA(damagePA);
         AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject, true);
         GameManager.Instance.manaGlobalActual += damagePA;
         EffectManager.Instance.ChangePm(persoAfflicted, damagePM);
@@ -504,6 +506,12 @@ public class SpellData : NetworkBehaviour
         AfterFeedbackManager.Instance.PRText(damagePR, caseAfflicted.gameObject);
       }
     }
+
+    if (ballonAfflicted != null)
+    {
+      caseAfflicted = ballonAfflicted.ballonCase;
+    }
+
     FXManager.Instance.Show(animatorSpell, caseAfflicted.transform, SelectionManager.Instance.selectedPersonnage.persoDirection);
   }
 

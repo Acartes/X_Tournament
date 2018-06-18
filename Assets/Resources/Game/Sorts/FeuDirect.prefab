@@ -79,8 +79,8 @@ MonoBehaviour:
     4 cases feu \xE0 1 PO de la cible."
   maxUsePerTurn: 2
   animatorSpell: {fileID: 9100000, guid: c44c913fb1c45e647b2b3a42cf17c3f1, type: 2}
-  affectedTarget: 51
-  allowedTarget: 51
+  affectedTarget: 59
+  allowedTarget: 59
 --- !u!114 &114755600324448950
 MonoBehaviour:
   m_ObjectHideFlags: 1
