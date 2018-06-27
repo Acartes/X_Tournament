@@ -283,7 +283,8 @@ public class PushBehaviour : NetworkBehaviour
         objAfflicted.GetComponent<BallonData>().RotateTowardsReversed(path.gameObject);
       }
 
-      if (path.GetComponent<CaseData>() != null && path.GetComponent<CaseData>().summonData != null && path.GetComponent<CaseData>().summonData.name.Contains("Air"))
+      if (path.GetComponent<CaseData>() != null && path.GetComponent<CaseData>().summonData != null && (path.GetComponent<CaseData>().summonData.name.Contains("Air")
+        || path.GetComponent<CaseData>().summonData.stopBall))
       {
         stopDeplacement = true;
       }
@@ -342,11 +343,6 @@ public class PushBehaviour : NetworkBehaviour
       }
       pushValue--;
 
-      if (objAfflicted.GetComponent<BallonData>())
-      {
-        //        obj.GetComponent<BallonData>().StopMove();
-
-      }
       if (objAfflicted.GetComponent<PersoData>())
       {
         objAfflicted.GetComponent<PersoData>().pushedDebt = pushValue;

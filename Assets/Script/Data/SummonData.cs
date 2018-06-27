@@ -32,7 +32,7 @@ public class SummonData : NetworkBehaviour
 	public int maxPointResistance;
 	public bool invulnerable;
 	public bool makeBallExplosive;
-	public bool hurtWhenBounce;
+	public bool stopBall;
 	public int numberEffectDisapear;
 	public Direction summonDirection = Direction.NordEst;
 

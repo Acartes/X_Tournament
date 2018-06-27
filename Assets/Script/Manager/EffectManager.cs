@@ -80,35 +80,46 @@ public class EffectManager : NetworkBehaviour
 	public void ChangePA(int number)
 	{
 		GameManager.Instance.manaGlobalActual += number;
-		if (number < 0)
-			GameManager.Instance.manaGlobalActual = Mathf.Clamp(GameManager.Instance.manaGlobalActual, 0, GameManager.Instance.manaGlobalMax); // on peut pas dépasser le max
 	}
 
 	public void ChangePr(PersoData persoAfflicted, int number)
 	{
 		persoAfflicted.actualPointResistance += number;
-		persoAfflicted.actualPointResistance = Mathf.Clamp(persoAfflicted.actualPointResistance, 0, persoAfflicted.maxPointResistance); // on peut pas dépasser le max
 		InfoPerso.Instance.stats.updatePr(persoAfflicted.actualPointResistance);
 	}
 
-	public void ChangePm(PersoData persoAfflicted, int number)
-	{
-		persoAfflicted.actualPointMovement += number;
-		persoAfflicted.actualPointMovement = Mathf.Clamp(persoAfflicted.actualPointMovement, 0, persoAfflicted.maxPointMovement); // on peut pas dépasser le max
-		InfoPerso.Instance.stats.updatePm(persoAfflicted.actualPointMovement);
-	}
+  public void ChangePm(PersoData persoAfflicted, int number)
+  {
+    persoAfflicted.actualPointMovement += number;
+    InfoPerso.Instance.stats.updatePm(persoAfflicted.actualPointMovement);
+  }
+  public void ChangePo(PersoData persoAfflicted, int number)
+  {
+    persoAfflicted.shotStrenght += number;
+    InfoPerso.Instance.stats.updatePo(persoAfflicted.shotStrenght);
+  }
 
-	public void ChangePADebuff(int number)
+  public void ChangePADebuff(int number)
 	{
 		GameManager.Instance.paDebuff += number;
 	}
 
-	public void ChangePmDebuff(PersoData persoAfflicted, int number)
-	{
-		persoAfflicted.pmDebuff += number;
-	}
+  public void ChangePmDebuff(PersoData persoAfflicted, int number)
+  {
+    persoAfflicted.pmDebuff += number;
+  }
 
-	public void ChangePr(SummonData summonAfflicted, int number)
+  public void ChangePrDebuff(PersoData persoAfflicted, int number)
+  {
+    persoAfflicted.prDebuff += number;
+  }
+
+  public void ChangePoDebuff(PersoData persoAfflicted, int number)
+  {
+    persoAfflicted.poDebuff += number;
+  }
+
+  public void ChangePr(SummonData summonAfflicted, int number)
 	{
 		summonAfflicted.actualPointResistance += number;
 	}
