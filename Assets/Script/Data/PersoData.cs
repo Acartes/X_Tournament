@@ -41,7 +41,8 @@ public class PersoData : NetworkBehaviour
 	bool ShineColorIsRunning = false;
 
 	public bool isTackled = false;
-	public bool isPlaced = false;
+  public bool moveInterrupted = false;
+  public bool isPlaced = false;
 	public int timeStunned = 0;
 
 	public int pushedDebt;

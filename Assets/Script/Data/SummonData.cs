@@ -146,8 +146,15 @@ public class SummonData : NetworkBehaviour
 					AfterFeedbackManager.Instance.PRText(damagePR, objAfflicted);
 				}
 				EffectManager.Instance.ChangePA(-damagePA);
-				EffectManager.Instance.ChangePr(persoAfflicted, -damagePR);
-				EffectManager.Instance.ChangePm(persoAfflicted, -damagePM);
+        if(persoAfflicted.maxPointResistance <= persoAfflicted.actualPointResistance + damagePR)
+        {
+          EffectManager.Instance.ChangePr(persoAfflicted, -damagePR);
+        }
+        if(damagePR < 0)
+        {
+          persoAfflicted.moveInterrupted = true;
+        }
+        EffectManager.Instance.ChangePm(persoAfflicted, -damagePM);
 
 			}
 		}
@@ -158,12 +165,12 @@ public class SummonData : NetworkBehaviour
 			{
 				ballonAfflicted.explode();
 			}
-		}
-
-    if (stopBall)
-    {
-      ballonAfflicted.isMoving = false;
+      if (stopBall)
+      {
+        ballonAfflicted.isMoving = false;
+      }
     }
+
 
     if (canPush)
     {

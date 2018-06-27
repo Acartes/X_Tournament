@@ -27,7 +27,6 @@ public class MoveBehaviour : NetworkBehaviour
 
   CaseData hoveredCase;
 
-
   // *************** //
   // ** Initialisation ** //
   // *************** //
@@ -163,6 +162,11 @@ public class MoveBehaviour : NetworkBehaviour
 
     foreach (Transform path in tempPath)
     {
+      if (persoSelected.moveInterrupted)
+      {
+        SelectionManager.Instance.selectedPersonnage = null;
+        persoSelected.moveInterrupted = false;
+      }
       if (SelectionManager.Instance.selectedPersonnage == null)
       {
         CaseData caseSelected = persoSelected.persoCase;
@@ -186,7 +190,7 @@ public class MoveBehaviour : NetworkBehaviour
       }
       else
       {
-        Vector3 startPos = SelectionManager.Instance.selectedPersonnage.transform.position;
+        Vector3 startPos = selectedPersonnage.transform.position;
         float fracturedTime = 0;
         float timeUnit = travelTime / 60;
 
