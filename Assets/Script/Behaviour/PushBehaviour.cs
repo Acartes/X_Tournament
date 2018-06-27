@@ -38,7 +38,7 @@ public class PushBehaviour : NetworkBehaviour
     if (Instance == null)
       Instance = this;
 
-    MultiplePushStart();
+   // MultiplePushStart();
   }
 
   // *************** //
@@ -185,14 +185,14 @@ public class PushBehaviour : NetworkBehaviour
 
 
   }
-
+/*
   public void PushStart()
   {
     MoveBehaviour.Instance.StopAllCoroutines();
     StopAllCoroutines();
 
     StartCoroutine(Deplacement(objAfflicted, pathList));
-  }
+  }*/
 
   public void MultiplePushStart()
   {
