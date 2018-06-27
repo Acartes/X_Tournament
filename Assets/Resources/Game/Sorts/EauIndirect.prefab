@@ -71,7 +71,7 @@ MonoBehaviour:
     type: 2}
   rotateSummon: 0
   summonOnCross: 0
-  isDirect: 1
+  isDirect: 0
   nextSpell: {fileID: 0}
   buttonSprite: {fileID: 21300000, guid: 60a0ed00cb02b454fa56640fc16a99a8, type: 3}
   tooltipTitle: Direct <color=#cccc00ff>Eau</color>
@@ -81,8 +81,8 @@ MonoBehaviour:
     cibl\xE9."
   maxUsePerTurn: 3
   animatorSpell: {fileID: 9100000, guid: 9fe560b6a5895a74bb77cf012023b40d, type: 2}
-  affectedTarget: 31
-  allowedTarget: 30
+  affectedTarget: 15
+  allowedTarget: 15
 --- !u!114 &114755600324448950
 MonoBehaviour:
   m_ObjectHideFlags: 1

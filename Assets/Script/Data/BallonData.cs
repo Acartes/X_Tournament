@@ -148,6 +148,11 @@ public class BallonData : NetworkBehaviour
     }
     for (int i = 0; i < selectedPersonnage.shotStrenght; i++)
     {
+      if (isMoving == false)
+      {
+        goto endMove;
+      }
+
       if ((BallonStatut.isIntercepted & statut) == BallonStatut.isIntercepted)
       {
         ChangeStatut(BallonStatut.None, BallonStatut.isIntercepted);
@@ -210,12 +215,7 @@ public class BallonData : NetworkBehaviour
         yield return new WaitForEndOfFrame();
       }
       casesCrossed++;
-
       TackleBehaviour.Instance.CheckTackle(this.gameObject, selectedPersonnage);
-      if (nextPosition.GetComponent<CaseData>().summonData.stopBall)
-      {
-        goto endMove;
-      }
     }
     endMove:
     StopMove();

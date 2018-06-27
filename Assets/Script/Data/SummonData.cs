@@ -160,12 +160,17 @@ public class SummonData : NetworkBehaviour
 			}
 		}
 
-		if (canPush)
-		{
-			EffectManager.Instance.MultiplePush(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection);
-		}
+    if (stopBall)
+    {
+      ballonAfflicted.isMoving = false;
+    }
 
-		numberEffectDisapear--;
+    if (canPush)
+    {
+      EffectManager.Instance.MultiplePush(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection);
+    }
+
+    numberEffectDisapear--;
 	}
 
 	public void ChangeSpriteByPlayer()
