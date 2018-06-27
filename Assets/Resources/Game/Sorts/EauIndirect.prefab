@@ -52,34 +52,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1e943ddd2f20214b8f4eafa5267c461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  costPA: 4
+  costPA: 2
   range: 5
-  isLinear: 1
+  isLinear: 0
   areaOfEffect: 0
   damagePR: 0
   damagePA: 0
   damagePM: 0
   reverseDamageOnAlly: 0
   elementCreated: 3
-  pushValue: -3
+  pushValue: 0
   pushDirection: 0
   pushType: 1
   hurtWhenStopped: 0
+  absorbInvoc: 0
   explosion: 0
-  summonedObj: {fileID: 0}
+  summonedObj: {fileID: 114910890263424662, guid: a6e453462b76b3944b3723776e6a82d9,
+    type: 2}
   rotateSummon: 0
   summonOnCross: 0
   isDirect: 1
   nextSpell: {fileID: 0}
-  buttonSprite: {fileID: 21300000, guid: 071218cd72f51a8499469a6ea24ccf8a, type: 3}
-  tooltipTitle: Direct <color=#cccc00ff>Terre</color>
+  buttonSprite: {fileID: 21300000, guid: 60a0ed00cb02b454fa56640fc16a99a8, type: 3}
+  tooltipTitle: Direct <color=#cccc00ff>Eau</color>
   tooltipRange: "<color=#bbbbbbff>Port\xE9e : </color>5 cases"
-  tooltipCost: "<color=#bbbbbbff>Co\xFBt : </color>4 mana"
-  tooltipEffect: Attire la cible de 3 cases.
-  maxUsePerTurn: 1
+  tooltipCost: "<color=#bbbbbbff>Co\xFBt : </color>2 mana"
+  tooltipEffect: "Cr\xE9\xE9 une invocation \xAB Eau \xBB \xE0 l\u2019emplacement
+    cibl\xE9."
+  maxUsePerTurn: 3
   animatorSpell: {fileID: 9100000, guid: 9fe560b6a5895a74bb77cf012023b40d, type: 2}
-  affectedTarget: 27
-  allowedTarget: 27
+  affectedTarget: 31
+  allowedTarget: 30
 --- !u!114 &114755600324448950
 MonoBehaviour:
   m_ObjectHideFlags: 1

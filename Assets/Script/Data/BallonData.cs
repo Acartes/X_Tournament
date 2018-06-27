@@ -212,6 +212,10 @@ public class BallonData : NetworkBehaviour
       casesCrossed++;
 
       TackleBehaviour.Instance.CheckTackle(this.gameObject, selectedPersonnage);
+      if (nextPosition.GetComponent<CaseData>().summonData.stopBall)
+      {
+        goto endMove;
+      }
     }
     endMove:
     StopMove();

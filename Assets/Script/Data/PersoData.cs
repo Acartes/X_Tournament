@@ -22,11 +22,13 @@ public class PersoData : NetworkBehaviour
 	public int actualPointResistance;
 	public int maxPointResistance;
 
-	public int pmDebuff;
-	public int paDebuff;
-	/// <summary>Modifie la portée du tir.</summary>
-	public int shotStrenght;
-	public Direction persoDirection;
+  public int pmDebuff;
+  public int prDebuff;
+  public int poDebuff;
+  /// <summary>Modifie la portée du tir.</summary>
+  public int shotStrenght;
+  public int baseShotStrenght;
+  public Direction persoDirection;
 	public CaseData persoCase;
 	public GameObject originPoint;
 	public Sprite faceSprite;
@@ -90,6 +92,7 @@ public class PersoData : NetworkBehaviour
 
 		if (owner == Player.Blue)
 			ChangeRotation(Direction.NordOuest);
+    baseShotStrenght = shotStrenght;
 	}
 
 	void OnDisable()
@@ -112,10 +115,13 @@ public class PersoData : NetworkBehaviour
 		if (e.currentPlayer == owner)
 		{
 			ResetPM();
-			ResetPA();
-			EffectManager.Instance.ChangePm(this, pmDebuff);
-			pmDebuff = 0;
-			if (timeStunned == 1)
+      ResetPA();
+      ResetPO();
+      EffectManager.Instance.ChangePm(this, pmDebuff);
+      pmDebuff = 0;
+      EffectManager.Instance.ChangePr(this, prDebuff);
+      prDebuff = 0;
+      if (timeStunned == 1)
 			{
 				actualPointResistance = maxPointResistance;
 				timeStunned = 0;
@@ -150,14 +156,19 @@ public class PersoData : NetworkBehaviour
 		actualPointMovement = maxPointMovement;
 	}
 
-	/// <summary>Fixe les PM actuel du personnage à ses PA max.</summary>
-	public void ResetPA()
-	{
-		actualPointAction = maxPointAction;
-	}
+  /// <summary>Fixe les PM actuel du personnage à ses PA max.</summary>
+  public void ResetPA()
+  {
+    actualPointAction = maxPointAction;
+  }
+  /// <summary>Fixe la PO actuel du personnage à ses PA max.</summary>
+  public void ResetPO()
+  {
+    shotStrenght = maxPointAction;
+  }
 
-	/// <summary>Fixe les PM actuel du personnage à ses PR max.</summary>
-	public void ResetPR()
+  /// <summary>Fixe les PM actuel du personnage à ses PR max.</summary>
+  public void ResetPR()
 	{
 		actualPointResistance = maxPointResistance;
 	}

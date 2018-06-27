@@ -29,6 +29,7 @@ public class SpellData : NetworkBehaviour
   public PushType pushType;
   public bool hurtWhenStopped;
 
+  public bool absorbInvoc;
   public bool explosion;
 
   public SummonData summonedObj;
@@ -421,6 +422,10 @@ public class SpellData : NetworkBehaviour
     {
       ApplyExplosionEffect(objAfflicted);
     }
+    if (absorbInvoc)
+    {
+      ApplyAbsorbInvocEffect(objAfflicted);
+    }
   }
 
   public void ApplyPushEffect(GameObject objAfflicted)
@@ -518,6 +523,37 @@ public class SpellData : NetworkBehaviour
   void ApplyExplosionEffect(GameObject objAfflicted)
   {
     EffectManager.Instance.doExplosion(HoverManager.Instance.hoveredCase);
+  }
+
+  void ApplyAbsorbInvocEffect(GameObject objAfflicted)
+  {
+    foreach (CaseData item in targetList)
+    {
+      if(item.summonData != null)
+      {
+        if (item.summonData.name.Contains("Water"))
+        {
+          item.summonData.numberEffectDisapear = 0;
+          EffectManager.Instance.ChangePr(SelectionManager.Instance.selectedPersonnage, 1);
+          EffectManager.Instance.ChangePrDebuff(SelectionManager.Instance.selectedPersonnage, -1);
+          AfterFeedbackManager.Instance.PRText(damagePR, item.gameObject, true);
+        }
+        if (item.summonData.name.Contains("Fire"))
+        {
+          EffectManager.Instance.ChangePA(1);
+          item.summonData.numberEffectDisapear = 0;
+        }
+        if (item.summonData.name.Contains("Air"))
+        {
+          EffectManager.Instance.ChangePm(SelectionManager.Instance.selectedPersonnage, 1);
+          item.summonData.numberEffectDisapear = 0;
+        }
+        if (item.summonData.name.Contains("Earth"))
+        {
+          item.summonData.numberEffectDisapear = 0;
+        }
+      }
+    }
   }
 }
 
