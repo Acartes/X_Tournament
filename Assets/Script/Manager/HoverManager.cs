@@ -162,6 +162,9 @@ public class HoverManager : NetworkBehaviour
 
 		if (spriteHover == null)
 			return;
+
+        if (SelectionManager.Instance.selectedPersonnage == null)
+            return;
 		
 		if ((GameManager.Instance.currentPlayer == Player.Red && hoveredCase.CheckStatut(Statut.placementRed))
 		    || (GameManager.Instance.currentPlayer == Player.Blue && hoveredCase.CheckStatut(Statut.placementBlue)))

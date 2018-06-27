@@ -118,6 +118,9 @@ public class TurnManager : NetworkBehaviour
 	{
 		if (!canChangeTurn)
 			return;
+
+        if (finishTurnButton == null)
+            return;
 		
 		if (finishTurnButton.GetComponent<Button>().interactable != false)
 		{

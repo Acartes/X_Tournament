@@ -243,8 +243,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weightType: 0
   owner: 0
-  actualPointMovement: 6
-  maxPointMovement: 5
+  actualPointMovement: 4
+  maxPointMovement: 4
   actualPointAction: 4
   maxPointAction: 4
   actualPointResistance: 5

@@ -76,8 +76,8 @@ MonoBehaviour:
   tooltipTitle: Sort Indirect <color=#ff0000ff>Feu</color>
   tooltipRange: "<color=#bbbbbbff>Port\xE9e : </color>5 cases"
   tooltipCost: "<color=#bbbbbbff>Co\xFBt : </color>2 mana"
-  tooltipEffect: "Place 1 case feu \xE0 l'emplacement cibl\xE9.\nSur ennemi : -1 PR\nSur
-    alli\xE9 : +1 PR"
+  tooltipEffect: "Place 1 case feu \xE0 l'emplacement cibl\xE9.\nCible : -1 PR\nBalle
+    : -1 PR en croix autour d'elle\n"
   maxUsePerTurn: 2
   animatorSpell: {fileID: 9100000, guid: bae8a29eb97ba61468b018622db02aa4, type: 2}
   affectedTarget: 15

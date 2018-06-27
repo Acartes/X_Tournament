@@ -64,14 +64,13 @@ public class CaseManager : NetworkBehaviour
 		}
 	}
 
-	// *************** //
-	// ** Fonctions ** // Fonctions réutilisables ailleurs
-	// *************** //
+    // *************** //
+    // ** Fonctions ** // Fonctions réutilisables ailleurs
+    // *************** //
 
-	void ClearAllCases()
+    /// <summary>Remet la valeur de toutes les cases par défaut</summary> 
+    void ClearAllCases()
 	{
-		return;
-		/// <summary>Remet la valeur de toutes les cases par défaut</summary> 
 		foreach (CaseData newCase in listAllCase)
 		{
 			DisableAllColliders();
@@ -297,7 +296,7 @@ public class CaseManager : NetworkBehaviour
 					int listCount = caseList.Count;
 					for (int y = 0; y < listCount; y++)
 					{
-						if (direction == Direction.SudEst || direction == null)
+						if (direction == Direction.SudEst)
 						{
 							if (caseList[y].GetCaseRelativeCoordinate(1, 0) != null && !caseList.Contains(caseList[y].GetCaseRelativeCoordinate(1, 0)))
 							{
@@ -305,7 +304,7 @@ public class CaseManager : NetworkBehaviour
 							}
 						}
 
-						if (direction == Direction.NordOuest || direction == null)
+						if (direction == Direction.NordOuest)
 						{
 							if (caseList[y].GetCaseRelativeCoordinate(-1, 0) != null && !caseList.Contains(caseList[y].GetCaseRelativeCoordinate(-1, 0)))
 							{
@@ -313,7 +312,7 @@ public class CaseManager : NetworkBehaviour
 							}
 						}
 
-						if (direction == Direction.NordEst || direction == null)
+						if (direction == Direction.NordEst)
 						{
 							if (caseList[y].GetCaseRelativeCoordinate(0, 1) != null && !caseList.Contains(caseList[y].GetCaseRelativeCoordinate(0, 1)))
 							{
@@ -321,7 +320,7 @@ public class CaseManager : NetworkBehaviour
 							}
 						}
 
-						if (direction == Direction.SudOuest || direction == null)
+						if (direction == Direction.SudOuest)
 						{
 							if (caseList[y].GetCaseRelativeCoordinate(0, -1) != null && !caseList.Contains(caseList[y].GetCaseRelativeCoordinate(0, -1)))
 							{

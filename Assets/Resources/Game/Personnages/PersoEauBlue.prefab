@@ -211,15 +211,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weightType: 0
   owner: 1
-  actualPointMovement: 6
-  maxPointMovement: 4
+  actualPointMovement: 3
+  maxPointMovement: 3
   actualPointAction: 4
   maxPointAction: 4
-  actualPointResistance: 5
-  maxPointResistance: 5
+  actualPointResistance: 7
+  maxPointResistance: 7
   pmDebuff: 0
   paDebuff: 0
-  shotStrenght: 3
+  shotStrenght: 6
   persoDirection: 0
   persoCase: {fileID: 0}
   originPoint: {fileID: 1901035600525994}
@@ -228,9 +228,12 @@ MonoBehaviour:
   Spell1: {fileID: 114539509967211268, guid: 7948bd4d0d429d14bbc161d5613d858d, type: 2}
   Spell2: {fileID: 114539509967211268, guid: 8c0e28509492ecc47950edc6f0e95c72, type: 2}
   isTackled: 0
+  isPlaced: 0
   timeStunned: 0
+  pushedDebt: 0
   isPushed: 0
   animator: {fileID: 0}
+  spellHit: []
 --- !u!114 &114774184897488714
 MonoBehaviour:
   m_ObjectHideFlags: 1

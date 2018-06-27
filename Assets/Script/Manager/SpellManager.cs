@@ -284,7 +284,6 @@ public class SpellManager : NetworkBehaviour
 		SummonData lastSummonInstancied = SummonManager.Instance.lastSummonInstancied;
 		lastSummonInstancied.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
 		lastSummonInstancied.GetComponent<Animator>().enabled = true;
-		lastSummonInstancied.GetComponent<BoxCollider2D>().enabled = true;
 		SummonManager.Instance.AddSummon(lastSummonInstancied);
 		GameObject ownerCircle = lastSummonInstancied.originPoint.GetChild(0).gameObject;
 		if (lastSummonInstancied.owner == Player.Red)
@@ -360,7 +359,6 @@ public class SpellManager : NetworkBehaviour
 	{
 		summon.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
 		summon.GetComponent<Animator>().enabled = true;
-		summon.GetComponent<BoxCollider2D>().enabled = true;
 		SummonManager.Instance.AddSummon(summon);
 		GameObject ownerCircle = summon.originPoint.GetChild(0).gameObject;
 		if (summon.owner == Player.Red)

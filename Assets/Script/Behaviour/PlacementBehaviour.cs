@@ -41,13 +41,17 @@ public class PlacementBehaviour : NetworkBehaviour
 	{
 		EventManager.newClickEvent += OnNewClick;
 		StartCoroutine(LateOnEnable());
+       
 	}
 
 	IEnumerator LateOnEnable()
 	{
 		yield return new WaitForEndOfFrame();
-		TurnManager.Instance.changeTurnEvent += OnChangeTurn;
-	}
+       
+        TurnManager.Instance.changeTurnEvent += OnChangeTurn;
+
+        
+    }
 
 	void OnDisable()
 	{
@@ -60,7 +64,10 @@ public class PlacementBehaviour : NetworkBehaviour
 
 	void Update()
 	{
-		if (TurnManager.Instance == null)
+        if (RosterManager.Instance != null && RosterManager.Instance.listHero.Count == 8 && RosterManager.Instance.listHeroPlaced.Count == 0)
+            PrePlace();
+
+        if (TurnManager.Instance == null)
 			return;
 		
 		if (GameManager.Instance.currentPhase == Phase.Placement)
@@ -105,11 +112,11 @@ public class PlacementBehaviour : NetworkBehaviour
 
 			if ((Statut.placementRed & statut) == Statut.placementRed && currentPlayer == Player.Red)
 			{
-				CreatePerso(currentPhase, currentPlayer, 0);
+				CreatePerso(currentPhase, currentPlayer);
 			}
 			if ((Statut.placementBlue & statut) == Statut.placementBlue && currentPlayer == Player.Blue)
 			{
-				CreatePerso(currentPhase, currentPlayer, 1);
+				CreatePerso(currentPhase, currentPlayer);
 			}
 		}
         // si on selectionne un personnage à partir d'un portrait
@@ -148,17 +155,28 @@ public class PlacementBehaviour : NetworkBehaviour
 		}
 	}
 
-	public void CreatePerso(Phase currentPhase, Player currentPlayer, int playerIndex)
+    void PrePlace()
+    {
+        CreatePersoPlacement(GameObject.Find("9 2").GetComponent<CaseData>(), RosterManager.Instance.listHero[0]);
+        CreatePersoPlacement(GameObject.Find("7 4").GetComponent<CaseData>(), RosterManager.Instance.listHero[1]);
+        CreatePersoPlacement(GameObject.Find("7 6").GetComponent<CaseData>(), RosterManager.Instance.listHero[2]);
+        CreatePersoPlacement(GameObject.Find("9 8").GetComponent<CaseData>(), RosterManager.Instance.listHero[3]);
+        CreatePersoPlacement(GameObject.Find("13 2").GetComponent<CaseData>(), RosterManager.Instance.listHero[4]);
+        CreatePersoPlacement(GameObject.Find("15 4").GetComponent<CaseData>(), RosterManager.Instance.listHero[5]);
+        CreatePersoPlacement(GameObject.Find("15 6").GetComponent<CaseData>(), RosterManager.Instance.listHero[6]);
+        CreatePersoPlacement(GameObject.Find("13 8").GetComponent<CaseData>(), RosterManager.Instance.listHero[7]);
+    }
+
+	public void CreatePerso(Phase currentPhase, Player currentPlayer)
 	{ // On créé un personnage sur une case
 		CreatePersoPlacement(HoverManager.Instance.hoveredCase, SelectionManager.Instance.selectedPersonnage);
 	}
 
 	public void CreatePersoPlacement(CaseData hoveredCase, PersoData selectedPersonnage)
 	{ //
-		if (SelectionManager.Instance.selectedPersonnage != null && hoveredCase.casePathfinding == PathfindingCase.Walkable)
+		if (hoveredCase.casePathfinding == PathfindingCase.Walkable)
 		{
 			selectedPersonnage.transform.position = hoveredCase.transform.position - selectedPersonnage.originPoint.transform.localPosition;
-			selectedPersonnage.owner = TurnManager.Instance.currentPlayer;
 			if (!RosterManager.Instance.listHeroPlaced.Contains(selectedPersonnage))
 			{
 				RosterManager.Instance.listHeroPlaced.Add(selectedPersonnage);

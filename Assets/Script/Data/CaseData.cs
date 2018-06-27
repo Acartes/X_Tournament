@@ -149,6 +149,7 @@ public class CaseData : NetworkBehaviour
 				rend.sortingOrder = spriteR.sortingOrder + 1;
 			}
 		}
+
 		TransparencyManager.Instance.CheckCaseTransparency(this);
 
 	}
@@ -209,6 +210,9 @@ public class CaseData : NetworkBehaviour
 	{
 		if (ColorManager.Instance == null)
 			return;
+
+        if (GameManager.Instance == null)
+            return;
 
 		spriteR.color = ColorManager.Instance.caseColor;
 
