@@ -45,7 +45,7 @@ public class HoverFeedbackManager : NetworkBehaviour
 	{
 		ClearMovement();
 
-		if (e.hoveredPersonnage != null && e.hoveredPersonnage.persoCase != null)
+		if (e.hoveredPersonnage != null && e.hoveredPersonnage.persoCase != null && GameManager.Instance.actualAction != PersoAction.isCasting)
 			ShowMovement(e.hoveredPersonnage);
 	}
 

@@ -91,7 +91,7 @@ public class SelectionManager : NetworkBehaviour
 	public void OnNewClick()
 	{ // Lors d'un click sur une case
 
-		if (isDisablePersoSelection)
+		if (isDisablePersoSelection || GameManager.Instance.actualAction == PersoAction.isCasting)
 			return;
 
  

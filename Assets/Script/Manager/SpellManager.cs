@@ -277,7 +277,7 @@ public class SpellManager : NetworkBehaviour
 
         if (((ObjectType.Self & selectedSpell.affectedTarget) == ObjectType.Self) && obj.personnageData != null && SelectionManager.Instance.selectedPersonnage == obj.personnageData)
         {
-          selectedSpell.ApplyEffect(obj.summonData.gameObject);
+          selectedSpell.ApplyEffect(obj.personnageData.gameObject);
         }
       }
     }
