@@ -97,6 +97,7 @@ public class TackleBehaviour : NetworkBehaviour
 	{ // Vérifie si le personnage peut être taclé, et si c'est le cas, fait un test de chance pour savoir s'il est taclé
 		playerCase = SelectionManager.Instance.selectedCase.transform;
 		currentPlayer = TurnManager.Instance.currentPlayer;
+		Debug.Log(randomIntOrder + " " + randomIntList.Count);
 		randomInt = randomIntList[randomIntOrder];
 
 		foreach (PersoData perso in RosterManager.Instance.listHeroPlaced)
