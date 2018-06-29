@@ -8,8 +8,48 @@ public class PortraitInteractive : NetworkBehaviour
 {
 
   public PersoData newHoveredPersonnage;
+    Text po;
+    Text pm;
+    Text pr;
 
-  public void setPortraitData(PortraitInteractive newPortrait)
+    public override void OnStartClient()
+    {
+        StartCoroutine(waitForInit());
+    }
+
+    IEnumerator waitForInit()
+    {
+        while (!LoadingManager.Instance.isGameReady())
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        Init();
+    }
+
+    private void Init()
+    {
+        foreach(Text obj in GetComponentsInChildren<Text>())
+        {
+            if (obj.name == "Pr")
+                pr = obj;
+            if (obj.name == "Pm")
+                pm = obj;
+            if (obj.name == "Po")
+                po = obj;
+        }
+    }
+
+    private void Update()
+    {
+        if (newHoveredPersonnage != null)
+        {
+            pr.text = newHoveredPersonnage.actualPointResistance.ToString();
+            pm.text = newHoveredPersonnage.actualPointMovement.ToString();
+            po.text = newHoveredPersonnage.shotStrenght.ToString();
+        }
+    }
+
+    public void setPortraitData(PortraitInteractive newPortrait)
   {
     GetComponent<Image>().sprite = newPortrait.GetComponent<Image>().sprite;
     GetComponent<Image>().color = newPortrait.GetComponent<Image>().color;
