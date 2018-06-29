@@ -54,7 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   costPA: 7
-  range: 0
+  range: 1
   isLinear: 0
   areaOfEffect: 5
   damagePR: 1
@@ -81,7 +81,7 @@ MonoBehaviour:
     perd 1 PR\r (non applicable \xE0 la balle) et est stopp\xE9."
   maxUsePerTurn: 1
   animatorSpell: {fileID: 9100000, guid: 47dda2be2c6462c45bdb2d7066614823, type: 2}
-  affectedTarget: 32
+  affectedTarget: 16
   allowedTarget: 32
 --- !u!114 &114755600324448950
 MonoBehaviour:
