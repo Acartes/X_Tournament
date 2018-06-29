@@ -260,7 +260,7 @@ public class SpellManager : NetworkBehaviour
 				{
 					lastCaseUsed = obj;
 				}
-				if (((ObjectType.AllyPerso & selectedSpell.affectedTarget) == ObjectType.AllyPerso) && obj.personnageData != null)
+				if (((ObjectType.AllyPerso & selectedSpell.affectedTarget) == ObjectType.AllyPerso) && obj.personnageData != null && SelectionManager.Instance.selectedPersonnage != obj.personnageData)
 				{
 					selectedSpell.ApplyEffect(obj.personnageData.gameObject);
 				}
@@ -270,12 +270,17 @@ public class SpellManager : NetworkBehaviour
 					selectedSpell.ApplyEffect(obj.ballon.gameObject);
 				}
 
-				if (((ObjectType.Invoc & selectedSpell.affectedTarget) == ObjectType.Invoc) && obj.summonData != null)
-				{
+        if (((ObjectType.Invoc & selectedSpell.affectedTarget) == ObjectType.Invoc) && obj.summonData != null)
+        {
           selectedSpell.ApplyEffect(obj.summonData.gameObject);
-				}
-			}
-		}
+        }
+
+        if (((ObjectType.Self & selectedSpell.affectedTarget) == ObjectType.Self) && obj.personnageData != null && SelectionManager.Instance.selectedPersonnage == obj.personnageData)
+        {
+          selectedSpell.ApplyEffect(obj.summonData.gameObject);
+        }
+      }
+    }
 		StartCoroutine(SpellEnd());
 	}
 

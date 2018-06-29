@@ -104,6 +104,11 @@ public class SpellData : NetworkBehaviour
       obj.ChangeStatut(Statut.None, Statut.atPush);
     }
 
+    if (rangeList.Contains(HoverManager.Instance.hoveredCase))
+    {
+      ShowAreaOfEffect();
+    }
+
     if (!targetList.Contains(HoverManager.Instance.hoveredCase))
     {
       ManaManager.Instance.SpellButtonFeedbackOFF();
@@ -112,7 +117,6 @@ public class SpellData : NetworkBehaviour
     }
 
     ManaManager.Instance.SpellButtonFeedbackON(SpellManager.Instance.selectedSpell.costPA);
-    ShowAreaOfEffect();
     ShowPushEffect();
     ShowSummon();
   }
@@ -246,7 +250,6 @@ public class SpellData : NetworkBehaviour
   {
 
     CaseData hoveredCase = HoverManager.Instance.hoveredCase;
-    ShowPushEffect();
 
     foreach (CaseData obj in CaseManager.Instance.GetAllCaseWithStatut(Statut.atAoE))
     {
