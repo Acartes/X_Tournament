@@ -227,7 +227,7 @@ MonoBehaviour:
   originPoint: {fileID: 1901035600525994}
   faceSprite: {fileID: 21300000, guid: 070fabda4501ee745b588f7ca2d704b7, type: 3}
   backSprite: {fileID: 21300000, guid: c36a3cbf5a4fa3b4b86815f32859c317, type: 3}
-  Spell1: {fileID: 114539509967211268, guid: 6bd8c9b12884a3441ac032c4a349a79f, type: 2}
+  Spell1: {fileID: 114539509967211268, guid: 7948bd4d0d429d14bbc161d5613d858d, type: 2}
   Spell2: {fileID: 114539509967211268, guid: 8c0e28509492ecc47950edc6f0e95c72, type: 2}
   isTackled: 0
   moveInterrupted: 0
@@ -278,6 +278,7 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -293,6 +294,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5

@@ -54,10 +54,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   costPA: 7
-  range: 1
+  range: 0
   isLinear: 0
   areaOfEffect: 5
-  damagePR: 1
+  damagePR: -1
   damagePA: 0
   damagePM: 0
   reverseDamageOnAlly: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
   pushDirection: 6
   pushType: 1
   hurtWhenStopped: 0
-  absorbInvoc: 0
+  absorbInvoc: 1
   explosion: 0
   summonedObj: {fileID: 0}
   rotateSummon: 0
@@ -81,8 +81,8 @@ MonoBehaviour:
     perd 1 PR\r (non applicable \xE0 la balle) et est stopp\xE9."
   maxUsePerTurn: 1
   animatorSpell: {fileID: 9100000, guid: 47dda2be2c6462c45bdb2d7066614823, type: 2}
-  affectedTarget: 16
-  allowedTarget: 32
+  affectedTarget: 19
+  allowedTarget: 33
 --- !u!114 &114755600324448950
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -124,6 +124,7 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -139,6 +140,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5

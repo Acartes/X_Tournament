@@ -171,7 +171,6 @@ public class SpellData : NetworkBehaviour
         list.AddRange(list2);
         list2.Clear();
       }
-      list.Remove(selectedCase);
     }
     rangeList.AddRange(list);
     foreach (CaseData obj in rangeList)
@@ -416,13 +415,14 @@ public class SpellData : NetworkBehaviour
       ApplyStatsEffect(objAfflicted);
     }
 
-    if (explosion)
-    {
-      ApplyExplosionEffect(objAfflicted);
-    }
     if (absorbInvoc)
     {
       ApplyAbsorbInvocEffect(objAfflicted);
+    }
+
+    if (explosion)
+    {
+      ApplyExplosionEffect(objAfflicted);
     }
   }
 
@@ -497,6 +497,8 @@ public class SpellData : NetworkBehaviour
     }
     if (summonAfflicted != null)
     {
+      if (absorbInvoc)
+        return;
       caseAfflicted = summonAfflicted.caseActual;
       if (reverseDamageOnAlly)
       {
@@ -525,32 +527,10 @@ public class SpellData : NetworkBehaviour
 
   void ApplyAbsorbInvocEffect(GameObject objAfflicted)
   {
-    foreach (CaseData item in targetList)
+    SummonData summonAfflicted = objAfflicted.GetComponent<SummonData>();
+    if (summonAfflicted != null)
     {
-      if(item.summonData != null)
-      {
-        if (item.summonData.name.Contains("Water"))
-        {
-          item.summonData.numberEffectDisapear = 0;
-          EffectManager.Instance.ChangePr(SelectionManager.Instance.selectedPersonnage, 1);
-          EffectManager.Instance.ChangePrDebuff(SelectionManager.Instance.selectedPersonnage, -1);
-          AfterFeedbackManager.Instance.PRText(damagePR, item.gameObject, true);
-        }
-        if (item.summonData.name.Contains("Fire"))
-        {
-          EffectManager.Instance.ChangePA(1);
-          item.summonData.numberEffectDisapear = 0;
-        }
-        if (item.summonData.name.Contains("Air"))
-        {
-          EffectManager.Instance.ChangePm(SelectionManager.Instance.selectedPersonnage, 1);
-          item.summonData.numberEffectDisapear = 0;
-        }
-        if (item.summonData.name.Contains("Earth"))
-        {
-          item.summonData.numberEffectDisapear = 0;
-        }
-      }
+      summonAfflicted.numberEffectDisapear = 0;
     }
   }
 }

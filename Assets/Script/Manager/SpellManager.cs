@@ -166,7 +166,6 @@ public class SpellManager : NetworkBehaviour
 
 		selectedSpell.newRangeList();
 		selectedSpell.newTargetList();
-		selectedSpell.ShowAllFeedbacks();
 	}
 
 	/// <summary>Le sort est lancé à un endroit</summary>
@@ -180,7 +179,6 @@ public class SpellManager : NetworkBehaviour
 		    || (hoveredCase.personnageData != null && hoveredCase.personnageData.spellHit.Contains(selectedSpell))
 		    || (hoveredCase.ballon != null && hoveredCase.ballon.spellHit.Contains(selectedSpell)))
 		{
-			spellSuccess = false;
 			StartCoroutine(SpellEnd());
 			return;
 		}
@@ -189,7 +187,6 @@ public class SpellManager : NetworkBehaviour
 		{
 			if (spellName[i] == selectedSpell.name && spellUse[i] >= selectedSpell.maxUsePerTurn)
 			{
-				spellSuccess = false;
 				StartCoroutine(SpellEnd());
 				return;
 			}
