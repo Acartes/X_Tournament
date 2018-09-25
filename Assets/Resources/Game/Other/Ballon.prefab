@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 50049419022378680}
   - component: {fileID: 95033208338254766}
   - component: {fileID: 114882323806002418}
+  - component: {fileID: 114765853772444408}
   m_Layer: 2
   m_Name: Ballon
   m_TagString: Ballon
@@ -180,6 +181,25 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114765853772444408
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1901250649987194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27486787477deca4185c5b046a857af2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PersoData: {fileID: 0}
+  BallonData: {fileID: 0}
+  pushValue: 0
+  pushDirection: 0
+  target: {fileID: 0}
+  targetPos: {x: 0, y: 0, z: 0}
+  isPushing: 0
+  startPos: {x: 0, y: 0, z: 0}
 --- !u!114 &114877427544497230
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -266,7 +286,6 @@ MonoBehaviour:
   canRebond: 0
   casesCrossed: 0
   isPushed: 0
-  pushedDebt: 0
   spriteR: {fileID: 0}
   img: {fileID: 114877427544497230}
   shaderNormal: {fileID: 2100000, guid: e1c70fa38f2f75345a3f7040e78809d2, type: 2}
@@ -281,6 +300,7 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -296,6 +316,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5

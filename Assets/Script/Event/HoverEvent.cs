@@ -36,7 +36,6 @@ public class HoverEvent : NetworkBehaviour
 
 	void OnMouseOver()
 	{
-    Debug.Log("aa");
 		if (!SynchroManager.Instance.canPlayTurn())
 		{
 			return;

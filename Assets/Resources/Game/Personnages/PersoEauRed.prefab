@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 50415124103048680}
   - component: {fileID: 61971609288476504}
   - component: {fileID: 114426245744735858}
+  - component: {fileID: 114629349023529602}
   m_Layer: 2
   m_Name: PersoEauRed
   m_TagString: Personnage
@@ -198,6 +199,22 @@ MonoBehaviour:
     i15: 132
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &114629349023529602
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1409412096056796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27486787477deca4185c5b046a857af2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CaseData: {fileID: 0}
+  pushValue: 0
+  pushDirection: 0
+  target: {fileID: 0}
+  targetPos: {x: 0, y: 0, z: 0}
 --- !u!114 &114719634892732226
 MonoBehaviour:
   m_ObjectHideFlags: 1

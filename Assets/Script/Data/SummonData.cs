@@ -32,7 +32,7 @@ public class SummonData : NetworkBehaviour
 	public int maxPointResistance;
 	public bool invulnerable;
 	public bool makeBallExplosive;
-	public bool stopBall;
+	public bool stopMove;
 	public int numberEffectDisapear;
 	public Direction summonDirection = Direction.NordEst;
 
@@ -150,24 +150,27 @@ public class SummonData : NetworkBehaviour
         {
           EffectManager.Instance.ChangePr(persoAfflicted, -damagePR);
         }
-        if(damagePR < 0)
-        {
-          persoAfflicted.moveInterrupted = true;
-        }
         EffectManager.Instance.ChangePm(persoAfflicted, -damagePM);
 
 			}
-		}
-		if (ballonAfflicted != null)
+      if (stopMove)
+      {
+        persoAfflicted.moveInterrupted = true;
+        persoAfflicted.GetComponent<PushData>().pushValue = 0;
+      }
+
+    }
+    if (ballonAfflicted != null)
 		{
 			caseAfflicted = ballonAfflicted.ballonCase;
 			if (makeBallExplosive)
 			{
 				ballonAfflicted.explode();
 			}
-      if (stopBall)
+      if (stopMove)
       {
         ballonAfflicted.isMoving = false;
+        ballonAfflicted.GetComponent<PushData>().pushValue = 0;
       }
     }
 

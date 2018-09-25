@@ -17,6 +17,7 @@ public class PushBehaviour : NetworkBehaviour
   public float travelTime;
 
   public List<Transform> pathList = new List<Transform>();
+  Direction actualPushDirection;
 
   PersoData persoAfflicted = null;
   public CaseData caseFinalShow = null; // la case à montrer pour le pré-rendu
@@ -55,8 +56,6 @@ public class PushBehaviour : NetworkBehaviour
     {
       if (obj.GetComponent<BallonData>().isMoving)
       {
-       // if (SelectionManager.Instance.selectedPersonnage.shotStrenght - obj.GetComponent<BallonData>().casesCrossed > 0)
-       //   pushValue += SelectionManager.Instance.selectedPersonnage.shotStrenght - obj.GetComponent<BallonData>().casesCrossed;
         persoDirection = obj.GetComponent<BallonData>().ballonDirection;
         obj.GetComponent<BallonData>().StopMove();
         obj.GetComponent<BallonData>().StopAllCoroutines();
@@ -70,13 +69,10 @@ public class PushBehaviour : NetworkBehaviour
       {
         path.GetComponent<CaseData>().ChangeStatut(Statut.None, Statut.isMoving);
       }
-      //      pushValue += objAfflicted.GetComponent<PersoData>().pushedDebt;
       objAfflicted.GetComponent<PersoData>().pushedDebt = 0;
       MoveBehaviour.Instance.movePathes.Clear();
       persoAfflicted = objAfflicted.GetComponent<PersoData>();
       persoDirection = persoAfflicted.persoDirection;
-      Debug.Log("pushDebt is " + objAfflicted.GetComponent<PersoData>().pushedDebt);
-      Debug.Log("pushValue is " + pushValue);
     }
 
     if (objAfflicted.GetComponent<SummonData>() != null)
@@ -92,89 +88,10 @@ public class PushBehaviour : NetworkBehaviour
     {
       case PushType.FromCaster:
       GetShownCase(obj, pushValue, caseAfflicted, pushType, pushDirection);
-      int y = pushValue;
-      pushValue = Mathf.Abs(pushValue);
-      while (y != 0)
-      {
-        if (y > 0)
-        {
-          y--;
-          if (caseAfflicted.GetCaseInFront(SelectionManager.Instance.selectedPersonnage.persoDirection) != null || tempCase.summonData != null && tempCase.summonData.name.Contains("Air"))
-          {
-            tempCase = caseAfflicted.GetCaseInFront(SelectionManager.Instance.selectedPersonnage.persoDirection); ;
-            pathList.Add(tempCase.transform);
-            caseAfflicted = tempCase;
-          }
-        }
-        if (y < 0)
-        {
-          y++;
-          if (caseAfflicted.GetCaseAtBack(SelectionManager.Instance.selectedPersonnage.persoDirection) != null || tempCase.summonData != null && tempCase.summonData.name.Contains("Air"))
-          {
-            tempCase = caseAfflicted.GetCaseAtBack(SelectionManager.Instance.selectedPersonnage.persoDirection);
-            pathList.Add(tempCase.transform);
-            caseAfflicted = tempCase;
-          }
-        }
-      }
-      break;
-      case PushType.FromTarget:
-      GetShownCase(obj, pushValue, caseAfflicted, pushType, pushDirection);
-      stillTornadoDamage = false;
-
-      for (int i = 0; i < pushValue; i++)
-      {
-        if (pushDirection == Direction.Left)
-          tempCase = caseAfflicted.GetCaseAtLeft(persoDirection);
-
-        if (pushDirection == Direction.Right)
-          tempCase = caseAfflicted.GetCaseAtRight(persoDirection);
-
-        if (pushDirection == Direction.Back)
-        {
-          tempCase = caseAfflicted.GetCaseAtBack(persoDirection);
-        }
-
-        if (pushDirection == Direction.Front)
-          tempCase = caseAfflicted.GetCaseInFront(persoDirection);
-
-        if (tempCase == null || tempCase.casePathfinding == PathfindingCase.NonWalkable || tempCase.summonData != null && tempCase.summonData.name.Contains("Air"))
-        {
-          caseAfflicted.casePathfinding = PathfindingCase.Walkable;
-          pathList.Add(caseAfflicted.transform);
-          stillTornadoDamage = true;
-          break;
-        }
-        else
-        {
-          pathList.Add(tempCase.transform);
-          caseAfflicted = tempCase;
-        }
-      }
-
+      actualPushDirection = SelectionManager.Instance.selectedPersonnage.persoDirection;
       break;
       case PushType.FromTerrain:
-      for (int i = 0; i < pushValue; i++)
-      {
-        if (pushDirection == Direction.SudOuest)
-          tempCase = caseAfflicted.GetBottomLeftCase();
-
-        if (pushDirection == Direction.SudEst)
-          tempCase = caseAfflicted.GetBottomRightCase();
-
-        if (pushDirection == Direction.NordOuest)
-          tempCase = caseAfflicted.GetTopLeftCase();
-
-        if (pushDirection == Direction.NordEst)
-          tempCase = caseAfflicted.GetTopRightCase();
-
-        pathList.Add(tempCase.transform);
-        caseAfflicted = tempCase;
-        if (tempCase == null || tempCase.casePathfinding == PathfindingCase.NonWalkable || tempCase.summonData != null && tempCase.summonData.name.Contains("Air"))
-        {
-          break;
-        }
-      }
+      actualPushDirection = pushDirection;
       break;
     }
 
@@ -182,8 +99,6 @@ public class PushBehaviour : NetworkBehaviour
     {
       caseObj.GetComponent<CaseData>().ChangeStatut(Statut.None, Statut.atPush);
     }
-
-
   }
 /*
   public void PushStart()
@@ -196,11 +111,15 @@ public class PushBehaviour : NetworkBehaviour
 
   public void MultiplePushStart()
   {
-    StartCoroutine(Deplacement(objAfflicted, pathList));
+    if (objAfflicted.GetComponent<PushData>())
+      objAfflicted.GetComponent<PushData>().Push(actualPushDirection, pushValue);
   }
 
   public IEnumerator Deplacement(GameObject objAfflicted, List<Transform> pathes)
   { // On déplace le personnage de case en case jusqu'au click du joueur propriétaire, et entre temps on check s'il est taclé ou non
+    if (objAfflicted.GetComponent<PushData>())
+      objAfflicted.GetComponent<PushData>().Push(actualPushDirection, pushValue);
+    yield return null;
     TurnManager.Instance.DisableFinishTurn();
 
     GameManager.Instance.actualAction = PersoAction.isMoving;
@@ -284,7 +203,7 @@ public class PushBehaviour : NetworkBehaviour
       }
 
       if (path.GetComponent<CaseData>() != null && path.GetComponent<CaseData>().summonData != null && (path.GetComponent<CaseData>().summonData.name.Contains("Air")
-        || path.GetComponent<CaseData>().summonData.stopBall))
+        || path.GetComponent<CaseData>().summonData.stopMove))
       {
         stopDeplacement = true;
       }

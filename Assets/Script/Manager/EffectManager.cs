@@ -128,8 +128,6 @@ public class EffectManager : NetworkBehaviour
 
 	public void Rotate(GameObject objAfflicted, Direction newDirection)
 	{
-		Debug.Log(objAfflicted.GetComponent<SummonData>());
-		Debug.Log(newDirection);
 		if (objAfflicted.GetComponent<SummonData>())
 			objAfflicted.GetComponent<SummonData>().pushDirection = newDirection;
 	}
