@@ -89,7 +89,7 @@ public class CaseData : NetworkBehaviour
 			col.gameObject.GetComponent<PersoData>().persoCase = this;
 			if (summonData != null)
 			{
-				summonData.ApplyEffect(col.gameObject);
+        summonData.ApplyEffect(col.gameObject);
 			}
 
 			foreach (SpriteRenderer rend in col.gameObject.GetComponentsInChildren<SpriteRenderer>())
@@ -107,7 +107,7 @@ public class CaseData : NetworkBehaviour
 			col.gameObject.GetComponent<BallonData>().yCoord = yCoord;
 			if (summonData != null)
 			{
-				summonData.ApplyEffect(col.gameObject);
+        summonData.ApplyEffect(col.gameObject);
 			}
 			if (CheckStatut(Statut.goalRed))
 				StartCoroutine(UIManager.Instance.ScoreChange(Player.Blue));

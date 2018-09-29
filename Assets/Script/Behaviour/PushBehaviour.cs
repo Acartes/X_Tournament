@@ -87,13 +87,13 @@ public class PushBehaviour : NetworkBehaviour
     switch (pushType)
     {
       case PushType.FromCaster:
-      GetShownCase(obj, pushValue, caseAfflicted, pushType, pushDirection);
       actualPushDirection = SelectionManager.Instance.selectedPersonnage.persoDirection;
       break;
       case PushType.FromTerrain:
       actualPushDirection = pushDirection;
       break;
     }
+    GetShownCase(obj, pushValue, caseAfflicted, actualPushDirection);
 
     foreach (CaseData caseObj in CaseManager.Instance.GetAllCaseWithStatut(Statut.atPush))
     {
@@ -290,8 +290,61 @@ public class PushBehaviour : NetworkBehaviour
     yield return new WaitForEndOfFrame();
   }
 
-  public void GetShownCase(GameObject obj, int givenPushValue, CaseData caseAfflicted, PushType pushType, Direction pushDirection = Direction.Front)
+  public void GetShownCase(GameObject objPushed, int pushValue, CaseData startCase, Direction pushDirection)
   {
+    if(pushValue < 0)
+    {
+      pushValue = -pushValue;
+      if (pushDirection == Direction.NordEst)
+        pushDirection = Direction.SudOuest;
+      if (pushDirection == Direction.NordOuest)
+        pushDirection = Direction.SudEst;
+      if (pushDirection == Direction.SudEst)
+        pushDirection = Direction.NordOuest;
+      if (pushDirection == Direction.SudOuest)
+        pushDirection = Direction.NordEst;
+
+    }
+
+    CaseData targetCase = startCase;
+    List<SummonData> destroyedSummon = new List<SummonData>();
+
+    while (pushValue > 0)
+    {
+      if (pushDirection == Direction.NordEst)
+        targetCase = targetCase.GetTopRightCase();
+      if (pushDirection == Direction.NordOuest)
+        targetCase = targetCase.GetTopLeftCase();
+      if (pushDirection == Direction.SudEst)
+        targetCase = targetCase.GetBottomRightCase();
+      if (pushDirection == Direction.SudOuest)
+        targetCase = targetCase.GetBottomLeftCase();
+
+      pushValue--;
+      if (targetCase == null || targetCase.casePathfinding == PathfindingCase.NonWalkable && 
+        (targetCase.ballon && targetCase.ballon.gameObject != objPushed || targetCase.personnageData && targetCase.personnageData.gameObject != objPushed))
+      {
+        pushValue = 0;
+        Debug.Log("collision !");
+      }
+      else if (targetCase.summonData != null && targetCase.summonData.name.Contains("Water") && pushValue >= 1 && !destroyedSummon.Contains(targetCase.summonData))
+      {
+        pushValue = 0;
+        Debug.Log("arret !");
+        caseFinalShow = targetCase;
+      }
+      else if (targetCase.summonData != null && targetCase.summonData.name.Contains("Air") && !destroyedSummon.Contains(targetCase.summonData))
+      {
+        pushValue += 1;
+        pushDirection = targetCase.summonData.pushDirection;
+        destroyedSummon.Add(targetCase.summonData);
+      }
+      else
+        caseFinalShow = targetCase;
+    }
+
+    return;
+    /*
     CaseData nextCase = caseAfflicted;
     int y = pushValue;
     caseFinalShow = null;
@@ -396,5 +449,3 @@ public class PushBehaviour : NetworkBehaviour
       //GetCaseAtRight(objAfflicted.GetComponent<PersoData>().persoDirection);
     }
 
-  }
-}

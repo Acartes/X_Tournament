@@ -13,6 +13,7 @@ public class PushData : MonoBehaviour
   public Vector3 targetPos;
   public bool isPushing;
   public Vector3 startPos;
+  float fracJourney = 0;
 
   // Use this for initialization
   IEnumerator Start()
@@ -39,6 +40,7 @@ public class PushData : MonoBehaviour
     enabled = true;
   }
 
+
   // Update is called once per frame
   void Update()
   {
@@ -54,14 +56,24 @@ public class PushData : MonoBehaviour
     }
     if (isPushing)
     {
-      if (PersoData != null && Vector3.Distance(PersoData.originPoint.transform.position, targetCase.transform.position) > 0.1f
-        || BallonData != null && Vector3.Distance(transform.position, targetCase.transform.position) > 0.1f)
+      Mathf.Clamp(fracJourney, 0, 1);
+      if (PersoData != null)
       {
-        transform.position += (targetPos - startPos) * Time.deltaTime * 2;
+        transform.position = Vector3.Lerp(startPos - PersoData.originPoint.transform.localPosition, targetPos - PersoData.originPoint.transform.localPosition, fracJourney);
+        fracJourney += 0.2f;
+        //        transform.position += (targetPos - startPos) * Time.deltaTime * 2;
       }
-      else
+      else if (BallonData != null)
+      {
+        transform.position = Vector3.Lerp(startPos, targetPos, fracJourney);
+        fracJourney += 0.2f;
+        //        transform.position += (targetPos - startPos) * Time.deltaTime * 2;
+      }
+
+      if(fracJourney > 1)
       {
         isPushing = false;
+        fracJourney = 0;
         if (pushValue == 0)
         {
           GameManager.Instance.actualAction = PersoAction.isSelected;
@@ -74,7 +86,7 @@ public class PushData : MonoBehaviour
     }
   }
 
-  void setTarget()
+  public void setTarget()
   {
     targetCase = null;
     if (PersoData)

@@ -120,7 +120,7 @@ public class SummonData : NetworkBehaviour
 	/// <summary>Applique les effets selon les paramètres de l'invocation.</summary>
 	public void ApplyEffect(GameObject objAfflicted)
 	{
-		PersoData persoAfflicted = objAfflicted.GetComponent<PersoData>();
+    PersoData persoAfflicted = objAfflicted.GetComponent<PersoData>();
 		CaseData caseAfflicted = null;
 		BallonData ballonAfflicted = objAfflicted.GetComponent<BallonData>();
 

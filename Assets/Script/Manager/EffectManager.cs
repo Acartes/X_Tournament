@@ -40,6 +40,10 @@ public class EffectManager : NetworkBehaviour
 	/// <summary>Un push multiple. Ne marche pas avec la tornade.</summary>
 	public void MultiplePush(GameObject objAfflicted, CaseData caseAfflicted, int pushValue, PushType pushType, Direction pushDirection = Direction.Front)
 	{
+    PushBehaviour.Instance.PushCheck(objAfflicted, pushValue, caseAfflicted, pushType, pushDirection);
+    PushBehaviour.Instance.MultiplePushStart();
+
+    return;
 		StartCoroutine(MultiplePushDelayed(objAfflicted, caseAfflicted, pushValue, pushType, pushDirection));
 	}
 

@@ -242,11 +242,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27486787477deca4185c5b046a857af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CaseData: {fileID: 0}
+  PersoData: {fileID: 0}
+  BallonData: {fileID: 0}
   pushValue: 0
   pushDirection: 0
-  target: {fileID: 0}
+  selfCase: {fileID: 0}
+  targetCase: {fileID: 0}
   targetPos: {x: 0, y: 0, z: 0}
+  isPushing: 0
+  startPos: {x: 0, y: 0, z: 0}
 --- !u!114 &114766648747353004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -258,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9751e3a46f6322479f7d633cc2dabfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weightType: 1
+  weightType: 0
   owner: 1
   actualPointMovement: 3
   maxPointMovement: 3

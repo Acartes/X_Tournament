@@ -100,7 +100,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &61822696837114426
 BoxCollider2D:
@@ -196,7 +196,8 @@ MonoBehaviour:
   BallonData: {fileID: 0}
   pushValue: 0
   pushDirection: 0
-  target: {fileID: 0}
+  selfCase: {fileID: 0}
+  targetCase: {fileID: 0}
   targetPos: {x: 0, y: 0, z: 0}
   isPushing: 0
   startPos: {x: 0, y: 0, z: 0}
