@@ -36,20 +36,31 @@ public class ReplacerBalleBehaviour : NetworkBehaviour
   private void Init()
   {
     EventManager.newClickEvent += OnNewClick;
+    EventManager.newHoverEvent += OnNewHover;
   }
 
   void OnDisable()
   {
     EventManager.newClickEvent -= OnNewClick;
+    EventManager.newHoverEvent -= OnNewHover;
   }
 
   public void OnNewClick()
   { // Lors d'un click sur une case
     if (GameManager.Instance.actualAction == PersoAction.isReplacingBall && caseAction.Count != 0)
-      {
+    {
+      TirReplacerBalle();
+    }
+    else
+      StartCoroutine(ReplacerBalleEnd());
 
-        TirReplacerBalle();
-      }
+  }
+  void OnNewHover(object sender, HoverArgs e)
+  { // Lors d'un click sur une case
+    if (GameManager.Instance.actualAction == PersoAction.isReplacingBall && caseAction.Count != 0 && (HoverManager.Instance.hoveredCase.CheckStatut(Statut.canReplace)))
+    {
+      BeforeFeedbackManager.Instance.PredictDeplacement(SelectionManager.Instance.selectedBallon.gameObject, HoverManager.Instance.hoveredCase);
+    }
 
   }
 
@@ -93,6 +104,7 @@ public class ReplacerBalleBehaviour : NetworkBehaviour
     yield return new WaitForEndOfFrame();
     GameManager.Instance.actualAction = PersoAction.isSelected;
 
+    BeforeFeedbackManager.Instance.HidePrediction();
     foreach (CaseData obj in caseAction)
       {
         //     obj.GetComponent<CaseData>().colorLock = false;
@@ -114,5 +126,8 @@ public class ReplacerBalleBehaviour : NetworkBehaviour
         newCase.GetComponent<CaseData>().ChangeStatut(Statut.canReplace);
       }
   }
-
+  public void replaceEnd()
+  {
+    StartCoroutine(ReplacerBalleEnd());
+  }
 }
