@@ -90,50 +90,61 @@ public class MenuContextuelButton : MonoBehaviour
 		ChangeColor(colorDisable);
 	}
 
-	private void Update()
-	{
-		if (Collision())
-		{
-			if (!collision)
-			{
-				collision = true;
-				MouseOver();
-			}
-		} else
-		{
-			if (collision)
-			{
-				collision = false;
-				MouseExit();
-			}
-		}
-		if (MenuContextuel.Instance.activated)
-		{
-			if (name == "MenuContextuelReplacer" && SelectionManager.Instance.selectedPersonnage.actualPointMovement == 0)
-			{
-				Disable();
-			}
-		}
+  private void Update()
+  {
+    if (Collision())
+    {
+      if (!collision)
+      {
+        collision = true;
+        MouseOver();
+      }
+    }
+    else
+    {
+      if (collision)
+      {
+        collision = false;
+        MouseExit();
+      }
+    }
+    if (MenuContextuel.Instance.activated)
+    {
+      if (name == "MenuContextuelReplacer" && SelectionManager.Instance.selectedPersonnage.actualPointMovement == 0)
+      {
+        Disable();
+      }
+    }
 
-		if (MenuContextuel.Instance.activated)
-		{
-			if (name == "MenuContextuelTirer" && ManaManager.Instance.manaActuelRed < 2 && SelectionManager.Instance.selectedPersonnage.owner == Player.Red)
-			{
-				Disable();
-			}
-		}
+    if (MenuContextuel.Instance.activated)
+    {
+      if (name == "MenuContextuelTirer" && ManaManager.Instance.manaActuelRed < 2 && SelectionManager.Instance.selectedPersonnage.owner == Player.Red)
+      {
+        Disable();
+      }
+    }
 
-		if (MenuContextuel.Instance.activated)
-		{
-			if (name == "MenuContextuelTirer" && ManaManager.Instance.manaActuelBlue < 2 && SelectionManager.Instance.selectedPersonnage.owner == Player.Blue)
-			{
-				Disable();
-			}
-		}
-	}
+    if (MenuContextuel.Instance.activated)
+    {
+      if (name == "MenuContextuelTirer" && ManaManager.Instance.manaActuelBlue < 2 && SelectionManager.Instance.selectedPersonnage.owner == Player.Blue)
+      {
+        Disable();
+      }
+    }
 
+    if (MenuContextuel.Instance.activated)
+    {
+      CaseData firstMoveTile = HoverManager.Instance.hoveredCase.GetCaseInFront(SelectionManager.Instance.selectedCase.GetDirectionBetween(HoverManager.Instance.hoveredCase));
+      if (name == "MenuContextuelTirer" && firstMoveTile == null | firstMoveTile.casePathfinding == PathfindingCase.NonWalkable)
+      {
+        Disable();
+      }
 
-	public void Enable()
+      return;
+    }
+  }
+
+    public void Enable()
 	{
 		ChangeColor(colorExit);
 		StartCoroutine(DebugCollider());

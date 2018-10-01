@@ -368,12 +368,16 @@ public class BallonData : NetworkBehaviour
   public void ShotPrevisualisation()
   {
     if (ballonCase.GetCaseInFront(SelectionManager.Instance.selectedCase.GetDirectionBetween(ballonCase)) == null)
+    {
       return;
+    }
     CaseData newCase = ballonCase.GetCaseInFront(SelectionManager.Instance.selectedCase.GetDirectionBetween(ballonCase));
+    Debug.Log(newCase.name);
     newCase.ChangeStatut(Statut.shotPrevisu, Statut.None);
     for (int i = 0; i < SelectionManager.Instance.selectedPersonnage.shotStrenght - 1; i++)
     {
-      if (newCase.GetCaseInFront(SelectionManager.Instance.selectedCase.GetDirectionBetween(newCase)) == null)
+      if (newCase.GetCaseInFront(SelectionManager.Instance.selectedCase.GetDirectionBetween(newCase)) == null |
+        newCase.GetCaseInFront(SelectionManager.Instance.selectedCase.GetDirectionBetween(newCase)).casePathfinding == PathfindingCase.NonWalkable)
         break;
       newCase = newCase.GetCaseInFront(SelectionManager.Instance.selectedCase.GetDirectionBetween(newCase));
       newCase.ChangeStatut(Statut.shotPrevisu, Statut.None);
