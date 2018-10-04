@@ -72,9 +72,9 @@ public class SpellManager : NetworkBehaviour
 		{
 			spellUse[i] = 0;
 		}
-	}
+  }
 
-	void OnNewHover(object sender, HoverArgs e)
+  void OnNewHover(object sender, HoverArgs e)
 	{
 		if (GameManager.Instance.actualAction != PersoAction.isCasting
 		    || HoverManager.Instance.hoveredCase == null)
@@ -169,9 +169,15 @@ public class SpellManager : NetworkBehaviour
 	}
 
 	/// <summary>Le sort est lancé à un endroit</summary>
-	void SpellCaseClick()
+	public void SpellCaseClick()
 	{
-		spellSuccess = false;
+    if (selectedSpell.rotateSummon && !MenuRotateContexuel.Instance.gameObject.activeSelf) // rotate summon se lance après avoir utilisé le MenuRotateContextuel
+    {
+      selectedSpell.ApplyEffect(SummonManager.Instance.lastSummonInstancied.gameObject);
+      return;
+    }
+
+    spellSuccess = false;
 
 		CaseData hoveredCase = HoverManager.Instance.hoveredCase;
 
@@ -212,15 +218,9 @@ public class SpellManager : NetworkBehaviour
 		if (ManaManager.Instance == null)
 			return;
 
-		ManaManager.Instance.ChangeActualMana(SelectionManager.Instance.selectedPersonnage.owner, selectedSpell.costPA);
+    ManaManager.Instance.ChangeActualMana(SelectionManager.Instance.selectedPersonnage.owner, selectedSpell.costPA);
 
-		if (selectedSpell.rotateSummon) // rotate summon
-		{
-			selectedSpell.ApplyEffect(SummonManager.Instance.lastSummonInstancied.gameObject);
-			return;
-		}
-
-		if (SummonManager.Instance.lastSummonInstancied != null && !selectedSpell.summonOnCross) // normal summon
+    if (SummonManager.Instance.lastSummonInstancied != null && !selectedSpell.summonOnCross) // normal summon
 		{
 			SummonInvoc();
 		}

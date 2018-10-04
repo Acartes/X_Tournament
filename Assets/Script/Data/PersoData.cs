@@ -147,6 +147,7 @@ public class PersoData : NetworkBehaviour
 			if (SelectionManager.Instance.selectedPersonnage == this)
 			{
 				SelectionManager.Instance.Deselect();
+        HoverManager.Instance.UnHover();
 			}
 		}
 	}

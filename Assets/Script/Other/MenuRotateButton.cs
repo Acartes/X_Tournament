@@ -39,6 +39,34 @@ public class MenuRotateButton : MonoBehaviour
   public void MouseOver()
   {
     ChangeColor(colorEnter);
+    GameObject Obj = null;
+    if (HoverManager.Instance.hoveredBallon)
+      Obj = HoverManager.Instance.hoveredBallon.gameObject; // check si l'objet poussé est un ballon ou un personage
+    else if (HoverManager.Instance.hoveredPersonnage)
+      Obj = HoverManager.Instance.hoveredPersonnage.gameObject; // check si l'objet poussé est un ballon ou un personage
+    else
+      return; // pas d'objet poussé donc pas de check
+
+    Debug.Log(Obj);
+    CaseData caseAfflicted = HoverManager.Instance.hoveredCase;
+
+    if (name.Contains("NordEst"))
+    {
+      PushBehaviour.Instance.PushCheck(Obj, 1, caseAfflicted, PushType.FromTerrain, Direction.NordEst);
+    }
+    if (name.Contains("NordOuest"))
+    {
+      PushBehaviour.Instance.PushCheck(Obj, 1, caseAfflicted, PushType.FromTerrain, Direction.NordOuest);
+    }
+    if (name.Contains("SudEst"))
+    {
+      PushBehaviour.Instance.PushCheck(Obj, 1, caseAfflicted, PushType.FromTerrain, Direction.SudEst);
+    }
+    if (name.Contains("SudOuest"))
+    {
+      PushBehaviour.Instance.PushCheck(Obj, 1, caseAfflicted, PushType.FromTerrain, Direction.SudOuest);
+    }
+    BeforeFeedbackManager.Instance.PredictDeplacement(Obj, PushBehaviour.Instance.caseFinalShow);
   }
 
   public void Disable()

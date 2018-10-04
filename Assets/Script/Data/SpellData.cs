@@ -404,6 +404,7 @@ public class SpellData : NetworkBehaviour
     if (rotateSummon)
     {
       MenuRotateContexuel.Instance.transform.gameObject.SetActive(true);
+      return;
     }
 
     if (pushValue != 0)

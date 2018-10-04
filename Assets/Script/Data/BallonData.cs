@@ -372,7 +372,8 @@ public class BallonData : NetworkBehaviour
       return;
     }
     CaseData newCase = ballonCase.GetCaseInFront(SelectionManager.Instance.selectedCase.GetDirectionBetween(ballonCase));
-    Debug.Log(newCase.name);
+    if (newCase == null | newCase.casePathfinding == PathfindingCase.NonWalkable)
+      return;
     newCase.ChangeStatut(Statut.shotPrevisu, Statut.None);
     for (int i = 0; i < SelectionManager.Instance.selectedPersonnage.shotStrenght - 1; i++)
     {

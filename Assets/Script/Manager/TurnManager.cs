@@ -102,9 +102,12 @@ public class TurnManager : NetworkBehaviour
 		if (TurnNumber == 2)
 			ChangePhase(Phase.Deplacement);
 
-		HoverManager.Instance.changeColorExit(currentPhase);
-		HoverManager.Instance.changeSpriteExit();
-		changeTurnEvent(this, new PlayerArgs(currentPlayer, currentPhase));
+    if (HoverManager.Instance.hoveredCase)
+    {
+      HoverManager.Instance.changeColorExit(currentPhase);
+      HoverManager.Instance.changeSpriteExit();
+    }
+    changeTurnEvent(this, new PlayerArgs(currentPlayer, currentPhase));
 	}
 
 	/// <summary>Passe à la phase indiquée.</summary>

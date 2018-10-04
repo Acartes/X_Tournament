@@ -82,13 +82,13 @@ public class AfterFeedbackManager : NetworkBehaviour
 		listTextFeedback.Remove(takenText);
 		if (positiveValue)
 		{
-			takenText.GetComponentInChildren<TextMesh>().color = new Color(1, 0, 0, 1f);
+			takenText.GetComponentInChildren<TextMesh>().color = new Color(1, 1, 1, 1f);
 			takenText.GetComponentInChildren<TextMesh>().text = "+" + Mathf.Abs(PRchanged).ToString();
 			takenText.GetComponentInChildren<SpriteRenderer>().gameObject.SetActive(true);
 			takenText.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
 		} else
 		{
-			takenText.GetComponentInChildren<TextMesh>().color = new Color(1, 0, 0, 1f);
+			takenText.GetComponentInChildren<TextMesh>().color = new Color(1, 1, 1, 1f);
 			takenText.GetComponentInChildren<TextMesh>().text = "-" + PRchanged.ToString();
 			takenText.GetComponentInChildren<SpriteRenderer>().gameObject.SetActive(true);
 			takenText.GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 1f);

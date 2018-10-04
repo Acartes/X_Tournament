@@ -295,15 +295,16 @@ public class PushBehaviour : NetworkBehaviour
     if(pushValue < 0)
     {
       pushValue = -pushValue;
+      Debug.Log(pushDirection);
       if (pushDirection == Direction.NordEst)
         pushDirection = Direction.SudOuest;
-      if (pushDirection == Direction.NordOuest)
+      else if (pushDirection == Direction.NordOuest)
         pushDirection = Direction.SudEst;
-      if (pushDirection == Direction.SudEst)
+      else if (pushDirection == Direction.SudEst)
         pushDirection = Direction.NordOuest;
-      if (pushDirection == Direction.SudOuest)
+      else if (pushDirection == Direction.SudOuest)
         pushDirection = Direction.NordEst;
-
+      Debug.Log(pushDirection);
     }
 
     CaseData targetCase = startCase;
@@ -319,6 +320,8 @@ public class PushBehaviour : NetworkBehaviour
         targetCase = targetCase.GetBottomRightCase();
       if (pushDirection == Direction.SudOuest)
         targetCase = targetCase.GetBottomLeftCase();
+
+      Debug.Log(targetCase.name);
 
       pushValue--;
       if (targetCase == null || targetCase.casePathfinding == PathfindingCase.NonWalkable && 

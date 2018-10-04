@@ -181,4 +181,13 @@ public class HoverManager : NetworkBehaviour
 		spriteHover.GetComponent<SpriteRenderer>().sprite = null;
 		spriteHover.transform.position = transform.position = new Vector3(999, 999, 999);
 	}
+
+  public void UnHover()
+  {
+    changeColorExit(GameManager.Instance.currentPhase);
+    changeSpriteExit();
+
+    HoverArgs hoverArgs = null;
+    OnNewHover(gameObject, hoverArgs);
+  }
 }

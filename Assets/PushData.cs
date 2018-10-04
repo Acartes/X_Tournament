@@ -23,7 +23,7 @@ public class PushData : MonoBehaviour
     {
       PersoData = GetComponent<PersoData>();
     }
-    if (GetComponent<BallonData>() )
+    if (GetComponent<BallonData>())
     {
       BallonData = GetComponent<BallonData>();
     }
@@ -70,7 +70,7 @@ public class PushData : MonoBehaviour
         //        transform.position += (targetPos - startPos) * Time.deltaTime * 2;
       }
 
-      if(fracJourney > 1)
+      if (fracJourney > 1)
       {
         isPushing = false;
         fracJourney = 0;
@@ -103,7 +103,7 @@ public class PushData : MonoBehaviour
     if (pushValue > 0)
     {
       if (pushDirection == Direction.NordEst)
-        targetCase = selfCase.GetTopRightCase();  
+        targetCase = selfCase.GetTopRightCase();
       if (pushDirection == Direction.NordOuest)
         targetCase = selfCase.GetTopLeftCase();
       if (pushDirection == Direction.SudEst)
@@ -124,12 +124,13 @@ public class PushData : MonoBehaviour
         targetCase = selfCase.GetTopRightCase();
       pushValue++;
     }
-    targetPos = targetCase.transform.position;
+    if (targetCase)
+      targetPos = targetCase.transform.position;
   }
 
   bool verifyNextTarget()
   {
-    if (targetCase.casePathfinding == PathfindingCase.NonWalkable)
+    if (targetCase == null || targetCase.casePathfinding == PathfindingCase.NonWalkable)
     {
       // self
       if (PersoData != null)
@@ -140,7 +141,8 @@ public class PushData : MonoBehaviour
           PersoData.actualPointResistance--;
         }
       }
-
+      if (targetCase == null)
+        return false;
       // target
       if (targetCase.summonData != null)
       {

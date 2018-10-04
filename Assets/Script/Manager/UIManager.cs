@@ -32,9 +32,10 @@ public class UIManager : NetworkBehaviour
 	public GameObject menuContextuel;
 	public GameObject tooltip;
 	public bool isScoreChanging = false;
-	public Image spell1;
-	public Image spell2;
-	public Text spellButtonText1;
+  public Image spell1;
+  public Image spell2;
+  public Sprite noSpell;
+  public Text spellButtonText1;
 	public Text spellButtonText2;
 	public float statsOffset;
 	public float manaOffset;
@@ -232,7 +233,7 @@ public class UIManager : NetworkBehaviour
 
 		if (selectedPerso.Spell1 != null)
 		{
-			spell1.sprite = selectedPerso.Spell1.buttonSprite;
+			spell1.sprite = selectedPerso.Spell1.buttonSprite; // changement de sprite
 			ChangeSpellTextCost(GameObject.Find("DirectSpellCost").GetComponent<Text>(), selectedPerso.Spell1.costPA);
 			for (int i = 0; i < SpellManager.Instance.spellName.Count; i++)
 			{
@@ -245,8 +246,8 @@ public class UIManager : NetworkBehaviour
 
 		if (selectedPerso.Spell2 != null)
 		{
-			spell2.sprite = selectedPerso.Spell2.buttonSprite;
-			ChangeSpellTextCost(GameObject.Find("IndirectSpellCost").GetComponent<Text>(), selectedPerso.Spell2.costPA);
+			spell2.sprite = selectedPerso.Spell2.buttonSprite; // changement de sprite
+      ChangeSpellTextCost(GameObject.Find("IndirectSpellCost").GetComponent<Text>(), selectedPerso.Spell2.costPA);
 			for (int i = 0; i < SpellManager.Instance.spellName.Count; i++)
 			{
 				if (SpellManager.Instance.spellName[i] == selectedPerso.Spell2.name)
@@ -320,4 +321,10 @@ public class UIManager : NetworkBehaviour
 			indirectSpell.color = new Color(1, 1, 1, 1);
 		}
 	}
+
+  public void ResetSpells()
+  {
+    spell1.sprite = noSpell;
+    spell2.sprite = noSpell;
+  }
 }

@@ -58,6 +58,7 @@ public class SummonManager : NetworkBehaviour
 
   void Update()
   {
+    return; // pas utilisé
     CheckSummonLimitReached();
   }
 

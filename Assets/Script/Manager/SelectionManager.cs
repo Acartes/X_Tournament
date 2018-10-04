@@ -57,9 +57,12 @@ public class SelectionManager : NetworkBehaviour
 	private void Update()
 	{
 		if (selectedPersonnage == null)
-			return;
+    {
+        UIManager.Instance.ResetSpells();
+      return;
+    }
 
-		if (selectedPersonnage.Spell1 != null)
+    if (selectedPersonnage.Spell1 != null)
 		{
 			if ((selectedPersonnage.owner == Player.Red && ManaManager.Instance.manaActuelRed < selectedPersonnage.Spell1.costPA)
 			    || (selectedPersonnage.owner == Player.Blue && ManaManager.Instance.manaActuelBlue < selectedPersonnage.Spell1.costPA))
@@ -94,8 +97,7 @@ public class SelectionManager : NetworkBehaviour
 		if (isDisablePersoSelection || GameManager.Instance.actualAction == PersoAction.isCasting)
 			return;
 
- 
-		PersoData hoveredPersonnage = HoverManager.Instance.hoveredPersonnage;
+    PersoData hoveredPersonnage = HoverManager.Instance.hoveredPersonnage;
 		Phase currentPhase = TurnManager.Instance.currentPhase;
 		Player currentPlayer = TurnManager.Instance.currentPlayer;
 		PersoAction actualAction = GameManager.Instance.actualAction;
@@ -105,7 +107,7 @@ public class SelectionManager : NetworkBehaviour
 		Color moveColor = ColorManager.Instance.moveColor;
 		Color caseColor = ColorManager.Instance.caseColor;
 
-		selectedLastCase = selectedCase;
+    selectedLastCase = selectedCase;
 		switch (currentPhase)
 		{
 			case (Phase.Placement):
@@ -113,7 +115,11 @@ public class SelectionManager : NetworkBehaviour
 			case (Phase.Deplacement):
 				if (hoveredPersonnage != null && hoveredPersonnage.owner == currentPlayer)
 				{ // changement de personnage selectionné
-					SelectPerso(hoveredCase, hoveredPersonnage, selectedColor, currentPhase, currentPlayer, actualAction);
+        if (hoveredPersonnage.actualPointResistance <= 0)
+        {
+          return;
+        }
+        SelectPerso(hoveredCase, hoveredPersonnage, selectedColor, currentPhase, currentPlayer, actualAction);
 				}
 				break;
 		}
@@ -173,6 +179,7 @@ public class SelectionManager : NetworkBehaviour
 		if (selectedLastCase != null)
 			selectedLastCase.ChangeStatut(Statut.None, Statut.isSelected);
 
+    UIManager.Instance.ResetSpells();
 		selectedPersonnage = null;
 		selectedCase = null;
 	}

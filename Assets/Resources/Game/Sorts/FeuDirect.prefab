@@ -65,6 +65,7 @@ MonoBehaviour:
   pushDirection: 8
   pushType: 1
   hurtWhenStopped: 0
+  absorbInvoc: 0
   explosion: 1
   summonedObj: {fileID: 0}
   rotateSummon: 0

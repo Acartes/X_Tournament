@@ -131,17 +131,6 @@ public class MenuContextuelButton : MonoBehaviour
         Disable();
       }
     }
-
-    if (MenuContextuel.Instance.activated)
-    {
-      CaseData firstMoveTile = HoverManager.Instance.hoveredCase.GetCaseInFront(SelectionManager.Instance.selectedCase.GetDirectionBetween(HoverManager.Instance.hoveredCase));
-      if (name == "MenuContextuelTirer" && firstMoveTile == null | firstMoveTile.casePathfinding == PathfindingCase.NonWalkable)
-      {
-        Disable();
-      }
-
-      return;
-    }
   }
 
     public void Enable()
