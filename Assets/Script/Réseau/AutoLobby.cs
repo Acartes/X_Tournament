@@ -6,7 +6,8 @@ using Prototype.NetworkLobby;
 using System;
 
 public class AutoLobby : MonoBehaviour
-{
+{       
+    public string sceneName;
 
 	void Start()
 	{
@@ -34,7 +35,8 @@ public class AutoLobby : MonoBehaviour
 
 	void LaunchGame()
 	{
-		GameObject.Find("MainPanel").GetComponent<LobbyMainMenu>().OnClickHost();
+        GameObject.Find("LobbyManager").GetComponent<LobbyManager>().playScene = sceneName;
+        GameObject.Find("MainPanel").GetComponent<LobbyMainMenu>().OnClickHost();
 		Destroy(this.gameObject);
 	}
 }
