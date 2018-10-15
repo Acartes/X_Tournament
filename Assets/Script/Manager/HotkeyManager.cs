@@ -39,6 +39,7 @@ public class HotkeyManager : NetworkBehaviour
       StartCoroutine(SpellManager.Instance.SpellEnd());
       ReplacerBalleBehaviour.Instance.replaceEnd();
       MenuRotateContexuel.Instance.gameObject.SetActive(false);
+      MenuContextuel.Instance.HideMenu();
     }
   }
 }

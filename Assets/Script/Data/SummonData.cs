@@ -141,15 +141,12 @@ public class SummonData : NetworkBehaviour
 					damagePR = -damagePR;
 					damagePM = -damagePM;
 					AfterFeedbackManager.Instance.PRText(damagePR, objAfflicted, true);
-				} else
+				} else if(persoAfflicted.actualPointResistance > 0)
 				{
 					AfterFeedbackManager.Instance.PRText(damagePR, objAfflicted);
-				}
-				EffectManager.Instance.ChangePA(-damagePA);
-        if(persoAfflicted.maxPointResistance <= persoAfflicted.actualPointResistance + damagePR)
-        {
           EffectManager.Instance.ChangePr(persoAfflicted, -damagePR);
         }
+        EffectManager.Instance.ChangePA(-damagePA);
         EffectManager.Instance.ChangePm(persoAfflicted, -damagePM);
 
 			}
