@@ -42,7 +42,7 @@ public class PushData : MonoBehaviour
 
 
   // Update is called once per frame
-  void Update()
+  void FixedUpdate()
   {
     if (!isPushing && pushValue != 0)
     {

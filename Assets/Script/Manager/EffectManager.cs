@@ -91,7 +91,8 @@ public class EffectManager : NetworkBehaviour
 		persoAfflicted.actualPointResistance += number;
     if (persoAfflicted.actualPointResistance > persoAfflicted.maxPointResistance)
       persoAfflicted.actualPointResistance = persoAfflicted.maxPointResistance;
-		InfoPerso.Instance.stats.updatePr(persoAfflicted.actualPointResistance);
+    Debug.Log(number);
+    InfoPerso.Instance.stats.updatePr(persoAfflicted.actualPointResistance);
 	}
 
   public void ChangePm(PersoData persoAfflicted, int number)
