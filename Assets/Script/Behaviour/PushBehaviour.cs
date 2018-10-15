@@ -321,8 +321,6 @@ public class PushBehaviour : NetworkBehaviour
       if (pushDirection == Direction.SudOuest)
         targetCase = targetCase.GetBottomLeftCase();
 
-      Debug.Log(targetCase.name);
-
       pushValue--;
       if (targetCase == null || targetCase.casePathfinding == PathfindingCase.NonWalkable && 
         (targetCase.ballon && targetCase.ballon.gameObject != objPushed || targetCase.personnageData && targetCase.personnageData.gameObject != objPushed))

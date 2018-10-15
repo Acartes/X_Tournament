@@ -133,11 +133,6 @@ public class infoPersosPortrait : NetworkBehaviour
               }
           }
       }
-    // au premier tour de jeu on met les portraits en blanc
-    if (turnNumber == 3)
-      {
-        UnGrayAllPortraits();
-      }
   }
 
   public void UnGrayAllPortraits()

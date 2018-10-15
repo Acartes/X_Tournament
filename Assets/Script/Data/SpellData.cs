@@ -297,6 +297,8 @@ public class SpellData : NetworkBehaviour
 
     if (pushDirection == Direction.None)
       return;
+    if (transform.name.Contains("AirIndirect"))
+      return;
 
     if (HoverManager.Instance.hoveredPersonnage)
     {

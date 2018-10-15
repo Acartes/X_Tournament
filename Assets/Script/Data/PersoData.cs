@@ -143,6 +143,8 @@ public class PersoData : NetworkBehaviour
 	{
 		if (actualPointResistance <= 0 && timeStunned == 0)
 		{
+      spriteR.color = Color.grey;
+
 			timeStunned = 3;
 			if (SelectionManager.Instance.selectedPersonnage == this)
 			{

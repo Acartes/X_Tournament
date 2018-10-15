@@ -300,10 +300,12 @@ public class SpellManager : NetworkBehaviour
 
 	public IEnumerator SpellEnd()
 	{
-		if (SelectionManager.Instance.selectedPersonnage == null)
-			yield return null;
-      
-		SelectionManager.Instance.selectedPersonnage.animator.SetBool("Cast", false);
+    if (SelectionManager.Instance.selectedPersonnage == null)
+      yield return null;
+    if (SelectionManager.Instance.selectedPersonnage.animator == null)
+      yield return null;
+
+    SelectionManager.Instance.selectedPersonnage.animator.SetBool("Cast", false);
 		SelectionManager.Instance.selectedPersonnage.animator.SetBool("Idle", true);
 		ManaManager.Instance.Desactived();
 		ManaManager.Instance.SpellButtonFeedbackOFF();

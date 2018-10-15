@@ -8,48 +8,62 @@ public class PortraitInteractive : NetworkBehaviour
 {
 
   public PersoData newHoveredPersonnage;
-    Text po;
-    Text pm;
-    Text pr;
+  Text po;
+  Text pm;
+  Text pr;
+  Text stunTimeLeft;
 
-    public override void OnStartClient()
+  public override void OnStartClient()
+  {
+    StartCoroutine(waitForInit());
+  }
+
+  IEnumerator waitForInit()
+  {
+    while (!LoadingManager.Instance.isGameReady())
     {
-        StartCoroutine(waitForInit());
+      yield return new WaitForEndOfFrame();
     }
+    Init();
+  }
 
-    IEnumerator waitForInit()
+  private void Init()
+  {
+    foreach (Text obj in GetComponentsInChildren<Text>())
     {
-        while (!LoadingManager.Instance.isGameReady())
-        {
-            yield return new WaitForEndOfFrame();
-        }
-        Init();
+      if (obj.name == "Pr")
+        pr = obj;
+      if (obj.name == "Pm")
+        pm = obj;
+      if (obj.name == "Po")
+        po = obj;
+      if (obj.name == "StunTimeLeft")
+        stunTimeLeft = obj;
     }
+  }
 
-    private void Init()
+  private void Update()
+  {
+    if (newHoveredPersonnage != null)
     {
-        foreach(Text obj in GetComponentsInChildren<Text>())
-        {
-            if (obj.name == "Pr")
-                pr = obj;
-            if (obj.name == "Pm")
-                pm = obj;
-            if (obj.name == "Po")
-                po = obj;
-        }
+      pr.text = newHoveredPersonnage.actualPointResistance.ToString();
+      pm.text = newHoveredPersonnage.actualPointMovement.ToString();
+      po.text = newHoveredPersonnage.shotStrenght.ToString();
+      if (newHoveredPersonnage.actualPointResistance == 0 && TurnManager.Instance.currentPhase == Phase.Deplacement)
+      {
+        stunTimeLeft.text = newHoveredPersonnage.timeStunned.ToString();
+        stunTimeLeft.gameObject.SetActive(true);
+        GrayPortrait();
+      }
+      else
+      {
+        stunTimeLeft.gameObject.SetActive(false);
+        UnGrayPortrait();
+      }
     }
+  }
 
-    private void Update()
-    {
-        if (newHoveredPersonnage != null)
-        {
-            pr.text = newHoveredPersonnage.actualPointResistance.ToString();
-            pm.text = newHoveredPersonnage.actualPointMovement.ToString();
-            po.text = newHoveredPersonnage.shotStrenght.ToString();
-        }
-    }
-
-    public void setPortraitData(PortraitInteractive newPortrait)
+  public void setPortraitData(PortraitInteractive newPortrait)
   {
     GetComponent<Image>().sprite = newPortrait.GetComponent<Image>().sprite;
     GetComponent<Image>().color = newPortrait.GetComponent<Image>().color;
@@ -59,17 +73,17 @@ public class PortraitInteractive : NetworkBehaviour
   public void setPortraitData(Sprite newSprite, Color newColor, PersoData newPersoData)
   {
     GetComponent<Image>().sprite = newSprite;
-    GetComponent<Image>().color = newColor;
+    //GetComponent<Image>().color = newColor;
     newHoveredPersonnage = newPersoData;
   }
 
   public void HoverPerso() // hover comme chez HoverEvent
   {
     if (!SynchroManager.Instance.canPlayTurn())
-      {
-        return;
-      }
-          
+    {
+      return;
+    }
+
     if (!enabled || !LoadingManager.Instance.isGameReady())
       return;
 
@@ -93,10 +107,10 @@ public class PortraitInteractive : NetworkBehaviour
     UIManager.Instance.UIIsHovered = false;
 
     if (!enabled || !LoadingManager.Instance.isGameReady())
-      {
-        UIManager.Instance.UIIsHovered = false;
-        RpcFunctions.Instance.CmdSendHoverEvent("null", "null", "null");
-      }
+    {
+      UIManager.Instance.UIIsHovered = false;
+      RpcFunctions.Instance.CmdSendHoverEvent("null", "null", "null");
+    }
   }
 
   public void ClickPerso()
@@ -108,6 +122,7 @@ public class PortraitInteractive : NetworkBehaviour
   public void GrayPortrait()
   {
     GetComponent<Image>().color = Color.grey;
+
   }
 
   public void UnGrayPortrait()

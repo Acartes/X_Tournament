@@ -23,6 +23,7 @@ public class MenuRotateContexuel : NetworkBehaviour
     transform.position = HoverManager.Instance.hoveredCase.transform.position - new Vector3(-0.1422f, 0.15f) * 3.5f;
     CaseManager.Instance.DisableAllColliders();
     StartCoroutine(waitUntilUp());
+    BeforeFeedbackManager.Instance.HidePrediction();
   }
 
   void OnDisable()

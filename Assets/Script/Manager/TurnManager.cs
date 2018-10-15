@@ -127,8 +127,7 @@ public class TurnManager : NetworkBehaviour
 		
 		if (finishTurnButton.GetComponent<Button>().interactable != false)
 		{
-			finishTurnButton.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
-			finishTurnButton.GetComponent<Button>().interactable = false;
+ 			finishTurnButton.GetComponent<Button>().interactable = false;
 			canChangeTurn = false;
 		}
 	}
