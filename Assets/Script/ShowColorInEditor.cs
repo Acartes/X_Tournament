@@ -1,4 +1,5 @@
-﻿#if UNITY_EDITOR
+﻿/*
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,8 +18,7 @@ public class ShowColorInEditor : MonoBehaviour
         objC.GetComponent<SpriteRenderer>();
         objC.ChangeColorByStatut();
       }
-    
-    
   }
 }
 #endif
+*/
