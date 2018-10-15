@@ -126,8 +126,10 @@ public class PersoData : NetworkBehaviour
 			{
 				actualPointResistance = maxPointResistance;
 				timeStunned = 0;
-			}
-			if (timeStunned > 0)
+        spriteR.color = Color.white;
+        persoCase.ChangeStatut(Statut.None, persoCase.statut);
+      }
+      if (timeStunned > 0)
 			{
 				timeStunned--;
 			}
@@ -150,6 +152,7 @@ public class PersoData : NetworkBehaviour
 			{
 				SelectionManager.Instance.Deselect();
         HoverManager.Instance.UnHover();
+        persoCase.ChangeStatut(Statut.None, persoCase.statut);
 			}
 		}
 	}

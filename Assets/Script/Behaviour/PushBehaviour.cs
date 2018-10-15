@@ -292,6 +292,8 @@ public class PushBehaviour : NetworkBehaviour
 
   public void GetShownCase(GameObject objPushed, int pushValue, CaseData startCase, Direction pushDirection)
   {
+    caseFinalShow = null;
+
     if(pushValue < 0)
     {
       pushValue = -pushValue;

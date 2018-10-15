@@ -47,7 +47,6 @@ public class MenuRotateButton : MonoBehaviour
     else
       return; // pas d'objet poussé donc pas de check
 
-    Debug.Log(Obj);
     CaseData caseAfflicted = HoverManager.Instance.hoveredCase;
 
     if (name.Contains("NordEst"))
