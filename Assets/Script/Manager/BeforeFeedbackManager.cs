@@ -72,9 +72,11 @@ public class BeforeFeedbackManager : NetworkBehaviour
 
   public void PredictDeplacement(GameObject obj, CaseData newCaseObj)
   {
-    if (newCaseObj == null)
-      return;
     showObj.transform.gameObject.SetActive(false);
+    if (newCaseObj == null)
+    {
+      return;
+    }
     if (obj.GetComponent<PersoData>() != null)
       {
         PersoData persoData = obj.GetComponent<PersoData>();

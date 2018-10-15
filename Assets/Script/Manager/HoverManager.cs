@@ -82,6 +82,9 @@ public class HoverManager : NetworkBehaviour
 			changeSpriteExit();
 		}
 
+    if (e == null)
+      return;
+
 		hoveredPersonnage = e.hoveredPersonnage;
 		hoveredCase = e.hoveredCase;
 		hoveredBallon = e.hoveredBallon;
