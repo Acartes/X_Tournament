@@ -7,10 +7,11 @@ using System;
 
 public class AutoLobby : MonoBehaviour
 {       
-    public string sceneName;
+    string sceneName;
 
 	void Start()
 	{
+        sceneName = SceneManager.GetActiveScene().name;
 		if (GameObject.FindObjectOfType<LobbyManager>() != null)
 		{
 			Destroy(this.gameObject);
