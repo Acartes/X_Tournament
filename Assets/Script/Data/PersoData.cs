@@ -122,34 +122,33 @@ public class PersoData : NetworkBehaviour
       pmDebuff = 0;
       EffectManager.Instance.ChangePr(this, prDebuff);
       prDebuff = 0;
-      if (timeStunned == 1)
-			{
-				actualPointResistance = maxPointResistance;
-				timeStunned = 0;
+		}
+    else
+    if (timeStunned > 0)
+    {
+      timeStunned--;
+      if (timeStunned == 0)
+      {
+        actualPointResistance = maxPointResistance;
+        timeStunned = 0;
         spriteR.color = Color.white;
         persoCase.ChangeStatut(Statut.None, persoCase.statut);
       }
-      if (timeStunned > 0)
-			{
-				timeStunned--;
-			}
-		}
-	}
+    }
 
-	// *************** //
-	// ** Fonctions ** // Fonctions réutilisables ailleurs
-	// *************** //
+  }
 
-	/// <summary>Vérifie si l'invocation est censé être toujours vivant ou pas.</summary>
-	public void CheckDeath()
+  // *************** //
+  // ** Fonctions ** // Fonctions réutilisables ailleurs
+  // *************** //
+
+  /// <summary>Vérifie si l'invocation est censé être toujours vivant ou pas.</summary>
+  public void CheckDeath()
 	{
 		if (actualPointResistance <= 0 && timeStunned == 0)
 		{
       spriteR.color = Color.grey;
-      if (TurnManager.Instance.currentPlayer == owner)
         timeStunned = 3;
-      else
-        timeStunned = 4;
       if (SelectionManager.Instance.selectedPersonnage == this)
 			{
 				SelectionManager.Instance.Deselect();
