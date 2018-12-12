@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1e943ddd2f20214b8f4eafa5267c461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  costPA: 2
+  costPA: 3
   range: 5
   isLinear: 0
   areaOfEffect: 0
@@ -65,6 +65,8 @@ MonoBehaviour:
   pushDirection: 0
   pushType: 0
   hurtWhenStopped: 0
+  absorbInvoc: 0
+  explosion: 0
   summonedObj: {fileID: 114910890263424662, guid: 13d82c74e385f504cb8b9fbd71952d03,
     type: 2}
   rotateSummon: 1
@@ -73,17 +75,16 @@ MonoBehaviour:
   nextSpell: {fileID: 114539509967211268, guid: 031d6e7e44ae9914fb7904535945d61c,
     type: 2}
   buttonSprite: {fileID: 21300000, guid: d463a09644c6feb459e6cdf546e9e780, type: 3}
-  tooltipTitle: Sort Indirect <color=#00ff00ff>Air</color>
-  tooltipRange: "<color=#bbbbbbff>Port\xE9e : </color>4 cases"
-  tooltipCost: "<color=#bbbbbbff>Co\xFBt : </color>2 mana"
-  tooltipEffect: "Invoque un obstacle \xE0 l\u2019emplacement cibl\xE9, il ne bloque
-    pas la ligne de\r vue, la balle et les personnages peuvent le traverser. Lorsqu\u2019une
-    entit\xE9 entre \xE0\r l\u2019int\xE9rieur elle est d\xE9cal\xE9 d\u20191 case
-    sur sa gauche."
+  tooltipTitle: Invocation du vent d'Ouest
+  tooltipRange: "<color=#bbbbbbff>Port\xE9e : </color>5 cases"
+  tooltipCost: "<color=#bbbbbbff>Co\xFBt : </color>3 mana"
+  tooltipEffect: "<color=#bbbbbbff>Limite de lancer par cible: </color>1\n<color=#bbbbbbff>Cibles:
+    </color>alli\xE9, ennemi, balle, case vide\nInvoque une tornade \xE0 l'emplacement
+    cibl\xE9 qui d\xE9place l'entit\xE9 qui la traverse dans la direction choisie."
   maxUsePerTurn: 3
   animatorSpell: {fileID: 9100000, guid: bae8a29eb97ba61468b018622db02aa4, type: 2}
-  affectedTarget: 15
-  allowedTarget: 15
+  affectedTarget: 47
+  allowedTarget: 47
 --- !u!114 &114755600324448950
 MonoBehaviour:
   m_ObjectHideFlags: 1

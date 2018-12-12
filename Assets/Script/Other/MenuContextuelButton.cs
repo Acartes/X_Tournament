@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 
 public class MenuContextuelButton : MonoBehaviour
@@ -59,7 +59,7 @@ public class MenuContextuelButton : MonoBehaviour
 				break;
 			case "MenuContextuelTirer":
 				ManaManager.Instance.Desactived();
-				ManaManager.Instance.ChangeActualMana(GameManager.Instance.currentPlayer, 2);
+				ManaManager.Instance.SpellButtonFeedbackOFF();
 				if (GameObject.Find("Ballon") != null)
 					GameObject.Find("Ballon").GetComponent<BallonData>().ShotDeprevisualisation();
 				
@@ -68,7 +68,7 @@ public class MenuContextuelButton : MonoBehaviour
 		}
 	}
 
-	public void MouseOver()
+    public void MouseOver()
 	{
 		ChangeColor(colorEnter);
 		switch (name)

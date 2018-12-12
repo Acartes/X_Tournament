@@ -9,7 +9,7 @@ public class AutoLobby : MonoBehaviour
 {       
     string sceneName;
 
-	void Start()
+	void Awake()
 	{
         sceneName = SceneManager.GetActiveScene().name;
 		if (GameObject.FindObjectOfType<LobbyManager>() != null)

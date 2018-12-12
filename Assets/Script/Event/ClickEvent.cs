@@ -13,10 +13,11 @@ public class ClickEvent : NetworkBehaviour
 	void OnMouseDown()
 	{
 
+        if (!GameManager.Instance.canPlayTurn)
+            return;
+
 		if (!SynchroManager.Instance.canPlayTurn())
-		{
 			return;
-		}
 
 		if (UIManager.Instance.UIIsHovered)
 			return;

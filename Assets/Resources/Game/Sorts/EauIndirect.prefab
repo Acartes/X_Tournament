@@ -74,11 +74,13 @@ MonoBehaviour:
   isDirect: 0
   nextSpell: {fileID: 0}
   buttonSprite: {fileID: 21300000, guid: 60a0ed00cb02b454fa56640fc16a99a8, type: 3}
-  tooltipTitle: Direct <color=#cccc00ff>Eau</color>
+  tooltipTitle: Fracture du cenote
   tooltipRange: "<color=#bbbbbbff>Port\xE9e : </color>5 cases"
   tooltipCost: "<color=#bbbbbbff>Co\xFBt : </color>2 mana"
-  tooltipEffect: "Cr\xE9\xE9 une invocation \xAB Eau \xBB \xE0 l\u2019emplacement
-    cibl\xE9."
+  tooltipEffect: "<color=#bbbbbbff>Limite de lancer par cible: </color>1\n<color=#bbbbbbff>Cibles:
+    </color>alli\xE9, ennemi, balle, case vide\nInvoque un cenote \xE0 l'emplacement
+    cibl\xE9 qui soigne de 1 PV et arr\xEAte le d\xE9placement de l'entit\xE9 qui
+    la traverse."
   maxUsePerTurn: 3
   animatorSpell: {fileID: 9100000, guid: 9fe560b6a5895a74bb77cf012023b40d, type: 2}
   affectedTarget: 15

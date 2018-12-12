@@ -58,7 +58,12 @@ public class infoPersosPortrait : NetworkBehaviour
     SubPortrait2.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 100);
     SubPortrait1.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 100);
     MainPortrait.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 100);
-    PortraitInteractive portrait = null;
+
+        if (newPerso == null)
+            return;
+
+            PortraitInteractive portrait = null;
+
     if (newPerso == MainPortrait.newHoveredPersonnage)
       {
         portrait = MainPortrait;

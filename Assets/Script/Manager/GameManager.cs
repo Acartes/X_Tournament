@@ -26,6 +26,8 @@ public class GameManager : NetworkBehaviour
   public int manaGlobalActual = 20;
   [SyncVar] public bool isSoloGame;
 
+    public bool canPlayTurn = true;
+
   public static GameManager Instance;
 
   public int paDebuff;
@@ -181,4 +183,10 @@ public class GameManager : NetworkBehaviour
   {
     manaGlobalActual -= mana;
   }
+
+    /// <summary>Le mana actuel diminue de tant de mana</summary>
+    public void CanPlayTurn(bool etat)
+    {
+        canPlayTurn = etat;
+    }
 }

@@ -65,6 +65,7 @@ MonoBehaviour:
   pushDirection: 8
   pushType: 0
   hurtWhenStopped: 1
+  absorbInvoc: 0
   explosion: 0
   summonedObj: {fileID: 114910890263424662, guid: d6496e8c0af292840b671d7275d79827,
     type: 2}
@@ -73,15 +74,16 @@ MonoBehaviour:
   isDirect: 0
   nextSpell: {fileID: 0}
   buttonSprite: {fileID: 21300000, guid: 2cef2f5f51ab3be4fb6a7a1549755592, type: 3}
-  tooltipTitle: Sort Indirect <color=#ff0000ff>Feu</color>
+  tooltipTitle: Invocation du feu primordial
   tooltipRange: "<color=#bbbbbbff>Port\xE9e : </color>5 cases"
   tooltipCost: "<color=#bbbbbbff>Co\xFBt : </color>2 mana"
-  tooltipEffect: "Place 1 case feu \xE0 l'emplacement cibl\xE9.\nCible : -1 PR\nBalle
-    : -1 PR en croix autour d'elle\n"
+  tooltipEffect: "<color=#bbbbbbff>Limite de lancer par cible: </color>1\n<color=#bbbbbbff>Cibles:
+    </color>alli\xE9, ennemi, balle, case vide\nInvoque un feu primordial \xE0 l'emplacement
+    cibl\xE9 qui inflige 1 d\xE9g\xE2t \xE0 l'entit\xE9 qui le traverse."
   maxUsePerTurn: 2
   animatorSpell: {fileID: 9100000, guid: bae8a29eb97ba61468b018622db02aa4, type: 2}
-  affectedTarget: 15
-  allowedTarget: 15
+  affectedTarget: 47
+  allowedTarget: 47
 --- !u!114 &114755600324448950
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -101,6 +101,7 @@ public class MoveBehaviour : NetworkBehaviour
     if (this.movePathes.Count > SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData>().actualPointMovement)
     {
       this.movePathes.Clear();
+      BeforeFeedbackManager.Instance.HidePrediction();
     }
     else
     {
@@ -130,6 +131,7 @@ public class MoveBehaviour : NetworkBehaviour
         }
       }
     }
+    BeforeFeedbackManager.Instance.PredictDeplacement(SelectionManager.Instance.selectedPersonnage.gameObject, this.movePathes[this.movePathes.Count - 1].GetComponent<CaseData>());
   }
 
   // *************** //
@@ -151,8 +153,7 @@ public class MoveBehaviour : NetworkBehaviour
   public IEnumerator Deplacement(Vector3 originPoint, PersoData selectedPersonnage, List<Transform> pathes)
   { // On déplace le personnage de case en case jusqu'au click du joueur propriétaire, et entre temps on check s'il est taclé ou non
     TurnManager.Instance.DisableFinishTurn();
-
-    GameManager.Instance.actualAction = PersoAction.isMoving;
+        GameManager.Instance.CanPlayTurn(false);
 
     TackleBehaviour.Instance.CheckTackle(selectedPersonnage.gameObject);
 
@@ -222,9 +223,12 @@ public class MoveBehaviour : NetworkBehaviour
     {
       selectedPersonnage.isTackled = false;
       SelectionManager.Instance.selectedPersonnage.actualPointMovement = 0;
+            HoverManager.Instance.hoveredCase = null;
       tempPath.Clear();
     }
-    StartCoroutine(TurnManager.Instance.EnableFinishTurn());
-    yield return new WaitForEndOfFrame();
-  }
+        StartCoroutine(TurnManager.Instance.EnableFinishTurn());
+        yield return new WaitForEndOfFrame();
+        GameManager.Instance.CanPlayTurn(true);
+       
+    }
 }

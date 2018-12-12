@@ -13,7 +13,12 @@ public class ManaManager : NetworkBehaviour
 	public int manaMaxBlue;
 	public int manaActuelBlue;
 
-	Text remainingManaRed;
+    public int manaGainRed;
+    public int manaGainRedIncrement;
+    public int manaGainBlue;
+    public int manaGainBlueIncrement;
+
+    Text remainingManaRed;
 	Text remainingManaBlue;
 	GameObject manaBarRedTopBar;
 	GameObject manaBarRedBotBar;
@@ -95,11 +100,9 @@ public class ManaManager : NetworkBehaviour
 			manaBarBlueBarBilles.Add(manaBarBlueBotBarBilles[i]);
 		}
 
-		manaMaxRed = 20;
-		manaActuelRed = 20;
-		manaMaxBlue = 20;
-		manaActuelBlue = 20;
-	}
+        ChangeMaxMana(Player.Red, 0, true);
+        ChangeMaxMana(Player.Blue, 0, true);
+    }
 
 	// *************** //
 	// ** Fonctions ** // Fonctions réutilisables ailleurs
@@ -112,12 +115,22 @@ public class ManaManager : NetworkBehaviour
 		{
 			case Player.Red:
 				manaActuelRed -= value;
-				break;
+
+                if (manaActuelRed > manaMaxRed)
+                    manaActuelRed = manaMaxRed;
+
+                break;
 			case Player.Blue:
 				manaActuelBlue -= value;
-				break;
+
+                if (manaActuelBlue > manaMaxBlue)
+                    manaActuelBlue = manaMaxBlue;
+
+                break;
 		}
-		UpdateMana();
+
+
+        UpdateMana();
 	}
 
 	/// <summary>Change les points de mana max du joueur de tel montant.</summary>
@@ -127,14 +140,18 @@ public class ManaManager : NetworkBehaviour
 		{
 			case Player.Red:
 				manaMaxRed -= value;
-				if (updateActualManaToo)
-					manaActuelRed = manaMaxRed;
-				break;
+                manaGainRed += manaGainRedIncrement;
+                if (updateActualManaToo)
+                    ChangeActualMana(player, -manaGainRed);
+
+                break;
 			case Player.Blue:
 				manaMaxBlue -= value;
-				if (updateActualManaToo)
-					manaActuelBlue = manaMaxBlue;
-				break;
+                manaGainBlue += manaGainBlueIncrement;
+                if (updateActualManaToo)
+                    ChangeActualMana(player, -manaGainBlue);
+
+                break;
 		}
 		UpdateMana();
 	}

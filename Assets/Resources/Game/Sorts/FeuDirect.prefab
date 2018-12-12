@@ -73,11 +73,12 @@ MonoBehaviour:
   isDirect: 1
   nextSpell: {fileID: 0}
   buttonSprite: {fileID: 21300000, guid: 2aab7f3f735bbeb45aa92fcaea3a7cdf, type: 3}
-  tooltipTitle: Direct <color=#ff0000ff>Feu</color>
+  tooltipTitle: "D\xE9flagration de Xiuhtecuhtli"
   tooltipRange: "<color=#bbbbbbff>Port\xE9e : </color>4 cases"
   tooltipCost: "<color=#bbbbbbff>Co\xFBt : </color>4 mana"
-  tooltipEffect: "Repousse 1 case \xE0 1 PT de la cible.\nCr\xE9e 4 cases feu \xE0
-    1 PO de la cible."
+  tooltipEffect: "<color=#bbbbbbff>Limite de lancer par cible: </color>1\n<color=#bbbbbbff>Cibles:
+    </color>alli\xE9, ennemi, balle\nInflige 1 d\xE9g\xE2t \xE0 l'entit\xE9 cibl\xE9e
+    et repousse d'une case toutes celles autour de lui."
   maxUsePerTurn: 2
   animatorSpell: {fileID: 9100000, guid: c44c913fb1c45e647b2b3a42cf17c3f1, type: 2}
   affectedTarget: 59

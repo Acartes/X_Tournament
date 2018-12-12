@@ -82,7 +82,7 @@ public class BeforeFeedbackManager : NetworkBehaviour
         PersoData persoData = obj.GetComponent<PersoData>();
         showObj.sprite = persoData.transform.GetComponentInChildren<SpriteRenderer>().sprite;
         showObj.transform.position = newCaseObj.transform.position - persoData.originPoint.transform.localPosition + Vector3.up * 0.1f;
-        showObj.transform.localScale = new Vector3(1.5625f, 1.5625f, 1);
+            showObj.transform.localScale = persoData.GetComponentInChildren<SpriteRenderer>().transform.localScale;
       }
     if (obj.GetComponent<BallonData>() != null)
       {

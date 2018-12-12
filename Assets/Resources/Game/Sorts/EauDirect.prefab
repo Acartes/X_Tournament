@@ -74,11 +74,11 @@ MonoBehaviour:
   isDirect: 1
   nextSpell: {fileID: 0}
   buttonSprite: {fileID: 21300000, guid: c36a3cbf5a4fa3b4b86815f32859c317, type: 3}
-  tooltipTitle: <color=#00ff00ff>Air</color> Direct
-  tooltipRange: "<color=#bbbbbbff>Port\xE9e : </color>2 cases"
-  tooltipCost: "<color=#bbbbbbff>Co\xFBt : </color>4 mana"
-  tooltipEffect: "Repousse la cible de 3 cases. Si elle rencontre un obstacle elle
-    perd 1 PR\r (non applicable \xE0 la balle) et est stopp\xE9."
+  tooltipTitle: Purification de Tlaloc
+  tooltipRange: "<color=#bbbbbbff>Port\xE9e : </color>3 cases"
+  tooltipCost: "<color=#bbbbbbff>Co\xFBt : </color>7 mana"
+  tooltipEffect: "<color=#bbbbbbff>Limite de lancer par cible: </color>1\n<color=#bbbbbbff>Cibles:
+    </color>soi-m\xEAme\nD\xE9truit tous les objets invoqu\xE9s dans la zone d'effet."
   maxUsePerTurn: 1
   animatorSpell: {fileID: 9100000, guid: 47dda2be2c6462c45bdb2d7066614823, type: 2}
   affectedTarget: 19
@@ -124,6 +124,7 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -139,6 +140,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5

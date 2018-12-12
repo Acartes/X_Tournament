@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -17,8 +17,6 @@ public class PersoData : NetworkBehaviour
 	public Player owner;
 	public int actualPointMovement;
 	public int maxPointMovement;
-	public int actualPointAction;
-	public int maxPointAction;
 	public int actualPointResistance;
 	public int maxPointResistance;
 
@@ -89,7 +87,6 @@ public class PersoData : NetworkBehaviour
 
 		actualPointResistance = maxPointResistance;
 		actualPointMovement = maxPointMovement;
-		actualPointAction = maxPointAction;
 
 		if (owner == Player.Blue)
 			ChangeRotation(Direction.NordOuest);
@@ -103,8 +100,30 @@ public class PersoData : NetworkBehaviour
 
 	private void Update()
 	{
-		CheckDeath();
-	}
+if (CheckDeath())
+    {
+      return;
+    }
+    if (SelectionManager.Instance.selectedPersonnage != this && HoverManager.Instance.hoveredPersonnage == this)
+    {
+      if (spriteR == null)
+        return;
+      if (TurnManager.Instance.currentPlayer == owner)
+      {
+        spriteR.color = Color.yellow;
+      }
+      else if (TurnManager.Instance.currentPlayer != owner)
+      {
+        spriteR.color = Color.grey;
+      }
+    }
+    else
+    {
+      if (spriteR == null)
+        return;
+      spriteR.color = Color.white;
+    }
+  }
 
 	// *************** //
 	// ** Events **    // Appel de fonctions au sein de ce script grâce à des events
@@ -116,8 +135,7 @@ public class PersoData : NetworkBehaviour
 		if (e.currentPlayer == owner)
 		{
 			ResetPM();
-      ResetPA();
-      ResetPO();
+
       EffectManager.Instance.ChangePm(this, pmDebuff);
       pmDebuff = 0;
       EffectManager.Instance.ChangePr(this, prDebuff);
@@ -155,7 +173,13 @@ public class PersoData : NetworkBehaviour
         HoverManager.Instance.UnHover();
         persoCase.ChangeStatut(Statut.None, persoCase.statut);
 			}
+			return true;
 		}
+		if(actualPointResistance <= 0)
+		{
+			return true;
+		}
+		return false;
 	}
 
 	/// <summary>Fixe les PM actuel du personnage à ses PM max.</summary>
@@ -163,17 +187,6 @@ public class PersoData : NetworkBehaviour
 	{
 		actualPointMovement = maxPointMovement;
 	}
-
-  /// <summary>Fixe les PM actuel du personnage à ses PA max.</summary>
-  public void ResetPA()
-  {
-    actualPointAction = maxPointAction;
-  }
-  /// <summary>Fixe la PO actuel du personnage à ses PA max.</summary>
-  public void ResetPO()
-  {
-    shotStrenght = maxPointAction;
-  }
 
   /// <summary>Fixe les PM actuel du personnage à ses PR max.</summary>
   public void ResetPR()

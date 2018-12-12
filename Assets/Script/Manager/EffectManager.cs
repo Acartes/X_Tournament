@@ -91,7 +91,7 @@ public class EffectManager : NetworkBehaviour
 		persoAfflicted.actualPointResistance += number;
     if (persoAfflicted.actualPointResistance > persoAfflicted.maxPointResistance)
       persoAfflicted.actualPointResistance = persoAfflicted.maxPointResistance;
-    Debug.Log(number);
+
     InfoPerso.Instance.stats.updatePr(persoAfflicted.actualPointResistance);
 	}
 

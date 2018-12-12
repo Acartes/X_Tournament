@@ -7,9 +7,11 @@ using System;
 
 public class PlacementBehaviour : NetworkBehaviour
 {
-	// *************** //
-	// ** Variables ** //
-	// *************** //
+    // *************** //
+    // ** Variables ** //
+    // *************** //
+
+    public bool autoPlace;
 
 	[SerializeField]
 	Material redMat;
@@ -18,6 +20,8 @@ public class PlacementBehaviour : NetworkBehaviour
 
 	[Tooltip("Index du personnage à placer")]
 	int persoToPlaceNumber = -1;
+
+
 
 	public static PlacementBehaviour Instance;
 
@@ -64,8 +68,8 @@ public class PlacementBehaviour : NetworkBehaviour
 
 	void Update()
 	{
-        if (RosterManager.Instance != null && RosterManager.Instance.listHero.Count == 8 && RosterManager.Instance.listHeroPlaced.Count == 0)
-            PrePlace();
+        if (autoPlace && RosterManager.Instance != null && RosterManager.Instance.listHero.Count == 8 && RosterManager.Instance.listHeroPlaced.Count == 0)
+            AutoPlace();
 
         if (TurnManager.Instance == null)
 			return;
@@ -155,7 +159,7 @@ public class PlacementBehaviour : NetworkBehaviour
 		}
 	}
 
-    void PrePlace()
+    void AutoPlace()
     {
         CreatePersoPlacement(GameObject.Find("9 2").GetComponent<CaseData>(), RosterManager.Instance.listHero[0]);
         CreatePersoPlacement(GameObject.Find("7 4").GetComponent<CaseData>(), RosterManager.Instance.listHero[1]);
@@ -174,6 +178,9 @@ public class PlacementBehaviour : NetworkBehaviour
 
 	public void CreatePersoPlacement(CaseData hoveredCase, PersoData selectedPersonnage)
 	{ //
+        if (SelectionManager.Instance.selectedPersonnage == null)
+            return;
+
 		if (hoveredCase.casePathfinding == PathfindingCase.Walkable)
 		{
 			selectedPersonnage.transform.position = hoveredCase.transform.position - selectedPersonnage.originPoint.transform.localPosition;
