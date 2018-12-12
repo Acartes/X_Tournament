@@ -39,12 +39,14 @@ public class BallonData : NetworkBehaviour
   public int casesCrossed;
   public bool isPushed;
 
+  [Header("Feedback")]
   Animator animator;
   public SpriteRenderer spriteR;
   public Image img;
   public Material shaderNormal;
   public Material shaderExplosive;
   bool ShineColorIsRunning = false;
+  bool fadeRunning;
 
   /// <summary>
   /// Tous les sorts qui ont touché le ballon ce tour-ci
@@ -77,6 +79,36 @@ public class BallonData : NetworkBehaviour
   {
     animator = GetComponent<Animator>();
     TurnManager.Instance.changeTurnEvent += OnChangeTurn;
+  }
+
+  private void Update()
+  {
+    if (ballonCase.GetTopRightCase() != null && ballonCase.GetTopRightCase().personnageData != null)
+    {
+      if(!fadeRunning)
+      StartCoroutine(FadeIn());
+    }
+    else if (ballonCase.GetTopLeftCase() != null && ballonCase.GetTopLeftCase().personnageData != null)
+    {
+      if (!fadeRunning)
+        StartCoroutine(FadeIn());
+    }
+    else if (ballonCase.GetBottomRightCase() != null && ballonCase.GetBottomRightCase().personnageData != null)
+    {
+      if (!fadeRunning)
+        StartCoroutine(FadeIn());
+    }
+    else if (ballonCase.GetBottomLeftCase() != null && ballonCase.GetBottomLeftCase().personnageData != null)
+    {
+      if (!fadeRunning)
+        StartCoroutine(FadeIn());
+    }
+    else
+    {
+      img.material.SetFloat("_OutlineSize", 5);
+      StopCoroutine(FadeIn());
+      fadeRunning = false;
+    }
   }
 
   // *************** //
@@ -383,6 +415,7 @@ public class BallonData : NetworkBehaviour
       newCase = newCase.GetCaseInFront(SelectionManager.Instance.selectedCase.GetDirectionBetween(newCase));
       newCase.ChangeStatut(Statut.shotPrevisu, Statut.None);
     }
+    BeforeFeedbackManager.Instance.PredictDeplacement(gameObject, newCase);
   }
 
   public void ShotDeprevisualisation()
@@ -390,6 +423,42 @@ public class BallonData : NetworkBehaviour
     foreach (CaseData newCase in CaseManager.Instance.GetAllCase())
     {
       newCase.ChangeStatut(Statut.None, Statut.shotPrevisu);
+    }
+    BeforeFeedbackManager.Instance.HidePrediction();
+  }
+
+  IEnumerator FadeIn()
+  {
+    fadeRunning = true;
+    bool increment = true;
+    float min = 5f;//time you want it to run
+    float max = 15.0f;//time you want it to run
+    float value = 5f;
+    float interval = 0.1f;//interval time between iterations of while loop
+    img.material.SetFloat("_OutlineSize", 5);
+    while (true)
+    {
+      if (increment)
+      {
+        value += interval;
+        img.material.SetFloat("_OutlineSize", value);
+        if (value >= max)
+        {
+          value = max;
+          increment = false;
+        }
+      }
+      else
+      {
+        value -= interval;
+        img.material.SetFloat("_OutlineSize", value);
+        if (value <= min)
+        {
+          value = min;
+          increment = true;
+        }
+      }
+      yield return new WaitForEndOfFrame();
     }
   }
 }

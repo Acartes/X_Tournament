@@ -48,12 +48,13 @@ public class EventManager : NetworkBehaviour
             MenuContextuel.Instance.HideMenu();
             return;
           }
-        SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData>().actualPointMovement--;
+      SelectionManager.Instance.selectedPersonnage.GetComponent<PersoData>().actualPointMovement--;
         ReplacerBalleBehaviour.Instance.ReplacerBalle();
         MenuContextuel.Instance.HideMenu();
         break;
       case ("MenuContextuelTirer"):
-        SelectionManager.Instance.selectedBallon.GetComponent<BallonData>().StartCoroutine("Move");
+      ManaManager.Instance.ChangeActualMana(GameManager.Instance.currentPlayer, 2);
+      SelectionManager.Instance.selectedBallon.GetComponent<BallonData>().StartCoroutine("Move");
         MenuContextuel.Instance.HideMenu();
         break;
       case ("Nothing"):

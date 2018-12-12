@@ -12,6 +12,8 @@ public class PortraitInteractive : NetworkBehaviour
   Text pm;
   Text pr;
   Text stunTimeLeft;
+  public GameObject AllyHoverEffect;
+  public GameObject EnemyHoverEffect;
 
   public override void OnStartClient()
   {
@@ -49,16 +51,28 @@ public class PortraitInteractive : NetworkBehaviour
       pr.text = newHoveredPersonnage.actualPointResistance.ToString();
       pm.text = newHoveredPersonnage.actualPointMovement.ToString();
       po.text = newHoveredPersonnage.shotStrenght.ToString();
+
       if (newHoveredPersonnage.actualPointResistance == 0 && TurnManager.Instance.currentPhase == Phase.Deplacement)
       {
         stunTimeLeft.text = newHoveredPersonnage.timeStunned.ToString();
         stunTimeLeft.gameObject.SetActive(true);
         GrayPortrait();
       }
-      else
+      else if (newHoveredPersonnage == HoverManager.Instance.hoveredPersonnage && newHoveredPersonnage != SelectionManager.Instance.selectedPersonnage)
+      {
+        stunTimeLeft.gameObject.SetActive(false);
+        HoverPortrait();
+      }
+      else if (TurnManager.Instance.currentPhase == Phase.Placement)
+      {
+        stunTimeLeft.gameObject.SetActive(false);
+        UnHoverPortrait();
+      }
+      else if (TurnManager.Instance.currentPhase == Phase.Deplacement)
       {
         stunTimeLeft.gameObject.SetActive(false);
         UnGrayPortrait();
+        UnHoverPortrait();
       }
     }
   }
@@ -115,7 +129,7 @@ public class PortraitInteractive : NetworkBehaviour
 
   public void ClickPerso()
   {
-    if (GameManager.Instance.currentPlayer == newHoveredPersonnage.owner)
+    if (GameManager.Instance.currentPlayer == HoverManager.Instance.hoveredPersonnage.owner)
       RpcFunctions.Instance.CmdSendClickEvent();
   }
 
@@ -128,5 +142,23 @@ public class PortraitInteractive : NetworkBehaviour
   public void UnGrayPortrait()
   {
     GetComponent<Image>().color = Color.white;
+  }
+
+  public void HoverPortrait()
+  {
+    UnHoverPortrait();
+    if (TurnManager.Instance.currentPlayer == HoverManager.Instance.hoveredPersonnage.owner)
+    {
+      AllyHoverEffect.SetActive(true);
+    }
+    else if (TurnManager.Instance.currentPlayer != HoverManager.Instance.hoveredPersonnage.owner && TurnManager.Instance.currentPhase == Phase.Deplacement)
+    {
+      GrayPortrait();
+    }
+  }
+  public void UnHoverPortrait()
+  {
+    AllyHoverEffect.SetActive(false);
+    EnemyHoverEffect.SetActive(false);
   }
 }
