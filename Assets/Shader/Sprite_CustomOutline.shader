@@ -6,7 +6,7 @@
 		_TexelScale("TexelScale", Float) = 1
 		_AlphaThreshold("Alpha Threshold", Range(0.01,1)) = 0.01
 		_OutlineColor("[Outline] Tint", Color) = (1,1,1,1)
-		_OutlineSize("[Outline] Size", Range(0,10)) = 5
+		_OutlineSize("[Outline] Size", Range(5,10)) = 5
 		_OutlineMinAlpha("[Outline] Min Alpha", Range(0,1)) = 0.15
 		_OutlinePulseFreq("[Outline] Pulse Freq", Float) = 1
 		_OutlinePulseMaxAlphaOffset("[Outline] Pulse Max Alpha Offset", Range(0,1)) = 0.15
