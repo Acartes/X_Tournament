@@ -129,7 +129,8 @@ public class PlacementBehaviour : NetworkBehaviour
 			SelectionManager.Instance.selectedPersonnage = HoverManager.Instance.hoveredPersonnage; // total forcage, préférer SelectPerso() in-game
 			InfoPerso.Instance.PersoSelected(SelectionManager.Instance.selectedPersonnage); // total forcage, préférer SelectPerso() in-game
 
-			InfoPerso.Instance.stats.updatePm(SelectionManager.Instance.selectedPersonnage.actualPointMovement);
+      UIManager.Instance.ChangeSpriteSpellButton(SelectionManager.Instance.selectedPersonnage);
+      InfoPerso.Instance.stats.updatePm(SelectionManager.Instance.selectedPersonnage.actualPointMovement);
 			InfoPerso.Instance.stats.updatePr(SelectionManager.Instance.selectedPersonnage.actualPointResistance);
 			InfoPerso.Instance.stats.updatePo(SelectionManager.Instance.selectedPersonnage.shotStrenght);
 		}
@@ -142,7 +143,8 @@ public class PlacementBehaviour : NetworkBehaviour
 			InfoPerso.Instance.PersoSelected(SelectionManager.Instance.selectedPersonnage);
 			SelectionManager.Instance.selectedPersonnage.persoCase = null;
 
-			InfoPerso.Instance.PersoSelected(SelectionManager.Instance.selectedPersonnage);
+      UIManager.Instance.ChangeSpriteSpellButton(SelectionManager.Instance.selectedPersonnage);
+      InfoPerso.Instance.PersoSelected(SelectionManager.Instance.selectedPersonnage);
 			InfoPerso.Instance.PersoRemoved(SelectionManager.Instance.selectedPersonnage);
 			ChangePersoPosition(null, SelectionManager.Instance.selectedPersonnage); // total forcage, préférer SelectPerso() in-game
 		}
