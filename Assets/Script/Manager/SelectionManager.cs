@@ -111,7 +111,8 @@ public class SelectionManager : NetworkBehaviour
 		switch (currentPhase)
 		{
 			case (Phase.Placement):
-				return; // c'est le scriptPlacementBehaviour qui s'occupe des clicks de phase de placement
+      UIManager.Instance.ChangeSpriteSpellButton(selectedPersonnage);
+      return; // c'est le scriptPlacementBehaviour qui s'occupe des clicks de phase de placement
 			case (Phase.Deplacement):
 				if (hoveredPersonnage != null && hoveredPersonnage.owner == currentPlayer)
 				{ // changement de personnage selectionné

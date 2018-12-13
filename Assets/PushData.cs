@@ -31,6 +31,7 @@ public class PushData : MonoBehaviour
 
   public void Push(Direction pushDirection, int pushValue)
   {
+    Debug.Break();
     this.pushDirection = pushDirection;
     this.pushValue += pushValue;
 
