@@ -161,7 +161,7 @@ if (CheckDeath())
   // *************** //
 
   /// <summary>Vérifie si l'invocation est censé être toujours vivant ou pas.</summary>
-  public void CheckDeath()
+  public bool CheckDeath()
 	{
 		if (actualPointResistance <= 0 && timeStunned == 0)
 		{
@@ -173,7 +173,7 @@ if (CheckDeath())
         HoverManager.Instance.UnHover();
         persoCase.ChangeStatut(Statut.None, persoCase.statut);
 			}
-			return true;
+            return true;
 		}
 		if(actualPointResistance <= 0)
 		{

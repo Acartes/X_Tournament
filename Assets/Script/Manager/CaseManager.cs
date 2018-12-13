@@ -206,23 +206,6 @@ public class CaseManager : NetworkBehaviour
 		}
 	}
 
-	public GameObject GetCase(int xCoord, int yCoord, GameObject selectedCase = null, GameObject selectedPersonnage = null)
-	{
-		if (selectedCase != null)
-		{
-			GameObject.Find((selectedCase.GetComponent<CaseData>().xCoord + xCoord).ToString()
-			+ " "
-			+ (selectedCase.GetComponent<CaseData>().yCoord + yCoord).ToString());
-		}
-		if (selectedPersonnage != null)
-		{
-			GameObject.Find((selectedPersonnage.GetComponent<PersoData>().persoCase.GetComponent<CaseData>().xCoord + xCoord).ToString()
-			+ " "
-			+ (selectedPersonnage.GetComponent<PersoData>().persoCase.GetComponent<CaseData>().yCoord + yCoord).ToString());
-		}
-		return null;
-	}
-
 	public bool CheckAdjacent(GameObject firstObj, GameObject secondObj)
 	{ // Cette condition check si firstObj est à côté de secondObj (1case)
 

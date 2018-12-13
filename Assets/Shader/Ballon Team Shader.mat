@@ -69,7 +69,7 @@ Material:
     - _OutlineMinAlpha: 0
     - _OutlinePulseFreq: 10
     - _OutlinePulseMaxAlphaOffset: 0
-    - _OutlineSize: 14.500022
+    - _OutlineSize: 8.499999
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
